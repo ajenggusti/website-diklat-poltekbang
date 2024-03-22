@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Pembayaran;
 use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -27,6 +28,20 @@ class DbUtamaController extends Controller
         ]);
     }
     public function dbKeuangan(){
-        return view('kelola.dbKeuangan');
+        $getBayarDiklat = Pembayaran::getCountBayarDiklat();
+        $getBayarPendaftaran = Pembayaran::getCountBayarPendaftaran();
+        $hitungPembayaranDiklatDicek = Pembayaran::hitungPembayaranDiklatDicek();
+        $hitungPembayaranDiklatLunas = Pembayaran ::hitungPembayaranDiklatLunas();
+        $hitungPembayaranPendaftaranDicek = Pembayaran::hitungPembayaranPendaftaranDicek();
+        $hitungPembayaranPendaftaranLunas = Pembayaran::hitungPembayaranPendaftaranLunas();
+        return view('kelola.dbKeuangan', [
+            'getBayarDiklat'=>$getBayarDiklat,
+            'getBayarPendaftaran'=>$getBayarPendaftaran,
+            'hitungPembayaranDiklatDicek'=>$hitungPembayaranDiklatDicek,
+            'hitungPembayaranDiklatLunas'=>$hitungPembayaranDiklatLunas,
+            'hitungPembayaranPendaftaranDicek'=> $hitungPembayaranPendaftaranDicek,
+            'hitungPembayaranPendaftaranLunas' => $hitungPembayaranPendaftaranLunas
+
+        ]);
     }
 }
