@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\UtamaController;
 use App\Http\Controllers\DbUtamaController;
+use App\Http\Controllers\KelKatDiklatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,5 @@ Route::get('/dbSuperAdmin', [DbUtamaController::class, 'index']);
 Route::get('/dbDpuk', [DbUtamaController::class, 'dbDpuk']);
 Route::get('/dbKeuangan', [DbUtamaController::class, 'dbKeuangan']);
 
+// route crud
+Route::resource('/kelKatDiklat', kelKatDiklatController::class);
