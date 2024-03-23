@@ -2,8 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UtamaController;
 use App\Http\Controllers\DbUtamaController;
+use App\Http\Controllers\RiwayatController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\KelKatDiklatController;
 
 /*
@@ -21,12 +24,20 @@ use App\Http\Controllers\KelKatDiklatController;
 //     return view('utama/landingPage');
 // });
 
+// route landing page
 Route::get('/', [UtamaController::class, 'index']);
 Route::get('/utama/macamDiklat/{kategori}', [UtamaController::class, 'allDiklat']);
 Route::get('/utama/detailDiklat/{detail}', [UtamaController::class, 'detailDiklat']);
 Route::get('/dbSuperAdmin', [DbUtamaController::class, 'index']);
 Route::get('/dbDpuk', [DbUtamaController::class, 'dbDpuk']);
 Route::get('/dbKeuangan', [DbUtamaController::class, 'dbKeuangan']);
+Route::get('/riwayat', [RiwayatController::class, 'index']);
+
+// route login registrasi
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
 // route crud
 Route::resource('/kelKatDiklat', kelKatDiklatController::class);
+Route::resource('/register', RegisterController::class);
