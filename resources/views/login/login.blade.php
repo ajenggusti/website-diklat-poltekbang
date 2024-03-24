@@ -8,14 +8,24 @@
     <meta name="generator" content="Hugo 0.84.0">
     <title>Signin Template · Bootstrap v5.0</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    {{-- Boostrap Icons --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    {{-- Font Poppins --}}
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="/css/signin.css" rel="stylesheet">
+    <script src="/js/signin.js"></script>
   </head>
   <body class="text-center">
     <main class="form-signin">
-      <form method="POST" action="{{ route('login') }}">
+      <form method="POST" action="{{ route('login') }}" class="form-content">
         @csrf
         <h1 class="h3 mb-3 fw-normal">Login</h1>
+        <p>
+          Selamat datang di website diklat Politeknik
+          Penerbangan. Silahkan login untuk bisa mendaftar
+          diklat.
+        </p>
         @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
           {{ session('success') }}
@@ -29,20 +39,24 @@
         </div>
         @endif        
         <div class="form-floating">
-          <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" id="email" >
+          <input name="email" type="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Enter Email" value="">
           <label for="email">Email address</label>
           @error('email')
             <div class="invalid-feedback">{{ $message }}</div>
           @enderror
         </div>
         <div class="form-floating">
-          <input name="password" type="password" class="form-control @error('password') is-invalid @enderror"" id="floatingPassword" value="">
+          <input name="password" type="password" class="form-control @error('password') is-invalid @enderror" id="floatingPassword" placeholder="Enter Password" value="">
+          <button class="btn" type="button" id="togglePassword2">
+            <i class="bi bi-eye-slash" id="eye-icon"></i>
+          </button>
           <label for="floatingPassword">Password</label>
           @error('password')
             <div class="invalid-feedback">{{ $message }}</div>
           @enderror
         </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+        <br> <br>
         <small>Belum punya akun? <a href="/register">Register now</a></small>
       </form>
     </main>
