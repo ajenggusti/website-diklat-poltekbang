@@ -30,15 +30,24 @@
               <li class="nav-item">
                 <a class="nav-link" href="/riwayat">Riwayat</a>
               </li>
+              @can('superAdmin')
               <li class="nav-item">
                 <a class="nav-link" href="/dbSuperAdmin">Dashboard Super Admin</a>
               </li>
+              @endcan
+
+              @can('dpuk')
               <li class="nav-item">
                 <a class="nav-link" href="/dbDpuk">Dashboard DPUK</a>
               </li>
+              @endcan
+
+              @can('keuangan')
               <li class="nav-item">
                 <a class="nav-link" href="/dbKeuangan">Dashboard Keuangan</a>
               </li>
+              @endcan
+
             </ul>
             <form action="/logout" method="POST">
               @csrf

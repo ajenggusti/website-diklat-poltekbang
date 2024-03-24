@@ -31,7 +31,7 @@ Route::get('/utama/detailDiklat/{detail}', [UtamaController::class, 'detailDikla
 Route::get('/dbSuperAdmin', [DbUtamaController::class, 'index']);
 Route::get('/dbDpuk', [DbUtamaController::class, 'dbDpuk']);
 Route::get('/dbKeuangan', [DbUtamaController::class, 'dbKeuangan']);
-Route::get('/riwayat', [RiwayatController::class, 'index']);
+Route::get('/riwayat', [RiwayatController::class, 'index'])->middleware('auth');
 
 // route login registrasi
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');

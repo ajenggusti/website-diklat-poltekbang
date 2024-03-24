@@ -12,6 +12,7 @@ class DbUtamaController extends Controller
 {
     public function index()
     {
+        $this->authorize('superAdmin');
         $userCounts = User::countUserAsLevel();
         $count = User::count();
         return view('kelola.dbSuperAdmin', [
@@ -20,6 +21,7 @@ class DbUtamaController extends Controller
         ]);
     }
     public function dbDpuk(){
+        $this->authorize('dpuk');
         $jumlahPendaftar = Pendaftaran::countPendaftar();
         $diklatCounts = Pendaftaran::countPendaftaranAsDiklat();
         return view('kelola.dbDpuk', [
@@ -28,6 +30,7 @@ class DbUtamaController extends Controller
         ]);
     }
     public function dbKeuangan(){
+        $this->authorize('keuangan');
         $getBayarDiklat = Pembayaran::getCountBayarDiklat();
         $getBayarPendaftaran = Pembayaran::getCountBayarPendaftaran();
         $hitungPembayaranDiklatDicek = Pembayaran::hitungPembayaranDiklatDicek();
