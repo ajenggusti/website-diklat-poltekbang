@@ -25,9 +25,41 @@
                 <li class="nav-item">
                   <a class="nav-link" href="#">Diklat</a>
                 </li>
-              </ul>
-              <button type="button" class="btn btn-outline-primary">masuk</button>
-              <button type="button" class="btn btn-outline-primary">daftar</button>
+                
+              @auth
+              <li class="nav-item">
+                <a class="nav-link" href="/riwayat">Riwayat</a>
+              </li>
+              @can('superAdmin')
+              <li class="nav-item">
+                <a class="nav-link" href="/dbSuperAdmin">Dashboard Super Admin</a>
+              </li>
+              @endcan
+
+              @can('dpuk')
+              <li class="nav-item">
+                <a class="nav-link" href="/dbDpuk">Dashboard DPUK</a>
+              </li>
+              @endcan
+
+              @can('keuangan')
+              <li class="nav-item">
+                <a class="nav-link" href="/dbKeuangan">Dashboard Keuangan</a>
+              </li>
+              @endcan
+
+            </ul>
+            <form action="/logout" method="POST">
+              @csrf
+              <button type="submit" class="btn btn-outline-primary">Logout</button>
+            </form>
+              
+              @else    
+              <a href="/login"><button type="button" class="btn btn-outline-primary">masuk</button></a>
+              <a href="/register"><button type="button" class="btn btn-outline-primary">daftar</button></a>
+              @endauth
+              
+              
             </div>
           </div>
       </nav>
