@@ -24,8 +24,8 @@
         }
 
         .icon-bar a {
-            margin-top: 3px;
-            margin-bottom: 3px;
+            margin-top: 10px;
+            margin-bottom: 10px;
             float: left;
             color: white;
         }
@@ -37,27 +37,27 @@
 </head>
 <body>
     <div class="icon-bar">
-        <a href="#" style="font-size: 18px; margin-left: 100px;">
+        <a href="#" style="font-size: 15px; margin-left: 100px;">
             <i class="bi bi-instagram"></i>
         </a>
 
-        <a href="#" style="font-size: 18px; margin-left: 10px;">
+        <a href="#" style="font-size: 15px; margin-left: 10px;">
             <i class="bi bi-facebook"></i>
         </a>
 
-        <a href="#" style="font-size: 18px; margin-left: 10px;">
+        <a href="#" style="font-size: 15px; margin-left: 10px;">
             <i class="bi bi-twitter-x"></i>
         </a>
 
-        <a href="#" style="font-size: 18px; margin-left: 10px;">
+        <a href="#" style="font-size: 15px; margin-left: 10px;">
             <i class="bi bi-youtube"></i>
         </a>
 
-        <a href="#"style="font-size: 18px; margin-left: 10px;">
+        <a href="#"style="font-size: 15px; margin-left: 10px;">
             <i class="bi bi-whatsapp"></i>
         </a>
 
-        <a href="#"style="font-size: 18px; margin-left: 10px;">
+        <a href="#"style="font-size: 15px; margin-left: 10px;">
             <i class="bi bi-tiktok"></i>
         </a>
     </div>

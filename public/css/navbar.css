@@ -1,0 +1,25 @@
+.body {
+    margin: 0;
+    padding: 0;
+}
+
+.container-fluid {
+    background-color: #c1dbf2;
+}
+
+.navbar-nav .nav-item .nav-link {
+    color: #6c757d;
+}
+
+/* .navbar-nav .nav-item .nav-link.active,
+.navbar-nav .nav-item .nav-link:focus,
+.navbar-nav .nav-item .nav-link:hover {
+    color: #FF6900;
+} */
+li a {
+    color: #FF6900;
+}
+
+.navbar-brand img {
+    margin-left: 90px;
+}
