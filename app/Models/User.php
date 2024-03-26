@@ -48,5 +48,10 @@ class User extends Authenticatable
         ->groupBy('level.level')
         ->get();
     }
+    public static function getLevel(){
+        return User::join('level', 'users.id_level', '=', 'level.id')
+                ->select('users.*', 'level.level as userLevel')
+                ->get();
+    }
 
 }

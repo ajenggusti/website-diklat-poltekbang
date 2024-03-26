@@ -39,5 +39,6 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
 // route crud
-Route::resource('/kelKatDiklat', kelKatDiklatController::class);
+Route::resource('/kelKatDiklat', kelKatDiklatController::class)->except('show')->middleware('auth');
+Route::get('/indexKelolaUser',[RegisterController::class, 'tampil']);
 Route::resource('/register', RegisterController::class);

@@ -47,7 +47,10 @@
       <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
       <div class="navbar-nav">
         <div class="nav-item text-nowrap">
-          <a class="nav-link px-3" href="#">Logout</a>
+          <form action="/logout" method="POST">
+            @csrf
+            <button type="submit" style="color: aliceblue" class="btn btn-outline-primary border-0">Logout</button>
+          </form>
         </div>
       </div>
     </header>
@@ -58,24 +61,32 @@
           <div class="position-sticky pt-3">
             <ul class="nav flex-column">
               {{-- sidebar --}}
+              @can('superAdmin')    
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="dbSuperAdmin">
                   <span data-feather="home"></span>
                   Dashboard SuperAdmin
                 </a>
               </li>
+              @endcan
+
+              @can('dpuk')
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/dbDpuk">
                   <span data-feather="home"></span>
                   Dashboard DPUK
                 </a>
               </li>
+              @endcan
+
+              @can('keuangan')
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="/dbKeuangan">
                   <span data-feather="home"></span>
                   Dashboard Keuangan
                 </a>
               </li>
+              @endcan
               <li class="nav-item">
                 <a class="nav-link" href="/kelKatDiklat">
                   <span data-feather="layers"></span>
@@ -83,13 +94,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="layers"></span>
-                  Kelola Level
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/indexKelolaUser">
                   <span data-feather="layers"></span>
                   Kelola user
                 </a>
