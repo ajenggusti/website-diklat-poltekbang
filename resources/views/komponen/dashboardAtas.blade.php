@@ -114,13 +114,13 @@
               <li class="nav-item">
                 <a class="nav-link" href="#">
                   <span data-feather="layers"></span>
-                  kelola gmbr Landing Page
+                  kelola pendaftaran
                 </a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">
                   <span data-feather="layers"></span>
-                  kelola kategori gambar
+                  kelola gmbr Landing Page
                 </a>
               </li>
               <li class="nav-item">
@@ -133,12 +133,6 @@
                 <a class="nav-link" href="#">
                   <span data-feather="layers"></span>
                   kelola testimoni
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="layers"></span>
-                  kelola video
                 </a>
               </li>
             </ul>
