@@ -40,4 +40,18 @@
         Lokasi : 
         {{ $detail->lokasi }}
     @endforeach
+
+    @guest
+    <br>
+    <div class="d-grid gap-2 col-6">
+        <button class="btn btn-primary" type="button"  onclick="window.location.href = '/login';">Daftarkan dirimu sekarang!</button>
+    </div>
+    
+    @endguest
+
+    @auth 
+        <div class="d-grid gap-2 col-6">
+            <button class="btn btn-primary" type="button" onclick="window.location.href = '#';">Daftarkan dirimu sekarang!</button>
+        </div>
+    @endauth
 @endsection

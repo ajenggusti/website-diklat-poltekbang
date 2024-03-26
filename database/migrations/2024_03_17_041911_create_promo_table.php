@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('promo', function (Blueprint $table) {
+        Schema::create('promos', function (Blueprint $table) {
             $table->id();
-            $table->integer('potongan');//potongan harga dalam bentuk rupiah
-            $table->string('kode')->unique();//kode promo huruf unik
+            $table->integer('potongan'); //potongan harga dalam bentuk rupiah
+            $table->string('kode')->unique(); //kode promo huruf unik
             $table->date('tgl_awal');
             $table->date('tgl_akhir');
-
         });
     }
 

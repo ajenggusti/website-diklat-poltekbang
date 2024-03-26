@@ -100,6 +100,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="/kelPromo">
+                  <span data-feather="layers"></span>
+                  Kelola Promo
+                </a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="#">
                   <span data-feather="layers"></span>
                   kelola pembayaran

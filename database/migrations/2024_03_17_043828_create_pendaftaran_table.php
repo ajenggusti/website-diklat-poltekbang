@@ -33,7 +33,7 @@ return new class extends Migration
             ->onDelete('cascade');
             $table->foreign('id_user')->references('id')->on('users')->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->foreign('id_promo')->references('id')->on('promo')->onUpdate('cascade')
+            $table->foreign('id_promo')->references('id')->on('promos')->onUpdate('cascade')
             ->onDelete('cascade');
         });
     }

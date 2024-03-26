@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PromoController;
 use App\Http\Controllers\UtamaController;
 use App\Http\Controllers\DbUtamaController;
 use App\Http\Controllers\RiwayatController;
@@ -38,7 +39,12 @@ Route::get('/login', [LoginController::class, 'index'])->name('login')->middlewa
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
-// route crud
+// route crud kategori dikklat
 Route::resource('/kelKatDiklat', kelKatDiklatController::class)->except('show')->middleware('auth');
+// route crud user
 Route::get('/indexKelolaUser',[RegisterController::class, 'tampil']);
-Route::resource('/register', RegisterController::class);
+Route::resource('/register', RegisterController::class)->except('show', 'create');
+// route crud promo
+Route::resource('/kelPromo',PromoController::class);
+
+
