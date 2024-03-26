@@ -42,9 +42,7 @@ Route::post('/logout', [LoginController::class, 'logout']);
 // route crud kategori dikklat
 Route::resource('/kelKatDiklat', kelKatDiklatController::class)->except('show')->middleware('auth');
 // route crud user
-Route::get('/indexKelolaUser',[RegisterController::class, 'tampil']);
+Route::get('/indexKelolaUser', [RegisterController::class, 'tampil']);
 Route::resource('/register', RegisterController::class)->except('show', 'create');
 // route crud promo
-Route::resource('/kelPromo',PromoController::class);
-
-
+Route::resource('/kelPromo', PromoController::class)->except('show');

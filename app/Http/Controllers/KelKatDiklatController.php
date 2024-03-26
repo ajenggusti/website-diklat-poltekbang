@@ -53,6 +53,7 @@ class KelKatDiklatController extends Controller
      */
     public function edit(KatDiklat $kelKatDiklat)
     {
+        dd($kelKatDiklat);
         $data = ['data' => $kelKatDiklat];
         return view('kelola.kelolaKatDiklat.editFormKatDiklat', $data);
     }
