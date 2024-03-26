@@ -18,47 +18,72 @@
         </style>
     </head>
     <body>
-        <div class="content-land">
+        <img src="{{ asset('img/diklat.jpeg') }}" alt="Macam Diklat" class="img-detail">
+        <div class="content-body2">
             @foreach ($detailDiklat as $detail)
-            <div class="card-jenis">
-                nama diklat :
-                {{ $detail->nama_diklat }}
-                <br>
-                detail harga :
-                {{ $detail->harga }}
-                <br>
-                jumlah pendaftar saat ini :
-                {{ $detail->jumlah_pendaftar }}
-                <br>
-                Status penerimaan pendaftaram :
-                {{ $detail->status }}
-                <br>
-                Durasi diklat :
-                {{ $detail->durasi }}
-                <br>
-                Deskripsi : 
-                {{ $detail->deskripsi }}
-                <br>
-                Tujuan : 
-                {{ $detail->tujuan }}
-                <br>
-                Topik yang akan dipelajari : 
-                {{ $detail->topik }}
-                <br>
-                Tipe :
-                {{ $detail->tipe }}
-                <br>
-                Metode : 
-                {{ $detail->metode }}
-                <br>
-                Fasilitas : 
-                {{ $detail->fasilitas }}
-                <br>
-                Persyaratan : 
-                {{ $detail->persyaratan }}
-                <br>
-                Lokasi : 
-                {{ $detail->lokasi }}
+            <div class="center-text">{{ $detail->nama_diklat }}</div>
+            
+
+            <div class="card-container3">
+                <div class="card-content3">
+                    <p>
+                        <span>Nama Diklat : </span><br>
+                        {{ $detail->nama_diklat }}
+                    </p>
+                    
+                    <p>
+                        <span>Detail Harga :</span><br>
+                        {{ $detail->harga }}</p>
+                    
+                    <p>
+                        <span>Jumlah Pendaftar Saat Ini :</span><br>
+                        {{ $detail->jumlah_pendaftar }}
+                    </p>
+                    
+                    <p>
+                        <span>Status Penerimaan PendaftaraN :</span><br>
+                        {{ $detail->status }}
+                    </p>
+                    
+                    <p>
+                        <span>Durasi Diklat :</span><br>
+                        {{ $detail->durasi }}
+                    </p>
+                    
+                    <p>
+                        <span>Deskripsi :</span><br>
+                        {{ $detail->deskripsi }}
+                    </p>
+                    
+                    <p>
+                        <span>Tujuan :</span><br>
+                        {{ $detail->tujuan }}
+                    </p>
+                    
+                    <p>
+                        <span>Topik Yang Akan Dipelajari :</span><br>
+                        {{ $detail->topik }}</p>
+                    
+                    <p>
+                        <span>Tipe :</span><br>
+                        {{ $detail->tipe }}</p>
+                    
+                    <p>
+                        <span>Metode :</span><br>
+                        {{ $detail->metode }}</p>
+                    
+                    <p>
+                        <span>Fasilitas :</span><br>
+                        {{ $detail->fasilitas }}</p>
+                    
+                    <p>
+                        <span>Persyaratan :</span><br>
+                        {{ $detail->persyaratan }}</p>
+                    
+                    <p>
+                        <span>Lokasi :</span><br>
+                        {{ $detail->lokasi }}</p>
+                </div>
             </div> 
             @endforeach
         </div>

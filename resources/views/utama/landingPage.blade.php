@@ -20,22 +20,22 @@
         </head>
         <body>
             <div class="slideshow-container">
-                <div class="mySlides fade">
+                <div class="mySlides">
                     <div class="numbertext">1 / 3</div>
-                    <img src="img/promo.jpg" style="height: 1%;">
-                    <div class="text">Caption Text</div>
+                    <img src="{{ asset('img/plane.jpg') }}">
+                    {{-- <div class="text">Caption Text</div> --}}
                 </div>
                             
-                <div class="mySlides fade">
+                <div class="mySlides">
                     <div class="numbertext">2 / 3</div>
-                    <img src="img/promo.jpg" style="height: 1%">
-                    <div class="text">Caption Text</div>
+                    <img src="{{ asset('img/plane2.jpg') }}">
+                    {{-- <div class="text">Caption Text</div> --}}
                 </div>
                             
-                <div class="mySlides fade">
+                <div class="mySlides">
                     <div class="numbertext">3 / 3</div>
-                    <img src="img/promo.jpg" style="height: 1%">
-                    <div class="text">Caption Text</div>
+                    <img src="{{ asset('img/plane3.jpg') }}">
+                    {{-- <div class="text">Caption Text</div> --}}
                 </div>     
                          
                 <br>
@@ -50,6 +50,7 @@
             <br> <br>
             <div class="hero-text">
                 <h2>Lorem, ipsum dolor!</h2>
+                <br>
                 <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             </div>
             <br> <br>
@@ -61,14 +62,19 @@
                 <br> <br>
                 <div class="column">
                     <div class="column left">
-                        <h1>Jumlah Pendaftar <br>{{ $jmlPendaftar }}</span></h1>
+                        <h1>Jumlah Pendaftar
+                        <br>
+                        {{ $jmlPendaftar }}</h1>
                     </div>
                     <div class="column middle">
                         
                     </div>
                     <div class="column right">
-                        <h1>Jumlah Diklat <br>{{ $jmlDiklat }}</h1>
+                        <h1>Jumlah Diklat
+                        <br>
+                        {{ $jmlDiklat }}</h1>
                     </div>
+                    <br><br>
                 </div>
                 <hr>
                 <h3>Kategori Diklat</h3>
@@ -99,17 +105,20 @@
                 <div class="slide-testimoni">
                     @foreach ($testimonis as $key => $testimoni)
                     <div class="card-slides">
-                        <q>{{ $testimoni->testimoni }}</q>
                         <p class="author">{{ $testimoni->nama_depan }}</p>
-                        <b class="author">{{ $testimoni->profesi }}</b>
-                        <div class="numbertext">{{ $key + 1 }} / {{ count($testimonis) }}</div>
+                        <b class="author">{{ $testimoni->profesi }}</b><br><br>
+                        <q>{{ $testimoni->testimoni }}</q>
+                        {{-- <div class="numbertext2">{{ $key + 1 }} / {{ count($testimonis) }}</div> --}}
                     </div>
+                    <br> <br>
+                    
                     @endforeach
-                
+                    
                     <!-- Next and previous buttons -->
                     <a class="sblm" onclick="plusSlides(-1)">❮</a>
                     <a class="ssdh" onclick="plusSlides(1)">❯</a>
                 </div>
+                
             </div>
         </body>
     </html>

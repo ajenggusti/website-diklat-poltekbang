@@ -1,25 +1,143 @@
+* {
+    max-width: 100%;
+    box-sizing: border-box;
+}
 .body {
     margin: 0;
     padding: 0;
 }
 
+/* Style Navbar */
 .container-fluid {
     background-color: #c1dbf2;
 }
-
-.navbar-nav .nav-item .nav-link {
-    color: #6c757d;
-}
-
-/* .navbar-nav .nav-item .nav-link.active,
-.navbar-nav .nav-item .nav-link:focus,
-.navbar-nav .nav-item .nav-link:hover {
-    color: #FF6900;
-} */
-li a {
+.li a {
     color: #FF6900;
 }
 
 .navbar-brand img {
     margin-left: 90px;
+}
+
+
+
+
+/* Style Footer */
+.footer {
+    margin-top: 50px;
+    padding: 25px 0 400px;
+    background-color: #0E2D45;
+    color: white;
+    overflow: hidden;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 25px 0;
+    z-index: 1000;
+}
+.footer h5 {
+    font-weight: bolder;
+    font-size: 24px;
+}
+
+
+.footer-left,
+.footer-middle,
+.footer-right {
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+
+.footer-left {
+    width: 25%;
+    margin-left: 30px;
+    /* background-color: salmon; */
+    float: left;
+    box-sizing: border-box;
+
+
+}
+.footer-left p {
+    margin-top: 15px;
+    font-weight:lighter;
+}
+
+.footer-middle {
+    width: 38%;
+    margin-left: 90px;
+    /* background-color: rgb(151, 157, 65); */
+    float: left;
+}
+.footer-right {
+    width: 27%;
+    margin-left: 30px;
+    /* background-color: rgb(85, 165, 210); */
+    float: left;
+
+}
+.footer-right p{
+    margin-top: 15px;
+}
+
+.clear {
+    clear: both;
+}
+/* Style untuk QUICK LINKS */
+.ul-kiri {
+    margin-top: 15px;
+    margin-left: -33px;
+    list-style: none;
+    float: left;
+}
+.nav-item a {
+    color: rgb(255, 255, 255);
+}
+
+.ul-kanan {
+    margin-top: 15px;
+    margin-right: 180px;
+    list-style: none;
+    float: right;
+}
+
+/* Footer Bawah */
+.kiri-bawah {
+    width: 650px;
+    /* background-color: rgb(131, 23, 11); */
+    float: left;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-left: 30px;
+   
+}
+
+.kanan-bawah {
+    width: 340px;
+    margin-right: 30px;
+    /* background-color: rgb(85, 165, 210); */
+    float: right;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.kanan-bawah a {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    float: left;
+    color: rgb(255, 255, 255);
+}
+
+/* Style Icon */
+.ikon i {
+    border-radius: 50%;
+    text-decoration: none;
+    padding: 5px 7px 5px 7px;
+    font-size: 20px;
+    width: 20px;
+    margin: 5px 2px;
+    text-align: center;
+}
+.bi:hover {
+    opacity: 0.5;
+    color:#838688;
 }

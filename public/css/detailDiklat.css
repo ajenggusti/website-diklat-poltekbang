@@ -1,0 +1,120 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    max-width: 100%;
+}
+
+
+/* Style Macam Diklat*/
+.content-body, .content-body2 {
+    margin-left: 10%;
+    margin-right: 10%;
+    font-size: 20px;
+  
+    
+}
+.content-body h2{
+    color: #478DD7;
+}
+
+
+
+/* Style Container */
+.card-container2 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 20px auto;
+    max-width: 1200px;
+    border: 1px solid #FF6900;
+    font-size: 16px;
+}
+.card-container2 span {
+    font-weight: bold;
+}
+.card-img {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: calc(25% - 20px);
+    margin-bottom: 20px;
+    padding: 5px 0 20px 0;
+    border: 1px solid #FF6900;
+    border-radius: 30px;
+}
+.card-img p {
+    padding-left: 10px;
+}
+.card-img img{
+    width: 100%;  
+    height: auto;
+    padding-bottom: 10px;
+}
+.card-img:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.card-content2 {
+    padding-left: 20px;
+}
+.card-content2 p {
+    text-align: left;
+}
+.card-content2 span {
+    font-weight: bold;
+}
+
+/* Button di jenis diklat card */
+.button-link {
+    background-color: #ffffff;
+    border-color: #FF6900;
+    color: #FF6900;
+    border-radius: 5px;
+    
+}
+
+.button-link:hover {
+    background-color: #FFC784;
+    border-color: #FF6900;
+}
+
+/* Media query untuk layar berukuran kecil */
+@media screen and (max-width: 768px) {
+    .card-img {
+        width: calc(50% - 20px);
+    }
+}
+
+
+/* Style Detail Diklat */
+.card-container3 {
+    display: flex;
+    margin: 20px auto;
+    max-width: 1200px;
+    /* border: 1px solid #FF6900; */
+    font-size: 16px;
+}
+.img-detail {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    filter: blur(0.5px);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
+}
+.center-text {
+    font-weight: bold;
+    font-size: 40px;
+    position: absolute;
+    color: white;
+    /* padding: 20px; */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.card-content3 span{
+    font-weight: bold;
+}
