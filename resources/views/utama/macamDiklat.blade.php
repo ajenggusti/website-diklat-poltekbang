@@ -5,4 +5,5 @@
         
         <br>
     @endforeach
+    <a href="/" class="btn btn-info">Kembali</a>
 @endsection

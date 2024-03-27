@@ -1,6 +1,7 @@
 @extends('layout/mainUser')
 @section('container')
     @foreach ($detailDiklat as $detail)
+    <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a>
         nama diklat :
         {{ $detail->nama_diklat }}
         <br>

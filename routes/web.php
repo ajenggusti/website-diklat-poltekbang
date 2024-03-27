@@ -6,9 +6,11 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PromoController;
 use App\Http\Controllers\UtamaController;
 use App\Http\Controllers\DbUtamaController;
+use App\Http\Controllers\GbrLandingController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\KelKatDiklatController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +35,7 @@ Route::get('/dbSuperAdmin', [DbUtamaController::class, 'index']);
 Route::get('/dbDpuk', [DbUtamaController::class, 'dbDpuk']);
 Route::get('/dbKeuangan', [DbUtamaController::class, 'dbKeuangan']);
 Route::get('/riwayat', [RiwayatController::class, 'index'])->middleware('auth');
+Route::get('/riwayat/{detail}', [RiwayatController::class, 'detailRiwayat'])->middleware('auth');
 
 // route login registrasi
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
@@ -46,3 +49,5 @@ Route::get('/indexKelolaUser', [RegisterController::class, 'tampil']);
 Route::resource('/register', RegisterController::class)->except('show', 'create');
 // route crud promo
 Route::resource('/kelPromo', PromoController::class)->except('show');
+// route CRUD gbr LandingPage
+Route::resource('/gbrLandingPage', GbrLandingController::class);

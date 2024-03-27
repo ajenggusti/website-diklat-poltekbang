@@ -106,6 +106,12 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="/gbrLandingPage">
+                  <span data-feather="layers"></span>
+                  kelola gmbr Landing Page
+                </a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="#">
                   <span data-feather="layers"></span>
                   kelola pembayaran
@@ -117,12 +123,7 @@
                   kelola pendaftaran
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="layers"></span>
-                  kelola gmbr Landing Page
-                </a>
-              </li>
+              
               <li class="nav-item">
                 <a class="nav-link" href="#">
                   <span data-feather="layers"></span>

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->decimal('harga');
             $table->integer('kuota_minimal');
             $table->integer('jumlah_pendaftar');
-            $table->enum('status', ['full', 'tersedia']);
+            $table->enum('status', ['full', 'belum full']);
             $table->string('durasi');
             $table->longText('deskripsi');
             $table->longText('tujuan');
