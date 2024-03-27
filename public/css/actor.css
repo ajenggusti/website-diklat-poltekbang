@@ -1,0 +1,18 @@
+* {
+    box-sizing: border-box;
+}
+
+.content-dashboard {
+    background-color: aqua;
+    margin-left: 10%;
+    margin-right: 10%;
+    font-size: 20px;
+}
+
+.card-dashboard {
+    display: flex;
+    margin: 20px auto;
+    max-width: 1200px;
+    border: 1px solid #FF6900;
+    font-size: 16px;
+}
