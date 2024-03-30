@@ -131,7 +131,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/kelTestimoni">
                   <span data-feather="layers"></span>
                   kelola testimoni
                 </a>

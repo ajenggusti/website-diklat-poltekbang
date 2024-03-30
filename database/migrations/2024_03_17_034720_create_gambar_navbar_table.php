@@ -14,8 +14,10 @@ return new class extends Migration
         Schema::create('gambar_navbar', function (Blueprint $table) {
             $table->id('id')->autoIncrement();
             $table->text('gambar_navbar')->charset('binary'); // BLOB
+            $table->enum('status', ['tampilkan', 'sembunyikan'])->default('sembunyikan');
         });
     }
+
 
     /**
      * Reverse the migrations.

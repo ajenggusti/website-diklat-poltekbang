@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Gambar_navbar;
 use Illuminate\Http\Request;
 
 class GbrLandingController extends Controller
@@ -11,7 +12,9 @@ class GbrLandingController extends Controller
      */
     public function index()
     {
-        return view('kelola.kelolaGbrLandingPage.index');
+        $datas = Gambar_navbar::all();
+        // dd($datas);
+        return view('kelola.kelolaGbrLandingPage.index', ['datas' => $datas]);
     }
 
     /**
@@ -19,7 +22,7 @@ class GbrLandingController extends Controller
      */
     public function create()
     {
-        //
+        return view('kelola.kelolaGbrLandingPage.formGbrLanding');
     }
 
     /**
@@ -27,13 +30,37 @@ class GbrLandingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messages = [
+            'img.required' => 'Data tidak boleh kosong.',
+            'img.image' => 'File harus berupa gambar.',
+            'img.file' => 'File harus berupa berkas.',
+            'img.max' => 'Ukuran file tidak boleh melebihi 1 MB.',
+            'status.required' => 'Status tampilan harus dipilih.'
+        ];
+    
+        $request->validate([
+            'img' => 'required|image|file|max:1024',
+            'status' => 'required|in:tampilkan,sembunyikan'
+        ], $messages);
+
+        if ($request->hasFile('img')) {
+            $image = $request->file('img')->store('LanPage');
+            Gambar_navbar::create([
+                'gambar_navbar' => $image,
+                'status' => $request->status
+            ]);
+    
+            return redirect('/gbrLandingPage')->with('success', 'Data berhasil ditambahkan!');
+        } else {
+            return back()->withErrors(['msg' => 'Tidak ada file yang diunggah.'])->withInput();
+        }
     }
+    
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Gambar_navbar $gbrLandingPage)
     {
         //
     }
@@ -41,24 +68,50 @@ class GbrLandingController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Gambar_navbar $gbrLandingPage)
     {
-        //
+        $data = ['data' => $gbrLandingPage];
+        return view('kelola.kelolaGbrLandingPage.editFormGbrLanding', $data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Gambar_navbar $gbrLandingPage)
     {
-        //
+        $messages = [
+            'img.image' => 'File harus berupa gambar.',
+            'img.file' => 'File harus berupa berkas.',
+            'img.max' => 'Ukuran file tidak boleh melebihi 1 MB.',
+            'status.required' => 'Status tampilan harus dipilih.'
+        ];
+    
+        $request->validate([
+            'img' => 'nullable|image|file|max:1024',
+            'status' => 'required|in:tampilkan,sembunyikan'
+        ], $messages);
+    
+        if ($request->hasFile('img')) {
+            $image = $request->file('img')->store('LanPage');
+            $gbrLandingPage->update([
+                'gambar_navbar' => $image,
+                'status' => $request->status
+            ]);
+        } else {
+            $gbrLandingPage->update([
+                'status' => $request->status
+            ]);
+        }
+        return redirect('/gbrLandingPage')->with('success', 'Data berhasil diperbarui!');
     }
+    
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Gambar_navbar $gbrLandingPage)
     {
-        //
+        Gambar_navbar::destroy($gbrLandingPage->id);
+        return redirect('/gbrLandingPage')->with('success', 'Data berhasil dihapus!');
     }
 }

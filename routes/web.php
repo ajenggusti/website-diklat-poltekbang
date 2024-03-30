@@ -10,7 +10,7 @@ use App\Http\Controllers\GbrLandingController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\KelKatDiklatController;
-
+use App\Http\Controllers\TestimoniController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,3 +51,5 @@ Route::resource('/register', RegisterController::class)->except('show', 'create'
 Route::resource('/kelPromo', PromoController::class)->except('show');
 // route CRUD gbr LandingPage
 Route::resource('/gbrLandingPage', GbrLandingController::class);
+// route CRUD Testimoni
+Route::resource('kelTestimoni', TestimoniController::class);
