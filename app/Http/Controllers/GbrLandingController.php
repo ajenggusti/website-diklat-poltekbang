@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Gambar_navbar;
 use Illuminate\Http\Request;
+use App\Models\Gambar_navbar;
+use Illuminate\Support\Facades\Storage;
 
 class GbrLandingController extends Controller
 {
@@ -93,6 +94,7 @@ class GbrLandingController extends Controller
     
         if ($request->hasFile('img')) {
             $image = $request->file('img')->store('LanPage');
+            Storage::delete($gbrLandingPage->gambar_navbar);
             $gbrLandingPage->update([
                 'gambar_navbar' => $image,
                 'status' => $request->status
@@ -102,8 +104,10 @@ class GbrLandingController extends Controller
                 'status' => $request->status
             ]);
         }
+    
         return redirect('/gbrLandingPage')->with('success', 'Data berhasil diperbarui!');
     }
+    
     
 
     /**
@@ -111,7 +115,10 @@ class GbrLandingController extends Controller
      */
     public function destroy(Gambar_navbar $gbrLandingPage)
     {
-        Gambar_navbar::destroy($gbrLandingPage->id);
+        Storage::delete($gbrLandingPage->gambar_navbar);
+        $gbrLandingPage->delete();
+    
         return redirect('/gbrLandingPage')->with('success', 'Data berhasil dihapus!');
     }
+    
 }

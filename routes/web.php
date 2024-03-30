@@ -50,6 +50,6 @@ Route::resource('/register', RegisterController::class)->except('show', 'create'
 // route crud promo
 Route::resource('/kelPromo', PromoController::class)->except('show');
 // route CRUD gbr LandingPage
-Route::resource('/gbrLandingPage', GbrLandingController::class);
+Route::resource('/gbrLandingPage', GbrLandingController::class)->except('show');
 // route CRUD Testimoni
 Route::resource('kelTestimoni', TestimoniController::class);
