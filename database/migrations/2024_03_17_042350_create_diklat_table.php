@@ -15,20 +15,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_kategori_diklat');
             $table->string('nama_diklat');
-            $table->decimal('harga');
+            $table->bigInteger('harga');
             $table->integer('kuota_minimal');
-            $table->integer('jumlah_pendaftar');
+            $table->integer('jumlah_pendaftar')->default(0);
             $table->enum('status', ['full', 'belum full']);
-            $table->string('durasi');
-            $table->longText('deskripsi');
-            $table->longText('tujuan');
-            $table->longText('topik');
-            $table->longText('tipe');
-            $table->longText('metode');
-            $table->longText('fasilitas');
-            $table->longText('persyaratan');
-            $table->longText('lokasi');
-            $table->longText('gambar')->charset('binary');
+            $table->longText('deskripsi')->nullable();
+            $table->longText('gambar')->charset('binary')->nullable();
             $table->foreign('id_kategori_diklat')->references('id')->on('kategori_diklat')->onUpdate('cascade')
             ->onDelete('cascade');
         });

@@ -33,21 +33,4 @@
         </div>
         <button type="submit" class="btn btn-primary">Kirim</button>
     </form>
-    <script>
-        function previewImage() {
-            const preview = document.querySelector('.img-preview');
-            const file = document.querySelector('input[type=file]').files[0];
-            const reader = new FileReader();
-
-            reader.onloadend = function () {
-                preview.src = reader.result;
-            }
-
-            if (file) {
-                reader.readAsDataURL(file);
-            } else {
-                preview.src = "";
-            }
-        }
-    </script>
 @endsection

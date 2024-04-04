@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PromoController;
 use App\Http\Controllers\UtamaController;
 use App\Http\Controllers\DbUtamaController;
+use App\Http\Controllers\DiklatController;
 use App\Http\Controllers\GbrLandingController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\RegisterController;
@@ -52,4 +53,6 @@ Route::resource('/kelPromo', PromoController::class)->except('show');
 // route CRUD gbr LandingPage
 Route::resource('/gbrLandingPage', GbrLandingController::class)->except('show');
 // route CRUD Testimoni
-Route::resource('kelTestimoni', TestimoniController::class);
+// Route::resource('kelTestimoni', TestimoniController::class);
+// route CRUD Diklat
+Route::resource('/kelDiklat', DiklatController::class);

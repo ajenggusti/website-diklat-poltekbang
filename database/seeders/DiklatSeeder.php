@@ -22,15 +22,9 @@ class DiklatSeeder extends Seeder
             'kuota_minimal' => 5,
             'jumlah_pendaftar' => 2,
             'status' => 'belum full',
-            'durasi' => '1 bulan',
+            
             'deskripsi' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum hic ullam, fugiat molestias porro, autem    mollitia ipsum magni nostrum quas quaerat omnis vel officiis eos nam facere facilis odio minus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum itaque perspiciatis ducimus temporibus facere facilis nihil quia fugiat possimus illo.',
-            'tujuan' => 'tujuan mostrum quas quaerat omnis vel officiis eos nam facere facilis odio minus.',
-            'topik' => 'topik ostrum quas quaerat omnis vel officiis eos nam facere facilis odio minus.',
-            'tipe' => 'tipe ostrum quas quaerat omnis vel officiis eos nam facere facilis odio minus.',
-            'metode' => 'metode ostrum quas quaerat omnis vel officiis eos nam facere facilis odio minus.',
-            'fasilitas' => 'fasilitas ostrum quas quaerat omnis vel officiis eos nam facere facilis odio minus.',
-            'persyaratan' => 'persyaratan ostrum quas quaerat omnis vel officiis eos nam facere facilis odio minus.',
-            'lokasi' => 'lokasi ostrum quas',
+            
             'gambar' => 'blob gambar belum',
         ], 
             [
@@ -40,15 +34,9 @@ class DiklatSeeder extends Seeder
             'kuota_minimal' => 5,
             'jumlah_pendaftar' => 2,
             'status' => 'belum full',
-            'durasi' => '1 bulan',
+            
             'deskripsi' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum hic ullam, fugiat molestias porro, autem    mollitia ipsum magni nostrum quas quaerat omnis vel officiis eos nam facere facilis odio minus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum itaque perspiciatis ducimus temporibus facere facilis nihil quia fugiat possimus illo.',
-            'tujuan' => 'tujuan mostrum quas quaerat omnis vel officiis eos nam facere facilis odio minus.',
-            'topik' => 'topik ostrum quas quaerat omnis vel officiis eos nam facere facilis odio minus.',
-            'tipe' => 'tipe ostrum quas quaerat omnis vel officiis eos nam facere facilis odio minus.',
-            'metode' => 'metode ostrum quas quaerat omnis vel officiis eos nam facere facilis odio minus.',
-            'fasilitas' => 'fasilitas ostrum quas quaerat omnis vel officiis eos nam facere facilis odio minus.',
-            'persyaratan' => 'persyaratan ostrum quas quaerat omnis vel officiis eos nam facere facilis odio minus.',
-            'lokasi' => 'lokasi ostrum quas',
+            
             'gambar' => 'blob gambar belum',
         ], 
             [
@@ -58,15 +46,9 @@ class DiklatSeeder extends Seeder
             'kuota_minimal' => 5,
             'jumlah_pendaftar' => 2,
             'status' => 'belum full',
-            'durasi' => '2 bulan',
+            
             'deskripsi' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum hic ullam, fugiat molestias porro, autem    mollitia ipsum magni nostrum quas quaerat omnis vel officiis eos nam facere facilis odio minus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum itaque perspiciatis ducimus temporibus facere facilis nihil quia fugiat possimus illo.',
-            'tujuan' => 'tujuan mostrum quas quaerat omnis vel officiis eos nam facere facilis odio minus.',
-            'topik' => 'topik ostrum quas quaerat omnis vel officiis eos nam facere facilis odio minus.',
-            'tipe' => 'tipe ostrum quas quaerat omnis vel officiis eos nam facere facilis odio minus.',
-            'metode' => 'metode ostrum quas quaerat omnis vel officiis eos nam facere facilis odio minus.',
-            'fasilitas' => 'fasilitas ostrum quas quaerat omnis vel officiis eos nam facere facilis odio minus.',
-            'persyaratan' => 'persyaratan ostrum quas quaerat omnis vel officiis eos nam facere facilis odio minus.',
-            'lokasi' => 'lokasi ostrum quas',
+            
             'gambar' => 'blob gambar belum',
         ], 
         ]);

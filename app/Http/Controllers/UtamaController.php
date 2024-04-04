@@ -29,10 +29,15 @@ class UtamaController extends Controller
     }
     public function allDiklat($kategori)
     {
-        $diklat = Diklat::joinKatDiklat($kategori);
-        return view('utama.macamDiklat', ['diklat' => $diklat]);
+        $diklat = Diklat::with('kategori')
+                        ->where('id_kategori_diklat', $kategori)
+                        ->get();
+    
+        return view('utama.macamDiklat', [
+            'diklat' => $diklat
+        ]);
     }
-
+    
     public function detailDiklat($id){
         $detailDiklat = Diklat::showAll($id);
         return view('utama.detailDiklat', ['detailDiklat' => $detailDiklat]);
