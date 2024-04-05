@@ -1,6 +1,5 @@
 @extends('layout.mainAdmin')
 @section('container')
-    <a href="/kelPendaftaran/create" class="btn btn-primary">Tambah Data</a>
     @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('success') }}

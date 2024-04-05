@@ -16,16 +16,15 @@
         <strong>Deskripsi:</strong> {!! $detail->deskripsi !!}
     @endforeach
 
-    @guest
-        <br>
+    @auth
         <div class="d-grid gap-2 col-6">
-            <button class="btn btn-primary" type="button"  onclick="window.location.href = '/login';">Daftarkan dirimu sekarang!</button>
-        </div>
-    @endguest
-
-    @auth 
-        <div class="d-grid gap-2 col-6">
-            <button class="btn btn-primary" type="button" onclick="window.location.href = '#';">Daftarkan dirimu sekarang!</button>
+            <a href="{{ route('kelPendaftaran.create', ['id' => $detail->id]) }}" class="btn btn-primary">Daftarkan dirimu sekarang!</a>
         </div>
     @endauth
+
+    @guest
+        <div class="d-grid gap-2 col-6">
+            <button class="btn btn-primary" type="button" onclick="window.location.href = '/login';">Login untuk mendaftar!</button>
+        </div>
+    @endguest
 @endsection

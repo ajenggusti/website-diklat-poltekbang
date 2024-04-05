@@ -18,17 +18,17 @@ return new class extends Migration
             $table->unsignedBigInteger('id_promo')->nullable();
             $table->timestamp('waktu_pendaftaran');
             $table->decimal('harga_diklat'); //apabila user ada promo, maka akan terpotong, dan masuk ke kolom ini. jika tidak ada, harga asli diklat yang masuk sini.
-            $table->enum('status_pembayaran_diklat', ['Lunas', 'Belum dibayar', 'Dicek']);
-            $table->string('nama_depan');
-            $table->string('nama_belakang');
-            $table->string('tempat_lahir');
-            $table->date('tanggal_lahir');
-            $table->string('alamat');
-            $table->string('pendidikan_terakhir');
-            $table->string('email');
-            $table->string('no_hp');
-            $table->enum('status_pembayaran_daftar', ['Lunas', 'Belum dibayar', 'Dicek']);
-            $table->string('sertifikat');
+            $table->enum('status_pembayaran_diklat', ['Lunas', 'Belum dibayar', 'Dicek'])->default('Belum dibayar');
+            $table->string('nama_depan')->nullable();
+            $table->string('nama_belakang')->nullable();
+            $table->string('tempat_lahir')->nullable();
+            $table->date('tanggal_lahir')->nullable();
+            $table->string('alamat')->nullable();
+            $table->string('pendidikan_terakhir')->nullable();
+            $table->string('email')->nullable();
+            $table->string('no_hp')->nullable();
+            $table->enum('status_pembayaran_daftar', ['Lunas', 'Belum dibayar', 'Dicek'])->default('Belum dibayar');
+            $table->string('sertifikat')->nullable();
             $table->foreign('id_diklat')->references('id')->on('diklat')->onUpdate('cascade')
             ->onDelete('cascade');
             $table->foreign('id_user')->references('id')->on('users')->onUpdate('cascade')
