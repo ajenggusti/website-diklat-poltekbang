@@ -51,7 +51,6 @@ class PendaftaranController extends Controller
         // Ambil harga dari data diklat yang dipilih
         $diklat = Diklat::findOrFail($request->input('diklat'));
         $harga = $diklat->harga;
-
         // Inisialisasi id promo
         $idPromo = null;
         
@@ -98,6 +97,12 @@ class PendaftaranController extends Controller
         $pendaftaran->id_promo = $idPromo; 
         $pendaftaran->harga_diklat = $harga;
         $pendaftaran->save();
+        // Tambahkan jumlah pendaftar pada objek Diklat
+        $diklat->jumlah_pendaftar += 1;
+        // Simpan perubahan ke dalam basis data
+        $diklat->save();
+        $diklat->updateStatus();
+        // dd($diklat->jumlah_pendaftar);
         // dd($pendaftaran);
         return redirect('/riwayat')->with('success', 'Pendaftaran berhasil disimpan!');
     }
