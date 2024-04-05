@@ -51,7 +51,7 @@ class DiklatController extends Controller
             'img' => 'required|image|file|max:1024',
             'kategoriDiklat' => 'required',
             'kategoriDiklat' => 'required',
-            'deskripsi' => 'required', // Aturan validasi untuk deskripsi
+            'deskripsi' => 'required',
             'nama_diklat' => 'required',
             'harga' => 'required',
             'kuota' => 'required|numeric'
@@ -81,7 +81,6 @@ class DiklatController extends Controller
      */
     public function show(Diklat $kelDiklat)
     {
-        // Memanggil metode dari model untuk mendapatkan data diklat dengan kategori
         // dd($kelDiklat);
         $diklatData = Diklat::getDiklatWithKategori($kelDiklat->id);
         // Kembalikan view dengan data diklat dan kategorinya
