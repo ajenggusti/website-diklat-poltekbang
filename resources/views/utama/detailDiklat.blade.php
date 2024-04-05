@@ -1,4 +1,5 @@
 @extends('layout/mainUser')
+
 @section('container')
 <html>
     <head>
@@ -18,7 +19,8 @@
         </style>
     </head>
     <body>
-        <img src="{{ asset('img/diklat.jpeg') }}" alt="Macam Diklat" class="img-detail">
+        <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a><br>
+        <img src="{{ asset('storage/' . $detail->gambar) }}" alt="Gambar Diklat" class="img-detail">
         <div class="content-body2">
             @foreach ($detailDiklat as $detail)
             <div class="center-text">{{ $detail->nama_diklat }}</div>
@@ -52,7 +54,7 @@
                     
                     <p>
                         <span>Deskripsi :</span><br>
-                        {{ $detail->deskripsi }}
+                        {!! $detail->deskripsi !!}
                     </p>
                     
                     <p>
@@ -86,6 +88,18 @@
                 </div>
             </div> 
             @endforeach
+            @guest
+                <br>
+                <div class="d-grid gap-2 col-6">
+                    <button class="btn btn-primary" type="button"  onclick="window.location.href = '/login';">Daftarkan dirimu sekarang!</button>
+                </div>
+            @endguest
+
+            @auth 
+                <div class="d-grid gap-2 col-6">
+                    <button class="btn btn-primary" type="button" onclick="window.location.href = '#';">Daftarkan dirimu sekarang!</button>
+                </div>
+            @endauth
         </div>
     </body>
 </html>

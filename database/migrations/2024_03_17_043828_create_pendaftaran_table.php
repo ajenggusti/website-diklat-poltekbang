@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_diklat');
             $table->unsignedBigInteger('id_user');
-            $table->unsignedBigInteger('id_promo');
+            $table->unsignedBigInteger('id_promo')->nullable();
             $table->timestamp('waktu_pendaftaran');
             $table->decimal('harga_diklat'); //apabila user ada promo, maka akan terpotong, dan masuk ke kolom ini. jika tidak ada, harga asli diklat yang masuk sini.
             $table->enum('status_pembayaran_diklat', ['Lunas', 'Belum dibayar', 'Dicek']);
@@ -33,8 +33,7 @@ return new class extends Migration
             ->onDelete('cascade');
             $table->foreign('id_user')->references('id')->on('users')->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->foreign('id_promo')->references('id')->on('promo')->onUpdate('cascade')
-            ->onDelete('cascade');
+            $table->foreign('id_promo')->references('id')->on('promos')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

@@ -51,24 +51,40 @@ class KelKatDiklatController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(KatDiklat $katDiklat)
+    public function edit(KatDiklat $kelKatDiklat)
     {
-        //
+        // dd($kelKatDiklat);
+        $data = ['data' => $kelKatDiklat];
+        return view('kelola.kelolaKatDiklat.editFormKatDiklat', $data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, KatDiklat $katDiklat)
+    public function update(Request $request, KatDiklat  $kelKatDiklat)
     {
-        //
+        $messages = [
+            'katDiklat.required' => 'Kategori Diklat wajib diisi.',
+            'katDiklat.unique' => 'Kategori Diklat sudah ada.'
+        ];
+
+        $request->validate([
+            'katDiklat' => 'required|unique:kategori_diklat,kategori_diklat,' . $kelKatDiklat->id,
+        ], $messages);
+
+        $kelKatDiklat->update([
+            'kategori_diklat' => $request->katDiklat,
+        ]);
+
+        return redirect('/kelKatDiklat')->with('success', 'Data berhasil diperbarui');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(KatDiklat $katDiklat)
+    public function destroy(KatDiklat $kelKatDiklat)
     {
-        //
+        KatDiklat::destroy($kelKatDiklat->id);
+        return redirect('/kelKatDiklat')->with('success', 'Data berhasil dihapus!');
     }
 }

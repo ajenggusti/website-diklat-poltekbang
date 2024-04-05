@@ -3,11 +3,15 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PromoController;
 use App\Http\Controllers\UtamaController;
 use App\Http\Controllers\DbUtamaController;
+use App\Http\Controllers\DiklatController;
+use App\Http\Controllers\GbrLandingController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\KelKatDiklatController;
+use App\Http\Controllers\TestimoniController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,12 +36,23 @@ Route::get('/dbSuperAdmin', [DbUtamaController::class, 'index']);
 Route::get('/dbDpuk', [DbUtamaController::class, 'dbDpuk']);
 Route::get('/dbKeuangan', [DbUtamaController::class, 'dbKeuangan']);
 Route::get('/riwayat', [RiwayatController::class, 'index'])->middleware('auth');
+Route::get('/riwayat/{detail}', [RiwayatController::class, 'detailRiwayat'])->middleware('auth');
 
 // route login registrasi
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
-// route crud
-Route::resource('/kelKatDiklat', kelKatDiklatController::class);
-Route::resource('/register', RegisterController::class);
+// route crud kategori dikklat
+Route::resource('/kelKatDiklat', kelKatDiklatController::class)->except('show')->middleware('auth');
+// route crud user
+Route::get('/indexKelolaUser', [RegisterController::class, 'tampil']);
+Route::resource('/register', RegisterController::class)->except('show', 'create');
+// route crud promo
+Route::resource('/kelPromo', PromoController::class)->except('show');
+// route CRUD gbr LandingPage
+Route::resource('/gbrLandingPage', GbrLandingController::class)->except('show');
+// route CRUD Testimoni
+// Route::resource('kelTestimoni', TestimoniController::class);
+// route CRUD Diklat
+Route::resource('/kelDiklat', DiklatController::class);

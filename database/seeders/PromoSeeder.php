@@ -14,7 +14,7 @@ class PromoSeeder extends Seeder
      */
     public function run(): void
     { 
-        DB::table('promo')->insert([
+        DB::table('promos')->insert([
             [
             'potongan' => 20000,
             'kode' => 'kode1',

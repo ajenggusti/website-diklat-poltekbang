@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Level;
 use Illuminate\Http\Request;
 
 class RegisterController extends Controller
@@ -65,24 +66,41 @@ class RegisterController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $register)
     {
-        //
+        $getLevel = Level::All();
+        // Mengembalikan tampilan edit dengan data level pengguna
+        return view('kelola.kelolaUser.editUser', [
+        'data' => $register,
+        'getLevel' => $getLevel
+    ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, User $register)
     {
-        //
+
+        $register->update([
+            'id_level' => $request->id_level,
+        ]);
+        return redirect('/indexKelolaUser')->with('success', 'Data berhasil diedit!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(User $register)
     {
-        //
+        User::destroy($register->id);
+        return redirect('/indexKelolaUser')->with('success', 'Data berhasil dihapus!');
+    }
+    public function tampil()
+    {
+        $getLevel = User::getLevel();
+        return view('kelola.kelolaUser.index', [
+            'getLevel'=>$getLevel
+        ]);
     }
 }

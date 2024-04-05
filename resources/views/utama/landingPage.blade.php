@@ -1,4 +1,3 @@
-{{-- extend merupakan inheritance dari nama file yang ingin di warisi --}}
 @extends('layout/mainUser')
 @section('container')
     <html>
@@ -20,31 +19,37 @@
         </head>
         <body>
             <div class="slideshow-container">
-                <div class="mySlides">
+                @foreach ($gbrSlide as $slide)
+                    <div class="mySlides">
+                        <img src="{{ asset('storage/' . $slide->gambar_navbar) }}" alt="Gambar Slide">
+                    </div>
+                    @endforeach
+
+                {{-- <div class="mySlides">
                     <div class="numbertext">1 / 3</div>
                     <img src="{{ asset('img/plane.jpg') }}">
-                    {{-- <div class="text">Caption Text</div> --}}
+                    
                 </div>
                             
                 <div class="mySlides">
                     <div class="numbertext">2 / 3</div>
                     <img src="{{ asset('img/plane2.jpg') }}">
-                    {{-- <div class="text">Caption Text</div> --}}
+                    
                 </div>
                             
                 <div class="mySlides">
                     <div class="numbertext">3 / 3</div>
                     <img src="{{ asset('img/plane3.jpg') }}">
-                    {{-- <div class="text">Caption Text</div> --}}
-                </div>     
+                    
+                </div>      --}}
                          
                 <br>
                 
-                <div style="text-align:center">
+                {{-- <div style="text-align:center">
                   <span class="dot"></span> 
                   <span class="dot"></span> 
                   <span class="dot"></span> 
-                </div>
+                </div> --}}
             </div>
 
             <br> <br>

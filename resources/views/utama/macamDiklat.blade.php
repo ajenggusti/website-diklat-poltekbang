@@ -25,12 +25,13 @@
                     </p>
                     <div class="card-content2">
                         <button class="button-link" onclick="window.location.href='/utama/detailDiklat/{{ $perdiklat -> id}}'">
-                            Lihat Detail
+                            Lihat Detail {{ $perdiklat->nama_diklat }}
                         </button>
                     </div>
                 </div>
                     <br>
                 @endforeach   
+                <a href="/" class="btn btn-info">Kembali</a>
             </div>     
         </div>
     </body>
