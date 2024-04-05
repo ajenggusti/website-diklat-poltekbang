@@ -24,32 +24,14 @@
                         <img src="{{ asset('storage/' . $slide->gambar_navbar) }}" alt="Gambar Slide">
                     </div>
                     @endforeach
-
-                {{-- <div class="mySlides">
-                    <div class="numbertext">1 / 3</div>
-                    <img src="{{ asset('img/plane.jpg') }}">
-                    
-                </div>
-                            
-                <div class="mySlides">
-                    <div class="numbertext">2 / 3</div>
-                    <img src="{{ asset('img/plane2.jpg') }}">
-                    
-                </div>
-                            
-                <div class="mySlides">
-                    <div class="numbertext">3 / 3</div>
-                    <img src="{{ asset('img/plane3.jpg') }}">
-                    
-                </div>      --}}
                          
                 <br>
                 
-                {{-- <div style="text-align:center">
+                <div style="text-align:center">
                   <span class="dot"></span> 
                   <span class="dot"></span> 
                   <span class="dot"></span> 
-                </div> --}}
+                </div>
             </div>
 
             <br> <br>

@@ -1,20 +1,54 @@
 // Script Slideshow gambar
+// document.addEventListener("DOMContentLoaded", function() {
+//     let slideIndex = 0;
+//     showSlides(); // Panggil showSlides pertama kali saat dokumen dimuat
+
+//     function showSlides() {
+//         let i;
+//         let slides = document.getElementsByClassName("mySlides");
+//         let dots = document.getElementsByClassName("dot");
+        
+//         // Sembunyikan semua slide
+//         for (i = 0; i < slides.length; i++) {
+//             slides[i].style.display = "none";
+//         }
+        
+//         // Hapus kelas active dari semua titik navigasi
+//         for (i = 0; i < dots.length; i++) {
+//             dots[i].className = dots[i].className.replace(" active", "");
+//         }
+        
+//         // Geser ke slide berikutnya
+//         slideIndex++;
+        
+//         // Jika sudah mencapai slide terakhir, kembali ke slide pertama
+//         if (slideIndex > slides.length) {slideIndex = 1}
+        
+//         // Tampilkan slide yang sesuai dan tandai titik navigasi yang sesuai
+//         slides[slideIndex - 1].style.display = "block";
+//         dots[slideIndex - 1].className += " active";
+        
+//         // Panggil kembali fungsi showSlides setelah 2 detik
+//         setTimeout(showSlides, 2000);
+//     }
+// });
+
+
 document.addEventListener("DOMContentLoaded", function() {
     let slideIndex = 0;
     showSlides(); // Panggil showSlides pertama kali saat dokumen dimuat
 
     function showSlides() {
-        let i;
         let slides = document.getElementsByClassName("mySlides");
         let dots = document.getElementsByClassName("dot");
         
         // Sembunyikan semua slide
-        for (i = 0; i < slides.length; i++) {
+        for (let i = 0; i < slides.length; i++) {
             slides[i].style.display = "none";
         }
         
         // Hapus kelas active dari semua titik navigasi
-        for (i = 0; i < dots.length; i++) {
+        for (let i = 0; i < dots.length; i++) {
             dots[i].className = dots[i].className.replace(" active", "");
         }
         
@@ -32,6 +66,7 @@ document.addEventListener("DOMContentLoaded", function() {
         setTimeout(showSlides, 2000);
     }
 });
+
 
 
 
