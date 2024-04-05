@@ -5,7 +5,6 @@
     @foreach ($datas as $key => $data)
         <h3>{{ $dataDiklat[$key]->nama_diklat }}</h3>
         <p>Status Diklat : {{ $dataDiklat[$key]->status }}</p>
-        <p>Lama Diklat : {{ $dataDiklat[$key]->durasi }}</p>
         <p>Harga Diklat : Rp. {{ number_format($data->harga_diklat, 0, ',', '.') }}</p>
         <p>Status Pembayaran Diklat : {{ $data->status_pembayaran_diklat }}</p>
         <p>Harga Pendaftaran : Rp. 150.000</p>

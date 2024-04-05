@@ -105,17 +105,67 @@ class DiklatController extends Controller
      */
     public function update(Request $request, Diklat $kelDiklat)
     {
-        //
+        $messages = [
+            'img.required' => 'Data tidak boleh kosong.',
+            'img.image' => 'File harus berupa gambar.',
+            'img.file' => 'File harus berupa berkas.',
+            'img.max' => 'Ukuran file tidak boleh melebihi 1 MB.',
+            'status.required' => 'Status tampilan harus dipilih.',
+            'deskripsi.required' => 'Deskripsi tidak boleh kosong.', // Pesan untuk deskripsi
+            'nama_diklat.required' => 'Nama Diklat tidak boleh kosong.',
+            'harga.required' => 'Harga tidak boleh kosong.',
+            'kuota.required' => 'Kuota Minimal tidak boleh kosong.',
+            'kuota.numeric' => 'Kuota Minimal harus berupa angka.',
+            'kategoriDiklat.required' => 'Kategori Diklat tidak boleh kosong'
+        ];
+    
+        $request->validate([
+            'img' => 'nullable|image|file|max:1024',
+            'kategoriDiklat' => 'required',
+            'deskripsi' => 'required', // Aturan validasi untuk deskripsi
+            'nama_diklat' => 'required',
+            'harga' => 'required',
+            'kuota' => 'required|numeric'
+        ], $messages);
+    
+        // Menghapus gambar lama jika ada pembaruan gambar baru
+        if ($request->hasFile('img')) {
+            Storage::delete($kelDiklat->gambar);
+        }
+    
+        // Mengunggah gambar baru jika ada
+        if ($request->hasFile('img')) {
+            $image = $request->file('img')->store('LanPage');
+        } else {
+            $image = $kelDiklat->gambar;
+        }
+    
+        // Update data Diklat
+        $harga = preg_replace("/[^0-9]/", "", $request->input('harga'));
+        $kelDiklat->update([
+            'gambar' => $image,
+            'id_kategori_diklat' => $request->kategoriDiklat,
+            'deskripsi' => $request->deskripsi,
+            'nama_diklat' => $request->nama_diklat,
+            'harga' => $harga,
+            'kuota_minimal' => $request->kuota,
+        ]);
+        return redirect('/kelDiklat')->with('success', 'Data berhasil diperbarui!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
+
     public function destroy(Diklat $kelDiklat)
     {
-        Storage::delete($kelDiklat->id);
+        // Menghapus gambar dari penyimpanan
+        Storage::delete($kelDiklat->gambar);
+        
+        // Menghapus entri Diklat dari database
         $kelDiklat->delete();
     
         return redirect('/kelDiklat')->with('success', 'Data berhasil dihapus!');
     }
+    
 }

@@ -22,7 +22,6 @@ class DiklatSeeder extends Seeder
             'kuota_minimal' => 5,
             'jumlah_pendaftar' => 2,
             'status' => 'belum full',
-            
             'deskripsi' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum hic ullam, fugiat molestias porro, autem    mollitia ipsum magni nostrum quas quaerat omnis vel officiis eos nam facere facilis odio minus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum itaque perspiciatis ducimus temporibus facere facilis nihil quia fugiat possimus illo.',
             
             'gambar' => 'blob gambar belum',
@@ -34,7 +33,6 @@ class DiklatSeeder extends Seeder
             'kuota_minimal' => 5,
             'jumlah_pendaftar' => 2,
             'status' => 'belum full',
-            
             'deskripsi' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum hic ullam, fugiat molestias porro, autem    mollitia ipsum magni nostrum quas quaerat omnis vel officiis eos nam facere facilis odio minus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum itaque perspiciatis ducimus temporibus facere facilis nihil quia fugiat possimus illo.',
             
             'gambar' => 'blob gambar belum',
@@ -46,9 +44,7 @@ class DiklatSeeder extends Seeder
             'kuota_minimal' => 5,
             'jumlah_pendaftar' => 2,
             'status' => 'belum full',
-            
             'deskripsi' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum hic ullam, fugiat molestias porro, autem    mollitia ipsum magni nostrum quas quaerat omnis vel officiis eos nam facere facilis odio minus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum itaque perspiciatis ducimus temporibus facere facilis nihil quia fugiat possimus illo.',
-            
             'gambar' => 'blob gambar belum',
         ], 
         ]);
