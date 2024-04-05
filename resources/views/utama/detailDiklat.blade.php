@@ -27,7 +27,7 @@
 
             <div class="center-text">{{ $detail->nama_diklat }}</div>
             
-            <img src="{{ asset('img/image1.jpeg/') }}" alt="Gambar Diklat" class="img-detail">
+            <img src="{{ asset('storage/' . $detail->gambar) }}" alt="" style="width: 30%;">
 
             {{-- <img src="{{ asset('storage/img/image1.jpeg' . $detail->gambar) }}" alt="Gambar Diklat" class="img-detail"> --}}
             <div class="card-container3">
