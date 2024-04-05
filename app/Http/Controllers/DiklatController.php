@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Diklat;
 use App\Models\KatDiklat;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class DiklatController extends Controller
 {
@@ -91,8 +92,12 @@ class DiklatController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(Diklat $kelDiklat)
-    {
-        //
+    { 
+        $getKategori=KatDiklat::selectAll();
+        return view('kelola.kelolaDiklat.editForm',  [
+            'kelDiklat'=>$kelDiklat,
+            'getKategori'=>$getKategori
+        ]);
     }
 
     /**
@@ -106,8 +111,11 @@ class DiklatController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Diklat $diklat)
+    public function destroy(Diklat $kelDiklat)
     {
-        //
+        Storage::delete($kelDiklat->id);
+        $kelDiklat->delete();
+    
+        return redirect('/kelDiklat')->with('success', 'Data berhasil dihapus!');
     }
 }
