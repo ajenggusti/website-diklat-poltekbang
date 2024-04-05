@@ -25,7 +25,7 @@
                     </p>
                     <div class="card-content2">
                         <button class="button-link" onclick="window.location.href='/utama/detailDiklat/{{ $perdiklat -> id}}'">
-                            Lihat Detail {{ $perdiklat->nama_diklat }}
+                            Lihat Detail
                         </button>
                     </div>
                 </div>

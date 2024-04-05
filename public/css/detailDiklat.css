@@ -76,7 +76,7 @@ body {
     border-color: #FF6900;
     color: #FF6900;
     border-radius: 5px;
-    
+    padding: 4px 8px;
 }
 
 .button-link:hover {
@@ -121,3 +121,5 @@ body {
 .card-content3 span{
     font-weight: bold;
 }
+
+/* Style button */

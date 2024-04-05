@@ -93,17 +93,22 @@
             </div> 
             @endforeach
             @guest
-                <br>
-                <div class="d-grid gap-2 col-6">
-                    <button class="btn btn-primary" type="button"  onclick="window.location.href = '/login';">Daftarkan dirimu sekarang!</button>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-primary btn-block" type="button" onclick="window.location.href = '/login';">Daftarkan dirimu sekarang!</button>
                 </div>
+            </div>
             @endguest
-
+        
             @auth 
-                <div class="d-grid gap-2 col-6">
-                    <button class="btn btn-primary" type="button" onclick="window.location.href = '#';">Daftarkan dirimu sekarang!</button>
+            <div class="row">
+                <div class="col">
+                    <button class="btn btn-primary btn-block" type="button" onclick="window.location.href = '#';">Daftarkan dirimu sekarang!</button>
                 </div>
+            </div>
             @endauth
+        
         </div>
     </body>
 </html>

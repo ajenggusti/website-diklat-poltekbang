@@ -11,12 +11,9 @@
 }
 
 /* Style Slideshow */
-/* .mySlides {display: none;} */
-
-/* new */
 .mySlides {
     display: none;
-    transition: transform 0.5s ease; /* Tambahkan transisi untuk efek geser */
+    transition: transform 0.5s ease;
 }
 
 
@@ -181,6 +178,7 @@
     border-color: #FF6900;
     color: #FF6900;
     border-radius: 5px;
+    padding: 4px 8px;
     
 }
 

@@ -49,9 +49,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#faq">FAQ</a>
                     </li>
-                    {{-- <li class="nav-item">
-                        <a class="nav-link" href="/">Diklat</a>
-                    </li> --}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#profile">Profile</a>
+                    </li>
                 </ul>
             </div>
             

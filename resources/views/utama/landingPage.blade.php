@@ -182,7 +182,7 @@
 
 
                 <hr>
-                <h3 id="faq">Profil</h3>
+                <h3 id="profile">Profile</h3>
                 <p style="color: #FF6900;">Kepoin kita disini yukk...</p>
                 <div class="card-contact">
                     <iframe src="https://www.youtube.com/embed/SbMdkBNQoO8" class="responsive-iframe"></iframe>

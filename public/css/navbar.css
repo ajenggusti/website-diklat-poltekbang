@@ -22,7 +22,7 @@
 }
 
 .topnav-left {
-    margin-right: 800px;
+    margin-right: 700px;
 }
 
 .topnav-right {
@@ -33,7 +33,7 @@
     background-color: #FF6900;
     border: none;
     color: white;
-    padding: 2px 4px;
+    padding: 4px 8px;
     text-align: center;
     text-decoration: none;
     /* display: inline-block; */
