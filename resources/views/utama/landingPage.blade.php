@@ -24,14 +24,7 @@
                         <img src="{{ asset('storage/' . $slide->gambar_navbar) }}" alt="Gambar Slide">
                     </div>
                     @endforeach
-                         
-                <br>
-                
-                <div style="text-align:center">
-                  <span class="dot"></span> 
-                  <span class="dot"></span> 
-                  <span class="dot"></span> 
-                </div>
+
             </div>
 
             <br> <br>
@@ -43,10 +36,6 @@
             <br> <br>
             
             <div class="content-land">
-                <div class="img-promo">
-                    <img src="{{ asset('img/banner.png') }}" alt="promo">
-                </div>
-                <br> <br>
                 <div class="column">
                     <div class="column left">
                         <h1>Jumlah Pendaftar
@@ -63,8 +52,17 @@
                     </div>
                     <br><br>
                 </div>
+
+
+                <hr style="color: #ffffff">
+                <h3 id="promo">Promo</h3>
+                <p style="color: #FF6900;">Temukan promo yang bisa kamu dapatkan disini.. </p>
+                <div class="img-promo">
+                    <img src="{{ asset('img/banner.png') }}" alt="promo">
+                </div>
+                
                 <hr>
-                <h3>Kategori Diklat</h3>
+                <h3 id="katDiklat">Kategori Diklat</h3>
                 <p style="color: #FF6900;">Klik button untuk melihat lebih banyak diklat </p>
                 <div class="cards-container">
                     @foreach ($katDiklat as $kategori)
@@ -87,7 +85,7 @@
                 </div>
 
                 <hr>
-                <h3>Testimoni</h3>
+                <h3 id="testimoni">Testimoni</h3>
                 <p style="color: #FF6900;">Simak apa kata mereka...</p>
                 <div class="slide-testimoni">
                     @foreach ($testimonis as $key => $testimoni)
@@ -95,18 +93,44 @@
                         <p class="author">{{ $testimoni->nama_depan }}</p>
                         <b class="author">{{ $testimoni->profesi }}</b><br><br>
                         <q>{{ $testimoni->testimoni }}</q>
-                        {{-- <div class="numbertext2">{{ $key + 1 }} / {{ count($testimonis) }}</div> --}}
                     </div>
                     <br> <br>
                     
                     @endforeach
-                    
+                    <div class="dots-container"></div>
                     <!-- Next and previous buttons -->
-                    <a class="sblm" onclick="plusSlides(-1)">❮</a>
-                    <a class="ssdh" onclick="plusSlides(1)">❯</a>
+                    <a class="sblm" onclick="plusSlides(-1)"></a>
+                    <a class="ssdh" onclick="plusSlides(1)"></a>
                 </div>
-                
+                <br><br>
+                <h3 id="faq">FAQ</h3>
             </div>
+
+            <button onclick="topFunction()" id="myBtn" title="Go to top">
+                <i class="bi bi-chevron-double-up"></i>
+            </button>
+            <script>
+                // Get the button
+                let mybutton = document.getElementById("myBtn");
+                
+                // When the user scrolls down 20px from the top of the document, show the button
+                window.onscroll = function() {scrollFunction()};
+                
+                function scrollFunction() {
+                  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    mybutton.style.display = "block";
+                  } else {
+                    mybutton.style.display = "none";
+                  }
+                }
+                
+                // When the user clicks on the button, scroll to the top of the document
+                function topFunction() {
+                  document.body.scrollTop = 0;
+                  document.documentElement.scrollTop = 0;
+                }
+            </script>
+                
         </body>
     </html>
 @endsection

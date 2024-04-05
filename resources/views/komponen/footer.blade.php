@@ -13,6 +13,11 @@
     {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-sfAdBhq17Jzyvp0KTHLWGMaPwzBm9XbXspf3RoFNs9uCmIdJmOcC3sH2vDoJB6p99exfnVcbS9i+1OGqno8W1A==" crossorigin="anonymous" referrerpolicy="no-referrer" /> --}}
 
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-size: 15px;
+        }
         body {
             font-family: 'Poppins', sans-serif;
         }

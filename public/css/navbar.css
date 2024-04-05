@@ -1,6 +1,7 @@
 * {
     max-width: 100%;
     box-sizing: border-box;
+    font-size: 14px;
 }
 .body {
     margin: 0;
@@ -9,7 +10,8 @@
 
 /* Style Navbar */
 .container-fluid {
-    background-color: #c1dbf2;
+    background-color: #ffffff;
+
 }
 .li a {
     color: #FF6900;
@@ -19,6 +21,48 @@
     margin-left: 90px;
 }
 
+.topnav-left {
+    margin-right: 800px;
+}
+
+.topnav-right {
+    margin-right: 50px;
+}
+
+.button {
+    background-color: #FF6900;
+    border: none;
+    color: white;
+    padding: 2px 4px;
+    text-align: center;
+    text-decoration: none;
+    /* display: inline-block; */
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .button-log {
+    background-color: white; 
+    color: #FF6900; 
+    border: 2px solid #FF6900;
+  }
+  
+  .button-log:hover {
+    background-color: #FFC784;
+    color: #ffffff;
+  }
+
+  .button-sign {
+    background-color: #FF6900; 
+    color: #ffffff; 
+    border: 2px solid #FF6900;
+  }
+  
+  .button-sign:hover {
+    background-color: #FFC784;
+    color: #ffffff;
+  }
 
 
 

@@ -18,6 +18,11 @@
 <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
+      * {
+        margin: 0;
+        padding: 0;
+        font-size: 15px;
+      }
       body {
         font-family: 'Poppins', sans-serif;
     }
