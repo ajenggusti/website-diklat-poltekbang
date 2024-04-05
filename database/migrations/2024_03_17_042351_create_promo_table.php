@@ -13,10 +13,13 @@ return new class extends Migration
     {
         Schema::create('promos', function (Blueprint $table) {
             $table->id();
-            $table->integer('potongan'); //potongan harga dalam bentuk rupiah
-            $table->string('kode')->unique(); //kode promo huruf unik
+            $table->unsignedBigInteger('id_diklat')->nullable();
+            $table->text('gambar')->charset('binary');
+            $table->integer('potongan')->nullable(); // potongan harga dalam bentuk rupiah
+            $table->string('kode')->unique(); // kode promo huruf unik
             $table->date('tgl_awal');
             $table->date('tgl_akhir');
+            $table->foreign('id_diklat')->references('id')->on('diklat')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

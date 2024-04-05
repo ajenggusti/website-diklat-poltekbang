@@ -12,6 +12,24 @@ class Pendaftaran extends Model
     use HasFactory;
 
     protected $table = 'pendaftaran';
+    public function diklat()
+    {
+        return $this->belongsTo(Diklat::class, 'id_diklat');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
+
+    public function promo()
+    {
+        return $this->belongsTo(Promos::class, 'id_promo');
+    }
+
+
+
+
 
     public static function countPendaftar()
     {

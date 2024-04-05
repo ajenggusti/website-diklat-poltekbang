@@ -19,6 +19,10 @@ class Diklat extends Model
     {
         return $this->belongsTo(KatDiklat::class, 'id_kategori_diklat', 'id');
     }
+    public function promos()
+    {
+        return $this->hasMany(Promos::class, 'id_diklat');
+    }
     public static function countDiklat()
     {
         // return self::count();

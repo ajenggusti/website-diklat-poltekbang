@@ -22,21 +22,6 @@
             autoclose: true,
         });
     });
-
-    $(document).ready(function() {
-        $('#harga').on('input', function() {
-            var value = $(this).val();
-            if (value !== '') {
-                // Menghapus semua karakter selain angka
-                var cleanValue = value.replace(/[^\d]/g, '');
-                // Konversi nilai ke format Rupiah
-                var rupiah = formatRupiah(cleanValue);
-                // Tampilkan nilai dalam input
-                $(this).val(rupiah);
-            }
-        });
-    });
-        
     // Fungsi untuk mengonversi nilai ke format Rupiah
     function formatRupiah(angka) {
         var reverse = angka.toString().split('').reverse().join('');
@@ -44,6 +29,35 @@
         var hasil = ribuan.join('.').split('').reverse().join('');
         return 'Rp ' + hasil;
     }
+
+    // Setelah mendefinisikan fungsi formatRupiah, Anda dapat menggunakan input yang menggunakan fungsi ini
+    $(document).ready(function() {
+        $('#harga').on('input', function() {
+            var value = $(this).val();
+            if (value !== '') {
+                // Menghapus semua karakter selain angka
+                var cleanValue = value.replace(/[^\d]/g, '');
+                // Konversi nilai ke format Rupiah menggunakan fungsi yang sudah didefinisikan sebelumnya
+                var rupiah = formatRupiah(cleanValue);
+                // Tampilkan nilai dalam input
+                $(this).val(rupiah);
+            }
+        });
+
+        $('#potongan').on('input', function() {
+            var value = $(this).val();
+            if (value !== '') {
+                // Menghapus semua karakter selain angka
+                var cleanValue = value.replace(/[^\d]/g, '');
+                // Konversi nilai ke format Rupiah menggunakan fungsi yang sudah didefinisikan sebelumnya
+                var rupiah = formatRupiah(cleanValue);
+                // Tampilkan nilai dalam input
+                $(this).val(rupiah);
+            }
+        });
+    });
+
+
 
     // CKEDITOR SCRIPT
             // ckeditor==============================================================================================================

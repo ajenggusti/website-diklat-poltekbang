@@ -12,7 +12,10 @@ class PendaftaranController extends Controller
      */
     public function index()
     {
-        //
+        $datas = Pendaftaran::all();
+        return view('kelola.kelolaPendaftaran.index', [
+            'datas' => $datas,
+        ]);
     }
 
     /**
@@ -34,15 +37,18 @@ class PendaftaranController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Pendaftaran $pendaftaran)
+    public function show(Pendaftaran $kelPendaftaran)
     {
-        //
+
+        return view('kelola.kelolaPendaftaran.show', [
+            'pendaftaran' => $kelPendaftaran,
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Pendaftaran $pendaftaran)
+    public function edit(Pendaftaran $kelPendaftaran)
     {
         //
     }
@@ -50,7 +56,7 @@ class PendaftaranController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Pendaftaran $pendaftaran)
+    public function update(Request $request, Pendaftaran $kelPendaftaran)
     {
         //
     }
@@ -58,7 +64,7 @@ class PendaftaranController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pendaftaran $pendaftaran)
+    public function destroy(Pendaftaran $kelPendaftaran)
     {
         //
     }
