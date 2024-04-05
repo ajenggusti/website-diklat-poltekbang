@@ -102,35 +102,115 @@
                     <a class="sblm" onclick="plusSlides(-1)"></a>
                     <a class="ssdh" onclick="plusSlides(1)"></a>
                 </div>
-                <br><br>
+                
+                <hr>
                 <h3 id="faq">FAQ</h3>
+                <p style="color: #FF6900;">Pertanyaan yang banyak ditanyakan...</p>
+                <button class="accordion">Apa syarat-syarat yang diperlukan untuk mendaftar?</button>
+                <div class="panel">
+                    <p>
+                        Semua persyaratan beserta informasi seputar diklat
+                         sudah dituliskan di halaman tiap diklat.
+                    </p>
+                </div>
+                
+                <button class="accordion">Bagaimana cara mendaftar diklat?</button>
+                <div class="panel">
+                    <ul style="list-style: none;"></ul>
+                        <li>Mendaftarkan akun terlebih dahulu.
+                        Jika sudah mendaftar, maka bisa langsung login</li>
+                        <li>Mengisi data pendaftaran di form pendaftaran
+                            melalui halaman tiap diklat.
+                        </li>
+                        <li>Data pendaftaran bisa dilihat, diedit, atau dibatalkan
+                            di halaman riwayat.
+                        </li>
+                    </p>
+                </div>
+
+                <button class="accordion">Apa yang harus dipersiapkan untuk mengikuti diklat?</button>
+                <div class="panel">
+                    <p>
+                        Lorem ipsum dolor sit amet, 
+                        consectetur adipisicing elit, 
+                        sed do eiusmod tempor incididunt 
+                        ut labore et dolore magna aliqua. 
+                        Ut enim ad minim veniam, quis nostrud 
+                        exercitation ullamco laboris nisi ut 
+                        aliquip ex ea commodo consequat.
+                    </p>
+                </div>
+
+                <button class="accordion">Apakah tersedia beasiswa atau bantuan keuangan?</button>
+                <div class="panel">
+                    <p>
+                        Lorem ipsum dolor sit amet, 
+                        consectetur adipisicing elit, 
+                        sed do eiusmod tempor incididunt 
+                        ut labore et dolore magna aliqua. 
+                        Ut enim ad minim veniam, quis nostrud 
+                        exercitation ullamco laboris nisi ut 
+                        aliquip ex ea commodo consequat.
+                    </p>
+                </div>
+
+                <button class="accordion">Bagaimana kebijakan pembatalan atau pengembalian dana?</button>
+                <div class="panel">
+                    <p>
+                        Lorem ipsum dolor sit amet, 
+                        consectetur adipisicing elit, 
+                        sed do eiusmod tempor incididunt 
+                        ut labore et dolore magna aliqua. 
+                        Ut enim ad minim veniam, quis nostrud 
+                        exercitation ullamco laboris nisi ut 
+                        aliquip ex ea commodo consequat.
+                    </p>
+                </div>
+
+                <button class="accordion">Sertifikat setelah pelaksanaan diklat bisa diambil dimana?</button>
+                <div class="panel">
+                    <p>
+                        Lorem ipsum dolor sit amet, 
+                        consectetur adipisicing elit, 
+                        sed do eiusmod tempor incididunt 
+                        ut labore et dolore magna aliqua. 
+                        Ut enim ad minim veniam, quis nostrud 
+                        exercitation ullamco laboris nisi ut 
+                        aliquip ex ea commodo consequat.
+                    </p>
+                </div>
+
+
+                <hr>
+                <h3 id="faq">Profil</h3>
+                <p style="color: #FF6900;">Kepoin kita disini yukk...</p>
+                <div class="card-contact">
+                    <iframe src="https://www.youtube.com/embed/SbMdkBNQoO8" class="responsive-iframe"></iframe>
+                </div>
+                
             </div>
 
             <button onclick="topFunction()" id="myBtn" title="Go to top">
                 <i class="bi bi-chevron-double-up"></i>
             </button>
+
+            {{-- Script sementara untuk FAQ --}}
             <script>
-                // Get the button
-                let mybutton = document.getElementById("myBtn");
+                var acc = document.getElementsByClassName("accordion");
+                var i;
                 
-                // When the user scrolls down 20px from the top of the document, show the button
-                window.onscroll = function() {scrollFunction()};
-                
-                function scrollFunction() {
-                  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                    mybutton.style.display = "block";
-                  } else {
-                    mybutton.style.display = "none";
-                  }
-                }
-                
-                // When the user clicks on the button, scroll to the top of the document
-                function topFunction() {
-                  document.body.scrollTop = 0;
-                  document.documentElement.scrollTop = 0;
+                for (i = 0; i < acc.length; i++) {
+                  acc[i].addEventListener("click", function() {
+                    this.classList.toggle("active");
+                    var panel = this.nextElementSibling;
+                    if (panel.style.maxHeight) {
+                      panel.style.maxHeight = null;
+                    } else {
+                      panel.style.maxHeight = panel.scrollHeight + "px";
+                    } 
+                  });
                 }
             </script>
-                
         </body>
     </html>
 @endsection

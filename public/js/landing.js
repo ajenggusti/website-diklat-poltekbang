@@ -83,3 +83,34 @@ document.addEventListener("DOMContentLoaded", function() {
 function currentSlide(n) {
     showSlides(slideIndex = n);
 }
+
+
+// Script untuk go to top
+document.addEventListener("DOMContentLoaded", function() {
+    let mybutton = document.getElementById("myBtn");
+    
+    mybutton.addEventListener("click", function() {
+        topFunction();
+    });
+    window.addEventListener("scroll", function() {
+        scrollFunction();
+    });
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+});
+
+// Script untuk FAQ
+
+
+
