@@ -31,8 +31,9 @@
                 </div>
                     <br>
                 @endforeach   
-                <a href="/" class="btn btn-info">Kembali</a>
+                
             </div>     
+            <a href="/" class="btn btn-info">Kembali</a>
         </div>
     </body>
     </html>

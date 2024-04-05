@@ -1,6 +1,7 @@
 @extends('layout/mainUser')
 
 @section('container')
+
 <html>
     <head>
         <!-- Custom styles for this template -->
@@ -19,13 +20,16 @@
         </style>
     </head>
     <body>
-        <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a><br>
-        <img src="{{ asset('storage/' . $detail->gambar) }}" alt="Gambar Diklat" class="img-detail">
+        {{-- <img src="{{ asset('storage/' . $detail->gambar) }}" alt="Gambar Diklat" class="img-detail"> --}}
         <div class="content-body2">
-            @foreach ($detailDiklat as $detail)
+            <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a><br>
+            @foreach ($detailDiklat as $detail) <br> <br>
+
             <div class="center-text">{{ $detail->nama_diklat }}</div>
             
+            <img src="{{ asset('img/image1.jpeg/') }}" alt="Gambar Diklat" class="img-detail">
 
+            {{-- <img src="{{ asset('storage/img/image1.jpeg' . $detail->gambar) }}" alt="Gambar Diklat" class="img-detail"> --}}
             <div class="card-container3">
                 <div class="card-content3">
                     <p>
@@ -47,17 +51,17 @@
                         {{ $detail->status }}
                     </p>
                     
-                    <p>
+                    {{-- <p>
                         <span>Durasi Diklat :</span><br>
                         {{ $detail->durasi }}
-                    </p>
+                    </p> --}}
                     
                     <p>
                         <span>Deskripsi :</span><br>
                         {!! $detail->deskripsi !!}
                     </p>
                     
-                    <p>
+                    {{-- <p>
                         <span>Tujuan :</span><br>
                         {{ $detail->tujuan }}
                     </p>
@@ -84,7 +88,7 @@
                     
                     <p>
                         <span>Lokasi :</span><br>
-                        {{ $detail->lokasi }}</p>
+                        {{ $detail->lokasi }}</p> --}}
                 </div>
             </div> 
             @endforeach
