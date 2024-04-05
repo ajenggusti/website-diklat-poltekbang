@@ -8,6 +8,7 @@ use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Models\Gambar_navbar;
 use App\Models\Testimoni;
 
 class UtamaController extends Controller
@@ -18,12 +19,14 @@ class UtamaController extends Controller
         $jmlDiklat = Diklat::countDiklat();
         $katDiklat = KatDiklat::selectAll();
         $testimonis = Testimoni::joinPendafataran();
+        $gbrSlide = Gambar_navbar::all();
 
         return view('utama/landingPage', [
             'jmlPendaftar' => $jmlPendaftar,
             'jmlDiklat' => $jmlDiklat,
             'katDiklat' => $katDiklat,
             'testimonis' => $testimonis,
+            'gbrSlide'=>$gbrSlide
             
         ]);
     }
