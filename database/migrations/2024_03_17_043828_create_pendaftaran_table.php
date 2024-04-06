@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_promo')->nullable();
             $table->timestamp('waktu_pendaftaran');
-            $table->decimal('harga_diklat'); //apabila user ada promo, maka akan terpotong, dan masuk ke kolom ini. jika tidak ada, harga asli diklat yang masuk sini.
+            $table->integer('harga_diklat'); //apabila user ada promo, maka akan terpotong, dan masuk ke kolom ini. jika tidak ada, harga asli diklat yang masuk sini.
             $table->enum('status_pembayaran_diklat', ['Lunas', 'Belum dibayar', 'Dicek'])->default('Belum dibayar');
             $table->string('nama_depan')->nullable();
             $table->string('nama_belakang')->nullable();

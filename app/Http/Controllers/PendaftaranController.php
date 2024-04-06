@@ -89,17 +89,13 @@ class PendaftaranController extends Controller
                 ]);
             }
         }
-        
-
         $pendaftaran = new Pendaftaran();
         $pendaftaran->id_diklat = $request->input('diklat');
         $pendaftaran->id_user = Auth::id();
         $pendaftaran->id_promo = $idPromo; 
         $pendaftaran->harga_diklat = $harga;
         $pendaftaran->save();
-        // Tambahkan jumlah pendaftar pada objek Diklat
         $diklat->jumlah_pendaftar += 1;
-        // Simpan perubahan ke dalam basis data
         $diklat->save();
         $diklat->updateStatus();
         // dd($diklat->jumlah_pendaftar);
@@ -141,7 +137,12 @@ class PendaftaranController extends Controller
      */
     public function destroy(Pendaftaran $kelPendaftaran)
     {
-        Pendaftaran::destroy($kelPendaftaran->id);
+        $diklat = $kelPendaftaran->diklat;
+        $diklat->jumlah_pendaftar -= 1;
+        $diklat->save();
+        $kelPendaftaran->delete();
+        $diklat->updateStatus();
         return redirect('/riwayat')->with('success', 'Data berhasil dihapus!');
     }
+    
 }

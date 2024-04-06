@@ -14,9 +14,9 @@
         <p>Status Pembayaran Diklat : {{ $data->status_pembayaran_diklat }}</p>
         <p>Harga Pendaftaran : Rp. 150.000</p>
         <p>Status Pembayaran Diklat : {{ $data->status_pembayaran_daftar }}</p>
-        {{ $data->id }}
 
         <a href="/riwayat/{{ $data->id }}" class="btn btn-success">Lihat</a>
+        <a href="#" class="btn btn-secondary">Lakukan Pembayaran?</a>
         <form action="/kelPendaftaran/{{ $data->id }}" method="POST">
             @method('DELETE')
             @csrf

@@ -31,8 +31,10 @@ class Diklat extends Model
     {
         if ($this->jumlah_pendaftar >= $this->kuota_minimal) {
             $this->status = 'full';
-            $this->save();
+        } else {
+            $this->status = 'belum full';
         }
+        $this->save();
     }
     public static function countDiklat()
     {
