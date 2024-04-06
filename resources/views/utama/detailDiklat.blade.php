@@ -26,9 +26,9 @@
 
             <div class="center-text">{{ $detail->nama_diklat }}</div>
             
-            <img src="{{ asset('storage/' . $detail->gambar) }}" alt="" style="width: 30%;">
+            {{-- <img src="{{ asset('storage/' . $detail->gambar) }}" alt="" style="width: 30%;"> --}}
 
-            {{-- <img src="{{ asset('storage/img/image1.jpeg' . $detail->gambar) }}" alt="Gambar Diklat" class="img-detail"> --}}
+            <img src="{{ asset('img/plane3.jpg') }}" alt="Gambar Diklat" class="img-detail">
             <div class="card-container3">
                 <div class="card-content3">
                     <p>
@@ -60,13 +60,13 @@
    
             @auth
                 <div class="d-grid gap-2 col-6">
-                    <a href="{{ route('kelPendaftaran.create', ['id' => $detail->id]) }}" class="btn btn-primary">Daftarkan dirimu sekarang!</a>
+                    <a href="{{ route('kelPendaftaran.create', ['id' => $detail->id]) }}" class="btn btn-primary" style="width: 1200px;">Daftarkan dirimu sekarang!</a>
                 </div>
             @endauth
         
             @guest
                 <div class="d-grid gap-2 col-6">
-                    <button class="btn btn-primary" type="button" onclick="window.location.href = '/login';">Login untuk mendaftar!</button>
+                    <button style="width: 1200px;" class="btn btn-primary" type="button" onclick="window.location.href = '/login';">Login untuk mendaftar!</button>
                 </div>
             @endguest
         </div>

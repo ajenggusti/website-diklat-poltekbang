@@ -58,7 +58,7 @@
                 <h3 id="promo">Promo</h3>
                 <p style="color: #FF6900;">Temukan promo yang bisa kamu dapatkan disini.. </p>
                 <div class="img-promo">
-                    <img src="{{ asset('img/banner.png') }}" alt="promo">
+                    <img src="{{ asset('img/diskon.png') }}" alt="promo" style="height: 300px; width: 1200px;">
                 </div>
                 
                 <hr>
