@@ -13,6 +13,8 @@
         <thead>
         <tr>
             <th scope="col">No</th>
+            <th scope="col">Promo untuk</th>
+            <th scope="col">Banner</th>
             <th scope="col">Potongan</th>
             <th scope="col">Kode Promo</th>
             <th scope="col">Tanggal Mulai</th>
@@ -25,6 +27,9 @@
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $data->potongan }}</td>
+                    <td>{{ $data->diklat ? $data->diklat->nama_diklat : 'Semua Diklat' }}</td>
+                    <td><img src="{{ asset('storage/' . $data->gambar) }}" alt="" style="width: 30%;"></td>
+                    <td>Rp {{ number_format($data->potongan, 0, ',', '.') }}</td>
                     <td>{{ $data->kode }}</td>
                     <td>{{ \Carbon\Carbon::parse($data->tgl_awal)->format('d-m-Y') }}</td>
                     <td>{{ \Carbon\Carbon::parse($data->tgl_akhir)->format('d-m-Y') }}</td>

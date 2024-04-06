@@ -23,7 +23,7 @@
                     <div class="mySlides">
                         <img src="{{ asset('storage/' . $slide->gambar_navbar) }}" alt="Gambar Slide">
                     </div>
-                    @endforeach
+                @endforeach
 
             </div>
 

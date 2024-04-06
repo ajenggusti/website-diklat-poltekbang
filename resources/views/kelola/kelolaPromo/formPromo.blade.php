@@ -1,9 +1,32 @@
 @extends('layout.mainAdmin')
 @section('container')
     <h2>Form Tambah Promo</h2>
-        
-    <form method="POST" action="/kelPromo" >
+    <form method="POST" action="/kelPromo" enctype="multipart/form-data">
         @csrf
+        
+        <hr>
+        <div class="mb-3">
+            <label for="img" class="form-label">Masukkan gambar untuk ditampilkan di Banner Promo</label>
+            <img class="img-preview img-fluid" style="width: 20%;">
+            <input name="img" onchange="previewImage()" class="form-control @error('img') is-invalid @enderror" type="file" id="img">
+            @error('img')
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+        <select name="diklat" class="form-select @error('diklat') is-invalid @enderror" aria-label="Default select example">
+            <option value="" selected disabled>Promo ini untuk diklat yang mana?</option>
+            <option value="null" style="color:red;" {{ old('diklat') == 'null' ? 'selected' : '' }}>Untuk semua diklat</option>
+            @foreach ($datas as $data)
+                <option value="{{ $data->id }}" {{ old('diklat') == $data->id ? 'selected' : '' }}>
+                    {{ $data->nama_diklat }}
+                </option>
+            @endforeach
+        </select>
+        @if ($errors->has('diklat'))
+            <div class="invalid-feedback">
+                {{ $errors->first('diklat') }}
+            </div>
+        @endif
         <div class="mb-3">
             <label for="potongan" class="form-label is">Potongan</label>
             <input type="text" class="form-control  @error('potongan') is-invalid @enderror" id="potongan" name= "potongan" value="{{ old('potongan') }}">

@@ -1,7 +1,6 @@
 @extends('layout/mainUser')
 
 @section('container')
-
 <html>
     <head>
         <!-- Custom styles for this template -->
@@ -51,64 +50,25 @@
                         {{ $detail->status }}
                     </p>
                     
-                    {{-- <p>
-                        <span>Durasi Diklat :</span><br>
-                        {{ $detail->durasi }}
-                    </p> --}}
-                    
                     <p>
                         <span>Deskripsi :</span><br>
                         {!! $detail->deskripsi !!}
                     </p>
-                    
-                    {{-- <p>
-                        <span>Tujuan :</span><br>
-                        {{ $detail->tujuan }}
-                    </p>
-                    
-                    <p>
-                        <span>Topik Yang Akan Dipelajari :</span><br>
-                        {{ $detail->topik }}</p>
-                    
-                    <p>
-                        <span>Tipe :</span><br>
-                        {{ $detail->tipe }}</p>
-                    
-                    <p>
-                        <span>Metode :</span><br>
-                        {{ $detail->metode }}</p>
-                    
-                    <p>
-                        <span>Fasilitas :</span><br>
-                        {{ $detail->fasilitas }}</p>
-                    
-                    <p>
-                        <span>Persyaratan :</span><br>
-                        {{ $detail->persyaratan }}</p>
-                    
-                    <p>
-                        <span>Lokasi :</span><br>
-                        {{ $detail->lokasi }}</p> --}}
                 </div>
             </div> 
             @endforeach
-            @guest
-            <br>
-            <div class="row">
-                <div class="col">
-                    <button class="btn btn-primary btn-block" type="button" onclick="window.location.href = '/login';">Daftarkan dirimu sekarang!</button>
+   
+            @auth
+                <div class="d-grid gap-2 col-6">
+                    <a href="{{ route('kelPendaftaran.create', ['id' => $detail->id]) }}" class="btn btn-primary">Daftarkan dirimu sekarang!</a>
                 </div>
-            </div>
-            @endguest
-        
-            @auth 
-            <div class="row">
-                <div class="col">
-                    <button class="btn btn-primary btn-block" type="button" onclick="window.location.href = '#';">Daftarkan dirimu sekarang!</button>
-                </div>
-            </div>
             @endauth
         
+            @guest
+                <div class="d-grid gap-2 col-6">
+                    <button class="btn btn-primary" type="button" onclick="window.location.href = '/login';">Login untuk mendaftar!</button>
+                </div>
+            @endguest
         </div>
     </body>
 </html>

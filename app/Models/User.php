@@ -42,6 +42,10 @@ class User extends Authenticatable
 
     protected $table = 'users';
 
+    public function pendaftarans()
+    {
+        return $this->hasMany(Pendaftaran::class, 'id_user');
+    }
     public static function countUserAsLevel(){
         return User::join('level', 'users.id_level', '=', 'level.id')
         ->select('level.level', DB::raw('COUNT(*) as total_users'))

@@ -126,7 +126,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="/kelPendaftaran">
                   <span data-feather="layers"></span>
                   kelola pendaftaran
                 </a>
