@@ -11,6 +11,7 @@ use App\Http\Controllers\GbrLandingController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\KelKatDiklatController;
+use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\TestimoniController;
 
@@ -60,3 +61,4 @@ Route::resource('/kelDiklat', DiklatController::class);
 // route CRUD pendaftaran
 Route::resource('/kelPendaftaran', PendaftaranController::class);
 //route CRUD 
+Route::resource('/kelPembayaran', PembayaranController::class);

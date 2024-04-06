@@ -26,18 +26,15 @@ class PendaftaranController extends Controller
      */
     public function create(Request $request)
     {
-        // Mendapatkan ID pengguna yang masuk
+   
         $userId = Auth::id();
-        // Ambil nilai id dari query string
+    
         $id = $request->query('id');
 
-        // Ambil data diklat berdasarkan id
         $diklat = Diklat::findOrFail($id);
         $dtDiklats = Diklat::all();
-
-        // Kirim data diklat ke view
         return view('kelola.kelolaPendaftaran.form', [
-            'userId' => $userId, // Mengirim ID pengguna ke view
+            'userId' => $userId, 
             'diklat' => $diklat,
             'dtDiklats' => $dtDiklats
         ]);
@@ -48,17 +45,14 @@ class PendaftaranController extends Controller
      */
     public function store(Request $request)
     {
-        // Ambil harga dari data diklat yang dipilih
+        
         $diklat = Diklat::findOrFail($request->input('diklat'));
         $harga = $diklat->harga;
-        // Inisialisasi id promo
-        $idPromo = null;
         
-        // Cek apakah ada kode promo yang dimasukkan
+        $idPromo = null;
         if ($request->has('kode')) {
             $kodePromo = $request->input('kode');
 
-            // Cek apakah kode promo ada di tabel promos untuk diklat yang dipilih
             $promo = Promos::where(function($query) use ($kodePromo, $diklat) {
                 $query->where('kode', $kodePromo)
                     ->where('id_diklat', $diklat->id);
@@ -68,20 +62,14 @@ class PendaftaranController extends Controller
                     ->whereNull('id_diklat');
             })
             ->first();
-            // dd(now(), $promo->tgl_akhir, now() > $promo->tgl_akhir);
             if ($promo) {
-                // Cek apakah promosi sudah melewati batas waktu
                 if (now() > $promo->tgl_akhir) {
                     return redirect()->back()->with('error', 'Promo sudah hangus karena melewati batas waktu.');
                 }
-
-                // Kurangi potongan harga dari harga diklat
                 $harga -= $promo->potongan;
-
-                // Simpan id promo di tabel pendaftaran
                 $idPromo = $promo->id;
             } else {
-                // Tampilkan pesan error jika kode promo tidak tersedia untuk diklat yang dipilih
+              
                 $request->validate([
                     'kode' => 'nullable|exists:promos,kode,id_diklat,' . $diklat->id
                 ], [

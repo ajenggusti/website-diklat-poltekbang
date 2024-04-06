@@ -27,10 +27,10 @@ class Pendaftaran extends Model
     {
         return $this->belongsTo(Promos::class, 'id_promo');
     }
-
-
-
-
+    public function pembayaran()
+    {
+        return $this->hasMany(Pembayaran::class, 'id_pendaftaran');
+    }
 
     public static function countPendaftar()
     {

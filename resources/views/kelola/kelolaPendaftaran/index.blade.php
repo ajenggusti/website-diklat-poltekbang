@@ -27,7 +27,7 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $data->user->name }}</td>
                     <td>{{ $data->diklat->nama_diklat }}</td>
-                    <td>{{ $data->promo->kode }}</td>
+                    <td>{{ $data->promo ? $data->promo->kode : '-' }}</td>
                     <td>Rp {{ number_format($data->harga_diklat, 0, ',', '.') }}</td>
                     <td>{{ $data->status_pembayaran_diklat }}</td>
                     <td>Rp 150.000</td>
