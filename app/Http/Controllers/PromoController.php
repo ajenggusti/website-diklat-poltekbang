@@ -56,11 +56,8 @@ class PromoController extends Controller
         ], $messages);
 
         if ($request->hasFile('img')) {
-            // Mendapatkan nama file dan menyimpan gambar di dalam direktori LanPage
             $image = $request->file('img')->store('LanPage');
-            // Hapus semua karakter selain angka
             $potongan = preg_replace("/[^0-9]/", "", $request->potongan);    
-            // Simpan data ke dalam database
             Promos::create([
                 'potongan' => $potongan,
                 'kode' => $request->kode,
@@ -123,22 +120,22 @@ class PromoController extends Controller
             'img' => 'nullable|image|max:1024', 
             'diklat' => 'nullable'
         ], $messages);
-            // Menghapus gambar lama jika ada pembaruan gambar baru
+           
         if ($request->hasFile('img')) {
             Storage::delete($kelPromo->gambar);
         }
 
-        // Mengunggah gambar baru jika ada
+        
         if ($request->hasFile('img')) {
             $image = $request->file('img')->store('LanPage');
         } else {
             $image = $kelPromo->gambar;
         }
         $potongan = preg_replace("/[^0-9]/", "", $request->potongan);
-        // Format tanggal awal dengan Carbon
+       
         $tgl_awal = Carbon::createFromFormat('d-m-Y', $validatedData['tgl_awal'])->format('Y-m-d');
 
-        // Format tanggal akhir dengan Carbon
+        
         $tgl_akhir = Carbon::createFromFormat('d-m-Y', $validatedData['tgl_akhir'])->format('Y-m-d');
         // Update data Promo
         $kelPromo->update([
@@ -159,12 +156,9 @@ class PromoController extends Controller
      */
     public function destroy(Promos $kelPromo)
     {
-         // Menghapus gambar dari penyimpanan
+        
         Storage::delete($kelPromo->gambar);
-                
-        // Menghapus entri Diklat dari database
         $kelPromo->delete();
-
         return redirect('/kelPromo')->with('success', 'Data berhasil dihapus!');
     }
 }

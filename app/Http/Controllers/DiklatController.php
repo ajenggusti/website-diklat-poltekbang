@@ -82,9 +82,9 @@ class DiklatController extends Controller
      */
     public function show(Diklat $kelDiklat)
     {
-        // dd($kelDiklat);
+        
         $diklatData = Diklat::getDiklatWithKategori($kelDiklat->id);
-        // Kembalikan view dengan data diklat dan kategorinya
+       
         return view('kelola.kelolaDiklat.show', ['diklatData' => $diklatData]);
     }
 
@@ -122,25 +122,20 @@ class DiklatController extends Controller
         $request->validate([
             'img' => 'nullable|image|file|max:1024',
             'kategoriDiklat' => 'required',
-            'deskripsi' => 'required', // Aturan validasi untuk deskripsi
+            'deskripsi' => 'required', 
             'nama_diklat' => 'required',
             'harga' => 'required',
             'kuota' => 'required|numeric'
         ], $messages);
-
-        // Menghapus gambar lama jika ada pembaruan gambar baru
         if ($request->hasFile('img')) {
             Storage::delete($kelDiklat->gambar);
         }
-
-        // Mengunggah gambar baru jika ada
         if ($request->hasFile('img')) {
             $image = $request->file('img')->store('LanPage');
         } else {
             $image = $kelDiklat->gambar;
         }
 
-        // Update data Diklat
         $harga = preg_replace("/[^0-9]/", "", $request->input('harga'));
         $kelDiklat->update([
             'gambar' => $image,
@@ -159,12 +154,8 @@ class DiklatController extends Controller
 
     public function destroy(Diklat $kelDiklat)
     {
-        // Menghapus gambar dari penyimpanan
         Storage::delete($kelDiklat->gambar);
-
-        // Menghapus entri Diklat dari database
         $kelDiklat->delete();
-
         return redirect('/kelDiklat')->with('success', 'Data berhasil dihapus!');
     }
 }

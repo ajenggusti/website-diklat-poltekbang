@@ -35,15 +35,13 @@ class PembayaranController extends Controller
      */
     public function store(Request $request)
     {
-         // Create a new instance of the Pembayaran model and populate it with the request data
+         
         $pembayaran = new Pembayaran();
         $pembayaran->id_pendaftaran = $request->id_pendaftaran;
         $pembayaran->jenis_pembayaran = $request->jenis_pembayaran;
-        
-        // Save the new instance to the database
+
         $pembayaran->save();
 
-        // If jenis_pembayaran is 'diklat', update status_pembayaran_diklat in the pendaftarans table
         if ($request->jenis_pembayaran == 'diklat') {
             $pendaftaran = Pendaftaran::find($request->id_pendaftaran);
             $pendaftaran->status_pembayaran_diklat = 'Dicek';
