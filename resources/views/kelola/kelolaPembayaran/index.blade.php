@@ -35,6 +35,7 @@
             <td>{{ $pembayaran->pendaftaran->status_pembayaran_diklat }}</td>
             <td><img src="{{ asset('storage/' . $pembayaran->bukti_pembayaran) }}" alt="bukti pembayaran" style="width: 30%;"></td>
             <td>
+                <a href="/kelPembayaran/{{ $pembayaran->id }}" class="btn btn-success">Lihat</a>
                 <a href="/kelPembayaran/{{ $pembayaran->id }}/edit" class="btn btn-warning">Edit</a>
                 <form action="/kelPembayaran/{{ $pembayaran->id }}" method="POST">
                     @method('DELETE')

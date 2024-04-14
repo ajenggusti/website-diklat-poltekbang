@@ -21,6 +21,12 @@ class Pembayaran extends Model
     public static function getCountBayarPendaftaran(){
         return self::where('jenis_pembayaran', 'pendaftaran')->count();
     }
+
+
+
+
+
+
     public static function hitungPembayaranDiklatDicek()
     {
         return DB::table('pembayaran')

@@ -16,7 +16,7 @@ class DiklatController extends Controller
     public function index()
     {
         $datas = Diklat::getKategori();
-        return view('kelola.kelolaDiklat.index', ['datas'=>$datas]);
+        return view('kelola.kelolaDiklat.index', ['datas' => $datas]);
     }
 
     /**
@@ -82,9 +82,9 @@ class DiklatController extends Controller
      */
     public function show(Diklat $kelDiklat)
     {
-        
+
         $diklatData = Diklat::getDiklatWithKategori($kelDiklat->id);
-       
+
         return view('kelola.kelolaDiklat.show', ['diklatData' => $diklatData]);
     }
 
@@ -122,7 +122,7 @@ class DiklatController extends Controller
         $request->validate([
             'img' => 'nullable|image|file|max:1024',
             'kategoriDiklat' => 'required',
-            'deskripsi' => 'required', 
+            'deskripsi' => 'required',
             'nama_diklat' => 'required',
             'harga' => 'required',
             'kuota' => 'required|numeric'

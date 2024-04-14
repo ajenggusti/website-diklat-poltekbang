@@ -58,15 +58,18 @@ class PembayaranController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Pembayaran $kelPendaftaran)
+    public function show(Pembayaran $kelPembayaran)
     {
-        //
+        dd($kelPembayaran);
+        return view('kelola.kelolaPembayaran.detailPembayaran',[
+            'kelPembayaran' => $kelPembayaran
+        ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Pembayaran $kelPendaftaran)
+    public function edit(Pembayaran $kelPembayaran)
     {
         //
     }
@@ -74,7 +77,7 @@ class PembayaranController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Pembayaran $kelPendaftaran)
+    public function update(Request $request, Pembayaran $kelPembayaran)
     {
         //
     }
@@ -82,7 +85,7 @@ class PembayaranController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pembayaran $kelPendaftaran)
+    public function destroy(Pembayaran $kelPembayaran)
     {
         //
     }

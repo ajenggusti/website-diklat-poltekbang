@@ -28,14 +28,15 @@
                 </option>
             @endforeach
         </select>
-        @if ($errors->has('diklat'))
+        @error('diklat')
             <div class="invalid-feedback">
-                {{ $errors->first('diklat') }}
+                {{ $message }}
             </div>
-        @endif
+        @enderror
+        
         <div class="mb-3">
             <label for="potongan" class="form-label">Potongan</label>
-            <input type="text" class="form-control @error('potongan') is-invalid @enderror" id="potongan" name="potongan" value="{{ old('potongan') ? number_format(old('potongan')) : number_format($kelPromo->potongan) }}">
+            <input type="text" class="form-control @error('potongan') is-invalid @enderror" id="potongan" name="potongan" value="{{ old('potongan') ?? $kelPromo->potongan }}">
             @error('potongan')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -65,15 +66,36 @@
             @enderror
         </div>
         
+        <div class="mb-3">
+            <label class="form-label">Apakah ingin menggunakan kuota??</label><br>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="kuota" id="kuota_yes" value="iya" {{ (old('kuota', $kelPromo->pakai_kuota == 'iya') == "iya") ? 'checked' : '' }}>
+                <label class="form-check-label" for="kuota_yes">Iya</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="kuota" id="kuota_no" value="tidak" {{ (old('kuota', $kelPromo->pakai_kuota == 'tidak') == "tidak") ? 'checked' : '' }}>
+                <label class="form-check-label" for="kuota_no">Tidak</label>
+            </div>
+            @error('kuota')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+        
+                   
+        <div class="mb-3">
+            <label for="kuota_angka" class="form-label">Kuota_angka</label>
+            <input type="text" class="form-control @error('kuota_angka') is-invalid @enderror" id="kuota_angka" name="kuota_angka" value="{{ old('kuota_angka') ?? $kelPromo->kuota }}">
+            @error('kuota_angka')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
         <button type="submit" class="btn btn-primary">Kirim</button>
     </form>  
-{{-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////// --}}
 
-<!-- Include jQuery -->
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- Include jQuery -->
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
-<!-- Include Date Range Picker -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+    <!-- Include Date Range Picker -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 @endsection
-
