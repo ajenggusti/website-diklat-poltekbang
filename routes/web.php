@@ -61,4 +61,4 @@ Route::resource('/kelDiklat', DiklatController::class);
 // route CRUD pendaftaran
 Route::resource('/kelPendaftaran', PendaftaranController::class);
 //route CRUD 
-Route::resource('/kelPembayaran', PembayaranController::class);
+Route::resource('/kelPembayaran', PembayaranController::class)->except('edit', 'update');

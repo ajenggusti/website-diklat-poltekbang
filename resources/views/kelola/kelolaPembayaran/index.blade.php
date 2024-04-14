@@ -11,7 +11,6 @@
 
     <div class="table-responsive">
     <table class="table table-striped table-sm">
-        <a href="/kelPembayaran/create" class="btn btn-primary">Tambah Data</a>
         <thead>
         <tr>
             <th scope="col">No</th>

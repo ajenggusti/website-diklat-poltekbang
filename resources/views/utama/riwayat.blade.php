@@ -7,10 +7,18 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     @endif
+
     @foreach ($datas as $key => $data)
         <h3>{{ $dataDiklat[$key]->nama_diklat }}</h3>
         <p>Status Diklat : {{ $dataDiklat[$key]->status }}</p>
-        <p>Harga Diklat : Rp. {{ number_format($data->harga_diklat, 0, ',', '.') }}</p>
+        <p>harga diklat : Rp. {{ number_format($data->diklat->harga, 0, ',', '.') }}</p>
+         <!-- Displaying Discount -->
+        @if($data->promo)
+            <p>Diskon: - Rp. {{ number_format($data->promo->potongan, 0, ',', '.') }}</p>
+        @else
+            <p>Diskon: - Rp. 0</p> 
+        @endif
+        <p>Total Biaya : Rp. {{ number_format($data->harga_diklat, 0, ',', '.') }}</p>
         <p>Status Pembayaran Diklat : {{ $data->status_pembayaran_diklat }}</p>
         <p>Harga Pendaftaran : Rp. 150.000</p>
         <p>Status Pembayaran Diklat : {{ $data->status_pembayaran_daftar }}</p>

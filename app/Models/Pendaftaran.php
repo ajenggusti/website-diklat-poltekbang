@@ -51,12 +51,4 @@ class Pendaftaran extends Model
             ->select('diklat.*')
             ->get();
     }
-    public static function getDiklatOne($id)
-    {
-        return Pendaftaran::join('diklat', 'pendaftaran.id_diklat', '=', 'diklat.id')
-            ->join('promos', 'pendaftaran.id_promo', '=', 'promos.id')
-            ->where('pendaftaran.id', $id)
-            ->select('pendaftaran.*', 'diklat.*', 'promos.*')
-            ->first();
-    }
 }

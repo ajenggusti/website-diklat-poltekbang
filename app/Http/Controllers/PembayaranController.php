@@ -35,32 +35,33 @@ class PembayaranController extends Controller
      */
     public function store(Request $request)
     {
-         
         $pembayaran = new Pembayaran();
         $pembayaran->id_pendaftaran = $request->id_pendaftaran;
         $pembayaran->jenis_pembayaran = $request->jenis_pembayaran;
-
+        $pembayaran->created_at = now(); // Menambahkan waktu saat ini ke kolom created_at
+    
         $pembayaran->save();
-
+    
         if ($request->jenis_pembayaran == 'diklat') {
             $pendaftaran = Pendaftaran::find($request->id_pendaftaran);
             $pendaftaran->status_pembayaran_diklat = 'Dicek';
             $pendaftaran->save();
+        } elseif ($request->jenis_pembayaran == 'pendaftaran') {
+            $pendaftaran = Pendaftaran::find($request->id_pendaftaran);
+            $pendaftaran->status_pembayaran_daftar = 'Dicek';
+            $pendaftaran->save();
         }
-        elseif ($request->jenis_pembayaran == 'pendaftaran') {
-        $pendaftaran = Pendaftaran::find($request->id_pendaftaran);
-        $pendaftaran->status_pembayaran_daftar = 'Dicek';
-        $pendaftaran->save();
-        }
+        
         return redirect('/riwayat')->with('success', 'Pembayaran berhasil disimpan.');
     }
+    
 
     /**
      * Display the specified resource.
      */
     public function show(Pembayaran $kelPembayaran)
     {
-        dd($kelPembayaran);
+        // dd($kelPembayaran);
         return view('kelola.kelolaPembayaran.detailPembayaran',[
             'kelPembayaran' => $kelPembayaran
         ]);

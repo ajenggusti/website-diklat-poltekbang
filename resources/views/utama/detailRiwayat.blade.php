@@ -1,5 +1,6 @@
 @extends('layout.mainUser')
 @section('container')
+<h1>INVOICE (belum ditambahkan fitur cetak)</h1>
     <p>nama diklat : {{ $data->nama_diklat }}</p>
     <br>
     <p>nama depan : {{ $data->nama_depan }}</p>
@@ -22,13 +23,21 @@
     <p>waktu pendaftaran : {{ \Carbon\Carbon::parse($data->waktu_pendaftaran)->format('H:i:s | d-m-Y') }}</p>
     <br>
     <p>kode promo : {{ $data->kode }}</p>
-    <p>potongan : Rp {{ number_format($data->potongan, 0, ',', '.') }}</p>
     <br>
     <p>biaya pendaftaran : Rp 150.000</p>
     <br>
     <p>status pembayaran pendaftaran : {{ $data->status_pembayaran_daftar }}</p>
     <br>
-    <p>biaya diklat : Rp {{ number_format($data->harga_diklat, 0, ',', '.') }}</p>
+    <p>harga diklat : Rp. {{ number_format($data->diklat->harga, 0, ',', '.') }}</p>
+    <br>
+    <!-- Displaying Discount -->
+    @if($data->promo)
+        <p>Diskon: - Rp. {{ number_format($data->promo->potongan, 0, ',', '.') }}</p>
+    @else
+        <p>Diskon: - Rp. 0</p> 
+    @endif
+    <br>
+    <p>Total Biaya : Rp. {{ number_format($data->harga_diklat, 0, ',', '.') }}</p>
     <br>
     <p>status pembayaran biaya diklat : {{ $data->status_pembayaran_diklat }}</p>
     <br>
