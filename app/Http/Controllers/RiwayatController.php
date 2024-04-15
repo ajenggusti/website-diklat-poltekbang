@@ -19,7 +19,7 @@ class RiwayatController extends Controller
         ]);
     }
     public function detailRiwayat($id){
-        $data = Pendaftaran::getDiklatOne($id);
+        $data = Pendaftaran::find($id);
         return view('utama.detailRiwayat', ['data' => $data]);
     }
     

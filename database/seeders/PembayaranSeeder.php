@@ -29,10 +29,6 @@ class PembayaranSeeder extends Seeder
             'jenis_pembayaran' => 'diklat',
             'bukti_pembayaran' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
             ],
-            [
-            'id_pendaftaran' => 3,
-            'jenis_pembayaran' => 'pendaftaran',
-            'bukti_pembayaran' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit.',
-        ]]);
+            ]);
     }
 }

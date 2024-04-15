@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('id_diklat')->nullable();
             $table->text('gambar')->charset('binary');
-            $table->integer('potongan')->nullable(); // potongan harga dalam bentuk rupiah
-            $table->string('kode')->unique(); // kode promo huruf unik
+            $table->bigInteger('potongan')->nullable();
+            $table->string('kode')->unique();
             $table->date('tgl_awal');
             $table->date('tgl_akhir');
+            $table->integer('kuota')->default(0);
+            $table->enum('pakai_kuota', ['iya', 'tidak'])->default('tidak');
             $table->foreign('id_diklat')->references('id')->on('diklat')->onUpdate('cascade')->onDelete('cascade');
         });
     }

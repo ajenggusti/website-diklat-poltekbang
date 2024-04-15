@@ -22,6 +22,8 @@ class PromoSeeder extends Seeder
                 'kode' => 'kode1',
                 'tgl_awal' => '2023-12-23',
                 'tgl_akhir' => '2023-12-25',
+                'kuota' => '2',
+                'pakai_kuota' => true,
             ]
         ]);
     }

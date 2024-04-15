@@ -26,12 +26,6 @@ class TestimoniSeeder extends Seeder
             'profesi' => 'Teknisi pesawat lion air',
             'testimoni' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta in dolorum dolor porro aut assumenda vitae esse, id quae maiores nihil alias, amet facere voluptatibus eum delectus quod similique iste.',
             ],
-            [
-            'id_diklat' => 2,
-            'id_pendaftaran' => '3',
-            'profesi' => 'Dosen',
-            'testimoni' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta in dolorum dolor porro aut assumenda vitae esse, id quae maiores nihil alias, amet facere voluptatibus eum delectus quod similique iste.',
-            ],
         ]);
     }
 }

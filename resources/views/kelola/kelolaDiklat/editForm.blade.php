@@ -20,7 +20,6 @@
             <select name="kategoriDiklat" class="form-select" aria-label="Default select example">
                 <option selected disabled>Pilih Kategori Diklat</option>
                 @foreach ($getKategori as $kategori)
-                    <option value="{{ $kategori->id }}" {{ old('kategoriDiklat') == $kategori->id ? 'selected' : '' }}>
                     <option value="{{ $kategori->id }}" {{ old('kategoriDiklat',$kelDiklat->id) == $kelDiklat->id ? 'selected' : '' }}>
                         {{ $kategori->kategori_diklat }}
                     </option>
@@ -52,6 +51,9 @@
             <span>Deskripsi bisa meliputi durasi, tujuan, topik, tipe, metode, fasilitas, persyaratan, lokasi : </span>
             <textarea name="deskripsi" id="editor">{{ old('deskripsi')?? $kelDiklat->deskripsi }}</textarea>
 
+
+            
+    
         </div>
         <button type="submit" class="btn btn-primary">Kirim</button>
     </form>

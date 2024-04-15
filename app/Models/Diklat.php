@@ -23,6 +23,19 @@ class Diklat extends Model
     {
         return $this->hasMany(Promos::class, 'id_diklat');
     }
+    public function pendaftarans()
+    {
+        return $this->hasMany(Pendaftaran::class, 'id_diklat');
+    }
+    public function updateStatus()
+    {
+        if ($this->jumlah_pendaftar >= $this->kuota_minimal) {
+            $this->status = 'full';
+        } else {
+            $this->status = 'belum full';
+        }
+        $this->save();
+    }
     public static function countDiklat()
     {
         // return self::count();

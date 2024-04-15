@@ -32,7 +32,14 @@
                         <div class="card-riwayat">
                             <h3>{{ $dataDiklat[$key]->nama_diklat }}</h3>
                             <p>Status Diklat : {{ $dataDiklat[$key]->status }}</p>
-                            <p>Harga Diklat : Rp. {{ number_format($data->harga_diklat, 0, ',', '.') }}</p>
+                            <p>Harga Diklat : Rp. {{ number_format($data->diklat->harga, 0, ',', '.') }}</p>
+                            <!-- Displaying Discount -->
+                            @if($data->promo)
+                                <p>Diskon: - Rp. {{ number_format($data->promo->potongan, 0, ',', '.') }}</p>
+                            @else
+                                <p>Diskon: - Rp. 0</p> 
+                            @endif
+                            <p>Total Biaya : Rp. {{ number_format($data->harga_diklat, 0, ',', '.') }}</p>
                             <p>Status Pembayaran Diklat : {{ $data->status_pembayaran_diklat }}</p>
                             <p>Harga Pendaftaran : Rp. 150.000</p>
                             <p>Status Pembayaran Diklat : {{ $data->status_pembayaran_daftar }}</p>
@@ -43,6 +50,8 @@
                                     <button onclick="window.location.href = '/riwayat/{{ $data->id }}'" class="btn btn-success"><i class="bi bi-eye"></i></button>
                                 </div>
 
+                                <a href="{{ route('kelPembayaran.create', ['id' => $data->id]) }}" class="btn btn-secondary">Lakukan Pembayaran?</a>
+                                
                                 <div class="col">
                                     <form action="/kelPendaftaran/{{ $data->id }}" method="POST">
                                         @method('DELETE')

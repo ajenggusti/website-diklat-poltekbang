@@ -1,9 +1,18 @@
 @extends('layout.mainAdmin')
 @section('container')
     <h2>Form Tambah Promo</h2>
+        
     <form method="POST" action="/kelPromo" enctype="multipart/form-data">
         @csrf
-        
+        @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
         <hr>
         <div class="mb-3">
             <label for="img" class="form-label">Masukkan gambar untuk ditampilkan di Banner Promo</label>
@@ -55,6 +64,29 @@
             <label class="control-label" for="tgl_akhir">Tanggal Promo Berakhir</label>
             <input class="form-control  @error('tgl_akhir') is-invalid @enderror" value="{{ old('tgl_akhir') }}" id="tgl_akhir" name="tgl_akhir" placeholder="dd-mm-yyyy" type="text"/>
             @error('tgl_akhir')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Apakah ingin menggunakan kuota??</label><br>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="kuota" id="kuota_yes" value="iya" {{ old('kuota') === 'iya' ? 'checked' : '' }}>
+                <label class="form-check-label" for="kuota_yes">Iya</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="kuota" id="kuota_no" value="tidak" {{ old('kuota') === 'tidak' || old('kuota') === null ? 'checked' : '' }}>
+                <label class="form-check-label" for="kuota_no">Tidak</label>
+            </div>
+            @error('kuota')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+        
+        
+        <div class="mb-3">
+            <label for="kuota_angka" class="form-label">Masukkan kuota Promo yang anda inginkan</label>
+            <input type="text" class="form-control @error('kuota_angka') is-invalid @enderror" id="kuota_angka" name="kuota_angka" value="{{ old('kuota_angka') }}">
+            @error('kuota_angka')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>

@@ -10,12 +10,23 @@ class Pembayaran extends Model
 {
     use HasFactory;
     protected $table = 'pembayaran';
+    public $timestamps = false;
+    public function pendaftaran()
+    {
+        return $this->belongsTo(Pendaftaran::class, 'id_pendaftaran');
+    }
     public static function getCountBayarDiklat(){
         return self::where('jenis_pembayaran', 'diklat')->count();
     }
     public static function getCountBayarPendaftaran(){
         return self::where('jenis_pembayaran', 'pendaftaran')->count();
     }
+
+
+
+
+
+
     public static function hitungPembayaranDiklatDicek()
     {
         return DB::table('pembayaran')

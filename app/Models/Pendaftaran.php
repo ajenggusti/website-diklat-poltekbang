@@ -27,10 +27,10 @@ class Pendaftaran extends Model
     {
         return $this->belongsTo(Promos::class, 'id_promo');
     }
-
-
-
-
+    public function pembayaran()
+    {
+        return $this->hasMany(Pembayaran::class, 'id_pendaftaran');
+    }
 
     public static function countPendaftar()
     {
@@ -50,13 +50,5 @@ class Pendaftaran extends Model
             ->where('pendaftaran.id_user', $userId)
             ->select('diklat.*')
             ->get();
-    }
-    public static function getDiklatOne($id)
-    {
-        return Pendaftaran::join('diklat', 'pendaftaran.id_diklat', '=', 'diklat.id')
-            ->join('promos', 'pendaftaran.id_promo', '=', 'promos.id')
-            ->where('pendaftaran.id', $id)
-            ->select('pendaftaran.*', 'diklat.*', 'promos.*')
-            ->first();
     }
 }

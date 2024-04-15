@@ -32,6 +32,17 @@ class PromoController extends Controller
      */
     public function store(Request $request)
     {
+        // Aturan validasi dan pesan error disimpan dalam variabel
+        $rules = [
+            'potongan' => 'required',
+            'kode' => 'required|unique:promos,kode',
+            'tgl_awal' => 'required',
+            'tgl_akhir' => 'required|after:tgl_awal',
+            'diklat' => 'required',
+            'img' => 'required|image|max:1024',
+        ];
+    
+        // Pesan error yang umum
         $messages = [
             'potongan.required' => 'Potongan wajib diisi.',
             'kode.required' => 'Kode Promo wajib diisi.',
@@ -45,21 +56,24 @@ class PromoController extends Controller
             'img.max' => 'Ukuran file tidak boleh melebihi 1 MB.',
         ];
     
-        $request->validate([
-            'potongan' => 'required',
-            'kode' => 'required|unique:promos,kode',
-            'tgl_awal' => 'required',
-            'tgl_akhir' => 'required|after:tgl_awal',
-            'diklat' => 'required',
-            'img' => 'required|image|max:1024', // Ubah ukuran maksimum sesuai kebutuhan Anda
-        ], $messages);
-
+        // Validasi tambahan hanya jika kuota diceklis 'iya'
+        if ($request->input('kuota') === "iya") {
+            $rules['kuota_angka'] = 'required|integer|min:1';
+            $messages['kuota_angka.required'] = 'Kuota wajib diisi jika ingin menggunakan kuota.';
+            $messages['kuota_angka.integer'] = 'Kuota harus berupa angka.';
+            $messages['kuota_angka.min'] = 'Kuota harus lebih besar daripada 0.';
+        }
+    
+        // Validasi utama
+        $request->validate($rules, $messages);
+    
+        // Menetapkan nilai kuota dan pakai_kuota
+        $kuota = $request->input('kuota') === 'iya' ? 'iya' : 'tidak';
+        $kuota_angka = $kuota === 'iya' ? $request->input('kuota_angka') : 0;
+    
         if ($request->hasFile('img')) {
-            // Mendapatkan nama file dan menyimpan gambar di dalam direktori LanPage
             $image = $request->file('img')->store('LanPage');
-            // Hapus semua karakter selain angka
-            $potongan = preg_replace("/[^0-9]/", "", $request->potongan);    
-            // Simpan data ke dalam database
+            $potongan = preg_replace("/[^0-9]/", "", $request->potongan);
             Promos::create([
                 'potongan' => $potongan,
                 'kode' => $request->kode,
@@ -67,6 +81,8 @@ class PromoController extends Controller
                 'tgl_akhir' => Carbon::createFromFormat('d-m-Y', $request->tgl_akhir)->format('Y-m-d'),
                 'id_diklat' => $request->diklat === 'null' ? null : $request->diklat,
                 'gambar' => $image,
+                'kuota' => $kuota_angka,
+                'pakai_kuota' => $kuota,
             ]);
     
             return redirect('/kelPromo')->with('success', 'Data berhasil ditambahkan!');
@@ -74,6 +90,9 @@ class PromoController extends Controller
             return back()->withErrors(['msg' => 'Tidak ada file yang diunggah.'])->withInput();
         }
     }
+    
+    
+
     /**
      * Display the specified resource.
      */
@@ -95,70 +114,94 @@ class PromoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Promos $kelPromo)
-    {
-        $messages = [
-            'potongan.required' => 'Potongan wajib diisi.',
-            'kode.required' => 'Kode Promo wajib diisi.',
-            'kode.unique' => 'Kode Promo sudah ada.',
-            'tgl_awal.required' => 'Tanggal Mulai Promo wajib diisi.',
-            'tgl_akhir.required' => 'Tanggal Promo Berakhir wajib diisi.',
-            'tgl_akhir.after' => 'Tanggal Promo Berakhir harus setelah Tanggal Mulai Promo.',
-            'img.required' => 'Gambar wajib diunggah.',
-            'img.image' => 'File harus berupa gambar.',
-            'img.max' => 'Ukuran file tidak boleh melebihi 1 MB.',
-            'diklat.required' => 'Pilih diklat untuk promo.'
-        ];
-    
-        $validatedData = $request->validate([
-            'potongan' => 'required',
-            'kode' => 'required|unique:promos,kode,' . $kelPromo->id,
-            'tgl_awal' => 'required',
-            'tgl_akhir' => 'required|after:tgl_awal',
-            'img' => 'nullable|image|max:1024', 
-            'diklat' => 'nullable'
-        ], $messages);
-            // Menghapus gambar lama jika ada pembaruan gambar baru
-        if ($request->hasFile('img')) {
-            Storage::delete($kelPromo->gambar);
-        }
 
-        // Mengunggah gambar baru jika ada
-        if ($request->hasFile('img')) {
-            $image = $request->file('img')->store('LanPage');
-        } else {
-            $image = $kelPromo->gambar;
-        }
-        $potongan = preg_replace("/[^0-9]/", "", $request->potongan);
-        // Format tanggal awal dengan Carbon
-        $tgl_awal = Carbon::createFromFormat('d-m-Y', $validatedData['tgl_awal'])->format('Y-m-d');
+     public function update(Request $request, Promos $kelPromo)
+{
+    // dd($request);
+    // Pesan error yang umum
+    $messages = [
+        'potongan.required' => 'Potongan wajib diisi.',
+        'kode.required' => 'Kode Promo wajib diisi.',
+        'kode.unique' => 'Kode Promo sudah ada.',
+        'tgl_awal.required' => 'Tanggal Mulai Promo wajib diisi.',
+        'tgl_akhir.required' => 'Tanggal Promo Berakhir wajib diisi.',
+        'tgl_akhir.after' => 'Tanggal Promo Berakhir harus setelah Tanggal Mulai Promo.',
+        'img.image' => 'File harus berupa gambar.',
+        'img.max' => 'Ukuran file tidak boleh melebihi 1 MB.',
+        'diklat.required' => 'Pilih diklat untuk promo.',
+        'kuota.required' => 'Pilih terlebih dahulu, apakah anda ingin menggunakan kuota?',
+        'kuota_angka.integer' => 'Kuota harus berupa angka.',
+        'kuota_angka.required_if' => 'Kuota wajib diisi jika ingin menggunakan kuota.',
+        'kuota_angka.min' => 'Kuota harus lebih besar dari 0.',
+    ];
 
-        // Format tanggal akhir dengan Carbon
-        $tgl_akhir = Carbon::createFromFormat('d-m-Y', $validatedData['tgl_akhir'])->format('Y-m-d');
-        // Update data Promo
-        $kelPromo->update([
-            'gambar' => $image,
-            'potongan' => $potongan,
-            'kode' => $validatedData['kode'],
-            'tgl_awal' => $tgl_awal,
-            'tgl_akhir' => $tgl_akhir,
-            'id_diklat' => $validatedData['diklat'] !== 'null' ? $validatedData['diklat'] : null
-        ]);
+    // Aturan validasi
+    $rules = [
+        'potongan' => 'required',
+        'kode' => 'required|unique:promos,kode,' . $kelPromo->id,
+        'tgl_awal' => 'required',
+        'tgl_akhir' => 'required|after:tgl_awal',
+        'diklat' => 'required',
+        'img' => 'nullable|image|max:1024',
+        'kuota' => 'required',
+        'kuota_angka' => 'required_if:kuota,iya'
+    ];
 
-        return redirect('/kelPromo')->with('success', 'Data berhasil diperbarui!');
+    // Validasi tambahan hanya jika kuota diceklis 'true'
+    if ($request->input('kuota') === "iya") {
+        $rules['kuota_angka'] .= '|integer|min:1';
     }
 
+    // Validasi input
+    $validatedData = $request->validate($rules, $messages);
+
+    // Default nilai kuota dan pakai_kuota
+    $kuota_angka = $request->input('kuota') === 'iya' ? $validatedData['kuota_angka'] : 0;
+    $kuota = $request->input('kuota') === 'iya' ? 'iya' : 'tidak'; // Ubah true menjadi iya, false menjadi tidak
+
+
+    // Handle gambar jika diunggah
+    if ($request->hasFile('img')) {
+        // Hapus gambar lama
+        Storage::delete($kelPromo->gambar);
+        // Simpan gambar baru
+        $image = $request->file('img')->store('LanPage');
+    } else {
+        // Gunakan gambar yang sudah ada
+        $image = $kelPromo->gambar;
+    }
+
+    // Format tanggal
+    $tgl_awal = Carbon::createFromFormat('d-m-Y', $validatedData['tgl_awal'])->format('Y-m-d');
+    $tgl_akhir = Carbon::createFromFormat('d-m-Y', $validatedData['tgl_akhir'])->format('Y-m-d');
+    // Ambil nilai potongan
+    $potongan = preg_replace("/[^0-9]/", "", $validatedData['potongan']);
+
+    // Update data Promo
+    $kelPromo->update([
+        'gambar' => $image,
+        'potongan' => $potongan,
+        'kode' => $validatedData['kode'],
+        'tgl_awal' => $tgl_awal,
+        'tgl_akhir' => $tgl_akhir,
+        'id_diklat' => $validatedData['diklat'] !== 'null' ? $validatedData['diklat'] : null,
+        'kuota' => $kuota_angka, 
+        'pakai_kuota' => $kuota,
+    ]);
+
+    // Redirect dengan pesan sukses
+    return redirect('/kelPromo')->with('success', 'Data berhasil diperbarui!');
+}
+
+  
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Promos $kelPromo)
     {
-         // Menghapus gambar dari penyimpanan
-        Storage::delete($kelPromo->gambar);
-                
-        // Menghapus entri Diklat dari database
-        $kelPromo->delete();
 
+        Storage::delete($kelPromo->gambar);
+        $kelPromo->delete();
         return redirect('/kelPromo')->with('success', 'Data berhasil dihapus!');
     }
 }

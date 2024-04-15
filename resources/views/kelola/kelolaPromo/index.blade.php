@@ -18,7 +18,9 @@
             <th scope="col">Potongan</th>
             <th scope="col">Kode Promo</th>
             <th scope="col">Tanggal Mulai</th>
-            <th scope="col">Tanggak Berakhir</th>
+            <th scope="col">Tanggal Berakhir</th>
+            <th scope="col">Pakai Kuota?</th>
+            <th scope="col">Kuota Promo</th>
             <th scope="col">Action</th>
         </tr>
         </thead>
@@ -26,13 +28,14 @@
             @foreach ($datas as $data)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
-                    <td>{{ $data->potongan }}</td>
                     <td>{{ $data->diklat ? $data->diklat->nama_diklat : 'Semua Diklat' }}</td>
-                    <td><img src="{{ asset('storage/' . $data->gambar) }}" alt="" style="width: 30%;"></td>
+                    <td><img src="{{ asset('storage/' . $data->gambar) }}" alt="banner-promo" style="width: 30%;"></td>
                     <td>Rp {{ number_format($data->potongan, 0, ',', '.') }}</td>
                     <td>{{ $data->kode }}</td>
                     <td>{{ \Carbon\Carbon::parse($data->tgl_awal)->format('d-m-Y') }}</td>
                     <td>{{ \Carbon\Carbon::parse($data->tgl_akhir)->format('d-m-Y') }}</td>
+                    <td>{{ $data->pakai_kuota}}</td>
+                    <td>{{ $data->kuota }}</td>
                     <td>
                         <a href="kelPromo/{{ $data->id }}/edit" class="btn btn-warning">Edit</a>
                         <form action="kelPromo/{{ $data->id }}" method="POST">

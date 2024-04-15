@@ -6,6 +6,7 @@ use App\Models\Diklat;
 use App\Models\Promos;
 use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 class PendaftaranController extends Controller
@@ -26,18 +27,15 @@ class PendaftaranController extends Controller
      */
     public function create(Request $request)
     {
-        // Mendapatkan ID pengguna yang masuk
+   
         $userId = Auth::id();
-        // Ambil nilai id dari query string
+    
         $id = $request->query('id');
 
-        // Ambil data diklat berdasarkan id
         $diklat = Diklat::findOrFail($id);
         $dtDiklats = Diklat::all();
-
-        // Kirim data diklat ke view
         return view('kelola.kelolaPendaftaran.form', [
-            'userId' => $userId, // Mengirim ID pengguna ke view
+            'userId' => $userId, 
             'diklat' => $diklat,
             'dtDiklats' => $dtDiklats
         ]);
@@ -48,18 +46,36 @@ class PendaftaranController extends Controller
      */
     public function store(Request $request)
     {
-        // Ambil harga dari data diklat yang dipilih
+        // Validasi input
+        $request->validate([
+            'nama_depan' => 'required|string|max:255',
+            'nama_belakang' => 'required|string|max:255',
+            'tempat_lahir' => 'required|string|max:255',
+            'tgl_awal' => 'required|date_format:d-m-Y',
+            'alamat' => 'required|string|max:255',
+            'pendidikan_terakhir' => 'required|string|max:255|in:SD,SMP,SMA/SMK,Diploma,Sarjana,Magister,Doktor',
+            'no_hp' => 'required|string|max:20',
+        ], [
+            'nama_depan.required' => 'Kolom nama depan wajib diisi.',
+            'nama_belakang.required' => 'Kolom nama belakang wajib diisi.',
+            'tempat_lahir.required' => 'Kolom tempat lahir wajib diisi.',
+            'tgl_awal.required' => 'Kolom tanggal lahir wajib diisi.',
+            'tgl_awal.date_format' => 'Format tanggal lahir harus dd-mm-yyyy.',
+            'alamat.required' => 'Kolom alamat wajib diisi.',
+            'pendidikan_terakhir.required' => 'Kamu belum memilih pendidikan terakhir.',
+            'pendidikan_terakhir.in' => 'Pilih salah satu opsi dari daftar pendidikan terakhir yang tersedia.',
+            'no_hp.required' => 'Kolom nomor HP wajib diisi.',
+        ]);
+    
+        // Ambil data diklat berdasarkan ID
         $diklat = Diklat::findOrFail($request->input('diklat'));
         $harga = $diklat->harga;
-
-        // Inisialisasi id promo
+    
+        // Lanjutkan dengan proses validasi kode promo
         $idPromo = null;
-        
-        // Cek apakah ada kode promo yang dimasukkan
         if ($request->has('kode')) {
             $kodePromo = $request->input('kode');
-
-            // Cek apakah kode promo ada di tabel promos untuk diklat yang dipilih
+    
             $promo = Promos::where(function($query) use ($kodePromo, $diklat) {
                 $query->where('kode', $kodePromo)
                     ->where('id_diklat', $diklat->id);
@@ -69,20 +85,17 @@ class PendaftaranController extends Controller
                     ->whereNull('id_diklat');
             })
             ->first();
-            // dd(now(), $promo->tgl_akhir, now() > $promo->tgl_akhir);
             if ($promo) {
-                // Cek apakah promosi sudah melewati batas waktu
                 if (now() > $promo->tgl_akhir) {
-                    return redirect()->back()->with('error', 'Promo sudah hangus karena melewati batas waktu.');
+                    return redirect()->back()->withInput()->with('error', 'Promo sudah hangus karena melewati batas waktu.');
                 }
-
-                // Kurangi potongan harga dari harga diklat
+                elseif (now() < $promo->tgl_akhir && $promo->pakai_kuota == "iya" && $promo->kuota <= 1) {
+                    return redirect()->back()->withInput()->with('error', 'Maaf kuota promo sudah habis!');
+                }
                 $harga -= $promo->potongan;
-
-                // Simpan id promo di tabel pendaftaran
                 $idPromo = $promo->id;
             } else {
-                // Tampilkan pesan error jika kode promo tidak tersedia untuk diklat yang dipilih
+                // Validasi kode promo
                 $request->validate([
                     'kode' => 'nullable|exists:promos,kode,id_diklat,' . $diklat->id
                 ], [
@@ -90,17 +103,40 @@ class PendaftaranController extends Controller
                 ]);
             }
         }
-        
+        // Ambil input tanggal dari request
+        $tanggal_lahir_input = $request->input('tgl_awal');
 
+        // Ubah format tanggal menggunakan Carbon
+        $tanggal_lahir_carbon = Carbon::createFromFormat('d-m-Y', $tanggal_lahir_input);
+
+        // Format ulang tanggal ke "yyyy-mm-dd"
+        $tanggal_lahir_formatted = $tanggal_lahir_carbon->format('Y-m-d');
+        
+        // Proses penyimpanan data pendaftaran
         $pendaftaran = new Pendaftaran();
         $pendaftaran->id_diklat = $request->input('diklat');
         $pendaftaran->id_user = Auth::id();
         $pendaftaran->id_promo = $idPromo; 
         $pendaftaran->harga_diklat = $harga;
+        $pendaftaran->email  = $request->input('email');
+        $pendaftaran->nama_depan  = $request->input('nama_depan');
+        $pendaftaran->nama_belakang  = $request->input('nama_belakang');
+        $pendaftaran->tempat_lahir  = $request->input('tempat_lahir');
+        $pendaftaran->tanggal_lahir = $tanggal_lahir_formatted;
+        $pendaftaran->alamat  = $request->input('alamat');
+        $pendaftaran->pendidikan_terakhir  = $request->input('pendidikan_terakhir');
+        $pendaftaran->no_hp  = $request->input('no_hp');
         $pendaftaran->save();
-        // dd($pendaftaran);
+    
+        // Update jumlah pendaftar pada diklat
+        $diklat->jumlah_pendaftar += 1;
+        $diklat->save();
+        $diklat->updateStatus();
+        
+        // Redirect dengan pesan sukses jika berhasil
         return redirect('/riwayat')->with('success', 'Pendaftaran berhasil disimpan!');
     }
+    
 
 
 
@@ -109,7 +145,6 @@ class PendaftaranController extends Controller
      */
     public function show(Pendaftaran $kelPendaftaran)
     {
-
         return view('kelola.kelolaPendaftaran.show', [
             'pendaftaran' => $kelPendaftaran,
         ]);
@@ -120,8 +155,14 @@ class PendaftaranController extends Controller
      */
     public function edit(Pendaftaran $kelPendaftaran)
     {
-        //
+        // dd($kelPendaftaran);
+        $dtDiklats = Diklat::all();
+        return view('kelola.kelolaPendaftaran.editAsUser',[
+            'kelPendaftaran' => $kelPendaftaran,
+            'dtDiklats' => $dtDiklats
+        ]);
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -136,7 +177,12 @@ class PendaftaranController extends Controller
      */
     public function destroy(Pendaftaran $kelPendaftaran)
     {
-        Pendaftaran::destroy($kelPendaftaran->id);
+        $diklat = $kelPendaftaran->diklat;
+        $diklat->jumlah_pendaftar -= 1;
+        $diklat->save();
+        $kelPendaftaran->delete();
+        $diklat->updateStatus();
         return redirect('/riwayat')->with('success', 'Data berhasil dihapus!');
     }
+   
 }
