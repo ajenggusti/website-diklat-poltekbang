@@ -30,6 +30,8 @@
             @csrf
             <button class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
         </form>
+        <a href="/bukti-pembayaran/{{ $data->id }}" class="btn" style="background-color: palevioletred; color: #ffffff;">Bukti Pembayaran</a>
+
         <a href="/kelPendaftaran/{{ $data->id }}/edit" class="btn btn-warning">Edit</a>
         <hr>
     @endforeach
