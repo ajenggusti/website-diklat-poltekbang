@@ -118,82 +118,85 @@ class PromoController extends Controller
      */
 
      public function update(Request $request, Promos $kelPromo)
-{
-    // dd($request);
-    // Pesan error yang umum
-    $messages = [
-        'potongan.required' => 'Potongan wajib diisi.',
-        'kode.required' => 'Kode Promo wajib diisi.',
-        'kode.unique' => 'Kode Promo sudah ada.',
-        'tgl_awal.required' => 'Tanggal Mulai Promo wajib diisi.',
-        'tgl_akhir.required' => 'Tanggal Promo Berakhir wajib diisi.',
-        'tgl_akhir.after' => 'Tanggal Promo Berakhir harus setelah Tanggal Mulai Promo.',
-        'img.image' => 'File harus berupa gambar.',
-        'img.max' => 'Ukuran file tidak boleh melebihi 1 MB.',
-        'diklat.required' => 'Pilih diklat untuk promo.',
-        'kuota.required' => 'Pilih terlebih dahulu, apakah anda ingin menggunakan kuota?',
-        'kuota_angka.integer' => 'Kuota harus berupa angka.',
-        'kuota_angka.required_if' => 'Kuota wajib diisi jika ingin menggunakan kuota.',
-        'kuota_angka.min' => 'Kuota harus lebih besar dari 0.',
-    ];
+    {
+        // dd($request);
+        // Pesan error yang umum
+        $messages = [
+            'potongan.required' => 'Potongan wajib diisi.',
+            'kode.required' => 'Kode Promo wajib diisi.',
+            'kode.unique' => 'Kode Promo sudah ada.',
+            'tgl_awal.required' => 'Tanggal Mulai Promo wajib diisi.',
+            'tgl_akhir.required' => 'Tanggal Promo Berakhir wajib diisi.',
+            'tgl_akhir.after' => 'Tanggal Promo Berakhir harus setelah Tanggal Mulai Promo.',
+            'img.image' => 'File harus berupa gambar.',
+            'img.max' => 'Ukuran file tidak boleh melebihi 1 MB.',
+            'diklat.required' => 'Pilih diklat untuk promo.',
+            'kuota.required' => 'Pilih terlebih dahulu, apakah anda ingin menggunakan kuota?',
+            'kuota_angka.integer' => 'Kuota harus berupa angka.',
+            'kuota_angka.required_if' => 'Kuota wajib diisi jika ingin menggunakan kuota.',
+            'kuota_angka.min' => 'Kuota harus lebih besar dari 0.',
+        ];
 
-    // Aturan validasi
-    $rules = [
-        'potongan' => 'required',
-        'kode' => 'required|unique:promos,kode,' . $kelPromo->id,
-        'tgl_awal' => 'required',
-        'tgl_akhir' => 'required|after:tgl_awal',
-        'diklat' => 'required',
-        'img' => 'nullable|image|max:1024',
-        'kuota' => 'required',
-        'kuota_angka' => 'required_if:kuota,iya'
-    ];
+        // Aturan validasi
+        $rules = [
+            'potongan' => 'required',
+            'kode' => 'required|unique:promos,kode,' . $kelPromo->id,
+            'tgl_awal' => 'required',
+            'tgl_akhir' => 'required|after:tgl_awal',
+            'diklat' => 'required',
+            'img' => 'nullable|image|max:1024',
+            'kuota' => 'required',
+            'kuota_angka' => 'required_if:kuota,iya'
+        ];
 
-    // Validasi tambahan hanya jika kuota diceklis 'true'
-    if ($request->input('kuota') === "iya") {
-        $rules['kuota_angka'] .= '|integer|min:1';
+        // Validasi tambahan hanya jika kuota diceklis 'true'
+        if ($request->input('kuota') === "iya") {
+            $rules['kuota_angka'] .= '|integer|min:1';
+        }
+
+        // Validasi input
+        $validatedData = $request->validate($rules, $messages);
+
+        // Default nilai kuota dan pakai_kuota
+        $kuota_angka = $request->input('kuota') === 'iya' ? $validatedData['kuota_angka'] : 0;
+        $kuota = $request->input('kuota') === 'iya' ? 'iya' : 'tidak'; // Ubah true menjadi iya, false menjadi tidak
+
+
+        // Handle gambar jika diunggah
+        if ($request->hasFile('img')) {
+            // Hapus gambar lama
+            Storage::delete($kelPromo->gambar);
+            // Simpan gambar baru
+            $image = $request->file('img')->store('LanPage');
+        } else {
+            // Gunakan gambar yang sudah ada
+            $image = $kelPromo->gambar;
+        }
+
+        // Format tanggal
+        $tgl_awal = Carbon::createFromFormat('Y-m-d', trim($request->tgl_awal));
+        $tgl_akhir = Carbon::createFromFormat('d-m-Y', $request->tgl_akhir)->format('Y-m-d');
+
+
+
+        // Ambil nilai potongan
+        $potongan = preg_replace("/[^0-9]/", "", $validatedData['potongan']);
+
+        // Update data Promo
+        $kelPromo->update([
+            'gambar' => $image,
+            'potongan' => $potongan,
+            'kode' => $validatedData['kode'],
+            'tgl_awal' => $tgl_awal,
+            'tgl_akhir' => $tgl_akhir,
+            'id_diklat' => $validatedData['diklat'] !== 'null' ? $validatedData['diklat'] : null,
+            'kuota' => $kuota_angka, 
+            'pakai_kuota' => $kuota,
+        ]);
+
+        // Redirect dengan pesan sukses
+        return redirect('/kelPromo')->with('success', 'Data berhasil diperbarui!');
     }
-
-    // Validasi input
-    $validatedData = $request->validate($rules, $messages);
-
-    // Default nilai kuota dan pakai_kuota
-    $kuota_angka = $request->input('kuota') === 'iya' ? $validatedData['kuota_angka'] : 0;
-    $kuota = $request->input('kuota') === 'iya' ? 'iya' : 'tidak'; // Ubah true menjadi iya, false menjadi tidak
-
-
-    // Handle gambar jika diunggah
-    if ($request->hasFile('img')) {
-        // Hapus gambar lama
-        Storage::delete($kelPromo->gambar);
-        // Simpan gambar baru
-        $image = $request->file('img')->store('LanPage');
-    } else {
-        // Gunakan gambar yang sudah ada
-        $image = $kelPromo->gambar;
-    }
-
-    // Format tanggal
-    $tgl_awal = Carbon::createFromFormat('d-m-Y', $validatedData['tgl_awal'])->format('Y-m-d');
-    $tgl_akhir = Carbon::createFromFormat('d-m-Y', $validatedData['tgl_akhir'])->format('Y-m-d');
-    // Ambil nilai potongan
-    $potongan = preg_replace("/[^0-9]/", "", $validatedData['potongan']);
-
-    // Update data Promo
-    $kelPromo->update([
-        'gambar' => $image,
-        'potongan' => $potongan,
-        'kode' => $validatedData['kode'],
-        'tgl_awal' => $tgl_awal,
-        'tgl_akhir' => $tgl_akhir,
-        'id_diklat' => $validatedData['diklat'] !== 'null' ? $validatedData['diklat'] : null,
-        'kuota' => $kuota_angka, 
-        'pakai_kuota' => $kuota,
-    ]);
-
-    // Redirect dengan pesan sukses
-    return redirect('/kelPromo')->with('success', 'Data berhasil diperbarui!');
-}
 
   
     /**

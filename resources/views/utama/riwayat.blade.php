@@ -22,7 +22,7 @@
         <p>Status Pembayaran Diklat : {{ $data->status_pembayaran_diklat }}</p>
         <p>Harga Pendaftaran : Rp. 150.000</p>
         <p>Status Pembayaran Diklat : {{ $data->status_pembayaran_daftar }}</p>
-
+        
         <a href="/riwayat/{{ $data->id }}" class="btn btn-success">Lihat</a>
         <a href="{{ route('kelPembayaran.create', ['id' => $data->id]) }}" class="btn btn-secondary">Lakukan Pembayaran?</a>
         <form action="/kelPendaftaran/{{ $data->id }}" method="POST">
@@ -30,6 +30,7 @@
             @csrf
             <button class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
         </form>
+        <a href="/kelPendaftaran/{{ $data->id }}/edit" class="btn btn-warning">Edit</a>
         <hr>
     @endforeach
     <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a>

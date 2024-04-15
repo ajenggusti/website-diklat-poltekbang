@@ -6,6 +6,7 @@ use App\Models\Diklat;
 use App\Models\Pembayaran;
 use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PembayaranController extends Controller
 {
@@ -74,7 +75,7 @@ class PembayaranController extends Controller
     public function edit(Pembayaran $kelPembayaran)
     {
         $dtDiklats = Diklat::all();
-        return view('kelola.kelolaPendaftaran.editAsAdmin',[
+        return view('kelola.kelolaPembayaran.editAsAdmin',[
             'kelPembayaran' => $kelPembayaran,
             'dtDiklats' => $dtDiklats
         ]);
@@ -93,6 +94,8 @@ class PembayaranController extends Controller
      */
     public function destroy(Pembayaran $kelPembayaran)
     {
-        //
+        Storage::delete($kelPembayaran->bukti_pembayaran);
+        $kelPembayaran->delete();
+        return redirect('/kelPembayaran')->with('success', 'Data berhasil dihapus!');
     }
 }
