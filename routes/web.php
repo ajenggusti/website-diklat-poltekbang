@@ -59,6 +59,7 @@ Route::resource('/gbrLandingPage', GbrLandingController::class)->except('show');
 // route CRUD Diklat
 Route::resource('/kelDiklat', DiklatController::class);
 // route CRUD pendaftaran
+// Route::get('/kelPendaftaran/{id}/edit', [PendaftaranController::class, 'editUser']);
 Route::resource('/kelPendaftaran', PendaftaranController::class);
 //route CRUD 
-Route::resource('/kelPembayaran', PembayaranController::class)->except('edit', 'update');
+Route::resource('/kelPembayaran', PembayaranController::class);

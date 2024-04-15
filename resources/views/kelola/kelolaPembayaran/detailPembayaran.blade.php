@@ -1,10 +1,14 @@
 @extends('layout.mainAdmin')
 @section('container')
     <h1>Detail Pembayaran</h1>
-    <a href="/kelPendaftaran/{{ $kelPembayaran->id_pendaftaran }}/edit" class="btn btn-warning">Edit</a>
+    <a href="/kelPembayaran/{{ $kelPembayaran->id }}/edit" class="btn btn-warning">Edit</a>
     <table class="table">
         <table class="table">
         
+            <tr>
+                <th>Nama Diklat</th>
+                <td>{{ $kelPembayaran->pendaftaran->diklat->nama_diklat }}</td>
+            </tr>
             <tr>
                 <th>Nama User</th>
                 <td>{{ optional($kelPembayaran->pendaftaran->user)->name }}</td>

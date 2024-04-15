@@ -237,3 +237,19 @@
 </script>
 
 <script src="https://cdn.ckeditor.com/ckeditor5/41.2.1/super-build/ckeditor.js"></script>
+<script>
+    // Mengambil elemen input tanggal
+    var inputTanggal = document.getElementById('tgl_awal');
+
+    // Mendapatkan nilai tanggal awal dari input
+    var tanggalAwal = inputTanggal.value;
+
+    // Mengecek apakah nilai tanggalAwal tidak kosong
+    if (tanggalAwal) {
+        // Mengubah format tanggal menjadi "dd-mm-yyyy"
+        var tanggalBaru = tanggalAwal.split('-').reverse().join('-');
+
+        // Mengatur nilai baru ke input tanggal
+        inputTanggal.value = tanggalBaru;
+    }
+</script>  

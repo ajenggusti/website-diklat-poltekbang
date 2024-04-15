@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Diklat;
 use App\Models\Pembayaran;
 use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
@@ -39,9 +40,9 @@ class PembayaranController extends Controller
         $pembayaran->id_pendaftaran = $request->id_pendaftaran;
         $pembayaran->jenis_pembayaran = $request->jenis_pembayaran;
         $pembayaran->created_at = now(); // Menambahkan waktu saat ini ke kolom created_at
-    
+
         $pembayaran->save();
-    
+
         if ($request->jenis_pembayaran == 'diklat') {
             $pendaftaran = Pendaftaran::find($request->id_pendaftaran);
             $pendaftaran->status_pembayaran_diklat = 'Dicek';
@@ -51,10 +52,10 @@ class PembayaranController extends Controller
             $pendaftaran->status_pembayaran_daftar = 'Dicek';
             $pendaftaran->save();
         }
-        
+
         return redirect('/riwayat')->with('success', 'Pembayaran berhasil disimpan.');
     }
-    
+
 
     /**
      * Display the specified resource.
@@ -62,7 +63,7 @@ class PembayaranController extends Controller
     public function show(Pembayaran $kelPembayaran)
     {
         // dd($kelPembayaran);
-        return view('kelola.kelolaPembayaran.detailPembayaran',[
+        return view('kelola.kelolaPembayaran.detailPembayaran', [
             'kelPembayaran' => $kelPembayaran
         ]);
     }
@@ -72,7 +73,11 @@ class PembayaranController extends Controller
      */
     public function edit(Pembayaran $kelPembayaran)
     {
-        //
+        $dtDiklats = Diklat::all();
+        return view('kelola.kelolaPendaftaran.editAsAdmin',[
+            'kelPembayaran' => $kelPembayaran,
+            'dtDiklats' => $dtDiklats
+        ]);
     }
 
     /**
