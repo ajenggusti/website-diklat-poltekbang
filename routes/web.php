@@ -30,7 +30,7 @@ use App\Http\Controllers\TestimoniController;
 //     return view('utama/landingPage');
 // });
 
-// route landing page
+// route halaman utama
 Route::get('/', [UtamaController::class, 'index']);
 Route::get('/utama/macamDiklat/{kategori}', [UtamaController::class, 'allDiklat']);
 Route::get('/utama/detailDiklat/{detail}', [UtamaController::class, 'detailDiklat']);
@@ -39,6 +39,8 @@ Route::get('/dbDpuk', [DbUtamaController::class, 'dbDpuk']);
 Route::get('/dbKeuangan', [DbUtamaController::class, 'dbKeuangan']);
 Route::get('/riwayat', [RiwayatController::class, 'index'])->middleware('auth');
 Route::get('/riwayat/{detail}', [RiwayatController::class, 'detailRiwayat'])->middleware('auth');
+Route::get('/bukti-pembayaran/{id}', [RiwayatController::class, 'buktiPembayaran']);
+
 
 // route login registrasi
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
@@ -59,7 +61,6 @@ Route::resource('/gbrLandingPage', GbrLandingController::class)->except('show');
 // route CRUD Diklat
 Route::resource('/kelDiklat', DiklatController::class);
 // route CRUD pendaftaran
-// Route::get('/kelPendaftaran/{id}/edit', [PendaftaranController::class, 'editUser']);
 Route::resource('/kelPendaftaran', PendaftaranController::class);
 //route CRUD 
 Route::resource('/kelPembayaran', PembayaranController::class);

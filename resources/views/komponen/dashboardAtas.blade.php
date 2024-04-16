@@ -104,13 +104,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="/indexKelolaUser">
                   <span data-feather="layers"></span>
-                  Kelola Promo
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/gbrLandingPage">
-                  <span data-feather="layers"></span>
-                  kelola gmbr Landing Page
+                  Kelola user
                 </a>
               </li>
               <li class="nav-item">
@@ -122,10 +116,9 @@
               <li class="nav-item">
                 <a class="nav-link" href="/gbrLandingPage">
                   <span data-feather="layers"></span>
-                  kelola pendaftaran
+                  kelola gmbr Landing Page
                 </a>
               </li>
-              
               <li class="nav-item">
                 <a class="nav-link" href="/kelPembayaran">
                   <span data-feather="layers"></span>

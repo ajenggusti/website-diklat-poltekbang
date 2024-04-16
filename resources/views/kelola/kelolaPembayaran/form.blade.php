@@ -3,7 +3,7 @@
     <h1>Form Pembayaran</h1>
     <form action="/kelPembayaran" method="post" enctype="multipart/form-data">
         @csrf
-        
+        {{ $pendaftaran->id }}
         <br>
         <div class="mb-3">
             <input type="hidden" name="id_pendaftaran" value="{{ $pendaftaran->id }}">
@@ -31,12 +31,16 @@
         <div class="mb-3">
             <label for="harga" class="form-label is">Status Pembayaran Pendaftaran</label>
             <input disabled type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="{{ $pendaftaran->status_pembayaran_daftar }}">
-        </div>        
-        <select name="jenis_pembayaran" id="jenis_pembayaran" class="form-select">
-            <option value="" disabled selected>Pilih Jenis Pembayaran</option>
-            <option value="diklat">Diklat</option>
-            <option value="pendaftaran">Pendaftaran</option>
+        </div>  
+        <select name="jenis_pembayaran" id="jenis_pembayaran" class="form-select @error('jenis_pembayaran') is-invalid @enderror">
+            <option value="" disabled {{ old('jenis_pembayaran') ? '' : 'selected' }}>Pilih Jenis Pembayaran</option>
+            <option value="diklat" {{ old('jenis_pembayaran') == 'diklat' ? 'selected' : '' }}>Diklat</option>
+            <option value="pendaftaran" {{ old('jenis_pembayaran') == 'pendaftaran' ? 'selected' : '' }}>Pendaftaran</option>
         </select>
+        @error('jenis_pembayaran')
+        <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+        
         <hr>
         <div class="mb-3">
             <label for="img" class="form-label">Upload bukti pembayaran</label>

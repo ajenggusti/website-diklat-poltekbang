@@ -19,12 +19,11 @@
         </style>
     </head>
     <body>
-        {{-- <img src="{{ asset('storage/' . $detail->gambar) }}" alt="Gambar Diklat" class="img-detail"> --}}
         <div class="content-body2">
+            <br>
             <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a><br>
             @foreach ($detailDiklat as $detail) <br> <br>
-
-            <div class="center-text">{{ $detail->nama_diklat }}</div>
+            <h1>{{ $detail->nama_diklat }}</h1>
             
             {{-- <img src="{{ asset('storage/' . $detail->gambar) }}" alt="" style="width: 30%;"> --}}
 

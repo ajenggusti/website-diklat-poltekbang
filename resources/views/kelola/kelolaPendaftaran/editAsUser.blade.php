@@ -24,6 +24,17 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>      
+        <div class="mb-3">
+            <label for="harga" class="form-label is">Potongan harga</label>
+            <input disabled type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="Potongan" value="-Rp {{ $kelPendaftaran->promo->potongan }}">
+        </div>      
+        <div class="mb-3">
+            <label for="harga" class="form-label is">Total Biaya</label>
+            <input disabled type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="-Rp {{ $kelPendaftaran->promo->potongan }}">
+            @error('harga')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>      
 
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>

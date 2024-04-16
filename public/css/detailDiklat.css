@@ -25,7 +25,9 @@ body {
     color: #478DD7;
 }
 
-
+.content-body2 h1 {
+    text-align: center;
+}
 
 /* Style Container */
 .card-container2 {

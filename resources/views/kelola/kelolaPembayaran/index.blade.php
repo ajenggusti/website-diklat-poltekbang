@@ -38,11 +38,11 @@
                 <td>
                     <a href="/kelPembayaran/{{ $pembayaran->id }}/edit" class="btn btn-warning">Edit</a>
                     <a href="/kelPembayaran/{{ $pembayaran->id }}" class="btn btn-success">Lihat</a>
-                    <form action="/kelPembayaran/{{ $pembayaran->id }}" method="POST">
+                    {{-- <form action="/kelPembayaran/{{ $pembayaran->id }}" method="POST">
                         @method('DELETE')
                         @csrf
                         <button class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
-                    </form>
+                    </form> --}}
                 </td>
             </tr>
             @endforeach
