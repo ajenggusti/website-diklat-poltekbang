@@ -57,6 +57,10 @@
             
                 @auth
                     <ul class="navbar-nav">
+                        <li class="nav-item" style="font-size: 10px">
+                            {{ auth()->user()->name }}
+                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" href="/riwayat">Riwayat</a>
                         </li>

@@ -125,3 +125,7 @@ body {
 }
 
 /* Style button */
+.btn-container {
+    width: 100%; /* Lebar button mengikuti lebar container */
+    margin-bottom: 10px; /* Jarak antara button dengan konten lain */
+}

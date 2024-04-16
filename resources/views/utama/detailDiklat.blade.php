@@ -58,16 +58,18 @@
             @endforeach
    
             @auth
-                <div class="d-grid gap-2 col-6">
-                    <a href="{{ route('kelPendaftaran.create', ['id' => $detail->id]) }}" class="btn btn-primary" style="width: 1200px;">Daftarkan dirimu sekarang!</a>
+                <div class="d-grid gap-2 col-6 btn-container">
+                    <a href="{{ route('kelPendaftaran.create', ['id' => $detail->id]) }}" class="btn btn-primary" >Daftarkan dirimu sekarang!</a>
                 </div>
             @endauth
         
             @guest
-                <div class="d-grid gap-2 col-6">
-                    <button style="width: 1200px;" class="btn btn-primary" type="button" onclick="window.location.href = '/login';">Login untuk mendaftar!</button>
+                <div class="d-grid gap-2 col-6 btn-container">
+                    <button class="btn btn-primary" type="button" onclick="window.location.href = '/login';">Login untuk mendaftar!</button>
                 </div>
             @endguest
+            {{-- </div> --}}
+            
         </div>
     </body>
 </html>

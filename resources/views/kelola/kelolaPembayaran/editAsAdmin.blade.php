@@ -1,5 +1,6 @@
 @extends('layout.mainUser')
 @section('container')
+<h1>BELUM FIKS</h1>
     <h1>Form Kelola Pembayaran</h1>
     <form action="/kelPendaftaran" method="post" enctype="multipart/form-data" id="formPendaftaran">
         @csrf
