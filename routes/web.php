@@ -7,6 +7,7 @@ use App\Http\Controllers\PromoController;
 use App\Http\Controllers\UtamaController;
 use App\Http\Controllers\DbUtamaController;
 use App\Http\Controllers\DiklatController;
+use App\Http\Controllers\GambarDiklatController;
 use App\Http\Controllers\GbrLandingController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\RegisterController;
@@ -62,5 +63,7 @@ Route::resource('/gbrLandingPage', GbrLandingController::class)->except('show');
 Route::resource('/kelDiklat', DiklatController::class);
 // route CRUD pendaftaran
 Route::resource('/kelPendaftaran', PendaftaranController::class);
-//route CRUD 
+//route CRUD pembayarn
 Route::resource('/kelPembayaran', PembayaranController::class);
+//route CRUD gambar diklat
+Route::resource('/kelGambarDiklat', GambarDiklatController::class);

@@ -133,6 +133,12 @@
               </li>
               
               <li class="nav-item">
+                <a class="nav-link" href="/kelGambarDiklat">
+                  <span data-feather="layers"></span>
+                  Kelola Gambar diklat
+                </a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="/kelDiklat">
                   <span data-feather="layers"></span>
                   kelola diklat

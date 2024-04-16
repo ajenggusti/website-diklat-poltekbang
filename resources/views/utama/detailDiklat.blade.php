@@ -25,7 +25,7 @@
             @foreach ($detailDiklat as $detail) <br> <br>
             <h1>{{ $detail->nama_diklat }}</h1>
             
-            {{-- <img src="{{ asset('storage/' . $detail->gambar) }}" alt="" style="width: 30%;"> --}}
+            {{-- <img src="{{ asset('storage/' . $gambar->gambar_navbar) }}" alt="Gambar Diklat" style="width: 10%;"> --}}
 
             <img src="{{ asset('img/plane3.jpg') }}" alt="Gambar Diklat" class="img-detail">
             <div class="card-container3">
