@@ -1,7 +1,8 @@
 @extends('layout.mainUser')
 @section('container')
     <h1>Form Pendaftaran</h1>
-    <form action="/kelPendaftaran" method="post" enctype="multipart/form-data" id="formPendaftaran">
+    <form action="/kelPendaftaran/{{ $kelPendaftaran->id }}" method="post" enctype="multipart/form-data" id="formPendaftaran">
+        @method('put')
         @csrf
         <div class="mb-3">
             <p>Diklat yang dipilih</p>

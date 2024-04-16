@@ -3,7 +3,10 @@
 @section('container')
     @foreach ($detailDiklat as $detail)
         <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a><br>
-        <img src="{{ asset('storage/' . $detail->gambar) }}" alt="Gambar Diklat" style="width: 10%;">
+        @foreach ($gambars as $gambar)
+            
+        <img src="{{ asset('storage/' . $gambar->gambar_navbar) }}" alt="Gambar Diklat" style="width: 10%;">
+        @endforeach
         <br>
         <strong>Nama Diklat:</strong> {{ $detail->nama_diklat }}
         <br>

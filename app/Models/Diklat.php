@@ -27,6 +27,10 @@ class Diklat extends Model
     {
         return $this->hasMany(Pendaftaran::class, 'id_diklat');
     }
+    public function gambarDiklat()
+    {
+        return $this->hasMany(GambarDiklat::class, 'id_diklat');
+    }
     public function updateStatus()
     {
         if ($this->jumlah_pendaftar >= $this->kuota_minimal) {

@@ -13,6 +13,7 @@ class Pendaftaran extends Model
 
     protected $table = 'pendaftaran';
     public $timestamps = false;
+    protected $guarded = [''];
     public function diklat()
     {
         return $this->belongsTo(Diklat::class, 'id_diklat');

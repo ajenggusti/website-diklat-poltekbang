@@ -169,8 +169,52 @@ class PendaftaranController extends Controller
      */
     public function update(Request $request, Pendaftaran $kelPendaftaran)
     {
-        //
+        // dd($request);
+        // Validasi input
+        $request->validate([
+            'nama_depan' => 'required|string|max:255',
+            'nama_belakang' => 'required|string|max:255',
+            'tempat_lahir' => 'required|string|max:255',
+            'tgl_awal' => 'required|date_format:d-m-Y',
+            'alamat' => 'required|string|max:255',
+            'pendidikan_terakhir' => 'required|string|max:255|in:SD,SMP,SMA/SMK,Diploma,Sarjana,Magister,Doktor',
+            'no_hp' => 'required|string|max:20',
+        ], [
+            'nama_depan.required' => 'Kolom nama depan wajib diisi.',
+            'nama_belakang.required' => 'Kolom nama belakang wajib diisi.',
+            'tempat_lahir.required' => 'Kolom tempat lahir wajib diisi.',
+            'tgl_awal.required' => 'Kolom tanggal lahir wajib diisi.',
+            'tgl_awal.date_format' => 'Format tanggal lahir harus dd-mm-yyyy.',
+            'alamat.required' => 'Kolom alamat wajib diisi.',
+            'pendidikan_terakhir.required' => 'Kamu belum memilih pendidikan terakhir.',
+            'pendidikan_terakhir.in' => 'Pilih salah satu opsi dari daftar pendidikan terakhir yang tersedia.',
+            'no_hp.required' => 'Kolom nomor HP wajib diisi.',
+        ]);
+    
+        // Ambil input tanggal dari request
+        $tanggal_lahir_input = $request->input('tgl_awal');
+    
+        // Ubah format tanggal menggunakan Carbon
+        $tanggal_lahir_carbon = Carbon::createFromFormat('d-m-Y', $tanggal_lahir_input);
+    
+        // Format ulang tanggal ke "yyyy-mm-dd"
+        $tanggal_lahir_formatted = $tanggal_lahir_carbon->format('Y-m-d');
+    
+        // Update data pendaftaran
+        $kelPendaftaran->email = $request->input('email');
+        $kelPendaftaran->nama_depan = $request->input('nama_depan');
+        $kelPendaftaran->nama_belakang = $request->input('nama_belakang');
+        $kelPendaftaran->tempat_lahir = $request->input('tempat_lahir');
+        $kelPendaftaran->tanggal_lahir = $tanggal_lahir_formatted;
+        $kelPendaftaran->alamat = $request->input('alamat');
+        $kelPendaftaran->pendidikan_terakhir = $request->input('pendidikan_terakhir');
+        $kelPendaftaran->no_hp = $request->input('no_hp');
+        $kelPendaftaran->update($request->all());
+    
+        // Redirect dengan pesan sukses jika berhasil
+        return redirect('/riwayat')->with('success', 'Pendaftaran berhasil diperbarui! Klik lihat untuk melihat perubahan');
     }
+    
 
     /**
      * Remove the specified resource from storage.

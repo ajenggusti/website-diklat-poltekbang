@@ -4,21 +4,13 @@
     <a href="/kelPembayaran/{{ $kelPembayaran->id }}/edit" class="btn btn-warning">Edit</a>
     <table class="table">
         <table class="table">
-        
+
             <tr>
-                <th>Nama Diklat</th>
-                <td>{{ $kelPembayaran->pendaftaran->diklat->nama_diklat }}</td>
+                <th>Bukti Pembayaran</th>
+                <td><img src="{{ asset('storage/'.$kelPembayaran->bukti_pembayaran) }}" alt=""></td>
             </tr>
             <tr>
-                <th>Nama User</th>
-                <td>{{ optional($kelPembayaran->pendaftaran->user)->name }}</td>
-            </tr>
-            <tr>
-                <th>Kode Promo</th>
-                <td>{{ optional($kelPembayaran->pendaftaran->promo)->kode }}</td>
-            </tr>
-            <tr>
-                <th>Harga Diklat</th>
+                <th>Total Biaya</th>
                 <td>Rp {{ number_format($kelPembayaran->pendaftaran->harga_diklat, 0, ',', '.') }}</td>
             </tr>
             <tr>
@@ -33,6 +25,19 @@
                 <th>Status Pembayaran Daftar</th>
                 <td>{{ $kelPembayaran->pendaftaran->status_pembayaran_daftar }}</td>
             </tr>
+            <tr>
+                <th>Nama Diklat</th>
+                <td>{{ $kelPembayaran->pendaftaran->diklat->nama_diklat }}</td>
+            </tr>
+            <tr>
+                <th>Nama User</th>
+                <td>{{ optional($kelPembayaran->pendaftaran->user)->name }}</td>
+            </tr>
+            <tr>
+                <th>Kode Promo</th>
+                <td>{{ optional($kelPembayaran->pendaftaran->promo)->kode }}</td>
+            </tr>
+            
             <tr>
                 <th>Nama Depan</th>
                 <td>{{ $kelPembayaran->pendaftaran->nama_depan }}</td>
@@ -61,10 +66,6 @@
             <tr>
                 <th>Email</th>
                 <td>{{ optional($kelPembayaran->pendaftaran->user)->email }}</td>
-            </tr>
-            <tr>
-                <th>Sertifikat Diklat</th>
-                <td>{{ $kelPembayaran->pendaftaran->sertifikat }}</td>
             </tr>
     
         </table>
