@@ -212,7 +212,7 @@ class PendaftaranController extends Controller
         $kelPendaftaran->update($request->all());
     
         // Redirect dengan pesan sukses jika berhasil
-        return redirect('/riwayat')->with('success', 'Pendaftaran berhasil diperbarui! Klik lihat untuk melihat perubahan');
+        return redirect('/riwayat')->with('success', 'Pendaftaran berhasil diperbarui! Klik lihat untuk melihat');
     }
     
 

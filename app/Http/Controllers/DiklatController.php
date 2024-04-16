@@ -49,7 +49,7 @@ class DiklatController extends Controller
         ];
 
         $request->validate([
-            'img' => 'required|image|file|max:1024',
+            // 'img' => 'required|image|file|max:1024',
             'kategoriDiklat' => 'required',
             'kategoriDiklat' => 'required',
             'deskripsi' => 'required',
@@ -58,11 +58,13 @@ class DiklatController extends Controller
             'kuota' => 'required|numeric'
         ], $messages);
 
-        if ($request->hasFile('img')) {
-            $image = $request->file('img')->store('LanPage');
-            $harga = preg_replace("/[^0-9]/", "", $request->input('harga'));
+        // if ($request->hasFile('img')) {
+        //     $image = $request->file('img')->store('LanPage');
+            // $harga = preg_replace("/[^0-9]/", "", $request->input('harga'));
+            $harga = floatval(str_replace(',', '', $request->input('harga')));
+            dd($harga);
             Diklat::create([
-                'gambar' => $image,
+                // 'gambar' => $image,
                 'id_kategori_diklat' => $request->kategoriDiklat,
                 'status' => 'belum full',
                 'deskripsi' => $request->deskripsi,
@@ -72,9 +74,9 @@ class DiklatController extends Controller
             ]);
 
             return redirect('/kelDiklat')->with('success', 'Data berhasil ditambahkan!');
-        } else {
-            return back()->withErrors(['msg' => 'Tidak ada file yang diunggah.'])->withInput();
-        }
+        // } else {
+        //     return back()->withErrors(['msg' => 'Tidak ada file yang diunggah.'])->withInput();
+        // }
     }
 
     /**
@@ -120,25 +122,25 @@ class DiklatController extends Controller
         ];
 
         $request->validate([
-            'img' => 'nullable|image|file|max:1024',
+            // 'img' => 'nullable|image|file|max:1024',
             'kategoriDiklat' => 'required',
             'deskripsi' => 'required',
             'nama_diklat' => 'required',
             'harga' => 'required',
             'kuota' => 'required|numeric'
         ], $messages);
-        if ($request->hasFile('img')) {
-            Storage::delete($kelDiklat->gambar);
-        }
-        if ($request->hasFile('img')) {
-            $image = $request->file('img')->store('LanPage');
-        } else {
-            $image = $kelDiklat->gambar;
-        }
+        // if ($request->hasFile('img')) {
+        //     Storage::delete($kelDiklat->gambar);
+        // }
+        // if ($request->hasFile('img')) {
+        //     $image = $request->file('img')->store('LanPage');
+        // } else {
+        //     $image = $kelDiklat->gambar;
+        // }
 
         $harga = preg_replace("/[^0-9]/", "", $request->input('harga'));
         $kelDiklat->update([
-            'gambar' => $image,
+            // 'gambar' => $image,
             'id_kategori_diklat' => $request->kategoriDiklat,
             'deskripsi' => $request->deskripsi,
             'nama_diklat' => $request->nama_diklat,
@@ -154,7 +156,7 @@ class DiklatController extends Controller
 
     public function destroy(Diklat $kelDiklat)
     {
-        Storage::delete($kelDiklat->gambar);
+        // Storage::delete($kelDiklat->gambar);
         $kelDiklat->delete();
         return redirect('/kelDiklat')->with('success', 'Data berhasil dihapus!');
     }

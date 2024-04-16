@@ -19,8 +19,9 @@
     <hr>
     <h1>Testimoni</h1>
     @foreach ($testimonis as $testimoni)
-        <h3>{{ $testimoni->nama_depan }}</h3>
+        <h3>{{ $testimoni->pendaftaran->nama_depan }}</h3>
         <b>{{ $testimoni->profesi }}</b>
+        <p>Alumni diklat {{ $testimoni->pendaftaran->diklat->nama_diklat }}</p>
         <p>{{ $testimoni->testimoni }}</p>
     @endforeach
 

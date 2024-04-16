@@ -22,7 +22,12 @@
     <br>
     <p>waktu pendaftaran : {{ \Carbon\Carbon::parse($data->waktu_pendaftaran)->format('H:i:s | d-m-Y') }}</p>
     <br>
-    <p>kode promo : {{ $data->promo->kode }}</p>
+    @if($data->promo)
+        <p>kode promo : {{ $data->promo->kode }}</p>
+    @else
+        <p>kode promo : Tidak ada promo yang diambil</p>
+    @endif
+
     <br>
     <p>biaya pendaftaran : Rp 150.000</p>
     <br>

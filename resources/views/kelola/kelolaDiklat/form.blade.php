@@ -4,14 +4,14 @@
     <form action="/kelDiklat" method="post" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label for="img" class="form-label">Masukkan gambar untuk ditampilkan di detail diklat</label>
                 <img class="img-preview img-fluid" style="width: 20%;">
                 <input name="img" onchange="previewImage()" class="form-control @error('img') is-invalid @enderror" type="file" id="img" >
                 @error('img')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
-            </div>
+            </div> --}}
             <select name="kategoriDiklat" class="form-select" aria-label="Default select example">
                 <option selected disabled>Pilih Kategori Diklat</option>
                 @foreach ($getKategori as $kategori)

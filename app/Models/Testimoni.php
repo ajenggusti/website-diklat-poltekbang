@@ -10,12 +10,18 @@ class Testimoni extends Model
 {
     use HasFactory;
     protected $table = 'testimoni';
-
-    public static function joinPendafataran(){
-        return DB::table('testimoni')
-        ->join('pendaftaran', 'testimoni.id_pendaftaran', '=', 'pendaftaran.id')
-        ->join('diklat', 'pendaftaran.id_diklat', '=', 'diklat.id')
-        ->select('*')
-        ->get();
+    protected $guarded=[];
+    public function pendaftaran()
+    {
+        return $this->belongsTo(Pendaftaran::class, 'id_pendaftaran');
     }
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->tampil = 'tidak';
+            $model->created_at = now();
+        });
+    }
+ 
 }

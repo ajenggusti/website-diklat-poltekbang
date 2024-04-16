@@ -27,15 +27,29 @@
         </div>      
         <div class="mb-3">
             <label for="harga" class="form-label is">Potongan harga</label>
-            <input disabled type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="Potongan" value="-Rp {{ $kelPendaftaran->promo->potongan }}">
-        </div>      
-        <div class="mb-3">
+            @if($kelPendaftaran->id_promo && $kelPendaftaran->promo)
+                <input disabled type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="Potongan" value="-Rp {{ $kelPendaftaran->promo->potongan }}">
+            @else
+                <input disabled type="text" class="form-control" id="harga" name="Potongan" value="Tidak ada potongan harga">
+            @endif
+        </div>
+        
+            
+        {{-- <div class="mb-3">
             <label for="harga" class="form-label is">Total Biaya</label>
-            <input disabled type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="-Rp {{ $kelPendaftaran->promo->potongan }}">
+            <input disabled type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="-Rp {{ $kelPendaftaran->harga_diklat }}">
             @error('harga')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
-        </div>      
+        </div>    --}}
+        <div class="mb-3">
+            <label for="harga" class="form-label is">Total Biaya</label>
+            <input disabled type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="Rp {{ isset($harga) ? number_format($harga) : number_format($kelPendaftaran->harga_diklat ) }}">
+            <input type="hidden" name="harga" value="{{ isset($harga) ? $harga : $kelPendaftaran->harga_diklat  }}">
+            @error('harga')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>     
 
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
