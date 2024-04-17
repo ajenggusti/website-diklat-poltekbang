@@ -22,19 +22,19 @@
             <form action="/kelDiklat/{{ $kelDiklat->id }}" method="post" enctype="multipart/form-data">
                 @method('put')
                 @csrf
-                <div class="mb-3">
+                {{-- <div class="mb-3">
                     <label for="img" class="form-label">Gambar sebelumnya</label><br>
                     <img src="{{ asset('storage/' . $kelDiklat->gambar) }}" class="img-preview img-fluid" style="width: 20%;">
-                </div>
+                </div> --}}
                 <div class="mb-3">
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label for="img" class="form-label">Masukkan gambar untuk ditampilkan di detail diklat</label>
                         <img class="img-preview img-fluid" style="width: 20%;">
                         <input name="img" onchange="previewImage()" class="form-control @error('img') is-invalid @enderror" type="file" id="img" >
                         @error('img')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
-                    </div>
+                    </div> --}}
                     <select name="kategoriDiklat" class="form-select" aria-label="Default select example">
                         <option selected disabled>Pilih Kategori Diklat</option>
                         @foreach ($getKategori as $kategori)
@@ -53,7 +53,7 @@
 
                     <div class="mb-3">
                         <label for="harga" class="form-label is">Harga</label>
-                        <input type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="{{ old('harga') ? number_format(old('harga')) : number_format($kelDiklat->harga) }}">
+                        <input type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="{{ old('harga') ? number_format(floatval(old('harga'))) : number_format($kelDiklat->harga) }}">
                         @error('harga')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror

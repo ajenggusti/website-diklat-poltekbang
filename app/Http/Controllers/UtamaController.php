@@ -19,7 +19,7 @@ class UtamaController extends Controller
         $jmlPendaftar = Pendaftaran::countPendaftar();
         $jmlDiklat = Diklat::countDiklat();
         $katDiklat = KatDiklat::selectAll();
-        $testimonis = Testimoni::joinPendafataran();
+        $testimonis = Testimoni::where('tampil', 'iya')->get();
         $gbrSlide = Gambar_navbar::all();
 
         return view('utama/landingPage', [

@@ -54,111 +54,103 @@
     <div class="container-fluid">
     {{-- <div class="mainContent"> --}}
       <div class="row">
-        
-        
-          <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light">
-            
-              <div class="position-sticky pt-3">
+        <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+          <div class="position-sticky pt-3">
+            <ul class="nav flex-column">
+              {{-- sidebar --}}
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="dbSuperAdmin">
+                  <span data-feather="home"></span>
+                  Dashboard SuperAdmin
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/dbDpuk">
+                  <span data-feather="home"></span>
+                  Dashboard DPUK
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/dbKeuangan">
+                  <span data-feather="home"></span>
+                  Dashboard Keuangan
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/kelKatDiklat">
+                  <span data-feather="layers"></span>
+                  kelola kategori diklat
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="layers"></span>
+                  Kelola Level
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="layers"></span>
+                  Kelola user
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="layers"></span>
+                  kelola pembayaran
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="layers"></span>
+                  kelola gmbr Landing Page
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="layers"></span>
+                  kelola kategori gambar
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="layers"></span>
+                  kelola diklat
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="layers"></span>
+                  kelola testimoni
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="layers"></span>
+                  kelola video
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
 
-            
-                  <ul class="nav flex-column">
-                    {{-- sidebar --}}
-                      @can('superAdmin')    
-                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/dbSuperAdmin">
-                          <span data-feather="home"></span>
-                          Dashboard SuperAdmin
-                        </a>
-                      </li>
-                      @endcan
 
-                      @can('dpuk')
-                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/dbDpuk">
-                          <span data-feather="home"></span>
-                          Dashboard DPUK
-                        </a>
-                      </li>
-                      @endcan
 
-                      @can('keuangan')
-                      <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/dbKeuangan">
-                          <span data-feather="home"></span>
-                          Dashboard Keuangan
-                        </a>
-                      </li>
-                      @endcan
-                      <li class="nav-item">
-                        <a class="nav-link" href="/kelKatDiklat">
-                          <span data-feather="layers"></span>
-                          kelola kategori diklat
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="/indexKelolaUser">
-                          <span data-feather="layers"></span>
-                          Kelola user
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="/kelPromo">
-                          <span data-feather="layers"></span>
-                          Kelola Promo
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="/gbrLandingPage">
-                          <span data-feather="layers"></span>
-                          kelola gmbr Landing Page
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="/kelPembayaran">
-                          <span data-feather="layers"></span>
-                          kelola pembayaran
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="/kelPendaftaran">
-                          <span data-feather="layers"></span>
-                          kelola pendaftaran
-                        </a>
-                      </li>
-                      
-                      <li class="nav-item">
-                        <a class="nav-link" href="/kelGambarDiklat">
-                          <span data-feather="layers"></span>
-                          Kelola Gambar diklat
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="/kelDiklat">
-                          <span data-feather="layers"></span>
-                          kelola diklat
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" href="/kelTestimoni">
-                          <span data-feather="layers"></span>
-                          kelola testimoni
-                        </a>
-                      </li>
-                    {{-- </div> --}}
-                  </ul>
-                {{-- </div> --}}
-              </div>
-            
-          </nav>
-        
-        
+
         {{-- isi konten ada di dalam main --}}
-        
-          <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom container-fluid">
-              
+        <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">Dashboard</h1>
+            <div class="btn-toolbar mb-2 mb-md-0">
+              <div class="btn-group me-2">
+                <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+              </div>
+              <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                <span data-feather="calendar"></span>
+                This week
+              </button>
             </div>
+          </div>
 
           
-  
-         

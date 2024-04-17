@@ -29,5 +29,4 @@ class RiwayatController extends Controller
         // dd($pembayaran);
         return view('utama.buktiPembayaran', ['pembayarans' => $pembayarans]); // Mengirimkan data pembayaran ke view
     }
-    
 }

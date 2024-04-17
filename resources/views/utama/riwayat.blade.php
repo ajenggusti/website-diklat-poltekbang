@@ -60,7 +60,7 @@
                                     </form>
 
                                     <a href="/bukti-pembayaran/{{ $data->id }}" class="btn" style="background-color: palevioletred; color: #ffffff;">Bukti Pembayaran</a>
-
+                                    <a href="{{ route('kelTestimoni.create', ['id' => $data->id]) }}"class="btn" style="background-color: rgb(44, 138, 192); color: #ffffff;">Sampaikan Pendapatmu</a>
                                     <a href="/kelPendaftaran/{{ $data->id }}/edit" class="btn btn-warning">Edit</a>
                                     <hr>
                                 </div>

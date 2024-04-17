@@ -32,7 +32,13 @@
                     <p>no hp : {{ $data->no_hp }}</p>
                     <p>pendidikan terakhir : {{ $data->pendidikan_terakhir }}</p>
                     <p>waktu pendaftaran : {{ \Carbon\Carbon::parse($data->waktu_pendaftaran)->format('H:i:s | d-m-Y') }}</p>
-                    <p>kode promo : {{ $data->promo->kode }}</p>
+                    @if($data->promo)
+                        <p>kode promo : {{ $data->promo->kode }}</p>
+                    @else
+                        <p>kode promo : Tidak ada promo yang diambil</p>
+                    @endif
+
+                    <br>
                     <p>biaya pendaftaran : Rp 150.000</p>
                     <p>status pembayaran pendaftaran : {{ $data->status_pembayaran_daftar }}</p>
                     <p>harga diklat : Rp. {{ number_format($data->diklat->harga, 0, ',', '.') }}</p>

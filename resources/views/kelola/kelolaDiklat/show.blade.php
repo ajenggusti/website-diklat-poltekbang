@@ -3,11 +3,11 @@
     <h1>Detail Diklat</h1>
     <a href="/kelDiklat/{{ $diklatData->id}}/edit" class="btn btn-warning">Edit</a>
     <table class="table">
-        
+{{--         
         <tr>
             <th>Gambar</th>
             <td><img src="{{ asset('storage/' . $diklatData->gambar) }}" alt="" style="width: 30%;"></td>
-        </tr>
+        </tr> --}}
         <tr>
             <th>Nama Diklat</th>
             <td>{{ $diklatData->nama_diklat }}</td>

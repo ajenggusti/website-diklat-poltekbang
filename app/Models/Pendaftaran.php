@@ -18,6 +18,10 @@ class Pendaftaran extends Model
     {
         return $this->belongsTo(Diklat::class, 'id_diklat');
     }
+    public function testimoni()
+    {
+        return $this->hasMany(Testimoni::class, 'id_pendaftaran');
+    }
 
     public function user()
     {

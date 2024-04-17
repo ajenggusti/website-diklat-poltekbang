@@ -16,6 +16,7 @@
             <th scope="col">Nama</th>
             <th scope="col">Profesi</th>
             <th scope="col">Testimoni</th>
+            <th scope="col">Tampil?</th>
             <th scope="col">Aksi</th>
         </tr>
         </thead>
@@ -23,14 +24,15 @@
         @foreach ($datas as $data)
         <tr>
             <td>{{ $loop->iteration }}</td>
-            <td>{{ $data->nama_diklat}}</td>
-            <td>{{ $data->nama_depan}}</td>
+            <td>{{ $data->pendaftaran->diklat->nama_diklat}}</td>
+            <td>{{ $data->pendaftaran->nama_depan}}</td>
             <td>{{ $data->profesi }}</td>
             <td>{{ $data->testimoni }}</td>
+            <td>{{ $data->tampil }}</td>
 
             <td>
-                <a href="#" class="btn btn-warning">Edit</a>
-                <form action="#" method="POST">
+                <a href="/kelTestimoni/{{ $data->id }}/edit " class="btn btn-warning">Edit</a>
+                <form action="/kelTestimoni/{{ $data->id }}" method="POST">
                     @method('DELETE')
                     @csrf
                     <button class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>

@@ -58,7 +58,7 @@ Route::resource('/kelPromo', PromoController::class)->except('show');
 // route CRUD gbr LandingPage
 Route::resource('/gbrLandingPage', GbrLandingController::class)->except('show');
 // route CRUD Testimoni
-// Route::resource('kelTestimoni', TestimoniController::class);
+Route::resource('/kelTestimoni', TestimoniController::class);
 // route CRUD Diklat
 Route::resource('/kelDiklat', DiklatController::class);
 // route CRUD pendaftaran
