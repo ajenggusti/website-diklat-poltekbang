@@ -17,6 +17,12 @@
     @endforeach
 
     <hr>
+    <h1>Promo</h1>
+    @foreach ($promos as $promo)
+    {{ $promo->id }}
+    <img src="{{ asset('storage/'.$promo->gambar) }}" alt="Promo Image">
+        
+    @endforeach
     <h1>Testimoni</h1>
     @foreach ($testimonis as $testimoni)
         <h3>{{ $testimoni->pendaftaran->nama_depan }}</h3>

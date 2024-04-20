@@ -45,7 +45,9 @@ class DiklatController extends Controller
             'harga.required' => 'Harga tidak boleh kosong.',
             'kuota.required' => 'Kuota Minimal tidak boleh kosong.',
             'kuota.numeric' => 'Kuota Minimal harus berupa angka.',
-            'kategoriDiklat.required' => 'kategori diklat tidak bolek kosong'
+            'kategoriDiklat.required' => 'kategori diklat tidak bolek kosong',
+            'whatsapp.required' => 'WhatsApp tidak boleh kosong.',
+            'whatsapp.url' => 'WhatsApp harus berupa tautan yang valid.'
         ];
 
         $request->validate([
@@ -55,7 +57,8 @@ class DiklatController extends Controller
             'deskripsi' => 'required',
             'nama_diklat' => 'required',
             'harga' => 'required',
-            'kuota' => 'required|numeric'
+            'kuota' => 'required|numeric',
+            'whatsapp' => 'required|url',
         ], $messages);
 
         // if ($request->hasFile('img')) {
@@ -69,6 +72,7 @@ class DiklatController extends Controller
                 'status' => 'belum full',
                 'deskripsi' => $request->deskripsi,
                 'nama_diklat' => $request->nama_diklat,
+                'whatsapp'=>$request->whatsapp,
                 'harga' => $harga,
                 'kuota_minimal' => $request->kuota,
             ]);
@@ -118,7 +122,9 @@ class DiklatController extends Controller
             'harga.required' => 'Harga tidak boleh kosong.',
             'kuota.required' => 'Kuota Minimal tidak boleh kosong.',
             'kuota.numeric' => 'Kuota Minimal harus berupa angka.',
-            'kategoriDiklat.required' => 'Kategori Diklat tidak boleh kosong'
+            'kategoriDiklat.required' => 'Kategori Diklat tidak boleh kosong',
+            'whatsapp.required' => 'WhatsApp tidak boleh kosong.',
+            'whatsapp.url' => 'WhatsApp harus berupa tautan yang valid.'
         ];
 
         $request->validate([
@@ -127,7 +133,8 @@ class DiklatController extends Controller
             'deskripsi' => 'required',
             'nama_diklat' => 'required',
             'harga' => 'required',
-            'kuota' => 'required|numeric'
+            'kuota' => 'required|numeric',
+            'whatsapp' => 'required|url',
         ], $messages);
         // if ($request->hasFile('img')) {
         //     Storage::delete($kelDiklat->gambar);
@@ -145,6 +152,7 @@ class DiklatController extends Controller
             'deskripsi' => $request->deskripsi,
             'nama_diklat' => $request->nama_diklat,
             'harga' => $harga,
+            'whatsapp'=>$request->whatsapp,
             'kuota_minimal' => $request->kuota,
         ]);
         return redirect('/kelDiklat')->with('success', 'Data berhasil diperbarui!');

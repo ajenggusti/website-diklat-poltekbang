@@ -4,19 +4,19 @@
     <form action="/kelDiklat/{{ $kelDiklat->id }}" method="post" enctype="multipart/form-data">
         @method('put')
         @csrf
-        {{-- <div class="mb-3">
+        <div class="mb-3">
             <label for="img" class="form-label">Gambar sebelumnya</label><br>
             <img src="{{ asset('storage/' . $kelDiklat->gambar) }}" class="img-preview img-fluid" style="width: 20%;">
-        </div> --}}
+        </div>
         <div class="mb-3">
-            {{-- <div class="mb-3">
+            <div class="mb-3">
                 <label for="img" class="form-label">Masukkan gambar untuk ditampilkan di detail diklat</label>
                 <img class="img-preview img-fluid" style="width: 20%;">
                 <input name="img" onchange="previewImage()" class="form-control @error('img') is-invalid @enderror" type="file" id="img" >
                 @error('img')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
-            </div> --}}
+            </div>
             <select name="kategoriDiklat" class="form-select" aria-label="Default select example">
                 <option selected disabled>Pilih Kategori Diklat</option>
                 @foreach ($getKategori as $kategori)
@@ -29,6 +29,13 @@
                 <label for="nama_diklat" class="form-label is">Nama Diklat</label>
                 <input type="text" class="form-control  @error('nama_diklat') is-invalid @enderror" id="nama_diklat" name= "nama_diklat" value="{{ old('nama_diklat') ?? $kelDiklat->nama_diklat }}">
                 @error('nama_diklat')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="whatsapp" class="form-label is">Link untuk grup whatsapp</label>
+                <input type="text" class="form-control  @error('whatsapp') is-invalid @enderror" id="whatsapp" name= "whatsapp" value="{{ old('whatsapp') ?? $kelDiklat->whatsapp }}">
+                @error('whatsapp')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>

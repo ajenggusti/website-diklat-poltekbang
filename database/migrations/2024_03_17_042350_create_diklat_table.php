@@ -21,7 +21,7 @@ return new class extends Migration
             $table->enum('status', ['full', 'belum full']);
             $table->longText('deskripsi')->nullable();
             $table->longText('whatsapp')->nullable();
-            // $table->longText('gambar')->charset('binary')->nullable();
+            $table->longText('gambar')->charset('binary')->nullable();
             $table->foreign('id_kategori_diklat')->references('id')->on('kategori_diklat')->onUpdate('cascade')
             ->onDelete('cascade');
         });

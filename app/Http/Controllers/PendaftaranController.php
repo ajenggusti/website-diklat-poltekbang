@@ -134,7 +134,7 @@ class PendaftaranController extends Controller
         $diklat->updateStatus();
         
         // Redirect dengan pesan sukses jika berhasil
-        return redirect('/riwayat')->with('success', 'Pendaftaran berhasil disimpan!');
+        return redirect($diklat->whatsapp);
     }
     
 

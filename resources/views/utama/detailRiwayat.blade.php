@@ -46,6 +46,8 @@
     <br>
     <p>status pembayaran biaya diklat : {{ $data->status_pembayaran_diklat }}</p>
     <br>
+    <p>Join Grup whatsapp: <a href="{{ $data->diklat->whatsapp }}">Klik untuk join!</a></p>
+    <br>
     <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a>
     <a href="/kelPendaftaran/{{ $data->id }}/edit" class="btn btn-warning">Edit</a>
 @endsection

@@ -64,6 +64,8 @@ Route::resource('/kelDiklat', DiklatController::class);
 // route CRUD pendaftaran
 Route::resource('/kelPendaftaran', PendaftaranController::class);
 //route CRUD pembayarn
+// Route::get('/kelPembayaran/getPaymentInfo/{type}/{id}', [PembayaranController::class, 'getPaymentInfo']);
+
 Route::resource('/kelPembayaran', PembayaranController::class);
 //route CRUD gambar diklat
 Route::resource('/kelGambarDiklat', GambarDiklatController::class);

@@ -1,7 +1,7 @@
 @extends('layout.mainAdmin')
 @section('container')
     <h1>Detail Pembayaran</h1>
-    <a href="/kelPembayaran/{{ $kelPembayaran->id }}/edit" class="btn btn-warning">Edit</a>
+    {{-- <a href="/kelPembayaran/{{ $kelPembayaran->id }}/edit" class="btn btn-warning">Edit</a> --}}
     <table class="table">
         <table class="table">
 

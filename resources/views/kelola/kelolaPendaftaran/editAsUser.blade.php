@@ -53,7 +53,7 @@
 
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') ?: $kelPendaftaran->email }}">
+            <input disabled type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') ?: $kelPendaftaran->email }}">
             @error('email')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -124,6 +124,8 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
+        <h1>kurang field input metode pengiriman sertif dan field sertif</h1>
+
         
         <br>
         <div class="mb-3">

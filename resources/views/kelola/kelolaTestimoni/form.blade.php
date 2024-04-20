@@ -14,11 +14,12 @@
         </div>
         <div class="mb-3">
             <label for="testimoni" class="form-label is">testimoni</label>
-            <input type="text" class="form-control  @error('testimoni') is-invalid @enderror" id="testimoni" name= "testimoni" value="{{ old('testimoni') }}">
+            <textarea class="form-control  @error('testimoni') is-invalid @enderror" id="testimoni" name= "testimoni">{{ old('testimoni') }}</textarea>
             @error('testimoni')
             <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
+        
         <button type="submit" class="btn btn-primary">Kirim</button>
     </form>  
 @endsection

@@ -21,7 +21,7 @@
         <p>Total Biaya : Rp. {{ number_format($data->harga_diklat, 0, ',', '.') }}</p>
         <p>Status Pembayaran Diklat : {{ $data->status_pembayaran_diklat }}</p>
         <p>Harga Pendaftaran : Rp. 150.000</p>
-        <p>Status Pembayaran Diklat : {{ $data->status_pembayaran_daftar }}</p>
+        <p>Status Pembayaran Pendaftaran : {{ $data->status_pembayaran_daftar }}</p>
         
         <a href="/riwayat/{{ $data->id }}" class="btn btn-success">Lihat</a>
         <a href="{{ route('kelPembayaran.create', ['id' => $data->id]) }}" class="btn btn-secondary">Lakukan Pembayaran?</a>

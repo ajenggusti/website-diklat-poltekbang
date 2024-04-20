@@ -142,6 +142,12 @@
                   kelola testimoni
                 </a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="layers"></span>
+                  Laporan
+                </a>
+              </li>
             </ul>
           </div>
         </nav>

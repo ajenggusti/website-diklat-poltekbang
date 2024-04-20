@@ -13,10 +13,12 @@
             <tr>
                 <th>No</th>
                 <th>Nama Diklat</th>
+                <th>Gambar sampul</th>
                 <th>Kategori Diklat</th>
                 <th>Kuota Minimal</th>
                 <th>Jumlah Pendaftar</th>
                 <th>Status</th>
+                <th>Link Grup WA</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -24,11 +26,13 @@
             @foreach ($datas as $data)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
+                    <td>{{ $data->gambar }}</td>
                     <td>{{ $data->nama_diklat }}</td>
                     <td>{{ $data->kategori_diklat }}</td>
                     <td>{{ $data->kuota_minimal}}</td>
                     <td>{{ $data->jumlah_pendaftar}}</td>
                     <td>{{ $data->status }}</td>
+                    <td>{{ $data->whatsapp }}</td>
                     
 
                     <td>

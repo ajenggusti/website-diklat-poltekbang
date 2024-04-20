@@ -38,46 +38,51 @@ class PembayaranController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
         $request->validate([
             'jenis_pembayaran' => 'required', // Jenis pembayaran harus dipilih
-            'img' => 'required|image|max:1024', // Bukti pembayaran harus diunggah (format gambar, maksimal 1MB)
         ], [
             'jenis_pembayaran.required' => 'Jenis pembayaran harus dipilih.',
-            'img.required' => 'Bukti pembayaran harus diunggah.',
-            'img.image' => 'File harus berupa gambar.',
-            'img.max' => 'Ukuran file tidak boleh melebihi 1 MB.',
         ]);
-
-        // Simpan gambar yang diunggah
-        if ($request->hasFile('img')) {
-            $image = $request->file('img')->store('LanPage');
-        } else {
-            // Jika tidak ada gambar yang diunggah, Anda dapat menentukan tindakan yang sesuai.
-            // Misalnya, Anda bisa mengembalikan respons ke pengguna dengan pesan kesalahan.
-            return back()->withErrors(['img' => 'Tidak ada file yang diunggah.'])->withInput();
-        }
-
-        // Simpan data pembayaran
         $pembayaran = new Pembayaran();
         $pembayaran->id_pendaftaran= $request->id_pendaftaran;
         $pembayaran->jenis_pembayaran = $request->jenis_pembayaran;
-        $pembayaran->bukti_pembayaran = $image; // Menyimpan path gambar
-        $pembayaran->created_at = now(); // Menambahkan waktu saat ini ke kolom created_at
+        $pembayaran->total_harga = $request->total_harga;
+        $pembayaran->created_at = now(); 
+        $idGenerate ='ORD_' . rand(100000, 999999);
+        dd($idGenerate);
+        $pembayaran->id = $idGenerate;
         $pembayaran->save();
+        $dataBaru = $pembayaran->fresh();
+       
+        // dd($pembayaran->id);
+        // Set your Merchant Server Key
+        \Midtrans\Config::$serverKey = config('midtrans.server_key');
+        // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+        \Midtrans\Config::$isProduction = false;
+        // Set sanitization on (default)
+        \Midtrans\Config::$isSanitized = true;
+        // Set 3DS transaction for credit card to true
+        \Midtrans\Config::$is3ds = true;
 
-        // Update status pembayaran terkait berdasarkan jenis pembayaran
-        $pendaftaran = Pendaftaran::find($request->id_pendaftaran);
-        if ($request->jenis_pembayaran == 'diklat') {
-            $pendaftaran->status_pembayaran_diklat = 'Dicek';
-        } elseif ($request->jenis_pembayaran == 'pendaftaran') {
-            $pendaftaran->status_pembayaran_daftar = 'Dicek';
-        }
-        $pendaftaran->save();
+        $params = array(
+            'transaction_details' => array(
+                'order_id' => $dataBaru->id,
+                'gross_amount' => $pembayaran->total_harga,
+            ),
+            'customer_details' => array(
+                'first_name' => $pembayaran->pendaftaran->nama_depan,
+                'last_name' => $pembayaran->pendaftaran->nama_belakang,
+                'email' => $pembayaran->pendaftaran->email,
+                'phone' => $pembayaran->pendaftaran->no_hp,
+            ),
+        );
+        dd($params);
 
-        return redirect('/riwayat')->with('success', 'Pembayaran berhasil disimpan.');
+        $snapToken = \Midtrans\Snap::getSnapToken($params);
+        // return redirect('/kelPembayaran/create?id=' . $pembayaran->pendaftaran->id)
+        // ->with(['snapToken' => $snapToken, 'pembayaran' => $pembayaran]);
+        return view('kelola.kelolaPembayaran.form2', ['snapToken' => $snapToken, 'pembayaran' => $pembayaran]);
     }
-
 
 
     /**
@@ -120,4 +125,27 @@ class PembayaranController extends Controller
         $kelPembayaran->delete();
         return redirect('/kelPembayaran')->with('success', 'Data berhasil dihapus!');
     }
+
+    public function callback(Request $request){
+        $serverKey=config('midtrans.server_key');
+        $hashed=hash("sha512", $request->order_id.$request->status_code.$request->gross_amount.$serverKey);
+        if($hashed == $request->signature_key){
+            $pembayaran = Pembayaran::find($request->order_id);
+            if ($pembayaran->jenis_pembayaran == "diklat") {
+                $pendaftaran= Pendaftaran::find($pembayaran->id_pendaftaran);
+                // $pendaftaran = $pembayaran->pendaftaran;
+                $pendaftaran->update(['status_pembayaran_diklat' => "Paid"]);
+            }elseif ($pembayaran->jenis_pembayaran == "pendaftaran") {
+                $pendaftaran= Pendaftaran::find($pembayaran->id_pendaftaran);
+                // $pendaftaran = $pembayaran->pendaftaran;
+                $pendaftaran->update(['status_pembayaran_daftar' => "Paid"]);
+            }else{
+                $pendaftaran= Pendaftaran::find($pembayaran->id_pendaftaran);
+                // return response()->json(['data' => $pendaftaran, 'pembayaran' => $pembayaran]);
+        }}
+    }
 }
+
+
+
+
