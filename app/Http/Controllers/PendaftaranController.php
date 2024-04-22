@@ -47,17 +47,16 @@ class PendaftaranController extends Controller
     public function store(Request $request)
     {
         // Validasi input
+        // dd($request);
         $request->validate([
-            'nama_depan' => 'required|string|max:255',
-            'nama_belakang' => 'required|string|max:255',
+            'nama_lengkap' => 'required|string|max:255',
             'tempat_lahir' => 'required|string|max:255',
             'tgl_awal' => 'required|date_format:d-m-Y',
             'alamat' => 'required|string|max:255',
             'pendidikan_terakhir' => 'required|string|max:255|in:SD,SMP,SMA/SMK,Diploma,Sarjana,Magister,Doktor',
             'no_hp' => 'required|string|max:20',
         ], [
-            'nama_depan.required' => 'Kolom nama depan wajib diisi.',
-            'nama_belakang.required' => 'Kolom nama belakang wajib diisi.',
+            'nama_lengkap.required' => 'Kolom nama depan wajib diisi.',
             'tempat_lahir.required' => 'Kolom tempat lahir wajib diisi.',
             'tgl_awal.required' => 'Kolom tanggal lahir wajib diisi.',
             'tgl_awal.date_format' => 'Format tanggal lahir harus dd-mm-yyyy.',
@@ -70,8 +69,6 @@ class PendaftaranController extends Controller
         // Ambil data diklat berdasarkan ID
         $diklat = Diklat::findOrFail($request->input('diklat'));
         $harga = $diklat->harga;
-    
-        // Lanjutkan dengan proses validasi kode promo
         $idPromo = null;
         if ($request->has('kode')) {
             $kodePromo = $request->input('kode');
@@ -95,7 +92,6 @@ class PendaftaranController extends Controller
                 $harga -= $promo->potongan;
                 $idPromo = $promo->id;
             } else {
-                // Validasi kode promo
                 $request->validate([
                     'kode' => 'nullable|exists:promos,kode,id_diklat,' . $diklat->id
                 ], [
@@ -105,11 +101,7 @@ class PendaftaranController extends Controller
         }
         // Ambil input tanggal dari request
         $tanggal_lahir_input = $request->input('tgl_awal');
-
-        // Ubah format tanggal menggunakan Carbon
         $tanggal_lahir_carbon = Carbon::createFromFormat('d-m-Y', $tanggal_lahir_input);
-
-        // Format ulang tanggal ke "yyyy-mm-dd"
         $tanggal_lahir_formatted = $tanggal_lahir_carbon->format('Y-m-d');
         
         // Proses penyimpanan data pendaftaran
@@ -119,21 +111,17 @@ class PendaftaranController extends Controller
         $pendaftaran->id_promo = $idPromo; 
         $pendaftaran->harga_diklat = $harga;
         $pendaftaran->email  = $request->input('email');
-        $pendaftaran->nama_depan  = $request->input('nama_depan');
-        $pendaftaran->nama_belakang  = $request->input('nama_belakang');
+        $pendaftaran->nama_lengkap  = $request->input('nama_lengkap');
         $pendaftaran->tempat_lahir  = $request->input('tempat_lahir');
         $pendaftaran->tanggal_lahir = $tanggal_lahir_formatted;
         $pendaftaran->alamat  = $request->input('alamat');
         $pendaftaran->pendidikan_terakhir  = $request->input('pendidikan_terakhir');
         $pendaftaran->no_hp  = $request->input('no_hp');
         $pendaftaran->save();
-    
-        // Update jumlah pendaftar pada diklat
         $diklat->jumlah_pendaftar += 1;
         $diklat->save();
         $diklat->updateStatus();
-        
-        // Redirect dengan pesan sukses jika berhasil
+        // dd($diklat->whatsapp);
         return redirect($diklat->whatsapp);
     }
     
@@ -172,16 +160,14 @@ class PendaftaranController extends Controller
         // dd($request);
         // Validasi input
         $request->validate([
-            'nama_depan' => 'required|string|max:255',
-            'nama_belakang' => 'required|string|max:255',
+            'nama_lengkap' => 'required|string|max:255',
             'tempat_lahir' => 'required|string|max:255',
             'tgl_awal' => 'required|date_format:d-m-Y',
             'alamat' => 'required|string|max:255',
             'pendidikan_terakhir' => 'required|string|max:255|in:SD,SMP,SMA/SMK,Diploma,Sarjana,Magister,Doktor',
             'no_hp' => 'required|string|max:20',
         ], [
-            'nama_depan.required' => 'Kolom nama depan wajib diisi.',
-            'nama_belakang.required' => 'Kolom nama belakang wajib diisi.',
+            'nama_lengkap.required' => 'Kolom nama depan wajib diisi.',
             'tempat_lahir.required' => 'Kolom tempat lahir wajib diisi.',
             'tgl_awal.required' => 'Kolom tanggal lahir wajib diisi.',
             'tgl_awal.date_format' => 'Format tanggal lahir harus dd-mm-yyyy.',
@@ -202,8 +188,7 @@ class PendaftaranController extends Controller
     
         // Update data pendaftaran
         $kelPendaftaran->email = $request->input('email');
-        $kelPendaftaran->nama_depan = $request->input('nama_depan');
-        $kelPendaftaran->nama_belakang = $request->input('nama_belakang');
+        $kelPendaftaran->nama_lengkap = $request->input('nama_lengkap');
         $kelPendaftaran->tempat_lahir = $request->input('tempat_lahir');
         $kelPendaftaran->tanggal_lahir = $tanggal_lahir_formatted;
         $kelPendaftaran->alamat = $request->input('alamat');
@@ -212,7 +197,7 @@ class PendaftaranController extends Controller
         $kelPendaftaran->update($request->all());
     
         // Redirect dengan pesan sukses jika berhasil
-        return redirect('/riwayat')->with('success', 'Pendaftaran berhasil diperbarui! Klik lihat untuk melihat');
+        return redirect('/riwayat')->with('success', 'Pendaftaran berhasil diperbarui!');
     }
     
 

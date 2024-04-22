@@ -15,6 +15,8 @@ return new class extends Migration
             $table->string('id');
             $table->unsignedBigInteger('id_pendaftaran');
             $table->enum('jenis_pembayaran', ['diklat', 'pendaftaran']);
+            $table->string('metode_pembayaran');
+            
             $table->bigInteger('total_harga');
             $table->timestamps();
             $table->foreign('id_pendaftaran')->references('id')->on('pendaftaran')->onUpdate('cascade')

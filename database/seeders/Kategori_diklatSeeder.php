@@ -15,13 +15,16 @@ class Kategori_diklatSeeder extends Seeder
     {
         DB::table('kategori_diklat')->insert([
             [
-            'kategori_diklat' => 'IATA COURSES'
+            'kategori_diklat' => 'IATA COURSES',
+            
         ], 
         [
-            'kategori_diklat' => 'ICAO TRAINAIR PLUS COURSES'
+            'kategori_diklat' => 'ICAO TRAINAIR PLUS COURSES',
+            
         ],
         [
-            'kategori_diklat' => 'INSTITUTIONAL COURSES'
+            'kategori_diklat' => 'INSTITUTIONAL COURSES',
+            
         ]]);
     }
 }

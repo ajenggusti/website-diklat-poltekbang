@@ -9,6 +9,21 @@
     <hr>
     <h3>kategori diklat</h3>
     @foreach ($katDiklat as $kategori)
+            @if ($kategori->gambar)
+                <img src="{{ asset('storage/' . $kategori->gambar) }}" alt="" style="width: 30%;">
+            @else
+                @php $foundDefault = false; @endphp
+                @foreach ($katDiklat as $data)
+                    @if ($data->default == 'ya')
+                        <img src="{{ asset('storage/' . $data->gambar) }}" alt="Default Image" style="width: 30%;">
+                        @php $foundDefault = true; @endphp
+                        @break
+                    @endif
+                @endforeach
+                @if (!$foundDefault)
+                    <img src="{{ asset('img/123.png') }}" alt="Default Image" style="width: 30%;">
+                @endif
+            @endif
         Kategori "{{ $kategori->kategori_diklat }}"
         <br>
         {{-- <a href="/utama/macamDiklat/{{ $kategori->id }}">Lihat semua diklat</a> --}}

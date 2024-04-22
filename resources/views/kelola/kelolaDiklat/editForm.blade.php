@@ -6,8 +6,13 @@
         @csrf
         <div class="mb-3">
             <label for="img" class="form-label">Gambar sebelumnya</label><br>
-            <img src="{{ asset('storage/' . $kelDiklat->gambar) }}" class="img-preview img-fluid" style="width: 20%;">
+            @if($kelDiklat->gambar)
+                <img src="{{ asset('storage/' . $kelDiklat->gambar) }}" class="img-preview img-fluid" style="width: 20%;">
+            @else
+                <p>Tidak ada gambar</p>
+            @endif
         </div>
+        
         <div class="mb-3">
             <div class="mb-3">
                 <label for="img" class="form-label">Masukkan gambar untuk ditampilkan di detail diklat</label>
@@ -17,6 +22,18 @@
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
+            
+            <select name="default" class="form-select" aria-label="Default select example">
+                <option value="ya" {{ old('default', $kelDiklat->default) == 'ya' ? 'selected' : '' }}>Ya</option>
+                <option value="tidak" {{ old('default', $kelDiklat->default) == 'tidak' || is_null($kelDiklat->default) ? 'selected' : '' }}>Tidak</option>
+            </select>
+            <small class="text-muted">Pilih "ya" jika ingin gambar menjadi gambar default.</small>
+            @error('default')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+            <br><br>
+            
+
             <select name="kategoriDiklat" class="form-select" aria-label="Default select example">
                 <option selected disabled>Pilih Kategori Diklat</option>
                 @foreach ($getKategori as $kategori)
@@ -42,7 +59,7 @@
 
             <div class="mb-3">
                 <label for="harga" class="form-label is">Harga</label>
-                <input type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="{{ old('harga') ? number_format(floatval(old('harga'))) : number_format($kelDiklat->harga) }}">
+                <input type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="{{ old('harga') ? number_format(old('harga'), 0, ',', '.') : number_format($kelDiklat->harga, 0, ',', '.') }}">
                 @error('harga')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror

@@ -49,9 +49,11 @@ class UtamaController extends Controller
         $diklat = Diklat::with('kategori')
             ->where('id_kategori_diklat', $kategori)
             ->get();
+        $allDiklat=Diklat::get();
 
         return view('utama.macamDiklat', [
-            'diklat' => $diklat
+            'diklat' => $diklat,
+            'allDiklat'=>$allDiklat
         ]);
     }
 

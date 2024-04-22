@@ -19,8 +19,7 @@ return new class extends Migration
             $table->timestamp('waktu_pendaftaran');
             $table->integer('harga_diklat'); 
             $table->string('status_pembayaran_diklat')->default('Menunggu pembayaran')->nullable(); //nnti isi dropdon
-            $table->string('nama_depan')->nullable();
-            $table->string('nama_belakang')->nullable();
+            $table->string('nama_lengkap')->nullable();
             $table->string('tempat_lahir')->nullable();
             $table->date('tanggal_lahir')->nullable();
             $table->string('alamat')->nullable();

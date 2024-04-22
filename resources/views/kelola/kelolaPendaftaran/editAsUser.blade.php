@@ -69,16 +69,9 @@
         <br>
         
         <div class="mb-3">
-            <label for="nama_depan" class="form-label is">Nama Depan</label>
-            <input type="text" class="form-control  @error('nama_depan') is-invalid @enderror" id="nama_depan" name= "nama_depan" value="{{ old('nama_depan') ?: $kelPendaftaran->nama_depan}}">
-            @error('nama_depan')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
-        <div class="mb-3">
-            <label for="nama_belakang" class="form-label is">Nama belakang</label>
-            <input type="text" class="form-control  @error('nama_belakang') is-invalid @enderror" id="nama_belakang" name= "nama_belakang" value="{{ old('nama_belakang')?: $kelPendaftaran->nama_belakang }}">
-            @error('nama_belakang')
+            <label for="nama_lengkap" class="form-label is">Nama Lengkap</label>
+            <input type="text" class="form-control  @error('nama_lengkap') is-invalid @enderror" id="nama_lengkap" name= "nama_lengkap" value="{{ old('nama_lengkap') ?: $kelPendaftaran->nama_lengkap}}">
+            @error('nama_lengkap')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
@@ -123,10 +116,7 @@
             @error('pendidikan_terakhir')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
-        </div>
-        <h1>kurang field input metode pengiriman sertif dan field sertif</h1>
-
-        
+        </div>        
         <br>
         <div class="mb-3">
             <label for="no_hp" class="form-label">No HP</label>

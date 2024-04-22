@@ -5,21 +5,35 @@
         @csrf
         <div class="mb-3">
             <div class="mb-3">
-                <label for="img" class="form-label">Masukkan gambar untuk ditampilkan di detail diklat</label>
+                <label for="img" class="form-label">Masukkan gambar untuk ditampilkan di Kategori Diklat</label>
                 <img class="img-preview img-fluid" style="width: 20%;">
                 <input name="img" onchange="previewImage()" class="form-control @error('img') is-invalid @enderror" type="file" id="img" >
                 @error('img')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-            <select name="kategoriDiklat" class="form-select" aria-label="Default select example">
-                <option selected disabled>Pilih Kategori Diklat</option>
+
+            <select name="default" class="form-select" aria-label="Default select example">
+                <option value="ya" {{ old('default') == 'ya' ? 'selected' : '' }}>Ya</option>
+                <option value="tidak" {{ old('default', 'tidak') == 'tidak' ? 'selected' : '' }}>Tidak</option>
+            </select>
+            <small class="text-muted">Pilih "ya" jika ingin gambar menjadi gambar default.</small>
+            @error('default')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+            <br>
+            <br>
+            <select name="kategoriDiklat" class="form-select  @error('kategoriDiklat') is-invalid @enderror" aria-label="Default select example">
+                <option selected value="" disabled>Pilih Kategori Diklat</option>
                 @foreach ($getKategori as $kategori)
                     <option value="{{ $kategori->id }}" {{ old('kategoriDiklat') == $kategori->id ? 'selected' : '' }}>
                         {{ $kategori->kategori_diklat }}
                     </option>
                 @endforeach
             </select>
+            @error('kategoriDiklat')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
             <div class="mb-3">
                 <label for="nama_diklat" class="form-label is">Nama Diklat</label>
                 <input type="text" class="form-control  @error('nama_diklat') is-invalid @enderror" id="nama_diklat" name= "nama_diklat" value="{{ old('nama_diklat') }}">
@@ -48,7 +62,14 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-            <textarea name="deskripsi" id="editor">{{ old('deskripsi') }}</textarea>
+            <div class="mb-3">
+                <label for="deskripsi" class="form-label is">Deskripsi</label>
+                <textarea name="deskripsi" id="editor" class="form-control @error('deskripsi') is-invalid @enderror">{{ old('deskripsi') }}</textarea>
+                @error('deskripsi')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            
 
             
     

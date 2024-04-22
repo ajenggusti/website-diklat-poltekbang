@@ -48,19 +48,14 @@
         <br>
         
         <div class="mb-3">
-            <label for="nama_depan" class="form-label is">Nama Depan</label>
-            <input type="text" class="form-control  @error('nama_depan') is-invalid @enderror" id="nama_depan" name= "nama_depan" value="{{ old('nama_depan') }}">
-            @error('nama_depan')
+            <label for="nama_lengkap" class="form-label is">Nama Lengkap</label>
+            <input type="text" class="form-control  @error('nama_lengkap') is-invalid @enderror" id="nama_lengkap" name= "nama_lengkap" value="{{ old('nama_lengkap') }}">
+            <small class="text-muted ">Tidak perlu mencantumkan gelar.</small>
+            @error('nama_lengkap')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-        <div class="mb-3">
-            <label for="nama_belakang" class="form-label is">Nama belakang</label>
-            <input type="text" class="form-control  @error('nama_belakang') is-invalid @enderror" id="nama_belakang" name= "nama_belakang" value="{{ old('nama_belakang') }}">
-            @error('nama_belakang')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
-        </div>
+
         <br>
         <br>
         <div class="mb-3">

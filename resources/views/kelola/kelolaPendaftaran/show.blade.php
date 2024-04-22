@@ -29,12 +29,8 @@
             <td>{{ $pendaftaran->status_pembayaran_daftar }}</td>
         </tr>
         <tr>
-            <th>Nama Depan</th>
-            <td>{{ $pendaftaran->nama_depan }}</td>
-        </tr>
-        <tr>
-            <th>Nama belakang</th>
-            <td>{{ $pendaftaran->nama_belakang }}</td>
+            <th>Nama Lengkap</th>
+            <td>{{ $pendaftaran->nama_lengkap }}</td>
         </tr>
         <tr>
             <th>Tempat Lahir</th>

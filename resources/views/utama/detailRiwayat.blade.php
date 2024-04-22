@@ -3,11 +3,7 @@
 <h1>INVOICE (belum ditambahkan fitur cetak)</h1>
     <p>nama diklat : {{ $data->diklat->nama_diklat }}</p>
     <br>
-    <p>nama depan : {{ $data->nama_depan }}</p>
-    <br>
-    <p>nama belakang : {{ $data->nama_belakang }}</p>
-    <br>
-    <p>tempat lahir : {{ $data->tempat_lahir }}</p>
+    <p>nama lengkap : {{ $data->nama_lengkap }}</p>
     <br>
     {{-- jangan lupa kasih format --}}
     <p>tanggal Lahir : {{ \Carbon\Carbon::parse($data->tanggal_lahir)->format('d-m-Y') }}</p>

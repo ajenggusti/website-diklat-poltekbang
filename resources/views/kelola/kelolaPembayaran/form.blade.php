@@ -3,8 +3,6 @@
     <h1>Form Pembayaran</h1>
     <form action="/kelPembayaran" method="post" enctype="multipart/form-data">
         @csrf
-        {{ $pendaftaran->id }}
-        <br>
         <div class="mb-3">
             <input type="hidden" name="id_pendaftaran" value="{{ $pendaftaran->id }}">
             

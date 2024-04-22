@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('kategori_diklat', function (Blueprint $table) {
             $table->id();
             $table->longText('gambar')->charset('binary')->nullable();
+            $table->string('default')->nullable();
             $table->string('kategori_diklat')->unique();
         });
     }
