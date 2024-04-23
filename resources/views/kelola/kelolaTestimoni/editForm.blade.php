@@ -22,7 +22,7 @@
         <p>{{ $kelTestimoni->testimoni }}
         </p>
         <div class="mb-3">
-            <label for="pilihan" class="form-label is">Apakah testimoni akan ditampilkan? :</label>
+            <label for="pilihan" class="form-label is">Apakah Promo ini akan ditampilkan? </label>
             <select class="form-select" id="pilihan" name="pilihan">
                 <option value="iya" {{ ($kelTestimoni->tampil === 'iya' || old('pilihan') === 'iya') ? 'selected' : '' }}>Iya</option>
                 <option value="tidak" {{ ($kelTestimoni->tampil === 'tidak' || old('pilihan') === 'tidak') ? 'selected' : '' }}>Tidak</option>

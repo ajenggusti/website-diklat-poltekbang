@@ -8,6 +8,7 @@ use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class PendaftaranController extends Controller
 {
@@ -27,15 +28,15 @@ class PendaftaranController extends Controller
      */
     public function create(Request $request)
     {
-   
+
         $userId = Auth::id();
-    
+
         $id = $request->query('id');
 
         $diklat = Diklat::findOrFail($id);
         $dtDiklats = Diklat::all();
         return view('kelola.kelolaPendaftaran.form', [
-            'userId' => $userId, 
+            'userId' => $userId,
             'diklat' => $diklat,
             'dtDiklats' => $dtDiklats
         ]);
@@ -65,28 +66,27 @@ class PendaftaranController extends Controller
             'pendidikan_terakhir.in' => 'Pilih salah satu opsi dari daftar pendidikan terakhir yang tersedia.',
             'no_hp.required' => 'Kolom nomor HP wajib diisi.',
         ]);
-    
+
         // Ambil data diklat berdasarkan ID
         $diklat = Diklat::findOrFail($request->input('diklat'));
         $harga = $diklat->harga;
         $idPromo = null;
         if ($request->has('kode')) {
             $kodePromo = $request->input('kode');
-    
-            $promo = Promos::where(function($query) use ($kodePromo, $diklat) {
+
+            $promo = Promos::where(function ($query) use ($kodePromo, $diklat) {
                 $query->where('kode', $kodePromo)
                     ->where('id_diklat', $diklat->id);
             })
-            ->orWhere(function($query) use ($kodePromo) {
-                $query->where('kode', $kodePromo)
-                    ->whereNull('id_diklat');
-            })
-            ->first();
+                ->orWhere(function ($query) use ($kodePromo) {
+                    $query->where('kode', $kodePromo)
+                        ->whereNull('id_diklat');
+                })
+                ->first();
             if ($promo) {
                 if (now() > $promo->tgl_akhir) {
                     return redirect()->back()->withInput()->with('error', 'Promo sudah hangus karena melewati batas waktu.');
-                }
-                elseif (now() < $promo->tgl_akhir && $promo->pakai_kuota == "iya" && $promo->kuota <= 1) {
+                } elseif (now() < $promo->tgl_akhir && $promo->pakai_kuota == "iya" && $promo->kuota <= 1) {
                     return redirect()->back()->withInput()->with('error', 'Maaf kuota promo sudah habis!');
                 }
                 $harga -= $promo->potongan;
@@ -103,12 +103,12 @@ class PendaftaranController extends Controller
         $tanggal_lahir_input = $request->input('tgl_awal');
         $tanggal_lahir_carbon = Carbon::createFromFormat('d-m-Y', $tanggal_lahir_input);
         $tanggal_lahir_formatted = $tanggal_lahir_carbon->format('Y-m-d');
-        
+
         // Proses penyimpanan data pendaftaran
         $pendaftaran = new Pendaftaran();
         $pendaftaran->id_diklat = $request->input('diklat');
         $pendaftaran->id_user = Auth::id();
-        $pendaftaran->id_promo = $idPromo; 
+        $pendaftaran->id_promo = $idPromo;
         $pendaftaran->harga_diklat = $harga;
         $pendaftaran->email  = $request->input('email');
         $pendaftaran->nama_lengkap  = $request->input('nama_lengkap');
@@ -124,7 +124,7 @@ class PendaftaranController extends Controller
         // dd($diklat->whatsapp);
         return redirect($diklat->whatsapp);
     }
-    
+
 
 
 
@@ -145,7 +145,7 @@ class PendaftaranController extends Controller
     {
         // dd($kelPendaftaran);
         $dtDiklats = Diklat::all();
-        return view('kelola.kelolaPendaftaran.editAsUser',[
+        return view('kelola.kelolaPendaftaran.editAsUser', [
             'kelPendaftaran' => $kelPendaftaran,
             'dtDiklats' => $dtDiklats
         ]);
@@ -176,16 +176,16 @@ class PendaftaranController extends Controller
             'pendidikan_terakhir.in' => 'Pilih salah satu opsi dari daftar pendidikan terakhir yang tersedia.',
             'no_hp.required' => 'Kolom nomor HP wajib diisi.',
         ]);
-    
+
         // Ambil input tanggal dari request
         $tanggal_lahir_input = $request->input('tgl_awal');
-    
+
         // Ubah format tanggal menggunakan Carbon
         $tanggal_lahir_carbon = Carbon::createFromFormat('d-m-Y', $tanggal_lahir_input);
-    
+
         // Format ulang tanggal ke "yyyy-mm-dd"
         $tanggal_lahir_formatted = $tanggal_lahir_carbon->format('Y-m-d');
-    
+
         // Update data pendaftaran
         $kelPendaftaran->email = $request->input('email');
         $kelPendaftaran->nama_lengkap = $request->input('nama_lengkap');
@@ -195,11 +195,11 @@ class PendaftaranController extends Controller
         $kelPendaftaran->pendidikan_terakhir = $request->input('pendidikan_terakhir');
         $kelPendaftaran->no_hp = $request->input('no_hp');
         $kelPendaftaran->update($request->all());
-    
+
         // Redirect dengan pesan sukses jika berhasil
         return redirect('/riwayat')->with('success', 'Pendaftaran berhasil diperbarui!');
     }
-    
+
 
     /**
      * Remove the specified resource from storage.
@@ -213,5 +213,108 @@ class PendaftaranController extends Controller
         $diklat->updateStatus();
         return redirect('/riwayat')->with('success', 'Data berhasil dihapus!');
     }
-   
+    public function editAsAdmin ($id)
+    {
+        $kelPendaftaran=Pendaftaran::findOrFail($id);
+        // dd($kelPendaftaran);
+        $dtDiklats = Diklat::all();
+        return view('kelola.kelolaPendaftaran.editAsAdmin', [
+            'kelPendaftaran' => $kelPendaftaran,
+            'dtDiklats' => $dtDiklats
+        ]);
+    }
+    public function updateAsAdmin($id , Request $request) {
+        $messages = [
+            's_link.url' => 'Kolom link harus berupa URL yang valid.',
+            's_gambar.image' => 'Kolom gambar harus berupa file gambar.',
+            's_gambar.max' => 'Kolom gambar tidak boleh lebih dari 5MB.',
+            's_doc.mimes' => 'Kolom dokumen harus berupa file PDF, DOC, atau file dokumen lainnya.',
+            's_doc.not_in' => 'Kolom dokumen tidak boleh berupa file gambar.',
+        ];
+        
+        $request->validate([
+            's_link' => $request->input('metode_sertif') == 'link' ? 'nullable|url' : '',
+            's_gambar' => $request->input('metode_sertif') == 'gambar' ? 'nullable|image|max:5120' : '',
+            's_doc' => $request->input('metode_sertif') == 'dokumen' ? 'nullable|mimes:pdf,doc,docx' : '',
+        ], $messages);
+        
+    
+        $oldData = Pendaftaran::find($id);
+
+        // Hapus file lama jika ada dan metode yang dipilih adalah link
+        if ($request->input('metode_sertif') == 'link') {
+            if ($oldData->s_gambar) {
+                Storage::delete($oldData->s_gambar);
+                $oldData->s_gambar = null;
+            }
+            if ($oldData->s_doc) {
+                Storage::delete($oldData->s_doc);
+                $oldData->s_doc = null;
+            }
+        }
+        // Hapus file lama jika ada dan metode yang dipilih adalah gambar
+        elseif ($request->input('metode_sertif') == 'gambar') {
+            if ($oldData->s_link) {
+                $oldData->s_link = null;
+            }
+            if ($oldData->s_doc) {
+                Storage::delete($oldData->s_doc);
+                $oldData->s_doc = null;
+            }
+            if ($oldData->s_gambar) {
+                Storage::delete($oldData->s_gambar);
+                $oldData->s_gambar = null;
+            }
+        }
+        // Hapus file lama jika ada dan metode yang dipilih adalah dokumen
+        elseif ($request->input('metode_sertif') == 'dokumen') {
+            if ($oldData->s_gambar) {
+                Storage::delete($oldData->s_gambar);
+                $oldData->s_gambar = null;
+            }
+            if ($oldData->s_link) {
+                // Hapus link jika ada
+                $oldData->s_link = null;
+            }
+            if ($oldData->s_doc) {
+                // Hapus dokumen lama jika ada
+                Storage::delete($oldData->s_doc);
+                $oldData->s_doc = null;
+            }
+        }
+    
+        // Menyimpan file baru jika ada
+        $gambar = null;
+        $doc = null;
+        if ($request->hasFile('s_gambar')) {
+            if ($oldData->s_doc) {
+                Storage::delete($oldData->s_doc);
+                $oldData->s_doc = null;
+            }
+            if ($oldData->s_link) {
+                $oldData->s_link = null;
+            }
+            $gambar = $request->file('s_gambar')->store('LanPage');
+        }
+        if ($request->hasFile('s_doc')) {
+            if ($oldData->s_gambar) {
+                Storage::delete($oldData->s_gambar);
+                $oldData->s_gambar = null;
+            }
+            if ($oldData->s_link) {
+                $oldData->s_link = null;
+            }
+            $doc = $request->file('s_doc')->store('LanPage');
+        }
+    
+        // Lakukan pembaruan data
+        $oldData->update([
+            's_gambar' => $gambar ?: $oldData->s_gambar,
+            's_link' => $request->input('metode_sertif') == 'link' ? $request->s_link : null,
+            's_doc' => $doc ?: $oldData->s_doc,
+            'metode_sertif' => $request->metode_sertif,
+        ]);
+        return redirect('/kelPendaftaran')->with('success', 'Data berhasil diperbarui!');
+    }
+    
 }

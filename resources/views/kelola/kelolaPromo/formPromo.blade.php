@@ -90,6 +90,13 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
+        <div class="mb-3">
+            <label for="tampil" class="form-label is">Apakah Promo ini akan ditampilkan? </label>
+            <select class="form-select" id="tampil" name="tampil">
+                <option value="ya" {{ old('tampil') == 'ya' ? 'selected' : '' }}>Ya</option>
+                <option value="tidak" {{ old('tampil', 'tidak') == 'tidak' ? 'selected' : '' }}>Tidak</option>
+            </select>
+        </div>
         <button type="submit" class="btn btn-primary">Kirim</button>
     </form>  
 {{-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////// --}}

@@ -25,10 +25,12 @@ class UtamaController extends Controller
         $promos = Promos::where(function($query) {
             $query->whereDate('tgl_akhir', '>=', now())
                   ->where('pakai_kuota', 'iya')
+                  ->where('tampil', 'ya')
                   ->where('kuota', '>', 0);
         })
         ->orWhere(function($query) {
             $query->whereDate('tgl_akhir', '>=', now())
+                    ->where('tampil', 'ya')
                   ->where('pakai_kuota', 'tidak');
         })
         ->get();

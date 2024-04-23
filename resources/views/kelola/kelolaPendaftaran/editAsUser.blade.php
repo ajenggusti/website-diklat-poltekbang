@@ -84,9 +84,11 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-        <div class="form-group mb-3"> <!-- Date input -->
-            <label class="control-label" for="tgl_awal">Tanggal Lahir </label>
-            <input class="form-control  @error('tgl_awal') is-invalid @enderror"  value="{{ old('tgl_awal') ?: $kelPendaftaran->tanggal_lahir}}" id="tgl_awal" name="tgl_awal" placeholder="dd-mm-yyyy" type="text"/>
+
+
+        <div class="form-group mb-3">
+            <label class="control-label" for="tgl_awal">Tanggal Lahir</label>
+            <input class="form-control datepicker @error('tgl_awal') is-invalid @enderror" value="{{ old('tgl_awal') ?? ($kelPendaftaran->tanggal_lahir ? \Carbon\Carbon::parse($kelPendaftaran->tanggal_lahir)->format('d-m-Y') : '') }}" id="tgl_awal" name="tgl_awal" placeholder="dd-mm-yyyy" type="text"/>
             @error('tgl_awal')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror

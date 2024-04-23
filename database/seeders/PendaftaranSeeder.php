@@ -28,7 +28,6 @@ class PendaftaranSeeder extends Seeder
                 'email' => 'Adam@gmail.com',
                 'no_hp' => '089-898-098-999',
                 'status_pembayaran_daftar' => 'Belum dibayar',
-                'sertifikat' => 'sertifikat jkdfagjhgsaj',
             ],
             [
                 'id_diklat' => 1,
@@ -44,7 +43,6 @@ class PendaftaranSeeder extends Seeder
                 'email' => 'Rendi@gmail.com',
                 'no_hp' => '089-898-888-999',
                 'status_pembayaran_daftar' => 'Belum dibayar',
-                'sertifikat' => 'sertifikat jkdfagjhgsaj',
             ],
                         
         ]);

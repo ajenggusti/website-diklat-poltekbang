@@ -51,13 +51,12 @@
         </div>
         
         <div class="form-group mb-3">
-            <label class="control-label" for="tgl_awal">Tanggal Mulai Promo</label>
+            <label class="control-label" for="tgl_awal">Tanggal Promo Berakhir</label>
             <input class="form-control datepicker @error('tgl_awal') is-invalid @enderror" value="{{ old('tgl_awal') ?? ($kelPromo->tgl_awal ? \Carbon\Carbon::parse($kelPromo->tgl_awal)->format('d-m-Y') : '') }}" id="tgl_awal" name="tgl_awal" placeholder="dd-mm-yyyy" type="text"/>
             @error('tgl_awal')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-        
         <div class="form-group mb-3">
             <label class="control-label" for="tgl_akhir">Tanggal Promo Berakhir</label>
             <input class="form-control datepicker @error('tgl_akhir') is-invalid @enderror" value="{{ old('tgl_akhir') ?? ($kelPromo->tgl_akhir ? \Carbon\Carbon::parse($kelPromo->tgl_akhir)->format('d-m-Y') : '') }}" id="tgl_akhir" name="tgl_akhir" placeholder="dd-mm-yyyy" type="text"/>
@@ -89,6 +88,13 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
+        <div class="mb-3">
+            <label for="tampil" class="form-label is">Apakah Promo ini akan ditampilkan? </label>
+            <select class="form-select" id="tampil" name="tampil">
+                <option value="ya" {{ old('tampil', $kelPromo->tampil) == 'ya' ? 'selected' : '' }}>Ya</option>
+                <option value="tidak" {{ old('tampil', $kelPromo->tampil) == 'tidak'  ? 'selected' : '' }}>Tidak</option>
+            </select>
+        </div>
         <button type="submit" class="btn btn-primary">Kirim</button>
     </form>  
 
@@ -98,4 +104,5 @@
     <!-- Include Date Range Picker -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+    
 @endsection

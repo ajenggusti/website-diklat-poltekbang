@@ -16,7 +16,7 @@
                 <th>Kode Promo</th>
                 <th>Harga Diklat</th>
                 <th>Status Pembayaran Diklat</th>
-                <th>Harga Pembayaran</th>
+                <th>Harga Pendaftaran</th>
                 <th>Status Pembayaran Pendaftaran</th>
                 <th>action</th>
             </tr>
@@ -34,7 +34,7 @@
                     <td>{{ $data->status_pembayaran_daftar }}</td>
                     <td>
                         <a href="/kelPendaftaran/{{ $data->id }}" class="btn btn-success">Lihat</a>
-                        <a href="/kelPendaftaran/{{ $data->id }}/edit" class="btn btn-warning">Edit</a>
+                        <a href="/kelPendaftaran/{{ $data->id }}/editAsAdmin" class="btn btn-warning">Edit</a>
                         <form action="/kelPendaftaran/{{ $data->id }}" method="POST">
                             @method('DELETE')
                             @csrf

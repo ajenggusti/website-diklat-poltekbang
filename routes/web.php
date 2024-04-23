@@ -62,7 +62,8 @@ Route::resource('/kelTestimoni', TestimoniController::class);
 // route CRUD Diklat
 Route::resource('/kelDiklat', DiklatController::class);
 // route CRUD pendaftaran
-
+Route::get('/kelPendaftaran/{id}/editAsAdmin', [PendaftaranController::class, 'editAsAdmin'])->name('pendaftaranAsAdmin.edit');
+Route::put('/kelPendaftaran/{id}', [PendaftaranController::class, 'updateAsAdmin'])->name('pendaftaranAsAdmin.update');
 Route::resource('/kelPendaftaran', PendaftaranController::class);
 //route CRUD pembayarn
 // Route::get('/kelPembayaran/getPaymentInfo/{type}/{id}', [PembayaranController::class, 'getPaymentInfo']);

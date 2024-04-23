@@ -44,6 +44,17 @@
     <br>
     <p>Join Grup whatsapp: <a href="{{ $data->diklat->whatsapp }}">Klik untuk join!</a></p>
     <br>
+    <td>
+        @if ($data->s_doc)
+           Sertifikat :  <a href="{{ asset('storage/' . $data->s_doc) }}">Klik Untuk Melihat Sertifikat!</a>
+        @elseif($data->s_gambar)
+            Sertifikat :<img src="{{ asset('storage/' . $data->s_gambar) }}" alt="sertifikat">
+        @elseif($data->s_link)
+            Sertifikat :<a href="{{ $data->s_link }}">Klik Untuk Melihat Sertifikat!</a>
+        @endif
+    </td>
+    <br>
+
     <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a>
     <a href="/kelPendaftaran/{{ $data->id }}/edit" class="btn btn-warning">Edit</a>
 @endsection

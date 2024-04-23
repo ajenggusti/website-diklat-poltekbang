@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_promo')->nullable();
             $table->timestamp('waktu_pendaftaran');
-            $table->integer('harga_diklat'); 
+            $table->bigInteger('harga_diklat'); 
             $table->string('status_pembayaran_diklat')->default('Menunggu pembayaran')->nullable(); //nnti isi dropdon
             $table->string('nama_lengkap')->nullable();
             $table->string('tempat_lahir')->nullable();
@@ -28,7 +28,9 @@ return new class extends Migration
             $table->string('no_hp')->nullable();
             $table->string('status_pembayaran_daftar')->default('Menunggu pembayaran')->nullable(); //nnti isi dropdon
             $table->string('metode_sertif')->nullable();//nnti isi dropdon
-            $table->string('sertifikat')->nullable();
+            $table->longText('s_link')->nullable();
+            $table->text('s_gambar')->charset('binary')->nullable();
+            $table->text('s_doc')->charset('binary')->nullable();
             $table->foreign('id_diklat')->references('id')->on('diklat')->onUpdate('cascade')
             ->onDelete('cascade');
             $table->foreign('id_user')->references('id')->on('users')->onUpdate('cascade')
