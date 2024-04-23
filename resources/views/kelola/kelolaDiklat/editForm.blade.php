@@ -35,6 +35,7 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div> --}}
+                    <label for="kategori_diklat"  class="form-label is">Kategori Diklat</label>
                     <select name="kategoriDiklat" class="form-select" aria-label="Default select example">
                         <option selected disabled>Pilih Kategori Diklat</option>
                         @foreach ($getKategori as $kategori)

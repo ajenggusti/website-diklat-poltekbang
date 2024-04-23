@@ -19,40 +19,95 @@
         </head>
         <body>
             <div class="content-land">
-                <div class="card-riwayat">
-                    <h1>INVOICE (belum ditambahkan fitur cetak)</h1>
-                    <p>Nama diklat : {{ $data->diklat->nama_diklat }}</p>
-                    <p>nama depan : {{ $data->nama_depan }}</p>
-                    <p>nama belakang : {{ $data->nama_belakang }}</p>
-                    <p>tempat lahir : {{ $data->tempat_lahir }}</p>
-                    {{-- jangan lupa kasih format --}}
-                    <p>tanggal Lahir : {{ \Carbon\Carbon::parse($data->tanggal_lahir)->format('d-m-Y') }}</p>
-                    <p>Alamat : {{ $data->alamat }}</p>
-                    <p>email : {{ $data->email }}</p>
-                    <p>no hp : {{ $data->no_hp }}</p>
-                    <p>pendidikan terakhir : {{ $data->pendidikan_terakhir }}</p>
-                    <p>waktu pendaftaran : {{ \Carbon\Carbon::parse($data->waktu_pendaftaran)->format('H:i:s | d-m-Y') }}</p>
-                    @if($data->promo)
-                        <p>kode promo : {{ $data->promo->kode }}</p>
-                    @else
-                        <p>kode promo : Tidak ada promo yang diambil</p>
-                    @endif
+                <div class="content-detail">
+                    <h1>Detail Pendaftaran Diklat</h1>
+                    <div class="card-detail">
+                        {{-- <h1>Detail Pendaftaran Diklat</h1> --}}
+                        <br>
+                        Nama diklat : <br>
+                        <span>{{ $data->diklat->nama_diklat }}</span>
+                        <br><br>
 
-                    <br>
-                    <p>biaya pendaftaran : Rp 150.000</p>
-                    <p>status pembayaran pendaftaran : {{ $data->status_pembayaran_daftar }}</p>
-                    <p>harga diklat : Rp. {{ number_format($data->diklat->harga, 0, ',', '.') }}</p>
-                    <!-- Displaying Discount -->
-                    @if($data->promo)
-                            <p>Diskon: - Rp. {{ number_format($data->promo->potongan, 0, ',', '.') }}</p>
+                        Nama Depan : <br>
+                        <span>{{ $data->nama_depan }}</span>
+                        <br><br>
+
+                        Nama Belakang : <br>
+                        <span>{{ $data->nama_belakang }}</span>
+                        <br><br>
+                        
+                        Tempat Lahir : <br>
+                        <span>{{ $data->tempat_lahir }}</span>
+                        <br><br>
+                        
+                        {{-- jangan lupa kasih format --}}
+                        Tanggal Lahir : <br>
+                        <span>{{ \Carbon\Carbon::parse($data->tanggal_lahir)->format('d-m-Y') }}</span>
+                        <br><br>
+                        
+                        Alamat : <br>
+                        <span>{{ $data->alamat }}</span>
+                        <br><br>
+                        
+                        Email : <br>
+                        <span>{{ $data->email }}</span>
+                        <br><br>
+                        
+                        No HP : <br>
+                        <span>{{ $data->no_hp }}</span>
+                        <br><br>
+                        
+                        Pendidikan Terakhir : <br>
+                        <span>{{ $data->pendidikan_terakhir }}</span>
+                        <br><br>
+                        
+                        Waktu Pendaftaran : <br>
+                        <span>{{ \Carbon\Carbon::parse($data->waktu_pendaftaran)->format('H:i:s | d-m-Y') }} </span>
+                        <br> <br>
+
+                        @if($data->promo)
+                            Kode Promo : <br>
+                                <span> {{ $data->promo->kode }}</span>
                         @else
-                            <p>Diskon: - Rp. 0</p> 
+                            Kode Promo :  <br>
+                                <span> Tidak ada promo yang diambil</span>
                         @endif
-                    <br>
-                    <p>Total Biaya : Rp. {{ number_format($data->harga_diklat, 0, ',', '.') }}</p>
-                    <p>status pembayaran biaya diklat : {{ $data->status_pembayaran_diklat }}</p>
-                    <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a>
-                    <a href="/kelPendaftaran/{{ $data->id }}/edit" class="btn btn-warning">Edit</a>
+
+                        <br>
+                        Biaya Pendaftaran : <br>
+                        <span>Rp 150.000</span>
+                        <br><br>
+                        
+                        Status Pembayaran Pendaftaran : <br>
+                        <span>{{ $data->status_pembayaran_daftar }}</span>
+                        <br><br>
+                        
+                        Harga Diklat : <br>
+                        <span>Rp. {{ number_format($data->diklat->harga, 0, ',', '.') }}</span>
+                        <br><br>
+                        
+                        <!-- Displaying Discount -->
+                        @if($data->promo)
+                                Diskon: <br>
+                                    <span> - Rp. {{ number_format($data->promo->potongan, 0, ',', '.') }} </span>
+                            @else
+                                Diskon: <br>
+                                <span> - Rp. 0</span> 
+                            @endif
+                        <br>
+                        Total Biaya : <br>
+                        <span>Rp. {{ number_format($data->harga_diklat, 0, ',', '.') }}</span>
+                        <br><br>
+                        
+                        Status Pembayaran Biaya Diklat : <br>
+                        <span>{{ $data->status_pembayaran_diklat }} </span>
+                        <br><br>
+
+                        {{-- <div class="col"> --}}
+                            <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a>
+                            <a href="/kelPendaftaran/{{ $data->id }}/edit" class="btn btn-warning">Edit</a>
+                        {{-- </div> --}}
+                    </div>
                 </div>
             </div>
 @endsection

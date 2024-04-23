@@ -51,3 +51,16 @@
     }
   })
 })()
+
+
+// SuperAdmin Dashboard
+// Get the current URL path
+// var path = window.location.pathname;
+
+// // Find the corresponding link in the sidebar and add 'active' class
+// $('#sidebarMenu .nav-link').each(function () {
+//   var href = $(this).attr('href');
+//   if (path === href) {
+//     $(this).addClass('active');
+//   }
+// });

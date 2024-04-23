@@ -3,6 +3,7 @@
   padding: 0;
   font-size: 15px;
 }
+
 body {
   font-size: .875rem;
 }
@@ -13,22 +14,33 @@ body {
   vertical-align: text-bottom;
 }
 
+
+
 /*
  * Sidebar
  */
 
-.sidebar {
+
+#sidebarMenu {
+  background-color: #053666;
+
+  /* new */
+  flex-grow: 1;
+  color: #fff;
+  transition: all 0.3s ease;
   position: fixed;
-  top: 0;
-  /* rtl:raw:
-  right: 0;
-  */
-  bottom: 0;
-  /* rtl:remove */
-  left: 0;
-  z-index: 100; /* Behind the navbar */
-  padding: 48px 0 0; /* Height of navbar */
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
+}
+
+.nav-link {
+  color: #fff;
+}
+
+.nav-link:hover {
+  color: #FF6900; 
+}
+
+.nav-link.active {
+  color: #e09539; /* Warna saat halaman aktif */
 }
 
 @media (max-width: 767.98px) {
@@ -37,38 +49,15 @@ body {
   }
 }
 
-.sidebar-sticky {
+#sidebar-sticky {
   position: relative;
   top: 0;
-  height: calc(100vh - 48px);
   padding-top: .5rem;
   overflow-x: hidden;
-  overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
+  overflow-y: auto; 
+  height: 100vh;
 }
 
-.sidebar .nav-link {
-  font-weight: 500;
-  color: #333;
-}
-
-.sidebar .nav-link .feather {
-  margin-right: 4px;
-  color: #727272;
-}
-
-.sidebar .nav-link.active {
-  color: #2470dc;
-}
-
-.sidebar .nav-link:hover .feather,
-.sidebar .nav-link.active .feather {
-  color: inherit;
-}
-
-.sidebar-heading {
-  font-size: .75rem;
-  text-transform: uppercase;
-}
 
 /*
  * Navbar
@@ -105,15 +94,57 @@ body {
 }
 
 
-/* Style Dashbord Super Admin */
-.content-dashboard {
-  background-color: aqua;
+
+
+
+/* Dashboard Super Admin */
+body {
+  background-color: #FFC784;
 }
 
-.card-dashboard {
+.container-admin {
+  width: 100%;
   display: flex;
-  margin: 20px auto;
-  max-width: 1200px;
-  border: 1px solid #FF6900;
-  font-size: 16px;
+
+}
+
+.dashAdmin {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  }
+
+
+.dashItem {
+  margin: 20px 10px 0 10px;
+  padding: 5px 40px 5px 15px;
+  border-radius: 10px;
+  width: calc(33.33% - 20px);
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.dashItem::after {
+  content: '';
+  position: absolute;
+  top: 30px;
+  bottom: 30px;
+  width: 2px;
+  background-color: #ffffff;
+  left: calc(75% - 1px);
+}
+
+.dashItemContent {
+  font-size: 18px;
+  flex: 1;
+  padding: 5px 60px 5px 15px;
+}
+
+.dashItemNumber {
+  font-size: 40px;
+  font-weight: bold;
 }

@@ -22,7 +22,7 @@
                 <form action="/kelPendaftaran" method="post" enctype="multipart/form-data" id="formPendaftaran">
                     @csrf
                     <div class="mb-3">
-                        <p>Diklat yang dipilih</p>
+                        <h3>Diklat yang dipilih</h3>
                         <select name="diklat" class="form-select" aria-label="Default select example" disabled>
                             <option selected disabled>Pilih Diklat</option>
                             @foreach ($dtDiklats as $diklats)
