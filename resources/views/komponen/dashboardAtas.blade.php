@@ -142,6 +142,12 @@
                           Kelola Pembayaran
                         </a>
                       </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#">
+                          <span data-feather="layers"></span>
+                          Laporan
+                        </a>
+                      </li>
                     {{-- </div> --}}
                   </ul>
                 {{-- </div> --}}

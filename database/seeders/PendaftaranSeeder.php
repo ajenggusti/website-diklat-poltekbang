@@ -20,8 +20,7 @@ class PendaftaranSeeder extends Seeder
                 'id_promo' => 1,
                 'harga_diklat' => '90000',
                 'status_pembayaran_diklat' => 'Belum dibayar',
-                'nama_depan' => 'Adam Ashraf',
-                'nama_belakang' => 'wicaksono',
+                'nama_lengkap' => 'Adam Ashraf Wicaksono',
                 'tempat_lahir' => 'surabaya',
                 'tanggal_lahir' => '2003-07-29',
                 'alamat' => 'Bali,  Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
@@ -29,7 +28,6 @@ class PendaftaranSeeder extends Seeder
                 'email' => 'Adam@gmail.com',
                 'no_hp' => '089-898-098-999',
                 'status_pembayaran_daftar' => 'Belum dibayar',
-                'sertifikat' => 'sertifikat jkdfagjhgsaj',
             ],
             [
                 'id_diklat' => 1,
@@ -37,8 +35,7 @@ class PendaftaranSeeder extends Seeder
                 'id_promo' => 1,
                 'harga_diklat' => '90000',
                 'status_pembayaran_diklat' => 'Belum dibayar',
-                'nama_depan' => 'Rendi',
-                'nama_belakang' => 'Al-Kautsar',
+                'nama_lengkap' => 'Rendi Al-Kautsar',
                 'tempat_lahir' => 'Solo',
                 'tanggal_lahir' => '2000-09-29',
                 'alamat' => 'Surakarta, Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
@@ -46,7 +43,6 @@ class PendaftaranSeeder extends Seeder
                 'email' => 'Rendi@gmail.com',
                 'no_hp' => '089-898-888-999',
                 'status_pembayaran_daftar' => 'Belum dibayar',
-                'sertifikat' => 'sertifikat jkdfagjhgsaj',
             ],
                         
         ]);

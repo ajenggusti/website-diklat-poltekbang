@@ -16,13 +16,28 @@
             <div class="card-container2">
                 @foreach ($diklat as $perdiklat)
                 <div class="card-img">
-                    <img src="{{ asset('img/jenis.png') }}" alt="Macam Diklat">
+                    {{-- <img src="{{ asset('img/jenis.png') }}" alt="Macam Diklat">
                     <br>
                     <p>
                         <span>{{ $perdiklat -> nama_diklat }}</span><br>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. 
                         Odio laudantium sequi perspiciatis officiis quo adipisci.
-                    </p>
+                    </p> --}}
+                    @if ($perdiklat->gambar)
+                        <img src="{{ asset('storage/' . $perdiklat->gambar) }}" alt="" style="width: 30%;">
+                    @else
+                        @php $foundDefault = false; @endphp
+                        @foreach ($allDiklat as $data)
+                            @if ($data->default == 'ya')
+                                <img src="{{ asset('storage/' . $data->gambar) }}" alt="Default Image" style="width: 30%;">
+                                @php $foundDefault = true; @endphp
+                                @break
+                            @endif
+                        @endforeach
+                        @if (!$foundDefault)
+                            <img src="{{ asset('img/123.png') }}" alt="Default Image" style="width: 30%;">
+                        @endif
+                    @endif
                     <div class="card-content2">
                         <button class="button-link" onclick="window.location.href='/utama/detailDiklat/{{ $perdiklat -> id}}'">
                             Lihat Detail

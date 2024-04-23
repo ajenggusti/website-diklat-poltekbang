@@ -21,6 +21,7 @@
             <th scope="col">Tanggal Berakhir</th>
             <th scope="col">Pakai Kuota?</th>
             <th scope="col">Kuota Promo</th>
+            <th scope="col">Tampil??</th>
             <th scope="col">Action</th>
         </tr>
         </thead>
@@ -36,6 +37,7 @@
                     <td>{{ \Carbon\Carbon::parse($data->tgl_akhir)->format('d-m-Y') }}</td>
                     <td>{{ $data->pakai_kuota}}</td>
                     <td>{{ $data->kuota }}</td>
+                    <td>{{ $data->tampil }}</td>
                     <td>
                         <a href="kelPromo/{{ $data->id }}/edit" class="btn btn-warning">Edit</a>
                         <form action="kelPromo/{{ $data->id }}" method="POST">

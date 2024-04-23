@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
             DiklatSeeder::class,
             PromoSeeder::class,
             PendaftaranSeeder::class,
-            PembayaranSeeder::class,
+            // PembayaranSeeder::class,
             TestimoniSeeder::class
         ]);
     }

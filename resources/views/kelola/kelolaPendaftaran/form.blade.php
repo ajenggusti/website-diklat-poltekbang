@@ -22,28 +22,6 @@
                 <form action="/kelPendaftaran" method="post" enctype="multipart/form-data" id="formPendaftaran">
                     @csrf
                     <div class="mb-3">
-                        <h3>Diklat yang dipilih</h3>
-                        <select name="diklat" class="form-select" aria-label="Default select example" disabled>
-                            <option selected disabled>Pilih Diklat</option>
-                            @foreach ($dtDiklats as $diklats)
-                                <option value="{{ $diklats->id }}" {{ old('diklat', $diklat->id) == $diklats->id ? 'selected' : '' }}>
-                                    {{ $diklats->nama_diklat }}
-                                </option>
-                            @endforeach
-                        </select>
-                        <input type="hidden" name="diklat" value="{{ old('diklat', $diklat->id) }}">
-                    </div>
-                    <br>
-                    <div class="mb-3">
-                        <label for="harga" class="form-label is">Harga</label>
-                        <input disabled type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="Rp {{ isset($harga) ? number_format($harga) : number_format($diklat->harga) }}">
-                        <input type="hidden" name="harga" value="{{ isset($harga) ? $harga : $diklat->harga }}">
-                        @error('harga')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>      
-
-                    <div class="mb-3">
                         <label for="email" class="form-label">Email</label>
                         <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') ?: Auth::user()->email }}">
                         @error('email')
@@ -66,19 +44,14 @@
                     <br>
                     
                     <div class="mb-3">
-                        <label for="nama_depan" class="form-label is">Nama Depan</label>
-                        <input type="text" class="form-control  @error('nama_depan') is-invalid @enderror" id="nama_depan" name= "nama_depan" value="{{ old('nama_depan') }}">
-                        @error('nama_depan')
+                        <label for="nama_lengkap" class="form-label is">Nama Lengkap</label>
+                        <input type="text" class="form-control  @error('nama_lengkap') is-invalid @enderror" id="nama_lengkap" name= "nama_lengkap" value="{{ old('nama_lengkap') }}">
+                        <small class="text-muted ">Tidak perlu mencantumkan gelar.</small>
+                        @error('nama_lengkap')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="mb-3">
-                        <label for="nama_belakang" class="form-label is">Nama belakang</label>
-                        <input type="text" class="form-control  @error('nama_belakang') is-invalid @enderror" id="nama_belakang" name= "nama_belakang" value="{{ old('nama_belakang') }}">
-                        @error('nama_belakang')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                        @enderror
-                    </div>
+
                     <br>
                     <br>
                     <div class="mb-3">
@@ -131,7 +104,9 @@
                     </div>
                     <button type="submit" class="btn btn-primary">Kirim</button>
                     
-                </form>  
+                </form>
+            </div>      
+ 
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
                 
                 <!-- Include jQuery -->
@@ -140,7 +115,6 @@
                 <!-- Include Date Range Picker -->
                 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
                 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-            </div>
         </body>
     </html>
 @endsection

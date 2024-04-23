@@ -10,6 +10,19 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Custom styles for this template -->
     <link href="/css/navbar.css" rel="stylesheet">
+    <!-- @TODO: replace SET_YOUR_CLIENT_KEY_HERE with your client key -->
+    {{-- <script type="text/javascript"
+    src="https://app.stg.midtrans.com/snap/snap.js"
+    data-client-key="{{ config('midtrans.client_key') }}"></script> --}}
+    <!-- Note: replace with src="https://app.midtrans.com/snap/snap.js" for Production environment -->
+
+    <script type="text/javascript"
+      src="https://app.sandbox.midtrans.com/snap/snap.js"
+      data-client-key="{{ config('midtrans.client_key') }}"></script>
+    <!-- Note: replace with src="https://app.midtrans.com/snap/snap.js" for Production environment -->
+
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
     <script src="/js/landing.js"></script>
     <!-- Bootstrap CSS -->
@@ -53,6 +66,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#profile">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Jadwal</a>
                     </li>
                 </ul>
             </div>

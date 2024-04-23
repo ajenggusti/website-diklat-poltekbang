@@ -13,13 +13,11 @@
             body {
                 font-family: 'Poppins', sans-serif;
             }
-
         </style>
     </head>
     <body>
         <div class="content-bodyForm">
-            <h2>Form Tambah Promo</h2>
-                
+            <h2>Form Tambah Promo</h2>    
             <form method="POST" action="/kelPromo" enctype="multipart/form-data">
                 @csrf
                 @if ($errors->any())
@@ -108,11 +106,17 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+                <div class="mb-3">
+                    <label for="tampil" class="form-label is">Apakah Promo ini akan ditampilkan? </label>
+                    <select class="form-select" id="tampil" name="tampil">
+                        <option value="ya" {{ old('tampil') == 'ya' ? 'selected' : '' }}>Ya</option>
+                        <option value="tidak" {{ old('tampil', 'tidak') == 'tidak' ? 'selected' : '' }}>Tidak</option>
+                    </select>
+                </div>
                 <button type="submit" class="btn btn-primary">Kirim</button>
-            </form>  
-        </div>
-        {{-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////// --}}
-
+            </form>
+        </div>      
+{{-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////// --}}
         <!-- Include jQuery -->
         <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 

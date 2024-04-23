@@ -16,14 +16,15 @@
                 <th>Kode Promo</th>
                 <th>Harga Diklat</th>
                 <th>Status Pembayaran Diklat</th>
-                <th>Harga Pembayaran</th>
+                <th>Harga Pendaftaran</th>
                 <th>Status Pembayaran Pendaftaran</th>
                 <th>action</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($datas as $data)
-                <tr>
+            <tr class="{{ $data->status_pembayaran_diklat == 'Lunas' && $data->status_pembayaran_daftar == 'Lunas' ? ($data->s_link || $data->s_gambar || $data->s_doc ? 'bg-primary' : 'bg-danger') : '' }}">
+
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $data->user->name }}</td>
                     <td>{{ $data->diklat->nama_diklat }}</td>
@@ -34,7 +35,7 @@
                     <td>{{ $data->status_pembayaran_daftar }}</td>
                     <td>
                         <a href="/kelPendaftaran/{{ $data->id }}" class="btn btn-success">Lihat</a>
-                        <a href="/kelPendaftaran/{{ $data->id }}/edit" class="btn btn-warning">Edit</a>
+                        <a href="/kelPendaftaran/{{ $data->id }}/editAsAdmin" class="btn btn-warning">Edit</a>
                         <form action="/kelPendaftaran/{{ $data->id }}" method="POST">
                             @method('DELETE')
                             @csrf
@@ -42,6 +43,7 @@
                         </form>
                     </td>
                 </tr>
+            
             @endforeach
         </tbody>
     </table>

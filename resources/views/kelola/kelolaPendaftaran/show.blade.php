@@ -1,7 +1,7 @@
 @extends('layout.mainAdmin')
 @section('container')
     <h1>Detail Pendaftaran</h1>
-    <a href="/kelPendaftaran/{{ $pendaftaran->id }}/edit" class="btn btn-warning">Edit</a>
+    <a href="/kelPendaftaran/{{ $pendaftaran->id }}/editAsAdmin" class="btn btn-warning">Edit</a>
     <table class="table">
         
         <tr>
@@ -29,12 +29,8 @@
             <td>{{ $pendaftaran->status_pembayaran_daftar }}</td>
         </tr>
         <tr>
-            <th>Nama Depan</th>
-            <td>{{ $pendaftaran->nama_depan }}</td>
-        </tr>
-        <tr>
-            <th>Nama belakang</th>
-            <td>{{ $pendaftaran->nama_belakang }}</td>
+            <th>Nama Lengkap</th>
+            <td>{{ $pendaftaran->nama_lengkap }}</td>
         </tr>
         <tr>
             <th>Tempat Lahir</th>
@@ -59,7 +55,15 @@
         </tr>
         <tr>
             <th>Sertifikat Diklat</th>
-            <td>{{ $pendaftaran->sertifikat }}</td>
+            <td>
+                @if ($pendaftaran->s_doc)
+                    <a href="{{ asset('storage/' . $pendaftaran->s_doc) }}">Klik Untuk Melihat Sertifikat!</a>
+                @elseif($pendaftaran->s_gambar)
+                    <img src="{{ asset('storage/' . $pendaftaran->s_gambar) }}" alt="sertifikat">
+                @elseif($pendaftaran->s_link)
+                    <a href="{{ $pendaftaran->s_link }}">Klik Untuk Melihat Sertifikat!</a>
+                @endif
+            </td>
         </tr>
 
     </table>

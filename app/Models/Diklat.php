@@ -71,4 +71,5 @@ class Diklat extends Model
         ->where('diklat.id', $diklatId)
         ->first();
     }
+    
 }

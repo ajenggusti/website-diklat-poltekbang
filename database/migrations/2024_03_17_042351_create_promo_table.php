@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('gambar')->charset('binary');
             $table->bigInteger('potongan')->nullable();
             $table->string('kode')->unique();
+            $table->string('tampil')->nullable();
             $table->date('tgl_awal');
             $table->date('tgl_akhir');
             $table->integer('kuota')->default(0);

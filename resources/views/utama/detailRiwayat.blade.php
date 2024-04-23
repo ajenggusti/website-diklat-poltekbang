@@ -28,17 +28,13 @@
                         <span>{{ $data->diklat->nama_diklat }}</span>
                         <br><br>
 
-                        Nama Depan : <br>
-                        <span>{{ $data->nama_depan }}</span>
-                        <br><br>
-
-                        Nama Belakang : <br>
-                        <span>{{ $data->nama_belakang }}</span>
+                        Nama Lengkap : <br>
+                        <span>{{ $data->nama_lengkap }}</span>
                         <br><br>
                         
-                        Tempat Lahir : <br>
+                        {{-- Tempat Lahir : <br>
                         <span>{{ $data->tempat_lahir }}</span>
-                        <br><br>
+                        <br><br> --}}
                         
                         {{-- jangan lupa kasih format --}}
                         Tanggal Lahir : <br>
@@ -102,6 +98,23 @@
                         Status Pembayaran Biaya Diklat : <br>
                         <span>{{ $data->status_pembayaran_diklat }} </span>
                         <br><br>
+
+                        Join Grup whatsapp: <br>
+                        <span>
+                            <a href="{{ $data->diklat->whatsapp }}">Klik untuk join!</a>
+                        </span>
+                        <br><br>
+
+                        <td>
+                            @if ($data->s_doc)
+                               Sertifikat :  <a href="{{ asset('storage/' . $data->s_doc) }}">Klik Untuk Melihat Sertifikat!</a>
+                            @elseif($data->s_gambar)
+                                Sertifikat :<img src="{{ asset('storage/' . $data->s_gambar) }}" alt="sertifikat">
+                            @elseif($data->s_link)
+                                Sertifikat :<a href="{{ $data->s_link }}">Klik Untuk Melihat Sertifikat!</a>
+                            @endif
+                        </td>
+                        <br> <br>
 
                         {{-- <div class="col"> --}}
                             <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a>

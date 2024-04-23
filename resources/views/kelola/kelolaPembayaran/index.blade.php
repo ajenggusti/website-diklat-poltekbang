@@ -19,7 +19,7 @@
                 <th scope="col">Jenis Pembayaran</th>
                 <th scope="col">Biaya</th>
                 <th scope="col">Status pembayaran</th>
-                <th scope="col">Bukti Pembayaran</th>
+                {{-- <th scope="col">Bukti Pembayaran</th> --}}
                 <th scope="col">Action</th>
             </tr>
         </thead>
@@ -34,9 +34,9 @@
                 <td id="status_pembayaran_diklat_{{ $loop->iteration }}">{{ $pembayaran->pendaftaran->status_pembayaran_diklat }}</td>
                 <td id="biaya_pendaftaran_{{ $loop->iteration }}">Rp 150.000</td>
                 <td id="status_pembayaran_daftar_{{ $loop->iteration }}">{{ $pembayaran->pendaftaran->status_pembayaran_daftar }}</td>
-                <td><img src="{{ asset('storage/' . $pembayaran->bukti_pembayaran) }}" alt="bukti pembayaran" style="width: 30%;"></td>
+                {{-- <td><img src="{{ asset('storage/' . $pembayaran->bukti_pembayaran) }}" alt="bukti pembayaran" style="width: 30%;"></td> --}}
                 <td>
-                    <a href="/kelPembayaran/{{ $pembayaran->id }}/edit" class="btn btn-warning">Edit</a>
+                    {{-- <a href="/kelPembayaran/{{ $pembayaran->id }}/edit" class="btn btn-warning">Edit</a> --}}
                     <a href="/kelPembayaran/{{ $pembayaran->id }}" class="btn btn-success">Lihat</a>
                     {{-- <form action="/kelPembayaran/{{ $pembayaran->id }}" method="POST">
                         @method('DELETE')
