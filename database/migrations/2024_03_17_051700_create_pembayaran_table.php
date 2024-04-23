@@ -12,11 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pembayaran', function (Blueprint $table) {
-            $table->string('id');
+            $table->id();
+            $table->string('order_id');
             $table->unsignedBigInteger('id_pendaftaran');
             $table->enum('jenis_pembayaran', ['diklat', 'pendaftaran']);
             $table->string('metode_pembayaran');
-            
             $table->bigInteger('total_harga');
             $table->timestamps();
             $table->foreign('id_pendaftaran')->references('id')->on('pendaftaran')->onUpdate('cascade')

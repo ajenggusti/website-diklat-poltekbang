@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Diklat;
 use App\Models\Pembayaran;
 use App\Models\Pendaftaran;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -39,22 +40,21 @@ class PembayaranController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'jenis_pembayaran' => 'required', // Jenis pembayaran harus dipilih
+            'jenis_pembayaran' => 'required', 
         ], [
             'jenis_pembayaran.required' => 'Jenis pembayaran harus dipilih.',
         ]);
-        $pembayaran = new Pembayaran();
-        $pembayaran->id_pendaftaran= $request->id_pendaftaran;
-        $pembayaran->jenis_pembayaran = $request->jenis_pembayaran;
-        $pembayaran->total_harga = $request->total_harga;
-        $pembayaran->created_at = now(); 
-        $idGenerate ='ORD_' . rand(100000, 999999);
-        dd($idGenerate);
-        $pembayaran->id = $idGenerate;
-        $pembayaran->save();
-        $dataBaru = $pembayaran->fresh();
-       
-        // dd($pembayaran->id);
+        $pembayaran = Pembayaran::create([
+            'order_id' => 'ORD_' . rand(100000, 999999), // Menggunakan UUID untuk nilai id
+            'id_pendaftaran' => $request->input('id_pendaftaran'),
+            'jenis_pembayaran' => $request->input('jenis_pembayaran'),
+            'total_harga' => $request->input('total_harga'),
+            'metode_pembayaran' => "online",
+            'created_at' => now(),
+        ]);
+        // dd($pembayaran);
+        // $pembayaran->id = $idGenerate;
+        // $dataBaru = $pembayaran->fresh();
         // Set your Merchant Server Key
         \Midtrans\Config::$serverKey = config('midtrans.server_key');
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
@@ -66,17 +66,16 @@ class PembayaranController extends Controller
 
         $params = array(
             'transaction_details' => array(
-                'order_id' => $dataBaru->id,
+                'order_id' => $pembayaran->order_id,
                 'gross_amount' => $pembayaran->total_harga,
             ),
             'customer_details' => array(
-                'first_name' => $pembayaran->pendaftaran->nama_depan,
-                'last_name' => $pembayaran->pendaftaran->nama_belakang,
+                'nama_lengkap' => $pembayaran->pendaftaran->nama_lengkap,
                 'email' => $pembayaran->pendaftaran->email,
                 'phone' => $pembayaran->pendaftaran->no_hp,
             ),
         );
-        dd($params);
+        // dd($params);
 
         $snapToken = \Midtrans\Snap::getSnapToken($params);
         // return redirect('/kelPembayaran/create?id=' . $pembayaran->pendaftaran->id)
@@ -102,7 +101,7 @@ class PembayaranController extends Controller
     public function edit(Pembayaran $kelPembayaran)
     {
         $dtDiklats = Diklat::all();
-        return view('kelola.kelolaPembayaran.editAsAdmin',[
+        return view('kelola.kelolaPembayaran.editAsAdmin', [
             'kelPembayaran' => $kelPembayaran,
             'dtDiklats' => $dtDiklats
         ]);
@@ -126,26 +125,21 @@ class PembayaranController extends Controller
         return redirect('/kelPembayaran')->with('success', 'Data berhasil dihapus!');
     }
 
-    public function callback(Request $request){
-        $serverKey=config('midtrans.server_key');
-        $hashed=hash("sha512", $request->order_id.$request->status_code.$request->gross_amount.$serverKey);
-        if($hashed == $request->signature_key){
-            $pembayaran = Pembayaran::find($request->order_id);
+    public function callback(Request $request)
+    {
+        $serverKey = config('midtrans.server_key');
+        $hashed = hash("sha512", $request->order_id . $request->status_code . $request->gross_amount . $serverKey);
+        if ($hashed == $request->signature_key) {
+            $pembayaran = Pembayaran::where('order_id', $request->order_id)->first();
             if ($pembayaran->jenis_pembayaran == "diklat") {
-                $pendaftaran= Pendaftaran::find($pembayaran->id_pendaftaran);
-                // $pendaftaran = $pembayaran->pendaftaran;
-                $pendaftaran->update(['status_pembayaran_diklat' => "Paid"]);
-            }elseif ($pembayaran->jenis_pembayaran == "pendaftaran") {
-                $pendaftaran= Pendaftaran::find($pembayaran->id_pendaftaran);
-                // $pendaftaran = $pembayaran->pendaftaran;
-                $pendaftaran->update(['status_pembayaran_daftar' => "Paid"]);
-            }else{
-                $pendaftaran= Pendaftaran::find($pembayaran->id_pendaftaran);
-                // return response()->json(['data' => $pendaftaran, 'pembayaran' => $pembayaran]);
-        }}
+                $pendaftaran = Pendaftaran::find($pembayaran->id_pendaftaran);
+                $pendaftaran->update(['status_pembayaran_diklat' => "Lunas"]);
+            } elseif ($pembayaran->jenis_pembayaran == "pendaftaran") {
+                $pendaftaran = Pendaftaran::find($pembayaran->id_pendaftaran);
+                $pendaftaran->update(['status_pembayaran_daftar' => "Lunas"]);
+            } else {
+                $pendaftaran = Pendaftaran::find($pembayaran->id_pendaftaran);
+            }
+        }
     }
 }
-
-
-
-

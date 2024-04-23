@@ -17,7 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_promo')->nullable();
             $table->timestamp('waktu_pendaftaran');
-            $table->bigInteger('harga_diklat'); 
+            $table->bigInteger('harga_diklat')->nullable(); 
+            $table->bigInteger('potongan')->nullable(); 
             $table->string('status_pembayaran_diklat')->default('Menunggu pembayaran')->nullable(); //nnti isi dropdon
             $table->string('nama_lengkap')->nullable();
             $table->string('tempat_lahir')->nullable();

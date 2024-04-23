@@ -14,7 +14,17 @@
                 <td>Rp {{ isset($harga) ? number_format($harga) : number_format($kelPendaftaran->diklat->harga) }}</td>
             </tr>
             <tr>
-                <th>Potongan Harga</th>
+                <th>Kode Promo</th>
+                <td>
+                    @if ($kelPendaftaran->id_promo)
+                        {{ $kelPendaftaran->promo->kode }}
+                    @else
+                        Tidak ada kode promo yang diambil.
+                    @endif
+                </td>
+            </tr>
+            <tr>
+                <th>Potongan Harga Dari Voucher</th>
                 <td>
                     @if($kelPendaftaran->id_promo && $kelPendaftaran->promo)
                        -Rp {{ $kelPendaftaran->promo->potongan }}
@@ -31,16 +41,7 @@
                 <th>Email</th>
                 <td>{{ $kelPendaftaran->email }}</td>
             </tr>
-            <tr>
-                <th>Kode Promo</th>
-                <td>
-                    @if ($kelPendaftaran->id_promo)
-                        {{ $kelPendaftaran->promo->kode }}
-                    @else
-                        Tidak ada kode promo yang diambil.
-                    @endif
-                </td>
-            </tr>
+          
             <tr>
                 <th>Nama Lengkap</th>
                 <td>{{ $kelPendaftaran->nama_lengkap }}</td>
@@ -68,6 +69,35 @@
             
         </table>
         <h1>Form Edit Admin</h1>
+        <div class="mb-3">
+            <label for="status_pembayaran_diklat" class="form-label">Status Pembayaran Diklat</label>
+            <select class="form-select" id="status_pembayaran_diklat" name="status_pembayaran_diklat">
+                <option value="Lunas" {{ old('status_pembayaran_diklat', $kelPendaftaran->status_pembayaran_diklat) == 'Lunas' ? 'selected' : '' }}>Lunas</option>
+                <option value="Menunggu pembayaran" {{ old('status_pembayaran_diklat', $kelPendaftaran->status_pembayaran_diklat) == 'Menunggu pembayaran' ? 'selected' : '' }}>Menunggu pembayaran</option>
+                
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="potongan" class="form-label is">Potongan untuk diklat dari admin</label>
+            <input type="text" class="form-control @error('potongan') is-invalid @enderror" id="potongan" name="potongan" value="{{ old('potongan') }}">
+            @error('potongan')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="total_harga" class="form-label is">Total harga untuk diklat</label>
+            <input type="text" class="form-control @error('total_harga') is-invalid @enderror" id="total_harga" name="total_harga" value="{{ old('total_harga', 'Rp ' . number_format($kelPendaftaran->harga_diklat, 0, ',', '.')) }}" readonly>
+            @error('total_harga')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+        
+        
+
+
+
+
+        {{-- ========================================================================== --}}
         <div class="mb-3">
             <label for="metode_sertif" class="form-label">Metode Pengiriman Sertifikat</label>
             <select class="form-select" id="metode_sertif" name="metode_sertif">
@@ -111,8 +141,24 @@
         
     </form>  
     <script>
+        var potonganInput = document.getElementById('potongan');
+        var totalHargaInput = document.getElementById('total_harga');
+        potonganInput.addEventListener('input', function() {
+            var potonganValue = this.value.replace(/\D/g, '');
+            var hargaDiklat = {{ $kelPendaftaran->harga_diklat }};
+            var totalBiayaDipotong = hargaDiklat - parseInt(potonganValue);
+            totalHargaInput.value = formatCurrency(totalBiayaDipotong);
+        });
+        function formatCurrency(amount) {
+            var numberString = amount.toString();
+            var formattedAmount = numberString.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+            return 'Rp ' + formattedAmount;
+        }
+    </script>
+    
+    
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Mengambil elemen-elemen form
             var metodeSelect = document.getElementById('metode_sertif');
             var linkInput = document.getElementById('s_link');
             var gambarInput = document.getElementById('s_gambar');
@@ -122,10 +168,8 @@
             var dokumenLabel = document.querySelector('label[for="s_doc"]');
             var imgPreview = document.querySelector('.img-preview');
             var tampilFile = document.getElementById('file-sebelumnya');
-    
-            // Menambahkan event listener pada select box
+
             metodeSelect.addEventListener('change', function() {
-                // Menyembunyikan semua input fields dan judul
                 linkInput.style.display = 'none';
                 gambarInput.style.display = 'none';
                 dokumenInput.style.display = 'none';
@@ -135,7 +179,6 @@
                 imgPreview.style.display = 'none';
                 tampilFile.style.display = 'none';
     
-                // Menampilkan input field dan judul yang sesuai dengan pilihan yang dipilih
                 var selectedValue = this.value;
                 if (selectedValue === 'link') {
                     linkInput.style.display = 'block';
@@ -143,7 +186,7 @@
                 } else if (selectedValue === 'gambar') {
                     gambarInput.style.display = 'block';
                     gambarLabel.style.display = 'block';
-                    imgPreview.style.display = 'block'; // Menampilkan img preview jika pilihan adalah gambar
+                    imgPreview.style.display = 'block';
                 } else if (selectedValue === 'dokumen') {
                     dokumenInput.style.display = 'block';
                     dokumenLabel.style.display = 'block';

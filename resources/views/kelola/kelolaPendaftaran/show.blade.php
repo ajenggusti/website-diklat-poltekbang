@@ -1,7 +1,7 @@
 @extends('layout.mainAdmin')
 @section('container')
     <h1>Detail Pendaftaran</h1>
-    <a href="/kelPendaftaran/{{ $pendaftaran->id }}/edit" class="btn btn-warning">Edit</a>
+    <a href="/kelPendaftaran/{{ $pendaftaran->id }}/editAsAdmin" class="btn btn-warning">Edit</a>
     <table class="table">
         
         <tr>

@@ -10,7 +10,7 @@ class Pembayaran extends Model
 {
     use HasFactory;
     protected $table = 'pembayaran';
-    public $timestamps = false;
+    protected $guarded = [];
     public function pendaftaran()
     {
         return $this->belongsTo(Pendaftaran::class, 'id_pendaftaran');

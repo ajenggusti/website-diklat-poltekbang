@@ -39,7 +39,7 @@ Route::get('/dbSuperAdmin', [DbUtamaController::class, 'index']);
 Route::get('/dbDpuk', [DbUtamaController::class, 'dbDpuk']);
 Route::get('/dbKeuangan', [DbUtamaController::class, 'dbKeuangan']);
 Route::get('/riwayat', [RiwayatController::class, 'index'])->middleware('auth');
-Route::get('/riwayat/{detail}', [RiwayatController::class, 'detailRiwayat'])->middleware('auth');
+Route::get('/riwayat/{detail}', [RiwayatController::class, 'detailRiwayat'])->middleware('auth')->name('riwayat.detail');
 Route::get('/bukti-pembayaran/{id}', [RiwayatController::class, 'buktiPembayaran']);
 
 

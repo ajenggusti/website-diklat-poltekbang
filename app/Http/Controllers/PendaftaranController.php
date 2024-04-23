@@ -223,7 +223,9 @@ class PendaftaranController extends Controller
             'dtDiklats' => $dtDiklats
         ]);
     }
-    public function updateAsAdmin($id , Request $request) {
+    public function updateAsAdmin($id , Request $request) 
+    {
+        // dd($request);
         $messages = [
             's_link.url' => 'Kolom link harus berupa URL yang valid.',
             's_gambar.image' => 'Kolom gambar harus berupa file gambar.',
@@ -313,6 +315,10 @@ class PendaftaranController extends Controller
             's_link' => $request->input('metode_sertif') == 'link' ? $request->s_link : null,
             's_doc' => $doc ?: $oldData->s_doc,
             'metode_sertif' => $request->metode_sertif,
+            'potongan' => $request->potongan ? preg_replace("/[^0-9]/", "", $request->potongan) : null,
+            'harga_diklat' => preg_replace("/[^0-9]/", "", $request->total_harga),
+            'status_pembayaran_diklat'=>$request->status_pembayaran_diklat
+
         ]);
         return redirect('/kelPendaftaran')->with('success', 'Data berhasil diperbarui!');
     }
