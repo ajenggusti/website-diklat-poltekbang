@@ -96,7 +96,7 @@
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="/kelPromo">
-                          <i class="bi bi-handbag" style="font-size: 17px;">   </i>
+                          <i class="bi bi-ticket" style="font-size: 17px;">   </i>
                           Kelola Promo
                         </a>
                       </li>
@@ -109,7 +109,7 @@
                       <li class="nav-item">
                         <a class="nav-link" href="/gbrLandingPage">
                           <i class="bi bi-tablet-landscape" style="font-size: 17px;">   </i>
-                          Kelola Gambar Landing Page
+                          Kelola Gambar Landing Pagep
                         </a>
                       </li>
                       <li class="nav-item">

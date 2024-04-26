@@ -49,14 +49,16 @@
                     </div>
                     <br><br>
                 </div>
-
+                @if ($countPromo!=0)
+                    
+                @endif
                 <hr style="color: #ffffff">
                 <h3 id="promo">Promo</h3>
                 <p style="color: #FF6900;">Temukan promo yang bisa kamu dapatkan disini.. </p>
                 <div class="img-promo">
                     {{-- <img src="{{ asset('img/diskon.png') }}" alt="promo" style="height: 300px; width: 1200px;"> --}}
                     @foreach ($promos as $promo)
-                    {{ $promo->id }}
+                    {{-- {{ $promo->id }} --}}
                     <img src="{{ asset('storage/'.$promo->gambar) }}" alt="Promo Image">
                         
                     @endforeach
@@ -67,30 +69,28 @@
                 <p style="color: #FF6900;">Klik button untuk melihat lebih banyak diklat </p>
                 <div class="cards-container">
                     @foreach ($katDiklat as $kategori)
-                        @if ($kategori->gambar)
-                            <img src="{{ asset('storage/' . $kategori->gambar) }}" alt="" style="width: 30%;">
-                        @else
-                            @php $foundDefault = false; @endphp
-                            @foreach ($katDiklat as $data)
-                                @if ($data->default == 'ya')
-                                    <img src="{{ asset('storage/' . $data->gambar) }}" alt="Default Image" style="width: 30%;">
-                                    @php $foundDefault = true; @endphp
-                                    @break
-                                @endif
-                            @endforeach
-                            @if (!$foundDefault)
-                                <img src="{{ asset('img/123.png') }}" alt="Default Image" style="width: 30%;">
-                            @endif
-                        @endif
+                        
                         <div class="card-jenis">
-                            <img src="img/jenis.png" alt="Jenis Diklat">
+                            @if ($kategori->gambar)
+                                <img src="{{ asset('storage/' . $kategori->gambar) }}" alt="" >
+                            @else
+                                @php $foundDefault = false; @endphp
+                                @foreach ($katDiklat as $data)
+                                    @if ($data->default == 'ya')
+                                        <img src="{{ asset('storage/' . $data->gambar) }}" alt="Default Image" >
+                                        @php $foundDefault = true; @endphp
+                                        @break
+                                    @endif
+                                @endforeach
+                                @if (!$foundDefault)
+                                    <img src="{{ asset('img/123.png') }}" alt="Default Image" >
+                                @endif
+                            @endif
+                            {{-- <img src="img/jenis.png" alt="Jenis Diklat"> --}}
                             <br>
                             <div class="card-content">
                                 <p>
                                     <span>Kategori "{{ $kategori->kategori_diklat }}"</span><br>
-                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                                    Sit itaque porro quasi a quod harum voluptatum alias natus 
-                                    doloribus eum unde.
                                 </p>
                                 <button class="button-link" onclick="window.location.href='/utama/macamDiklat/{{ $kategori->id }}'">
                                     {{ $kategori->kategori_diklat }}
@@ -100,7 +100,9 @@
                     @endforeach
                 </div>
                 <hr>
+                @if ($countTestimoni!=0)
                 <h3 id="testimoni">Testimoni</h3>
+                    
                 <p style="color: #FF6900;">Simak apa kata mereka...</p>
                 <div class="slide-testimoni">
                     @foreach ($testimonis as $testimoni)
@@ -118,6 +120,7 @@
                     <a class="sblm" onclick="plusSlides(-1)"></a>
                     <a class="ssdh" onclick="plusSlides(1)"></a>
                 </div>
+                @endif
                 
                 <hr>
                 <h3 id="faq">FAQ</h3>

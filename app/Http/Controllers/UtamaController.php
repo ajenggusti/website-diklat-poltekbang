@@ -21,6 +21,8 @@ class UtamaController extends Controller
         $jmlDiklat = Diklat::countDiklat();
         $katDiklat = KatDiklat::selectAll();
         $testimonis = Testimoni::where('tampil', 'iya')->get();
+        $countTestimoni=Testimoni::where('tampil', 'iya')->get()->count();
+        // dd($countTestimoni);
         $gbrSlide = Gambar_navbar::where('status', 'tampilkan')->get();
         $promos = Promos::where(function($query) {
             $query->whereDate('tgl_akhir', '>=', now())
@@ -34,7 +36,19 @@ class UtamaController extends Controller
                   ->where('pakai_kuota', 'tidak');
         })
         ->get();
-    
+        $countPromo = Promos::where(function($query) {
+            $query->whereDate('tgl_akhir', '>=', now())
+                  ->where('pakai_kuota', 'iya')
+                  ->where('tampil', 'ya')
+                  ->where('kuota', '>', 0);
+        })
+        ->orWhere(function($query) {
+            $query->whereDate('tgl_akhir', '>=', now())
+                    ->where('tampil', 'ya')
+                  ->where('pakai_kuota', 'tidak');
+        })
+        ->get()->count();
+        // dd($countPromo);
     
         return view('utama/landingPage', [
             'jmlPendaftar' => $jmlPendaftar,
@@ -42,7 +56,9 @@ class UtamaController extends Controller
             'katDiklat' => $katDiklat,
             'testimonis' => $testimonis,
             'gbrSlide' => $gbrSlide,
-            'promos'=>$promos
+            'promos'=>$promos,
+            'countTestimoni'=>$countTestimoni,
+            'countPromo'=>$countPromo
 
         ]);
     }

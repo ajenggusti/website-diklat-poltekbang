@@ -170,6 +170,8 @@
     width: 100%;  
     height: auto;
     padding-bottom: 10px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
 }
 .card-jenis:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
@@ -348,7 +350,6 @@
 
 .card-riwayat {
     margin-right: 260px;
-    /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); */
     transition: 0.3s;
     width: 30%;
     padding: 10px 0 0 0;
@@ -412,4 +413,30 @@
 /* Bukti Pembayaran */
 .tabelBukti {
     font-size: 30px;
+}
+
+
+
+/* KELOLA DIKLAT */
+th {
+    color: #007bff;   
+}
+
+.btn-lihat {
+    background-color: #28a745; /* Warna hijau untuk tombol Lihat */
+}
+.btn-edit {
+    color: #ffc107; /* Warna kuning untuk tombol Edit */
+}
+.btn-hapus {
+    color: #dc3545; /* Warna merah untuk tombol Hapus */
+}
+.btn-tambah {
+    background-color: orange; /* Warna oranye untuk tombol Tambah Data */
+    color: white;
+}
+
+.table {
+    background-color: #eee;
+    border-color: #000000;
 }
