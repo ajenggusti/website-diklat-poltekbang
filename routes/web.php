@@ -67,6 +67,10 @@ Route::put('/kelPendaftaran/{id}', [PendaftaranController::class, 'updateAsAdmin
 Route::resource('/kelPendaftaran', PendaftaranController::class);
 //route CRUD pembayarn
 // Route::get('/kelPembayaran/getPaymentInfo/{type}/{id}', [PembayaranController::class, 'getPaymentInfo']);
-Route::resource('/kelPembayaran', PembayaranController::class);
+Route::get('/kelPembayaranDiklat-store', [PembayaranController::class, 'storeDiklat'])->name('kelPembayaranDiklat-store.storeDiklat');
+Route::get('/kelPembayaranDiklat-form', [PembayaranController::class, 'createDiklat'])->name('kelPembayaranDiklat-form.createDiklat');
+Route::get('/kelPembayaranPendaftaran', [PembayaranController::class, 'savePendaftaran'])->name('kelPembayaranPendaftaran.savePendaftaran');
+Route::get('/kelPembayaranDiklat', [PembayaranController::class, 'saveDiklat'])->name('kelPembayaranDiklat.saveDiklat');
+Route::resource('/kelPembayaran', PembayaranController::class)->except('update');
 //route CRUD gambar diklat
 Route::resource('/kelGambarDiklat', GambarDiklatController::class);

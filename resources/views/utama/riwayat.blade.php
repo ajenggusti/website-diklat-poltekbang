@@ -24,7 +24,9 @@
         <p>Status Pembayaran Pendaftaran : {{ $data->status_pembayaran_daftar }}</p>
         
         <a href="/riwayat/{{ $data->id }}" class="btn btn-success">Lihat</a>
-        <a href="{{ route('kelPembayaran.create', ['id' => $data->id]) }}" class="btn btn-secondary">Lakukan Pembayaran?</a>
+        {{-- <a href="{{ route('kelPembayaran.create', ['id' => $data->id]) }}" class="btn btn-secondary">Lakukan Pembayaran?</a> --}}
+        <a href="{{ route('kelPembayaranPendaftaran.savePendaftaran', ['id' => $data->id]) }}" class="btn btn-secondary">Pendaftaran?</a>
+        <a href="{{ route('kelPembayaranDiklat-form.createDiklat', ['id' => $data->id]) }}" class="btn btn-secondary">Diklat?</a>
         <form action="/kelPendaftaran/{{ $data->id }}" method="POST">
             @method('DELETE')
             @csrf
