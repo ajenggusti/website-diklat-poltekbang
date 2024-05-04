@@ -40,6 +40,7 @@ class PromoController extends Controller
             'tgl_awal' => 'required',
             'tgl_akhir' => 'required|after:tgl_awal',
             'diklat' => 'required',
+            'deskripsi' => 'required',
             'img' => 'required|image|max:1024',
         ];
 
@@ -47,6 +48,7 @@ class PromoController extends Controller
         $messages = [
             'potongan.required' => 'Potongan wajib diisi.',
             'kode.required' => 'Kode Promo wajib diisi.',
+            'deskripsi.required' => 'Deskripsi wajib diisi.',
             'kode.unique' => 'Kode Promo sudah ada.',
             'tgl_awal.required' => 'Tanggal Mulai Promo wajib diisi.',
             'tgl_akhir.required' => 'Tanggal Promo Berakhir wajib diisi.',
@@ -84,7 +86,8 @@ class PromoController extends Controller
                 'gambar' => $image,
                 'kuota' => $kuota_angka,
                 'pakai_kuota' => $kuota,
-                'tampil' => $request->tampil
+                'tampil' => $request->tampil,
+                'deskripsi'=>$request->deskripsi
             ]);
 
             return redirect('/kelPromo')->with('success', 'Data berhasil ditambahkan!');
@@ -125,6 +128,7 @@ class PromoController extends Controller
         $messages = [
             'potongan.required' => 'Potongan wajib diisi.',
             'kode.required' => 'Kode Promo wajib diisi.',
+            'deskripsi.required' => 'Deskripsi wajib diisi.',
             'kode.unique' => 'Kode Promo sudah ada.',
             'tgl_awal.required' => 'Tanggal Mulai Promo wajib diisi.',
             'tgl_akhir.required' => 'Tanggal Promo Berakhir wajib diisi.',
@@ -145,6 +149,7 @@ class PromoController extends Controller
             'diklat' => 'required',
             'img' => 'nullable|image|max:1024',
             'kuota' => 'required',
+            'deskripsi' => 'required',
             'kuota_angka' => 'required_if:kuota,iya'
         ];
 
@@ -187,7 +192,8 @@ class PromoController extends Controller
             'id_diklat' => $validatedData['diklat'] !== 'null' ? $validatedData['diklat'] : null,
             'kuota' => $kuota_angka,
             'pakai_kuota' => $kuota,
-            'tampil' => $request->tampil
+            'tampil' => $request->tampil,
+            'deskripsi' => $request->deskripsi
         ]);
 
         // Redirect dengan pesan sukses

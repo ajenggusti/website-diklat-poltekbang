@@ -18,13 +18,18 @@
         <br>
         <strong>Deskripsi:</strong> {!! $detail->deskripsi !!}
     @endforeach
-
+    <br>
     @auth
-        <div class="d-grid gap-2 col-6">
-            <a href="{{ route('kelPendaftaran.create', ['id' => $detail->id]) }}" class="btn btn-primary">Daftarkan dirimu sekarang!</a>
-        </div>
+        @if($dobelDiklat)
+            <div class="alert alert-warning" role="alert">
+                Ups, kamu sudah mendaftar diklat ini.
+            </div>
+        @else
+            <div class="d-grid gap-2 col-6">
+                <a href="{{ route('kelPendaftaran.create', ['id' => $detail->id]) }}" class="btn btn-primary">Daftarkan dirimu sekarang!</a>
+            </div>
+        @endif
     @endauth
-
     @guest
         <div class="d-grid gap-2 col-6">
             <button class="btn btn-primary" type="button" onclick="window.location.href = '/login';">Login untuk mendaftar!</button>

@@ -40,10 +40,17 @@
     @endforeach
     <h1>Testimoni</h1>
     @foreach ($testimonis as $testimoni)
-        <h3>{{ $testimoni->pendaftaran->nama_depan }}</h3>
-        <b>{{ $testimoni->profesi }}</b>
-        <p>Alumni diklat {{ $testimoni->pendaftaran->diklat->nama_diklat }}</p>
-        <p>{{ $testimoni->testimoni }}</p>
+        @if ($testimoni->id_pendaftaran)
+            <h3>{{ $testimoni->pendaftaran->nama_lengkap }}</h3>
+            <b>{{ $testimoni->profesi }}</b>
+            <p>Alumni diklat {{ $testimoni->pendaftaran->diklat->nama_diklat }}</p>
+            <p>{{ $testimoni->testimoni }}</p>
+        @else
+            <h3>{{ $testimoni->nama_dummy }}</h3>
+            <b>{{ $testimoni->profesi }}</b>
+            <p>Alumni diklat {{ $testimoni->diklat->nama_diklat }}</p>
+            <p>{{ $testimoni->testimoni }}</p>
+        @endif
     @endforeach
 
 @endsection

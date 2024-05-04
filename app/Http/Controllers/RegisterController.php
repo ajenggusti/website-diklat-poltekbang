@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelurahan;
 use App\Models\User;
 use App\Models\Level;
+use App\Models\Provinsi;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -71,9 +74,9 @@ class RegisterController extends Controller
         $getLevel = Level::All();
         // Mengembalikan tampilan edit dengan data level pengguna
         return view('kelola.kelolaUser.editUser', [
-        'data' => $register,
-        'getLevel' => $getLevel
-    ]);
+            'data' => $register,
+            'getLevel' => $getLevel
+        ]);
     }
 
     /**
@@ -98,9 +101,26 @@ class RegisterController extends Controller
     }
     public function tampil()
     {
-        $getLevel = User::getLevel();
+        $datas = User::get();
+        // $kelurahan=Kelurahan::get();
+        // dd($datas);
+        // dd($datas[0]);
         return view('kelola.kelolaUser.index', [
-            'getLevel'=>$getLevel
+            'datas' => $datas,
+            // 'kelurahan'=>$kelurahan
         ]);
     }
+    public function editProfil()
+    {
+        $user = Auth::user();
+        $kelurahans=Kelurahan::get();
+        // dd($user);
+        return view('utama.editProfil', [
+            'user'=>$user,
+            'kelurahans'=>$kelurahans
+        ]);
+    }
+    // public function updateProfil(){
+
+    // }
 }

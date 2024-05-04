@@ -66,6 +66,13 @@
                 <th>Nomor HP</th>
                 <td>{{ $kelPendaftaran->no_hp }}</td>
             </tr>
+            @if ($kelPendaftaran->bukti_pembayaran)
+                
+                <tr>
+                    <th>Bukti pembayaran</th>
+                    <td><img style="width: 30%" src="{{ asset('storage/' . $kelPendaftaran->bukti_pembayaran) }}" alt=""></td>
+                </tr>
+            @endif
             
         </table>
         <h1>Form Edit Admin</h1>
@@ -74,6 +81,7 @@
             <select class="form-select" id="status_pembayaran_diklat" name="status_pembayaran_diklat">
                 <option value="Lunas" {{ old('status_pembayaran_diklat', $kelPendaftaran->status_pembayaran_diklat) == 'Lunas' ? 'selected' : '' }}>Lunas</option>
                 <option value="Menunggu pembayaran" {{ old('status_pembayaran_diklat', $kelPendaftaran->status_pembayaran_diklat) == 'Menunggu pembayaran' ? 'selected' : '' }}>Menunggu pembayaran</option>
+                <option value="Menunggu verifikasi" {{ old('status_pembayaran_diklat', $kelPendaftaran->status_pembayaran_diklat) == 'Menunggu verifikasi' ? 'selected' : '' }}>Menunggu verifikasi</option>
                 
             </select>
         </div>

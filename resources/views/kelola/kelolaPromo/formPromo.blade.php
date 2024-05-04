@@ -4,15 +4,6 @@
         
     <form method="POST" action="/kelPromo" enctype="multipart/form-data">
         @csrf
-        @if ($errors->any())
-    <div class="alert alert-danger">
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
         <hr>
         <div class="mb-3">
             <label for="img" class="form-label">Masukkan gambar untuk ditampilkan di Banner Promo</label>
@@ -48,6 +39,12 @@
             <label for="kode" class="form-label is">Kode Promo</label>
             <input type="text" class="form-control  @error('kode') is-invalid @enderror" id="kode" name= "kode" value="{{ old('kode') }}">
             @error('kode')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        <div class="mb-3">
+            <label for="deskripsi" class="form-label is">deskripsi Promo</label>
+            <input type="text" class="form-control  @error('deskripsi') is-invalid @enderror" id="deskripsi" name= "deskripsi" value="{{ old('deskripsi') }}">
+            @error('deskripsi')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>

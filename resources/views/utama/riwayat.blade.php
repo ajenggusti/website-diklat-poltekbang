@@ -25,14 +25,18 @@
         
         <a href="/riwayat/{{ $data->id }}" class="btn btn-success">Lihat</a>
         {{-- <a href="{{ route('kelPembayaran.create', ['id' => $data->id]) }}" class="btn btn-secondary">Lakukan Pembayaran?</a> --}}
-        <a href="{{ route('kelPembayaranPendaftaran.savePendaftaran', ['id' => $data->id]) }}" class="btn btn-secondary">Pendaftaran?</a>
-        <a href="{{ route('kelPembayaranDiklat-form.createDiklat', ['id' => $data->id]) }}" class="btn btn-secondary">Diklat?</a>
+        @if ($data->status_pembayaran_daftar != "Lunas")
+            <a href="{{ route('kelPembayaranPendaftaran.savePendaftaran', ['id' => $data->id]) }}" class="btn btn-secondary">Pendaftaran?</a>
+        @endif
+        @if ($data->status_pembayaran_diklat != "Lunas")
+            <a href="{{ route('kelPembayaranDiklat-form.createDiklat', ['id' => $data->id]) }}" class="btn btn-secondary">Diklat?</a>
+        @endif
         <form action="/kelPendaftaran/{{ $data->id }}" method="POST">
             @method('DELETE')
             @csrf
             <button class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
         </form>
-        <a href="/bukti-pembayaran/{{ $data->id }}" class="btn" style="background-color: palevioletred; color: #ffffff;">Bukti Pembayaran</a>
+        <a href="/bukti-pembayaran/{{ $data->id }}" class="btn" style="background-color: palevioletred; color: #ffffff;">Transaksi Pembayaran</a>
         
         @if ($data->s_doc)
             <a href="{{ route('kelTestimoni.create', ['id' => $data->id]) }}"class="btn" style="background-color: rgb(44, 138, 192); color: #ffffff;">Sampaikan Pendapatmu</a>

@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Models\Gambar_navbar;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class UtamaController extends Controller
 {
@@ -20,6 +21,7 @@ class UtamaController extends Controller
         $jmlPendaftar = Pendaftaran::countPendaftar();
         $jmlDiklat = Diklat::countDiklat();
         $katDiklat = KatDiklat::selectAll();
+        // dd($user);
         $testimonis = Testimoni::where('tampil', 'iya')->get();
         $gbrSlide = Gambar_navbar::where('status', 'tampilkan')->get();
         $promos = Promos::where(function($query) {
@@ -42,7 +44,7 @@ class UtamaController extends Controller
             'katDiklat' => $katDiklat,
             'testimonis' => $testimonis,
             'gbrSlide' => $gbrSlide,
-            'promos'=>$promos
+            'promos'=>$promos,
 
         ]);
     }
@@ -66,12 +68,15 @@ class UtamaController extends Controller
             ->orWhereNull('id_diklat')
             ->orderByRaw('CASE WHEN id_diklat IS NULL THEN 0 ELSE 1 END, id_diklat ASC')
             ->get();
-
-
+        $user = Auth::user();
+        $dobelDiklat = Pendaftaran::where('id_user', $user->id)
+            ->where('id_diklat', $id)
+            ->exists();
         // dd($gambars);
         return view('utama.detailDiklat', [
             'detailDiklat' => $detailDiklat,
-            'gambars' => $gambars
+            'gambars' => $gambars,
+            'dobelDiklat'=>$dobelDiklat
         ]);
     }
 }

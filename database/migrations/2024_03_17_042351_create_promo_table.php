@@ -18,6 +18,7 @@ return new class extends Migration
             $table->bigInteger('potongan')->nullable();
             $table->string('kode')->unique();
             $table->string('tampil')->nullable();
+            $table->string('deskripsi')->nullable();
             $table->date('tgl_awal');
             $table->date('tgl_akhir');
             $table->integer('kuota')->default(0);

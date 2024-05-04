@@ -18,13 +18,19 @@
         </tr>
         </thead>
         <tbody>
-        @foreach ($getLevel as $data)
+        @foreach ($datas as $data)
         <tr>
             <td>{{ $loop->iteration }}</td>
-            <td>{{ $data->userLevel }}</td>
+            <td>{{ $data->level->level }}</td>  
             <td>{{ $data->name }}</td>
             <td>{{ $data->email }}</td>
-
+            {{-- <td>
+                @if ($data->id_kelurahan)
+                    {{ $data->kelurahan->kecamatan->kabupaten->provinsi->name}}
+                @else
+                    null
+                @endif
+            </td> --}}
             <td>
                 <a href="register/{{ $data->id }}/edit" class="btn btn-warning">Edit</a>
                 <form action="/register/{{ $data->id }}" method="POST">

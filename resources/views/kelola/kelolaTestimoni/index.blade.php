@@ -7,6 +7,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     @endif
+    <a href="{{ route('testimoniAdmin.create') }}" class="btn btn-primary">Tambah</a>
     <div class="table-responsive">
     <table class="table table-striped table-sm">
         <thead>
@@ -24,8 +25,18 @@
         @foreach ($datas as $data)
         <tr>
             <td>{{ $loop->iteration }}</td>
-            <td>{{ $data->pendaftaran->diklat->nama_diklat}}</td>
-            <td>{{ $data->pendaftaran->nama_depan}}</td>
+            @if ($data->id_pendaftaran)
+                <td>{{ $data->pendaftaran->diklat->nama_diklat}}</td>
+            @else
+                <td>{{ $data->diklat->nama_diklat}}</td>
+            @endif
+            {{-- ============== --}}
+            @if ($data->id_pendaftaran)
+                <td>{{ $data->pendaftaran->nama_lengkap}}</td>
+            @else
+                <td>{{ $data->nama_dummy}}</td>
+            @endif
+            
             <td>{{ $data->profesi }}</td>
             <td>{{ $data->testimoni }}</td>
             <td>{{ $data->tampil }}</td>

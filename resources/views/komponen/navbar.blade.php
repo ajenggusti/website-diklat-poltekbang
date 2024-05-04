@@ -43,6 +43,9 @@
                 </li>
               @auth
               <li class="nav-item">
+                <a class="nav-link" href="/editProfil">Profil</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" href="/riwayat">Riwayat</a>
               </li>
               @can('superAdmin')

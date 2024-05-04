@@ -52,12 +52,16 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::resource('/kelKatDiklat', kelKatDiklatController::class)->except('show')->middleware('auth');
 // route crud user
 Route::get('/indexKelolaUser', [RegisterController::class, 'tampil']);
+Route::get('/editProfil', [RegisterController::class, 'editProfil']);
+Route::get('/updateProfil/{id}', [RegisterController::class, 'updateProfil'])->name('updateProfil.update');
 Route::resource('/register', RegisterController::class)->except('show', 'create');
 // route crud promo
 Route::resource('/kelPromo', PromoController::class)->except('show');
 // route CRUD gbr LandingPage
 Route::resource('/gbrLandingPage', GbrLandingController::class)->except('show');
 // route CRUD Testimoni
+Route::get('/testimoniAdmin', [TestimoniController::class, 'testimoniAdminCreate'])->name('testimoniAdmin.create');
+Route::post('/testimoniAdmin-store', [TestimoniController::class, 'testimoniAdminStore'])->name('testimoniAdmin-store.store');
 Route::resource('/kelTestimoni', TestimoniController::class);
 // route CRUD Diklat
 Route::resource('/kelDiklat', DiklatController::class);
@@ -67,7 +71,7 @@ Route::put('/kelPendaftaran/{id}', [PendaftaranController::class, 'updateAsAdmin
 Route::resource('/kelPendaftaran', PendaftaranController::class);
 //route CRUD pembayarn
 // Route::get('/kelPembayaran/getPaymentInfo/{type}/{id}', [PembayaranController::class, 'getPaymentInfo']);
-Route::get('/kelPembayaranDiklat-store', [PembayaranController::class, 'storeDiklat'])->name('kelPembayaranDiklat-store.storeDiklat');
+Route::post('/kelPembayaranDiklat-store/{id}', [PembayaranController::class, 'storeDiklat'])->name('kelPembayaranDiklat-store/{id}.storeDiklat');
 Route::get('/kelPembayaranDiklat-form', [PembayaranController::class, 'createDiklat'])->name('kelPembayaranDiklat-form.createDiklat');
 Route::get('/kelPembayaranPendaftaran', [PembayaranController::class, 'savePendaftaran'])->name('kelPembayaranPendaftaran.savePendaftaran');
 Route::get('/kelPembayaranDiklat', [PembayaranController::class, 'saveDiklat'])->name('kelPembayaranDiklat.saveDiklat');

@@ -41,7 +41,7 @@ class PembayaranController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'jenis_pembayaran' => 'required', 
+            'jenis_pembayaran' => 'required',
         ], [
             'jenis_pembayaran.required' => 'Jenis pembayaran harus dipilih.',
         ]);
@@ -71,7 +71,7 @@ class PembayaranController extends Controller
             ),
             'customer_details' => array(
                 'first_name' => $pembayaran->pendaftaran->nama_lengkap,
-                'last_name' =>'',
+                'last_name' => '',
                 'email' => $pembayaran->pendaftaran->email,
                 'phone' => $pembayaran->pendaftaran->no_hp,
             ),
@@ -134,69 +134,58 @@ class PembayaranController extends Controller
         if ($hashed == $request->signature_key) {
             $pembayaran = Pembayaran::where('order_id', $request->order_id)->first();
             // dd($pembayaran);
-            $currentTime=Carbon::now()->format('Y-m-d H:i:s');
+            $currentTime = Carbon::now()->format('Y-m-d H:i:s');
             $paymentType = $request->payment_type;
 
-            if ($paymentType=="qris" ) {
-                $type=$request->acquirer;
-            }elseif($paymentType=="bank_transfer"){
-                $bank= $request->va_numbers[0]['bank'];
-                $type = $request->payment_type." ".$bank;
-            }else{
-                $type = $request->payment_type." ".$request->bank;
+            if ($paymentType == "qris") {
+                $type = $request->acquirer;
+            } elseif ($paymentType == "bank_transfer") {
+                $bank = $request->va_numbers[0]['bank'];
+                $type = $request->payment_type . " " . $bank;
+            } else {
+                $type = $request->payment_type . " " . $request->bank;
             }
             // dd($type);
             $pembayaran->update([
                 'status' => "Menunggu pembayaran",
-                'metode_pembayaran'=>$type
+                'metode_pembayaran' => $type
             ]);
 
-            if ($request->fraud_status=="accept") {
-                if ($currentTime<=$request->expiry_time) {
-                    if ($pembayaran->jenis_pembayaran == "diklat" && $request->transaction_status=="settlement" || $request->transaction_status=="capture" ) {
+            if ($request->fraud_status == "accept") {
+                if ($currentTime <= $request->expiry_time) {
+                    if ($pembayaran->jenis_pembayaran == "diklat" && $request->transaction_status == "settlement" || $request->transaction_status == "capture") {
                         $pendaftaran = Pendaftaran::find($pembayaran->id_pendaftaran);
                         $pendaftaran->update([
                             'status_pembayaran_diklat' => "Lunas",
-                            'updated_at_pembayaran_diklat'=>$currentTime,
-                            'jenis_pembayaran_diklat'=>$type,
+                            'updated_at_pembayaran_diklat' => $currentTime,
+                            'jenis_pembayaran_diklat' => $type,
                         ]);
                         $pembayaran->update([
                             'status' => "Lunas",
-                            'metode_pembayaran'=>$type
+                            'metode_pembayaran' => $type
                         ]);
-    
-                    } elseif ($pembayaran->jenis_pembayaran == "pendaftaran" && $request->transaction_status=="settlement" || $request->transaction_status=="capture") {
+                    } elseif ($pembayaran->jenis_pembayaran == "pendaftaran" && $request->transaction_status == "settlement" || $request->transaction_status == "capture") {
                         $pendaftaran = Pendaftaran::find($pembayaran->id_pendaftaran);
                         $pendaftaran->update([
                             'status_pembayaran_daftar' => "Lunas",
-                            'updated_at_pembayaran_daftar'=>$currentTime,
-                            'jenis_pembayaran_daftar'=>$type,
+                            'updated_at_pembayaran_daftar' => $currentTime,
+                            'jenis_pembayaran_daftar' => $type,
                         ]);
                         $pembayaran->update([
                             'status' => "Lunas",
-                            'metode_pembayaran'=>$type
+                            'metode_pembayaran' => $type
                         ]);
                     }
-                }else{
-                    if ($pembayaran->jenis_pembayaran == "diklat" ) {
-                        // $pendaftaran = Pendaftaran::find($pembayaran->id_pendaftaran);
-                        // $pendaftaran->update([
-                        //     'status_pembayaran_diklat' => "Kadaluarsa",
-                        //     'updated_at_pembayaran_diklat'=>$currentTime,
-                        // ]);
+                } else {
+                    if ($pembayaran->jenis_pembayaran == "diklat") {
                         $pembayaran->update([
                             'status' => "kadaluarsa",
-                            'metode_pembayaran'=>$type
+                            'metode_pembayaran' => $type
                         ]);
                     } elseif ($pembayaran->jenis_pembayaran == "pendaftaran") {
-                        // $pendaftaran = Pendaftaran::find($pembayaran->id_pendaftaran);
-                        // $pendaftaran->update([
-                        //     'status_pembayaran_daftar' => "Kadaluarsa",
-                        //     'updated_at_pembayaran_daftar'=>$currentTime,
-                        // ]);
                         $pembayaran->update([
                             'status' => "kadaluarsa",
-                            'metode_pembayaran'=>$type
+                            'metode_pembayaran' => $type
                         ]);
                     } else {
                         $pendaftaran = Pendaftaran::find($pembayaran->id_pendaftaran);
@@ -206,8 +195,8 @@ class PembayaranController extends Controller
         }
     }
 
-// untuk pembayaran pendaftaran ----------------------------------------------------------------------
-    public function savePendaftaran( Request $request )
+    // untuk pembayaran pendaftaran ----------------------------------------------------------------------
+    public function savePendaftaran(Request $request)
     {
         // dd($request);
         $id = $request->query('id');
@@ -267,7 +256,7 @@ class PembayaranController extends Controller
             'pendaftaran' => $pendaftaran
         ]);
     }
-    public function saveDiklat( Request $request )
+    public function saveDiklat(Request $request)
     {
         $id = $request->query('id');
         // dd($id);
@@ -281,10 +270,6 @@ class PembayaranController extends Controller
             'metode_pembayaran' => "online",
             'created_at' => now(),
         ]);
-        // dd($pembayaran);
-        // $pembayaran->id = $idGenerate;
-        // $dataBaru = $pembayaran->fresh();
-        // Set your Merchant Server Key
         \Midtrans\Config::$serverKey = config('midtrans.server_key');
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
         \Midtrans\Config::$isProduction = config('midtrans.is_production');
@@ -312,7 +297,61 @@ class PembayaranController extends Controller
         // ->with(['snapToken' => $snapToken, 'pembayaran' => $pembayaran]);
         return view('kelola.kelolaPembayaran.form2', ['snapToken' => $snapToken, 'pembayaran' => $pembayaran]);
     }
-    public function storeDiklat(){
-        return view ('utama.riwayat');
+    public function storeDiklat(Request $request, $id)
+    {
+        $request->validate([
+            'bukti_pembayaran' => 'required|image|max:2048',
+        ], [
+            'required' => 'Kamu belum memasukkan bukti pembayaran.',
+            'image' => 'Data yang dimasukkan harus berupa gambar.',
+            'max' => 'Ukuran gambar tidak boleh melebihi :max kilobytes.',
+        ]);
+    
+        // Simpan data
+        $pendaftaran = Pendaftaran::find($id);
+        $pembayaran = new Pembayaran();
+ 
+        $pembayaran_update = Pembayaran::where('id_pendaftaran', $id)
+        ->where('jenis_pembayaran', 'diklat')
+        ->where('metode_pembayaran', 'offline')
+        ->first();
+        // dd($pembayaran_update);
+
+        if ($pendaftaran->bukti_pembayaran) {
+            if ($request->hasFile('bukti_pembayaran')) {
+                $image = $request->file('bukti_pembayaran')->store('LanPage');
+                Storage::delete($pendaftaran->bukti_pembayaran);
+                $pendaftaran->update([
+                    'bukti_pembayaran' => $image,
+                    'status_pembayaran_diklat' => "Menunggu verifikasi"
+                ]);
+                $pembayaran_update->update([
+                    'updated_at'=> now()
+                ]);
+            }
+            
+        }else{
+            if ($request->hasFile('bukti_pembayaran')) {
+                $image = $request->file('bukti_pembayaran')->store('LanPage');
+                $pendaftaran->update([
+                    'bukti_pembayaran' => $image,
+                    'status_pembayaran_diklat' => "Menunggu verifikasi"
+                ]);
+            }
+            $pembayaran->create([
+                'order_id' => 'ORD_' . rand(100000, 999999), // Menggunakan UUID untuk nilai id
+                'id_pendaftaran'=>$id,
+                'jenis_pembayaran' => "diklat",
+                'total_harga' => $pendaftaran->harga_diklat,
+                'metode_pembayaran' => "offline",
+                'status' => "Menunggu verifikasi",
+                'created_at' => now(),
+            ]);
+        }
+        
+        return redirect('/riwayat')->with('success', 'Terimakasih! Pembayaranmu akan segera diperiksa oleh admin:)');
     }
+    
+    
 }
+
