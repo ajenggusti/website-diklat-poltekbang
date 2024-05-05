@@ -87,7 +87,7 @@ class PromoController extends Controller
                 'kuota' => $kuota_angka,
                 'pakai_kuota' => $kuota,
                 'tampil' => $request->tampil,
-                'deskripsi'=>$request->deskripsi
+                'deskripsi' => $request->deskripsi
             ]);
 
             return redirect('/kelPromo')->with('success', 'Data berhasil ditambahkan!');
@@ -101,10 +101,12 @@ class PromoController extends Controller
     /**
      * Display the specified resource.
      */
-    // public function show(string $id)
-    // {
-    //     //
-    // }
+    public function show(Promos $kelPromo)
+    {
+        return view('kelola.kelolaPromo.show', [
+            'kelPromo'=>$kelPromo
+        ]);
+    }
 
     /**
      * Show the form for editing the specified resource.

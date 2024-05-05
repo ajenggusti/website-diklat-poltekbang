@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_level');
+            $table->unsignedBigInteger('id_provinsi')->nullable();
+            $table->unsignedBigInteger('id_kabupaten')->nullable();
+            $table->unsignedBigInteger('id_kecamatan')->nullable();
             $table->unsignedBigInteger('id_kelurahan')->nullable();
             $table->string('name');
             $table->string('email')->unique();
@@ -34,6 +37,9 @@ return new class extends Migration
             $table->timestamps();
             $table->foreign('id_level')->references('id')->on('level')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('id_kelurahan')->references('id')->on('kelurahans')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('id_kabupaten')->references('id')->on('kabupatens')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('id_kecamatan')->references('id')->on('kecamatans')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('id_provinsi')->references('id')->on('provinsis')->cascadeOnUpdate()->cascadeOnDelete();
 
         });
     }

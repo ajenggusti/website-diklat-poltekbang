@@ -32,9 +32,9 @@ hai {{ $user->name }}, Lengkapi datamu!
         </div>
         <br>
         <div class="mb-3">
-            <label for="nik" class="form-label is">NIK</label>
-            <input type="text" class="form-control  @error('nik') is-invalid @enderror" id="nik" name= "nik" value="{{ old('nik') ?: $user->nik}}">
-            @error('nik')
+            <label for="no_paspor" class="form-label is">Nomor Paspor</label>
+            <input type="text" class="form-control  @error('no_paspor') is-invalid @enderror" id="no_paspor" name= "no_paspor" value="{{ old('no_paspor') ?: $user->no_paspor}}">
+            @error('no_paspor')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
@@ -50,14 +50,14 @@ hai {{ $user->name }}, Lengkapi datamu!
         @enderror
         <br><br>
         
-        {{-- <select name="id_kelurahan" class="form-select" aria-label="Default select example">
-            <option selected disabled>Kelurahan</option>
-            @foreach ($kelurahans as $kelurahan)
-                <option value="{{ $user->id_kelurahan }}" {{ old('id_kelurahan',$kelurahan->id) == $kelurahan->id ? 'selected' : '' }}>
-                    {{ $kelurahan->name }}
+        <select name="id_provinsi" class="form-select" aria-label="Default select example">
+            <option selected disabled>Provinsi</option>
+            @foreach ($provinsis as $provinsi)
+                <option value="{{ $provinsi->id }}" {{ old('id_provinsi',$provinsi->id) == $provinsi->id ? 'selected' : '' }}>
+                    {{ $provinsi->name }}
                 </option>
             @endforeach
-        </select> --}}
+        </select>
 
         <button type="submit" class="btn btn-primary">Kirim</button>
         

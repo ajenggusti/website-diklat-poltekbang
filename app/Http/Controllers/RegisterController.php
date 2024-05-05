@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kabupaten;
+use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\User;
 use App\Models\Level;
@@ -114,10 +116,18 @@ class RegisterController extends Controller
     {
         $user = Auth::user();
         $kelurahans=Kelurahan::get();
+        $kabupatens=Kabupaten::get();
+        $provinsis=Provinsi::get();
+        $kecamatans=Kecamatan::get();
+
         // dd($user);
         return view('utama.editProfil', [
             'user'=>$user,
-            'kelurahans'=>$kelurahans
+            'kelurahans'=>$kelurahans,
+            'kabupatens'=>$kabupatens,
+            'kecamatans'=>$kecamatans,
+            'provinsis'=>$provinsis,
+
         ]);
     }
     // public function updateProfil(){

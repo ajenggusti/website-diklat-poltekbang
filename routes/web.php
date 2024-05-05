@@ -56,7 +56,7 @@ Route::get('/editProfil', [RegisterController::class, 'editProfil']);
 Route::get('/updateProfil/{id}', [RegisterController::class, 'updateProfil'])->name('updateProfil.update');
 Route::resource('/register', RegisterController::class)->except('show', 'create');
 // route crud promo
-Route::resource('/kelPromo', PromoController::class)->except('show');
+Route::resource('/kelPromo', PromoController::class);
 // route CRUD gbr LandingPage
 Route::resource('/gbrLandingPage', GbrLandingController::class)->except('show');
 // route CRUD Testimoni

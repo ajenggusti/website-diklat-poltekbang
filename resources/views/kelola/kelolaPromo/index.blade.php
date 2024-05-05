@@ -41,6 +41,7 @@
                     <td>{{ $data->kuota }}</td>
                     <td>{{ $data->tampil }}</td>
                     <td>
+                        <a href="/kelPromo/{{ $data->id }}" class="btn btn-success">Lihat</a>
                         <a href="kelPromo/{{ $data->id }}/edit" class="btn btn-warning">Edit</a>
                         <form action="kelPromo/{{ $data->id }}" method="POST">
                             @method('DELETE')
