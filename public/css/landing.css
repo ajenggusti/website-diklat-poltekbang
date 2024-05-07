@@ -261,8 +261,11 @@
     /* height: 100%; */
     justify-content: space-between; 
 }
-.card-content p {
+.card-content h3 {
     text-align: center;
+}
+.card-content p {
+    /* text-align: center; */
     margin-bottom: 10px;
 }
 .card-content span {
@@ -530,6 +533,10 @@
     /* border: 1px solid #FF6900; */
 }
 
+.content-riwayat h1 {
+    text-align: center;
+}
+
 .card-riwayat {
     margin-right: 260px;
     transition: 0.3s;
@@ -543,38 +550,65 @@
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-.col {
-    text-align: center;
+.col .danger {
     
+    padding: 7px;
+    border: 1px solid #FF6900;
+    background-color: #ffa15e; 
 }
+.col .danger:hover {
+    background-color: #fc7e24; 
+}
+
+
 .col span {
     padding-left: 10px;
+}
+
+.row a {
+    padding: 5px;
 }
 
 
 
 /* STYLE HAL DETAIL RIWAYAT */
+ 
+  .edit-2column {
+    
+  }
 
 .content-detail{
     margin-left: 10%;
     margin-right: 10%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
     /* border: 1px solid #FF6900; */
 }
 
-.content-detail h1 {
-    font-size: 48px;
+.content-detail h2 {
+    /* font-size: 48px; */
     padding-top: 20px;
-    text-align: center;
+    /* text-align: center; */
 }
 
 .card-detail {
-    margin-left: 215px;
-    /* box-shadow: 0 4px 8px 0 #FF6900;; */
+    /* margin-left: 215px;
     transition: 0.3s;
     width: 60%;
     padding: 10px 0 50px 100px;
     border: 1px solid #FF6900;
-    border-radius: 30px;
+    border-radius: 30px; */
+
+    /* NEW */
+    background-color: rgb(255, 255, 255);
+    margin: 0 auto;
+    /* max-width: 600px; */
+    line-height: 1.8;
+    padding: 15px 35px 15px 35px;
+    border: 1px solid #FF6900;
+    border-radius: 10px;
+    
 }
 
 
@@ -583,7 +617,17 @@
 }
 
 .card-detail:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.detail-left {
+    width: 46%;
+    float: left;
+  }
+  
+.detail-right {
+    width: 46%;
+    float: right;
 }
 
 .bi-printer {

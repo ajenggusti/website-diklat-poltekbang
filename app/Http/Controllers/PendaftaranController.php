@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Diklat;
 use App\Models\Promos;
+use App\Models\Pembayaran;
 use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -47,7 +48,6 @@ class PendaftaranController extends Controller
      */
     public function store(Request $request)
     {
-        // Validasi input
         // dd($request);
         $request->validate([
             'nama_lengkap' => 'required|string|max:255',
@@ -67,7 +67,6 @@ class PendaftaranController extends Controller
             'no_hp.required' => 'Kolom nomor HP wajib diisi.',
         ]);
 
-        // Ambil data diklat berdasarkan ID
         $diklat = Diklat::findOrFail($request->input('diklat'));
         $harga = $diklat->harga;
         $idPromo = null;
@@ -99,12 +98,10 @@ class PendaftaranController extends Controller
                 ]);
             }
         }
-        // Ambil input tanggal dari request
         $tanggal_lahir_input = $request->input('tgl_awal');
         $tanggal_lahir_carbon = Carbon::createFromFormat('d-m-Y', $tanggal_lahir_input);
         $tanggal_lahir_formatted = $tanggal_lahir_carbon->format('Y-m-d');
 
-        // Proses penyimpanan data pendaftaran
         $pendaftaran = new Pendaftaran();
         $pendaftaran->id_diklat = $request->input('diklat');
         $pendaftaran->id_user = Auth::id();
@@ -158,7 +155,6 @@ class PendaftaranController extends Controller
     public function update(Request $request, Pendaftaran $kelPendaftaran)
     {
         // dd($request);
-        // Validasi input
         $request->validate([
             'nama_lengkap' => 'required|string|max:255',
             'tempat_lahir' => 'required|string|max:255',
@@ -177,16 +173,10 @@ class PendaftaranController extends Controller
             'no_hp.required' => 'Kolom nomor HP wajib diisi.',
         ]);
 
-        // Ambil input tanggal dari request
         $tanggal_lahir_input = $request->input('tgl_awal');
-
-        // Ubah format tanggal menggunakan Carbon
         $tanggal_lahir_carbon = Carbon::createFromFormat('d-m-Y', $tanggal_lahir_input);
-
-        // Format ulang tanggal ke "yyyy-mm-dd"
         $tanggal_lahir_formatted = $tanggal_lahir_carbon->format('Y-m-d');
 
-        // Update data pendaftaran
         $kelPendaftaran->email = $request->input('email');
         $kelPendaftaran->nama_lengkap = $request->input('nama_lengkap');
         $kelPendaftaran->tempat_lahir = $request->input('tempat_lahir');
@@ -196,7 +186,6 @@ class PendaftaranController extends Controller
         $kelPendaftaran->no_hp = $request->input('no_hp');
         $kelPendaftaran->update($request->all());
 
-        // Redirect dengan pesan sukses jika berhasil
         return redirect('/riwayat')->with('success', 'Pendaftaran berhasil diperbarui!');
     }
 
@@ -225,7 +214,7 @@ class PendaftaranController extends Controller
     }
     public function updateAsAdmin($id , Request $request) 
     {
-        // dd($request);
+        // dd($id);
         $messages = [
             's_link.url' => 'Kolom link harus berupa URL yang valid.',
             's_gambar.image' => 'Kolom gambar harus berupa file gambar.',
@@ -242,8 +231,6 @@ class PendaftaranController extends Controller
         
     
         $oldData = Pendaftaran::find($id);
-
-        // Hapus file lama jika ada dan metode yang dipilih adalah link
         if ($request->input('metode_sertif') == 'link') {
             if ($oldData->s_gambar) {
                 Storage::delete($oldData->s_gambar);
@@ -254,7 +241,6 @@ class PendaftaranController extends Controller
                 $oldData->s_doc = null;
             }
         }
-        // Hapus file lama jika ada dan metode yang dipilih adalah gambar
         elseif ($request->input('metode_sertif') == 'gambar') {
             if ($oldData->s_link) {
                 $oldData->s_link = null;
@@ -268,18 +254,15 @@ class PendaftaranController extends Controller
                 $oldData->s_gambar = null;
             }
         }
-        // Hapus file lama jika ada dan metode yang dipilih adalah dokumen
         elseif ($request->input('metode_sertif') == 'dokumen') {
             if ($oldData->s_gambar) {
                 Storage::delete($oldData->s_gambar);
                 $oldData->s_gambar = null;
             }
             if ($oldData->s_link) {
-                // Hapus link jika ada
                 $oldData->s_link = null;
             }
             if ($oldData->s_doc) {
-                // Hapus dokumen lama jika ada
                 Storage::delete($oldData->s_doc);
                 $oldData->s_doc = null;
             }
@@ -308,8 +291,11 @@ class PendaftaranController extends Controller
             }
             $doc = $request->file('s_doc')->store('LanPage');
         }
-    
-        // Lakukan pembaruan data
+        $pembayaran_update = Pembayaran::where('id_pendaftaran', $id)
+        ->where('jenis_pembayaran', 'diklat')
+        ->where('metode_pembayaran', 'offline')
+        ->first();
+        
         $oldData->update([
             's_gambar' => $gambar ?: $oldData->s_gambar,
             's_link' => $request->input('metode_sertif') == 'link' ? $request->s_link : null,
@@ -317,9 +303,27 @@ class PendaftaranController extends Controller
             'metode_sertif' => $request->metode_sertif,
             'potongan' => $request->potongan ? preg_replace("/[^0-9]/", "", $request->potongan) : null,
             'harga_diklat' => preg_replace("/[^0-9]/", "", $request->total_harga),
-            'status_pembayaran_diklat'=>$request->status_pembayaran_diklat
-
+            'status_pembayaran_diklat' => $request->status_pembayaran_diklat
         ]);
+        if ($pembayaran_update !== null) {
+            if ($request->status_pembayaran_diklat !== $pembayaran_update->status) {
+                $pembayaran_update->update([
+                    'updated_at' => now(),
+                    'status' => $request->status_pembayaran_diklat
+                ]);
+            }
+        }else{
+            $oldData->update([
+                's_gambar' => $gambar ?: $oldData->s_gambar,
+                's_link' => $request->input('metode_sertif') == 'link' ? $request->s_link : null,
+                's_doc' => $doc ?: $oldData->s_doc,
+                'metode_sertif' => $request->metode_sertif,
+                'potongan' => $request->potongan ? preg_replace("/[^0-9]/", "", $request->potongan) : null,
+                'harga_diklat' => preg_replace("/[^0-9]/", "", $request->total_harga),
+                'status_pembayaran_diklat' => $request->status_pembayaran_diklat
+            ]);
+        }
+    
         return redirect('/kelPendaftaran')->with('success', 'Data berhasil diperbarui!');
     }
     
