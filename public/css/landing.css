@@ -299,8 +299,7 @@
 
 
 /* Style untuk testimoni */
-/* Style untuk testimoni */
-.slide-testimoni {
+/* .slide-testimoni {
     position: relative;
     border: 1px solid #FF6900;
     background: #fffcf9;
@@ -322,28 +321,11 @@
 
 .author {color: cornflowerblue;}
 
-
-
-/* CSS untuk titik-titik */
 .dots-container {
     text-align: right;
     margin-top: 20px;
 }
 
-/* .dot {
-    cursor: pointer;
-    height: 15px;
-    width: 15px;
-    margin: 0 5px;
-    background-color: #bbb;
-    border-radius: 50%;
-    display: inline-block;
-    transition: background-color 0.3s ease;
-} */
-
-/* .active-dot {
-    background-color: #888;
-} */
 .sblm,
 .ssdh {
     cursor: pointer;
@@ -369,12 +351,12 @@
 
 .ssdh {
     right: 0;
-}
+} */
 
 
 
 /* NEW */
-/* .author span {
+.author span {
     font-style: italic;
 }
 
@@ -441,7 +423,7 @@
 
 .ssdh {
     right: 0;
-} */
+}
 
 
 /* END NEW */
