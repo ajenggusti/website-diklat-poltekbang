@@ -12,7 +12,6 @@ use Illuminate\Http\Request;
 use App\Models\Gambar_navbar;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 
 class UtamaController extends Controller
 {
@@ -21,7 +20,6 @@ class UtamaController extends Controller
         $jmlPendaftar = Pendaftaran::countPendaftar();
         $jmlDiklat = Diklat::countDiklat();
         $katDiklat = KatDiklat::selectAll();
-        // dd($user);
         $testimonis = Testimoni::where('tampil', 'iya')->get();
         $countTestimoni=Testimoni::where('tampil', 'iya')->get()->count();
         // dd($countTestimoni);
@@ -66,11 +64,11 @@ class UtamaController extends Controller
     }
     public function allDiklat($kategori)
     {
-        
-        // dd($kategori);
-        $diklat = Diklat::findOrFail($kategori);
+        $diklat = Diklat::with('kategori')
+            ->where('id_kategori_diklat', $kategori)
+            ->get();
         $allDiklat=Diklat::get();
-        dd($diklat->kategori_diklat);
+
         return view('utama.macamDiklat', [
             'diklat' => $diklat,
             'allDiklat'=>$allDiklat
@@ -84,15 +82,12 @@ class UtamaController extends Controller
             ->orWhereNull('id_diklat')
             ->orderByRaw('CASE WHEN id_diklat IS NULL THEN 0 ELSE 1 END, id_diklat ASC')
             ->get();
-        $user = Auth::user();
-        $dobelDiklat = Pendaftaran::where('id_user', $user->id)
-            ->where('id_diklat', $id)
-            ->exists();
+
+
         // dd($gambars);
         return view('utama.detailDiklat', [
             'detailDiklat' => $detailDiklat,
-            'gambars' => $gambars,
-            'dobelDiklat'=>$dobelDiklat
+            'gambars' => $gambars
         ]);
     }
 }
