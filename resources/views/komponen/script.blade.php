@@ -45,6 +45,7 @@
         var hasil = ribuan.join('.').split('').reverse().join('');
         return 'Rp ' + hasil;
     }
+
     // Setelah mendefinisikan fungsi formatRupiah, Anda dapat menggunakan input yang menggunakan fungsi ini
     $(document).ready(function() {
         $('#harga').on('input', function() {
