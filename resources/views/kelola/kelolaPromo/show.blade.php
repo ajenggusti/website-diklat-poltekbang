@@ -43,7 +43,7 @@
                 @endif
                 <tr>
                     <th>Gambar</th>
-                    <td><img src="{{ asset('storage/' . $kelPromo->gambar) }}" alt="Nama Gambar"></td>
+                    <td><img src="{{ asset('storage/' . $kelPromo->gambar) }}" alt="Nama Gambar" width="300px;"></td>
                 </tr>
                 <tr>
                     <th>potongan </th>

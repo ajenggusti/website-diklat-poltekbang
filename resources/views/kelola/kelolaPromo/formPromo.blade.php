@@ -63,6 +63,14 @@
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
+
+                <div class="mb-3">
+                    <label for="deskripsi" class="form-label is"> Deskripsi <span style="font-size: 10px; color:red;">*contoh: Promo Hari Kartini*</span></label>
+                    <input type="text" class="form-control  @error('deskripsi') is-invalid @enderror" id="deskripsi" name= "deskripsi" value="{{ old('deskripsi') }}">
+                    @error('deskripsi')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
                 
                 <div class="mb-3">
                     <label for="kode" class="form-label is">Kode Promo</label>

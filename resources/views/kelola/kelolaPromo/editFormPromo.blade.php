@@ -68,7 +68,7 @@
 
             <div class="form-column-right">
                 <div class="mb-3">
-                    <label for="deskripsi" class="form-label">Deskripsi</label>
+                    <label for="deskripsi" class="form-label">Deskripsi <span style="font-size: 10px; color:red;">*contoh: Promo Hari Kartini*</span></label>
                     <input type="text" class="form-control @error('deskripsi') is-invalid @enderror" id="deskripsi" name="deskripsi" value="{{ old('deskripsi') ?? $kelPromo->deskripsi }}">
                     @error('deskripsi')
                         <div class="invalid-feedback">{{ $message }}</div>

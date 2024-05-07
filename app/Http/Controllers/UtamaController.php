@@ -66,11 +66,11 @@ class UtamaController extends Controller
     }
     public function allDiklat($kategori)
     {
-        $diklat = Diklat::with('kategori')
-            ->where('id_kategori_diklat', $kategori)
-            ->get();
+        
+        // dd($kategori);
+        $diklat = Diklat::findOrFail($kategori);
         $allDiklat=Diklat::get();
-
+        dd($diklat->kategori_diklat);
         return view('utama.macamDiklat', [
             'diklat' => $diklat,
             'allDiklat'=>$allDiklat

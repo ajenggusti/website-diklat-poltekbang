@@ -21,7 +21,7 @@ class Diklat extends Model
 
     public function kategori()
     {
-        return $this->belongsTo(KatDiklat::class, 'id_kategori_diklat', 'id');
+        return $this->belongsTo(KatDiklat::class, 'id_kategori_diklat');
     }
     public function promos()
     {
