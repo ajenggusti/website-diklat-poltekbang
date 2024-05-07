@@ -85,6 +85,22 @@ function currentSlide(n) {
 }
 
 
+
+
+
+
+// NEW
+
+
+
+
+
+
+
+
+
+
+
 // Script untuk go to top
 document.addEventListener("DOMContentLoaded", function() {
     let mybutton = document.getElementById("myBtn");

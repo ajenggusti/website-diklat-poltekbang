@@ -15,61 +15,74 @@
             body {
                 font-family: 'Poppins', sans-serif;
             }
-
+            .container-fluid {
+                /* margin: 0;
+                padding: 0; */
+                /* background-color: #d98686; */
+            }
         </style>
     </head>
     <body>
-        <div class="content-body2">
-            <br>
-            <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a><br>
-            @foreach ($detailDiklat as $detail) <br> <br>
-            <h1>{{ $detail->nama_diklat }}</h1>
+        <div class="container-fluid">
             
-            {{-- <img src="{{ asset('storage/' . $gambar->gambar_navbar) }}" alt="Gambar Diklat" style="width: 10%;"> --}}
+            <div class="content-body2">
+                <br>
+                <nav aria-label="breadcrumb" style="background-color: #FFFFFF !important;">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="#">Home</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">Jenis Diklat</li>
+                    </ol>
+                  </nav>
+                {{-- <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a><br> --}}
+                @foreach ($detailDiklat as $detail) <br> <br>
+                <h1>{{ $detail->nama_diklat }}</h1>
+                
+                {{-- <img src="{{ asset('storage/' . $gambar->gambar_navbar) }}" alt="Gambar Diklat" style="width: 10%;"> --}}
 
-            <img src="{{ asset('img/plane3.jpg') }}" alt="Gambar Diklat" class="img-detail">
-            <div class="card-container3">
-                <div class="card-content3">
-                    <p>
-                        <span>Nama Diklat : </span><br>
-                        {{ $detail->nama_diklat }}
-                    </p>
-                    
-                    <p>
-                        <span>Detail Harga :</span><br>
-                        {{ $detail->harga }}</p>
-                    
-                    <p>
-                        <span>Jumlah Pendaftar Saat Ini :</span><br>
-                        {{ $detail->jumlah_pendaftar }}
-                    </p>
-                    
-                    <p>
-                        <span>Status Penerimaan PendaftaraN :</span><br>
-                        {{ $detail->status }}
-                    </p>
-                    
-                    <p>
-                        <span>Deskripsi :</span><br>
-                        {!! $detail->deskripsi !!}
-                    </p>
-                </div>
-            </div> 
-            @endforeach
-   
-            @auth
-                <div class="d-grid gap-2 col-6 btn-container">
-                    <a href="{{ route('kelPendaftaran.create', ['id' => $detail->id]) }}" class="btn btn-primary" >Daftarkan dirimu sekarang!</a>
-                </div>
-            @endauth
-        
-            @guest
-                <div class="d-grid gap-2 col-6 btn-container">
-                    <button class="btn btn-primary" type="button" onclick="window.location.href = '/login';">Login untuk mendaftar!</button>
-                </div>
-            @endguest
-            {{-- </div> --}}
+                <img src="{{ asset('img/diklat.jpeg') }}" alt="Gambar Diklat" class="img-detail">
+                <div class="card-container3">
+                    <div class="card-content3">
+                        <p>
+                            <span>Nama Diklat : </span><br>
+                            {{ $detail->nama_diklat }}
+                        </p>
+                        
+                        <p>
+                            <span>Detail Harga :</span><br>
+                            {{ $detail->harga }}</p>
+                        
+                        <p>
+                            <span>Jumlah Pendaftar Saat Ini :</span><br>
+                            {{ $detail->jumlah_pendaftar }}
+                        </p>
+                        
+                        <p>
+                            <span>Status Penerimaan PendaftaraN :</span><br>
+                            {{ $detail->status }}
+                        </p>
+                        
+                        <p>
+                            <span>Deskripsi :</span><br>
+                            {!! $detail->deskripsi !!}
+                        </p>
+                    </div>
+                </div> 
+                @endforeach
+    
+                @auth
+                    <div class="d-grid gap-2 col-6 btn-container">
+                        <a href="{{ route('kelPendaftaran.create', ['id' => $detail->id]) }}" class="btn btn-primary" >Daftarkan dirimu sekarang!</a>
+                    </div>
+                @endauth
             
+                @guest
+                    <div class="d-grid gap-2 col-6 btn-container">
+                        <button class="btn btn-primary" type="button" onclick="window.location.href = '/login';" style="justify-content: center;">Login untuk mendaftar!</button>
+                    </div>
+                @endguest
+                {{-- </div> --}}
+                
+            </div>
         </div>
     </body>
 </html>

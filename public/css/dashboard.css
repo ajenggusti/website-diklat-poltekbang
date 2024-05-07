@@ -15,7 +15,6 @@ body {
 }
 
 
-
 /*
  * Sidebar
  */
@@ -23,11 +22,9 @@ body {
 
 #sidebarMenu {
   background-color: #053666;
-
-  /* new */
-  flex-grow: 1;
+  /* flex-grow: 1;
   color: #fff;
-  transition: all 0.3s ease;
+  transition: all 0.3s ease; */
   position: fixed;
 }
 
@@ -40,14 +37,14 @@ body {
 }
 
 .nav-link.active {
-  color: #e09539; /* Warna saat halaman aktif */
+  color: #e09539;
 }
 
-@media (max-width: 767.98px) {
+/* @media (max-width: 767.98px) {
   .sidebar {
     top: 5rem;
   }
-}
+} */
 
 #sidebar-sticky {
   position: relative;
@@ -57,6 +54,33 @@ body {
   overflow-y: auto; 
   height: 100vh;
 }
+
+
+
+/* NEW */
+/* Header */
+header {
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+
+  /* NEW */
+  overflow-x: hidden;
+  overflow-y: auto; 
+}
+
+.navbar-toggler {
+  display: none;
+}
+
+@media (max-width: 767.98px) {
+  .navbar-toggler {
+    display: block;
+  }
+}
+/* END NEW */
+
 
 
 /*
@@ -71,10 +95,10 @@ body {
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
 }
 
-.navbar .navbar-toggler {
+/* .navbar .navbar-toggler {
   top: .25rem;
   right: 1rem;
-}
+} */
 
 .navbar .form-control {
   padding: .75rem 1rem;
@@ -99,7 +123,7 @@ body {
 
 /* Dashboard Super Admin */
 body {
-  background-color: #FFC784;
+  background-color: #ebe9e9;
 }
 
 .container-admin {
@@ -112,6 +136,7 @@ body {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  /* background-color: #ffffff; */
   }
 
 
@@ -134,12 +159,12 @@ body {
   top: 30px;
   bottom: 30px;
   width: 2px;
-  background-color: #ffffff;
+  background-color: #a5a5a5;
   left: calc(75% - 1px);
 }
 
 .dashItemContent {
-  font-size: 18px;
+  font-size: 15px;
   flex: 1;
   padding: 5px 60px 5px 15px;
 }

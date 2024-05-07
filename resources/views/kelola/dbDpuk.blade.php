@@ -19,8 +19,8 @@
 <body>
     <div class="container-admin">
         <div class="dashAdmin">
-            <div class="dashItem" style="background-color: #BC4F00;">
-                <div class="dashItemContent">Jumlah Seluruh Pendaftar Diklat : </div>
+            <div class="dashItem" style="background-color: #f1f3ff; border: 3px solid #BC4F00;">
+                <div class="dashItemContent">Total Pendaftar Diklat</div>
                 <div class="dashItemNumber">{{ $jumlahPendaftar }}</div>
             </div>
 
@@ -33,12 +33,12 @@
                         
                     ];
 
-                    $bgColor = $diklatColors[$diklatCount->id] ?? '#FFFFFF'; // Default putih
+                    $bgColor = $diklatColors[$diklatCount->id] ?? '#84A6FF'; // Default putih
 
                 @endphp
-                <div class="dashItem" style="background-color: {{ $bgColor }};">
+                <div class="dashItem" style="background-color: #f1f3ff; border: 3px solid {{ $bgColor }};">
                     <div class="dashItemContent">
-                        <p>Jumlah pendaftar diklat {{ $diklatCount->nama_diklat }}</p> <!-- Tulisan di sisi kiri -->
+                        <p>Total Pendaftar Diklat {{ $diklatCount->nama_diklat }}</p> <!-- Tulisan di sisi kiri -->
                     </div>
                     <div class="dashItemNumber">
                         {{ $diklatCount->total_pendaftar }} <!-- Angka di sisi kanan -->

@@ -22,14 +22,6 @@
 }
 
 
-.topnav-left {
-    margin-right: 700px;
-}
-
-.topnav-right {
-    margin-right: 50px;
-}
-
 .button {
     background-color: #FF6900;
     border: none;
@@ -37,7 +29,6 @@
     padding: 4px 8px;
     text-align: center;
     text-decoration: none;
-    /* display: inline-block; */
     margin: 4px 2px;
     transition-duration: 0.4s;
     cursor: pointer;
@@ -64,6 +55,20 @@
     background-color: #FFC784;
     color: #ffffff;
   }
+
+  .topnav-right {
+    margin-right: 20px;
+}
+
+
+
+.nav-item a {
+    color: #FF6900;
+}
+.nav-item a:hover {
+    color: #878889;
+}
+
 
 
 
@@ -135,7 +140,7 @@
     list-style: none;
     float: left;
 }
-.nav-item a {
+.nav-footer a {
     color: rgb(255, 255, 255);
 }
 

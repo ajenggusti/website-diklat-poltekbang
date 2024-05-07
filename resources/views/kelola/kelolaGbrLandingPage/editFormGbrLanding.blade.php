@@ -1,34 +1,39 @@
 @extends('layout.mainAdmin')
 @section('container')
-<html>
-    <head>
-        <!-- Custom styles for this template -->
-        <link href="/css/form.css" rel="stylesheet">
-        {{-- Boostrap Icons --}}
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        {{-- Font Poppins --}}
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-        
-        <style>
-            body {
-                font-family: 'Poppins', sans-serif;
-            }
-
-        </style>
-    </head>
-    <body>
-        <div class="content-bodyForm">
-            <h1>Edit Data</h1>
-            <form action="/gbrLandingPage/{{ $data->id }}" method="post" enctype="multipart/form-data">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kelola Gambar Landing Page</title>
+    <link href="/css/actor.css" rel="stylesheet">
+    {{-- Boostrap Icons --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    {{-- Font Poppins --}}
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="content-form">
+            
+            <form action="/gbrLandingPage/{{ $data->id }}" method="post" enctype="multipart/form-data" class="edit-user">
                 @method('put')
                 @csrf
+                <h2>Form Edit Gambar Landing Page</h2>
+                <hr>
                 <div class="mb-3">
                     <label for="img" class="form-label">Gambar sebelumnya</label><br>
-                    <img src="{{ asset('storage/' . $data->gambar_navbar) }}" class="img-preview img-fluid" style="width: 20%;">
+                    <img src="{{ asset('storage/' . $data->gambar_navbar) }}" class="img-preview img-fluid" style="width: 550px">
                 </div>
                 <div class="mb-3">
-                    <label for="img" class="form-label">Masukkan gambar baru untuk ditampilkan di Landing Page</label>
-                    <img class="img-preview img-fluid" style="width: 20%;">
+                    <label for="img" class="form-label">Masukkan gambar baru</label>
+                    <img class="img-preview img-fluid" style="width: 550px">
                     <input name="img" onchange="previewImage()" class="form-control @error('img') is-invalid @enderror" type="file" id="img">
                     @error('img')
                     <div class="invalid-feedback">{{ $message }}</div>
@@ -49,8 +54,10 @@
                         </label>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Kirim</button>
-            </form>
+                <div class="submit-button">
+                    <button type="submit" class="btn btn-primary">Kirim</button>
+                </div>
+                </form>
         </div>
     </body>
 </html>

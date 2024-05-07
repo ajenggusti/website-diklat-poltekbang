@@ -3,7 +3,7 @@
 <html>
     <head>
         <!-- Custom styles for this template -->
-        <link href="/css/form.css" rel="stylesheet">
+        <link href="/css/actor.css" rel="stylesheet">
         {{-- Boostrap Icons --}}
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         {{-- Font Poppins --}}
@@ -13,17 +13,19 @@
             body {
                 font-family: 'Poppins', sans-serif;
             }
-
         </style>
     </head>
     <body>
-        <div class="content-bodyForm">
-            <h1>Tambah data</h1>
-            <form action="/gbrLandingPage" method="post" enctype="multipart/form-data">
+        <div class="content-form">
+            
+            <form action="/gbrLandingPage" method="post" enctype="multipart/form-data" class="edit-user">
                 @csrf
+                <h2>Tambah Gambar Landing Page</h2>
+                <hr>
                 <div class="mb-3">
                     <label for="img" class="form-label">Masukkan gambar untuk ditampilkan di Landing Page</label>
-                    <img class="img-preview img-fluid" style="width: 20%;">
+                    <img class="img-preview img-fluid" style="width: 550px;">
+                    <br><br>
                     <input name="img" onchange="previewImage()" class="form-control @error('img') is-invalid @enderror" type="file" id="img">
                     @error('img')
                     <div class="invalid-feedback">{{ $message }}</div>
@@ -44,7 +46,10 @@
                         </label>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Kirim</button>
+                <div class="submit-button">
+                    <button type="submit" class="btn btn-primary">Kirim</button>
+                </div>
+                
             </form>
         </div>
     </body>

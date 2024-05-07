@@ -9,17 +9,14 @@
             body {
                 font-family: 'Poppins', sans-serif;
             }
-            /* .container-admin {
-                display: flex;
-            } */
 
         </style>
     </head>
     <body>
         <div class="container-admin">
             <div class="dashAdmin">
-                <div class="dashItem" style="background-color: #BC4F00;">
-                    <div class="dashItemContent">Jumlah Seluruh Pengguna pada sistem : </div>
+                <div class="dashItem" style="background-color: #f1f3ff; border: 3px solid #BC4F00;">
+                    <div class="dashItemContent">Total Seluruh Pengguna </div>
                     <div class="dashItemNumber">{{ $count }}</div>
                 </div>
 
@@ -34,9 +31,9 @@
 
                         $bgColor = $levelColors[$userCount->level] ?? '#FFFFFF'; // Default putih
                     @endphp
-                    <div class="dashItem" style="background-color: {{ $bgColor }};">
+                    <div class="dashItem" style="background-color: #f1f3ff; border: 3px solid {{ $bgColor }};">
                         <div class="dashItemContent">
-                            <p>Jumlah Pengguna aktor {{ $userCount->level }}</p> <!-- Tulisan di sisi kiri -->
+                            <p>Total Actor {{ $userCount->level }}</p> <!-- Tulisan di sisi kiri -->
                         </div>
                         <div class="dashItemNumber">
                             {{ $userCount->total_users }} <!-- Angka di sisi kanan -->

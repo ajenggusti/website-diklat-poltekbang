@@ -32,22 +32,22 @@
         <div class="footer-middle">
             <h5>QUICK LINKS</h5>
                 <ul class="ul-kiri">
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">PPID</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">LMS</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">CITIUS</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">E-JOURNAL</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">SNITP</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Sipencatar Non Reguler</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Cloud</a></li>
+                    <li class="nav-footer mb-2"><a href="#" class="nav-link p-0 text-body-secondary">PPID</a></li>
+                    <li class="nav-footer mb-2"><a href="#" class="nav-link p-0 text-body-secondary">LMS</a></li>
+                    <li class="nav-footer mb-2"><a href="#" class="nav-link p-0 text-body-secondary">CITIUS</a></li>
+                    <li class="nav-footer mb-2"><a href="#" class="nav-link p-0 text-body-secondary">E-JOURNAL</a></li>
+                    <li class="nav-footer mb-2"><a href="#" class="nav-link p-0 text-body-secondary">SNITP</a></li>
+                    <li class="nav-footer mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Sipencatar Non Reguler</a></li>
+                    <li class="nav-footer mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Cloud</a></li>
                 </ul>
                 <ul class="ul-kanan">
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">ALUMNI</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">e-Library</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Repository</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">DAMA</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">ICATEAS</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Sipencatar Reguler</a></li>
-                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">SIAKAD</a></li>
+                    <li class="nav-footer mb-2"><a href="#" class="nav-link p-0 text-body-secondary">ALUMNI</a></li>
+                    <li class="nav-footer mb-2"><a href="#" class="nav-link p-0 text-body-secondary">e-Library</a></li>
+                    <li class="nav-footer mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Repository</a></li>
+                    <li class="nav-footer mb-2"><a href="#" class="nav-link p-0 text-body-secondary">DAMA</a></li>
+                    <li class="nav-footer mb-2"><a href="#" class="nav-link p-0 text-body-secondary">ICATEAS</a></li>
+                    <li class="nav-footer mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Sipencatar Reguler</a></li>
+                    <li class="nav-footer mb-2"><a href="#" class="nav-link p-0 text-body-secondary">SIAKAD</a></li>
                 </ul>
         </div>
         <div class="footer-right">

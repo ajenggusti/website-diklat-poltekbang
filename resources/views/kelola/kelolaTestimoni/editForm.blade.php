@@ -1,9 +1,9 @@
-@extends('layout.mainUser')
+@extends('layout.mainAdmin')
 @section('container')
 <html>
     <head>
         <!-- Custom styles for this template -->
-        <link href="/css/form.css" rel="stylesheet">
+        <link href="/css/actor.css" rel="stylesheet">
         {{-- Boostrap Icons --}}
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         {{-- Font Poppins --}}
@@ -16,12 +16,14 @@
         </style>
     </head>
     <body>
-        <div class="content-bodyForm">
-            <h2>Kelola Testimoni</h2>
+        <div class="content-form">
             
-            <form method="POST" action="/kelTestimoni/{{ $kelTestimoni->id }}" >
+            
+            <form method="POST" action="/kelTestimoni/{{ $kelTestimoni->id }}" class="edit-user">
                 @method('put')
                 @csrf
+                <h2>Kelola Testimoni</h2>
+                <hr>
                 {{-- <input type="hidden" name="id_pendaftaran" value="{{ $pendaftaran->id }}"> --}}
                 <div class="mb-3">
                     <label for="diklat" class="form-label is">Nama Diklat</label>
@@ -35,8 +37,10 @@
                     <label for="profesi" class="form-label is">Profesi</label>
                     <input disabled type="text" class="form-control" id="profesi" name= "profesi" value="{{ $kelTestimoni->profesi }}">
                 </div>
-                <h3>Isi testimoni</h3>
-                <p>{{ $kelTestimoni->testimoni }}
+                <div class="mb-3">
+                    <label>Isi testimoni</label>
+                    <p>{{ $kelTestimoni->testimoni }}
+                </div>
                 </p>
                 <div class="mb-3">
                     <label for="pilihan" class="form-label is">Apakah Testimoni ini akan ditampilkan? </label>
@@ -45,8 +49,10 @@
                         <option value="tidak" {{ ($kelTestimoni->tampil === 'tidak' || old('pilihan') === 'tidak') ? 'selected' : '' }}>Tidak</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-primary">Kirim</button>
-            </form>
+                <div class="submit-button">
+                    <button type="submit" class="btn btn-primary">Kirim</button>
+                </div>
+                </form>
         </div>
     </body>
 </html>  

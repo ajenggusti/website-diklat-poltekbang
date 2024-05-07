@@ -8,42 +8,39 @@
             body {
                 font-family: 'Poppins', sans-serif;
             }
-            /* .container-admin {
-                display: flex;
-            } */
 
         </style>
     </head>
     <body>
         <div class="container-admin">
             <div class="dashAdmin">
-                <div class="dashItem" style="background-color: #BC4F00;">
-                    <div class="dashItemContent">Jumlah pendaftar yang membayar biaya diklat </div>
+                <div class="dashItem" style="background-color: #f1f3ff; border: 3px solid #BC4F00;">
+                    <div class="dashItemContent">Total Pembayar Biaya Diklat </div>
                     <div class="dashItemNumber">{{ $getBayarDiklat }}</div>
                 </div>
 
-                <div class="dashItem" style="background-color: #B90000;">
-                    <div class="dashItemContent">jumlah pendaftar yang membayar pendaftaran</div>
+                <div class="dashItem" style="background-color: #f1f3ff; border: 3px solid #B90000;">
+                    <div class="dashItemContent">Total Pembayar Biaya Daftar</div>
                     <div class="dashItemNumber">{{ $getBayarPendaftaran }}</div>
                 </div>
 
-                <div class="dashItem" style="background-color: #D6C211;">
-                    <div class="dashItemContent">pembayaran diklat yang belum terkonfirmasi(yang perlu dicek)</div>
+                <div class="dashItem" style="background-color: #f1f3ff; border: 3px solid #D6C211;">
+                    <div class="dashItemContent">Total Pembayaran Diklat Belum Terkonfirmasi</div>
                     <div class="dashItemNumber">{{ $hitungPembayaranDiklatDicek }}</div>
                 </div>
 
-                <div class="dashItem" style="background-color: #307C1E;">
-                    <div class="dashItemContent">pembayaran diklat yang sudah terkonfirmasi</div>
+                <div class="dashItem" style="background-color: #f1f3ff; border: 3px solid #307C1E;">
+                    <div class="dashItemContent">Total Pembayaran Diklat Sudah Terkonfirmasi</div>
                     <div class="dashItemNumber"> {{ $hitungPembayaranDiklatLunas }}</div>
                 </div>
 
-                <div class="dashItem" style="background-color: #84A6FF;">
-                    <div class="dashItemContent">pembayaran pendaftaran yang belum terkonfirmasi</div>
+                <div class="dashItem" style="background-color: #f1f3ff; border: 3px solid #84A6FF;">
+                    <div class="dashItemContent">Total Pembayaran Pendaftaran Belum Terkonfirmasi</div>
                     <div class="dashItemNumber">{{ $hitungPembayaranPendaftaranDicek }}</div>
                 </div>
 
-                <div class="dashItem" style="background-color: #bf68d5;">
-                    <div class="dashItemContent">pembayaran pendaftaran yang sudah terkonfirmasi</div>
+                <div class="dashItem" style="background-color: #f1f3ff; border: 3px solid #bf68d5;">
+                    <div class="dashItemContent">Total Pembayaran Pendaftaran Sudah Terkonfirmasi</div>
                     <div class="dashItemNumber"> {{ $hitungPembayaranPendaftaranLunas }}</div>
                 </div>
             </div>

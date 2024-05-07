@@ -3,6 +3,7 @@
 <html>
     <head>
         <link href="/css/detailDiklat.css" rel="stylesheet">
+        {{-- <link href="/css/landing.css" rel="stylesheet"> --}}
             {{-- <script src="/js/landing.js"></script> --}}
         {{-- Boostrap Icons --}}
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -11,44 +12,51 @@
         
     </head>
     <body>
-        <div class="content-body">
-            <h2>Jenis Diklat</h2>
-            <div class="card-container2">
-                @foreach ($diklat as $perdiklat)
-                <div class="card-img">
-                    {{-- <img src="{{ asset('img/jenis.png') }}" alt="Macam Diklat">
-                    <br>
-                    <p>
-                        <span>{{ $perdiklat -> nama_diklat }}</span><br>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                        Odio laudantium sequi perspiciatis officiis quo adipisci.
-                    </p> --}}
-                    @if ($perdiklat->gambar)
-                        <img src="{{ asset('storage/' . $perdiklat->gambar) }}" alt="" style="width: 30%;">
-                    @else
-                        @php $foundDefault = false; @endphp
-                        @foreach ($allDiklat as $data)
-                            @if ($data->default == 'ya')
-                                <img src="{{ asset('storage/' . $data->gambar) }}" alt="Default Image" style="width: 30%;">
-                                @php $foundDefault = true; @endphp
-                                @break
+        <div class="container-fluid">
+            <div class="background-image"></div>
+            <div class="content-body">
+            {{-- <div class="content-land"> --}}
+                <h2>Jenis Diklat</h2>
+                <div class="card-container2">
+                {{-- <div class="cards-container"> --}}
+                    @foreach ($diklat as $perdiklat)
+                    <div class="card-img">
+                    {{-- <div class="card-jenis"> --}}
+                        @if ($perdiklat->gambar)
+                            <img src="{{ asset('storage/' . $perdiklat->gambar) }}" alt="">
+                        @else
+                            @php $foundDefault = false; @endphp
+                            @foreach ($allDiklat as $data)
+                                @if ($data->default == 'ya')
+                                    <img src="{{ asset('storage/' . $data->gambar) }}" alt="Default Image">
+                                    @php $foundDefault = true; @endphp
+                                    @break
+                                @endif
+                            @endforeach
+                            @if (!$foundDefault)
+                                <img src="{{ asset('img/123.png') }}" alt="Default Image">
                             @endif
-                        @endforeach
-                        @if (!$foundDefault)
-                            <img src="{{ asset('img/123.png') }}" alt="Default Image" style="width: 30%;">
                         @endif
-                    @endif
-                    <div class="card-content2">
-                        <button class="button-link" onclick="window.location.href='/utama/detailDiklat/{{ $perdiklat -> id}}'">
-                            Lihat Detail
-                        </button>
+                        <div class="card-content2">
+                        {{-- <div class="card-content"> --}}
+                            <hr style="color:rgb(255, 255, 255)">
+                            <h6 style="text-align: center">Specified Skilled Worker</h6>
+                            <hr>
+                            <p>Kuota : Belum Full</p>
+                            <p>Biaya   : Rp 5.598.000</p>
+                            <p></p>
+
+                            <button class="button-link" onclick="window.location.href='/utama/detailDiklat/{{ $perdiklat -> id}}'">
+                                Lihat Detail
+                            </button>
+                        </div>
                     </div>
-                </div>
-                    <br>
-                @endforeach   
-                
-            </div>     
-            <a href="/" class="btn btn-info">Kembali</a>
+                        <br>
+                    @endforeach   
+                    
+                </div>     
+                <a href="/" class="btn btn-info">Kembali</a>
+            </div>
         </div>
     </body>
     </html>

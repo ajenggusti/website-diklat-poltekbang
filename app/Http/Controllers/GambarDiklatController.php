@@ -129,4 +129,11 @@ class GambarDiklatController extends Controller
         $kelGambarDiklat->delete();
         return redirect('/kelGambarDiklat')->with('success', 'Data berhasil dihapus!');
     }
+
+    // NEW
+    public function getTotalData() {
+        $totalData = Diklat::count(); // Diklat adalah model data Anda
+        return response()->json(['totalData' => $totalData]);
+    }
+    
 }
