@@ -22,7 +22,7 @@
     </style>
 </head>
 <body>
-    <div class="content-staff">
+    <div class="content-form">
         <h2>Tabel Pembayaran</h2>
         <hr>
         @if (session('success') )
