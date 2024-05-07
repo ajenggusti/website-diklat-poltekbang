@@ -22,6 +22,7 @@ class RiwayatController extends Controller
     public function detailRiwayat($id)
     {
         $data = Pendaftaran::find($id);
+        $countData = $data ? 1 : 0;
         return view('utama.detailRiwayat', ['data' => $data]);
     }
 

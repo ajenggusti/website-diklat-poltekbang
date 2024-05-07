@@ -13,17 +13,25 @@ hai {{ $user->name }}, Lengkapi datamu!
         <div class="mb-3">
             <label for="jenis_berkas" class="form-label">Pilih jenis berkas:</label>
             <select name="jenis_berkas" id="jenis_berkas" class="form-select">
-                <option value="" selected disabled>Pilih jenis berkas</option>
                 <option value="ktp">KTP</option>
                 <option value="paspor">Paspor</option>
             </select>
         </div>
+        <br>
         <small class="text-muted">Jika kamu mengubah jenis berkas dari data yang kamu gunakan sebelumnya, data yang tersimpan akan terhapus. Dan admin akan memverifikasi ulang.</small>
         @error('jenis_berkas')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
         <br>
-
+        <div class="mb-3">
+            <label for="img" class="form-label">Masukkan foto ktp/paspor</label>
+            <img class="img-preview img-fluid" style="width: 20%;">
+            <input name="img" onchange="previewImage()" class="form-control @error('img') is-invalid @enderror" type="file" id="img">
+            @error('img')
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
+        <br>
         <div class="mb-3">
             <label for="name" class="form-label is">Nama Lengkap</label>
             <input type="text" class="form-control  @error('name') is-invalid @enderror" id="name" name= "name" value="{{ old('name') ?: $user->name}}">
@@ -119,50 +127,6 @@ hai {{ $user->name }}, Lengkapi datamu!
         
     </form> 
 
-
-
- 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            var jenis_berkas_input = document.getElementById('jenis_berkas');
-            var name_input = document.getElementById('name');
-            var gambarInput = document.getElementById('s_gambar');
-            var dokumenInput = document.getElementById('s_doc');
-            var linkLabel = document.querySelector('label[for="s_link"]');
-            var gambarLabel = document.querySelector('label[for="s_gambar"]');
-            var dokumenLabel = document.querySelector('label[for="s_doc"]');
-            var imgPreview = document.querySelector('.img-preview');
-            var tampilFile = document.getElementById('file-sebelumnya');
-
-            metodeSelect.addEventListener('change', function() {
-                linkInput.style.display = 'none';
-                gambarInput.style.display = 'none';
-                dokumenInput.style.display = 'none';
-                linkLabel.style.display = 'none';
-                gambarLabel.style.display = 'none';
-                dokumenLabel.style.display = 'none';
-                imgPreview.style.display = 'none';
-                tampilFile.style.display = 'none';
-    
-                var selectedValue = this.value;
-                if (selectedValue === 'link') {
-                    linkInput.style.display = 'block';
-                    linkLabel.style.display = 'block';
-                } else if (selectedValue === 'gambar') {
-                    gambarInput.style.display = 'block';
-                    gambarLabel.style.display = 'block';
-                    imgPreview.style.display = 'block';
-                } else if (selectedValue === 'dokumen') {
-                    dokumenInput.style.display = 'block';
-                    dokumenLabel.style.display = 'block';
-                    tampilFile.style.display = 'block';
-                }
-            });
-    
-            // Memanggil event change pada saat halaman dimuat untuk memastikan bahwa input field ditampilkan sesuai dengan pilihan default
-            metodeSelect.dispatchEvent(new Event('change'));
-        });
-    </script>
 <!-- Pastikan jQuery dimuat -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
@@ -172,10 +136,8 @@ hai {{ $user->name }}, Lengkapi datamu!
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
-    //document ready jquery
     $(document).ready(function() {
         function onChangeSelect(url, id, name) {
-            // send ajax request to get the cities of the selected province and append to the select tag
             $.ajax({
                 url: url + '/' + id,
                 type: 'GET',
@@ -201,8 +163,6 @@ hai {{ $user->name }}, Lengkapi datamu!
         $('#kabupaten').prop('disabled', true);
         $('#kecamatan').prop('disabled', true);
         $('#kelurahan').prop('disabled', true);
-
-        // on change province
         $('#provinsi').on('change', function() {
             var id = $(this).val();
             var url = `{{ URL::to('kabupaten-dropdown') }}`;
@@ -223,7 +183,71 @@ hai {{ $user->name }}, Lengkapi datamu!
             $('#kelurahan').empty().prop('disabled', false);
             onChangeSelect(url, id, 'kelurahan');
         });
-        
+       
+        $(document).ready(function() {
+            var jenisBerkasSelect = $('#jenis_berkas');
+            var nationalitySelect = $('#nationality');
+            var provinsiSelect = $('#provinsi');
+            var kabupatenSelect = $('#kabupaten');
+            var kecamatanSelect = $('#kecamatan');
+            var kelurahanSelect = $('#kelurahan');
+            var nikInput = $('#nik');
+            var noPasporInput = $('#no_paspor');
+            var tglExpPasporInput = $('#tgl_exp_paspor');
+            var provinsiLabel = $('label[for="provinsi"]');
+            var nikLabel = $('label[for="nik"]');
+            var noPasporLabel = $('label[for="no_paspor"]');
+            var provinsiLabel = $('label[for="provinsi"]');
+            var kabupatenLabel = $('label[for="kabupaten"]');
+            var kecamatanLabel = $('label[for="kecamatan"]');
+            var kelurahanLabel = $('label[for="kelurahan"]');
+            var nationalityLabel = $('label[for="nationality"]');
+            var tglExpPasporLabel = $('label[for="tgl_exp_paspor"]');
+
+            // Fungsi untuk menangani perubahan jenis berkas
+            function handleVisibility() {
+                var selectedJenisBerkas = jenisBerkasSelect.val();
+                if (selectedJenisBerkas === 'ktp') {
+                    nationalitySelect.next('.select2').hide();
+                    nationalityLabel.hide()
+                    tglExpPasporInput.hide()
+                    tglExpPasporLabel.hide()
+                    noPasporInput.hide()
+                    noPasporLabel.hide()
+                    provinsiSelect.next('.select2').show();
+                    kabupatenSelect.next('.select2').show();
+                    kecamatanSelect.next('.select2').show();
+                    kelurahanSelect.next('.select2').show();
+                    provinsiLabel.show()
+                    kabupatenLabel.show()
+                    kelurahanLabel.show()
+                    kecamatanLabel.show()
+                    nikInput.show()
+                    nikLabel.show()
+                } else {
+                    nationalitySelect.next('.select2').show();
+                    nationalityLabel.show()
+                    noPasporInput.show()
+                    noPasporLabel.show()
+                    tglExpPasporInput.show()
+                    tglExpPasporLabel.show()
+                    provinsiSelect.next('.select2').hide();
+                    kabupatenSelect.next('.select2').hide();
+                    kecamatanSelect.next('.select2').hide();
+                    kelurahanSelect.next('.select2').hide();
+                    provinsiLabel.hide()
+                    kabupatenLabel.hide()
+                    kelurahanLabel.hide()
+                    kecamatanLabel.hide()
+                    nikInput.hide()
+                    nikLabel.hide()
+                }
+            }
+            handleVisibility();
+            jenisBerkasSelect.on('change', function() {
+                handleVisibility();
+            });
+        });
     });
 
 </script>

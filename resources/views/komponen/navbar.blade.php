@@ -17,11 +17,13 @@
 
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-
-
-  
-    
+ 
     <title>Hello, world!</title>
+    {{-- <style>
+      select#nationality[style*="display: none"] + .select2 {
+          display: none;
+      }
+  </style> --}}
   </head>
   <body>
       {{-- navbar ini hanya kerangka --}}
