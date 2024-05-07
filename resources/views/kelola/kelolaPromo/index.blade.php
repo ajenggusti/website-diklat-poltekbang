@@ -71,6 +71,7 @@
                             <i class="bi bi-arrow-up" onclick="sortTable(2, 'asc')"></i>
                             <i class="bi bi-arrow-down" onclick="sortTable(2, 'desc')"></i>
                         </th>
+                        <th scope="col">Deskripsi</th>
                         <th scope="col">Kode Promo 
                             <i class="bi bi-arrow-up" onclick="sortTable(3, 'asc')"></i>
                             <i class="bi bi-arrow-down" onclick="sortTable(3, 'desc')"></i>
@@ -105,6 +106,7 @@
                             {{-- <td>{{ $data->diklat ? $data->diklat->nama_diklat : 'Semua Diklat' }}</td> --}}
                             <td><img src="{{ asset('storage/' . $data->gambar) }}" alt="banner-promo" style="width: 300px;"></td>
                             <td>Rp {{ number_format($data->potongan, 0, ',', '.') }}</td>
+                            <td>{{ $data->deskripsi }}</td>
                             <td>{{ $data->kode }}</td>
                             <td>{{ \Carbon\Carbon::parse($data->tgl_awal)->format('d-m-Y') }}</td>
                             <td>{{ \Carbon\Carbon::parse($data->tgl_akhir)->format('d-m-Y') }}</td>
@@ -113,6 +115,7 @@
                             <td>{{ $data->tampil }}</td>
                             <td>
                                 <div class="action-buttons">
+                                    <a href="/kelPromo/{{ $data->id }}" class="btn btn-info"><i class="bi bi-eye"></i> Detail</a>
                                     <a href="kelPromo/{{ $data->id }}/edit" class="btn btn-success"><i class="bi bi-pencil-square"></i> Edit</a>
                                     <form action="kelPromo/{{ $data->id }}" method="POST">
                                         @method('DELETE')

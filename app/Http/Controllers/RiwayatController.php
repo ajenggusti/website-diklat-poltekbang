@@ -16,15 +16,18 @@ class RiwayatController extends Controller
         $dataDiklat = Pendaftaran::getDiklat();
         return view('utama.riwayat', [
             'datas' => $datas,
-            'dataDiklat'=>$dataDiklat,
+            'dataDiklat' => $dataDiklat,
         ]);
     }
-    public function detailRiwayat($id){
+    public function detailRiwayat($id)
+    {
         $data = Pendaftaran::find($id);
+        $countData = $data ? 1 : 0;
         return view('utama.detailRiwayat', ['data' => $data]);
     }
 
-    public function buktiPembayaran($id){
+    public function buktiPembayaran($id)
+    {
         $pembayarans = Pembayaran::where('id_pendaftaran', $id)->get(); // Mendapatkan semua record yang sesuai dengan $id
         // dd($pembayaran);
         return view('utama.buktiPembayaran', ['pembayarans' => $pembayarans]); // Mengirimkan data pembayaran ke view

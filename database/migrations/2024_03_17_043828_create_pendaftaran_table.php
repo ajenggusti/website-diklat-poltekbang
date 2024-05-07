@@ -16,7 +16,9 @@ return new class extends Migration
             $table->unsignedBigInteger('id_diklat');
             $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_promo')->nullable();
+            $table->unsignedBigInteger('id_dial')->nullable();
             $table->timestamp('waktu_pendaftaran');
+            $table->text('bukti_pembayaran')->charset('binary')->nullable();
             $table->bigInteger('harga_diklat')->nullable(); 
             $table->bigInteger('potongan')->nullable(); 
             $table->string('status_pembayaran_diklat')->default('Menunggu pembayaran')->nullable(); //nnti isi dropdon
@@ -27,6 +29,10 @@ return new class extends Migration
             $table->string('pendidikan_terakhir')->nullable();
             $table->string('email')->nullable();
             $table->string('no_hp')->nullable();
+            $table->string('jenis_pembayaran_diklat')->nullable(); //bayar pake qris/shopepay dll
+            $table->string('updated_at_pembayaran_diklat')->nullable(); 
+            $table->string('jenis_pembayaran_daftar')->nullable(); //bayar pake qris/shopepay dll
+            $table->string('updated_at_pembayaran_daftar')->nullable();
             $table->string('status_pembayaran_daftar')->default('Menunggu pembayaran')->nullable(); //nnti isi dropdon
             $table->string('metode_sertif')->nullable();//nnti isi dropdon
             $table->longText('s_link')->nullable();
@@ -37,6 +43,7 @@ return new class extends Migration
             $table->foreign('id_user')->references('id')->on('users')->onUpdate('cascade')
             ->onDelete('cascade');
             $table->foreign('id_promo')->references('id')->on('promos')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_dial')->references('id')->on('dials')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

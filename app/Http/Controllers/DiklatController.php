@@ -128,7 +128,7 @@ class DiklatController extends Controller
             'img.file' => 'File harus berupa berkas.',
             'img.max' => 'Ukuran file tidak boleh melebihi 1 MB.',
             'status.required' => 'Status tampilan harus dipilih.',
-            'deskripsi.required' => 'Deskripsi tidak boleh kosong.', // Pesan untuk deskripsi
+            'deskripsi.required' => 'Deskripsi tidak boleh kosong.',
             'nama_diklat.required' => 'Nama Diklat tidak boleh kosong.',
             'harga.required' => 'Harga tidak boleh kosong.',
             'kuota.required' => 'Kuota Minimal tidak boleh kosong.',
@@ -147,18 +147,14 @@ class DiklatController extends Controller
             'whatsapp' => 'required|url',
         ], $messages);
         if ($request->hasFile('img')) {
-            // Hapus gambar sebelumnya jika ada
             if ($kelDiklat->gambar) {
                 Storage::delete($kelDiklat->gambar);
             }
-            // Simpan gambar yang baru diunggah
             $image = $request->file('img')->store('LanPage');
         } else {
-            // Jika tidak ada gambar yang diunggah, gunakan gambar yang sudah ada
             if ($kelDiklat->gambar) {
                 $image = $kelDiklat->gambar;
             } else {
-                // Jika nilai sebelumnya null, maka gunakan null kembali
                 $image = null;
             }
         }        
@@ -167,7 +163,7 @@ class DiklatController extends Controller
 
         if ($request->default == 'ya') {
             Diklat::where('default', 'ya')
-            ->where('id', '!=', $kelDiklat->id) // tambahkan kondisi untuk tidak mengubah entri yang sedang diedit
+            ->where('id', '!=', $kelDiklat->id)
             ->update(['default' => 'tidak']);
         }
         // dd($request);
@@ -187,10 +183,14 @@ class DiklatController extends Controller
      * Remove the specified resource from storage.
      */
 
-    public function destroy(Diklat $kelDiklat)
-    {
-        Storage::delete($kelDiklat->gambar);
-        $kelDiklat->delete();
-        return redirect('/kelDiklat')->with('success', 'Data berhasil dihapus!');
-    }
+     public function destroy(Diklat $kelDiklat)
+     {
+         if ($kelDiklat->gambar) {
+             Storage::delete($kelDiklat->gambar);
+         }
+         
+         $kelDiklat->delete();
+         return redirect('/kelDiklat')->with('success', 'Data berhasil dihapus!');
+     }
+     
 }

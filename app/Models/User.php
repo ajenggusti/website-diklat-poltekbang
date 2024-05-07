@@ -3,6 +3,9 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Level;
+use App\Models\Kelurahan;
+use App\Models\Pendaftaran;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Notifications\Notifiable;
@@ -46,6 +49,30 @@ class User extends Authenticatable
     {
         return $this->hasMany(Pendaftaran::class, 'id_user');
     }
+    public function kelurahan()
+    {
+        return $this->belongsTo(Kelurahan::class, 'id_kelurahan');
+    }
+    public function kabupaten()
+    {
+        return $this->belongsTo(Kabupaten::class, 'id_kabupaten');
+    }
+    public function provinsi()
+    {
+        return $this->belongsTo(Provinsi::class, 'id_provinsi');
+    }
+    public function kecamatan()
+    {
+        return $this->belongsTo(Kecamatan::class, 'id_kecamatan');
+    }
+    public function nationality()
+    {
+        return $this->belongsTo(Nationality::class, 'id_nationality');
+    }
+    public function level()
+    {
+        return $this->belongsTo(Level::class, 'id_level');
+    }
     public static function countUserAsLevel(){
         return User::join('level', 'users.id_level', '=', 'level.id')
         ->select('level.level', DB::raw('COUNT(*) as total_users'))
@@ -57,5 +84,6 @@ class User extends Authenticatable
                 ->select('users.*', 'level.level as userLevel')
                 ->get();
     }
+
 
 }

@@ -89,6 +89,12 @@
                             <th>Nomor HP</th>
                             <td>{{ $kelPendaftaran->no_hp }}</td>
                         </tr>
+                        @if ($kelPendaftaran->bukti_pembayaran)
+                            <tr>
+                                <th>Bukti pembayaran</th>
+                                <td><img style="width: 30%" src="{{ asset('storage/' . $kelPendaftaran->bukti_pembayaran) }}" alt=""></td>
+                            </tr>
+                        @endif
                     
                     </table>
                 </div>
@@ -103,7 +109,7 @@
                             <select class="form-select" id="status_pembayaran_diklat" name="status_pembayaran_diklat">
                                 <option value="Lunas" {{ old('status_pembayaran_diklat', $kelPendaftaran->status_pembayaran_diklat) == 'Lunas' ? 'selected' : '' }}>Lunas</option>
                                 <option value="Menunggu pembayaran" {{ old('status_pembayaran_diklat', $kelPendaftaran->status_pembayaran_diklat) == 'Menunggu pembayaran' ? 'selected' : '' }}>Menunggu pembayaran</option>
-                                
+                                <option value="Menunggu verifikasi" {{ old('status_pembayaran_diklat', $kelPendaftaran->status_pembayaran_diklat) == 'Menunggu verifikasi' ? 'selected' : '' }}>Menunggu verifikasi</option>
                             </select>
                         </div>
                         <div class="mb-3">
@@ -120,6 +126,7 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+
 
                         {{-- ========================================================================== --}}
                         <div class="mb-3">
@@ -141,7 +148,7 @@
                         </div>
                         
                         <div class="mb-3">
-                            <img src="{{ asset('storage/' . $kelPendaftaran->s_gambar) }}" class="img-preview img-fluid" style="width: 20%;">
+                            <img src="{{ asset('storage/' . $kelPendaftaran->s_gambar) }}" class="img-preview img-fluid" style="width: 550px;">
                             <label for="s_gambar" class="form-label">Upload sertifikat peserta menggunakan gambar</label>
                             <input name="s_gambar" onchange="previewImage()" class="form-control @error('s_gambar') is-invalid @enderror" type="file" id="s_gambar">
                             @error('s_gambar')
@@ -237,7 +244,7 @@
             <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
         </div>
-    </body>
+</body>
 </html> 
 @endsection
 

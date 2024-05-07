@@ -13,13 +13,16 @@ return new class extends Migration
     {
         Schema::create('testimoni', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_pendaftaran');
+            $table->unsignedBigInteger('id_pendaftaran')->nullable();
+            $table->unsignedBigInteger('id_diklat')->nullable();
             $table->string('profesi');
+            $table->string('nama_dummy')->nullable();
             $table->string('tampil')->default('tidak');
             $table->longText('testimoni');
             $table->timestamps();
             $table->foreign('id_pendaftaran')->references('id')->on('pendaftaran')->onUpdate('cascade')
             ->onDelete('cascade');
+            $table->foreign('id_diklat')->references('id')->on('diklat')->onUpdate('cascade')->onDelete('cascade');
             
         });
     }
