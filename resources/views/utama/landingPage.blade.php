@@ -130,7 +130,7 @@
                         @endforeach
                     </div>
 
-                    <hr>
+                    {{-- <hr>
                     @if ($countTestimoni!=0)
                         <h3 id="testimoni">Testimoni</h3>
                             
@@ -155,8 +155,8 @@
                             <a class="sblm" onclick="plusSlides(-1)">&#10094;</a>
                             <a class="ssdh" onclick="plusSlides(1)">&#10095;</a>
                         </div>
-                    @endif
-                    {{-- <hr>
+                    @endif --}}
+                    <hr>
                     @if ($countTestimoni!=0)
                     <h3 id="testimoni">Testimoni</h3>
                     <p style="color: #FF6900;">Simak apa kata mereka...</p>
@@ -176,7 +176,7 @@
                         <a class="sblm" onclick="plusSlides(-1)"></a>
                         <a class="ssdh" onclick="plusSlides(1)"></a>
                     </div>
-                    @endif --}}
+                    @endif
                     
                     <hr>
                     <h3 id="faq">FAQ</h3>
