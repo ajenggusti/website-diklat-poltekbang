@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_diklat');
             $table->unsignedBigInteger('id_user');
             $table->unsignedBigInteger('id_promo')->nullable();
+            $table->unsignedBigInteger('id_dial')->nullable();
             $table->timestamp('waktu_pendaftaran');
             $table->text('bukti_pembayaran')->charset('binary')->nullable();
             $table->bigInteger('harga_diklat')->nullable(); 
@@ -42,6 +43,7 @@ return new class extends Migration
             $table->foreign('id_user')->references('id')->on('users')->onUpdate('cascade')
             ->onDelete('cascade');
             $table->foreign('id_promo')->references('id')->on('promos')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('id_dial')->references('id')->on('dials')->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

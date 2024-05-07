@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_kabupaten')->nullable();
             $table->unsignedBigInteger('id_kecamatan')->nullable();
             $table->unsignedBigInteger('id_kelurahan')->nullable();
+            $table->unsignedBigInteger('id_nationality')->nullable();
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
@@ -29,7 +30,6 @@ return new class extends Migration
             $table->string('alamat')->nullable();
             $table->enum('jenis_berkas', ['ktp', 'paspor'])->nullable();
             $table->string('no_paspor')->nullable();
-            $table->string('nationality')->nullable();
             $table->date('tgl_exp_paspor')->nullable();
             $table->date('tgl_lahir')->nullable();
             $table->enum('status', ['Belum diverifikasi', 'Sedang diverifikasi', 'Diverifikasi', 'Perlu pembaharuan'])->nullable();
@@ -40,6 +40,7 @@ return new class extends Migration
             $table->foreign('id_kabupaten')->references('id')->on('kabupatens')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreign('id_kecamatan')->references('id')->on('kecamatans')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreign('id_provinsi')->references('id')->on('provinsis')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreign('id_nationality')->references('id')->on('nationalities')->cascadeOnUpdate()->cascadeOnDelete();
 
         });
     }

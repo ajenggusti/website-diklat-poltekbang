@@ -5,16 +5,19 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PromoController;
 use App\Http\Controllers\UtamaController;
-use App\Http\Controllers\DbUtamaController;
 use App\Http\Controllers\DiklatController;
-use App\Http\Controllers\GambarDiklatController;
-use App\Http\Controllers\GbrLandingController;
+use App\Http\Controllers\DbUtamaController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\KelKatDiklatController;
+use App\Http\Controllers\TestimoniController;
+use App\Http\Controllers\GbrLandingController;
 use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PendaftaranController;
-use App\Http\Controllers\TestimoniController;
+use App\Http\Controllers\GambarDiklatController;
+use App\Http\Controllers\KelKatDiklatController;
+use App\Http\Controllers\KabupatenDropdownController;
+use App\Http\Controllers\KecamatanDropdownController;
+use App\Http\Controllers\KelurahanDropdownController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,10 +53,15 @@ Route::post('/logout', [LoginController::class, 'logout']);
 
 // route crud kategori dikklat
 Route::resource('/kelKatDiklat', kelKatDiklatController::class)->except('show')->middleware('auth');
-// route crud user
+// route crud user  (register)
 Route::get('/indexKelolaUser', [RegisterController::class, 'tampil']);
 Route::get('/editProfil', [RegisterController::class, 'editProfil']);
-Route::get('/updateProfil/{id}', [RegisterController::class, 'updateProfil'])->name('updateProfil.update');
+Route::put('/updateProfil/{id}', [RegisterController::class, 'updateProfil'])->name('updateProfil.update');
+
+Route::get('kabupaten-dropdown/{id}', KabupatenDropdownController::class)->name('kabupaten.dropdown');
+Route::get('kecamatan-dropdown/{id}', KecamatanDropdownController::class)->name('kecamatan.dropdown');
+Route::get('kelurahan-dropdown/{id}', KelurahanDropdownController::class)->name('kelurahan.dropdown');
+
 Route::resource('/register', RegisterController::class)->except('show', 'create');
 // route crud promo
 Route::resource('/kelPromo', PromoController::class);

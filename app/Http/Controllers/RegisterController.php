@@ -7,6 +7,7 @@ use App\Models\Kecamatan;
 use App\Models\Kelurahan;
 use App\Models\User;
 use App\Models\Level;
+use App\Models\Nationality;
 use App\Models\Provinsi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -115,22 +116,25 @@ class RegisterController extends Controller
     public function editProfil()
     {
         $user = Auth::user();
-        $kelurahans=Kelurahan::get();
-        $kabupatens=Kabupaten::get();
+        $kelurahan=Kelurahan::get();
+        $kabupaten=Kabupaten::get();
+        $kecamatan=Kecamatan::get();
         $provinsis=Provinsi::get();
-        $kecamatans=Kecamatan::get();
+        $nationalities = Nationality::get();
 
-        // dd($user);
+        // dd($user->nationality->name);
+
         return view('utama.editProfil', [
             'user'=>$user,
-            'kelurahans'=>$kelurahans,
-            'kabupatens'=>$kabupatens,
-            'kecamatans'=>$kecamatans,
+            'kelurahan'=>$kelurahan,
+            'kabupaten'=>$kabupaten,
+            'kecamatan'=>$kecamatan,
             'provinsis'=>$provinsis,
+            'nationalities'=>$nationalities
 
         ]);
     }
-    // public function updateProfil(){
-
-    // }
+    public function updateProfil(Request $request, $id){
+        dd($request);
+    }
 }

@@ -5,20 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Provinsi extends Model
+class Nationality extends Model
 {
     use HasFactory;
-
-    protected $table = 'provinsis';
+    protected $table = 'nationalities';
     protected $guarded = [];
     public $timestamps = false;
-
-    public function kabupaten()
-    {
-        return $this->hasMany(Kabupaten::class);
-    }
+    
     public function user()
     {
-        return $this->hasMany(User::class, 'id_provinsi');
+        return $this->hasMany(User::class, 'id_nationality');
     }
 }
+
+
+
+

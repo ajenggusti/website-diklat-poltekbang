@@ -16,7 +16,7 @@
     }
 
     $(document).ready(function(){
-        $('#tgl_awal, #tgl_akhir').datepicker({
+        $('#tgl_awal, #tgl_akhir, #tgl_lahir, #tgl_exp_paspor').datepicker({
             format: 'dd-mm-yyyy',
             todayHighlight: true,
             autoclose: true,
