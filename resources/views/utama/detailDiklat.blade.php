@@ -95,6 +95,15 @@
                     </div> 
                 @endforeach
                 <br>
+               
+                    
+                    @guest
+                    @if ($dobelDiklat==null)
+                        <div class="d-grid gap-2 col-6 btn-container">
+                            <button class="btn btn-primary" type="button" onclick="window.location.href = '/login';" style="justify-content: center;">Login untuk mendaftar!</button>
+                        </div>
+                        @endif
+                    @endguest
                 @auth
                     @if($dobelDiklat)
                         <div class="alert alert-warning" role="alert">
@@ -106,12 +115,8 @@
                         </div>
                     @endif
                 @endauth
+                
             
-                @guest
-                    <div class="d-grid gap-2 col-6 btn-container">
-                        <button class="btn btn-primary" type="button" onclick="window.location.href = '/login';" style="justify-content: center;">Login untuk mendaftar!</button>
-                    </div>
-                @endguest
                 {{-- </div> --}}
                 
             </div>
