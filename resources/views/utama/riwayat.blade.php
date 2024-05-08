@@ -73,8 +73,7 @@
                                     @elseif($data->s_link)
                                         <a href="{{ route('kelTestimoni.create', ['id' => $data->id]) }}"class="btn" style="background-color: rgb(44, 138, 192); color: #ffffff;">Sampaikan Pendapatmu</a>
                                     @endif
-                                    
-                                    
+             
                                     <hr>
                                     <div class="row" style="text-align: center; padding-bottom: 10px;">
                                         <div class="col">

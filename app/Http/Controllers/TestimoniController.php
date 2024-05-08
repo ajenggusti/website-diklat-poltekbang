@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Diklat;
 use App\Models\Testimoni;
 use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
@@ -73,9 +74,11 @@ class TestimoniController extends Controller
     public function edit(Testimoni $kelTestimoni)
     {
         $pendaftaran=Pendaftaran::find($kelTestimoni->id_pendaftaran);
+        $diklats = Diklat::get();
         return view('kelola.kelolaTestimoni.editForm',[
             'kelTestimoni'=>$kelTestimoni,
-            'pendaftaran'=>$pendaftaran
+            'pendaftaran'=>$pendaftaran,
+            'diklats'=>$diklats
 
         ]);
     }
@@ -85,12 +88,32 @@ class TestimoniController extends Controller
      */
     public function update(Request $request, Testimoni $kelTestimoni)
     {    
-        // Perbarui data
-        $kelTestimoni->update([
-            'tampil' => $request->pilihan,
-        ]);
-    
-        // Redirect atau tampilkan pesan sukses
+        // dd($kelTestimoni);
+        // dd($request);
+        if ($kelTestimoni->id_pendaftaran == null) {
+            $request->validate([
+                'nama_dummy' => 'required',
+                'profesi' => 'required',
+                'testimoni' => 'required',
+                'diklat' => 'required',
+            ], [
+                'nama_dummy.required' => 'Kolom nama dummy wajib diisi.',
+                'profesi.required' => 'Kolom profesi wajib diisi.',
+                'testimoni.required' => 'Kolom testimoni wajib diisi.',
+                'diklat.required' => 'Kolom diklat wajib dipilih',
+            ]);
+            $kelTestimoni->update([
+                'tampil' => $request->pilihan,
+                'nama_dummy'=>$request->nama_dummy,
+                'profesi'=>$request->profesi,
+                'testimoni'=>$request->testimoni,
+                'id_diklat'=>$request->diklat
+            ]);
+        }else{
+            $kelTestimoni->update([
+                'tampil' => $request->pilihan,
+            ]);
+        }
         return redirect('/kelTestimoni')->with('success', 'Testimoni berhasil diperbarui.');
     }
     /**
@@ -100,5 +123,34 @@ class TestimoniController extends Controller
     {
         $kelTestimoni->delete();
         return redirect('/kelTestimoni')->with('success', 'Data berhasil dihapus!');
+    }
+    public function testimoniAdminCreate(){
+        $diklats=Diklat::get();
+        return view('kelola.kelolaTestimoni.formAdmin', [
+            'diklats'=>$diklats, 
+        ]);
+    }
+    public function testimoniAdminStore(Request $request){
+        // dd($request);
+        $request->validate([
+            'nama_dummy' => 'required',
+            'profesi' => 'required',
+            'testimoni' => 'required',
+            'diklat' => 'required',
+        ], [
+            'nama_dummy.required' => 'Kolom nama dummy wajib diisi.',
+            'profesi.required' => 'Kolom profesi wajib diisi.',
+            'testimoni.required' => 'Kolom testimoni wajib diisi.',
+            'diklat.required' => 'Kolom diklat wajib dipilih',
+        ]);
+        $testimoni = new Testimoni();
+        $testimoni->nama_dummy = $request->nama_dummy;
+        $testimoni->profesi = $request->profesi;
+        $testimoni->testimoni = $request->testimoni;
+        $testimoni->id_diklat = $request->diklat;
+        $testimoni->save();
+        return redirect('/kelTestimoni')->with('success', 'Testimoni dummy berhasil dibuat!.');
+
+
     }
 }

@@ -16,7 +16,7 @@
             <div class="background-image"></div>
             <div class="content-body">
             {{-- <div class="content-land"> --}}
-                <h2>Jenis Diklat</h2>
+                <h2>Diklat Pada {{ $diklat->kategori_diklat ->kategori_diklat }}</h2>
                 <div class="card-container2">
                 {{-- <div class="cards-container"> --}}
                     @foreach ($diklat as $perdiklat)
@@ -40,10 +40,10 @@
                         <div class="card-content2">
                         {{-- <div class="card-content"> --}}
                             <hr style="color:rgb(255, 255, 255)">
-                            <h6 style="text-align: center">Specified Skilled Worker</h6>
+                            <h6 style="text-align: center">{{ $perdiklat->nama_diklat }}</h6>
                             <hr>
                             <p>Kuota : Belum Full</p>
-                            <p>Biaya   : Rp 5.598.000</p>
+                            <p>Biaya : Rp 5.598.000</p>
                             <p></p>
 
                             <button class="button-link" onclick="window.location.href='/utama/detailDiklat/{{ $perdiklat -> id}}'">

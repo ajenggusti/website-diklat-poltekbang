@@ -37,9 +37,9 @@
                 @foreach ($detailDiklat as $detail) <br> <br>
                 <h1>{{ $detail->nama_diklat }}</h1>
                 
-                {{-- <img src="{{ asset('storage/' . $gambar->gambar_navbar) }}" alt="Gambar Diklat" style="width: 10%;"> --}}
+                <img src="{{ asset('storage/' . $gambar->gambar_navbar) }}" alt="Gambar Diklat" style="width: 10%;">
 
-                <img src="{{ asset('img/diklat.jpeg') }}" alt="Gambar Diklat" class="img-detail">
+                {{-- <img src="{{ asset('img/diklat.jpeg') }}" alt="Gambar Diklat" class="img-detail"> --}}
                 <div class="card-container3">
                     <div class="card-content3">
                         <p>
@@ -68,11 +68,17 @@
                     </div>
                 </div> 
                 @endforeach
-    
+                <br>
                 @auth
-                    <div class="d-grid gap-2 col-6 btn-container">
-                        <a href="{{ route('kelPendaftaran.create', ['id' => $detail->id]) }}" class="btn btn-primary" >Daftarkan dirimu sekarang!</a>
-                    </div>
+                    @if($dobelDiklat)
+                        <div class="alert alert-warning" role="alert">
+                            Ups, kamu sudah mendaftar diklat ini.
+                        </div>
+                    @else
+                        <div class="d-grid gap-2 col-6">
+                            <a href="{{ route('kelPendaftaran.create', ['id' => $detail->id]) }}" class="btn btn-primary">Daftarkan dirimu sekarang!</a>
+                        </div>
+                    @endif
                 @endauth
             
                 @guest

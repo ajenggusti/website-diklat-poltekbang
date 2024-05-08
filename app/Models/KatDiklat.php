@@ -15,4 +15,8 @@ class KatDiklat extends Model
     public static function selectAll(){
         return self::all();
     }
+    public function diklat()
+    {
+        return $this->hasMany(Diklat::class, 'id_kategori_diklat');
+    }
 }

@@ -65,36 +65,34 @@
                                 </div>
                             </div>
                         </div>
-                    
-
-                    @if ($countPromo!=0)
-                        
-                    @endif
+            
                     <hr>
-                    <h3 id="promo">Promo</h3>
-                    <p style="color: #FF6900;">Temukan promo yang bisa kamu dapatkan disini.. </p>
-                    <div id="carouselExampleIndicators" class="carousel slide img-promo" data-bs-ride="carousel">
-                        <div class="carousel-indicators">
-                            @foreach ($promos as $key => $promo)
-                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : '' }}" aria-current="{{ $key == 0 ? 'true' : 'false' }}" aria-label="Slide {{ $key + 1 }}"></button>
-                            @endforeach
+                    @if ($countPromo!=0)
+                        <h3 id="promo">Promo</h3>
+                        <p style="color: #FF6900;">Temukan promo yang bisa kamu dapatkan disini.. </p>
+                        <div id="carouselExampleIndicators" class="carousel slide img-promo" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                @foreach ($promos as $key => $promo)
+                                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : '' }}" aria-current="{{ $key == 0 ? 'true' : 'false' }}" aria-label="Slide {{ $key + 1 }}"></button>
+                                @endforeach
+                            </div>
+                            <div class="carousel-inner">
+                                @foreach ($promos as $key => $promo)
+                                    <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                        <img src="{{ asset('storage/'.$promo->gambar) }}" class="d-block w-100" alt="Promo Image">
+                                    </div>
+                                @endforeach
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
-                        <div class="carousel-inner">
-                            @foreach ($promos as $key => $promo)
-                                <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                                    <img src="{{ asset('storage/'.$promo->gambar) }}" class="d-block w-100" alt="Promo Image">
-                                </div>
-                            @endforeach
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
+                    @endif
                     
                     
                     <hr>
@@ -132,27 +130,33 @@
                         @endforeach
                     </div>
 
-                    <hr>
-                    @if ($countTestimoni!=0)
-                    <h3 id="testimoni">Testimoni</h3>
-                        
-                    <p style="color: #FF6900;">Simak apa kata mereka...</p>
-                    <div class="slide-testimoni">
-                        @foreach ($testimonis as $index => $testimoni)
-                            <div class="card-slides{{ $index === 0 ? ' active' : '' }}">
-                                <b class="author">{{ $testimoni->pendaftaran->nama_lengkap }}</b><br><br>
-                                <span class="author">- {{ $testimoni->profesi }} -</span><br><br>
-                                <p class="author">Alumni diklat {{ $testimoni->pendaftaran->diklat->nama_diklat }}</p>
-                                <q>{{ $testimoni->testimoni }}</q>
-                            </div>
-                        <br> <br>
-                        
-                        @endforeach
-                        <a class="sblm" onclick="plusSlides(-1)">&#10094;</a>
-                        <a class="ssdh" onclick="plusSlides(1)">&#10095;</a>
-                    </div>
-                    @endif
                     {{-- <hr>
+                    @if ($countTestimoni!=0)
+                        <h3 id="testimoni">Testimoni</h3>
+                            
+                        <p style="color: #FF6900;">Simak apa kata mereka...</p>
+                        <div class="slide-testimoni">
+                            @foreach ($testimonis as $index => $testimoni)
+                                <div class="card-slides{{ $index === 0 ? ' active' : '' }}">
+                                    @if ($testimoni->id_pendaftaran)
+                                        <b class="author">{{ $testimoni->pendaftaran->nama_lengkap }}</b><br><br>
+                                        <span class="author">- {{ $testimoni->profesi }} -</span><br><br>
+                                        <p class="author">Alumni diklat {{ $testimoni->pendaftaran->diklat->nama_diklat }}</p>
+                                        <q>{{ $testimoni->testimoni }}</q>
+                                    @else
+                                        <b class="author">{{ $testimoni->nama_dummy }}</b><br><br>
+                                        <span class="author">- {{ $testimoni->profesi }} -</span><br><br>
+                                        <p class="author">Alumni diklat {{ $testimoni->diklat->nama_diklat }}</p>
+                                        <q>{{ $testimoni->testimoni }}</q>
+                                    @endif
+                                </div>
+                                <br> <br>
+                            @endforeach
+                            <a class="sblm" onclick="plusSlides(-1)">&#10094;</a>
+                            <a class="ssdh" onclick="plusSlides(1)">&#10095;</a>
+                        </div>
+                    @endif --}}
+                    <hr>
                     @if ($countTestimoni!=0)
                     <h3 id="testimoni">Testimoni</h3>
                     <p style="color: #FF6900;">Simak apa kata mereka...</p>
@@ -172,82 +176,11 @@
                         <a class="sblm" onclick="plusSlides(-1)"></a>
                         <a class="ssdh" onclick="plusSlides(1)"></a>
                     </div>
-                    @endif --}}
+                    @endif
                     
                     <hr>
                     <h3 id="faq">FAQ</h3>
                     <p style="color: #FF6900;">Pertanyaan yang banyak ditanyakan...</p>
-                    {{-- <button class="accordion">Apa syarat-syarat yang diperlukan untuk mendaftar?</button>
-                    <div class="panel">
-                        <p>
-                            Semua persyaratan beserta informasi seputar diklat
-                            sudah dituliskan di halaman tiap diklat.
-                        </p>
-                    </div>
-                    
-                    <button class="accordion">Bagaimana cara mendaftar diklat?</button>
-                    <div class="panel">
-                        <ul style="list-style: none;"></ul>
-                            <li>Mendaftarkan akun terlebih dahulu.
-                            Jika sudah mendaftar, maka bisa langsung login</li>
-                            <li>Mengisi data pendaftaran di form pendaftaran
-                                melalui halaman tiap diklat.
-                            </li>
-                            <li>Data pendaftaran bisa dilihat, diedit, atau dibatalkan
-                                di halaman riwayat.
-                            </li>
-                        </p>
-                    </div>
-                    <button class="accordion">Apa yang harus dipersiapkan untuk mengikuti diklat?</button>
-                    <div class="panel">
-                        <p>
-                            Lorem ipsum dolor sit amet, 
-                            consectetur adipisicing elit, 
-                            sed do eiusmod tempor incididunt 
-                            ut labore et dolore magna aliqua. 
-                            Ut enim ad minim veniam, quis nostrud 
-                            exercitation ullamco laboris nisi ut 
-                            aliquip ex ea commodo consequat.
-                        </p>
-                    </div>
-                    <button class="accordion">Apakah tersedia beasiswa atau bantuan keuangan?</button>
-                    <div class="panel">
-                        <p>
-                            Lorem ipsum dolor sit amet, 
-                            consectetur adipisicing elit, 
-                            sed do eiusmod tempor incididunt 
-                            ut labore et dolore magna aliqua. 
-                            Ut enim ad minim veniam, quis nostrud 
-                            exercitation ullamco laboris nisi ut 
-                            aliquip ex ea commodo consequat.
-                        </p>
-                    </div>
-                    <button class="accordion">Bagaimana kebijakan pembatalan atau pengembalian dana?</button>
-                    <div class="panel">
-                        <p>
-                            Lorem ipsum dolor sit amet, 
-                            consectetur adipisicing elit, 
-                            sed do eiusmod tempor incididunt 
-                            ut labore et dolore magna aliqua. 
-                            Ut enim ad minim veniam, quis nostrud 
-                            exercitation ullamco laboris nisi ut 
-                            aliquip ex ea commodo consequat.
-                        </p>
-                    </div>
-                    <button class="accordion">Sertifikat setelah pelaksanaan diklat bisa diambil dimana?</button>
-                    <div class="panel">
-                        <p>
-                            Lorem ipsum dolor sit amet, 
-                            consectetur adipisicing elit, 
-                            sed do eiusmod tempor incididunt 
-                            ut labore et dolore magna aliqua. 
-                            Ut enim ad minim veniam, quis nostrud 
-                            exercitation ullamco laboris nisi ut 
-                            aliquip ex ea commodo consequat.
-                        </p>
-                    </div> --}}
-
-
                     <div class="accordion accordion-flush" id="accordionFlushExample">
                         <div class="accordion-item">
                           <h2 class="accordion-header" id="flush-headingOne">

@@ -26,7 +26,8 @@ class DatabaseSeeder extends Seeder
             PromoSeeder::class,
             PendaftaranSeeder::class,
             // PembayaranSeeder::class,
-            TestimoniSeeder::class
+            TestimoniSeeder::class,
+            NationalitiesSeeder::class
         ]);
     }
 }

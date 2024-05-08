@@ -302,7 +302,7 @@
 
 
 /* Style untuk testimoni */
-/* .slide-testimoni {
+.slide-testimoni {
     position: relative;
     border: 1px solid #FF6900;
     background: #fffcf9;
@@ -354,12 +354,12 @@
 
 .ssdh {
     right: 0;
-} */
+}
 
 
 
 /* NEW */
-.author span {
+/* .author span {
     font-style: italic;
 }
 
@@ -426,7 +426,7 @@
 
 .ssdh {
     right: 0;
-}
+} */
 
 
 /* END NEW */

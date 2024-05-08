@@ -26,11 +26,13 @@
         <h2>Tabel Testimoni</h2>
         <hr>
         @if (session('success') )
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                {{ session('success') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
         @endif
+        <a href="{{ route('testimoniAdmin.create') }}" class="btn btn-primary"> <i class="bi bi-plus-lg"></i> Tambah Data</a>
+        <br> <br>
 
         <div class=" justify-content-between align-items-center filter">
             {{-- Entries --}}
@@ -53,75 +55,82 @@
         </div>
 
         <div class="table-responsive">
-        <table class="table table-sm" id="myTable">
-            <thead>
-            <tr>
-                <th scope="col" style="width: 90px">No 
-                    <i class="bi bi-arrow-up" onclick="sortTable(0, 'asc')"></i>
-                    <i class="bi bi-arrow-down" onclick="sortTable(0, 'desc')"></i>
-                </th>
-                <th scope="col">Promo untuk 
-                    <i class="bi bi-arrow-up" onclick="sortTable(1, 'asc')"></i>
-                    <i class="bi bi-arrow-down" onclick="sortTable(1, 'desc')"></i>
-                </th>
-                <th scope="col">Nama 
-                    <i class="bi bi-arrow-up" onclick="sortTable(2, 'asc')"></i>
-                    <i class="bi bi-arrow-down" onclick="sortTable(2, 'desc')"></i>
-                </th>
-                <th scope="col">Profesi 
-                    <i class="bi bi-arrow-up" onclick="sortTable(3, 'asc')"></i>
-                    <i class="bi bi-arrow-down" onclick="sortTable(3, 'desc')"></i>
-                </th>
-                <th scope="col" style="width: 300px">Testimoni 
-                    <i class="bi bi-arrow-up" onclick="sortTable(4, 'asc')"></i>
-                    <i class="bi bi-arrow-down" onclick="sortTable(4, 'desc')"></i>
-                </th>
-                <th scope="col">Tampil? 
-                    <i class="bi bi-arrow-up" onclick="sortTable(5, 'asc')"></i>
-                    <i class="bi bi-arrow-down" onclick="sortTable(5, 'desc')"></i>
-                </th>
-                <th scope="col">Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach ($datas as $data)
-            <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $data->pendaftaran->diklat->nama_diklat}}</td>
-                <td>{{ $data->pendaftaran->nama_lengkap}}</td>
-                <td>{{ $data->profesi }}</td>
-                <td>{{ $data->testimoni }}</td>
-                <td>{{ $data->tampil }}</td>
+            <table class="table table-sm" id="myTable">
+                <thead>
+                    <tr class="header">
+                        <th scope="col" style="width: 90px">No 
+                            <i class="bi bi-arrow-up" onclick="sortTable(0, 'asc')"></i>
+                            <i class="bi bi-arrow-down" onclick="sortTable(0, 'desc')"></i>
+                        </th>
+                        <th scope="col">Diklat
+                            <i class="bi bi-arrow-up" onclick="sortTable(1, 'asc')"></i>
+                            <i class="bi bi-arrow-down" onclick="sortTable(1, 'desc')"></i>
+                        </th>
+                        <th scope="col">Nama 
+                            <i class="bi bi-arrow-up" onclick="sortTable(2, 'asc')"></i>
+                            <i class="bi bi-arrow-down" onclick="sortTable(2, 'desc')"></i>
+                        </th>
+                        <th scope="col">Profesi 
+                            <i class="bi bi-arrow-up" onclick="sortTable(3, 'asc')"></i>
+                            <i class="bi bi-arrow-down" onclick="sortTable(3, 'desc')"></i>
+                        </th>
+                        <th scope="col" style="width: 300px">Testimoni 
+                            <i class="bi bi-arrow-up" onclick="sortTable(4, 'asc')"></i>
+                            <i class="bi bi-arrow-down" onclick="sortTable(4, 'desc')"></i>
+                        </th>
+                        <th scope="col">Tampil? 
+                            <i class="bi bi-arrow-up" onclick="sortTable(5, 'asc')"></i>
+                            <i class="bi bi-arrow-down" onclick="sortTable(5, 'desc')"></i>
+                        </th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($datas as $data)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            @if ($data->id_pendaftaran)
+                                <td>{{ $data->pendaftaran->diklat->nama_diklat}}</td>
+                            @else
+                                <td>{{ $data->diklat->nama_diklat}}</td>
+                            @endif
+                            @if ($data->id_pendaftaran)
+                                <td>{{ $data->pendaftaran->nama_lengkap}}</td>
+                            @else
+                                <td>{{ $data->nama_dummy}}</td>
+                            @endif
+                            <td>{{ $data->profesi }}</td>
+                            <td>{{ $data->testimoni }}</td>
+                            <td>{{ $data->tampil }}</td>
 
-                <td>
-                    <div class="action-buttons">
-                        <a href="/kelTestimoni/{{ $data->id }}/edit " class="btn btn-success"><i class="bi bi-pencil-square"></i> Edit</a>
-                        <form action="/kelTestimoni/{{ $data->id }}" method="POST">
-                            @method('DELETE')
-                            @csrf
-                            <button class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus?')"><i class="bi bi-trash"></i> Delete</button>
-                        </form>
-                    </div>
-                    
-                </td>
-            </tr>
-            @endforeach
-            </tbody>
-        </table>
-        <div id="pagination">
-            <div class="pagination-container">
-                <nav aria-label="...">
-                    <ul class="ul-pagination">
-                        <li class="page-item previous">
-                            <a class="page-link" href="#" tabindex="-1">Previous</a>
-                        </li>
-                        <li class="page-item next">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </nav>
+                            <td>
+                                <div class="action-buttons">
+                                    <a href="/kelTestimoni/{{ $data->id }}/edit " class="btn btn-success"><i class="bi bi-pencil-square"></i> Edit</a>
+                                    <form action="/kelTestimoni/{{ $data->id }}" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus?')"><i class="bi bi-trash"></i> Delete</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            <div id="pagination">
+                <div class="pagination-container">
+                    <nav aria-label="...">
+                        <ul class="ul-pagination">
+                            <li class="page-item previous">
+                                <a class="page-link" href="#" tabindex="-1">Previous</a>
+                            </li>
+                            <li class="page-item next">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
             </div>
-        </div>
         </div>
     </div>
 </body>

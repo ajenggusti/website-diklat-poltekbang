@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use App\Models\Gambar_navbar;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class UtamaController extends Controller
 {
@@ -20,9 +21,8 @@ class UtamaController extends Controller
         $jmlPendaftar = Pendaftaran::countPendaftar();
         $jmlDiklat = Diklat::countDiklat();
         $katDiklat = KatDiklat::selectAll();
+        // dd($user);
         $testimonis = Testimoni::where('tampil', 'iya')->get();
-        $countTestimoni=Testimoni::where('tampil', 'iya')->get()->count();
-        // dd($countTestimoni);
         $gbrSlide = Gambar_navbar::where('status', 'tampilkan')->get();
         $promos = Promos::where(function($query) {
             $query->whereDate('tgl_akhir', '>=', now())
@@ -36,19 +36,7 @@ class UtamaController extends Controller
                   ->where('pakai_kuota', 'tidak');
         })
         ->get();
-        $countPromo = Promos::where(function($query) {
-            $query->whereDate('tgl_akhir', '>=', now())
-                  ->where('pakai_kuota', 'iya')
-                  ->where('tampil', 'ya')
-                  ->where('kuota', '>', 0);
-        })
-        ->orWhere(function($query) {
-            $query->whereDate('tgl_akhir', '>=', now())
-                    ->where('tampil', 'ya')
-                  ->where('pakai_kuota', 'tidak');
-        })
-        ->get()->count();
-        // dd($countPromo);
+    
     
         return view('utama/landingPage', [
             'jmlPendaftar' => $jmlPendaftar,
@@ -57,8 +45,6 @@ class UtamaController extends Controller
             'testimonis' => $testimonis,
             'gbrSlide' => $gbrSlide,
             'promos'=>$promos,
-            'countTestimoni'=>$countTestimoni,
-            'countPromo'=>$countPromo
 
         ]);
     }
@@ -82,12 +68,15 @@ class UtamaController extends Controller
             ->orWhereNull('id_diklat')
             ->orderByRaw('CASE WHEN id_diklat IS NULL THEN 0 ELSE 1 END, id_diklat ASC')
             ->get();
-
-
+        $user = Auth::user();
+        $dobelDiklat = Pendaftaran::where('id_user', $user->id)
+            ->where('id_diklat', $id)
+            ->exists();
         // dd($gambars);
         return view('utama.detailDiklat', [
             'detailDiklat' => $detailDiklat,
-            'gambars' => $gambars
+            'gambars' => $gambars,
+            'dobelDiklat'=>$dobelDiklat
         ]);
     }
 }

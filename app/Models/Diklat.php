@@ -2,7 +2,11 @@
 
 namespace App\Models;
 
+use App\Models\Promos;
 use App\Models\KatDiklat;
+use App\Models\Testimoni;
+use App\Models\Pendaftaran;
+use App\Models\GambarDiklat;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -17,7 +21,7 @@ class Diklat extends Model
 
     public function kategori()
     {
-        return $this->belongsTo(KatDiklat::class, 'id_kategori_diklat', 'id');
+        return $this->belongsTo(KatDiklat::class, 'id_kategori_diklat');
     }
     public function promos()
     {
@@ -30,6 +34,10 @@ class Diklat extends Model
     public function gambarDiklat()
     {
         return $this->hasMany(GambarDiklat::class, 'id_diklat');
+    }
+    public function testimoni()
+    {
+        return $this->hasMany(Testimoni::class, 'id_diklat');
     }
     public function updateStatus()
     {

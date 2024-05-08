@@ -9,4 +9,8 @@ class Level extends Model
 {
     use HasFactory;
     protected $table = 'level';
+    public function user()
+    {
+        return $this->hasMany(User::class, 'id_level');
+    }
 }

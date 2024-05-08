@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Midtrans\Config;
 use App\Models\Diklat;
 use App\Models\Pembayaran;
 use App\Models\Pendaftaran;
@@ -56,7 +57,7 @@ class PembayaranController extends Controller
         // dd($pembayaran);
         // $pembayaran->id = $idGenerate;
         // Set your Merchant Server Key
-        \Midtrans\Config::$serverKey = config('midtrans.server_key');
+        Config::$serverKey = config('midtrans.server_key');
         // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
         \Midtrans\Config::$isProduction = config('midtrans.is_production');
         // Set sanitization on (default)
@@ -351,6 +352,4 @@ class PembayaranController extends Controller
         
         return redirect('/riwayat')->with('success', 'Terimakasih! Pembayaranmu akan segera diperiksa oleh admin:)');
     }
-    
-    
 }
