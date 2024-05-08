@@ -23,6 +23,8 @@ class UtamaController extends Controller
         $katDiklat = KatDiklat::selectAll();
         // dd($user);
         $testimonis = Testimoni::where('tampil', 'iya')->get();
+        $countTestimoni=Testimoni::where('tampil', 'iya')->get()->count();
+        // dd($countTestimonis);
         $gbrSlide = Gambar_navbar::where('status', 'tampilkan')->get();
         $promos = Promos::where(function($query) {
             $query->whereDate('tgl_akhir', '>=', now())
@@ -36,7 +38,20 @@ class UtamaController extends Controller
                   ->where('pakai_kuota', 'tidak');
         })
         ->get();
-    
+        // $countPromo = count($promos);
+        $countPromo = Promos::where(function($query) {
+            $query->whereDate('tgl_akhir', '>=', now())
+                  ->where('pakai_kuota', 'iya')
+                  ->where('tampil', 'ya')
+                  ->where('kuota', '>', 0);
+                })
+        ->orWhere(function($query) {
+            $query->whereDate('tgl_akhir', '>=', now())
+                    ->where('tampil', 'ya')
+                    ->where('pakai_kuota', 'tidak');
+                })
+                ->get()->count();
+                // dd($countPromo);
     
         return view('utama/landingPage', [
             'jmlPendaftar' => $jmlPendaftar,
@@ -45,16 +60,30 @@ class UtamaController extends Controller
             'testimonis' => $testimonis,
             'gbrSlide' => $gbrSlide,
             'promos'=>$promos,
+            'countTestimoni'=>$countTestimoni,
+            'countPromo' =>$countPromo,
 
         ]);
     }
     public function allDiklat($kategori)
     {
-        $diklat = Diklat::with('kategori')
-            ->where('id_kategori_diklat', $kategori)
-            ->get();
+    //     $diklat = Diklat::with('kategori')
+    //         ->where('id_kategori_diklat', $kategori)
+    //         ->get();
+    //     $diklatOne = Diklat::findOrFail($kategori);
+       
+    //     $allDiklat=Diklat::get();
+        
+    //     return view('utama.macamDiklat', [
+    //         'diklat' => $diklat,
+    //         'allDiklat'=>$allDiklat,
+    //         'diklatOne' =>$diklatOne,
+    //     ]);
+    // }
+        // dd($kategori);
+        $diklat = Diklat::findOrFail($kategori);
         $allDiklat=Diklat::get();
-
+        dd($diklat->kategori_diklat);
         return view('utama.macamDiklat', [
             'diklat' => $diklat,
             'allDiklat'=>$allDiklat

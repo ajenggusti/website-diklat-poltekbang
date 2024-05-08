@@ -16,7 +16,7 @@
             <div class="background-image"></div>
             <div class="content-body">
             {{-- <div class="content-land"> --}}
-                <h2>Diklat Pada {{ $diklat->kategori_diklat ->kategori_diklat }}</h2>
+                <h2>Diklat Pada {{ $diklatOne->kategori_diklat }}</h2>
                 <div class="card-container2">
                 {{-- <div class="cards-container"> --}}
                     @foreach ($diklat as $perdiklat)
