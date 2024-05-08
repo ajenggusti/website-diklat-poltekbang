@@ -30,43 +30,69 @@
                 <nav aria-label="breadcrumb" style="background-color: #FFFFFF !important;">
                     <ol class="breadcrumb">
                       <li class="breadcrumb-item"><a href="#">Home</a></li>
-                      <li class="breadcrumb-item active" aria-current="page">Jenis Diklat</li>
+                    <li class="breadcrumb-item active" aria-current="page">Jenis Diklat</li>
                     </ol>
                   </nav>
                 {{-- <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a><br> --}}
-                @foreach ($detailDiklat as $detail) <br> <br>
-                <h1>{{ $detail->nama_diklat }}</h1>
                 
-                <img src="{{ asset('storage/' . $gambar->gambar_navbar) }}" alt="Gambar Diklat" style="width: 10%;">
+                        @foreach ($detailDiklat as $detail) <br> <br>
+                        
+                            <h1>{{ $detail->nama_diklat }}</h1>
+                            
+                        
+                               
+                            <div id="carouselExampleIndicators" class="carousel slide img-diklat" data-bs-ride="carousel">
+                                <div class="carousel-indicators">
+                                    @foreach ($gambars as $key => $gambar)
+                                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : '' }}" aria-current="{{ $key == 0 ? 'true' : 'false' }}" aria-label="Slide {{ $key + 1 }}"></button>
+                                    @endforeach
+                                </div>
+                                <div class="carousel-inner">
+                                    @foreach ($gambars as $key => $gambar)
+                                        <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                                            <img src="{{ asset('storage/' . $gambar->gambar_navbar) }}" class="d-block w-100" alt="Gambar Diklat" >
+                                        </div>
+                                    @endforeach
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Next</span>
+                                </button>
+                            </div>
+                    {{-- </div> --}}
 
-                {{-- <img src="{{ asset('img/diklat.jpeg') }}" alt="Gambar Diklat" class="img-detail"> --}}
-                <div class="card-container3">
-                    <div class="card-content3">
-                        <p>
-                            <span>Nama Diklat : </span><br>
-                            {{ $detail->nama_diklat }}
-                        </p>
-                        
-                        <p>
-                            <span>Detail Harga :</span><br>
-                            {{ $detail->harga }}</p>
-                        
-                        <p>
-                            <span>Jumlah Pendaftar Saat Ini :</span><br>
-                            {{ $detail->jumlah_pendaftar }}
-                        </p>
-                        
-                        <p>
-                            <span>Status Penerimaan PendaftaraN :</span><br>
-                            {{ $detail->status }}
-                        </p>
-                        
-                        <p>
-                            <span>Deskripsi :</span><br>
-                            {!! $detail->deskripsi !!}
-                        </p>
-                    </div>
-                </div> 
+                    {{-- <img src="{{ asset('img/diklat.jpeg') }}" alt="Gambar Diklat" class="img-detail"> --}}
+                    <div class="card-container3">
+                        <div class="card-content3">
+                            <p>
+                                <span>Nama Diklat : </span><br>
+                                {{ $detail->nama_diklat }}
+                            </p>
+                            
+                            <p>
+                                <span>Detail Harga :</span><br>
+                                {{ $detail->harga }}</p>
+                            
+                            <p>
+                                <span>Jumlah Pendaftar Saat Ini :</span><br>
+                                {{ $detail->jumlah_pendaftar }}
+                            </p>
+                            
+                            <p>
+                                <span>Status Penerimaan PendaftaraN :</span><br>
+                                {{ $detail->status }}
+                            </p>
+                            
+                            <p>
+                                <span>Deskripsi :</span><br>
+                                {!! $detail->deskripsi !!}
+                            </p>
+                        </div>
+                    </div> 
                 @endforeach
                 <br>
                 @auth

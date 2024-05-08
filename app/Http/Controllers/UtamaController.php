@@ -67,28 +67,28 @@ class UtamaController extends Controller
     }
     public function allDiklat($kategori)
     {
-    //     $diklat = Diklat::with('kategori')
-    //         ->where('id_kategori_diklat', $kategori)
-    //         ->get();
-    //     $diklatOne = Diklat::findOrFail($kategori);
-       
-    //     $allDiklat=Diklat::get();
-        
-    //     return view('utama.macamDiklat', [
-    //         'diklat' => $diklat,
-    //         'allDiklat'=>$allDiklat,
-    //         'diklatOne' =>$diklatOne,
-    //     ]);
-    // }
-        // dd($kategori);
-        $diklat = Diklat::findOrFail($kategori);
+        $diklat = Diklat::with('kategori')
+            ->where('id_kategori_diklat', $kategori)
+            ->get();
+        $diklatOne = KatDiklat::findOrFail($kategori);
+    //    dd($diklatOne->kategori_diklat);
         $allDiklat=Diklat::get();
-        dd($diklat->kategori_diklat);
+        
         return view('utama.macamDiklat', [
             'diklat' => $diklat,
-            'allDiklat'=>$allDiklat
+            'allDiklat'=>$allDiklat,
+            'diklatOne' =>$diklatOne,
         ]);
     }
+        // dd($kategori);
+    //     $diklat = Diklat::findOrFail($kategori);
+    //     $allDiklat=Diklat::get();
+    //     dd($diklat->kategori_diklat);
+    //     return view('utama.macamDiklat', [
+    //         'diklat' => $diklat,
+    //         'allDiklat'=>$allDiklat
+    //     ]);
+    // }
 
     public function detailDiklat($id)
     {

@@ -268,3 +268,7 @@ h2 {
 .page-link:hover {
   background-color: #f0f0f0;
 }
+
+.modal-title h1 {
+  text-align: center;
+}
