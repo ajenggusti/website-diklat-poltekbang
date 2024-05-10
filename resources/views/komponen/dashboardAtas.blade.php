@@ -148,6 +148,12 @@
                   Laporan
                 </a>
               </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/kelKalender">
+                  <span data-feather="layers"></span>
+                  Kalender
+                </a>
+              </li>
             </ul>
           </div>
         </nav>

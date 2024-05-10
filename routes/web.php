@@ -8,6 +8,8 @@ use App\Http\Controllers\UtamaController;
 use App\Http\Controllers\DiklatController;
 use App\Http\Controllers\DbUtamaController;
 use App\Http\Controllers\RiwayatController;
+use App\Http\Controllers\KalenderController;
+use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TestimoniController;
 use App\Http\Controllers\GbrLandingController;
@@ -58,6 +60,7 @@ Route::get('/indexKelolaUser', [RegisterController::class, 'tampil']);
 Route::get('/editProfil', [RegisterController::class, 'editProfil']);
 Route::put('/updateProfil/{id}', [RegisterController::class, 'updateProfil'])->name('updateProfil.update');
 
+Route::get('provinsi-dropdown', [ProvinsiController::class, 'showAll'])->name('kabupaten.dropdown');
 Route::get('kabupaten-dropdown/{id}', KabupatenDropdownController::class)->name('kabupaten.dropdown');
 Route::get('kecamatan-dropdown/{id}', KecamatanDropdownController::class)->name('kecamatan.dropdown');
 Route::get('kelurahan-dropdown/{id}', KelurahanDropdownController::class)->name('kelurahan.dropdown');
@@ -86,3 +89,5 @@ Route::get('/kelPembayaranDiklat', [PembayaranController::class, 'saveDiklat'])-
 Route::resource('/kelPembayaran', PembayaranController::class)->except('update');
 //route CRUD gambar diklat
 Route::resource('/kelGambarDiklat', GambarDiklatController::class);
+// route CRUD Kalender
+Route::resource('/kelKalender', KalenderController::class);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ProvinsiResource;
 use App\Models\Provinsi;
 use Illuminate\Http\Request;
 
@@ -36,6 +37,13 @@ class ProvinsiController extends Controller
     public function create()
     {
         //
+    }
+    // cara buka cmd ne piye? wkwkwkkolom e kan??? iyoi sek2 lali jenenge method e aku wkwkwksng endii
+    public function showAll()
+    {
+        $provinsi = Provinsi::all();
+
+        return response()->json(ProvinsiResource::collection($provinsi));
     }
 
     /**

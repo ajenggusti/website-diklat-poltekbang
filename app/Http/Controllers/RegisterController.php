@@ -116,25 +116,57 @@ class RegisterController extends Controller
     public function editProfil()
     {
         $user = Auth::user();
-        $kelurahan=Kelurahan::get();
-        $kabupaten=Kabupaten::get();
-        $kecamatan=Kecamatan::get();
-        $provinsis=Provinsi::get();
+        $kelurahans = Kelurahan::get();
+        $kabupatens = Kabupaten::get();
+        $kecamatans = Kecamatan::get();
+        $provinsis = Provinsi::get();
         $nationalities = Nationality::get();
 
         // dd($user->nationality->name);
 
         return view('utama.editProfil', [
-            'user'=>$user,
-            'kelurahan'=>$kelurahan,
-            'kabupaten'=>$kabupaten,
-            'kecamatan'=>$kecamatan,
-            'provinsis'=>$provinsis,
-            'nationalities'=>$nationalities
-
+            'user' => $user,
+            'kelurahans' => $kelurahans,
+            'kabupatens' => $kabupatens,
+            'kecamatans' => $kecamatans,
+            'provinsis' => $provinsis,
+            'nationalities' => $nationalities
         ]);
+
     }
-    public function updateProfil(Request $request, $id){
+    public function updateProfil(Request $request, $id)
+    {
+        // dd($id);
+        // dd($request);
+        $messages = [
+            'required' => ':attribute tidak boleh kosong.',
+            'in' => ':attribute harus salah satu dari :values.',
+            'image' => ':attribute harus berupa gambar.',
+            'mimes' => ':attribute harus memiliki format file: :values.',
+            'max' => ':attribute tidak boleh lebih dari :max karakter.',
+            'string' => ':attribute harus berupa teks.',
+            'email' => ':attribute harus berupa alamat email yang valid.',
+            'date_format' => ':attribute tidak sesuai format tanggal yang diharapkan (dd-mm-yyyy).',
+            'exists' => ':attribute yang dipilih tidak valid.',
+        ];
+    
+        $request->validate([
+            'nik' => $request->input('jenis_berkas') == 'ktp' ? 'required|string' : '',
+            'jenis_berkas' => 'required|in:ktp,paspor',
+            'img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'no_paspor' => 'nullable|string|max:255',
+            'tempat_lahir' => 'required|string|max:255',
+            'jenis_kelamin' => 'required|in:p,l',
+            'tgl_lahir' => 'required|date_format:d-m-Y',
+            'tgl_exp_paspor' => 'nullable|date_format:d-m-Y',
+            'id_provinsi' => 'required|exists:provinsis,id',
+            'id_kabupaten' => 'required|exists:kabupatens,id',
+            'id_kecamatan' => 'required|exists:kecamatans,id',
+            'id_kelurahan' => 'required|exists:kelurahans,id',
+            'id_nationality' => 'required|exists:nationalities,id',
+        ], $messages);
         dd($request);
     }
 }
