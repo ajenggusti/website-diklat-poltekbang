@@ -40,9 +40,12 @@ use App\Http\Controllers\KelurahanDropdownController;
 Route::get('/', [UtamaController::class, 'index']);
 Route::get('/utama/macamDiklat/{kategori}', [UtamaController::class, 'allDiklat']);
 Route::get('/utama/detailDiklat/{detail}', [UtamaController::class, 'detailDiklat']);
+// dashboard admin
 Route::get('/dbSuperAdmin', [DbUtamaController::class, 'index']);
 Route::get('/dbDpuk', [DbUtamaController::class, 'dbDpuk']);
 Route::get('/dbKeuangan', [DbUtamaController::class, 'dbKeuangan']);
+Route::get('/dbDpukDetail/{id}', [DbUtamaController::class, 'dbDpukDetail']);
+
 Route::get('/riwayat', [RiwayatController::class, 'index'])->middleware('auth');
 Route::get('/riwayat/{detail}', [RiwayatController::class, 'detailRiwayat'])->middleware('auth')->name('riwayat.detail');
 // route bukti pembayaran

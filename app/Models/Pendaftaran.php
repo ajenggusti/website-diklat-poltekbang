@@ -36,11 +36,6 @@ class Pendaftaran extends Model
     {
         return $this->hasMany(Pembayaran::class, 'id_pendaftaran');
     }
-
-    public static function countPendaftar()
-    {
-        return self::count();
-    }
     public static function countPendaftaranAsDiklat()
     {
         return pendaftaran::join('diklat', 'pendaftaran.id_diklat', '=', 'diklat.id')
