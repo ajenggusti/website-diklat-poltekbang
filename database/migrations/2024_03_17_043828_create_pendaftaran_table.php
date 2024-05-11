@@ -34,10 +34,12 @@ return new class extends Migration
             $table->string('jenis_pembayaran_daftar')->nullable(); //bayar pake qris/shopepay dll
             $table->string('updated_at_pembayaran_daftar')->nullable();
             $table->string('status_pembayaran_daftar')->default('Menunggu pembayaran')->nullable(); //nnti isi dropdon
+            $table->enum('status_pelaksanaan', ['terlaksana', 'belum terlaksana'])->nullable(); 
             $table->string('metode_sertif')->nullable();//nnti isi dropdon
             $table->longText('s_link')->nullable();
             $table->text('s_gambar')->charset('binary')->nullable();
             $table->text('s_doc')->charset('binary')->nullable();
+            $table->timestamps();
             $table->foreign('id_diklat')->references('id')->on('diklat')->onUpdate('cascade')
             ->onDelete('cascade');
             $table->foreign('id_user')->references('id')->on('users')->onUpdate('cascade')

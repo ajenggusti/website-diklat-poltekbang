@@ -199,12 +199,12 @@ class PembayaranController extends Controller
     public function savePendaftaran(Request $request)
     {
         // dd($request);
-        $id = $request->query('id');
+        $id = $request->id;
         // dd($id);
         // $pendaftaran = Pendaftaran::findOrFail($id);
         // dd($pendaftaran);
         $pembayaran = Pembayaran::create([
-            'order_id' => 'ORD_' . rand(100000, 999999), // Menggunakan UUID untuk nilai id
+            'order_id' => 'ORD_' . rand(100000, 999999),
             'id_pendaftaran' => $id,
             'jenis_pembayaran' => "pendaftaran",
             'total_harga' => "150000",
@@ -248,7 +248,7 @@ class PembayaranController extends Controller
     public function createDiklat(Request $request)
     {
         // dd($request);
-        $id = $request->query('id');
+        $id = $request->id;
         // dd($id);
         $pendaftaran = Pendaftaran::findOrFail($id);
         // dd($pendaftaran);
@@ -258,16 +258,17 @@ class PembayaranController extends Controller
     }
     public function saveDiklat(Request $request)
     {
-        $id = $request->query('id');
+        $id = $request->id;
         // dd($id);
         $pendaftaran = Pendaftaran::findOrFail($id);
         // dd($pendaftaran->harga_diklat);
         $pembayaran = Pembayaran::create([
-            'order_id' => 'ORD_' . rand(100000, 999999), // Menggunakan UUID untuk nilai id
+            'order_id' => 'ORD_' . rand(100000, 999999),
             'id_pendaftaran' => $id,
             'jenis_pembayaran' => "diklat",
             'total_harga' => $pendaftaran->harga_diklat,
             'metode_pembayaran' => "online",
+            'status' => "Menunggu pembayaran",
             'created_at' => now(),
         ]);
         \Midtrans\Config::$serverKey = config('midtrans.server_key');
@@ -306,15 +307,15 @@ class PembayaranController extends Controller
             'image' => 'Data yang dimasukkan harus berupa gambar.',
             'max' => 'Ukuran gambar tidak boleh melebihi :max kilobytes.',
         ]);
-    
+
         // Simpan data
         $pendaftaran = Pendaftaran::find($id);
         $pembayaran = new Pembayaran();
- 
+
         $pembayaran_update = Pembayaran::where('id_pendaftaran', $id)
-        ->where('jenis_pembayaran', 'diklat')
-        ->where('metode_pembayaran', 'offline')
-        ->first();
+            ->where('jenis_pembayaran', 'diklat')
+            ->where('metode_pembayaran', 'offline')
+            ->first();
         // dd($pembayaran_update);
 
         if ($pendaftaran->bukti_pembayaran) {
@@ -326,11 +327,10 @@ class PembayaranController extends Controller
                     'status_pembayaran_diklat' => "Menunggu verifikasi"
                 ]);
                 $pembayaran_update->update([
-                    'updated_at'=> now()
+                    'updated_at' => now()
                 ]);
             }
-            
-        }else{
+        } else {
             if ($request->hasFile('bukti_pembayaran')) {
                 $image = $request->file('bukti_pembayaran')->store('LanPage');
                 $pendaftaran->update([
@@ -339,8 +339,8 @@ class PembayaranController extends Controller
                 ]);
             }
             $pembayaran->create([
-                'order_id' => 'ORD_' . rand(100000, 999999), // Menggunakan UUID untuk nilai id
-                'id_pendaftaran'=>$id,
+                'order_id' => 'ORD_' . rand(100000, 999999),
+                'id_pendaftaran' => $id,
                 'jenis_pembayaran' => "diklat",
                 'total_harga' => $pendaftaran->harga_diklat,
                 'metode_pembayaran' => "offline",
@@ -348,10 +348,7 @@ class PembayaranController extends Controller
                 'created_at' => now(),
             ]);
         }
-        
+
         return redirect('/riwayat')->with('success', 'Terimakasih! Pembayaranmu akan segera diperiksa oleh admin:)');
     }
-    
-    
 }
-

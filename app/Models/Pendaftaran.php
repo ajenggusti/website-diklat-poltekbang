@@ -12,7 +12,7 @@ class Pendaftaran extends Model
     use HasFactory;
 
     protected $table = 'pendaftaran';
-    public $timestamps = false;
+    public $timestamps = true;
     protected $guarded = [''];
     public function diklat()
     {

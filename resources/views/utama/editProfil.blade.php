@@ -8,22 +8,31 @@ hai {{ $user->name }}, Lengkapi datamu!
     <form action="{{ route('updateProfil.update', ['id' => $user->id]) }}" method="post" enctype="multipart/form-data" id="formPendaftaran">
         @method('put')
         @csrf
-
+        @if (session('success') )
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        @endif
+        @if ($user->status)
+            Status biodatamu : {{ $user->status }}
+        @endif
         <br>
         <div class="mb-3">
             <label for="jenis_berkas" class="form-label">Pilih jenis berkas:</label>
             <select name="jenis_berkas" id="jenis_berkas" class="form-select">
-                <option value="ktp" {{ old('jenis_berkas') == 'ktp' ? 'selected' : '' }}>KTP</option>
-                <option value="paspor" {{ old('jenis_berkas') == 'paspor' ? 'selected' : '' }}>Paspor</option>
+                <option value="ktp" {{ old('jenis_berkas', $user->jenis_berkas) == 'ktp' ? 'selected' : '' }}>KTP</option>
+                <option value="paspor" {{ old('jenis_berkas', $user->jenis_berkas) == 'paspor' ? 'selected' : '' }}>Paspor</option>
             </select>
         </div>
-
-        
-        <br>
-        <small class="text-muted">Jika kamu mengubah jenis berkas dari data yang kamu gunakan sebelumnya, data yang tersimpan akan terhapus. Dan admin akan memverifikasi ulang.</small>
         @error('jenis_berkas')
             <div class="invalid-feedback">{{ $message }}</div>
         @enderror
+        <br>
+        <div class="mb-3">
+            <label for="img" class="form-label">Gambar sebelumnya</label><br>
+            <img src="{{ asset('storage/' . $user->berkas_pendukung) }}" class="img-preview img-fluid" style="width: 20%;">
+        </div>
         <br>
         <div class="mb-3">
             <label for="img" class="form-label">Masukkan foto ktp/paspor</label>
@@ -65,6 +74,20 @@ hai {{ $user->name }}, Lengkapi datamu!
         </div>
       <br>
 
+  
+      <div class="mb-3">
+        <label for="jenis_kelamin" class="form-label">Pilih jenis kelamin:</label>
+        <select name="jenis_kelamin" id="jenis_kelamin" class="form-select @error('jenis_kelamin') is-invalid @enderror">
+            <option value="" selected disabled>Pilih jenis kelamin</option>
+            <option value="p" {{ old('jenis_kelamin', $user->jenis_kelamin) == 'p' ? 'selected' : '' }}>Perempuan</option>
+            <option value="l" {{ old('jenis_kelamin', $user->jenis_kelamin) == 'l' ? 'selected' : '' }}>Laki-laki</option>
+        </select>
+        @error('jenis_kelamin')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+    </div>
+    
+        <br>   
         <div class="mb-3">
             <label for="tempat_lahir" class="form-label is">tempat lahir</label>
             <input type="text" class="form-control  @error('tempat_lahir') is-invalid @enderror" id="tempat_lahir" name= "tempat_lahir" value="{{ old('tempat_lahir') ?: $user->tempat_lahir}}">
@@ -72,17 +95,7 @@ hai {{ $user->name }}, Lengkapi datamu!
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
-        <br>
-        <div class="mb-3">
-            <label for="jenis_kelamin" class="form-label">Pilih jenis kelamin:</label>
-            <select name="jenis_kelamin" id="jenis_kelamin" class="form-select">
-                <option value="" selected disabled>Pilih jenis kelamin</option>
-                <option value="p" {{ old('jenis_kelamin', $user->jenis_kelamin) == 'p' ? 'selected' : '' }}>Perempuan</option>
-                <option value="l" {{ old('jenis_kelamin', $user->jenis_kelamin) == 'l' ? 'selected' : '' }}>Laki-laki</option>
-            </select>
-        </div>
-        
-        <br>             
+        <br>          
         <div class="form-group mb-3">
             <label class="control-label" for="tgl_lahir">Tanggal Lahir</label>
             <input class="form-control datepicker @error('tgl_lahir') is-invalid @enderror" value="{{ old('tgl_lahir') ?? ($user->tgl_lahir ? \Carbon\Carbon::parse($user->tgl_lahir)->format('d-m-Y') : '') }}" id="tgl_lahir" name="tgl_lahir" placeholder="dd-mm-yyyy" type="text"/>
@@ -92,7 +105,7 @@ hai {{ $user->name }}, Lengkapi datamu!
         </div>
         <div class="form-group mb-3">
             <label class="control-label" for="tgl_exp_paspor">Tanggal expired paspor</label>
-            <input class="form-control datepicker @error('tgl_exp_paspor') is-invalid @enderror" value="{{ old('tgl_exp_paspor') ?? ($user->tgl_exp_paspor ? \Carbon\Carbon::parse($user->tgl_exp_paspor)->format('d-m-Y') : '') }}" id="tgl_exp_paspor" name="tgl_exp_paspor" placeholder="dd-mm-yyyy" type="text"/>
+            <input class="form-control datepicker @error('tgl_exp_paspor') is-invalid @enderror" value="{{ old('tgl_exp_paspor') ?? ($user->tgl_exp_paspor ? \Carbon\Carbon::parse($user->tgl_exp_paspor)->format('d-m-Y') : '') }}" id="tgl_exp_paspor" name="tgl_exp_paspor" placeholder="dd-mm-yyyy" type="text"{{ $user->status == 'Diverifikasi' ? 'disabled' : '' }}/>
             @error('tgl_lahir')
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
@@ -102,37 +115,58 @@ hai {{ $user->name }}, Lengkapi datamu!
         <select class="form-select single-select-field" name="id_nationality" id="nationality" data-placeholder="Pilih nationality">
             <option></option>
             @foreach ($nationalities as $nationality)
-                <option value="{{ $nationality->id }}">{{ $nationality->name }}</option>
+                <option value="{{ $nationality->id }}" @if($nationality->id == $user->id_nationality) selected @endif>{{ $nationality->name }}</option>
             @endforeach
         </select>
-        
-        
-        
+        @error('id_nationality')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+        <br>
         {{-- alamat --}}
         <label for="provinsi">Provinsi:</label>
-        <select class="form-select single-select-field" name="id_provinsi" id="provinsi" data-placeholder="Pilih provinsi">
+        <select class="form-select single-select-field @error('id_provinsi') is-invalid @enderror" name="id_provinsi" id="provinsi" data-placeholder="Pilih provinsi">
             <option></option>
             @foreach ($provinsis as $provinsi)
                 <option value="{{ $provinsi->id }}">{{ $provinsi->name }}</option>
             @endforeach
         </select>
-        
+        @error('id_provinsi')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+        <br>
         <label for="kabupaten">Kabupaten:</label>
-        <select class="form-select single-select-field" name="id_kabupaten" id="kabupaten" data-placeholder="Pilih Kabupaten">
+        <select class="form-select single-select-field @error('id_kabupaten') is-invalid @enderror" name="id_kabupaten" id="kabupaten" data-placeholder="Pilih Kabupaten">
             <option></option>
         </select>
+        @error('id_kabupaten')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+        <br>
         <label for="kecamatan">Kecamatan:</label>
-        <select class="form-select single-select-field" name="id_kecamatan" id="kecamatan" data-placeholder="Pilih kecamatan">
+        <select class="form-select single-select-field @error('id_kecamatan') is-invalid @enderror" name="id_kecamatan" id="kecamatan" data-placeholder="Pilih kecamatan">
             <option></option>
         </select>
-        <label for="kelurahan">kelurahan:</label>
-        <select class="form-select single-select-field" name="id_kelurahan" id="kelurahan" data-placeholder="Pilih kelurahan">
+        @error('id_kecamatan')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
+        <br>
+        <label for="kelurahan">Kelurahan:</label>
+        <select class="form-select single-select-field @error('id_kelurahan') is-invalid @enderror" name="id_kelurahan" id="kelurahan" data-placeholder="Pilih kelurahan">
             <option></option>
         </select>
+        @error('id_kelurahan')
+            <div class="invalid-feedback">{{ $message }}</div>
+        @enderror
 
         
-        
-        <button type="submit" class="btn btn-primary">Kirim</button>
+        @if ($user->status=="Diverifikasi" )
+            Profilmu sudah terverifikasi, jika kamu ingin mengebah biodatamu, ajukan permohonan dengan klik tombol dibawah ini!
+            <a href="/permohonan/{{ $user->id }}" class="btn btn-warning">Permohonan mengubah data</a>
+           
+        @elseif($user->status =="Permohonan perubahan disetujui" || $user->status == "Perlu dilengkapi" || $user->status == "Sedang diverifikasi" ||$user->status == "Perlu pembaharuan")
+            <button type="submit" class="btn btn-primary">Kirim</button>
+        @else
+        @endif
         
     </form> 
 
@@ -146,6 +180,13 @@ hai {{ $user->name }}, Lengkapi datamu!
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script>
     $(document).ready(function() {
+        
+        $('#jenis_berkas').on('change', function() {
+        // Hapus semua pesan kesalahan pada form
+        $('.invalid-feedback').remove();
+        // Hapus kelas is-invalid dari semua input/select
+        $('input, select').removeClass('is-invalid');
+    });
         $('.single-select-field').select2({
             theme: "bootstrap-5",
             width: function() {
@@ -221,6 +262,7 @@ hai {{ $user->name }}, Lengkapi datamu!
         var kelurahanSelect = $('#kelurahan');
         var nikInput = $('#nik');
         var noPasporInput = $('#no_paspor');
+        var tempatLahirInput = $('#tempat_lahir');
         var tglExpPasporInput = $('#tgl_exp_paspor');
         var provinsiLabel = $('label[for="provinsi"]');
         var nikLabel = $('label[for="nik"]');
@@ -231,6 +273,7 @@ hai {{ $user->name }}, Lengkapi datamu!
         var kelurahanLabel = $('label[for="kelurahan"]');
         var nationalityLabel = $('label[for="nationality"]');
         var tglExpPasporLabel = $('label[for="tgl_exp_paspor"]');
+        var tempatLahirLabel = $('label[for="tempat_lahir"]');
 
         function handleVisibility() {
             var selectedJenisBerkas = jenisBerkasSelect.val();
@@ -238,6 +281,7 @@ hai {{ $user->name }}, Lengkapi datamu!
                 nationalitySelect.next('.select2').hide();
                 nationalityLabel.hide();
                 tglExpPasporInput.hide();
+                tempatLahirInput.show();
                 tglExpPasporLabel.hide();
                 noPasporInput.hide();
                 noPasporLabel.hide();
@@ -249,6 +293,7 @@ hai {{ $user->name }}, Lengkapi datamu!
                 kabupatenLabel.show();
                 kelurahanLabel.show();
                 kecamatanLabel.show();
+                tempatLahirLabel.show();
                 nikInput.show();
                 nikLabel.show();
             } else {
@@ -258,6 +303,7 @@ hai {{ $user->name }}, Lengkapi datamu!
                 noPasporLabel.show();
                 tglExpPasporInput.show();
                 tglExpPasporLabel.show();
+                tempatLahirInput.hide();
                 provinsiSelect.next('.select2').hide();
                 kabupatenSelect.next('.select2').hide();
                 kecamatanSelect.next('.select2').hide();
@@ -268,6 +314,7 @@ hai {{ $user->name }}, Lengkapi datamu!
                 kecamatanLabel.hide();
                 nikInput.hide();
                 nikLabel.hide();
+                tempatLahirLabel.hide();
             }
         }
 

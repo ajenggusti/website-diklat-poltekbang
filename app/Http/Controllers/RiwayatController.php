@@ -26,10 +26,12 @@ class RiwayatController extends Controller
         return view('utama.detailRiwayat', ['data' => $data]);
     }
 
-    public function buktiPembayaran($id)
+    public function buktiPembayaran(Request $request)
     {
-        $pembayarans = Pembayaran::where('id_pendaftaran', $id)->get(); // Mendapatkan semua record yang sesuai dengan $id
+        // dd($request);
+        $id = $request->id;
+        $pembayarans = Pembayaran::where('id_pendaftaran', $id)->get(); 
         // dd($pembayaran);
-        return view('utama.buktiPembayaran', ['pembayarans' => $pembayarans]); // Mengirimkan data pembayaran ke view
+        return view('utama.buktiPembayaran', ['pembayarans' => $pembayarans]); 
     }
 }

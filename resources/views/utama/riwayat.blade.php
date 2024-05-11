@@ -27,17 +27,30 @@
             <a href="/riwayat/{{ $data->id }}" class="btn btn-success">Lihat</a>
             {{-- <a href="{{ route('kelPembayaran.create', ['id' => $data->id]) }}" class="btn btn-secondary">Lakukan Pembayaran?</a> --}}
             @if ($data->status_pembayaran_daftar != "Lunas")
-                <a href="{{ route('kelPembayaranPendaftaran.savePendaftaran', ['id' => $data->id]) }}" class="btn btn-secondary">Pendaftaran?</a>
+                <form id="hiddenFormPendaftaran" method="POST" action="{{ route('kelPembayaranPendaftaran.savePendaftaran') }}">
+                    @csrf
+                    <input type="hidden" name="id" value="{{ $data->id }}">
+                </form>
+                <a href="#" onclick="submitFormPendaftaran()" class="btn btn-secondary">Pendaftaran?</a>
             @endif
             @if ($data->status_pembayaran_diklat != "Lunas")
-                <a href="{{ route('kelPembayaranDiklat-form.createDiklat', ['id' => $data->id]) }}" class="btn btn-secondary">Diklat?</a>
+                <form id="hiddenFormDiklat" method="POST" action="{{ route('kelPembayaranDiklat-form.createDiklat') }}">
+                    @csrf
+                    <input type="hidden" name="id" value="{{ $data->id }}">
+                </form>
+                <a href="#" onclick="submitFormDiklat()" class="btn btn-secondary">Diklat?</a>
             @endif
             <form action="/kelPendaftaran/{{ $data->id }}" method="POST">
                 @method('DELETE')
                 @csrf
                 <button class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
             </form>
-            <a href="/bukti-pembayaran/{{ $data->id }}" class="btn" style="background-color: palevioletred; color: #ffffff;">Transaksi Pembayaran</a>
+            {{-- <a href="/bukti-pembayaran/{{ $data->id }}" class="btn" style="background-color: palevioletred; color: #ffffff;">Transaksi Pembayaran</a> --}}
+            <form id="transaksiPembayaran" method="POST" action="{{ route('bukti-pembayaran.buktiPembayaran') }}">
+                @csrf
+                <input type="hidden" name="id" value="{{ $data->id }}">
+            </form>
+            <a href="#"  style="background-color: palevioletred; color: #ffffff;" onclick="submitFormTransaksi()" class="btn btn-secondary">Transaksi Pembayaran</a>
             
             @if ($data->s_doc)
                 <a href="{{ route('kelTestimoni.create', ['id' => $data->id]) }}"class="btn" style="background-color: rgb(44, 138, 192); color: #ffffff;">Sampaikan Pendapatmu</a>
@@ -55,4 +68,15 @@
     @else
         <p>ups kamu belum daftar diklat</p>
     @endif
+    <script>
+        function submitFormPendaftaran() {
+            document.getElementById('hiddenFormPendaftaran').submit();  
+        }
+        function submitFormDiklat() {
+            document.getElementById('hiddenFormDiklat').submit();
+        }
+        function submitFormTransaksi() {
+            document.getElementById('transaksiPembayaran').submit(); 
+        }
+    </script>
 @endsection

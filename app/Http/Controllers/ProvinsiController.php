@@ -38,7 +38,7 @@ class ProvinsiController extends Controller
     {
         //
     }
-    // cara buka cmd ne piye? wkwkwkkolom e kan??? iyoi sek2 lali jenenge method e aku wkwkwksng endii
+    
     public function showAll()
     {
         $provinsi = Provinsi::all();

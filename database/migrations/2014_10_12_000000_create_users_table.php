@@ -27,13 +27,13 @@ return new class extends Migration
             $table->string('tempat_lahir')->nullable();
             $table->string('jenis_kelamin')->nullable();
             $table->string('nik')->nullable();
-            $table->string('alamat')->nullable();
             $table->enum('jenis_berkas', ['ktp', 'paspor'])->nullable();
             $table->string('no_paspor')->nullable();
             $table->date('tgl_exp_paspor')->nullable();
             $table->date('tgl_lahir')->nullable();
-            $table->enum('status', ['Belum diverifikasi', 'Sedang diverifikasi', 'Diverifikasi', 'Perlu pembaharuan'])->nullable();
+            $table->enum('status', ['Perlu dilengkapi','Sedang diverifikasi', 'Diverifikasi', 'Perlu pembaharuan', 'Memohon perubahan','Permohonan perubahan disetujui'])->nullable();
             $table->rememberToken();
+            $table->string('permohonan_ubah')->nullable();
             $table->timestamps();
             $table->foreign('id_level')->references('id')->on('level')->onUpdate('cascade')->onDelete('cascade');
             $table->foreign('id_kelurahan')->references('id')->on('kelurahans')->cascadeOnUpdate()->cascadeOnDelete();

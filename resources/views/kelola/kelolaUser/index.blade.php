@@ -24,14 +24,9 @@
             <td>{{ $data->level->level }}</td>  
             <td>{{ $data->name }}</td>
             <td>{{ $data->email }}</td>
-            {{-- <td>
-                @if ($data->id_kelurahan)
-                    {{ $data->kelurahan->kecamatan->kabupaten->provinsi->name}}
-                @else
-                    null
-                @endif
-            </td> --}}
             <td>
+                {{-- cer ini aku menambhakn button show yak --}}
+                <a href="register/{{ $data->id }}" class="btn btn-info">Lihat</a>
                 <a href="register/{{ $data->id }}/edit" class="btn btn-warning">Edit</a>
                 <form action="/register/{{ $data->id }}" method="POST">
                     @method('DELETE')

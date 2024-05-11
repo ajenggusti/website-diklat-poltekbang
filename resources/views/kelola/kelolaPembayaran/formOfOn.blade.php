@@ -1,7 +1,14 @@
 @extends('layout.mainUser')
 @section('container')
     <h1>Form Pembayaran Diklat</h1>
-        <a href="{{ route('kelPembayaranDiklat.saveDiklat', ['id' => $pendaftaran->id]) }}" class="btn btn-secondary">Pembayaran Online</a>
+    {{-- button pembayaran online --}}
+        <form id="hiddenFormDiklat" method="POST" action="{{ route('kelPembayaranDiklat.saveDiklat') }}">
+            @csrf
+            <input type="hidden" name="id" value="{{ $pendaftaran->id }}">
+        </form>
+        <a href="#" onclick="submitForm()" class="btn btn-secondary">Pembayaran online?</a>
+
+
         <br>
         <small class="text-muted">Klik "pembayaran online" jika kamu ingin membayarnya secara online.</small>
         <br>
@@ -56,4 +63,9 @@
         
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+<script>
+  function submitForm() {
+      document.getElementById('hiddenFormDiklat').submit();
+  }
+</script>
 @endsection
