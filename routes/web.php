@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PromoController;
@@ -99,4 +100,5 @@ Route::resource('/kelPembayaran', PembayaranController::class)->except('update')
 //route CRUD gambar diklat
 Route::resource('/kelGambarDiklat', GambarDiklatController::class);
 // route CRUD Kalender
-Route::resource('/kelKalender', KalenderController::class);
+Route::get('events/list', [EventController::class, 'listEvent'])->name('events.list');
+Route::resource('events', EventController::class);

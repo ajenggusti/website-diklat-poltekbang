@@ -20,6 +20,9 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call([
             LevelSeeder::class,
+            // aku menambah ini cerr
+            FromJsonSeeder::class,
+            NationalitiesSeeder::class,
             UserSeeder::class,
             Kategori_diklatSeeder::class,
             DiklatSeeder::class,
@@ -27,7 +30,7 @@ class DatabaseSeeder extends Seeder
             PendaftaranSeeder::class,
             // PembayaranSeeder::class,
             TestimoniSeeder::class,
-            NationalitiesSeeder::class
+            EventSeeder::class
         ]);
     }
 }

@@ -18,24 +18,26 @@ class UtamaController extends Controller
 {
     public function index()
     {
-        $jmlPendaftar = Pendaftaran::countPendaftar();
-        $jmlDiklat = Diklat::countDiklat();
-        $katDiklat = KatDiklat::selectAll();
+        // aku menambah ini cerr
+        $jmlPendaftar = Pendaftaran::all()->count();
+        $jmlDiklat = Diklat::all()->count();
+        $katDiklat = KatDiklat::get();
         // dd($user);
         $testimonis = Testimoni::where('tampil', 'iya')->get();
+        // dd($testimonis);
         $gbrSlide = Gambar_navbar::where('status', 'tampilkan')->get();
         $promos = Promos::where(function($query) {
             $query->whereDate('tgl_akhir', '>=', now())
                   ->where('pakai_kuota', 'iya')
                   ->where('tampil', 'ya')
                   ->where('kuota', '>', 0);
-        })
-        ->orWhere(function($query) {
-            $query->whereDate('tgl_akhir', '>=', now())
-                    ->where('tampil', 'ya')
-                  ->where('pakai_kuota', 'tidak');
-        })
-        ->get();
+                //   cherr aku menambah ini
+            })->orWhere(function($query) {
+                $query->whereDate('tgl_akhir', '>=', now())
+                        ->where('tampil', 'ya')
+                    ->where('pakai_kuota', 'tidak');
+            })
+            ->get();
     
     
         return view('utama/landingPage', [

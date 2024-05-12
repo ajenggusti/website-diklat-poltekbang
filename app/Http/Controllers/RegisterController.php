@@ -71,7 +71,7 @@ class RegisterController extends Controller
     {
         // dd($id);
         $user = User::findOrFail($id);
-        // dd($user);
+        // dd($user->provinsi->name);
         return view('kelola.kelolaUser.show', [
             'user'=>$user
         ]);

@@ -18,13 +18,8 @@
         var calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'dayGridMonth',
             themeSystem:'bootstrap5',
-            events:[
-                {
-                    id:1, 
-                    title:'new event',
-                    start : '2024-05-01'
-                }
-            ]
+            events:`{{ route('events.list') }}`,
+            
         });
         calendar.render();
         });

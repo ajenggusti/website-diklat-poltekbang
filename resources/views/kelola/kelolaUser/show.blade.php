@@ -50,7 +50,55 @@
                 <td>{{ $user->status }}</td>
             </tr>
         @else
-            
+        {{-- // aku menambah ini cerr --}}
+            <tr>
+                <th>Role level</th>
+                <td>{{ $user->level->level }}</td>
+            </tr>
+            <tr>
+                <th>NIK</th>
+                <td>{{ $user->nik }}</td>
+            </tr>
+            <tr>
+                <th>Nama Lengkap</th>
+                <td>{{ $user->name }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ $user->email }}</td>
+            </tr>
+            <tr>
+                <th>Berkas Pendukung</th>
+                <td><img style="height: 50px" src="{{ asset('storage/' . $user->berkas_pendukung) }}" alt="Nama Gambar"></td>
+            </tr>
+            <tr>
+                <th>Jenis Kelamin </th>
+                <td>{{ $user->jenis_kelamin }}</td>
+            </tr>
+            <tr>
+                <th>Jenis Berkas </th>
+                <td>{{ $user->jenis_berkas }}</td>
+            </tr>
+            <tr>
+                <th>Nomor Paspor </th>
+                <td>{{ $user->no_paspor }}</td>
+            </tr>
+            <tr>
+                <th>Tempat Lahir</th>
+                <td>{{ $user->tempat_lahir}}</td>
+            </tr>
+            <tr>
+                <th>Tanggal Lahir</th>
+                <td>{{ \Carbon\Carbon::parse($user->tgl_lahir)->translatedFormat('d F Y') }}</td>
+            </tr>
+            <tr>
+                <th>Alamat</th>
+                <td>Provinsi {{ $user->provinsi->name}} | kabupaten {{ $user->kabupaten->name }} | Kecamatan :{{ $user->kecamatan->name }} | Kelurahan : {{ $user->kecamatan->name }}</td>
+            </tr>
+            <tr>
+                <th>status</th>
+                <td>{{ $user->status }}</td>
+            </tr>
         @endif
 
 
