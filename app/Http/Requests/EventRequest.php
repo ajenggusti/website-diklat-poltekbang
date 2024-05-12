@@ -24,7 +24,6 @@ class EventRequest extends FormRequest
         return [
             'start_date' => 'required|date_format:Y-m-d',
             'end_date' => 'required|date_format:Y-m-d',
-            'title' => 'required',
             'category' => 'required'
         ];
     }

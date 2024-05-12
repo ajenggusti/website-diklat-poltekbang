@@ -56,7 +56,12 @@ class EventController extends Controller
     public function create(Event $event)
     {
         // dd($event->all());
-        return view('kelola.kelEvent.event-form', ['data' => $event, 'action' => route('events.store')]);
+        $diklats=Diklat::get();
+        return view('kelola.kelEvent.event-form', [
+            'data' => $event,
+            'diklats'=>$diklats,
+            'action' => route('events.store')
+        ]);
     }
 
     /**
@@ -81,7 +86,13 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        return view('event-form', ['data' => $event, 'action' => route('events.update', $event->id)]);
+        $diklats=Diklat::all();
+        return view('kelola.kelEvent.event-form', [
+            'data' => $event,
+            'diklats'=>$diklats,
+            'action' => route('events.update', 
+            $event->id,
+        )]);
     }
 
     /**
@@ -89,15 +100,25 @@ class EventController extends Controller
      */
     public function update(EventRequest $request, Event $event)
     {
+        // dd($request);
         if ($request->has('delete')) {
             return $this->destroy($event);
         }
-        $event->start_date = $request->start_date;
-        $event->end_date = $request->end_date;
-        $event->title = $request->title;
-        $event->category = $request->category;
-
-        $event->save();
+        if ($event->id_diklat=$request->id_diklat) {
+            $event->start_date = $request->start_date;
+            $event->end_date = $request->end_date;
+            $event->id_diklat=$request->id_diklat;
+            $event->category = $request->category;
+            $event->save();
+        } else {
+            $event->start_date = $request->start_date;
+            $event->end_date = $request->end_date;
+            $event->title = $request->title;
+            $event->category = $request->category;
+            $event->save();
+        }
+        
+        
 
         return response()->json([
             'status' => 'success',
@@ -110,6 +131,7 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
+        // dd($event);
         $event->delete();
         return response()->json([
             'status' => 'success',
