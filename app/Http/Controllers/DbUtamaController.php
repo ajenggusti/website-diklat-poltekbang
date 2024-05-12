@@ -22,11 +22,22 @@ class DbUtamaController extends Controller
     }
     public function dbDpuk(){
         $this->authorize('dpuk');
-        $jumlahPendaftar = Pendaftaran::countPendaftar();
-        $diklatCounts = Pendaftaran::countPendaftaranAsDiklat();
-        return view('kelola.dbDpuk', [
+        // $jumlahPendaftar = Pendaftaran::countPendaftar();
+        $jumlahPendaftar = Pendaftaran::all()->count();
+        // $diklatCounts = Pendaftaran::countPendaftaranAsDiklat();
+        $pendaftarans = Pendaftaran::groupBy('id_diklat')
+        ->select('id_diklat', DB::raw('count(*) as total_pendaftar'))
+        ->get();
+        return view('kelola.kelDbDpuk.dbDpuk', [
             'jumlahPendaftar'=>$jumlahPendaftar,
-            'diklatCounts' =>$diklatCounts
+            'pendaftarans' =>$pendaftarans
+        ]);
+    }
+    public function dbDpukDetail($id){
+        $datas = Pendaftaran::where('id_diklat', $id)->get();
+        // dd($datas);
+        return view('kelola.kelDbDpuk.detailByIdDiklat', [
+            'datas'=>$datas
         ]);
     }
     public function dbKeuangan(){

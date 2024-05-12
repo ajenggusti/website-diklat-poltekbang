@@ -12,7 +12,7 @@ class Pendaftaran extends Model
     use HasFactory;
 
     protected $table = 'pendaftaran';
-    public $timestamps = false;
+    public $timestamps = true;
     protected $guarded = [''];
     public function diklat()
     {
@@ -36,7 +36,6 @@ class Pendaftaran extends Model
     {
         return $this->hasMany(Pembayaran::class, 'id_pendaftaran');
     }
-
     public static function countPendaftar()
     {
         return self::count();

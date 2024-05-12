@@ -14,6 +14,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+      {{-- select2 --}}
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -154,6 +160,12 @@
                         <a class="nav-link" href="#">
                           <span data-feather="layers"></span>
                           Laporan
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/kelKalender">
+                          <span data-feather="layers"></span>
+                          Kalender
                         </a>
                       </li>
                     {{-- </div> --}}

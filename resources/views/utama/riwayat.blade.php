@@ -14,8 +14,6 @@
                 body {
                     font-family: 'Poppins', sans-serif;
                 }
-                
-
             </style>
         </head>
         <body>
@@ -58,13 +56,26 @@
                                     <p>Lakukan pembayaran : </p>
                                     <div class="col">
                                         @if ($data->status_pembayaran_daftar != "Lunas")
-                                            <a href="{{ route('kelPembayaranPendaftaran.savePendaftaran', ['id' => $data->id]) }}" class="btn danger">Pendaftaran</a>
+                                            <form id="hiddenFormPendaftaran" method="POST" action="{{ route('kelPembayaranPendaftaran.savePendaftaran') }}">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $data->id }}">
+                                            </form>
+                                            <a href="#" onclick="submitFormPendaftaran()" class="btn btn-secondary">Pendaftaran?</a>
                                         @endif
                                         @if ($data->status_pembayaran_diklat != "Lunas")
-                                            <a href="{{ route('kelPembayaranDiklat-form.createDiklat', ['id' => $data->id]) }}" class="btn danger">Diklat</a>
+                                            <form id="hiddenFormDiklat" method="POST" action="{{ route('kelPembayaranDiklat-form.createDiklat') }}">
+                                                @csrf
+                                                <input type="hidden" name="id" value="{{ $data->id }}">
+                                            </form>
+                                            <a href="#" onclick="submitFormDiklat()" class="btn btn-secondary">Diklat?</a>
                                         @endif
                                     </div>
-                                    <p>Bukti Pembayaran : <a href="/bukti-pembayaran/{{ $data->id }}">Transaksi Pembayaran</a> </p>
+                                    <p>Bukti Pembayaran :</p>
+                                    <form id="transaksiPembayaran" method="POST" action="{{ route('bukti-pembayaran.buktiPembayaran') }}">
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $data->id }}">
+                                    </form>
+                                    <a href="#"  style="background-color: palevioletred; color: #ffffff;" onclick="submitFormTransaksi()" class="btn btn-secondary">Transaksi Pembayaran</a>
 
                                     @if ($data->s_doc)
                                         <a href="{{ route('kelTestimoni.create', ['id' => $data->id]) }}"class="btn btn-info" style="background-color: rgb(44, 138, 192); color: #ffffff;">Sampaikan Pendapatmu</a>
@@ -95,9 +106,21 @@
 
                     <br> <br>
                     <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a>
-                @else
-                    <p>ups kamu belum daftar diklat</p>
-                @endif
+                    @else
+                        <p>ups kamu belum daftar diklat</p>
+                    @endif
+
+                    <script>
+                        function submitFormPendaftaran() {
+                            document.getElementById('hiddenFormPendaftaran').submit();  
+                        }
+                        function submitFormDiklat() {
+                            document.getElementById('hiddenFormDiklat').submit();
+                        }
+                        function submitFormTransaksi() {
+                            document.getElementById('transaksiPembayaran').submit(); 
+                        }
+                    </script>
             </div>
         </body>
     </html>

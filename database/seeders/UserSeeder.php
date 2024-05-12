@@ -21,30 +21,35 @@ class UserSeeder extends Seeder
             'name' => 'Adam Ashraf',
             'email' => 'Adam@gmail.com',
             'password' => Hash::make('123456'),
+            'status'=>'Perlu dilengkapi'
         ], 
             [
             'id_level' => 1,
             'name' => 'Rendi Alkautsar',
             'email' => 'Rendi@gmail.com',
             'password' => Hash::make('123456'),
+            'status'=>'Perlu dilengkapi'
         ], 
         [
             'id_level' => 2,
             'name' => 'Super Admin',
             'email' => 'superAdmin@gmail.com',
             'password' => Hash::make('123456'),
+            'status'=>'Perlu dilengkapi'
         ],
         [
             'id_level' => 3,
             'name' => 'DPUK',
             'email' => 'dpuk@gmail.com',
             'password' => Hash::make('123456'),
+            'status'=>'Perlu dilengkapi'
         ],
         [
             'id_level' => 4,
             'name' => 'Keuangan',
             'email' => 'keuangan@gmail.com',
             'password' => Hash::make('123456'),
+            'status'=>'Perlu dilengkapi'
         ]]);
     }
 }
