@@ -21,6 +21,9 @@
         body {
             font-family: 'Poppins', sans-serif;
         }
+        .footer {
+            margin-top: 98px;
+        }
     </style>
 </head>
 <body>

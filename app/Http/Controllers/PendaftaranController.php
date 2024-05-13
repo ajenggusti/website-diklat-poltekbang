@@ -154,7 +154,8 @@ class PendaftaranController extends Controller
      */
     public function update(Request $request, Pendaftaran $kelPendaftaran)
     {
-        // dd($request);
+        // dd($kelPendaftaran -> email);
+        // dd ($request);
         $request->validate([
             'nama_lengkap' => 'required|string|max:255',
             'tempat_lahir' => 'required|string|max:255',

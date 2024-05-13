@@ -98,9 +98,9 @@
                     <hr>
                     <h3 id="katDiklat">Kategori Diklat</h3>
                     <p style="color: #FF6900;">Klik button untuk melihat lebih banyak diklat </p>
-                    <div class="cards-container">
+                    <div class="cards-container" >
                         @foreach ($katDiklat as $kategori)
-                            <div class="card-jenis">
+                            <div class="card-jenis" style="background-color: rgb(255, 255, 255)">
                                 @if ($kategori->gambar)
                                     <img src="{{ asset('storage/' . $kategori->gambar) }}" alt="" >
                                 @else
@@ -121,7 +121,7 @@
                                     <p>
                                         <span>{{ $kategori->kategori_diklat }}</span><br>
                                     </p>
-                                    <br><br>
+                                    <br>
                                     <button class="button-link" onclick="window.location.href='/utama/macamDiklat/{{ $kategori->id }}'">
                                         Selengkapnya
                                     </button>
@@ -156,6 +156,7 @@
                             <a class="ssdh" onclick="plusSlides(1)">&#10095;</a>
                         </div>
                     @endif --}}
+
                     {{-- <hr>
                     @if ($countTestimoni!=0)
                     <h3 id="testimoni">Testimoni</h3>
@@ -177,47 +178,79 @@
                         <a class="ssdh" onclick="plusSlides(1)"></a>
                     </div>
                     @endif --}}
+
+                    <hr>
+                    @if ($countTestimoni!=0)
+                        <h3 id="testimoni">Testimoni</h3>
+                        <p style="color: #FF6900;">Simak apa kata mereka...</p>
+                        <div class="slide-testimoni">
+                            @foreach ($testimonis as $testimoni)
+                                <div class="card-slides">
+                                    @if ($testimoni->id_pendaftaran)
+                                        <b class="author">{{ $testimoni->pendaftaran->nama_lengkap }}</b><br><br>
+                                        <b class="author">{{ $testimoni->profesi }}</b><br><br>
+                                        <p class="author">Alumni diklat {{ $testimoni->pendaftaran->diklat->nama_diklat }}</p>
+                                        <q>{{ $testimoni->testimoni }}</q>
+                                    @else
+                                        <bcard-slides class="author">{{ $testimoni->nama_dummy }}</b><br><br>
+                                        <b class="author">{{ $testimoni->profesi }}</b><br><br>
+                                        <p class="author">Alumni diklat {{ $testimoni->diklat->nama_diklat }}</p>
+                                        <q>{{ $testimoni->testimoni }}</q>
+                                    @endif
+                                </div>
+                            @endforeach
+                            <div class="dots-container"></div>
+                                <!-- Next and previous buttons -->
+                                <a class="sblm" onclick="plusSlides(-1)">&#10094;</a>
+                                <a class="ssdh" onclick="plusSlides(1)">&#10095;</a>
+                            </div>
+                        </div>
+                    @endif
+
+                    
                     
                     <hr>
                     <h3 id="faq">FAQ</h3>
                     <p style="color: #FF6900;">Pertanyaan yang banyak ditanyakan...</p>
-                    <div class="accordion accordion-flush" id="accordionFlushExample">
-                        <div class="accordion-item">
-                          <h2 class="accordion-header" id="flush-headingOne">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
-                                Apa syarat-syarat yang diperlukan untuk mendaftar?
-                            </button>
-                          </h2>
-                          <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">
-                                Semua persyaratan beserta informasi seputar diklat
-                                sudah dituliskan di halaman tiap diklat.
-                            </div>
-                          </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="flush-headingTwo">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-                                    Bagaimana cara mendaftar diklat?
+                    <div class="bg-acc">
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                    Apa syarat-syarat yang diperlukan untuk mendaftar?
                                 </button>
-                            </h2>
-                            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                </h2>
+                                <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body">
-                                    <ul>
-                                        <li>
-                                            Mendaftarkan akun terlebih dahulu.
-                                            Jika sudah mendaftar, maka bisa langsung login
-                                        </li>
-                                        <li>
-                                            Mengisi data pendaftaran di form pendaftaran
-                                            melalui halaman tiap diklat.
-                                        </li>
-                                        <li>
-                                            Data pendaftaran bisa dilihat, diedit, atau dibatalkan
-                                            di halaman riwayat.
-                                        </li>
-                                    </ul>
+                                    Semua persyaratan beserta informasi seputar diklat
+                                    sudah dituliskan di halaman tiap diklat.
+                                </div>
+                                </div>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                        Bagaimana cara mendaftar diklat?
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <ul>
+                                            <li>
+                                                Mendaftarkan akun terlebih dahulu.
+                                                Jika sudah mendaftar, maka bisa langsung login
+                                            </li>
+                                            <li>
+                                                Mengisi data pendaftaran di form pendaftaran
+                                                melalui halaman tiap diklat.
+                                            </li>
+                                            <li>
+                                                Data pendaftaran bisa dilihat, diedit, atau dibatalkan
+                                                di halaman riwayat.
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>

@@ -22,7 +22,8 @@
 <body>
     <div class="content-form">
         <div class="form-column-left">
-            <form action="{{ route('pendaftaranAsAdmin.update', ['id' => $kelPendaftaran->id]) }}" method="POST" enctype="multipart/form-data" id="formPendaftaran" >
+            <form action="{{ route('pendaftaranAsAdmin.update', ['id' => $kelPendaftaran->id]) }}" method="POST" enctype="multipart/form-data" id="formPendaftaran">
+            {{-- <form action="{{ route('pendaftaranAsAdmin.update', ['id' => $kelPendaftaran->id]) }}" method="POST" enctype="multipart/form-data" id="formPendaftaran" > --}}
                 @method('PUT')
                 @csrf
                 <h2>Identitas Pendaftar</h2>
@@ -50,12 +51,13 @@
                             <th>Potongan Harga Dari Voucher</th>
                             <td>
                                 @if($kelPendaftaran->id_promo && $kelPendaftaran->promo)
-                                -Rp {{ $kelPendaftaran->promo->potongan }}
-                                @else
-                                    -0
+                                -Rp {{ isset($harga) ? number_format($harga) : number_format($kelPendaftaran->promo->potongan) }}
+                                @elseif($kelPendaftaran->potongan)
+                                -Rp {{ isset($harga) ? number_format($harga) : number_format($kelPendaftaran->potongan) }}
                                 @endif
                             </td>
                         </tr>
+
                         <tr>
                             <th>Total Biaya</th>
                             <td>Rp {{ isset($harga) ? number_format($harga) : number_format($kelPendaftaran->harga_diklat) }}</td>
@@ -98,10 +100,11 @@
                     
                     </table>
                 </div>
-            </form>
+            {{-- </form> --}}
         </div>
             <div class="form-column-right">
-                    <form action="" class="edit-user">
+                    {{-- <form action="" class="edit-user"> --}}
+                    <div class="edit-user">
                         <h2>Form Edit Pendaftaran Admin</h2>
                         <hr>
                         <div class="mb-3">
@@ -170,7 +173,8 @@
                         <div class="submit-button">
                             <button type="submit" class="btn btn-primary">Kirim</button>
                         </div>
-                    </form>  
+                    </div>
+            </form>  
             </div>
     </div>
             <script>

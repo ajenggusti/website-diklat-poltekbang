@@ -12,57 +12,59 @@
             body {
                 font-family: 'Poppins', sans-serif;
             }
-
+            
         </style>
     </head>
     <body>
-        <div class="content-form">
-            
-            
-            <form action="/kelPembayaran" method="post" enctype="multipart/form-data" class="edit-user">
-                @csrf
-                {{-- <input type="hidden" name="id" value="{{ 'ORD_' . rand(100000, 999999) }}"> --}}
-                <h2>Form Pembayaran</h2>
-                <div class="mb-3">
-                    <input type="hidden" name="id_pendaftaran" value="{{ $pendaftaran->id }}">
-                    
-                </div>
-                <div class="mb-9 row">
-                    <label for="harga" class="form-label col-auto">Nama Diklat</label>
-                    <div class="col">
-                        <input disabled type="text" class="form-control custom-input @error('harga') is-invalid @enderror" id="harga" name="harga" value="{{ $pendaftaran->diklat->nama_diklat }}">
+        <div class="content">
+            <div class="content-form">
+                
+                
+                <form action="/kelPembayaran" method="post" enctype="multipart/form-data" class="edit-user">
+                    @csrf
+                    {{-- <input type="hidden" name="id" value="{{ 'ORD_' . rand(100000, 999999) }}"> --}}
+                    <h2>Form Pembayaran</h2>
+                    <div class="mb-3">
+                        <input type="hidden" name="id_pendaftaran" value="{{ $pendaftaran->id }}">
+                        
                     </div>
-                </div>
-                <hr> 
-                <div class="mb-3">
-                    <label for="harga" class="form-label is">Harga Diklat</label>
-                    <input disabled type="text" class="form-control custom-input @error('harga') is-invalid @enderror" id="harga" name="harga" value="Rp {{ number_format($pendaftaran->harga_diklat, 0, ',', '.') }}">
-                </div>               
-                <br>    
-                <div class="mb-3">
-                    <label for="harga" class="form-label is">Harga Pendaftaran</label>
-                    <input disabled type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="Rp 150.000">
-                </div>
-                <div class="mb-3">
-                    <label for="jenis_pembayaran" class="form-label is">Jenis Pembayaran</label>
-                    <select name="jenis_pembayaran" id="jenis_pembayaran" class="form-select @error('jenis_pembayaran') is-invalid @enderror" onchange="updateTotalHarga()">
-                        <option value="" disabled {{ old('jenis_pembayaran') ? '' : 'selected' }}>Pilih Jenis Pembayaran</option>
-                        <option value="diklat" {{ old('jenis_pembayaran') == 'diklat' ? 'selected' : '' }}>Diklat</option>
-                        <option value="pendaftaran" {{ old('jenis_pembayaran') == 'pendaftaran' ? 'selected' : '' }}>Pendaftaran</option>
-                    </select>
-                    <input type="hidden" name="total_harga" id="total_harga" value="{{ old('jenis_pembayaran') == 'diklat' ? $pendaftaran->harga_diklat 
-                    : '150000' }}">
-                    {{-- <input type="hidden" name="snapToken" value="{{ session('snapToken') }}"> --}}
+                    <div class="mb-9 row">
+                        <label for="harga" class="form-label col-auto">Nama Diklat</label>
+                        <div class="col">
+                            <input disabled type="text" class="form-control custom-input @error('harga') is-invalid @enderror" id="harga" name="harga" value="{{ $pendaftaran->diklat->nama_diklat }}">
+                        </div>
+                    </div>
+                    <hr> 
+                    <div class="mb-3">
+                        <label for="harga" class="form-label is">Harga Diklat</label>
+                        <input disabled type="text" class="form-control custom-input @error('harga') is-invalid @enderror" id="harga" name="harga" value="Rp {{ number_format($pendaftaran->harga_diklat, 0, ',', '.') }}">
+                    </div>               
+                    <br>    
+                    <div class="mb-3">
+                        <label for="harga" class="form-label is">Harga Pendaftaran</label>
+                        <input disabled type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="Rp 150.000">
+                    </div>
+                    <div class="mb-3">
+                        <label for="jenis_pembayaran" class="form-label is">Jenis Pembayaran</label>
+                        <select name="jenis_pembayaran" id="jenis_pembayaran" class="form-select @error('jenis_pembayaran') is-invalid @enderror" onchange="updateTotalHarga()">
+                            <option value="" disabled {{ old('jenis_pembayaran') ? '' : 'selected' }}>Pilih Jenis Pembayaran</option>
+                            <option value="diklat" {{ old('jenis_pembayaran') == 'diklat' ? 'selected' : '' }}>Diklat</option>
+                            <option value="pendaftaran" {{ old('jenis_pembayaran') == 'pendaftaran' ? 'selected' : '' }}>Pendaftaran</option>
+                        </select>
+                        <input type="hidden" name="total_harga" id="total_harga" value="{{ old('jenis_pembayaran') == 'diklat' ? $pendaftaran->harga_diklat 
+                        : '150000' }}">
+                        {{-- <input type="hidden" name="snapToken" value="{{ session('snapToken') }}"> --}}
 
-                    @if ($errors->has('jenis_pembayaran'))
-                        <div class="invalid-feedback" style="display: block;">{{ $errors->first('jenis_pembayaran') }}</div>
-                    @endif
-                </div>
-                <div class="submit-button">
-                    <button type="submit"  class="btn btn-primary">Kirim</button>
-                </div>
-                {{ session('snapToken') }}
-            </form> 
+                        @if ($errors->has('jenis_pembayaran'))
+                            <div class="invalid-feedback" style="display: block;">{{ $errors->first('jenis_pembayaran') }}</div>
+                        @endif
+                    </div>
+                    <div class="submit-button">
+                        <button type="submit"  class="btn btn-primary">Kirim</button>
+                    </div>
+                    {{ session('snapToken') }}
+                </form> 
+            </div>
         </div>
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

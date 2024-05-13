@@ -99,6 +99,7 @@
                             </td> --}}
                             <td>
                                 <div class="action-buttons">
+                                    <a href="register/{{ $data->id }}" class="btn btn-info"><i class="bi bi-eye"></i> Detail</a>
                                     <a href="register/{{ $data->id }}/edit" class="btn btn-success"><i class="bi bi-pencil-square"></i> Edit</a>
                                     <form action="/register/{{ $data->id }}" method="POST">
                                         @method('DELETE')

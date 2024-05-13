@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   showPage(currentPage);
   updatePagination();
-
+  
   function updatePagination() {
       var paginationContainer = document.querySelector('.ul-pagination');
       paginationContainer.innerHTML = '';

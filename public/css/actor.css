@@ -5,6 +5,9 @@
     font-size: 15px;
 }
 
+.content {
+  padding-top: 50px;
+}
 /* Style Dashbord Super Admin */
 .content-staff {
     background-color: rgb(255, 255, 255);
@@ -272,3 +275,79 @@ h2 {
 .modal-title h1 {
   text-align: center;
 }
+
+
+
+/* NOTA PEMBAYARAN */
+.content-nota {
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.content .bg-nota,
+.content .bg-bukti {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(224, 224, 224, 0.844)), url("/img/bg-pl.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  margin-bottom: -120px;
+  padding-bottom: 50px;
+  padding-top: 50px;
+  
+}
+
+.content-nota h2,
+.bg-nota .edit-user h2 {
+  color: #000000;
+  text-align: center;
+}
+
+.content-nota small {
+  font-size: 15px;
+
+}
+
+.content .bg-nota .edit-user .metode-bayar {
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center; /* Menyusun item secara vertikal di tengah */
+  gap: 20px; /* Jarak antara tombol dan teks */
+}
+
+
+/* Bukti Pembayaran Diklat */
+
+.content .bg-bukti .content-form {
+  margin-top: 20px;
+  padding: 0 50px 50px 50px;
+  background-color: #fff5f5c4;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+
+
+
+/* PERMOHONAN */
+.content-mohon {
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+
+.content .bg-nota .content-mohon {
+  background-color: #ffffffc2;
+  border: 1px solid #FF6900;
+  padding: 20px;
+  /* padding-right: 30px; */
+  border-radius: 10px;
+}
+
+.btn-mohon {
+  text-align: right;
+}
+
+

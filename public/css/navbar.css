@@ -1,5 +1,4 @@
 * {
-    max-width: 100%;
     box-sizing: border-box;
     font-size: 14px;
 }
@@ -9,17 +8,49 @@
 }
 
 /* Style Navbar */
-.container-fluid {
-    background-color: #ffffff;
+.content-nav {
+    background-color: #ff707096;
+    height: 50px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+}
 
-}
-.li a {
-    color: #FF6900;
+
+.content-nav .topnav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
 }
 
-.navbar-brand img {
-    margin-left: 90px;
+.content-nav .topnav ul li {
+    margin: 0;
 }
+
+.content-nav .topnav ul li a {
+    display: block;
+    padding-right: 15px;
+    /* padding: 14px 16px; */
+    color: #FF6900; 
+    text-decoration: none;
+}
+
+.content-nav .topnav ul li a:hover {
+    color: #878889; 
+}
+
+
+.content-nav .navbar-brand img {
+    margin-left: 110px;
+}
+
+.content-nav .text-end {
+    margin-right: 50px;
+}
+
 
 
 .button {
@@ -33,42 +64,30 @@
     transition-duration: 0.4s;
     cursor: pointer;
     border-radius: 5px;
-  }
-  .button-log {
+}
+.button-log {
     background-color: white; 
     color: #FF6900; 
     border: 2px solid #FF6900;
-  }
-  
-  .button-log:hover {
+}
+
+.button-log:hover {
     background-color: #FFC784;
     color: #ffffff;
-  }
+}
 
-  .button-sign {
+.button-sign {
     background-color: #FF6900; 
     color: #ffffff; 
     border: 2px solid #FF6900;
-  }
-  
-  .button-sign:hover {
+}
+
+.button-sign:hover {
     background-color: #FFC784;
     color: #ffffff;
-  }
-
-  .topnav-right {
-    margin-right: 20px;
 }
 
-
-
-.nav-item a {
-    color: #FF6900;
-}
-.nav-item a:hover {
-    color: #878889;
-}
-
+/* Toodler */
 
 
 

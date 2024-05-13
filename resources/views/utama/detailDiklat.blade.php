@@ -29,18 +29,20 @@
                 <br>
                 <nav aria-label="breadcrumb" style="background-color: #FFFFFF !important;">
                     <ol class="breadcrumb">
-                      <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Jenis Diklat</li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            <a href="/">Home</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            Jenis Diklat
+                            <a href="/macamDiklat"></a>
+                        </li>
                     </ol>
                   </nav>
                 {{-- <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a><br> --}}
                 
                         @foreach ($detailDiklat as $detail) <br> <br>
                         
-                            <h1>{{ $detail->nama_diklat }}</h1>
-                            
-                        
-                               
+                            <h2>{{ $detail->nama_diklat }}</h2><br>
                             <div id="carouselExampleIndicators" class="carousel slide img-diklat" data-bs-ride="carousel">
                                 <div class="carousel-indicators">
                                     @foreach ($gambars as $key => $gambar)
@@ -94,9 +96,9 @@
                         </div>
                     </div> 
                 @endforeach
-                <br>
+                {{-- <br> --}}
                
-                    
+                <div class="btn-regDiklat d-flex justify-content-center">
                     @guest
                     @if ($dobelDiklat==null)
                         <div class="d-grid gap-2 col-6 btn-container">
@@ -104,18 +106,18 @@
                         </div>
                         @endif
                     @endguest
-                @auth
-                    @if($dobelDiklat)
-                        <div class="alert alert-warning" role="alert">
-                            Ups, kamu sudah mendaftar diklat ini.
-                        </div>
-                    @else
-                        <div class="d-grid gap-2 col-6">
-                            <a href="{{ route('kelPendaftaran.create', ['id' => $detail->id]) }}" class="btn btn-primary">Daftarkan dirimu sekarang!</a>
-                        </div>
-                    @endif
-                @endauth
-                
+                    @auth
+                        @if($dobelDiklat)
+                            <div class="alert alert-warning" role="alert">
+                                Ups, kamu sudah mendaftar diklat ini.
+                            </div>
+                        @else
+                            <div class="d-grid gap-2 col-6 button-daftar">
+                                <a href="{{ route('kelPendaftaran.create', ['id' => $detail->id]) }}" class="btn btn-primary">Daftarkan dirimu sekarang!</a>
+                            </div>
+                        @endif
+                    @endauth
+                </div> 
             
                 {{-- </div> --}}
                 

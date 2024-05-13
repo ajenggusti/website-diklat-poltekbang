@@ -13,10 +13,11 @@
     </head>
     <body>
         <div class="container-fluid">
-            <div class="background-image"></div>
+            
             <div class="content-body">
             {{-- <div class="content-land"> --}}
-                <h2>Diklat Pada {{ $diklatOne->kategori_diklat }}</h2>
+                {{-- BREADCRUMBS --}}
+                <h2>PROGRAM {{ $diklatOne->kategori_diklat }}</h2>
                 <div class="card-container2">
                 {{-- <div class="cards-container"> --}}
                     @foreach ($diklat as $perdiklat)
@@ -56,6 +57,7 @@
                     
                 </div>     
                 <a href="/" class="btn btn-info">Kembali</a>
+                <br><br>
             </div>
         </div>
     </body>

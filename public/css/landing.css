@@ -10,6 +10,21 @@
     max-width: 100%;
 }
 
+.container-land {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(224, 224, 224, 0.844)), url("/img/bg-pl.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-bottom: -120px;
+    padding-bottom: 50px;
+}
+
+/* Untuk Navbar */
+.container-land, .content-land, .content-riwayat {
+    padding-top: 50px;
+}
+
 /* Style Slideshow */
 .land-satu .mySlides {
     display: none;
@@ -20,10 +35,7 @@
 
 .land-satu .slideshow-container .mySlides img {
     width: 100%;
-    /* height: auto; */
     object-fit: cover;
-    /* new */
-    /* max-width: 100%; */
     max-height: 75vh;
 }
 
@@ -38,10 +50,6 @@
 }
 
 
-/* .active {
-    background-color: #717171;
-} */
-
 .fade {
     animation-name: fade;
     animation-duration: 1.5s;
@@ -55,20 +63,16 @@
 
 @media screen and (max-width: 768px) {
     .land-satu .slideshow-container .mySlides img {
-        /* height: 75vh; */
-
-        /* new */
         max-height: 40vh;
     }
 }
-
-
 
 
 .land-satu {
     position: relative;
     margin: 0 auto;
 }
+
 
 /* Text di slideshow */
 .land-satu .hero-text {
@@ -90,13 +94,6 @@
     color: #FF6900;
     
 }
-
-
-/* Background Landing Page */
-/* .container-land {
-    background-color:#ffc107;
-} */
-
 
 /* Style animation */
   
@@ -143,34 +140,11 @@
 }
 
 
-/* Animasi latar belakang pelangi */
-/* .rainbow-bg {
-    background: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #00ff00, #0000ff, #8000ff, #ff00ff);
-    background-size: 400% 400%; 
-    animation: rainbow-animation 10s ease infinite; 
-}
-
-@keyframes rainbow-animation {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
-} */
-
-
 
 
 /* Style Promo */
 /* .img-promo {} */
 .img-promo img {
-    /* max-width: 100%; */
-    /* margin-right: 10% auto; */
-    /* border-radius: 10px; */
     height: 400px;
 }
 .carousel-inner {
@@ -185,9 +159,6 @@
     display: flex;
     justify-content: center;
     text-align: center;
-        /* float: left;
-        width: 25%;
-        padding: 0 10px; */
 }
 .column h1 {
     font-size: 30px;
@@ -224,10 +195,22 @@
 
 
 /* Style Jenis Diklat */
+.bg-riwayat {
+    /* background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(224, 224, 224, 0.844)), url("/img/bg-pl.jpg"); */
+    background-image: linear-gradient(rgba(255, 255, 255, 0.805), rgba(224, 224, 224, 0.856)), url("/img/bg-pl.jpg");
+    
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-bottom: -120px;
+    padding-bottom: 50px;
+}
 .cards-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    
 }
 .card-jenis {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -240,7 +223,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-
+    padding: 0 0 50px 0;
 }
 .card-jenis img{
     width: 100%;  
@@ -250,25 +233,29 @@
     object-fit: cover;
     
 }
+
+/* new */
+.card-content p span,
+.card-content .button-link {
+    flex-grow: 1;
+}
+
 .card-jenis:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 .card-content {
-    /* padding-left: 20px; */
     padding: 5px 20px 0 20px;
     display: flex;
     flex-direction: column;
-    /* height: 100%; */
     justify-content: space-between; 
 }
-.card-content h3 {
+/* .card-content h3 {
     text-align: center;
-}
-.card-content p {
-    /* text-align: center; */
     margin-bottom: 10px;
-}
-.card-content span {
+} */
+.card-content p span {
+    justify-content: center;
+    margin-bottom: 10px;
     font-weight: bold;
     
 }
@@ -302,6 +289,7 @@
 
 
 /* Style untuk testimoni */
+/* OLD */
 .slide-testimoni {
     position: relative;
     border: 1px solid #FF6900;
@@ -460,49 +448,15 @@
 
 
   /* Style untuk FAQ */
-    .accordion {
-        border: 1px solid #FF6900;
-        
-    }
-    /* #flush-collapseOne {
-        border-bottom: 1px solid #FFC784;
-    } */
     /* .accordion {
-        background-color: #eee;
-        color: #444;
-        cursor: pointer;
-        padding: 18px;
-        width: 100%;
-        border: none;
-        text-align: left;
-        outline: none;
-        font-size: 15px;
-        transition: 0.4s;
-      }
-      
-      .active, .accordion:hover {
-        background-color: #ccc;
-      }
-      
-      .accordion:after {
-        content: '\002B';
-        color: #777;
-        font-weight: bold;
-        float: right;
-        margin-left: 5px;
-      }
-      
-      .active:after {
-        content: "\2212";
-      }
-      
-      .panel {
-        padding: 0 18px;
-        background-color: white;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.2s ease-out;
-      } */
+        
+    } */
+
+.bg-acc {
+    padding: 15px;
+    background-color: #ffffffb2;
+    border-radius: 10px;
+}
 
 
 /* Style Video */
@@ -527,40 +481,66 @@
 
 
 /* STYLE HAL RIWAYAT */
+.card-contentRiwayat {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
 .content-riwayat {
     margin-left: 10%;
     margin-right: 10%;
-    /* border: 1px solid #FF6900; */
 }
 
 .content-riwayat h1 {
     text-align: center;
+    font-weight: bold;
+    padding-top: 20px;
 }
 
 .card-riwayat {
-    margin-right: 260px;
+    background-color: #ffffff;
     transition: 0.3s;
-    width: 30%;
     padding: 10px 0 0 0;
-    border: 1px solid #FF6900;
-    border-radius: 30px;
+    width: 30%;
+    margin-bottom: 20px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-basis: calc(30% - 20px);
 }
 
 .card-riwayat:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.8);
 }
 
-.col .danger {
-    
-    padding: 7px;
-    border: 1px solid #FF6900;
-    background-color: #ffa15e; 
-}
-.col .danger:hover {
-    background-color: #fc7e24; 
+.card-riwayat .card-content h4 {
+    text-align: center;
+    height: 80px;
+    overflow: hidden;
+    margin-bottom: 5px;
+    margin-top: 10px;
 }
 
+.card-content p span {
+    margin: 10px 0;
+}
+.card-content .col {
+    display: flex;
+    justify-content: space-between;
+}
 
+.card-content .col a {
+    flex-grow: 1;
+    margin: 0 5px;
+}
+
+.card-content .row {
+    padding-top: 5px;
+    margin-bottom: 10px;
+}
 .col span {
     padding-left: 10px;
 }
@@ -570,12 +550,46 @@
 }
 
 
+/* Kartu pada layar penuh */
+@media screen and (min-width: 992px) {
+    .card-contentRiwayat {
+        justify-content: left;
+        gap: 25px;
+    }
+    .card-riwayat {
+        flex-basis: calc(30% - 5px);
+    }
+}
+
+/* Kartu pada layar di antara 500px dan 992px */
+@media screen and (min-width: 500px) and (max-width: 991.98px) {
+    .card-riwayat {
+        flex-basis: calc(50% - 10px);
+    }
+}
+
+/* Kartu pada layar kurang dari 500px */
+@media screen and (max-width: 499.98px) {
+    .card-riwayat {
+        flex-basis: calc(100% - 10px);
+    }
+}
+
+
 
 /* STYLE HAL DETAIL RIWAYAT */
- 
-  .edit-2column {
-    
-  }
+/* .no-found {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.805), rgba(224, 224, 224, 0.844));
+} */
+.no-found h2{
+    font-weight: bold;
+    /* padding-top: 50px; */
+    color: #FF6900;
+}
+.no-found img {
+    padding-top: 10px;
+    width: 45%;
+}
 
 .content-detail{
     margin-left: 10%;
@@ -589,7 +603,7 @@
 .content-detail h2 {
     /* font-size: 48px; */
     padding-top: 20px;
-    /* text-align: center; */
+    /* justify-content: center; */
 }
 
 .card-detail {
@@ -630,6 +644,7 @@
     float: right;
 }
 
+
 .bi-printer {
     float: right;
     margin: 10px 10px 0 0;
@@ -665,4 +680,21 @@ th {
 .table {
     background-color: #eee;
     border-color: #000000;
+}
+
+
+/* DETAIL PENDAFTARAN RIWAYAT */
+.bg-detRiwayat {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(224, 224, 224, 0.844)), url("/img/bg-pl.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+    margin-bottom: -120px;
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+
+.card-detail h2 {
+    text-align: center;
 }
