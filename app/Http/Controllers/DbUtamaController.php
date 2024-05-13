@@ -20,40 +20,63 @@ class DbUtamaController extends Controller
             'count' => $count
         ]);
     }
-    public function dbDpuk(){
+    public function dbDpuk()
+    {
         $this->authorize('dpuk');
-        // $jumlahPendaftar = Pendaftaran::countPendaftar();
-        $jumlahPendaftar = Pendaftaran::all()->count();
-        // $diklatCounts = Pendaftaran::countPendaftaranAsDiklat();
+        $alumni = Pendaftaran::where('status_pelaksanaan', 'Terlaksana')->count();
+        $jumlahBelumTerlaksana = Pendaftaran::where('status_pelaksanaan', 'Belum terlaksana')->count();
+        $totalSemua = Pendaftaran::count();
         $pendaftarans = Pendaftaran::groupBy('id_diklat')
-        ->select('id_diklat', DB::raw('count(*) as total_pendaftar'))
-        ->get();
+            ->select('id_diklat', DB::raw('count(*) as total_pendaftar'))
+            ->get();
         return view('kelola.kelDbDpuk.dbDpuk', [
-            'jumlahPendaftar'=>$jumlahPendaftar,
-            'pendaftarans' =>$pendaftarans
+            'alumni' => $alumni,
+            'jumlahBelumTerlaksana'=>$jumlahBelumTerlaksana,
+            'totalSemua'=>$totalSemua,
+            'pendaftarans' => $pendaftarans
         ]);
     }
-    public function dbDpukDetail($id){
-        $datas = Pendaftaran::where('id_diklat', $id)->get();
+    public function PendaftaranByDiklat($id)
+    {
+        $datas = Pendaftaran::where('id_diklat', $id)
+                   ->where('status_pelaksanaan', 'Belum terlaksana')
+                   ->get();
         // dd($datas);
         return view('kelola.kelDbDpuk.detailByIdDiklat', [
-            'datas'=>$datas
+            'datas' => $datas
         ]);
     }
-    public function dbKeuangan(){
+    public function PendaftaranBelumTerlaksana()
+    {
+        $datas = Pendaftaran::where('status_pelaksanaan', 'Belum terlaksana')->get();
+        // dd($datas);
+        return view('kelola.kelDbDpuk.detailByIdDiklat', [
+            'datas' => $datas
+        ]);
+    }
+    public function PendaftaranTerlaksana()
+    {
+        $datas = Pendaftaran::where('status_pelaksanaan', 'Terlaksana')->get();
+        // dd($datas);
+        return view('kelola.kelDbDpuk.detailByIdDiklat', [
+            'datas' => $datas
+        ]);
+    }
+    public function dbKeuangan()
+    {
         $this->authorize('keuangan');
         $getBayarDiklat = Pembayaran::getCountBayarDiklat();
         $getBayarPendaftaran = Pembayaran::getCountBayarPendaftaran();
         $hitungPembayaranDiklatDicek = Pembayaran::hitungPembayaranDiklatDicek();
-        $hitungPembayaranDiklatLunas = Pembayaran ::hitungPembayaranDiklatLunas();
+        $hitungPembayaranDiklatLunas = Pembayaran::hitungPembayaranDiklatLunas();
         $hitungPembayaranPendaftaranDicek = Pembayaran::hitungPembayaranPendaftaranDicek();
         $hitungPembayaranPendaftaranLunas = Pembayaran::hitungPembayaranPendaftaranLunas();
         return view('kelola.dbKeuangan', [
-            'getBayarDiklat'=>$getBayarDiklat,
-            'getBayarPendaftaran'=>$getBayarPendaftaran,
-            'hitungPembayaranDiklatDicek'=>$hitungPembayaranDiklatDicek,
-            'hitungPembayaranDiklatLunas'=>$hitungPembayaranDiklatLunas,
-            'hitungPembayaranPendaftaranDicek'=> $hitungPembayaranPendaftaranDicek,
+            'getBayarDiklat' => $getBayarDiklat,
+            'getBayarPendaftaran' => $getBayarPendaftaran,
+            'hitungPembayaranDiklatDicek' => $hitungPembayaranDiklatDicek,
+            'hitungPembayaranDiklatLunas' => $hitungPembayaranDiklatLunas,
+            'hitungPembayaranPendaftaranDicek' => $hitungPembayaranPendaftaranDicek,
             'hitungPembayaranPendaftaranLunas' => $hitungPembayaranPendaftaranLunas
 
         ]);

@@ -44,9 +44,11 @@ Route::get('/utama/macamDiklat/{kategori}', [UtamaController::class, 'allDiklat'
 Route::get('/utama/detailDiklat/{detail}', [UtamaController::class, 'detailDiklat']);
 // dashboard admin
 Route::get('/dbSuperAdmin', [DbUtamaController::class, 'index']);
-Route::get('/dbDpuk', [DbUtamaController::class, 'dbDpuk']);
 Route::get('/dbKeuangan', [DbUtamaController::class, 'dbKeuangan']);
-Route::get('/dbDpukDetail/{id}', [DbUtamaController::class, 'dbDpukDetail']);
+Route::get('/dbDpuk', [DbUtamaController::class, 'dbDpuk']);
+Route::get('/PendaftaranTerlaksana', [DbUtamaController::class, 'PendaftaranTerlaksana']);
+Route::get('/PendaftaranBelumTerlaksana', [DbUtamaController::class, 'PendaftaranBelumTerlaksana']);
+Route::get('/PendaftaranByDiklat/{id}', [DbUtamaController::class, 'PendaftaranByDiklat']);
 
 Route::get('/riwayat', [RiwayatController::class, 'index'])->middleware('auth');
 // kalau mau menghias invoice nang kene cherrrrrrrr!

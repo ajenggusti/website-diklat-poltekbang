@@ -19,9 +19,11 @@ class UtamaController extends Controller
     public function index()
     {
         // aku menambah ini cerr
-        $jmlPendaftar = Pendaftaran::all()->count();
+        $totalPendaftar = Pendaftaran::count();
+        $jmlPendaftarBelumTerlaksana = Pendaftaran::where('status_pelaksanaan', 'Belum terlaksana')->count();
         $jmlDiklat = Diklat::all()->count();
         $katDiklat = KatDiklat::get();
+        $alumni = Pendaftaran::where('status_pelaksanaan', 'Terlaksana')->count();
         // dd($user);
         $testimonis = Testimoni::where('tampil', 'iya')->get();
         // dd($testimonis);
@@ -41,12 +43,15 @@ class UtamaController extends Controller
     
     
         return view('utama/landingPage', [
-            'jmlPendaftar' => $jmlPendaftar,
+            'jmlPendaftarBelumTerlaksana' => $jmlPendaftarBelumTerlaksana,
             'jmlDiklat' => $jmlDiklat,
             'katDiklat' => $katDiklat,
             'testimonis' => $testimonis,
             'gbrSlide' => $gbrSlide,
             'promos'=>$promos,
+            'alumni'=>$alumni,
+            'totalPendaftar'=>$totalPendaftar,
+
 
         ]);
     }

@@ -4,7 +4,10 @@
     @foreach ($gbrSlide as $slide)
         <img src="{{ asset('storage/' . $slide->gambar_navbar) }}" alt="Gambar slide" style="width: 50%;">
     @endforeach
-    <h1>jumlah pendaftar saat ini : {{ $jmlPendaftar }}</h1>
+   
+    <h1>Total seluruh pendaftaran : {{ $totalPendaftar }}</h1>
+    <h1>jumlah alumni : {{ $alumni }}</h1>
+    <h1>jumlah pendaftar saat ini : {{ $jmlPendaftarBelumTerlaksana }}</h1>
     <h1>jumlah diklat saat ini : {{ $jmlDiklat }}</h1>
     <hr>
     <h3>kategori diklat</h3>

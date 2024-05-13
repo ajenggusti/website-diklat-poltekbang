@@ -27,9 +27,9 @@
                 <th>Potongan Harga Dari Voucher</th>
                 <td>
                     @if($kelPendaftaran->id_promo && $kelPendaftaran->promo)
-                       -Rp {{ $kelPendaftaran->promo->potongan }}
-                    @else
-                        -0
+                       -Rp {{ isset($harga) ? number_format($harga) : number_format($kelPendaftaran->promo->potongan) }}
+                    @elseif($kelPendaftaran->potongan)
+                       -Rp {{ isset($harga) ? number_format($harga) : number_format($kelPendaftaran->potongan) }}
                     @endif
                 </td>
             </tr>
