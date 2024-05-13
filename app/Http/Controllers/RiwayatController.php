@@ -24,6 +24,12 @@ class RiwayatController extends Controller
             'dataDiklat' => $dataDiklat,
         ]);
     }
+    public function invoiceDetail($id)
+    {
+        $data = Pendaftaran::find($id);
+        $countData = $data ? 1 : 0;
+        return view('utama.invoice', ['data' => $data]);
+    }
     public function detailRiwayat($id)
     {
         $data = Pendaftaran::find($id);
@@ -38,10 +44,11 @@ class RiwayatController extends Controller
         if(!$data) {
             abort(404);
         }
-        $pdf = PDF::loadView('utama.detailRiwayat', ['data' => $data]);
+        $pdf = PDF::loadView('utama.invoice', ['data' => $data]);
         
         // Unduh PDF
-        return $pdf->download('invoice.pdf');
+        // return $pdf->download('invoice.pdf');
+        return $pdf->stream('invoice.pdf');
     }
    
 

@@ -49,7 +49,10 @@ Route::get('/dbKeuangan', [DbUtamaController::class, 'dbKeuangan']);
 Route::get('/dbDpukDetail/{id}', [DbUtamaController::class, 'dbDpukDetail']);
 
 Route::get('/riwayat', [RiwayatController::class, 'index'])->middleware('auth');
-Route::get('/riwayat/{detail}', [RiwayatController::class, 'detailRiwayat'])->middleware('auth')->name('riwayat.detail');
+// kalau mau menghias invoice nang kene cherrrrrrrr!
+Route::get('/invoice/{detail}', [RiwayatController::class, 'invoiceDetail']);
+Route::get('/detailRiwayat/{detail}', [RiwayatController::class, 'detailRiwayat']);
+// download invoice
 Route::get('/invoicePdf/{id}', [RiwayatController::class, 'viewPdf']);
 // route bukti pembayaran
 Route::post('/bukti-pembayaran', [RiwayatController::class, 'buktiPembayaran'])->name('bukti-pembayaran.buktiPembayaran');

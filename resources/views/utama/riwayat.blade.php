@@ -24,7 +24,8 @@
             <p>Harga Pendaftaran : Rp. 150.000</p>
             <p>Status Pembayaran Pendaftaran : {{ $data->status_pembayaran_daftar }}</p>
             
-            <a href="/riwayat/{{ $data->id }}" class="btn btn-success">Lihat</a>
+            <a href="/invoicePdf/{{ $data->id }}" class="btn btn-success">Cetak invoice</a>
+            <a href="/detailRiwayat/{{ $data->id }}" class="btn btn-info">Lihat</a>
             {{-- <a href="{{ route('kelPembayaran.create', ['id' => $data->id]) }}" class="btn btn-secondary">Lakukan Pembayaran?</a> --}}
             @if ($data->status_pembayaran_daftar != "Lunas")
                 <form id="hiddenFormPendaftaran" method="POST" action="{{ route('kelPembayaranPendaftaran.savePendaftaran') }}">
