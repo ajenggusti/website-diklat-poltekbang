@@ -2,21 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Diklat;
 use Illuminate\Http\Request;
 
-class KalenderController extends Controller
+class EventUserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
-        $diklats = Diklat::get()->first();
-        return view('kelola.kelKalender.index', [
-            'diklats'=>$diklats
-        ]);
+        return view('kelola.kelEvent.eventUser');
     }
 
     /**
@@ -38,7 +33,7 @@ class KalenderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Diklat $diklat)
+    public function show(string $id)
     {
         //
     }
@@ -46,7 +41,7 @@ class KalenderController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Diklat $diklat)
+    public function edit(string $id)
     {
         //
     }
@@ -54,7 +49,7 @@ class KalenderController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Diklat $diklat)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -62,7 +57,7 @@ class KalenderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Diklat $diklat)
+    public function destroy(string $id)
     {
         //
     }

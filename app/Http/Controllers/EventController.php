@@ -22,7 +22,6 @@ class EventController extends Controller
         // dd($request->all());
         // $start = date('Y-m-d', strtotime($request->start));
         // $end = date('Y-m-d', strtotime($request->end));
-
         $events = Event::get()
             ->map(function ($item) {
                 if ($item->id_diklat) {
@@ -56,10 +55,10 @@ class EventController extends Controller
     public function create(Event $event)
     {
         // dd($event->all());
-        $diklats=Diklat::get();
+        $diklats = Diklat::get();
         return view('kelola.kelEvent.event-form', [
             'data' => $event,
-            'diklats'=>$diklats,
+            'diklats' => $diklats,
             'action' => route('events.store')
         ]);
     }
@@ -86,13 +85,15 @@ class EventController extends Controller
      */
     public function edit(Event $event)
     {
-        $diklats=Diklat::all();
+        $diklats = Diklat::all();
         return view('kelola.kelEvent.event-form', [
             'data' => $event,
-            'diklats'=>$diklats,
-            'action' => route('events.update', 
-            $event->id,
-        )]);
+            'diklats' => $diklats,
+            'action' => route(
+                'events.update',
+                $event->id,
+            )
+        ]);
     }
 
     /**
@@ -104,22 +105,21 @@ class EventController extends Controller
         if ($request->has('delete')) {
             return $this->destroy($event);
         }
-        if ($event->id_diklat=$request->id_diklat) {
+        if ($request->id_diklat) {
             $event->start_date = $request->start_date;
             $event->end_date = $request->end_date;
-            $event->id_diklat=$request->id_diklat;
+            $event->id_diklat = $request->id_diklat;
+            $event->title = null;
             $event->category = $request->category;
             $event->save();
         } else {
+            $event->id_diklat = null;
             $event->start_date = $request->start_date;
             $event->end_date = $request->end_date;
             $event->title = $request->title;
             $event->category = $request->category;
             $event->save();
         }
-        
-        
-
         return response()->json([
             'status' => 'success',
             'message' => 'Save data successfully'

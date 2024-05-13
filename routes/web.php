@@ -12,6 +12,7 @@ use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\KalenderController;
 use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\EventUserController;
 use App\Http\Controllers\TestimoniController;
 use App\Http\Controllers\GbrLandingController;
 use App\Http\Controllers\PembayaranController;
@@ -102,3 +103,5 @@ Route::resource('/kelGambarDiklat', GambarDiklatController::class);
 // route CRUD Kalender
 Route::get('events/list', [EventController::class, 'listEvent'])->name('events.list');
 Route::resource('events', EventController::class);
+
+Route::resource('eventsUser', EventUserController::class);
