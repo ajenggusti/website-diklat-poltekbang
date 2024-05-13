@@ -50,8 +50,10 @@ Route::get('/dbDpukDetail/{id}', [DbUtamaController::class, 'dbDpukDetail']);
 
 Route::get('/riwayat', [RiwayatController::class, 'index'])->middleware('auth');
 Route::get('/riwayat/{detail}', [RiwayatController::class, 'detailRiwayat'])->middleware('auth')->name('riwayat.detail');
+Route::get('/invoicePdf/{id}', [RiwayatController::class, 'viewPdf']);
 // route bukti pembayaran
 Route::post('/bukti-pembayaran', [RiwayatController::class, 'buktiPembayaran'])->name('bukti-pembayaran.buktiPembayaran');
+
 
 
 // route login registrasi

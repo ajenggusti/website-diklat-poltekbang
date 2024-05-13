@@ -291,10 +291,7 @@ class PendaftaranController extends Controller
             }
             $doc = $request->file('s_doc')->store('LanPage');
         }
-        $pembayaran_update = Pembayaran::where('id_pendaftaran', $id)
-        ->where('jenis_pembayaran', 'diklat')
-        ->where('metode_pembayaran', 'offline')
-        ->first();
+       
         
         $oldData->update([
             's_gambar' => $gambar ?: $oldData->s_gambar,
@@ -303,11 +300,14 @@ class PendaftaranController extends Controller
             'metode_sertif' => $request->metode_sertif,
             'potongan' => $request->potongan ? preg_replace("/[^0-9]/", "", $request->potongan) : null,
             'harga_diklat' => preg_replace("/[^0-9]/", "", $request->total_harga),
-            // aku menambah ini cerr
             'status_pembayaran_diklat' => $request->status_pembayaran_diklat,
             'status_pelaksanaan'=>"Terlaksana"
         ]);
-
+        // update pembayaran dari admin 
+        $pembayaran_update = Pembayaran::where('id_pendaftaran', $id)
+        ->where('jenis_pembayaran', 'diklat')
+        ->where('metode_pembayaran', 'offline')
+        ->first();
         if ($pembayaran_update !== null) {
             if ($request->status_pembayaran_diklat !== $pembayaran_update->status) {
                 $pembayaran_update->update([
