@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PromoController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\KalenderController;
 use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\EventUserController;
 use App\Http\Controllers\TestimoniController;
 use App\Http\Controllers\GbrLandingController;
 use App\Http\Controllers\PembayaranController;
@@ -42,14 +44,21 @@ Route::get('/utama/macamDiklat/{kategori}', [UtamaController::class, 'allDiklat'
 Route::get('/utama/detailDiklat/{detail}', [UtamaController::class, 'detailDiklat']);
 // dashboard admin
 Route::get('/dbSuperAdmin', [DbUtamaController::class, 'index']);
-Route::get('/dbDpuk', [DbUtamaController::class, 'dbDpuk']);
 Route::get('/dbKeuangan', [DbUtamaController::class, 'dbKeuangan']);
-Route::get('/dbDpukDetail/{id}', [DbUtamaController::class, 'dbDpukDetail']);
+Route::get('/dbDpuk', [DbUtamaController::class, 'dbDpuk']);
+Route::get('/PendaftaranTerlaksana', [DbUtamaController::class, 'PendaftaranTerlaksana']);
+Route::get('/PendaftaranBelumTerlaksana', [DbUtamaController::class, 'PendaftaranBelumTerlaksana']);
+Route::get('/PendaftaranByDiklat/{id}', [DbUtamaController::class, 'PendaftaranByDiklat']);
 
 Route::get('/riwayat', [RiwayatController::class, 'index'])->middleware('auth');
-Route::get('/riwayat/{detail}', [RiwayatController::class, 'detailRiwayat'])->middleware('auth')->name('riwayat.detail');
+// kalau mau menghias invoice nang kene cherrrrrrrr!
+Route::get('/invoice/{detail}', [RiwayatController::class, 'invoiceDetail']);
+Route::get('/detailRiwayat/{detail}', [RiwayatController::class, 'detailRiwayat']);
+// download invoice
+Route::get('/invoicePdf/{id}', [RiwayatController::class, 'viewPdf']);
 // route bukti pembayaran
 Route::post('/bukti-pembayaran', [RiwayatController::class, 'buktiPembayaran'])->name('bukti-pembayaran.buktiPembayaran');
+
 
 
 // route login registrasi
@@ -100,4 +109,7 @@ Route::resource('/kelPembayaran', PembayaranController::class)->except('update')
 //route CRUD gambar diklat
 Route::resource('/kelGambarDiklat', GambarDiklatController::class);
 // route CRUD Kalender
-Route::resource('/kelKalender', KalenderController::class);
+Route::get('events/list', [EventController::class, 'listEvent'])->name('events.list');
+Route::resource('events', EventController::class);
+
+Route::resource('eventsUser', EventUserController::class);

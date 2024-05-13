@@ -33,7 +33,7 @@
                                     <div class="card-content">
                                         <h4>{{ $dataDiklat[$key]->nama_diklat }}</h4>
                                         <hr>
-                                        {{-- <p>Status Diklat : {{ $dataDiklat[$key]->status }}</p> --}}
+                                        <p>Status Diklat : {{ $dataDiklat[$key]->status }}</p>
                                         <p>Harga Pendaftaran : Rp. 150.000</p>
                                         <p>Harga Diklat : Rp. {{ number_format($data->diklat->harga, 0, ',', '.') }}</p>
                                         <!-- Displaying Discount -->
@@ -70,6 +70,11 @@
                                             @endif
                                         </div>
                                         <br>
+                                        
+                                        <a href="/invoicePdf/{{ $data->id }}" class="btn btn-success">Cetak invoice</a>
+                                        <a href="/detailRiwayat/{{ $data->id }}" class="btn btn-info">Lihat</a>
+                                        <br>
+                                        
                                         <p>Bukti Pembayaran :</p>
                                         <form id="transaksiPembayaran" method="POST" action="{{ route('bukti-pembayaran.buktiPembayaran') }}">
                                             @csrf

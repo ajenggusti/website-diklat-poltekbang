@@ -39,6 +39,11 @@ class Diklat extends Model
     {
         return $this->hasMany(Testimoni::class, 'id_diklat');
     }
+    // aku menambah ini cerr
+    public function event()
+    {
+        return $this->hasMany(Event::class, 'id_diklat');
+    }
     public function updateStatus()
     {
         if ($this->jumlah_pendaftar >= $this->kuota_minimal) {

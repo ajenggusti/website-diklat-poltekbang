@@ -50,6 +50,7 @@
                 <td>{{ $user->status }}</td>
             </tr>
         @else
+        
             <tr>
                 <th>Role level</th>
                 <td>{{ $user->level->level }}</td>

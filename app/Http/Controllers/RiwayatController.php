@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Mpdf\Mpdf;
 use App\Models\Pembayaran;
 use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Support\Facades\View;
 
 class RiwayatController extends Controller
 {
@@ -19,12 +24,33 @@ class RiwayatController extends Controller
             'dataDiklat' => $dataDiklat,
         ]);
     }
+    public function invoiceDetail($id)
+    {
+        $data = Pendaftaran::find($id);
+        $countData = $data ? 1 : 0;
+        return view('utama.invoice', ['data' => $data]);
+    }
     public function detailRiwayat($id)
     {
         $data = Pendaftaran::find($id);
         $countData = $data ? 1 : 0;
         return view('utama.detailRiwayat', ['data' => $data]);
     }
+    public function viewPdf($id)
+    {
+        $data = Pendaftaran::findOrFail($id);
+        
+        // Pastikan data ditemukan
+        if(!$data) {
+            abort(404);
+        }
+        $pdf = PDF::loadView('utama.invoice', ['data' => $data]);
+        
+        // Unduh PDF
+        // return $pdf->download('invoice.pdf');
+        return $pdf->stream('invoice.pdf');
+    }
+   
 
     public function buktiPembayaran(Request $request)
     {

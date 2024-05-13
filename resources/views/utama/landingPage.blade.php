@@ -64,6 +64,10 @@
                                     <p class="card-text animated-text">Diklat</p>
                                 </div>
                             </div>
+                            <h1>Total seluruh pendaftaran : {{ $totalPendaftar }}</h1>
+                            <h1>jumlah alumni : {{ $alumni }}</h1>
+                            <h1>jumlah pendaftar saat ini : {{ $jmlPendaftarBelumTerlaksana }}</h1>
+                            <h1>jumlah diklat saat ini : {{ $jmlDiklat }}</h1>
                         </div>
             
                     <hr>

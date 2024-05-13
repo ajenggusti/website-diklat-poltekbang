@@ -32,7 +32,6 @@ class PromoController extends Controller
      */
     public function store(Request $request)
     {
-        // Aturan validasi dan pesan error disimpan dalam variabel
         $rules = [
             'potongan' => 'required',
             'kode' => 'required|unique:promos,kode',
@@ -43,7 +42,6 @@ class PromoController extends Controller
             'img' => 'required|image|max:1024',
         ];
 
-        // Pesan error yang umum
         $messages = [
             'potongan.required' => 'Potongan wajib diisi.',
             'kode.required' => 'Kode Promo wajib diisi.',
@@ -58,7 +56,6 @@ class PromoController extends Controller
             'img.max' => 'Ukuran file tidak boleh melebihi 1 MB.',
         ];
 
-        // Validasi tambahan hanya jika kuota diceklis 'iya'
         if ($request->input('kuota') === "iya") {
             $rules['kuota_angka'] = 'required|integer|min:1';
             $messages['kuota_angka.required'] = 'Kuota wajib diisi jika ingin menggunakan kuota.';
@@ -66,10 +63,9 @@ class PromoController extends Controller
             $messages['kuota_angka.min'] = 'Kuota harus lebih besar daripada 0.';
         }
 
-        // Validasi utama
         $request->validate($rules, $messages);
 
-        // Menetapkan nilai kuota dan pakai_kuota
+
         $kuota = $request->input('kuota') === 'iya' ? 'iya' : 'tidak';
         $kuota_angka = $kuota === 'iya' ? $request->input('kuota_angka') : 0;
 
@@ -163,14 +159,10 @@ class PromoController extends Controller
         $kuota = $request->input('kuota') === 'iya' ? 'iya' : 'tidak'; // Ubah true menjadi iya, false menjadi tidak
 
 
-        // Handle gambar jika diunggah
         if ($request->hasFile('img')) {
-            // Hapus gambar lama
             Storage::delete($kelPromo->gambar);
-            // Simpan gambar baru
             $image = $request->file('img')->store('LanPage');
         } else {
-            // Gunakan gambar yang sudah ada
             $image = $kelPromo->gambar;
         }
 
