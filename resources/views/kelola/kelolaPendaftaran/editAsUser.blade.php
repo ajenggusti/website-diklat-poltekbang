@@ -58,6 +58,7 @@
                 <div class="invalid-feedback">{{ $message }}</div>
             @enderror
         </div>
+        <input type="hidden" name="email" value="{{ $kelPendaftaran->email }}">
         
         <br>
         <div class="mb-3">

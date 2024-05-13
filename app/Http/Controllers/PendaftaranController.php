@@ -215,6 +215,7 @@ class PendaftaranController extends Controller
     public function updateAsAdmin($id , Request $request) 
     {
         // dd($id);
+        // dd($request);
         $messages = [
             's_link.url' => 'Kolom link harus berupa URL yang valid.',
             's_gambar.image' => 'Kolom gambar harus berupa file gambar.',
@@ -291,7 +292,17 @@ class PendaftaranController extends Controller
             }
             $doc = $request->file('s_doc')->store('LanPage');
         }
-       
+       $diklatUpdate=Diklat::findOrFail($oldData->diklat->id);
+        // dd($diklatUpdate);
+        if ($request->s_link||$request->s_gambar||$request->doc) {
+            $diklatUpdate->update([
+                "status" => "belum full",
+                "jumlah_pendaftar" => $diklatUpdate->jumlah_pendaftar - 1
+            ]);
+            $oldData->update([
+                'status_pelaksanaan'=>"Terlaksana"
+            ]);
+        }
         
         $oldData->update([
             's_gambar' => $gambar ?: $oldData->s_gambar,
@@ -301,7 +312,6 @@ class PendaftaranController extends Controller
             'potongan' => $request->potongan ? preg_replace("/[^0-9]/", "", $request->potongan) : null,
             'harga_diklat' => preg_replace("/[^0-9]/", "", $request->total_harga),
             'status_pembayaran_diklat' => $request->status_pembayaran_diklat,
-            'status_pelaksanaan'=>"Terlaksana"
         ]);
         // update pembayaran dari admin 
         $pembayaran_update = Pembayaran::where('id_pendaftaran', $id)
