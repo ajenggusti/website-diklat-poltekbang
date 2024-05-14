@@ -34,40 +34,36 @@
                 <br> <br>
                 
                 <div class="content-land">
-                    {{-- <div class="card-landing mb-3" >
-                        <div class="row g-0">
-                            <div class="col-md-4">
-                                <div class="card-one">
-                                    <h5 class="card-title" id="pendaftar">{{ $jmlPendaftar }}</h5>
-                                    <p class="card-text">Pendaftar</p>
-                                </div>
-                                <div class="card-two">
-                                    <h5 class="card-title" id="diklat">{{ $jmlDiklat }}</h5>
-                                    <p class="card-text">Diklat</p>
-                                </div>
-                            </div>
-                        </div> --}}
+                    
 
-                        <div class="card-group">
-                            {{-- <div class="animasi-card"> --}}
-                                <div class="card animated-card rainbow-bg">
-                                {{-- <img src="..." class="card-img-top" alt="..."> --}}
-                                <div class="card-body">
-                                    <h5 class="card-title animated-text" id="pendaftar">{{ $jmlPendaftar }}</h5>
-                                    <p class="card-text animated-text">Pendaftar</p>
+                        <div class="bg-land">
+                            <div class="card-group">
+                                <div class="animated-card">
+                                        <div class="card-body" >
+                                            <img src="{{ asset('img/poltek.png') }}" alt="" width="300px">
+                                        </div>
+                                        <div class="card-body" >
+                                            <span class="card-title animated-text" id="totalPendaftar">{{ $totalPendaftar }}</span><br>
+                                            <span class="card-text animated-text">Total Seluruh Pendaftaran</span>
+                                            <br>
+                                            <span class="card-title animated-text" id="jmlPendaftarBelumTerlaksana">{{ $jmlPendaftarBelumTerlaksana }}</span><br>
+                                            <span class="card-text animated-text">Pendaftar Periode Ini</span>
+                                            <br>
+                                        </div>
+                                        <div class="card-body" >
+                                            <span class="card-title animated-text" id="alumni">{{ $alumni }}</span><br>
+                                            <span class="card-text animated-text">Total Alumni </span>
+                                            <br>
+                                            <span class="card-title animated-text" id="jmlDiklat">{{ $jmlDiklat }}</span><br>
+                                            <span class="card-text animated-text">Total diklat saat ini</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                </div>
-                                <div class="card animated-card rainbow-bg">
-                                {{-- <img src="..." class="card-img-top" alt="..."> --}}
-                                <div class="card-body">
-                                    <h5 class="card-title animated-text" id="diklat">{{ $jmlDiklat }}</h5>
-                                    <p class="card-text animated-text">Diklat</p>
-                                </div>
-                            </div>
-                            <h1>Total seluruh pendaftaran : {{ $totalPendaftar }}</h1>
-                            <h1>jumlah alumni : {{ $alumni }}</h1>
-                            <h1>jumlah pendaftar saat ini : {{ $jmlPendaftarBelumTerlaksana }}</h1>
-                            <h1>jumlah diklat saat ini : {{ $jmlDiklat }}</h1>
+                            
+                            {{-- <h1>Total seluruh pendaftaran : {{ $totalPendaftar }}</h1> --}}
+                            {{-- <h1>jumlah alumni : {{ $alumni }}</h1> --}}
+                            {{-- <h1>jumlah pendaftar saat ini : {{ $jmlPendaftarBelumTerlaksana }}</h1> --}}
+                            {{-- <h1>jumlah diklat saat ini : {{ $jmlDiklat }}</h1> --}}
                         </div>
             
                     <hr>
@@ -358,9 +354,11 @@
 
             {{-- Animasi jumlah pendaftar --}}
             <script>
-                // Mendapatkan elemen pendaftar dan diklat
-                var pendaftarElement = document.getElementById("pendaftar");
-                var diklatElement = document.getElementById("diklat");
+                document.addEventListener("DOMContentLoaded", function() {
+                    var totalPendaftarElement = document.getElementById("totalPendaftar");
+                    var jmlPendaftarBelumTerlaksanaElement = document.getElementById("jmlPendaftarBelumTerlaksana");
+                    var alumniElement = document.getElementById("alumni");
+                    var jmlDiklatElement = document.getElementById("jmlDiklat");
             
                 // Fungsi untuk menghasilkan angka acak antara min dan max
                 function getRandomNumber(min, max) {
@@ -371,17 +369,22 @@
                 function animateRandomNumber(element, initialValue, finalValue) {
                     var currentValue = initialValue;
                     var interval = setInterval(function () {
-                        currentValue = getRandomNumber(currentValue, finalValue);
-                        element.textContent = currentValue;
-                        if (currentValue === finalValue) {
-                            clearInterval(interval);
-                        }
+                        var nextValue = getRandomNumber(currentValue, finalValue);
+                            element.textContent = nextValue;
+                            currentValue = nextValue;
+                            if (currentValue === finalValue) {
+                                clearInterval(interval);
+                            }
+
                     }, 100); // Perbarui angka setiap 100ms
                 }
             
                 // Jalankan animasi untuk pendaftar dan diklat
-                animateRandomNumber(pendaftarElement, 0, {{ $jmlPendaftar }});
-                animateRandomNumber(diklatElement, 0, {{ $jmlDiklat }});
+                animateRandomNumber(totalPendaftarElement, 0, {{ $totalPendaftar }});
+                animateRandomNumber(jmlPendaftarBelumTerlaksanaElement, 0, {{ $jmlPendaftarBelumTerlaksana }});
+                animateRandomNumber(alumniElement, 0, {{ $alumni }});
+                animateRandomNumber(jmlDiklatElement, 0, {{ $jmlDiklat }});
+            });
             </script>
 
             <script>

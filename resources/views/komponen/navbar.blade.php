@@ -79,6 +79,9 @@
                         <li class="nav-item">
                             <a class="nav-link px-2 justify-content-center" href="#profile">Profile</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link px-2 justify-content-center" href="eventsUser">Jadwal</a>
+                        </li>
                         
                     </ul>
                 </div>

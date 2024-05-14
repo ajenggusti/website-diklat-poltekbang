@@ -46,12 +46,28 @@
                 </select>
                 <input type="hidden" name="jenis_berkas" value="{{ $user->jenis_berkas }}">
             </div>
-            <br>
+            
             <div class="mb-3">
                 <label for="img" class="form-label">Berkas pendukung user : </label><br>
-                <img src="{{ asset('storage/' . $user->berkas_pendukung) }}" class="img-preview img-fluid" style="width: 20%;">
+                <img src="{{ asset('storage/' . $user->berkas_pendukung) }}" class="img-preview img-fluid" style="width: 550px;">
             </div>
-            <br>
+            
+            <div class="mb-3">
+                <label for="nik" class="form-label is">NIK</label>
+                <input type="text" class="form-control  @error('nik') is-invalid @enderror" id="nik" name= "nik" value="{{ old('nik') ?: $user->nik}}">
+                @error('nik')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+            
+            <div class="mb-3">
+                <label for="no_paspor" class="form-label is">Nomor Paspor</label>
+                <input type="text" class="form-control  @error('no_paspor') is-invalid @enderror" id="no_paspor" name= "no_paspor" value="{{ old('no_paspor') ?: $user->no_paspor}}">
+                @error('no_paspor')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
+            </div>
+
             <div class="mb-3">
                 <label for="name" class="form-label is">Nama Lengkap</label>
                 <input type="text" class="form-control  @error('name') is-invalid @enderror" id="name" name= "name" value="{{ old('name') ?: $user->name}}">
@@ -66,24 +82,7 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="mb-3">
-                <label for="nik" class="form-label is">NIK</label>
-                <input type="text" class="form-control  @error('nik') is-invalid @enderror" id="nik" name= "nik" value="{{ old('nik') ?: $user->nik}}">
-                @error('nik')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-            <br>
-            <div class="mb-3">
-                <label for="no_paspor" class="form-label is">Nomor Paspor</label>
-                <input type="text" class="form-control  @error('no_paspor') is-invalid @enderror" id="no_paspor" name= "no_paspor" value="{{ old('no_paspor') ?: $user->no_paspor}}">
-                @error('no_paspor')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
-            <br>
-
-        
+    
             <div class="mb-3">
                 <label for="jenis_kelamin" class="form-label">Pilih jenis kelamin:</label>
                 <select name="jenis_kelamin" id="jenis_kelamin" class="form-select @error('jenis_kelamin') is-invalid @enderror">
@@ -96,7 +95,7 @@
                 @enderror
             </div>
         
-            <br>   
+               
             <div class="mb-3">
                 <label for="tempat_lahir" class="form-label is">Tempat lahir</label>
                 <input type="text" class="form-control  @error('tempat_lahir') is-invalid @enderror" id="tempat_lahir" name= "tempat_lahir" value="{{ old('tempat_lahir') ?: $user->tempat_lahir}}">
@@ -104,7 +103,7 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-            <br>          
+                      
             <div class="mb-3">
                 <label class="control-label" for="tgl_lahir">Tanggal Lahir</label>
                 <input class="form-control datepicker @error('tgl_lahir') is-invalid @enderror" value="{{ old('tgl_lahir') ?? ($user->tgl_lahir ? \Carbon\Carbon::parse($user->tgl_lahir)->format('d-m-Y') : '') }}" id="tgl_lahir" name="tgl_lahir" placeholder="dd-mm-yyyy" type="text"/>
@@ -119,7 +118,7 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-            <br>
+            
             <div class="mb-3">
                 <label for="nationality">Nationality:</label>
                 <select class="form-select single-select-field" name="id_nationality" id="nationality" data-placeholder="Pilih nationality">
@@ -132,7 +131,7 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-            <br>
+            
             {{-- alamat --}}
             <div class="mb-3">
                 <label for="provinsi">Provinsi:</label>
@@ -146,7 +145,7 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-            <br>
+            
             <div class="mb-3">
                 <label for="kabupaten">Kabupaten:</label>
                 <select class="form-select single-select-field @error('id_kabupaten') is-invalid @enderror" name="id_kabupaten" id="kabupaten" data-placeholder="Pilih Kabupaten">
@@ -156,7 +155,7 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-            <br>
+            
             <div class="mb-3">
                 <label for="kecamatan">Kecamatan:</label>
                 <select class="form-select single-select-field @error('id_kecamatan') is-invalid @enderror" name="id_kecamatan" id="kecamatan" data-placeholder="Pilih kecamatan">
@@ -166,7 +165,7 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-            <br>
+            
             <div class="mb-3">
                 <label for="kelurahan">Kelurahan:</label>
                 <select class="form-select single-select-field @error('id_kelurahan') is-invalid @enderror" name="id_kelurahan" id="kelurahan" data-placeholder="Pilih kelurahan">

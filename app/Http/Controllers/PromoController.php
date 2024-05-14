@@ -39,7 +39,7 @@ class PromoController extends Controller
             'tgl_akhir' => 'required|after:tgl_awal',
             'diklat' => 'required',
             'deskripsi' => 'required',
-            'img' => 'required|image|max:1024',
+            'img' => 'required|image|max:5024',
         ];
 
         $messages = [

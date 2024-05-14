@@ -61,14 +61,10 @@
                     <td>{{ optional($kelPembayaran->pendaftaran->promo)->kode }}</td>
                 </tr>
                 
-                <tr>
+                {{-- <tr>
                     <th>Nama Depan</th>
-                    <td>{{ $kelPembayaran->pendaftaran->nama_depan }}</td>
-                </tr>
-                <tr>
-                    <th>Nama belakang</th>
-                    <td>{{ $kelPembayaran->pendaftaran->nama_belakang }}</td>
-                </tr>
+                    <td>{{ $kelPembayaran->pendaftaran->nama_lengkap }}</td>
+                </tr> --}}
                 <tr>
                     <th>Tempat Lahir</th>
                     <td>{{ $kelPembayaran->pendaftaran->tempat_lahir}}</td>

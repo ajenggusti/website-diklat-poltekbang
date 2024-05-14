@@ -26,6 +26,7 @@ class UtamaController extends Controller
         $alumni = Pendaftaran::where('status_pelaksanaan', 'Terlaksana')->count();
         // dd($user);
         $testimonis = Testimoni::where('tampil', 'iya')->get();
+        $countTestimoni=Testimoni::where('tampil', 'iya')->get()->count();
         // dd($testimonis);
         $gbrSlide = Gambar_navbar::where('status', 'tampilkan')->get();
         $promos = Promos::where(function($query) {
@@ -39,6 +40,20 @@ class UtamaController extends Controller
                     ->where('pakai_kuota', 'tidak');
             })
             ->get();
+            // $countPromo = count($promos);
+            $countPromo = Promos::where(function($query) {
+                $query->whereDate('tgl_akhir', '>=', now())
+                      ->where('pakai_kuota', 'iya')
+                      ->where('tampil', 'ya')
+                      ->where('kuota', '>', 0);
+                    })
+            ->orWhere(function($query) {
+                $query->whereDate('tgl_akhir', '>=', now())
+                        ->where('tampil', 'ya')
+                        ->where('pakai_kuota', 'tidak');
+                    })
+                    ->get()->count();
+                    // dd($countPromo);
     
     
         return view('utama/landingPage', [
@@ -50,6 +65,8 @@ class UtamaController extends Controller
             'promos'=>$promos,
             'alumni'=>$alumni,
             'totalPendaftar'=>$totalPendaftar,
+            'countTestimoni'=>$countTestimoni,
+            'countPromo' =>$countPromo,
 
 
         ]);

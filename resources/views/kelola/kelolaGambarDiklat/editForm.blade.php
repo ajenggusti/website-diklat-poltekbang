@@ -37,6 +37,7 @@
                 <br> <br>
                 <label for="img" class="form-label">Masukkan Gambar</label> <br>
                 <input name="img" onchange="previewImage()" class="form-control @error('img') is-invalid @enderror" type="file" id="img">
+                <small style="color: red;">Ukuran maksimal gambar 5 MB</small>
                 @error('img')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror

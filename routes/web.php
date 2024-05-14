@@ -51,9 +51,9 @@ Route::get('/PendaftaranBelumTerlaksana', [DbUtamaController::class, 'Pendaftara
 Route::get('/PendaftaranByDiklat/{id}', [DbUtamaController::class, 'PendaftaranByDiklat']);
 
 Route::get('/riwayat', [RiwayatController::class, 'index'])->middleware('auth');
-// kalau mau menghias invoice nang kene cherrrrrrrr!
+// Show Invoice
 Route::get('/invoice/{detail}', [RiwayatController::class, 'invoiceDetail']);
-Route::get('/detailRiwayat/{detail}', [RiwayatController::class, 'detailRiwayat']);
+Route::get('/detailRiwayat/{detail}', [RiwayatController::class, 'detailRiwayat'])->name('riwayat.detail');
 // download invoice
 Route::get('/invoicePdf/{id}', [RiwayatController::class, 'viewPdf']);
 // route bukti pembayaran

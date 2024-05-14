@@ -1,9 +1,45 @@
 @extends('layout.mainAdmin')
 @section('container')
-    <div class="container">
-        <div class="row">
-            <div class="col-12 mt-3">
-                <div id='calendar'></div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kelola Kalender</title>
+    
+    {{-- <script src="/js/landing.js"></script> --}}
+    {{-- Boostrap Icons --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    {{-- Font Poppins --}}
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .content-staff {
+            background-color: rgb(255, 255, 255);
+            border: 1px solid black;
+            border-radius: 20px;
+        }
+
+        #calendar {
+            max-height: 600px;
+            overflow: hidden;
+            padding: 10px;
+        }
+       
+    </style>
+</head>
+<body>
+    <div class="content-staff">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mt-3">
+                    <div id='calendar'></div>
+                </div>
             </div>
         </div>
     </div>
@@ -11,6 +47,8 @@
     <div id="modal-action" class="modal" tabindex="-1">
         
     </div>
+</body>
+</html>
     
 
     

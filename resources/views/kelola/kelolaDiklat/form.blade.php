@@ -28,8 +28,9 @@
                         <img class="img-preview img-fluid" style="width: 550px">
                         <br> <br>
                         <input name="img" onchange="previewImage()" class="form-control @error('img') is-invalid @enderror" type="file" id="img" >
+                        <small style="color: rgb(91, 91, 255);">Ukuran maksimal gambar 5 MB</small>
                         @error('img')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 

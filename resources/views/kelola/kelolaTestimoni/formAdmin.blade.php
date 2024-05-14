@@ -1,4 +1,4 @@
-@extends('layout.mainUser')
+@extends('layout.mainAdmin')
 @section('container')
 <html>
     <head>

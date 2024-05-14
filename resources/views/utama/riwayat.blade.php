@@ -43,13 +43,49 @@
                                             <p>Diskon: - Rp. 0</p> 
                                         @endif
                                         <p>Total Biaya : Rp. {{ number_format($data->harga_diklat, 0, ',', '.') }}</p>
-                                        
+                                
+                                        {{-- STATUS PEMBAYARAN --}}
+                                        @if ($data->status_pembayaran_daftar == "Menunggu pembayaran" || $data->status_pembayaran_daftar == "Belum dibayar")
+                                            <p>Status Pembayaran Pendaftaran : <br>
+                                                <span class="btn btn-warning disable" style="background-color: rgba(213, 0, 0, 0.897); text-decoration: none;">
+                                                    {{ $data->status_pembayaran_daftar }}
+                                                </span>
+                                            </p>  
+                                        @elseif ($data->status_pembayaran_daftar == "Menunggu verifikasi")
                                         <p>Status Pembayaran Pendaftaran : <br>
-                                            <span class="btn btn-warning disable" style="background-color: rgb(126, 175, 236); text-decoration: none; border: 1px solid #040404;">{{ $data->status_pembayaran_daftar }}</span>
-                                        </p>  
-                                        <p>Status Pembayaran Diklat : <br>
-                                            <span class="btn btn-warning disable" style="background-color: rgb(126, 175, 236); text-decoration: none; border: 1px solid #040404;">{{ $data->status_pembayaran_diklat }}</span>
+                                            <span class="btn btn-warning disable" style="background-color: rgb(250, 244, 62); text-decoration: none; ">
+                                                {{ $data->status_pembayaran_daftar }}
+                                            </span>
                                         </p>
+                                        @elseif ($data->status_pembayaran_daftar == "Lunas")
+                                            <p>Status Pembayaran Pendaftaran : <br>
+                                                <span class="btn btn-warning disable" style="background-color: rgb(91, 248, 52); text-decoration: none;">
+                                                    {{ $data->status_pembayaran_daftar }}
+                                                </span>
+                                            </p>
+                                        @endif
+                                    
+                                        @if ($data->status_pembayaran_diklat == "Menunggu pembayaran" || $data->status_pembayaran_diklat == "Belum dibayar" )
+                                        <p>Status Pembayaran Diklat : <br>
+                                            <span class="btn btn-warning disable" style="background-color: rgba(213, 0, 0, 0.897); text-decoration: none;">
+                                                {{ $data->status_pembayaran_diklat }}
+                                            </span>
+                                        </p> 
+                                        @elseif ($data->status_pembayaran_diklat == "Menunggu verifikasi")
+                                        <p>Status Pembayaran Diklat : <br>
+                                            <span class="btn btn-warning disable" style="background-color: rgb(250, 244, 62); text-decoration: none; ">
+                                                {{ $data->status_pembayaran_diklat }}
+                                            </span>
+                                        </p>
+                                        @elseif ($data->status_pembayaran_diklat == "Lunas")
+                                        <p>Status Pembayaran Diklat : <br>
+                                            <span class="btn btn-warning disable" style="background-color: rgb(91, 248, 52); text-decoration: none;">
+                                                {{ $data->status_pembayaran_diklat }}
+                                            </span>
+                                        </p>
+                                        @endif
+                        
+                                    
                                         
 
                                         <p>Lakukan pembayaran : </p>
@@ -72,7 +108,7 @@
                                         <br>
                                         
                                         <a href="/invoicePdf/{{ $data->id }}" class="btn btn-success">Cetak invoice</a>
-                                        <a href="/detailRiwayat/{{ $data->id }}" class="btn btn-info">Lihat</a>
+                                        {{-- <a href="/detailRiwayat/{{ $data->id }}" class="btn btn-info">Lihat</a> --}}
                                         <br>
                                         
                                         <p>Bukti Pembayaran :</p>
@@ -94,7 +130,8 @@
                                         <hr>
                                         <div class="row" style="text-align: center; padding-bottom: 10px;">
                                             <div class="col">
-                                                <a href="/riwayat/{{ $data->id }}" class="btn btn-info"><i class="bi bi-eye"></i> Detail</a>
+                                                {{-- <a href="/detailRiwayat/{{ $data->id }}" class="btn btn-info">Lihat</a> --}}
+                                                <a href="/detailRiwayat/{{ $data->id }}" class="btn btn-info"><i class="bi bi-eye"></i> Detail</a>
                                                 <a href="/kelPendaftaran/{{ $data->id }}/edit" class="btn btn-success"><i class="bi bi-pencil-square"></i> Edit</a>
                                             {{-- </div> --}}
                                             {{-- <div class="col"> --}}

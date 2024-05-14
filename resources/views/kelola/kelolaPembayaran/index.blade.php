@@ -22,7 +22,7 @@
     </style>
 </head>
 <body>
-    <div class="content-form">
+    <div class="content-staff">
         <h2>Tabel Pembayaran</h2>
         <hr>
         @if (session('success') )
@@ -56,7 +56,7 @@
             <table class="table table-sm" id="myTable">
                 <thead>
                     <tr class="header">
-                        <th scope="col">No 
+                        <th scope="col">No
                             <i class="bi bi-arrow-up" onclick="sortTable(0, 'asc')"></i>
                             <i class="bi bi-arrow-down" onclick="sortTable(0, 'desc')"></i>
                         </th>

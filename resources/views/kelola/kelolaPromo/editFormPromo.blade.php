@@ -35,8 +35,9 @@
                     <label for="img" class="form-label">Masukkan gambar baru</label>
                     <img class="img-preview img-fluid" style="width: 550px">
                     <input name="img" onchange="previewImage()" class="form-control @error('img') is-invalid @enderror" type="file" id="img">
+                    <small style="color: red;">Ukuran maksimal gambar 5 MB</small>
                     @error('img')
-                    <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-3">
@@ -113,7 +114,7 @@
                 
                         
                 <div class="mb-3">
-                    <label for="kuota_angka" class="form-label">Kuota_angka</label>
+                    <label for="kuota_angka" class="form-label">Kuota Promo</label>
                     <input type="text" class="form-control @error('kuota_angka') is-invalid @enderror" id="kuota_angka" name="kuota_angka" value="{{ old('kuota_angka') ?? $kelPromo->kuota }}">
                     @error('kuota_angka')
                         <div class="invalid-feedback">{{ $message }}</div>

@@ -95,41 +95,62 @@
     
 }
 
+
+
 /* Style animation */
+
+.card-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
   
-  .card-title.animate {
+.card-title.animate {
     animation: count-up 4s ease-out forwards;
-  }
+}
 
 .card-title {
-    text-align: center;
-    font-size: 40px;
+    margin-bottom: 10px;
+    font-size: 35px;
     color: rgb(38, 38, 107);
 }
 
 .card-text {
-    text-align: center;
-    font-size: 20px;
+    font-size: 25px;
+    margin-bottom: 20px;
 }
 /* Animasi untuk background */
 .animated-card {
     
-    background-image: url('https://clipground.com/images/peta-indonesia-png-2.png');
+    flex: 1 1 30%;
+    margin: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    background-color: #a5a09c;
     background-size: cover;
     background-position: center;
-    transition: transform 0.5s ease, box-shadow 0.5s ease, background-color 0.5s ease; /* Transisi warna latar belakang */
+    transition: transform 0.5s ease, box-shadow 0.5s ease, background-color 0.5s ease;
+
+    background-image: url('https://clipground.com/images/peta-indonesia-png-2.png');
+    /* NEW */
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .animated-card:hover {
-    color: #ff9d56;
-    background-image: url('https://clipground.com/images/peta-indonesia-png-2.png');
-    /* transform: translateY(-5px); */
+    color: #115fcd;
+    background-color: #048d92;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.5s ease, box-shadow 0.5s ease, background-color 0.5s ease;
     transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Warna latar belakang saat hover */
-    filter: brightness(70%)
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
+    filter: brightness(90%)
 }
 .animated-text {
-    font-size: 40px;
     animation: text-bounce 0.5s ease alternate; /* Animasi efek bounce */
     font-weight: bold; /* Membuat teks lebih bold */
 }
@@ -139,7 +160,24 @@
     to { transform: scale(1.1); }
 }
 
+@media screen and (max-width: 768px) {
+    .animated-card {
+        flex: 1 1 100%; /* Setiap card akan mengambil 100% dari lebar container pada layar kecil */
+        margin: 10px 0;
+        /* NEW */
+        flex-direction: column;
+    }
+}
 
+/* NEW */
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+}
+
+/* END NEW */
 
 
 /* Style Promo */

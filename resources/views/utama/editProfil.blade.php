@@ -75,7 +75,7 @@
                                 <label for="img" class="form-label">Masukkan foto ktp/paspor</label>
                                 <img class="img-preview img-fluid" style="width: 550px;">
                                 <input name="img" onchange="previewImage()" class="form-control @error('img') is-invalid @enderror" type="file" id="img">
-                                <small style="color: red">Foto berukuran maksimal 2 MB</small>
+                                <small style="color: rgb(91, 91, 255)">Foto berukuran maksimal 2 MB</small>
                                 @error('img')
                                 <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
@@ -209,11 +209,13 @@
                                 @enderror
                             </div>
                         </div>
+
                         <div style="clear: both;"></div>
                         <hr>
                         <div class="btn-editProfil">
                             @if ($user->status=="Diverifikasi" )
-                                Profilmu sudah terverifikasi, jika kamu ingin mengubah biodatamu, ajukan permohonan dengan klik tombol dibawah ini!
+                                <p>Profilmu sudah terverifikasi, jika kamu ingin mengubah biodatamu, ajukan permohonan dengan klik tombol dibawah ini!</p>
+                                <br>
                                 <div class="btn-mohon">
                                     <a href="/permohonan/{{ $user->id }}" class="btn btn-warning">Permohonan mengubah data</a>
                                 </div>
