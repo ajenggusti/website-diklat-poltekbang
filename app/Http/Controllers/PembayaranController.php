@@ -9,6 +9,8 @@ use App\Models\Pendaftaran;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use App\Exports\PembayaranExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 
 class PembayaranController extends Controller
@@ -18,8 +20,15 @@ class PembayaranController extends Controller
      */
     public function index()
     {
-        $pembayarans = Pembayaran::with('pendaftaran')->get();
-        return view('kelola.kelolaPembayaran.index', ['pembayarans' => $pembayarans]);
+        $pembayarans = Pembayaran::where('status', 'Lunas')->get();
+        $pemasukanKeseluruhan = Pembayaran::where('status', 'Lunas')->sum('total_harga');
+        $formattedPemasukan = 'Rp ' . number_format($pemasukanKeseluruhan, 0, ',', '.');
+
+        // dd($pembayarans);
+        return view('kelola.kelolaPembayaran.index', [
+            'pembayarans' => $pembayarans,
+            'formattedPemasukan'=>$formattedPemasukan
+        ]);
     }
 
     /**
@@ -352,4 +361,18 @@ class PembayaranController extends Controller
 
         return redirect('/riwayat')->with('success', 'Terimakasih! Pembayaranmu akan segera diperiksa oleh admin:)');
     }
+    public function export(Request $request){
+        $requestUri = $request->server->get('REQUEST_URI');
+        $uriParts = explode('/', $requestUri);
+        $dateRange = end($uriParts); 
+        $dates = explode('.', $dateRange);
+        $startDate = $dates[0];
+        $endDate = $dates[1]; 
+        // dd($startDate);
+        // dd($endDate);
+        $timestamp = Carbon::now()->format('H-i-s_d-m-Y');
+        $filename = 'Laporan_' . $timestamp . '.xlsx';
+        return Excel::download(new PembayaranExport($startDate, $endDate), $filename);
+    }
+
 }

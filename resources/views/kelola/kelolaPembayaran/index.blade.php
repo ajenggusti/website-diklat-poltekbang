@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Kelola Pembayaran</title>
+    <title>Laporan</title>
     <link href="/css/actor.css" rel="stylesheet">
     <script src="/js/actor.js"></script>
     {{-- <script src="/js/landing.js"></script> --}}
@@ -44,7 +44,11 @@
                     <option value="100">100</option>
                 </select>
             </div>
-
+            <form id="tanggalForm">
+                    <input type="text" class="datepicker" id="datepicker1" placeholder="Pilih tanggal">
+                    <input type="text" class="datepicker" id="datepicker2" placeholder="Pilih tanggal">
+                <a href="#" id="exportExcel" class="btn btn-primary">Export ke Excel</a>
+            </form>
             {{-- Search --}}
             <div class="search-bar">
                 <label for="myInput">Search : </label>
@@ -94,7 +98,7 @@
                             <td id="biaya_diklat_{{ $loop->iteration }}">Rp {{ number_format($pembayaran->pendaftaran->harga_diklat, 0, ',', '.') }}</td>
                             <td id="status_pembayaran_diklat_{{ $loop->iteration }}">{{ $pembayaran->pendaftaran->status_pembayaran_diklat }}</td>
                             <td id="biaya_pendaftaran_{{ $loop->iteration }}">Rp 150.000</td>
-                            <td id="status_pembayaran_daftar_{{ $loop->iteration }}">{{ $pembayaran->pendaftaran->status_pembayaran_daftar }}</td>
+                            <td id="status_pembayaran_daftar_{{ $loop->iteration }}">{{ $pembayaran->status }}</td>
                             {{-- <td><img src="{{ asset('storage/' . $pembayaran->bukti_pembayaran) }}" alt="bukti pembayaran" style="width: 30%;"></td> --}}
                             <td>
                                 {{-- <a href="/kelPembayaran/{{ $pembayaran->id }}/edit" class="btn btn-warning">Edit</a> --}}
@@ -124,23 +128,57 @@
                 </div>
             </div>
         </div>
+
+        <p>Total pemasukan keseluruhan: <strong>{{ $formattedPemasukan }}</strong></p>
+
         <script>
             document.addEventListener("DOMContentLoaded", function() {
                 var rows = document.querySelectorAll("tbody tr");
                 rows.forEach(function(row, index) {
                     var jenis_pembayaran = row.cells[3].textContent;
                     if (jenis_pembayaran === 'diklat') {
-                        // Sembunyikan kolom Biaya Pendaftaran dan Status Pembayaran Pendaftaran
                         row.cells[6].style.display = "none";
                         row.cells[7].style.display = "none";
                     } else if (jenis_pembayaran === 'pendaftaran') {
-                        // Sembunyikan kolom Biaya Diklat dan Status Pembayaran Diklat
                         row.cells[4].style.display = "none";
                         row.cells[5].style.display = "none";
                     }
                 });
             });
         </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        {{-- datepicker --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(document).ready(function(){
+            // Inisialisasi datepicker dengan format yyyy-mm-dd
+            $('.datepicker').datepicker({
+                format: 'yyyy-mm-dd',
+                autoclose: true,
+                orientation: "bottom right"
+            });
+
+            // Fungsi untuk menangani klik pada tautan "Export ke Excel"
+            $('#exportExcel').on('click', function(event) {
+                event.preventDefault();
+
+                const tanggal1 = $('#datepicker1').val();
+                const tanggal2 = $('#datepicker2').val();
+
+                // Validasi nilai tanggal
+                if (!tanggal1 || !tanggal2) {
+                    alert('Silakan pilih kedua tanggal sebelum mengekspor.');
+                    return;
+                }
+
+                // Membuat URL dengan parameter query string
+                const url = `/laporanExport/${encodeURIComponent(tanggal1)}.${encodeURIComponent(tanggal2)}`;
+                // console.log(url);
+                // Navigasi ke URL yang dibuat
+                window.location.href = url;
+            });
+        });
+    </script>
     </div>
 </body>
 </html>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Level;
 use App\Models\Pembayaran;
 use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
@@ -10,22 +11,50 @@ use Illuminate\Support\Facades\DB;
 
 class DbUtamaController extends Controller
 {
+    // kelola db super admin
     public function index()
     {
         $this->authorize('superAdmin');
-        $userCounts = User::countUserAsLevel();
+        $userCounts=User::groupBy('id_level')
+        ->select('id_level', DB::raw('count(*) as total_user'))
+        ->get();
+        // dd($userCounts);
         $count = User::count();
-        return view('kelola.dbSuperAdmin', [
+        return view('kelola.kelDbSuperAdmin.dbSuperAdmin', [
             'userCounts' => $userCounts,
             'count' => $count
         ]);
     }
+
+    public function allUser(){
+        $judul = "Semua User";
+        $datas = User::all();
+        return view('kelola.kelDbSuperAdmin.detailLevel', [
+            'datas'=>$datas,
+            'judul'=>$judul
+        ]);
+    }
+    public function byLevel($id){
+        $datas = User::where('id_level', $id)->get();
+        $judul1 = Level::findOrFail($id);
+        $judul = $judul1->level;
+        // dd($datas);
+        return view('kelola.kelDbSuperAdmin.detailLevel', [
+        'datas' => $datas,
+        'judul'=>$judul
+
+        ]);
+    }
+    // kelola dpuk
     public function dbDpuk()
     {
         $this->authorize('dpuk');
         $alumni = Pendaftaran::where('status_pelaksanaan', 'Terlaksana')->count();
         $jumlahBelumTerlaksana = Pendaftaran::where('status_pelaksanaan', 'Belum terlaksana')->count();
         $totalSemua = Pendaftaran::count();
+        $sertifikat = Pendaftaran::where('status_pembayaran_diklat', 'Lunas')
+                            ->where('status_pembayaran_daftar', 'Lunas')
+                            ->count();
         $pendaftarans = Pendaftaran::groupBy('id_diklat')
             ->select('id_diklat', DB::raw('count(*) as total_pendaftar'))
             ->get();
@@ -33,7 +62,8 @@ class DbUtamaController extends Controller
             'alumni' => $alumni,
             'jumlahBelumTerlaksana'=>$jumlahBelumTerlaksana,
             'totalSemua'=>$totalSemua,
-            'pendaftarans' => $pendaftarans
+            'pendaftarans' => $pendaftarans,
+            'sertifikat'=>$sertifikat
         ]);
     }
     public function PendaftaranByDiklat($id)
@@ -62,6 +92,16 @@ class DbUtamaController extends Controller
             'datas' => $datas
         ]);
     }
+    public function perluSertifikat(){
+        $datas = Pendaftaran::where('status_pembayaran_diklat', 'Lunas')
+                            ->where('status_pembayaran_daftar', 'Lunas')
+                            ->get();
+
+        return view('kelola.kelDbDpuk.detailByIdDiklat', [
+            'datas' => $datas
+        ]);
+    }
+    // kelola keuangan
     public function dbKeuangan()
     {
         $this->authorize('keuangan');

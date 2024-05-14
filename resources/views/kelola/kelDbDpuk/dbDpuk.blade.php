@@ -1,7 +1,8 @@
 @extends('layout.mainAdmin')
 @section('container')
     <p><a href="/kelPendaftaran">Jumlah seluruh pendaftar diklat : {{ $totalSemua }}</a></p>
-    <p><a href="/PendaftaranTerlaksana">Jumlah alumni : {{ $alumni }}</a></p>
+    <p><a href="/perluSertifikat">Jumlah peserta yang memerlukan sertifikat : {{ $sertifikat }}</a></p>
+    <p><a href="/PendaftaranTerlaksana">Jumlah Lulusan : {{ $alumni }}</a></p>
     <p><a href="/PendaftaranBelumTerlaksana">Jumlah pendaftaran yang belum terlaksana : {{ $jumlahBelumTerlaksana }}</a></p>
 
     @foreach($pendaftarans as $pendaftaran)

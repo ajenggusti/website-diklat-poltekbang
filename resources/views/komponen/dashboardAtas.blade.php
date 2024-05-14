@@ -7,6 +7,7 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
     <meta name="csrf_token" content="{{ csrf_token() }}">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <title>Dashboard Template · Bootstrap v5.0</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
@@ -160,7 +161,7 @@
                       <li class="nav-item {{ Request::is('kelPembayaran*') ? 'active' : '' }}">
                         <a class="nav-link" href="/kelPembayaran">
                           <i class="bi bi-cash-stack" style="font-size: 17px;">   </i>
-                          Kelola Pembayaran
+                          Laporan
                         </a>
                       </li>
                       {{-- <li class="nav-item">

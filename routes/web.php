@@ -42,14 +42,18 @@ use App\Http\Controllers\KelurahanDropdownController;
 Route::get('/', [UtamaController::class, 'index']);
 Route::get('/utama/macamDiklat/{kategori}', [UtamaController::class, 'allDiklat']);
 Route::get('/utama/detailDiklat/{detail}', [UtamaController::class, 'detailDiklat']);
-// dashboard admin
+// db superAdmin
 Route::get('/dbSuperAdmin', [DbUtamaController::class, 'index']);
+Route::get('/allUser', [DbUtamaController::class, 'allUser']);
+Route::get('/byLevel/{id}', [DbUtamaController::class, 'byLevel']);
+// db keuangan
 Route::get('/dbKeuangan', [DbUtamaController::class, 'dbKeuangan']);
+// db DPUK
 Route::get('/dbDpuk', [DbUtamaController::class, 'dbDpuk']);
 Route::get('/PendaftaranTerlaksana', [DbUtamaController::class, 'PendaftaranTerlaksana']);
 Route::get('/PendaftaranBelumTerlaksana', [DbUtamaController::class, 'PendaftaranBelumTerlaksana']);
+Route::get('/perluSertifikat', [DbUtamaController::class, 'perluSertifikat']);
 Route::get('/PendaftaranByDiklat/{id}', [DbUtamaController::class, 'PendaftaranByDiklat']);
-
 Route::get('/riwayat', [RiwayatController::class, 'index'])->middleware('auth');
 // Show Invoice
 Route::get('/invoice/{detail}', [RiwayatController::class, 'invoiceDetail']);
@@ -104,8 +108,10 @@ Route::post('/kelPembayaranDiklat-store/{id}', [PembayaranController::class, 'st
 Route::post('/kelPembayaranDiklat-form', [PembayaranController::class, 'createDiklat'])->name('kelPembayaranDiklat-form.createDiklat');
 Route::post('/kelPembayaranPendaftaran', [PembayaranController::class, 'savePendaftaran'])->name('kelPembayaranPendaftaran.savePendaftaran');
 Route::post('/kelPembayaranDiklat', [PembayaranController::class, 'saveDiklat'])->name('kelPembayaranDiklat.saveDiklat');
-
+// export laporan
+Route::get('/laporanExport/{tgl_awal}', [PembayaranController::class, 'export']);
 Route::resource('/kelPembayaran', PembayaranController::class)->except('update');
+// route pembayaran export A.K.A. Laporan
 //route CRUD gambar diklat
 Route::resource('/kelGambarDiklat', GambarDiklatController::class);
 // route CRUD Kalender
