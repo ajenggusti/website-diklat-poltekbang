@@ -13,10 +13,22 @@
     </head>
     <body>
         <div class="container-fluid">
-            
             <div class="content-body">
             {{-- <div class="content-land"> --}}
                 {{-- BREADCRUMBS --}}
+                {{-- <br>
+                <nav aria-label="breadcrumb" style="background-color: #FFFFFF !important;">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active" aria-current="page">
+                            <a href="/">HOME</a>
+                        </li>
+                        <li class="breadcrumb-item active" aria-current="page">
+                            <a href="/macamDiklat">{{ $diklatOne->kategori_diklat }}</a>
+                        </li>
+                    </ol>
+                </nav> --}}
+                <a href="/" class="btn btn-info" style="margin-top: 40px;">Kembali</a>
+                <br>
                 <h2>PROGRAM {{ $diklatOne->kategori_diklat }}</h2>
                 <div class="card-container2">
                 {{-- <div class="cards-container"> --}}
@@ -56,8 +68,7 @@
                     @endforeach   
                     
                 </div>     
-                <a href="/" class="btn btn-info">Kembali</a>
-                <br><br>
+                
             </div>
         </div>
     </body>

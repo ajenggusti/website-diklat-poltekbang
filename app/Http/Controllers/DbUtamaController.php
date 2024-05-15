@@ -54,6 +54,7 @@ class DbUtamaController extends Controller
         $totalSemua = Pendaftaran::count();
         $sertifikat = Pendaftaran::where('status_pembayaran_diklat', 'Lunas')
                             ->where('status_pembayaran_daftar', 'Lunas')
+                            ->where('status_pelaksanaan', 'Belum terlaksana')
                             ->count();
         $pendaftarans = Pendaftaran::groupBy('id_diklat')
             ->select('id_diklat', DB::raw('count(*) as total_pendaftar'))
@@ -95,6 +96,7 @@ class DbUtamaController extends Controller
     public function perluSertifikat(){
         $datas = Pendaftaran::where('status_pembayaran_diklat', 'Lunas')
                             ->where('status_pembayaran_daftar', 'Lunas')
+                            ->where('status_pelaksanaan', 'Belum terlaksana')
                             ->get();
 
         return view('kelola.kelDbDpuk.detailByIdDiklat', [

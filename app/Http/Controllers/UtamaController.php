@@ -98,7 +98,17 @@ class UtamaController extends Controller
 
     public function detailDiklat($id)
     {
-        $detailDiklat = Diklat::showAll($id);
+        // JEJE
+        // $detailDiklat = Diklat::showAll($id); 
+        // dd($detailDiklat);
+        // NEW C
+        $detailDiklat = Diklat::findOrFail($id);
+        // dd($detailDiklat);
+
+        // if (!$detailDiklat) {
+        //     return redirect('/')->with('error', 'Diklat not found');
+        // }
+        // END NEW C
         $gambars = GambarDiklat::where('id_diklat', $id)
             ->orWhereNull('id_diklat')
             ->orderByRaw('CASE WHEN id_diklat IS NULL THEN 0 ELSE 1 END, id_diklat ASC')
@@ -111,10 +121,16 @@ class UtamaController extends Controller
         } else {
             $dobelDiklat = false;
         }
+
+        // NEW C
+        $id_kategori_diklat = $detailDiklat->id_kategori_diklat;
+        $diklatOne = KatDiklat::findOrFail($id_kategori_diklat);
+
         return view('utama.detailDiklat', [
             'detailDiklat' => $detailDiklat,
             'gambars' => $gambars,
-            'dobelDiklat' => $dobelDiklat
+            'dobelDiklat' => $dobelDiklat,
+            'diklatOne' => $diklatOne,  // NEW C
         ]);
     }
     

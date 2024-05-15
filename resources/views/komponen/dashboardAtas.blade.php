@@ -65,14 +65,14 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         
-        <div class="navbar-nav">
+        {{-- <div class="navbar-nav">
           <div class="nav-item text-nowrap">
             <form action="/logout" method="POST">
               @csrf
               <button type="submit" style="color: aliceblue" class="btn btn-outline-primary border-0">Logout</button>
             </form>
           </div>
-        </div>
+        </div> --}}
       {{-- </div> --}}
     </header>
 
@@ -158,24 +158,33 @@
                           Kelola Pendaftaran
                         </a>
                       </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/events">
+                          <i class="bi bi-calendar-event"></i>
+                          Kalender
+                        </a>
+                      </li>
                       <li class="nav-item {{ Request::is('kelPembayaran*') ? 'active' : '' }}">
                         <a class="nav-link" href="/kelPembayaran">
                           <i class="bi bi-cash-stack" style="font-size: 17px;">   </i>
                           Laporan
                         </a>
                       </li>
-                      {{-- <li class="nav-item">
-                        <a class="nav-link" href="#">
-                          <span data-feather="layers"></span>
-                          Laporan
-                        </a>
-                      </li> --}}
+                      <hr>
                       <li class="nav-item">
-                        <a class="nav-link" href="/events">
-                          <span data-feather="layers"></span>
-                          Kalender
+                        {{-- <a class="nav-link" href="/events"> --}}
+                          {{-- <span data-feather="layers"> --}}
+                            <form action="/logout" method="POST">
+                              @csrf
+                              <button type="submit" style="color: aliceblue" class="btn nav-link">
+                                <i class="bi bi-box-arrow-right"></i> Logout
+                              </button>
+                            </form>
+                            {{-- Logout --}}
+                          </span>
                         </a>
                       </li>
+                      <hr>
                     {{-- </div> --}}
                   </ul>
                 {{-- </div> --}}

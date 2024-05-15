@@ -40,11 +40,11 @@
                             <div class="card-group">
                                 <div class="animated-card">
                                         <div class="card-body" >
-                                            <img src="{{ asset('img/poltek.png') }}" alt="" width="300px">
+                                            <img src="{{ asset('img/poltek.png') }}" alt="">
                                         </div>
                                         <div class="card-body" >
                                             <span class="card-title animated-text" id="totalPendaftar">{{ $totalPendaftar }}</span><br>
-                                            <span class="card-text animated-text">Total Seluruh Pendaftaran</span>
+                                            <span class="card-text animated-text">Total Seluruh Pendaftar</span>
                                             <br>
                                             <span class="card-title animated-text" id="jmlPendaftarBelumTerlaksana">{{ $jmlPendaftarBelumTerlaksana }}</span><br>
                                             <span class="card-text animated-text">Pendaftar Periode Ini</span>
@@ -52,7 +52,7 @@
                                         </div>
                                         <div class="card-body" >
                                             <span class="card-title animated-text" id="alumni">{{ $alumni }}</span><br>
-                                            <span class="card-text animated-text">Total Alumni </span>
+                                            <span class="card-text animated-text">Total Lulusan Diklat </span>
                                             <br>
                                             <span class="card-title animated-text" id="jmlDiklat">{{ $jmlDiklat }}</span><br>
                                             <span class="card-text animated-text">Total diklat saat ini</span>
@@ -120,11 +120,12 @@
                                 <div class="card-content">
                                     <p>
                                         <span>{{ $kategori->kategori_diklat }}</span><br>
+                                    
+                                        <br>
+                                        <button class="button-link" onclick="window.location.href='/utama/macamDiklat/{{ $kategori->id }}'">
+                                            Selengkapnya
+                                        </button>
                                     </p>
-                                    <br>
-                                    <button class="button-link" onclick="window.location.href='/utama/macamDiklat/{{ $kategori->id }}'">
-                                        Selengkapnya
-                                    </button>
                                 </div>
                             </div>    
                         @endforeach

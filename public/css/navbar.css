@@ -9,7 +9,7 @@
 
 /* Style Navbar */
 .content-nav {
-    background-color: #ff707096;
+    background-color: #0e2d45e4;
     height: 50px;
     width: 100%;
     position: fixed;
@@ -18,25 +18,12 @@
 }
 
 
-.content-nav .topnav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-}
-
-.content-nav .topnav ul li {
-    margin: 0;
-}
-
-.content-nav .topnav ul li a {
-    display: block;
+.content-nav .topnav ul li a{
     padding-right: 15px;
-    /* padding: 14px 16px; */
+    padding-top: 5px;
     color: #FF6900; 
-    text-decoration: none;
 }
+
 
 .content-nav .topnav ul li a:hover {
     color: #878889; 
@@ -45,6 +32,7 @@
 
 .content-nav .navbar-brand img {
     margin-left: 110px;
+    padding-bottom: 2px;
 }
 
 .content-nav .text-end {
@@ -87,7 +75,60 @@
     color: #ffffff;
 }
 
-/* Toodler */
+
+/* @media screen and (max-width: 768px) {
+    .content-nav .navbar-brand img {
+        margin-left: 10px;
+        padding-bottom: 2px;
+    }
+} */
+
+/* NEW */
+@media (max-width: 991px) {
+    .content-nav .navbar-collapse {
+        background-color: #0e2d45e4; /* Tambahkan warna latar belakang biru */
+        position: fixed;
+        top: 50px;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        display: none; /* Sembunyikan navbar saat layar kecil */
+    }
+    .content-nav .navbar-collapse.show {
+        display: block; /* Tampilkan navbar saat tombol toggler ditekan */
+    }
+    .content-nav .navbar-nav {
+        display: block !important;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    .content-nav .navbar-nav .nav-item {
+        margin: 0;
+        text-align: center;
+    }
+    .content-nav .navbar-nav .nav-item .nav-link {
+        padding: 10px 15px;
+        color: #FF6900;
+    }
+    .content-nav .navbar-nav .nav-item .nav-link:hover {
+        color: #878889;
+    }
+}
+
+@media (min-width: 992px) {
+    .content-nav .navbar-collapse {
+        background-color: transparent; /* Hapus warna latar belakang biru */
+    }
+    .content-nav .navbar-nav {
+        margin-left: auto; /* Pindahkan nav-item ke kanan */
+    }
+    .content-nav .navbar-nav .dropdown-menu {
+        margin-right: 0; /* Letakkan dropdown ke kanan */
+        left: auto;
+    }
+}
+/* END NEW */
 
 
 

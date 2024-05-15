@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
         {{-- Font Poppins --}}
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-        
+        <title></title>
         <style>
             body {
                 font-family: 'Poppins', sans-serif;
@@ -27,22 +27,24 @@
             
             <div class="content-body2">
                 <br>
-                <nav aria-label="breadcrumb" style="background-color: #FFFFFF !important;">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item active" aria-current="page">
-                            <a href="/">Home</a>
-                        </li>
-                        <li class="breadcrumb-item active" aria-current="page">
-                            Jenis Diklat
-                            <a href="/macamDiklat"></a>
-                        </li>
-                    </ol>
-                  </nav>
+                {{-- @foreach ($detailDiklat as $detail) <br> <br> --}}
+                    {{-- <nav aria-label="breadcrumb" style="background-color: #FFFFFF !important;">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item active" aria-current="page">
+                                <a href="/">HOME</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">
+                                <a href="/macamDiklat">{{ $diklatOne->kategori_diklat }}</a>
+                            </li>
+                            <li class="breadcrumb-item active" aria-current="page">
+                                <a href="/detailDiklat">{{ $detailDiklat->nama_diklat }}</a>
+                            </li>
+                        </ol>
+                    </nav> --}}
                 {{-- <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a><br> --}}
-                
-                        @foreach ($detailDiklat as $detail) <br> <br>
+             
                         
-                            <h2>{{ $detail->nama_diklat }}</h2><br>
+                            <h2>{{ $detailDiklat->nama_diklat }}</h2><br>
                             <div id="carouselExampleIndicators" class="carousel slide img-diklat" data-bs-ride="carousel">
                                 <div class="carousel-indicators">
                                     @foreach ($gambars as $key => $gambar)
@@ -65,37 +67,37 @@
                                     <span class="visually-hidden">Next</span>
                                 </button>
                             </div>
-                    {{-- </div> --}}
+                            {{-- </div> --}}
 
-                    {{-- <img src="{{ asset('img/diklat.jpeg') }}" alt="Gambar Diklat" class="img-detail"> --}}
-                    <div class="card-container3">
-                        <div class="card-content3">
-                            <p>
-                                <span>Nama Diklat : </span><br>
-                                {{ $detail->nama_diklat }}
-                            </p>
-                            
-                            <p>
-                                <span>Detail Harga :</span><br>
-                                {{ $detail->harga }}</p>
-                            
-                            <p>
-                                <span>Jumlah Pendaftar Saat Ini :</span><br>
-                                {{ $detail->jumlah_pendaftar }}
-                            </p>
-                            
-                            <p>
-                                <span>Status Penerimaan PendaftaraN :</span><br>
-                                {{ $detail->status }}
-                            </p>
-                            
-                            <p>
-                                <span>Deskripsi :</span><br>
-                                {!! $detail->deskripsi !!}
-                            </p>
-                        </div>
-                    </div> 
-                @endforeach
+                            {{-- <img src="{{ asset('img/diklat.jpeg') }}" alt="Gambar Diklat" class="img-detailDiklat"> --}}
+                            <div class="card-container3">
+                                <div class="card-content3">
+                                    <p>
+                                        <span>Nama Diklat : </span><br>
+                                        {{ $detailDiklat->nama_diklat }}
+                                    </p>
+                                    
+                                    <p>
+                                        <span>detailDiklat Harga :</span><br>
+                                        {{ $detailDiklat->harga }}</p>
+                                    
+                                    <p>
+                                        <span>Jumlah Pendaftar Saat Ini :</span><br>
+                                        {{ $detailDiklat->jumlah_pendaftar }}
+                                    </p>
+                                    
+                                    <p>
+                                        <span>Status Penerimaan PendaftaraN :</span><br>
+                                        {{ $detailDiklat->status }}
+                                    </p>
+                                    
+                                    <p>
+                                        <span>Deskripsi :</span><br>
+                                        {!! $detailDiklat->deskripsi !!}
+                                    </p>
+                                </div>
+                            </div> 
+                 
                 {{-- <br> --}}
                
                 <div class="btn-regDiklat d-flex justify-content-center">
@@ -113,7 +115,7 @@
                             </div>
                         @else
                             <div class="d-grid gap-2 col-6 button-daftar">
-                                <a href="{{ route('kelPendaftaran.create', ['id' => $detail->id]) }}" class="btn btn-primary">Daftarkan dirimu sekarang!</a>
+                                <a href="{{ route('kelPendaftaran.create', ['id' => $detailDiklat->id]) }}" class="btn btn-primary">Daftarkan dirimu sekarang!</a>
                             </div>
                         @endif
                     @endauth

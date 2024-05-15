@@ -36,7 +36,7 @@
 .land-satu .slideshow-container .mySlides img {
     width: 100%;
     object-fit: cover;
-    max-height: 75vh;
+    max-height: 85vh;
 }
 
 .land-satu .slideshow-container {
@@ -61,11 +61,27 @@
 }
 
 
+/* MEDIA UNTUK SLIDESHOW */
 @media screen and (max-width: 768px) {
     .land-satu .slideshow-container .mySlides img {
+        min-width: 60vh;
+        min-height: 40vh;
         max-height: 40vh;
     }
+    .land-satu .slideshow-container {
+        width: 100%;
+        position: relative;
+        margin: auto;
+        overflow: hidden;
+        background-position: 0 -100px;
+        white-space: nowrap;
+    }
 }
+/* @media screen and (max-width: 768px) {
+    .land-satu .slideshow-container .mySlides img {
+        max-height: 50vh;
+    }
+} */
 
 
 .land-satu {
@@ -160,13 +176,89 @@
     to { transform: scale(1.1); }
 }
 
+/* MEDIA UNTUK ANIMASI CARD */
 @media screen and (max-width: 768px) {
     .animated-card {
         flex: 1 1 100%; /* Setiap card akan mengambil 100% dari lebar container pada layar kecil */
-        margin: 10px 0;
+        /* margin: 10px 0;
+        flex-direction: column; */
         /* NEW */
-        flex-direction: column;
+        margin: 5px;
+        padding: 10px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+        background-size: contain;
+
     }
+    .card-title {
+        font-size: 25px;
+    }
+
+    .card-text {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .animated-card {
+        max-width: 300px;
+        flex: 1 1 100%;
+        margin: 5px;
+        padding: 5px;
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+        border-radius: 3px;
+    }
+
+    .card-title {
+        font-size: 15px;
+    }
+
+    .card-text {
+        font-size: 10px;
+        margin-bottom: 5px;
+    }
+    .card-body img {
+        max-width: 100px;
+        
+    }
+    .img-promo img {
+        max-height: 200px;
+    }
+    .card-jenis {
+        max-height: 200px;
+        max-width: 150px; /* Adjust the width to take full width of the container */
+        padding: 5px 0 30px 0; /* Adjust padding for better fit on smaller screens */
+        border-radius: 2px; /* Reduce border radius */
+        margin-bottom: 15px; /* Reduce bottom margin */
+    }
+
+    .card-jenis img {
+        max-height: 80px;
+    }
+    .card-content p {
+        text-align: center; /* Center-align the content */
+        margin-bottom: 10px;
+    }
+    .card-content p span {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 10px;
+        font-weight: bold;
+    }
+    .card-content .button-link {
+        font-size: 12px;
+        background-color: #ffffff;
+        border: 1px solid #FF6900;
+        color: #FF6900;
+        border-radius: 5px;
+        padding: 5px 10px;
+        display: inline-block;
+        width: auto;
+        /* text-align: center; */
+        /* margin-top: 5px; */
+    }
+    
 }
 
 /* NEW */
@@ -175,6 +267,9 @@
     flex-direction: column;
     justify-content: center;
     padding: 10px;
+}
+.card-body img {
+    width: 300px;
 }
 
 /* END NEW */
@@ -268,8 +363,7 @@
     height: 250px;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
-    object-fit: cover;
-    
+    object-fit: cover;  
 }
 
 /* new */
@@ -287,10 +381,7 @@
     flex-direction: column;
     justify-content: space-between; 
 }
-/* .card-content h3 {
-    text-align: center;
-    margin-bottom: 10px;
-} */
+
 .card-content p span {
     justify-content: center;
     margin-bottom: 10px;
@@ -319,6 +410,9 @@
 @media (max-width: 768px) {
     .card-jenis {
         width: calc(50% - 20px);
+    }
+    .card-body img {
+        width: 200px;
     }
 }
 

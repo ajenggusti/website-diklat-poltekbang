@@ -1,6 +1,6 @@
 @extends('layout.mainUser')
 @section('container')
 <div class="content">
-    <h3>Ups, Kamu belum daftar diklat</h3>
+    <img src="{{ asset('img/404error.png') }}>
 </div>
 @endsection
