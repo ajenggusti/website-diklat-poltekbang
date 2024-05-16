@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Show Detail Pendaftaran</title>
+    <title>Show Detail Promo</title>
     <link href="/css/actor.css" rel="stylesheet">
     {{-- <script src="/js/landing.js"></script> --}}
     {{-- Boostrap Icons --}}
@@ -32,7 +32,7 @@
             
                 @if ($kelPromo->id_diklat != null)
                     <tr>
-                        <th>Promo untuk?</th>
+                        <th>Promo untuk diklat mana?</th>
                         <td>{{ $kelPromo->diklat->nama_diklat }}</td>
                     </tr>
                 @else
@@ -46,36 +46,36 @@
                     <td><img src="{{ asset('storage/' . $kelPromo->gambar) }}" alt="Nama Gambar" width="300px;"></td>
                 </tr>
                 <tr>
-                    <th>potongan </th>
+                    <th>Potongan </th>
                     <td>{{ $kelPromo->potongan }}</td>
                 </tr>
                 <tr>
-                    <th>kode </th>
+                    <th>Kode</th>
                     <td>{{ $kelPromo->kode }}</td>
                 </tr>
                 <tr>
-                    <th>status tmpil </th>
+                    <th>Status Tampil </th>
                     <td>{{ $kelPromo->tampil }}</td>
                 </tr>
                 <tr>
-                    <th>deskripsi </th>
+                    <th>Deskripsi</th>
                     <td>{{ $kelPromo->deskripsi }}</td>
                 </tr>
                 <tr>
-                    <th>Tanggal awal </th>
+                    <th>Tanggal Awal</th>
                     <td>{{ date('d F Y', strtotime($kelPromo->tgl_awal)) }}</td>
                 </tr>
                 <tr>
-                    <th>Tanggal akhir </th>
+                    <th>Tanggal Akhir</th>
                     <td>{{ date('d F Y', strtotime($kelPromo->tgl_akhir)) }}</td>
                 </tr>
                 @if ($kelPromo->pakai_kuota != null)  
                     <tr>
-                        <th>pakai Kuota </th>
+                        <th>Pakai Kuota </th>
                         <td>{{ $kelPromo->pakai_kuota }}</td>
                     </tr>
                     <tr>
-                        <th>kuota </th>
+                        <th>Kuota </th>
                         <td>{{ $kelPromo->kuota }}</td>
                     </tr>
                 @endif

@@ -212,7 +212,7 @@
 
                         <div style="clear: both;"></div>
                         <hr>
-                        <div class="btn-editProfil">
+                        <div class="btn-mohon-wrapper">
                             @if ($user->status=="Diverifikasi" )
                                 <p>Profilmu sudah terverifikasi, jika kamu ingin mengubah biodatamu, ajukan permohonan dengan klik tombol dibawah ini!</p>
                                 <br>

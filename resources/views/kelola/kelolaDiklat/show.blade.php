@@ -46,7 +46,7 @@
                             @endforeach
                             @if (!$foundDefault)
                                 <!-- Jika tidak ditemukan data dengan default 'ya', gunakan gambar default umum -->
-                                <img src="{{ asset('img/123.png') }}" alt="Default Image" style="width: 30%;">
+                                <img src="{{ asset('img/123.png') }}" alt="Default Image" style="width: 300px;">
                             @endif
                         @endif
                     </td>

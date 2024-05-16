@@ -94,7 +94,7 @@
                         @if ($kelPendaftaran->bukti_pembayaran)
                             <tr>
                                 <th>Bukti pembayaran</th>
-                                <td><img style="width: 30%" src="{{ asset('storage/' . $kelPendaftaran->bukti_pembayaran) }}" alt=""></td>
+                                <td><img style="width: 300px" src="{{ asset('storage/' . $kelPendaftaran->bukti_pembayaran) }}" alt=""></td>
                             </tr>
                         @endif
                     
@@ -116,14 +116,14 @@
                             </select>
                         </div>
                         <div class="mb-3">
-                            <label for="potongan" class="form-label is">Potongan untuk diklat dari admin</label>
+                            <label for="potongan" class="form-label is">Potongan untuk Diklat dari Admin</label>
                             <input type="text" class="form-control @error('potongan') is-invalid @enderror" id="potongan" name="potongan" value="{{ old('potongan') }}">
                             @error('potongan')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="total_harga" class="form-label is">Total harga untuk diklat</label>
+                            <label for="total_harga" class="form-label is">Total Harga untuk Diklat</label>
                             <input type="text" class="form-control @error('total_harga') is-invalid @enderror" id="total_harga" name="total_harga" value="{{ old('total_harga', 'Rp ' . number_format($kelPendaftaran->harga_diklat, 0, ',', '.')) }}" readonly>
                             @error('total_harga')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -143,7 +143,7 @@
                         
                         
                         <div class="mb-3">
-                            <label for="s_link" class="form-label">Upload sertifikat peserta menggunakan Link</label>
+                            <label for="s_link" class="form-label">Upload Sertifikat Peserta menggunakan Link</label>
                             <input type="text" class="form-control @error('s_link') is-invalid @enderror" id="s_link" name="s_link" value="{{ old('s_link', $kelPendaftaran->s_link) }}">
                             @error('s_link')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -152,8 +152,9 @@
                         
                         <div class="mb-3">
                             <img src="{{ asset('storage/' . $kelPendaftaran->s_gambar) }}" class="img-preview img-fluid" style="width: 550px;">
-                            <label for="s_gambar" class="form-label">Upload sertifikat peserta menggunakan gambar</label>
+                            <label for="s_gambar" class="form-label">Upload Sertifikat Peserta menggunakan Gambar</label>
                             <input name="s_gambar" onchange="previewImage()" class="form-control @error('s_gambar') is-invalid @enderror" type="file" id="s_gambar">
+                            <small style="color: rgb(16, 126, 190)">Ukuran maksimal gambar 5 MB</small>
                             @error('s_gambar')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -161,13 +162,13 @@
                         
                         <!-- Input untuk s_doc -->
                         <div class="mb-3">
-                            <label for="s_doc" class="form-label">Upload sertifikat peserta menggunakan dokumen</label>
+                            <label for="s_doc" class="form-label">Upload Sertifikat Peserta menggunakan Dokumen</label>
                             <input name="s_doc" onchange="previewImage()" class="form-control @error('s_doc') is-invalid @enderror" type="file" id="s_doc">
                             @error('s_doc')
                             <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                             <div id="file-sebelumnya">
-                                <p>File sebelumnya: <a href="{{ asset('storage/' . $kelPendaftaran->s_doc) }}">Klik untuk melihat file!</a></p>
+                                <p>File sebelumnya: <a href="{{ asset('storage/' . $kelPendaftaran->s_doc) }}">Klik untuk Melihat File!</a></p>
                             </div>
                         </div>
                         <div class="submit-button">

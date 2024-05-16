@@ -18,6 +18,19 @@
         body {
             font-family: 'Poppins', sans-serif;
         }
+        .container-fluid {
+            position: relative;
+            z-index: 1; /* Atur z-index agar konten halaman berada di atas sidebar */
+        }
+
+        .main-content {
+            margin-left: 250px; /* Tambahkan margin kiri yang sama dengan lebar sidebar */
+            position: relative;
+            z-index: 2;
+        }
+        @media screen and (max-width: 782px;) {
+            
+        }
     </style>
 </head>
 <body>

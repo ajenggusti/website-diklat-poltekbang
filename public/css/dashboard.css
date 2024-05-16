@@ -20,11 +20,8 @@ body {
  */
 
 
-#sidebarMenu {
+ #sidebarMenu {
   background-color: #053666;
-  /* flex-grow: 1;
-  color: #fff;
-  transition: all 0.3s ease; */
   position: fixed;
 }
 
@@ -40,12 +37,6 @@ body {
   color: #e09539;
 }
 
-/* @media (max-width: 767.98px) {
-  .sidebar {
-    top: 5rem;
-  }
-} */
-
 #sidebar-sticky {
   position: relative;
   top: 0;
@@ -56,16 +47,11 @@ body {
 }
 
 
-
-/* NEW */
-/* Header */
 header {
   position: fixed;
   top: 0;
   z-index: 1000;
   width: 100%;
-
-  /* NEW */
   overflow-x: hidden;
   overflow-y: auto; 
 }
@@ -79,8 +65,73 @@ header {
     display: block;
   }
 }
-/* END NEW */
 
+
+
+@media (max-width: 400px) {
+  .navbar-toggler {
+    display: block;
+  }
+}
+
+
+/* NEW */
+/* #sidebarMenu {
+  background-color: #053666;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  overflow-y: auto;
+  transition: transform 0.3s ease;
+  z-index: 1050; 
+  transform: translateX(-250px);
+}
+
+#sidebarMenu.show {
+  transform: translateX(0);
+}
+
+.nav-link {
+  color: #fff;
+}
+
+.nav-link:hover {
+  color: #FF6900;
+}
+
+.nav-link.active {
+  color: #e09539;
+}
+
+#sidebar-sticky {
+  position: relative;
+  top: 0;
+  padding-top: .5rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 100vh;
+}
+
+
+@media (max-width: 500px) {
+  .navbar-toggler {
+    display: block;
+  }
+}
+
+.main-content {
+  transition: margin-left 0.3s ease;
+  margin-left: 0; 
+}
+
+.main-content.shifted {
+  margin-left: 250px; 
+} */
+
+
+/* END NEW */
 
 
 /*
@@ -95,10 +146,6 @@ header {
   box-shadow: inset -1px 0 0 rgba(0, 0, 0, .25);
 }
 
-/* .navbar .navbar-toggler {
-  top: .25rem;
-  right: 1rem;
-} */
 
 .navbar .form-control {
   padding: .75rem 1rem;
@@ -122,7 +169,7 @@ header {
 
 
 /* Dashboard Super Admin */
-body {
+/* body {
   background-color: #ebe9e9;
 }
 
@@ -136,7 +183,6 @@ body {
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-  /* background-color: #ffffff; */
   }
 
 
@@ -172,4 +218,74 @@ body {
 .dashItemNumber {
   font-size: 40px;
   font-weight: bold;
+} */
+
+
+/* NEW */
+/* Dashboard Super Admin */
+body {
+  background-color: #ebe9e9;
+}
+
+.container-admin {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.dashAdmin {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.dashItem {
+  flex: 1 1 calc(33.33% - 40px); /* Mengatur card agar memiliki lebar yang sama dalam satu baris */
+  margin: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  position: relative;
+  background-color: #f1f3ff; /* Default background color */
+  border: 3px solid #BC4F00; /* Default border color */
+}
+
+.dashItemContent {
+  font-size: 15px;
+  flex: 1;
+  padding-right: 10px;
+}
+
+.dashItemNumber {
+  font-size: 40px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+/* .dashItem::after {
+  content: '';
+  position: absolute;
+  top: 30px;
+  bottom: 30px;
+  width: 2px;
+  background-color: #a5a5a5;
+  right: calc(25% - 1px);
+} */
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .dashItem {
+    flex: 1 1 calc(50% - 40px); /* Dua card per baris */
+  }
+}
+
+@media (max-width: 768px) {
+  .dashItem {
+    flex: 1 1 calc(100% - 40px); /* Satu card per baris */
+  }
 }

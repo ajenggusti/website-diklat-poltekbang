@@ -83,7 +83,7 @@
                         @if ($pendaftaran->s_doc)
                             <a href="{{ asset('storage/' . $pendaftaran->s_doc) }}">Klik Untuk Melihat Sertifikat!</a>
                         @elseif($pendaftaran->s_gambar)
-                            <img src="{{ asset('storage/' . $pendaftaran->s_gambar) }}" alt="sertifikat">
+                            <img src="{{ asset('storage/' . $pendaftaran->s_gambar) }}" alt="sertifikat" width="300px">
                         @elseif($pendaftaran->s_link)
                             <a href="{{ $pendaftaran->s_link }}">Klik Untuk Melihat Sertifikat!</a>
                         @endif

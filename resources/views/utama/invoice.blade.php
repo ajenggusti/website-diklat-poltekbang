@@ -22,7 +22,7 @@
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
             max-width: 800px;
             margin: 20px auto;
-            background-color: #fff;
+            /* background-image: url('poltekbang.png'); */
         }
 
         .card-header {
@@ -173,7 +173,7 @@
                         </tr>
                         <tr>
                             <th scope="col">Harga Diklat</th>
-                            <td>Rp. {{ number_format($data->harga_diklat, 0, ',', '.') }}</td>
+                            <td>Rp. {{ number_format($data->diklat->harga, 0, ',', '.') }}</td>
                         </tr>
                         <tr>
                             <th scope="col">Diskon</th>
@@ -181,7 +181,7 @@
                                 @if($data->promo)
                                     <p>Rp. {{ number_format($data->promo->potongan, 0, ',', '.') }}</p>
                                 @else
-                                    <p>Rp. 0</p> 
+                                    <p> - Rp. 0</p> 
                                 @endif
                             </td>
                         </tr>

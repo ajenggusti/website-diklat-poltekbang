@@ -35,7 +35,7 @@
                     <label for="img" class="form-label">Masukkan gambar baru</label>
                     <img class="img-preview img-fluid" style="width: 550px">
                     <input name="img" onchange="previewImage()" class="form-control @error('img') is-invalid @enderror" type="file" id="img">
-                    <small style="color: red;">Ukuran maksimal gambar 5 MB</small>
+                    <small style="color: rgb(16, 126, 190)">Ukuran maksimal gambar 5 MB</small>
                     @error('img')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
@@ -121,7 +121,7 @@
                     @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="tampil" class="form-label is">Apakah Promo ini akan ditampilkan? </label>
+                    <label for="tampil" class="form-label is">Apakah promo ini akan ditampilkan? </label>
                     <select class="form-select" id="tampil" name="tampil">
                         <option value="ya" {{ old('tampil', $kelPromo->tampil) == 'ya' ? 'selected' : '' }}>Ya</option>
                         <option value="tidak" {{ old('tampil', $kelPromo->tampil) == 'tidak'  ? 'selected' : '' }}>Tidak</option>

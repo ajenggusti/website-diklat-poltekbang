@@ -23,7 +23,7 @@
                     <div class="content-detail">
                         <div class="card-detail">
                             {{-- <h1>Detail Pendaftaran Diklat</h1> --}}
-                            <h2>INVOICE!!</h2>
+                            <h2>Detail Pendaftaran</h2>
                             <hr>
                             <div class="detail-left">
                                 Nama diklat : <br>
@@ -113,15 +113,18 @@
 
                                 <td>
                                     @if ($data->s_doc)
-                                    Sertifikat :  <a href="{{ asset('storage/' . $data->s_doc) }}">Klik Untuk Melihat Sertifikat!</a>
+                                        <span>Sertifikat :</span>  <br>
+                                        <a href="{{ asset('storage/' . $data->s_doc) }}">Klik Untuk Melihat Sertifikat!</a>
                                     @elseif($data->s_gambar)
-                                        Sertifikat :<img src="{{ asset('storage/' . $data->s_gambar) }}" alt="sertifikat">
+                                        <span>Sertifikat :</span>  <br>
+                                        <img src="{{ asset('storage/' . $data->s_gambar) }}" alt="sertifikat">
                                     @elseif($data->s_link)
-                                        Sertifikat :<a href="{{ $data->s_link }}">Klik Untuk Melihat Sertifikat!</a>
+                                        <span>Sertifikat :</span>  <br>
+                                        <a href="{{ $data->s_link }}">Klik Untuk Melihat Sertifikat!</a>
                                     @endif
                                 </td>
                                 
-                                <div class="col">
+                                <div class="col" style="margin-top: 20px;">
                                     <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a>
                                     <a href="/kelPendaftaran/{{ $data->id }}/edit" class="btn btn-warning">Edit</a>
                                 </div>

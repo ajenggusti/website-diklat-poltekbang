@@ -24,18 +24,18 @@
                 <hr>
                 {{-- <div class="mb-3"> --}}
                     <div class="mb-3">
-                        <label for="img" class="form-label">Masukkan gambar</label>
+                        <label for="img" class="form-label">Masukkan Gambar</label>
                         <img class="img-preview img-fluid" style="width: 550px">
                         <br> <br>
                         <input name="img" onchange="previewImage()" class="form-control @error('img') is-invalid @enderror" type="file" id="img" >
-                        <small style="color: rgb(91, 91, 255);">Ukuran maksimal gambar 5 MB</small>
+                        <small style="color: rgb(16, 126, 190);">Ukuran maksimal gambar 5 MB</small>
                         @error('img')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="mb-3">
-                        <label for="default">Gambar untuk default</label>
+                        <label for="default">Gambar untuk Default</label>
                         <select name="default" class="form-select" aria-label="Default select example">
                             <option value="ya" {{ old('default') == 'ya' ? 'selected' : '' }}>Ya</option>
                             <option value="tidak" {{ old('default', 'tidak') == 'tidak' ? 'selected' : '' }}>Tidak</option>
@@ -68,7 +68,7 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="whatsapp" class="form-label is">Link untuk grup whatsapp</label>
+                        <label for="whatsapp" class="form-label is">Link untuk Grup Whatsapp</label>
                         <input type="text" class="form-control  @error('whatsapp') is-invalid @enderror" id="whatsapp" name= "whatsapp" value="{{ old('whatsapp') }}">
                         @error('whatsapp')
                             <div class="invalid-feedback">{{ $message }}</div>

@@ -23,7 +23,7 @@
         </thead>
         <tbody>
             @foreach ($datas as $data)
-            <tr class="{{ $data->status_pembayaran_diklat == 'Lunas' && $data->status_pembayaran_daftar == 'Lunas' ? ($data->s_link || $data->s_gambar || $data->s_doc ? 'bg-primary' : 'bg-danger') : '' }}">
+            <tr class="{{ $data->status_pembayaran_diklat == 'Lunas' && $data->status_pembayaran_daftar == 'Lunas' ? ($data->s_link || $data->s_gambar || $data->s_doc ? 'bg-primary' : 'bg-secondary') : '' }}">
 
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $data->user->name }}</td>

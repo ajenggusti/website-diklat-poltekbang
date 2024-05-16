@@ -29,15 +29,14 @@
                         <input disabled type="text" class="form-control" id="diklat" value="{{ $kelTestimoni->pendaftaran->diklat->nama_diklat }}">
                     </div>
                     <div class="mb-3">
-                        <label for="penulis" class="form-label is">Nama penulis</label>
-                        <input disabled type="text" class="form-control" id="penulis" value="{{ $kelTestimoni->pendaftaran->nama_depan }}">
-                    </div>
+                        <label for="penulis" class="form-label is">Nama Penulis</label>
+                        <input disabled type="text" class="form-control" id="penulis" value="{{ $kelTestimoni->pendaftaran->nama_lengkap }}">                    </div>
                     <div class="mb-3">
                         <label for="profesi" class="form-label is">Profesi</label>
                         <input disabled type="text" class="form-control" id="profesi" name= "profesi" value="{{ $kelTestimoni->profesi }}">
                     </div>
                     <div class="mb-3">
-                        <label>Isi testimoni</label>
+                        <label>Isi Testimoni</label>
                         <p>{{ $kelTestimoni->testimoni }}
                     </div>
                 @else
@@ -65,7 +64,7 @@
                     </div>
                     <br>
                     <div class="mb-3">
-                        <label for="diklat" class="form-label is">Testimoni diklat</label>
+                        <label for="diklat" class="form-label is">Testimoni Diklat</label>
                         <select name="diklat" class="form-select @error('diklat') is-invalid @enderror" aria-label="Default select example">
                             <option value="" selected disabled>Testimoni untuk diklat?</option>
                             @foreach ($diklats as $data)

@@ -130,7 +130,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // Tambah hal pertama
       var firstPageButton = document.createElement('li');
       firstPageButton.classList.add('page-item');
-      firstPageButton.innerHTML = '<a class="page-link" href="#">1..</a>';
+      firstPageButton.innerHTML = '<a class="page-link" href="#">1</a>';
       firstPageButton.addEventListener('click', function(event) {
           event.preventDefault();
           currentPage = 1;
@@ -163,7 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // Tambah hal terakhir
       var lastPageButton = document.createElement('li');
       lastPageButton.classList.add('page-item');
-      lastPageButton.innerHTML = '<a class="page-link" href="#">..' + numPages + '</a>';
+      lastPageButton.innerHTML = '<a class="page-link" href="#">' + numPages + '</a>';
       lastPageButton.addEventListener('click', function(event) {
           event.preventDefault();
           currentPage = numPages;

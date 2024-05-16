@@ -23,9 +23,6 @@
         }
 
         .content-staff {
-            /* background-color: rgb(255, 255, 255);
-            border: 1px solid black; */
-            /* border-radius: 20px; */
             background-image: linear-gradient(rgba(255, 255, 255, 0.805), rgba(224, 224, 224, 0.856)), url("/img/bg-pl.jpg");
             
             background-position: center;
@@ -34,12 +31,18 @@
             position: relative;
             margin-bottom: -120px;
             padding-bottom: 50px;
+            margin-top: 30px;
         }
 
         #calendar {
             max-height: 600px;
             overflow: hidden;
             padding: 10px;
+        }
+        .row {
+            background-color: rgb(214, 214, 211);
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,1.2);
+            transition: 0.3s;
         }
        
     </style>

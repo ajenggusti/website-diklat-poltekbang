@@ -113,17 +113,17 @@
                             <div class="alert alert-warning" role="alert">
                                 Ups, kamu sudah mendaftar diklat ini.
                             </div>
+                        @elseif($user->status!= "Diverifikasi")
+                            <div class="alert alert-danger" role="alert">
+                                Ups, data pribadimu belum Diverifikasi...
+                            </div>
                         @else
                             <div class="d-grid gap-2 col-6 button-daftar">
                                 <a href="{{ route('kelPendaftaran.create', ['id' => $detailDiklat->id]) }}" class="btn btn-primary">Daftarkan dirimu sekarang!</a>
                             </div>
                         @endif
                     @endauth
-                </div> 
-            
-                {{-- </div> --}}
-                
-            </div>
+                </div>
         </div>
     </body>
 </html>

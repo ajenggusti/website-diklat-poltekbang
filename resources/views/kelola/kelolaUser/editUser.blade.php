@@ -39,7 +39,7 @@
             </div>
             
             <div class="mb-3">
-                <label for="jenis_berkas" class="form-label">Jenis berkas yang dipilih user : </label>
+                <label for="jenis_berkas" class="form-label">Jenis Berkas yang Dipilih User</label>
                 <select name="jenis_berkas" id="jenis_berkas" class="form-select" disabled>
                     <option value="ktp" {{ old('jenis_berkas', $user->jenis_berkas) == 'ktp' ? 'selected' : '' }}>KTP</option>
                     <option value="paspor" {{ old('jenis_berkas', $user->jenis_berkas) == 'paspor' ? 'selected' : '' }}>Paspor</option>
@@ -48,7 +48,7 @@
             </div>
             
             <div class="mb-3">
-                <label for="img" class="form-label">Berkas pendukung user : </label><br>
+                <label for="img" class="form-label">Berkas Pendukung User</label><br>
                 <img src="{{ asset('storage/' . $user->berkas_pendukung) }}" class="img-preview img-fluid" style="width: 550px;">
             </div>
             
@@ -84,7 +84,7 @@
             </div>
     
             <div class="mb-3">
-                <label for="jenis_kelamin" class="form-label">Pilih jenis kelamin:</label>
+                <label for="jenis_kelamin" class="form-label">Pilih Jenis Kelamin:</label>
                 <select name="jenis_kelamin" id="jenis_kelamin" class="form-select @error('jenis_kelamin') is-invalid @enderror">
                     <option value="" selected disabled>Pilih jenis kelamin</option>
                     <option value="p" {{ old('jenis_kelamin', $user->jenis_kelamin) == 'p' ? 'selected' : '' }}>Perempuan</option>
@@ -112,7 +112,7 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label class="control-label" for="tgl_exp_paspor">Tanggal expired paspor</label>
+                <label class="control-label" for="tgl_exp_paspor">Tanggal Expired Paspor</label>
                 <input class="form-control datepicker @error('tgl_exp_paspor') is-invalid @enderror" value="{{ old('tgl_exp_paspor') ?? ($user->tgl_exp_paspor ? \Carbon\Carbon::parse($user->tgl_exp_paspor)->format('d-m-Y') : '') }}" id="tgl_exp_paspor" name="tgl_exp_paspor" placeholder="dd-mm-yyyy" type="text"/>
                 @error('tgl_lahir')
                     <div class="invalid-feedback">{{ $message }}</div>
@@ -120,7 +120,7 @@
             </div>
             
             <div class="mb-3">
-                <label for="nationality">Nationality:</label>
+                <label for="nationality">Nationality</label>
                 <select class="form-select single-select-field" name="id_nationality" id="nationality" data-placeholder="Pilih nationality">
                     <option></option>
                     @foreach ($nationalities as $nationality)
@@ -134,7 +134,7 @@
             
             {{-- alamat --}}
             <div class="mb-3">
-                <label for="provinsi">Provinsi:</label>
+                <label for="provinsi">Provinsi</label>
                 <select class="form-select single-select-field @error('id_provinsi') is-invalid @enderror" name="id_provinsi" id="provinsi" data-placeholder="Pilih provinsi">
                     <option></option>
                     @foreach ($provinsis as $provinsi)
@@ -147,7 +147,7 @@
             </div>
             
             <div class="mb-3">
-                <label for="kabupaten">Kabupaten:</label>
+                <label for="kabupaten">Kabupaten</label>
                 <select class="form-select single-select-field @error('id_kabupaten') is-invalid @enderror" name="id_kabupaten" id="kabupaten" data-placeholder="Pilih Kabupaten">
                     <option></option>
                 </select>
@@ -157,7 +157,7 @@
             </div>
             
             <div class="mb-3">
-                <label for="kecamatan">Kecamatan:</label>
+                <label for="kecamatan">Kecamatan</label>
                 <select class="form-select single-select-field @error('id_kecamatan') is-invalid @enderror" name="id_kecamatan" id="kecamatan" data-placeholder="Pilih kecamatan">
                     <option></option>
                 </select>
@@ -167,7 +167,7 @@
             </div>
             
             <div class="mb-3">
-                <label for="kelurahan">Kelurahan:</label>
+                <label for="kelurahan">Kelurahan</label>
                 <select class="form-select single-select-field @error('id_kelurahan') is-invalid @enderror" name="id_kelurahan" id="kelurahan" data-placeholder="Pilih kelurahan">
                     <option></option>
                 </select>
@@ -176,13 +176,17 @@
                 @enderror
             </div>
 
-            @if ($user->permohonan_ubah)
-                Pesan permohonan perubahan data : <br>
-                {{ $user->permohonan_ubah }}
-            @endif
+            <div class="mb-3">
+                @if ($user->permohonan_ubah)
+                    <label for="permohonan_ubah">Pesan Permohonan Perubahan Data<small style="font-size: 12px;">(Ubah ke 'permohonan perubahan disetujui')</small></label><br>
+                    
+                    <p style="background-color: rgb(168, 218, 249); border: 1px solid #e8e8e8;">{{ $user->permohonan_ubah }}</p>
+                    
+                @endif
+            </div>
 
             <div class="mb-3">
-                <label for="status" class="form-label">Status:</label>
+                <label for="status" class="form-label">Status</label>
                 <select name="status" id="status" class="form-select @error('status') is-invalid @enderror">
                     <option value="" selected disabled>Pilih status</option>
                     <option value="Perlu dilengkapi" {{ old('status', $user->status) == 'Perlu dilengkapi' ? 'selected' : '' }}>Perlu dilengkapi</option>

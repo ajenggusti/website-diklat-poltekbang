@@ -113,8 +113,9 @@ class UtamaController extends Controller
             ->orWhereNull('id_diklat')
             ->orderByRaw('CASE WHEN id_diklat IS NULL THEN 0 ELSE 1 END, id_diklat ASC')
             ->get();
+        $user = Auth::user();
+        // dd($user);
         if(Auth::check()) {
-            $user = Auth::user();
             $dobelDiklat = Pendaftaran::where('id_user', $user->id)
                 ->where('id_diklat', $id)
                 ->exists();
@@ -131,8 +132,8 @@ class UtamaController extends Controller
             'gambars' => $gambars,
             'dobelDiklat' => $dobelDiklat,
             'diklatOne' => $diklatOne,  // NEW C
+            'user'=>$user
         ]);
-    }
-    
+    }    
 }
 

@@ -311,9 +311,18 @@
     border: 2px solid rgb(0, 0, 0);
 }
 
-.content-land {
+/* .content-land .img-promo,
+.content-land .cards-container,
+.content-land .slide-testimoni,
+.content-land .bg-acc{
     margin-left: 10%;
     margin-right: 10%;
+    max-width: 80%;
+} */
+.land-width {
+    margin-left: 10%;
+    margin-right: 10%;
+    max-width: 80%;
 }
 
 .content-land .column{
@@ -344,6 +353,10 @@
     flex-wrap: wrap;
     justify-content: space-between;
     
+    /* NEW */
+    /* margin-left: 10%;
+    margin-right: 10%;
+    max-width: 80%; */
 }
 .card-jenis {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -580,9 +593,10 @@
 
 
   /* Style untuk FAQ */
-    /* .accordion {
-        
-    } */
+/* #faq, #profile {
+    margin-left: 10%;
+    margin-right: 10%;
+} */
 
 .bg-acc {
     padding: 15px;
@@ -612,13 +626,67 @@
 
 
 
+
+
+
+/* Testi NEW*/
+.card-testi {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #a5a09c;
+    padding: 20px;
+    border-radius: 10px;
+}
+.card-testi2 {
+    background-color: #ffc1a0;
+    border: 1px solid #FF6900;
+    transition: 0.3s;
+    padding: 10px 0 0 0;
+    width: 33%;
+    margin-bottom: 20px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-basis: calc(33% - 20px);
+    border-radius: 10px;
+}
+
+.card-testi2:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.8);
+}
+
+.card-testi2 .card-testiContent b p q {
+    text-align: center;
+    height: 80px;
+    overflow: hidden;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+.card-testiContent {
+    padding: 10px;
+    
+}
+
+
+
+
 /* STYLE HAL RIWAYAT */
 .card-contentRiwayat {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
-
+.status-print-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.status-print-wrapper p {
+    margin-right: 10px; /* jarak antara status diklat dan ikon printer */
+}
 
 .content-riwayat {
     margin-left: 10%;
@@ -648,7 +716,7 @@
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.8);
 }
 
-.card-riwayat .card-content h4 {
+.card-content h4 {
     text-align: center;
     height: 80px;
     overflow: hidden;
@@ -680,6 +748,37 @@
 .row a {
     padding: 5px;
 }
+
+/* BUTTON Transaksi */
+.button-transaksi a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.button-transaksi .transaksi-btn {
+    display: inline-block;
+    width: 100%; /* Tombol mengisi seluruh lebar container */
+    max-width: 300px; /* Anda bisa menyesuaikan lebar maksimal sesuai kebutuhan */
+    margin-bottom: 10px; /* Memberikan jarak antara tombol */
+    text-align: center; /* Memastikan teks di tengah */
+    padding: 10px; /* Menambahkan padding untuk tombol */
+    background-color: rgb(248, 132, 0); /* Warna background default */
+    color: #ffffff; /* Warna teks */
+    border: none; /* Menghapus border default */
+    border-radius: 5px; /* Menambahkan border radius */
+    text-decoration: none; /* Menghapus garis bawah teks */
+}
+
+.button-transaksi .btn-info {
+    background-color: rgb(44, 138, 192);
+}
+
+/* Menambahkan hover effect untuk tombol */
+.button-transaksi .transaksi-btn:hover {
+    background-color: rgb(200, 100, 0); /* Warna saat di-hover */
+}
+
+
 
 
 /* Kartu pada layar penuh */
@@ -775,13 +874,28 @@
     width: 46%;
     float: right;
 }
-
+.card-detail .detail-right img {
+    width: 300px;
+}
 
 .bi-printer {
     float: right;
     margin: 10px 10px 0 0;
     margin-right: 20px;
 }
+
+@media screen and (max-width: 782px) {
+    .card-detail .detail-right img {
+        width: 180px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .card-detail .detail-right img {
+        width: 100px;
+    }
+}
+
 
 /* Bukti Pembayaran */
 .tabelBukti {
@@ -813,6 +927,7 @@ th {
     background-color: #eee;
     border-color: #000000;
 }
+
 
 
 /* DETAIL PENDAFTARAN RIWAYAT */

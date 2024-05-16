@@ -37,13 +37,13 @@
                 <br> <br>
                 <label for="img" class="form-label">Masukkan Gambar</label> <br>
                 <input name="img" onchange="previewImage()" class="form-control @error('img') is-invalid @enderror" type="file" id="img">
-                <small style="color: red;">Ukuran maksimal gambar 5 MB</small>
+                <small style="color: rgb(16, 126, 190)">Ukuran maksimal gambar 5 MB</small>
                 @error('img')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
             <div class="mb-3">
-                <label for="diklat" class="form-label">Gambar untuk diklat</label> <br>
+                <label for="diklat" class="form-label">Gambar untuk Diklat</label> <br>
                 <select name="diklat" class="form-select @error('diklat') is-invalid @enderror" aria-label="Default select example">
                     <option value="" selected disabled>Gambar ini untuk diklat yang mana?</option>
                     <option value="null" style="color:red;" {{ old('diklat', $kelGambarDiklat->id_diklat) == 'null' ? 'selected' : '' }}>Untuk semua diklat</option>

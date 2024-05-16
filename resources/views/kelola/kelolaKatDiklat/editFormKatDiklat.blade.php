@@ -38,24 +38,25 @@
                 </div>
                 
                 <div class="mb-3">
-                    <label for="img" class="form-label">Masukkan gambar untuk ditampilkan di Kategori Diklat</label>
+                    <label for="img" class="form-label">Masukkan Gambar untuk ditampilkan di Kategori Diklat</label>
                     <img class="img-preview img-fluid" style="width: 550px;">
                     <input name="img" onchange="previewImage()" class="form-control @error('img') is-invalid @enderror" type="file" id="img" >
-                    <small style="color: red;">Ukuran maksimal gambar 5 MB</small>
+                    <small style="color: rgb(16, 126, 190)">Ukuran maksimal gambar 5 MB</small>
                     @error('img')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
-                
-                <select name="default" class="form-select" aria-label="Default select example">
-                    <option value="ya" {{ old('default', $data->default) == 'ya' ? 'selected' : '' }}>Ya</option>
-                    <option value="tidak" {{ old('default', $data->default) == 'tidak' || is_null($data->default) ? 'selected' : '' }}>Tidak</option>
-                </select>
-                <small class="text-muted">Pilih "ya" jika ingin gambar menjadi gambar default.</small>
-                @error('default')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-                <br><br>
+                <div class="mb-3">
+                    <label for="defaulf">Menjadi Gambar Default?</label>
+                    <select name="default" class="form-select" aria-label="Default select example">
+                        <option value="ya" {{ old('default', $data->default) == 'ya' ? 'selected' : '' }}>Ya</option>
+                        <option value="tidak" {{ old('default', $data->default) == 'tidak' || is_null($data->default) ? 'selected' : '' }}>Tidak</option>
+                    </select>
+                    <small class="text-muted">Pilih "ya" jika ingin gambar menjadi gambar default.</small>
+                    @error('default')
+                        <div class="invalid-feedback">{{ $message }}</div>
+                    @enderror
+                </div>
 
                 <div class="mb-3">
                     <label for="katDiklat" class="form-label is">Kategori Diklat</label>

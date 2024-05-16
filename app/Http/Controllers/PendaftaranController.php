@@ -29,6 +29,7 @@ class PendaftaranController extends Controller
      */
     public function create(Request $request)
     {
+        // dd($request);
 
         $userId = Auth::id();
 
@@ -36,6 +37,7 @@ class PendaftaranController extends Controller
 
         $diklat = Diklat::findOrFail($id);
         $dtDiklats = Diklat::all();
+        
         return view('kelola.kelolaPendaftaran.form', [
             'userId' => $userId,
             'diklat' => $diklat,
@@ -114,6 +116,8 @@ class PendaftaranController extends Controller
         $pendaftaran->alamat  = $request->input('alamat');
         $pendaftaran->pendidikan_terakhir  = $request->input('pendidikan_terakhir');
         $pendaftaran->no_hp  = $request->input('no_hp');
+        $pendaftaran->status_pelaksanaan="Belum terlaksana";
+        // dd($pendaftaran);
         $pendaftaran->save();
         $diklat->jumlah_pendaftar += 1;
         $diklat->save();
@@ -295,15 +299,16 @@ class PendaftaranController extends Controller
         }
        $diklatUpdate=Diklat::findOrFail($oldData->diklat->id);
         // dd($diklatUpdate);
-        if ($request->s_link||$request->s_gambar||$request->doc) {
-            $diklatUpdate->update([
-                "status" => "belum full",
-                "jumlah_pendaftar" => $diklatUpdate->jumlah_pendaftar - 1
-            ]);
-            $oldData->update([
-                'status_pelaksanaan'=>"Terlaksana"
-            ]);
-        }
+            if ($request->s_link||$request->s_gambar||$request->doc) {
+                $diklatUpdate->update([
+                    "status" => "belum full",
+                    "jumlah_pendaftar" => $diklatUpdate->jumlah_pendaftar - 1
+                ]);
+                $oldData->update([
+                    'status_pelaksanaan'=>"Terlaksana"
+                ]);
+            }
+    
         
         $oldData->update([
             's_gambar' => $gambar ?: $oldData->s_gambar,
