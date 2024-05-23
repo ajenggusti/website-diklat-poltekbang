@@ -29,7 +29,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    {{-- <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
 
     <style>
       html, body {
@@ -218,8 +218,8 @@
                 // Find the corresponding link in the sidebar and add 'active' class
                 $('#sidebarMenu .nav-link').each(function () {
                   var href = $(this).attr('href');
-                  console.log("path:", path); // Tambahkan ini untuk debug
-                  console.log("href:", href); // Tambahkan ini untuk debug
+                  // console.log("path:", path); // Tambahkan ini untuk debug
+                  // console.log("href:", href); // Tambahkan ini untuk debug
                   if (path === href) {
                     $(this).addClass('active');
                   }
@@ -235,8 +235,8 @@
                     // Find the corresponding link in the navbar and add 'active' class
                     $('.nav-link').each(function () {
                         var href = $(this).attr('href');
-                        console.log("path:", path); // Tambahkan ini untuk debug
-                        console.log("href:", href); // Tambahkan ini untuk debug
+                        // console.log("path:", path); // Tambahkan ini untuk debug
+                        // console.log("href:", href); // Tambahkan ini untuk debug
                         if (path.includes(href)) {
                             $(this).addClass('active');
                         }
