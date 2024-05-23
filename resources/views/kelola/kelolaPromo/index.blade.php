@@ -144,21 +144,6 @@
             </div>
         </div>
     </div>
-    {{-- <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mengambil semua tombol edit
-            var editButtons = document.querySelectorAll('.edit-button');
-    
-            // Iterasi melalui setiap tombol edit
-            editButtons.forEach(function(button) {
-                // Mendapatkan URL dari atribut data-url pada tombol edit
-                var editUrl = button.getAttribute('data-url');
-                // Mengatur nilai data-bs-target dari tombol untuk menjadi URL yang diambil
-                button.setAttribute('data-bs-target', editUrl);
-            });
-        });
-    </script> --}}
-    
 </body>
 </html>    
 @endsection
