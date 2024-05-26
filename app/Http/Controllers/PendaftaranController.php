@@ -333,17 +333,31 @@ class PendaftaranController extends Controller
             $doc = "LanPage/" . time() . '-' . uniqid() . '.' . $request->s_doc->getClientOriginalExtension();
             $request->s_doc->move('storage/LanPage', $doc);
         }
+        // update jumlah kuota diklat yagn tersedia
        $diklatUpdate=Diklat::findOrFail($oldData->diklat->id);
         // dd($diklatUpdate);
-            if ($request->s_link||$request->s_gambar||$request->doc) {
+            // if ($request->s_link||$request->s_gambar||$request->doc) {
+            //     $diklatUpdate->update([
+            //         "status" => "belum full",
+            //         "jumlah_pendaftar" => $diklatUpdate->jumlah_pendaftar - 1
+            //     ]);
+            //     $oldData->update([
+            //         'status_pelaksanaan'=>"Terlaksana"
+            //     ]);
+            // }
+            if ($request->s_link || $request->s_gambar || $request->doc) {
+                $sebelumnyaKosong = !$diklatUpdate->s_link && !$diklatUpdate->s_gambar && !$diklatUpdate->doc;
                 $diklatUpdate->update([
                     "status" => "belum full",
-                    "jumlah_pendaftar" => $diklatUpdate->jumlah_pendaftar - 1
+                    "jumlah_pendaftar" => $sebelumnyaKosong ? $diklatUpdate->jumlah_pendaftar - 1 : $diklatUpdate->jumlah_pendaftar
                 ]);
+
                 $oldData->update([
-                    'status_pelaksanaan'=>"Terlaksana"
+                    'status_pelaksanaan' => "Terlaksana"
                 ]);
             }
+            
+
     
         
         $oldData->update([

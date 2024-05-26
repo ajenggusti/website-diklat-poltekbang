@@ -111,11 +111,11 @@
                     @auth
                         @if($dobelDiklat)
                             <div class="alert alert-warning" role="alert">
-                                Ups, kamu sudah mendaftar diklat ini.
+                                Ups, kamu sudah mendaftar diklat ini. <a href="/riwayat">Lihat riwayat...</a>
                             </div>
                         @elseif($user->status!= "Diverifikasi")
                             <div class="alert alert-danger" role="alert">
-                                Ups, data pribadimu belum Diverifikasi...
+                                Ups, data pribadimu belum Diverifikasi. <a href="/editProfil">Lengkapi data disini....</a>
                             </div>
                         @else
                             <div class="d-grid gap-2 col-6 button-daftar">

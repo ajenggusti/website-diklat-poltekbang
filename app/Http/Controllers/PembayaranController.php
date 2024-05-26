@@ -148,13 +148,14 @@ class PembayaranController extends Controller
             $paymentType = $request->payment_type;
 
             if ($paymentType == "qris") {
-                $type = $request->acquirer;
+                $type = $request->issuer;
             } elseif ($paymentType == "bank_transfer") {
                 $bank = $request->va_numbers[0]['bank'];
                 $type = $request->payment_type . " " . $bank;
             } else {
                 $type = $request->payment_type . " " . $request->bank;
             }
+
             // dd($type);
             $pembayaran->update([
                 'status' => "Menunggu pembayaran",

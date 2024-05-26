@@ -83,17 +83,18 @@
                                                 </span>
                                             </p>
                                             @elseif ($data->status_pembayaran_diklat == "Lunas")
-                                            <p>Status Pembayaran Diklat : <br>
+                                           Status Pembayaran Diklat : <br>
                                                 <span class="btn btn-warning disable" style="background-color: rgb(91, 248, 52); text-decoration: none;">
                                                     {{ $data->status_pembayaran_diklat }}
                                                 </span>
-                                            </p>
+                        
                                             @endif
                             
                                         
                                             
-
-                                            <p>Lakukan pembayaran : </p>
+                                            @if ($data->status_pembayaran_daftar != "Lunas" || $data->status_pembayaran_diklat != "Lunas")
+                                                <p>Lakukan pembayaran :</p> 
+                                            @endif
                                             <div class="col">
                                                 @if ($data->status_pembayaran_daftar != "Lunas")
                                                     <form id="hiddenFormPendaftaran" method="POST" action="{{ route('kelPembayaranPendaftaran.savePendaftaran') }}">
@@ -117,12 +118,19 @@
                                             <br>
                                             
                                             <div class="button-transaksi">
-                                                <p>Bukti Pembayaran :</p>
                                                 <form id="transaksiPembayaran" method="POST" action="{{ route('bukti-pembayaran.buktiPembayaran') }}">
                                                     @csrf
-                                                    <input type="hidden" name="id" value="{{ $data->id }}">
+                                                    <input type="hidden" name="id" id="hiddenId" value="{{ $data->id }}">
                                                 </form>
-                                                <a href="#"  style="background-color: rgb(248, 132, 0); color: #ffffff;" onclick="submitFormTransaksi()" class="btn btn-secondary transaksi-btn">Transaksi Pembayaran</a>
+                                                
+                                                <a href="#" style="background-color: rgb(248, 132, 0); color: #ffffff;" 
+                                                   onclick="submitFormTransaksi({{ $data->id }})" 
+                                                   class="btn btn-secondary transaksi-btn">
+                                                    Transaksi Pembayaran
+                                                </a>
+
+
+
                                                 <br><br>
                                                 @if ($data->s_doc)
                                                     <a href="{{ route('kelTestimoni.create', ['id' => $data->id]) }}"class="btn transaksi-btn" style="background-color: rgb(44, 138, 192); color: #ffffff;">Kirim Testimoni</a>
@@ -173,8 +181,11 @@
                             function submitFormDiklat() {
                                 document.getElementById('hiddenFormDiklat').submit();
                             }
-                            function submitFormTransaksi() {
-                                document.getElementById('transaksiPembayaran').submit(); 
+                            function submitFormTransaksi(id) {
+                                // Set the hidden input value to the id of the button clicked
+                                document.getElementById('hiddenId').value = id;
+                                // Submit the form
+                                document.getElementById('transaksiPembayaran').submit();
                             }
                         </script>
                 </div>

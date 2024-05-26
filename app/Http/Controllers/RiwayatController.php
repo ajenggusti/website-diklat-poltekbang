@@ -57,7 +57,7 @@ class RiwayatController extends Controller
         // dd($request);
         $id = $request->id;
         $pembayarans = Pembayaran::where('id_pendaftaran', $id)->get(); 
-        // dd($pembayaran);
+        // dd($pembayarans);
         return view('utama.buktiPembayaran', ['pembayarans' => $pembayarans]); 
     }
 }
