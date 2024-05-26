@@ -156,7 +156,7 @@ class PembayaranController extends Controller
                 $type = $request->payment_type . " " . $request->bank;
             }
 
-            // dd($type);
+            // dd($paymentType);
             $pembayaran->update([
                 'status' => "Menunggu pembayaran",
                 'metode_pembayaran' => $type
@@ -185,6 +185,29 @@ class PembayaranController extends Controller
                         $pembayaran->update([
                             'status' => "Lunas",
                             'metode_pembayaran' => $type
+                        ]);
+                    }
+                    elseif($pembayaran->jenis_pembayaran == "diklat" && $request->transaction_status == "pending"){
+                        $pendaftaran = Pendaftaran::find($pembayaran->id_pendaftaran);
+                        $pendaftaran->update([
+                            // 'status_pembayaran_diklat' => "Lunas",
+                            'updated_at_pembayaran_diklat' => $currentTime,
+                            'jenis_pembayaran_diklat' => $paymentType,
+                        ]);
+                        $pembayaran->update([
+                            // 'status' => "Menunggu pembayaran",
+                            'metode_pembayaran' => $paymentType
+                        ]);
+                    }elseif ($pembayaran->jenis_pembayaran == "pendaftaran" && $request->transaction_status == "pending") {
+                        $pendaftaran = Pendaftaran::find($pembayaran->id_pendaftaran);
+                        $pendaftaran->update([
+                            // 'status_pembayaran_daftar' => "Lunas",
+                            'updated_at_pembayaran_daftar' => $currentTime,
+                            'jenis_pembayaran_daftar' => $paymentType,
+                        ]);
+                        $pembayaran->update([
+                            // 'status' => "Lunas",
+                            'metode_pembayaran' => $paymentType
                         ]);
                     }
                 } else {
@@ -318,8 +341,6 @@ class PembayaranController extends Controller
             'image' => 'Data yang dimasukkan harus berupa gambar.',
             'max' => 'Ukuran gambar tidak boleh melebihi :max kilobytes.',
         ]);
-
-        // Simpan data
         $pendaftaran = Pendaftaran::find($id);
         $pembayaran = new Pembayaran();
 
@@ -371,6 +392,7 @@ class PembayaranController extends Controller
 
         return redirect('/riwayat')->with('success', 'Terimakasih! Pembayaranmu akan segera diperiksa oleh admin:)');
     }
+    // excel
     public function export(Request $request){
         $requestUri = $request->server->get('REQUEST_URI');
         $uriParts = explode('/', $requestUri);

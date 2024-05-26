@@ -37,7 +37,7 @@ class PendaftaranController extends Controller
 
         $diklat = Diklat::findOrFail($id);
         $dtDiklats = Diklat::all();
-        
+
         return view('kelola.kelolaPendaftaran.form', [
             'userId' => $userId,
             'diklat' => $diklat,
@@ -116,7 +116,7 @@ class PendaftaranController extends Controller
         $pendaftaran->alamat  = $request->input('alamat');
         $pendaftaran->pendidikan_terakhir  = $request->input('pendidikan_terakhir');
         $pendaftaran->no_hp  = $request->input('no_hp');
-        $pendaftaran->status_pelaksanaan="Belum terlaksana";
+        $pendaftaran->status_pelaksanaan = "Belum terlaksana";
         // dd($pendaftaran);
         $pendaftaran->save();
         $diklat->jumlah_pendaftar += 1;
@@ -207,9 +207,9 @@ class PendaftaranController extends Controller
         $diklat->updateStatus();
         return redirect('/riwayat')->with('success', 'Data berhasil dihapus!');
     }
-    public function editAsAdmin ($id)
+    public function editAsAdmin($id)
     {
-        $kelPendaftaran=Pendaftaran::findOrFail($id);
+        $kelPendaftaran = Pendaftaran::findOrFail($id);
         // dd($kelPendaftaran);
         $dtDiklats = Diklat::all();
         return view('kelola.kelolaPendaftaran.editAsAdmin', [
@@ -217,7 +217,7 @@ class PendaftaranController extends Controller
             'dtDiklats' => $dtDiklats
         ]);
     }
-    public function updateAsAdmin($id , Request $request) 
+    public function updateAsAdmin($id, Request $request)
     {
         // dd($id);
         // dd($request);
@@ -228,19 +228,19 @@ class PendaftaranController extends Controller
             's_doc.mimes' => 'Kolom dokumen harus berupa file PDF, DOC, atau file dokumen lainnya.',
             's_doc.not_in' => 'Kolom dokumen tidak boleh berupa file gambar.',
         ];
-        
+
         $request->validate([
             's_link' => $request->input('metode_sertif') == 'link' ? 'nullable|url' : '',
             's_gambar' => $request->input('metode_sertif') == 'gambar' ? 'nullable|image|max:5120' : '',
             's_doc' => $request->input('metode_sertif') == 'dokumen' ? 'nullable|mimes:pdf,doc,docx' : '',
         ], $messages);
-        
-    
+
+
         $oldData = Pendaftaran::find($id);
         if ($request->input('metode_sertif') == 'link') {
             if ($oldData->s_gambar) {
                 // Storage::delete($oldData->s_gambar);
-                $filePath = public_path('storage/' .$oldData->s_gambar);
+                $filePath = public_path('storage/' . $oldData->s_gambar);
                 if (file_exists($filePath)) {
                     unlink($filePath);
                 }
@@ -248,20 +248,19 @@ class PendaftaranController extends Controller
             }
             if ($oldData->s_doc) {
                 // Storage::delete($oldData->s_doc);
-                $filePath = public_path('storage/' .$oldData->s_doc);
+                $filePath = public_path('storage/' . $oldData->s_doc);
                 if (file_exists($filePath)) {
                     unlink($filePath);
                 }
                 $oldData->s_doc = null;
             }
-        }
-        elseif ($request->input('metode_sertif') == 'gambar') {
+        } elseif ($request->input('metode_sertif') == 'gambar') {
             if ($oldData->s_link) {
                 $oldData->s_link = null;
             }
             if ($oldData->s_doc) {
                 // Storage::delete($oldData->s_doc);
-                $filePath = public_path('storage/' .$oldData->s_doc);
+                $filePath = public_path('storage/' . $oldData->s_doc);
                 if (file_exists($filePath)) {
                     unlink($filePath);
                 }
@@ -269,17 +268,16 @@ class PendaftaranController extends Controller
             }
             if ($oldData->s_gambar) {
                 // Storage::delete($oldData->s_gambar);
-                $filePath = public_path('storage/' .$oldData->s_gambar);
+                $filePath = public_path('storage/' . $oldData->s_gambar);
                 if (file_exists($filePath)) {
                     unlink($filePath);
                 }
                 $oldData->s_gambar = null;
             }
-        }
-        elseif ($request->input('metode_sertif') == 'dokumen') {
+        } elseif ($request->input('metode_sertif') == 'dokumen') {
             if ($oldData->s_gambar) {
                 // Storage::delete($oldData->s_gambar);
-                $filePath = public_path('storage/' .$oldData->s_gambar);
+                $filePath = public_path('storage/' . $oldData->s_gambar);
                 if (file_exists($filePath)) {
                     unlink($filePath);
                 }
@@ -290,14 +288,14 @@ class PendaftaranController extends Controller
             }
             if ($oldData->s_doc) {
                 // Storage::delete($oldData->s_doc);
-                $filePath = public_path('storage/' .$oldData->s_doc);
+                $filePath = public_path('storage/' . $oldData->s_doc);
                 if (file_exists($filePath)) {
                     unlink($filePath);
                 }
                 $oldData->s_doc = null;
             }
         }
-    
+
         // Menyimpan file baru jika ada
         $gambar = null;
         $doc = null;
@@ -334,32 +332,32 @@ class PendaftaranController extends Controller
             $request->s_doc->move('storage/LanPage', $doc);
         }
         // update jumlah kuota diklat yagn tersedia
-       $diklatUpdate=Diklat::findOrFail($oldData->diklat->id);
+        $diklatUpdate = Diklat::findOrFail($oldData->diklat->id);
         // dd($diklatUpdate);
-            // if ($request->s_link||$request->s_gambar||$request->doc) {
-            //     $diklatUpdate->update([
-            //         "status" => "belum full",
-            //         "jumlah_pendaftar" => $diklatUpdate->jumlah_pendaftar - 1
-            //     ]);
-            //     $oldData->update([
-            //         'status_pelaksanaan'=>"Terlaksana"
-            //     ]);
-            // }
-            if ($request->s_link || $request->s_gambar || $request->doc) {
-                $sebelumnyaKosong = !$diklatUpdate->s_link && !$diklatUpdate->s_gambar && !$diklatUpdate->doc;
-                $diklatUpdate->update([
-                    "status" => "belum full",
-                    "jumlah_pendaftar" => $sebelumnyaKosong ? $diklatUpdate->jumlah_pendaftar - 1 : $diklatUpdate->jumlah_pendaftar
-                ]);
+        // if ($request->s_link||$request->s_gambar||$request->doc) {
+        //     $diklatUpdate->update([
+        //         "status" => "belum full",
+        //         "jumlah_pendaftar" => $diklatUpdate->jumlah_pendaftar - 1
+        //     ]);
+        //     $oldData->update([
+        //         'status_pelaksanaan'=>"Terlaksana"
+        //     ]);
+        // }
+        if ($request->s_link || $request->s_gambar || $request->doc) {
+            $sebelumnyaKosong = !$diklatUpdate->s_link && !$diklatUpdate->s_gambar && !$diklatUpdate->doc;
+            $diklatUpdate->update([
+                "status" => "belum full",
+                "jumlah_pendaftar" => $sebelumnyaKosong ? $diklatUpdate->jumlah_pendaftar - 1 : $diklatUpdate->jumlah_pendaftar
+            ]);
 
-                $oldData->update([
-                    'status_pelaksanaan' => "Terlaksana"
-                ]);
-            }
-            
+            $oldData->update([
+                'status_pelaksanaan' => "Terlaksana"
+            ]);
+        }
 
-    
-        
+
+
+
         $oldData->update([
             's_gambar' => $gambar ?: $oldData->s_gambar,
             's_link' => $request->input('metode_sertif') == 'link' ? $request->s_link : null,
@@ -371,9 +369,9 @@ class PendaftaranController extends Controller
         ]);
         // update pembayaran dari admin 
         $pembayaran_update = Pembayaran::where('id_pendaftaran', $id)
-        ->where('jenis_pembayaran', 'diklat')
-        ->where('metode_pembayaran', 'offline')
-        ->first();
+            ->where('jenis_pembayaran', 'diklat')
+            ->where('metode_pembayaran', 'offline')
+            ->first();
         if ($pembayaran_update !== null) {
             if ($request->status_pembayaran_diklat !== $pembayaran_update->status) {
                 $pembayaran_update->update([
@@ -381,7 +379,7 @@ class PendaftaranController extends Controller
                     'status' => $request->status_pembayaran_diklat
                 ]);
             }
-        }else{
+        } else {
             $oldData->update([
                 's_gambar' => $gambar ?: $oldData->s_gambar,
                 's_link' => $request->input('metode_sertif') == 'link' ? $request->s_link : null,
@@ -392,8 +390,7 @@ class PendaftaranController extends Controller
                 'status_pembayaran_diklat' => $request->status_pembayaran_diklat
             ]);
         }
-    
+
         return redirect('/kelPendaftaran')->with('success', 'Data berhasil diperbarui!');
     }
-    
 }
