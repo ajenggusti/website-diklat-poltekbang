@@ -39,7 +39,6 @@ class GambarDiklatController extends Controller
      */
     public function store(Request $request)
     {
-        // Validasi input
         $request->validate([
             'diklat' => 'required',
             'img' => 'required|image|max:2048', // Maksimal 2MB
@@ -49,19 +48,17 @@ class GambarDiklatController extends Controller
             'max' => 'Ukuran :attribute tidak boleh melebihi :max kilobytes.',
         ]);
     
-        // Simpan data
         $gambar = new GambarDiklat();
         $gambar->id_diklat = $request->diklat === 'null' ? null : $request->diklat;
         
-        // Upload gambar
         if ($request->file('img')) {
-            $imagePath = $request->file('img')->store('LanPage');
-            $gambar->gambar_navbar = $imagePath;
+            // $image = $request->file('img')->store('LanPage');
+            $image = "LanPage/" . time() . '-' . uniqid() . '.' . $request->img->getClientOriginalExtension();
+            $request->img->move('storage/LanPage', $image);
+            $gambar->gambar_navbar = $image;
         }
     
         $gambar->save();
-    
-        // Redirect dengan pesan sukses
         return redirect('/kelGambarDiklat')->with('success', 'Data berhasil ditambahkan.');
     }
     
@@ -92,9 +89,9 @@ class GambarDiklatController extends Controller
      */
     public function update(Request $request, GambarDiklat $kelGambarDiklat)
     {
-        // Validasi input
+    
         $request->validate([
-            'img' => 'sometimes|image|max:2048', // Maksimal 2MB
+            'img' => 'sometimes|image|max:2048', 
         ], [
             'image' => 'Kolom :attribute harus berupa gambar.',
             'max' => 'Ukuran :attribute tidak boleh melebihi :max kilobytes.',
@@ -102,20 +99,23 @@ class GambarDiklatController extends Controller
     
         // Update data
         $kelGambarDiklat->id_diklat = $request->diklat === 'null' ? null : $request->diklat;
-    
-        // Jika ada gambar yang diupload, update gambar
         if ($request->hasFile('img')) {
-            // Hapus gambar sebelumnya
-            Storage::delete($kelGambarDiklat->gambar_navbar);
-            
-            // Upload gambar baru
-            $imagePath = $request->file('img')->store('LanPage');
-            $kelGambarDiklat->gambar_navbar = $imagePath;
+            // Storage::delete($kelGambarDiklat->gambar_navbar);
+            // $imagePath = $request->file('img')->store('LanPage');
+            $filePath = public_path('storage/' . $kelGambarDiklat->gambar_navbar);
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+            $image = "LanPage/" . time() . '-' . uniqid() . '.' . $request->img->getClientOriginalExtension();
+            $request->img->move('storage/LanPage', $image);
+
+            $kelGambarDiklat->gambar_navbar = $image;
+
+
+
         }
     
         $kelGambarDiklat->save();
-    
-        // Redirect dengan pesan sukses
         return redirect('/kelGambarDiklat')->with('success', 'Data berhasil diperbarui.');
     }
     
@@ -125,14 +125,18 @@ class GambarDiklatController extends Controller
      */
     public function destroy(GambarDiklat $kelGambarDiklat)
     {
-        Storage::delete($kelGambarDiklat->gambar_navbar);
+        // Storage::delete($kelGambarDiklat->gambar_navbar);
+        $filePath = public_path('storage/' . $kelGambarDiklat->gambar_navbar);
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
         $kelGambarDiklat->delete();
         return redirect('/kelGambarDiklat')->with('success', 'Data berhasil dihapus!');
     }
 
-    // NEW
+
     public function getTotalData() {
-        $totalData = Diklat::count(); // Diklat adalah model data Anda
+        $totalData = Diklat::count(); 
         return response()->json(['totalData' => $totalData]);
     }
     

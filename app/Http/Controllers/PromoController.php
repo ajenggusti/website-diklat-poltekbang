@@ -70,7 +70,8 @@ class PromoController extends Controller
         $kuota_angka = $kuota === 'iya' ? $request->input('kuota_angka') : 0;
 
         if ($request->hasFile('img')) {
-            $image = $request->file('img')->store('LanPage');
+            $image = "LanPage/" . time() . '-' . uniqid() . '.' . $request->img->getClientOriginalExtension();
+            $request->img->move('storage/LanPage', $image);
             $potongan = preg_replace("/[^0-9]/", "", $request->potongan);
             Promos::create([
                 'potongan' => $potongan,
@@ -160,8 +161,12 @@ class PromoController extends Controller
 
 
         if ($request->hasFile('img')) {
-            Storage::delete($kelPromo->gambar);
-            $image = $request->file('img')->store('LanPage');
+            $filePath = public_path('storage/' . $kelPromo->gambar);
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+            $image = "LanPage/" . time() . '-' . uniqid() . '.' . $request->img->getClientOriginalExtension();
+            $request->img->move('storage/LanPage', $image);
         } else {
             $image = $kelPromo->gambar;
         }
@@ -199,7 +204,10 @@ class PromoController extends Controller
     public function destroy(Promos $kelPromo)
     {
 
-        Storage::delete($kelPromo->gambar);
+        $filePath = public_path('storage/' . $kelPromo->gambar);
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
         $kelPromo->delete();
         return redirect('/kelPromo')->with('success', 'Data berhasil dihapus!');
     }

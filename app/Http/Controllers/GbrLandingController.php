@@ -96,12 +96,15 @@ class GbrLandingController extends Controller
         ], $messages);
 
         if ($request->hasFile('img')) {
+            
             $filePath = public_path('storage/' . $gbrLandingPage->gambar_navbar);
             if (file_exists($filePath)) {
                 unlink($filePath);
             }
+
             $image = "LanPage/" . time() . '-' . uniqid() . '.' . $request->img->getClientOriginalExtension();
             $request->img->move('storage/LanPage', $image);
+
             $gbrLandingPage->update([
                 'gambar_navbar' => $image,
                 'status' => $request->status

@@ -239,11 +239,19 @@ class PendaftaranController extends Controller
         $oldData = Pendaftaran::find($id);
         if ($request->input('metode_sertif') == 'link') {
             if ($oldData->s_gambar) {
-                Storage::delete($oldData->s_gambar);
+                // Storage::delete($oldData->s_gambar);
+                $filePath = public_path('storage/' .$oldData->s_gambar);
+                if (file_exists($filePath)) {
+                    unlink($filePath);
+                }
                 $oldData->s_gambar = null;
             }
             if ($oldData->s_doc) {
-                Storage::delete($oldData->s_doc);
+                // Storage::delete($oldData->s_doc);
+                $filePath = public_path('storage/' .$oldData->s_doc);
+                if (file_exists($filePath)) {
+                    unlink($filePath);
+                }
                 $oldData->s_doc = null;
             }
         }
@@ -252,24 +260,40 @@ class PendaftaranController extends Controller
                 $oldData->s_link = null;
             }
             if ($oldData->s_doc) {
-                Storage::delete($oldData->s_doc);
+                // Storage::delete($oldData->s_doc);
+                $filePath = public_path('storage/' .$oldData->s_doc);
+                if (file_exists($filePath)) {
+                    unlink($filePath);
+                }
                 $oldData->s_doc = null;
             }
             if ($oldData->s_gambar) {
-                Storage::delete($oldData->s_gambar);
+                // Storage::delete($oldData->s_gambar);
+                $filePath = public_path('storage/' .$oldData->s_gambar);
+                if (file_exists($filePath)) {
+                    unlink($filePath);
+                }
                 $oldData->s_gambar = null;
             }
         }
         elseif ($request->input('metode_sertif') == 'dokumen') {
             if ($oldData->s_gambar) {
-                Storage::delete($oldData->s_gambar);
+                // Storage::delete($oldData->s_gambar);
+                $filePath = public_path('storage/' .$oldData->s_gambar);
+                if (file_exists($filePath)) {
+                    unlink($filePath);
+                }
                 $oldData->s_gambar = null;
             }
             if ($oldData->s_link) {
                 $oldData->s_link = null;
             }
             if ($oldData->s_doc) {
-                Storage::delete($oldData->s_doc);
+                // Storage::delete($oldData->s_doc);
+                $filePath = public_path('storage/' .$oldData->s_doc);
+                if (file_exists($filePath)) {
+                    unlink($filePath);
+                }
                 $oldData->s_doc = null;
             }
         }
@@ -279,23 +303,35 @@ class PendaftaranController extends Controller
         $doc = null;
         if ($request->hasFile('s_gambar')) {
             if ($oldData->s_doc) {
-                Storage::delete($oldData->s_doc);
+                // Storage::delete($oldData->s_doc);
+                $filePath = public_path('storage/' . $oldData->s_doc);
+                if (file_exists($filePath)) {
+                    unlink($filePath);
+                }
                 $oldData->s_doc = null;
             }
             if ($oldData->s_link) {
                 $oldData->s_link = null;
             }
-            $gambar = $request->file('s_gambar')->store('LanPage');
+            // $gambar = $request->file('s_gambar')->store('LanPage');
+            $gambar = "LanPage/" . time() . '-' . uniqid() . '.' . $request->s_gambar->getClientOriginalExtension();
+            $request->s_gambar->move('storage/LanPage', $gambar);
         }
         if ($request->hasFile('s_doc')) {
             if ($oldData->s_gambar) {
-                Storage::delete($oldData->s_gambar);
+                // Storage::delete($oldData->s_gambar);
+                $filePath = public_path('storage/' . $oldData->s_gambar);
+                if (file_exists($filePath)) {
+                    unlink($filePath);
+                }
                 $oldData->s_gambar = null;
             }
             if ($oldData->s_link) {
                 $oldData->s_link = null;
             }
-            $doc = $request->file('s_doc')->store('LanPage');
+            // $doc = $request->file('s_doc')->store('LanPage');
+            $doc = "LanPage/" . time() . '-' . uniqid() . '.' . $request->s_doc->getClientOriginalExtension();
+            $request->s_doc->move('storage/LanPage', $doc);
         }
        $diklatUpdate=Diklat::findOrFail($oldData->diklat->id);
         // dd($diklatUpdate);

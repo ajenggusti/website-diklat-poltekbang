@@ -64,7 +64,8 @@ class DiklatController extends Controller
         ], $messages);
 
         if ($request->hasFile('img')) {
-            $image = $request->file('img')->store('LanPage');
+            $image = "LanPage/" . time() . '-' . uniqid() . '.' . $request->img->getClientOriginalExtension();
+            $request->img->move('storage/LanPage', $image);
         } else {
             $image = null;
         }
@@ -148,9 +149,13 @@ class DiklatController extends Controller
         ], $messages);
         if ($request->hasFile('img')) {
             if ($kelDiklat->gambar) {
-                Storage::delete($kelDiklat->gambar);
+                $filePath = public_path('storage/' . $kelDiklat->gambar);
+                if (file_exists($filePath)) {
+                    unlink($filePath);
+                }
             }
-            $image = $request->file('img')->store('LanPage');
+            $image = "LanPage/" . time() . '-' . uniqid() . '.' . $request->img->getClientOriginalExtension();
+            $request->img->move('storage/LanPage', $image);
         } else {
             if ($kelDiklat->gambar) {
                 $image = $kelDiklat->gambar;
@@ -185,10 +190,13 @@ class DiklatController extends Controller
 
      public function destroy(Diklat $kelDiklat)
      {
-         if ($kelDiklat->gambar) {
-             Storage::delete($kelDiklat->gambar);
-         }
-         
+        //  if ($kelDiklat->gambar) {
+        //      Storage::delete($kelDiklat->gambar);
+        //  }
+        $filePath = public_path('storage/' . $kelDiklat->gambar);
+                if (file_exists($filePath)) {
+                    unlink($filePath);
+                }
          $kelDiklat->delete();
          return redirect('/kelDiklat')->with('success', 'Data berhasil dihapus!');
      }

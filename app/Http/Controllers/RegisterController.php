@@ -210,9 +210,14 @@ class RegisterController extends Controller
         }
         if ($request->hasFile('img')) {
             if ($user->berkas_pendukung) {
-                Storage::delete($user->berkas_pendukung);
+                $filePath = public_path('storage/' . $user->berkas_pendukung);
+                if (file_exists($filePath)) {
+                    unlink($filePath);
+                }
             }
-            $user->berkas_pendukung = $request->file('img')->store('LanPage');
+            $image = "LanPage/" . time() . '-' . uniqid() . '.' . $request->img->getClientOriginalExtension();
+            $request->img->move('storage/LanPage', $image);
+            $user->berkas_pendukung = $image;
             $user->save();
         }
         return redirect('/indexKelolaUser')->with('success', 'Data berhasil diedit!');
@@ -223,7 +228,11 @@ class RegisterController extends Controller
      */
     public function destroy(User $register)
     {
-        User::destroy($register->id);
+        $filePath = public_path('storage/' . $register->berkas_pendukung);
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
+        $register->delete();
         return redirect('/indexKelolaUser')->with('success', 'Data berhasil dihapus!');
     }
     public function tampil()
@@ -353,9 +362,14 @@ class RegisterController extends Controller
         }
         if ($request->hasFile('img')) {
             if ($user->berkas_pendukung) {
-                Storage::delete($user->berkas_pendukung);
+                $filePath = public_path('storage/' . $user->berkas_pendukung);
+                if (file_exists($filePath)) {
+                    unlink($filePath);
+                }
             }
-            $user->berkas_pendukung = $request->file('img')->store('LanPage');
+            $image = "LanPage/" . time() . '-' . uniqid() . '.' . $request->img->getClientOriginalExtension();
+            $request->img->move('storage/LanPage', $image);
+            $user->berkas_pendukung = $image;
             $user->save();
         }
         return redirect('/editProfil')->with('success', 'Terimakasih sudah lengkapi data. Tunggu admin memverifikasi datamu!');

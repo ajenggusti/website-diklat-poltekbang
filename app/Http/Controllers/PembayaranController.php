@@ -330,8 +330,16 @@ class PembayaranController extends Controller
 
         if ($pendaftaran->bukti_pembayaran) {
             if ($request->hasFile('bukti_pembayaran')) {
-                $image = $request->file('bukti_pembayaran')->store('LanPage');
-                Storage::delete($pendaftaran->bukti_pembayaran);
+                // hapusfoto
+                $filePath = public_path('storage/' . $pendaftaran->bukti_pembayaran);
+                if (file_exists($filePath)) {
+                    unlink($filePath);
+                }
+                // savefoto
+                $image = "LanPage/" . time() . '-' . uniqid() . '.' . $request->bukti_pembayaran->getClientOriginalExtension();
+                $request->bukti_pembayaran->move('storage/LanPage', $image);
+
+                
                 $pendaftaran->update([
                     'bukti_pembayaran' => $image,
                     'status_pembayaran_diklat' => "Menunggu verifikasi"
@@ -342,7 +350,8 @@ class PembayaranController extends Controller
             }
         } else {
             if ($request->hasFile('bukti_pembayaran')) {
-                $image = $request->file('bukti_pembayaran')->store('LanPage');
+                $image = "LanPage/" . time() . '-' . uniqid() . '.' . $request->bukti_pembayaran->getClientOriginalExtension();
+                $request->bukti_pembayaran->move('storage/LanPage', $image);
                 $pendaftaran->update([
                     'bukti_pembayaran' => $image,
                     'status_pembayaran_diklat' => "Menunggu verifikasi"
