@@ -44,7 +44,7 @@
                 {{-- <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a><br> --}}
              
                         
-                            <h2>{{ $detailDiklat->nama_diklat }}</h2><br>
+                            
                             <div id="carouselExampleIndicators" class="carousel slide img-diklat" data-bs-ride="carousel">
                                 <div class="carousel-indicators">
                                     @foreach ($gambars as $key => $gambar)
@@ -72,14 +72,11 @@
                             {{-- <img src="{{ asset('img/diklat.jpeg') }}" alt="Gambar Diklat" class="img-detailDiklat"> --}}
                             <div class="card-container3">
                                 <div class="card-content3">
+                                    <h2>{{ $detailDiklat->nama_diklat }}</h2><br>
                                     <p>
-                                        <span>Nama Diklat : </span><br>
-                                        {{ $detailDiklat->nama_diklat }}
+                                        <span>Harga :</span><br>
+                                        {{ 'Rp ' . number_format($detailDiklat->harga, 0, ',', '.') }}
                                     </p>
-                                    
-                                    <p>
-                                        <span>detailDiklat Harga :</span><br>
-                                        {{ $detailDiklat->harga }}</p>
                                     
                                     <p>
                                         <span>Jumlah Pendaftar Saat Ini :</span><br>
@@ -87,7 +84,7 @@
                                     </p>
                                     
                                     <p>
-                                        <span>Status Penerimaan PendaftaraN :</span><br>
+                                        <span>Status Penerimaan Pendaftaran :</span><br>
                                         {{ $detailDiklat->status }}
                                     </p>
                                     

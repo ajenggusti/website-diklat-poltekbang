@@ -52,18 +52,9 @@ class PendaftaranController extends Controller
     {
         // dd($request);
         $request->validate([
-            'nama_lengkap' => 'required|string|max:255',
-            'tempat_lahir' => 'required|string|max:255',
-            'tgl_awal' => 'required|date_format:d-m-Y',
-            'alamat' => 'required|string|max:255',
             'pendidikan_terakhir' => 'required|string|max:255|in:SD,SMP,SMA/SMK,Diploma,Sarjana,Magister,Doktor',
             'no_hp' => 'required|string|max:20',
         ], [
-            'nama_lengkap.required' => 'Kolom nama depan wajib diisi.',
-            'tempat_lahir.required' => 'Kolom tempat lahir wajib diisi.',
-            'tgl_awal.required' => 'Kolom tanggal lahir wajib diisi.',
-            'tgl_awal.date_format' => 'Format tanggal lahir harus dd-mm-yyyy.',
-            'alamat.required' => 'Kolom alamat wajib diisi.',
             'pendidikan_terakhir.required' => 'Kamu belum memilih pendidikan terakhir.',
             'pendidikan_terakhir.in' => 'Pilih salah satu opsi dari daftar pendidikan terakhir yang tersedia.',
             'no_hp.required' => 'Kolom nomor HP wajib diisi.',
@@ -108,6 +99,8 @@ class PendaftaranController extends Controller
         $pendaftaran->id_diklat = $request->input('diklat');
         $pendaftaran->id_user = Auth::id();
         $pendaftaran->id_promo = $idPromo;
+        $pendaftaran->potongan = $promo->potongan;
+        $pendaftaran->harga_asli_diklat = $diklat->harga;
         $pendaftaran->harga_diklat = $harga;
         $pendaftaran->email  = $request->input('email');
         $pendaftaran->nama_lengkap  = $request->input('nama_lengkap');
@@ -354,20 +347,11 @@ class PendaftaranController extends Controller
                 'status_pelaksanaan' => "Terlaksana"
             ]);
         }
-
-
-
-
-        $oldData->update([
-            's_gambar' => $gambar ?: $oldData->s_gambar,
-            's_link' => $request->input('metode_sertif') == 'link' ? $request->s_link : null,
-            's_doc' => $doc ?: $oldData->s_doc,
-            'metode_sertif' => $request->metode_sertif,
-            'potongan' => $request->potongan ? preg_replace("/[^0-9]/", "", $request->potongan) : null,
-            'harga_diklat' => preg_replace("/[^0-9]/", "", $request->total_harga),
-            'status_pembayaran_diklat' => $request->status_pembayaran_diklat,
-        ]);
-        // update pembayaran dari admin 
+        
+        // update pembayaran dari admin ============================================================================
+        $oldPotongan = $oldData->potongan_admin ? (int)preg_replace("/[^0-9]/", "", $oldData->potongan_admin) : 0;
+        $newPotongan = $request->potongan ? (int)preg_replace("/[^0-9]/", "", $request->potongan) : 0;
+        $totalPotongan = $oldPotongan + $newPotongan;
         $pembayaran_update = Pembayaran::where('id_pendaftaran', $id)
             ->where('jenis_pembayaran', 'diklat')
             ->where('metode_pembayaran', 'offline')
@@ -385,7 +369,7 @@ class PendaftaranController extends Controller
                 's_link' => $request->input('metode_sertif') == 'link' ? $request->s_link : null,
                 's_doc' => $doc ?: $oldData->s_doc,
                 'metode_sertif' => $request->metode_sertif,
-                'potongan' => $request->potongan ? preg_replace("/[^0-9]/", "", $request->potongan) : null,
+                'potongan_admin' => $totalPotongan ?: null,
                 'harga_diklat' => preg_replace("/[^0-9]/", "", $request->total_harga),
                 'status_pembayaran_diklat' => $request->status_pembayaran_diklat
             ]);

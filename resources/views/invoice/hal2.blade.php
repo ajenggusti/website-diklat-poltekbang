@@ -143,11 +143,12 @@
                             <strong>Tempat lahir</strong><span>: {{ $dataPendaftaran->pendaftaran->user->tempat_lahir }}</span><br>
                         </div>
                         <div class="info-row">
-                            <strong>Alamat</strong><span>: {{ $dataPendaftaran->pendaftaran->user->kelurahan->name }} | {{ $dataPendaftaran->pendaftaran->user->kecamatan->name }} | {{ $dataPendaftaran->pendaftaran->user->kabupaten->name }} | {{ $dataPendaftaran->pendaftaran->user->provinsi->name }}.</span><br>
-                        </div>
-                        <div class="info-row">
                             <strong>Tanggal Lahir</strong><span>: {{ \Carbon\Carbon::parse($dataPendaftaran->pendaftaran->user->tanggal_lahir)->format('d-m-Y') }}</span>
                         </div>
+                        <div class="info-row">
+                            <strong>Alamat</strong><span>: {{ $dataPendaftaran->pendaftaran->user->kelurahan->name }} | {{ $dataPendaftaran->pendaftaran->user->kecamatan->name }} | {{ $dataPendaftaran->pendaftaran->user->kabupaten->name }} | {{ $dataPendaftaran->pendaftaran->user->provinsi->name }}.</span><br>
+                        </div>
+                        
                     @endif
                     {{-- pesanannya --}}
                     <div class="table-responsive">
@@ -248,64 +249,6 @@
                     <p>Metode pembayaran : Metode pembayaran belum tersedia.</p>
                     <p>Waktu pembayaran  : waktu pembayaran belum tersedia.</p>
                 @endif
-                
-                {{-- <div class="info-row">
-                    <strong>Nama Lengkap</strong><span>: {{ $data->nama_lengkap }}</span>
-                </div> --}}
-                {{-- <div class="info-row">
-                    <strong>Tanggal Lahir</strong><span>: {{ \Carbon\Carbon::parse($data->tanggal_lahir)->format('d-m-Y') }}</span>
-                <div class="info-row">
-                    <strong>Alamat</strong><span>: {{ $data->alamat }}</span><br>
-                </div>
-                <div class="info-row">
-                    <strong>Email</strong><span>: {{ $data->email }}</span><br>
-                </div>
-                <div class="info-row">
-                    <strong>No HP</strong><span>: {{ $data->no_hp }}</span><br>
-                </div>
-                <div class="info-row">
-                    <strong>Pendidikan Terakhir</strong><span>: {{ $data->pendidikan_terakhir }}</span><br>
-                </div>
-                <br><br>
-                <table class="invoiceTable">
-                        <tr>
-                            <th scope="col">Nama Diklat</th>
-                            <td>{{ $data->diklat->nama_diklat }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="col">Harga Pendaftaran</th>
-                            <td>Rp 150.000</td>
-                        </tr>
-                        <tr>
-                            <th scope="col">Status Pembayaran Pendaftaran</th>
-                            <td>{{ $data->status_pembayaran_daftar }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="col">Harga Diklat</th>
-                            <td>Rp. {{ number_format($data->diklat->harga, 0, ',', '.') }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="col">Diskon</th>
-                            <td>
-                                @if($data->promo)
-                                    <p>Rp. {{ number_format($data->promo->potongan, 0, ',', '.') }}</p>
-                                @else
-                                    <p> - Rp. 0</p> 
-                                @endif
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="col">Total Biaya</th>
-                            <td>Rp. {{ number_format($data->harga_diklat, 0, ',', '.') }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="col">Status Pembayaran Diklat</th>
-                            <td>{{ $data->status_pembayaran_diklat }}</td>
-                        </tr>
-                </table> --}}
-                
-               
-                
             </div>
         </div>
     </div>

@@ -264,9 +264,9 @@ class PembayaranController extends Controller
                 'gross_amount' => $pembayaran->total_harga,
             ),
             'customer_details' => array(
-                'first_name' => $pembayaran->pendaftaran->nama_lengkap,
+                'first_name' => $pembayaran->pendaftaran->user->name,
                 'last_name' => '',
-                'email' => $pembayaran->pendaftaran->email,
+                'email' => $pembayaran->pendaftaran->user->email,
                 'phone' => $pembayaran->pendaftaran->no_hp,
             ),
         );
@@ -319,9 +319,9 @@ class PembayaranController extends Controller
                 'gross_amount' => $pembayaran->total_harga,
             ),
             'customer_details' => array(
-                'first_name' => $pembayaran->pendaftaran->nama_lengkap,
+                'first_name' => $pembayaran->pendaftaran->user->name,
                 'last_name' => '',
-                'email' => $pembayaran->pendaftaran->email,
+                'email' => $pembayaran->pendaftaran->user->email,
                 'phone' => $pembayaran->pendaftaran->no_hp,
             ),
         );

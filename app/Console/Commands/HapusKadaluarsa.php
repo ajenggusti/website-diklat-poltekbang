@@ -38,7 +38,6 @@ class HapusKadaluarsa extends Command
                           ->where('updated_at', '<=', Carbon::now())
                           ->get();
         
-        // Menghapus data yang sesuai
         $jumlahDihapus = 0;
         foreach ($data as $pembayaran) {
             $pembayaran->delete();

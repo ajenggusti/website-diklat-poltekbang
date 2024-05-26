@@ -19,8 +19,10 @@ return new class extends Migration
             $table->unsignedBigInteger('id_dial')->nullable();
             $table->timestamp('waktu_pendaftaran');
             $table->text('bukti_pembayaran')->charset('binary')->nullable();
+            $table->bigInteger('harga_asli_diklat')->nullable(); 
             $table->bigInteger('harga_diklat')->nullable(); 
             $table->bigInteger('potongan')->nullable(); 
+            $table->bigInteger('potongan_admin')->nullable(); 
             $table->string('status_pembayaran_diklat')->default('Menunggu pembayaran')->nullable(); //nnti isi dropdon
             $table->string('nama_lengkap')->nullable();
             $table->string('tempat_lahir')->nullable();

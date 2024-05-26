@@ -106,7 +106,6 @@
                 <h1 style="text-align: center;">INVOICE PEMBAYARAN DIKLAT</h1>
                 @if ($idPembayaranDiklat != null)
                   {{-- diambil dari tabel pembayaran --}}
-                    Order id : {{ $dataDiklat->order_id }}
                     {{-- ========================================================= --}}
                     
                     <div class="info-row">
@@ -143,11 +142,12 @@
                             <strong>Tempat lahir</strong><span>: {{ $dataDiklat->pendaftaran->user->tempat_lahir }}</span><br>
                         </div>
                         <div class="info-row">
-                            <strong>Alamat</strong><span>: {{ $dataDiklat->pendaftaran->user->kelurahan->name }} | {{ $dataDiklat->pendaftaran->user->kecamatan->name }} | {{ $dataDiklat->pendaftaran->user->kabupaten->name }} | {{ $dataDiklat->pendaftaran->user->provinsi->name }}.</span><br>
-                        </div>
-                        <div class="info-row">
                             <strong>Tanggal Lahir</strong><span>: {{ \Carbon\Carbon::parse($dataDiklat->pendaftaran->user->tanggal_lahir)->format('d-m-Y') }}</span>
                         </div>
+                        <div class="info-row">
+                            <strong>Alamat</strong><span>: {{ $dataDiklat->pendaftaran->user->kelurahan->name }} | {{ $dataDiklat->pendaftaran->user->kecamatan->name }} | {{ $dataDiklat->pendaftaran->user->kabupaten->name }} | {{ $dataDiklat->pendaftaran->user->provinsi->name }}.</span><br>
+                        </div>
+                        
                     @endif
                     {{-- pesanannya --}}
                     <div class="table-responsive">
@@ -155,8 +155,11 @@
                             <thead>
                                 <tr>
                                     <th>Diklat</th>
-                                    <th>Jenis Pembayaran</th>
-                                    <th>Harga</th>
+                                    <th>Harga diklat</th>
+                                    <th>Kode Promo</th>
+                                    <th>Diskon promo</th>
+                                    <th>Diskon admin</th>
+                                    <th>Total harga</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
@@ -164,8 +167,11 @@
                             
                                     <tr>
                                         <td>{{ $dataDiklat->pendaftaran->diklat->nama_diklat }}</td>
-                                        <td>Diklat</td>
-                                        <td>{{ 'Rp' . number_format($dataDiklat->pendaftaran->harga_diklat, 0, ',', '.') }}</td>
+                                        <td>{{ 'Rp ' . number_format($dataDiklat->pendaftaran->harga_asli_diklat, 0, ',', '.') }}</td>
+                                        <td>{{ $dataDiklat->pendaftaran->promo->kode }}</td>
+                                        <td>{{ '-Rp ' . number_format($dataDiklat->pendaftaran->potongan, 0, ',', '.') }}</td>
+                                        <td>{{ '-Rp ' . number_format($dataDiklat->pendaftaran->potongan_admin, 0, ',', '.') }}</td>
+                                        <td>{{ 'Rp ' . number_format($dataDiklat->pendaftaran->harga_diklat, 0, ',', '.') }}</td>
                                         <td>{{ $dataDiklat->pendaftaran->status_pembayaran_diklat }}</td>
                                     </tr>
                             
@@ -175,7 +181,7 @@
                     {{-- data pembayarannya --}}
                     <p>Order id : {{ $dataDiklat->order_id }}</p>
                     <p>Metode pembayaran : {{ $dataDiklat->metode_pembayaran }}</p>
-                    <p>Waktu pembayaran  : {{ $dataDiklat->updated_at }}</p>
+                    <p>Waktu pembayaran  : {{ \Carbon\Carbon::parse($dataDiklat->updated_at)->format('H:i:s | d-m-Y') }}</p>
                     {{-- ========================================================= --}}
                 @else
                 {{-- diambil dari tabel pendaftaran --}}
@@ -226,8 +232,11 @@
                             <thead>
                                 <tr>
                                     <th>Diklat</th>
-                                    <th>Jenis Pembayaran</th>
-                                    <th>Harga</th>
+                                    <th>Harga diklat</th>
+                                    <th>Kode Promo</th>
+                                    <th>Diskon promo</th>
+                                    <th>Diskon admin</th>
+                                    <th>Total harga</th>
                                     <th>Status</th>
                                 </tr>
                             </thead>
@@ -235,8 +244,11 @@
                             
                                     <tr>
                                         <td>{{ $dataDiklat->diklat->nama_diklat }}</td>
-                                        <td>Diklat</td>
-                                        <td>{{ 'Rp' . number_format($dataDiklat->harga_diklat, 0, ',', '.') }}</td>
+                                        <td>{{ 'Rp ' . number_format($dataDiklat->harga_asli_diklat, 0, ',', '.') }}</td>
+                                        <td>{{ $dataDiklat->promo->kode }}</td>
+                                        <td>{{ '-Rp ' . number_format($dataDiklat->potongan, 0, ',', '.') }}</td>
+                                        <td>{{ '-Rp ' . number_format($dataDiklat->potongan_admin, 0, ',', '.') }}</td>
+                                        <td>{{ 'Rp ' . number_format($dataDiklat->harga_diklat, 0, ',', '.') }}</td>
                                         <td>{{ $dataDiklat->status_pembayaran_diklat }}</td>
                                     </tr>
                             
@@ -248,64 +260,6 @@
                     <p>Metode pembayaran : Metode pembayaran belum tersedia.</p>
                     <p>Waktu pembayaran  : waktu pembayaran belum tersedia.</p>
                 @endif
-                
-                {{-- <div class="info-row">
-                    <strong>Nama Lengkap</strong><span>: {{ $data->nama_lengkap }}</span>
-                </div> --}}
-                {{-- <div class="info-row">
-                    <strong>Tanggal Lahir</strong><span>: {{ \Carbon\Carbon::parse($data->tanggal_lahir)->format('d-m-Y') }}</span>
-                <div class="info-row">
-                    <strong>Alamat</strong><span>: {{ $data->alamat }}</span><br>
-                </div>
-                <div class="info-row">
-                    <strong>Email</strong><span>: {{ $data->email }}</span><br>
-                </div>
-                <div class="info-row">
-                    <strong>No HP</strong><span>: {{ $data->no_hp }}</span><br>
-                </div>
-                <div class="info-row">
-                    <strong>Pendidikan Terakhir</strong><span>: {{ $data->pendidikan_terakhir }}</span><br>
-                </div>
-                <br><br>
-                <table class="invoiceTable">
-                        <tr>
-                            <th scope="col">Nama Diklat</th>
-                            <td>{{ $data->diklat->nama_diklat }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="col">Harga Pendaftaran</th>
-                            <td>Rp 150.000</td>
-                        </tr>
-                        <tr>
-                            <th scope="col">Status Pembayaran Pendaftaran</th>
-                            <td>{{ $data->status_pembayaran_daftar }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="col">Harga Diklat</th>
-                            <td>Rp. {{ number_format($data->diklat->harga, 0, ',', '.') }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="col">Diskon</th>
-                            <td>
-                                @if($data->promo)
-                                    <p>Rp. {{ number_format($data->promo->potongan, 0, ',', '.') }}</p>
-                                @else
-                                    <p> - Rp. 0</p> 
-                                @endif
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="col">Total Biaya</th>
-                            <td>Rp. {{ number_format($data->harga_diklat, 0, ',', '.') }}</td>
-                        </tr>
-                        <tr>
-                            <th scope="col">Status Pembayaran Diklat</th>
-                            <td>{{ $data->status_pembayaran_diklat }}</td>
-                        </tr>
-                </table> --}}
-                
-               
-                
             </div>
         </div>
     </div>
