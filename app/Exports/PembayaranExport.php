@@ -1,19 +1,13 @@
 <?php
-
 namespace App\Exports;
 
-use App\Models\Pembayaran;
-use GuzzleHttp\Psr7\Request;
-use Maatwebsite\Excel\Concerns\FromQuery;
-use Maatwebsite\Excel\Concerns\Exportable;
-use Maatwebsite\Excel\Concerns\WithMapping;
-use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithMultipleSheets;
+use App\Exports\Sheets\AllDataSheet;
+use App\Exports\Sheets\PendaftaranSheet;
+use App\Exports\Sheets\DiklatSheet;
 
-class PembayaranExport implements FromQuery,WithMapping, WithHeadings
+class PembayaranExport implements WithMultipleSheets
 {
-    use Exportable;
-
     protected $startDate;
     protected $endDate;
 
@@ -23,38 +17,12 @@ class PembayaranExport implements FromQuery,WithMapping, WithHeadings
         $this->endDate = $endDate;
     }
 
-    public function query()
-    {
-        return Pembayaran::query()
-            ->where('status', 'Lunas')
-            ->whereBetween('updated_at', [$this->startDate, $this->endDate]);
-    }
-    public function map($pembayaran): array
-    {
-        // This example will return 3 rows.
-        // First row will have 2 column, the next 2 will have 1 column
-        return [
-            [
-                $pembayaran->order_id,
-                $pembayaran->pendaftaran->nama_lengkap,
-                $pembayaran->jenis_pembayaran,
-                $pembayaran->metode_pembayaran,
-                $pembayaran->total_harga,
-                $pembayaran->status,
-                $pembayaran->updated_at,
-            ]
-        ];
-    }
-    public function headings(): array
+    public function sheets(): array
     {
         return [
-            'Order_id',
-            'Nama Lengkap',
-            'Jenis Pembayaran',
-            'Metode Pembayaran',
-            'Total harga',
-            'status',
-            'Wakyu',
+            'All Data' => new AllDataSheet($this->startDate, $this->endDate),
+            'Pendaftaran' => new PendaftaranSheet($this->startDate, $this->endDate),
+            'Diklat' => new DiklatSheet($this->startDate, $this->endDate),
         ];
     }
 }

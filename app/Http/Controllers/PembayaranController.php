@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Exports\PembayaranExport;
+use App\Exports\PembayaranExportAll;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 
@@ -30,6 +31,7 @@ class PembayaranController extends Controller
             'formattedPemasukan'=>$formattedPemasukan
         ]);
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -400,11 +402,40 @@ class PembayaranController extends Controller
         $dates = explode('.', $dateRange);
         $startDate = $dates[0];
         $endDate = $dates[1]; 
-        // dd($startDate);
+        // ubah format
+        $startDatef = Carbon::parse($dates[0])->format('d-m-Y');
+        $endDatef = Carbon::parse($dates[1])->format('d-m-Y');
+        // dd($startDatef);
         // dd($endDate);
         $timestamp = Carbon::now()->format('H-i-s_d-m-Y');
-        $filename = 'Laporan_' . $timestamp . '.xlsx';
+        $filename = 'Laporan_byTgl_'.$startDatef.'_sampai_'.$endDatef .'_webDiklat_'. $timestamp . '.xlsx';
         return Excel::download(new PembayaranExport($startDate, $endDate), $filename);
     }
+    public function exportAll(){
+        $timestamp = Carbon::now()->format('H-i-s_d-m-Y');
+        $filename = 'Laporan_webDiklat_allData_' . $timestamp . '.xlsx';
+        return Excel::download(new PembayaranExportAll, $filename);
+    }
+    // total by tanggal 
+    public function filterPembayaran(Request $request)
+    {
+        // dd($request);
+        $date1 = $request->input('date1');
+        $date2 = $request->input('date2');
+
+        $filteredPembayarans = Pembayaran::where('status', 'Lunas')
+            ->whereBetween('created_at', [$date1, $date2])
+            ->get();
+
+        $totalSum = $filteredPembayarans->sum('total_harga');
+
+        $tableRows = view('kelola.kelolaPembayaran.index', ['pembayarans' => $filteredPembayarans])->render();
+
+        return response()->json([
+            'tableRows' => $tableRows,
+            'totalSum' => 'Rp ' . number_format($totalSum, 0, ',', '.')
+        ]);
+    }
+    
 
 }

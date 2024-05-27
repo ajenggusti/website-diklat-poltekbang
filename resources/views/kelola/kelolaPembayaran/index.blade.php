@@ -47,7 +47,7 @@
             <form id="tanggalForm">
                     <input type="text" class="datepicker" id="datepicker1" placeholder="Pilih tanggal">
                     <input type="text" class="datepicker" id="datepicker2" placeholder="Pilih tanggal">
-                <a href="#" id="exportExcel" class="btn btn-primary">Export ke Excel</a>
+                <a href="#" id="exportExcel" class="btn btn-primary"><i class="bi bi-filetype-xlsx"></i> Export by tanggal</a>
             </form>
             {{-- Search --}}
             <div class="search-bar">
@@ -94,20 +94,19 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $pembayaran->pendaftaran->user->name }}</td>
                             <td>{{ $pembayaran->pendaftaran->diklat->nama_diklat }}</td>
-                            <td>{{ $pembayaran->jenis_pembayaran }}</td>
-                            <td id="biaya_diklat_{{ $loop->iteration }}">Rp {{ number_format($pembayaran->pendaftaran->harga_diklat, 0, ',', '.') }}</td>
-                            <td id="status_pembayaran_diklat_{{ $loop->iteration }}">{{ $pembayaran->pendaftaran->status_pembayaran_diklat }}</td>
-                            <td id="biaya_pendaftaran_{{ $loop->iteration }}">Rp 150.000</td>
-                            <td id="status_pembayaran_daftar_{{ $loop->iteration }}">{{ $pembayaran->status }}</td>
-                            {{-- <td><img src="{{ asset('storage/' . $pembayaran->bukti_pembayaran) }}" alt="bukti pembayaran" style="width: 30%;"></td> --}}
                             <td>
-                                {{-- <a href="/kelPembayaran/{{ $pembayaran->id }}/edit" class="btn btn-warning">Edit</a> --}}
-                                <a href="/kelPembayaran/{{ $pembayaran->id }}" class="btn btn-info"><i class="bi bi-eye"></i> Detail</a>
-                                {{-- <form action="/kelPembayaran/{{ $pembayaran->id }}" method="POST">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus?')">Hapus</button>
-                                </form> --}}
+                                @if ( $pembayaran->jenis_pembayaran=="pendaftaran")
+                                    <span class="badge badge-pill badge-secondary">{{ $pembayaran->jenis_pembayaran }}</span>
+                                @else
+                                    <span class="badge badge-pill badge-success">{{ $pembayaran->jenis_pembayaran }}</span>
+                                @endif
+                            </td>
+                            <td>Rp {{ number_format($pembayaran->total_harga, 0, ',', '.') }}</td>
+                            <td>
+                                <span class="badge badge-pill badge-primary">{{ $pembayaran->status }}</span>
+                            </td>
+                            <td>
+                                <a href="/kelPembayaran/{{ $pembayaran->id }}" class="btn btn-info"><i class="bi bi-eye"></i></a>
                             </td>
                         </tr>
                     @endforeach
@@ -128,10 +127,10 @@
                 </div>
             </div>
         </div>
+        <p>Total Pemasuakan sesuai tanggal : <strong><span id="totalSum">Rp 0</span></strong></p>
+        <p>Total pemasukan keseluruhan: <strong>{{ $formattedPemasukan }} <a class="btn btn-primary" href="/allLaporanExport"><i class="bi bi-filetype-xlsx"></i> All</a> </strong></p>
 
-        <p>Total pemasukan keseluruhan: <strong>{{ $formattedPemasukan }}</strong></p>
-
-        <script>
+        {{-- <script>
             document.addEventListener("DOMContentLoaded", function() {
                 var rows = document.querySelectorAll("tbody tr");
                 rows.forEach(function(row, index) {
@@ -145,41 +144,73 @@
                     }
                 });
             });
-        </script>
+        </script> --}}
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         {{-- datepicker --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        
     <script>
-        $(document).ready(function(){
-            // Inisialisasi datepicker dengan format yyyy-mm-dd
+        $(document).ready(function() {
             $('.datepicker').datepicker({
                 format: 'yyyy-mm-dd',
                 autoclose: true,
                 orientation: "bottom right"
             });
 
-            // Fungsi untuk menangani klik pada tautan "Export ke Excel"
             $('#exportExcel').on('click', function(event) {
                 event.preventDefault();
 
                 const tanggal1 = $('#datepicker1').val();
                 const tanggal2 = $('#datepicker2').val();
 
-                // Validasi nilai tanggal
                 if (!tanggal1 || !tanggal2) {
                     alert('Silakan pilih kedua tanggal sebelum mengekspor.');
                     return;
                 }
 
-                // Membuat URL dengan parameter query string
                 const url = `/laporanExport/${encodeURIComponent(tanggal1)}.${encodeURIComponent(tanggal2)}`;
-                // console.log(url);
-                // Navigasi ke URL yang dibuat
                 window.location.href = url;
             });
+
+            // Datepickers change event
+            $('#datepicker1, #datepicker2').change(function() {
+                filterData();
+            });
+// ============================================================
+            function filterData() {
+                const date1 = $('#datepicker1').val();
+                const date2 = $('#datepicker2').val();
+
+                console.log('Date 1:', date1);
+                console.log('Date 2:', date2);
+
+                if (date1 && date2) {
+                    $.ajax({
+                        url: '/filterPembayaran',
+                        method: 'GET',
+                        data: {
+                            date1: date1,
+                            date2: date2
+                        },
+                        success: function(response) {
+                            if (response.error) {
+                                alert(response.error);
+                            } else {
+                                $('#totalSum').text(response.totalSum);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('AJAX Error:', status, error);
+                            console.error('Response:', xhr.responseText);
+                            alert('An error occurred: ' + xhr.status + ' ' + error);
+                        }
+                    });
+                }
+            }
+
         });
+
     </script>
-    </div>
 </body>
 </html>
 @endsection

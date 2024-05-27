@@ -31,7 +31,17 @@
                 @if ($user->jenis_berkas =="paspor")
                     <tr>
                         <th>Role level</th>
-                        <td>{{ $user->level->level }}</td>
+                        <td>
+                            @if ($user->level->level=="Member")
+                                <span class="badge rounded-pill text-bg-secondary">{{ $user->level->level }}</span>
+                            @elseif($user->level->level=="DPUK")
+                                <span class="badge rounded-pill text-bg-info">{{ $user->level->level }}</span>
+                            @elseif($user->level->level=="Keuangan")
+                                <span class="badge rounded-pill text-bg-warning">{{ $user->level->level }}</span>
+                            @elseif($user->level->level=="Super Admin")
+                                <span class="badge rounded-pill text-bg-success">{{ $user->level->level }}</span>
+                            @endif
+                        </td>
                     </tr>
                     <tr>
                         <th>Kewarganegaraan</th>
@@ -72,13 +82,37 @@
                     
                     <tr>
                         <th>status</th>
-                        <td>{{ $user->status }}</td>
+                        <td>
+                            @if ($user->status=='Perlu dilengkapi')
+                                <span class="badge rounded-pill text-bg-danger">{{ $user->status }}</span>
+                            @elseif ($user->status=='Sedang diverifikasi')
+                                <span class="badge rounded-pill text-bg-info">{{ $user->status }}</span>
+                            @elseif ($user->status=='Diverifikasi')
+                                <span class="badge rounded-pill text-bg-success">{{ $user->status }}</span>
+                            @elseif ($user->status=='Perlu pembaharuan')
+                                <span class="badge rounded-pill text-bg-warning">{{ $user->status }}</span>
+                            @elseif ($user->status=='Memohon perubahan')
+                                <span class="badge rounded-pill text-bg-secondary">{{ $user->status }}</span>
+                            @elseif ($user->status=='Permohonan perubahan disetujui')
+                                <span class="badge rounded-pill text-bg-primary">{{ $user->status }}</span>
+                            @endif
+                        </td>
                     </tr>
                 @else
                 
                     <tr>
                         <th>Role level</th>
-                        <td>{{ $user->level->level }}</td>
+                        <td>
+                            @if ($user->level->level=="Member")
+                                <span class="badge rounded-pill text-bg-secondary">{{ $user->level->level }}</span>
+                            @elseif($user->level->level=="DPUK")
+                                <span class="badge rounded-pill text-bg-info">{{ $user->level->level }}</span>
+                            @elseif($user->level->level=="Keuangan")
+                                <span class="badge rounded-pill text-bg-warning">{{ $user->level->level }}</span>
+                            @elseif($user->level->level=="Super Admin")
+                                <span class="badge rounded-pill text-bg-success">{{ $user->level->level }}</span>
+                            @endif
+                        </td>
                     </tr>
                     <tr>
                         <th>NIK</th>
@@ -122,7 +156,21 @@
                     </tr>
                     <tr>
                         <th>status</th>
-                        <td>{{ $user->status }}</td>
+                        <td>
+                            @if ($user->status=='Perlu dilengkapi')
+                                <span class="badge rounded-pill text-bg-danger">{{ $user->status }}</span>
+                            @elseif ($user->status=='Sedang diverifikasi')
+                                <span class="badge rounded-pill text-bg-info">{{ $user->status }}</span>
+                            @elseif ($user->status=='Diverifikasi')
+                                <span class="badge rounded-pill text-bg-success">{{ $user->status }}</span>
+                            @elseif ($user->status=='Perlu pembaharuan')
+                                <span class="badge rounded-pill text-bg-warning">{{ $user->status }}</span>
+                            @elseif ($user->status=='Memohon perubahan')
+                                <span class="badge rounded-pill text-bg-secondary">{{ $user->status }}</span>
+                            @elseif ($user->status=='Permohonan perubahan disetujui')
+                                <span class="badge rounded-pill text-bg-primary">{{ $user->status }}</span>
+                            @endif
+                        </td>
                     </tr>
                 @endif
             </table>

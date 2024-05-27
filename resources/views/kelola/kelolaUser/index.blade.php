@@ -66,12 +66,12 @@
                             <i class="bi bi-arrow-down" onclick="sortTable(0, 'desc')" style="font-size: 15px;"></i>
                         </th>
                         <th scope="col" style="word-spacing: 5px;">
-                            Level 
+                            Nama Lengkap
                             <i class="bi bi-arrow-up" onclick="sortTable(1, 'asc')" style="font-size: 15px;"></i>
                             <i class="bi bi-arrow-down" onclick="sortTable(1, 'desc')" style="font-size: 15px;"></i>    
                         </th>
                         <th scope="col" style="word-spacing: 5px;">
-                            Username 
+                            Level 
                             <i class="bi bi-arrow-up" onclick="sortTable(2, 'asc')" style="font-size: 15px;"></i>
                             <i class="bi bi-arrow-down" onclick="sortTable(2, 'desc')" style="font-size: 15px;"></i>    
                         </th>
@@ -80,6 +80,11 @@
                             <i class="bi bi-arrow-up" onclick="sortTable(3, 'asc')" style="font-size: 15px;"></i>
                             <i class="bi bi-arrow-down" onclick="sortTable(3, 'desc')" style="font-size: 15px;"></i>    
                         </th>
+                        <th scope="col" style="word-spacing: 5px;">
+                            Status 
+                            <i class="bi bi-arrow-up" onclick="sortTable(4, 'asc')" style="font-size: 15px;"></i>
+                            <i class="bi bi-arrow-down" onclick="sortTable(4, 'desc')" style="font-size: 15px;"></i>    
+                        </th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -87,16 +92,34 @@
                     @foreach ($datas as $data)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td>{{ $data->level->level }}</td>
                             <td>{{ $data->name }}</td>
-                            <td>{{ $data->email }}</td>
-                            {{-- <td>
-                                @if ($data->id_kelurahan)
-                                    {{ $data->kelurahan->kecamatan->kabupaten->provinsi->name}}
-                                @else
-                                    null
+                            <td>
+                                @if ($data->level->level=="Member")
+                                        <span class="badge rounded-pill text-bg-secondary">{{ $data->level->level }}</span>
+                                    @elseif($data->level->level=="DPUK")
+                                        <span class="badge rounded-pill text-bg-info">{{ $data->level->level }}</span>
+                                    @elseif($data->level->level=="Keuangan")
+                                        <span class="badge rounded-pill text-bg-warning">{{ $data->level->level }}</span>
+                                    @elseif($data->level->level=="Super Admin")
+                                        <span class="badge rounded-pill text-bg-success">{{ $data->level->level }}</span>
                                 @endif
-                            </td> --}}
+                            </td>
+                            <td>{{ $data->email }}</td>
+                            <td>
+                                @if ($data->status=='Perlu dilengkapi')
+                                    <span class="badge rounded-pill text-bg-danger">{{ $data->status }}</span>
+                                @elseif ($data->status=='Sedang diverifikasi')
+                                    <span class="badge rounded-pill text-bg-info">{{ $data->status }}</span>
+                                @elseif ($data->status=='Diverifikasi')
+                                    <span class="badge rounded-pill text-bg-success">{{ $data->status }}</span>
+                                @elseif ($data->status=='Perlu pembaharuan')
+                                    <span class="badge rounded-pill text-bg-warning">{{ $data->status }}</span>
+                                @elseif ($data->status=='Memohon perubahan')
+                                    <span class="badge rounded-pill text-bg-secondary">{{ $data->status }}</span>
+                                @elseif ($data->status=='Permohonan perubahan disetujui')
+                                    <span class="badge rounded-pill text-bg-primary">{{ $data->status }}</span>
+                                @endif
+                            </td>
                             <td>
                                 <div class="action-buttons">
                                     <a href="register/{{ $data->id }}" class="btn btn-info"><i class="bi bi-eye"></i> Detail</a>
