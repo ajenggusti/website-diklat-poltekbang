@@ -113,14 +113,14 @@ class RegisterController extends Controller
             'mimes' => ':attribute harus memiliki format file: :values.',
             'max' => ':attribute tidak boleh lebih dari :max karakter.',
             'string' => ':attribute harus berupa teks.',
-            'email' => ':attribute harus berupa alamat email yang valid.',
+            // 'email' => ':attribute harus berupa alamat email yang valid.',
             'date_format' => ':attribute tidak sesuai format tanggal yang diharapkan (dd-mm-yyyy).',
         ];
 
         $rules = [
             'jenis_berkas' => 'required|in:ktp,paspor',
             'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            // 'email' => 'required|email|max:255',
             'tempat_lahir' => 'required|string|max:255',
             'jenis_kelamin' => 'required|in:p,l',
             'tgl_lahir' => 'required|date_format:d-m-Y',
@@ -133,15 +133,15 @@ class RegisterController extends Controller
             $rules['id_kecamatan'] = 'required';
             $rules['id_kelurahan'] = 'required';
             $request->request->remove('id_nationality');
-            $request->request->remove('tgl_exp_paspor');
+            // $request->request->remove('tgl_exp_paspor');
             $request->request->remove('no_paspor');
             unset($rules['id_nationality']);
-            unset($rules['tgl_exp_paspor']);
+            // unset($rules['tgl_exp_paspor']);
             unset($rules['no_paspor']);
         } else {
             // ini paspor
             $rules['id_nationality'] = 'required';
-            $rules['tgl_exp_paspor'] = 'required';
+            // $rules['tgl_exp_paspor'] = 'required';
             $rules['no_paspor'] = 'required';
             $request->request->remove('nik');
             $request->request->remove('id_provinsi');
@@ -162,7 +162,7 @@ class RegisterController extends Controller
         if ($request->input('jenis_berkas') == 'ktp') {
             $user = User::findOrFail($id);
             $user->name = $request->input('name');
-            $user->email = $request->input('email');
+            // $user->email = $request->input('email');
             $user->tempat_lahir = $request->input('tempat_lahir');
             $user->jenis_kelamin = $request->input('jenis_kelamin');
             $user->jenis_berkas = $request->input('jenis_berkas');
@@ -174,7 +174,7 @@ class RegisterController extends Controller
             $user->id_kelurahan = $request->input('id_kelurahan');
             $user->id_level=$request->id_level;
             $user->id_nationality = null;
-            $user->tgl_exp_paspor = null;
+            // $user->tgl_exp_paspor = null;
             $user->no_paspor = null;
             $user->status = $request->status;
 
@@ -188,12 +188,12 @@ class RegisterController extends Controller
             $user = User::findOrFail($id);
             $user->name = $request->input('name');
             $user->jenis_berkas = $request->input('jenis_berkas');
-            $user->email = $request->input('email');
+            // $user->email = $request->input('email');
             $user->jenis_kelamin = $request->input('jenis_kelamin');
             $user->id_nationality = $request->input('id_nationality');
             $user->no_paspor = $request->input('no_paspor');
             $user->tgl_lahir = Carbon::createFromFormat('d-m-Y', $request->input('tgl_lahir'))->format('Y-m-d');
-            $user->tgl_exp_paspor = Carbon::createFromFormat('d-m-Y', $request->input('tgl_exp_paspor'))->format('Y-m-d');
+            // $user->tgl_exp_paspor = Carbon::createFromFormat('d-m-Y', $request->input('tgl_exp_paspor'))->format('Y-m-d');
             $user->id_level=$request->id_level;
             $user->id_provinsi = null;
             $user->id_kabupaten = null;
@@ -268,6 +268,7 @@ class RegisterController extends Controller
     }
     public function updateProfil(Request $request, $id)
     {
+        // dd($request);
         $messages = [
             'required' => ':attribute tidak boleh kosong.',
             'in' => ':attribute harus salah satu dari :values.',
@@ -275,7 +276,7 @@ class RegisterController extends Controller
             'mimes' => ':attribute harus memiliki format file: :values.',
             'max' => ':attribute tidak boleh lebih dari :max karakter.',
             'string' => ':attribute harus berupa teks.',
-            'email' => ':attribute harus berupa alamat email yang valid.',
+            // 'email' => ':attribute harus berupa alamat email yang valid.',
             'date_format' => ':attribute tidak sesuai format tanggal yang diharapkan (dd-mm-yyyy).',
         ];
 
@@ -283,7 +284,7 @@ class RegisterController extends Controller
             'jenis_berkas' => 'required|in:ktp,paspor',
             'img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
+            // 'email' => 'required|email|max:255',
             'tempat_lahir' => 'required|string|max:255',
             'jenis_kelamin' => 'required|in:p,l',
             'tgl_lahir' => 'required|date_format:d-m-Y',
@@ -296,15 +297,15 @@ class RegisterController extends Controller
             $rules['id_kecamatan'] = 'required';
             $rules['id_kelurahan'] = 'required';
             $request->request->remove('id_nationality');
-            $request->request->remove('tgl_exp_paspor');
+            // $request->request->remove('tgl_exp_paspor');
             $request->request->remove('no_paspor');
             unset($rules['id_nationality']);
-            unset($rules['tgl_exp_paspor']);
+            // unset($rules['tgl_exp_paspor']);
             unset($rules['no_paspor']);
         } else {
             // ini paspor
             $rules['id_nationality'] = 'required';
-            $rules['tgl_exp_paspor'] = 'required';
+            // $rules['tgl_exp_paspor'] = 'required';
             $rules['no_paspor'] = 'required';
             $request->request->remove('nik');
             $request->request->remove('id_provinsi');
@@ -323,7 +324,7 @@ class RegisterController extends Controller
         if ($request->input('jenis_berkas') == 'ktp') {
             $user = User::findOrFail($id);
             $user->name = $request->input('name');
-            $user->email = $request->input('email');
+            // $user->email = $request->input('email');
             $user->tempat_lahir = $request->input('tempat_lahir');
             $user->jenis_kelamin = $request->input('jenis_kelamin');
             $user->jenis_berkas = $request->input('jenis_berkas');
@@ -335,7 +336,7 @@ class RegisterController extends Controller
             $user->id_kelurahan = $request->input('id_kelurahan');
             // Hapus data paspor yang tersimpan di database
             $user->id_nationality = null;
-            $user->tgl_exp_paspor = null;
+            // $user->tgl_exp_paspor = null;
             $user->no_paspor = null;
             $user->status = "Sedang diverifikasi";
             $user->save();
@@ -344,12 +345,12 @@ class RegisterController extends Controller
             $user = User::findOrFail($id);
             $user->name = $request->input('name');
             $user->jenis_berkas = $request->input('jenis_berkas');
-            $user->email = $request->input('email');
+            // $user->email = $request->input('email');
             $user->jenis_kelamin = $request->input('jenis_kelamin');
             $user->id_nationality = $request->input('id_nationality');
             $user->no_paspor = $request->input('no_paspor');
             $user->tgl_lahir = Carbon::createFromFormat('d-m-Y', $request->input('tgl_lahir'))->format('Y-m-d');
-            $user->tgl_exp_paspor = Carbon::createFromFormat('d-m-Y', $request->input('tgl_exp_paspor'))->format('Y-m-d');
+            // $user->tgl_exp_paspor = Carbon::createFromFormat('d-m-Y', $request->input('tgl_exp_paspor'))->format('Y-m-d');
             // Hapus data ktp yang tersimpan di database
             $user->id_provinsi = null;
             $user->id_kabupaten = null;

@@ -36,19 +36,17 @@
                             <span style="color: rgb(16, 126, 190); font-weight: bold; font-size: 16px;">* Status biodatamu : 
                                 <b style="text-transform: uppercase;">
                                     @if ($user->status=='Perlu dilengkapi')
-                                        <span style="color: red;">{{ $user->status }}</span>
+                                        <span class="badge badge-pill badge-danger">{{ $user->status }}</span>
                                     @elseif ($user->status=='Sedang diverifikasi')
-                                        <span style="color: rgb(251, 126, 36);">{{ $user->status }}</span>
+                                        <span class="badge badge-pill badge-info">{{ $user->status }}</span>
                                     @elseif ($user->status=='Diverifikasi')
-                                        <span style="color: rgb(98, 216, 255);">{{ $user->status }}</span>
+                                        <span class="badge badge-pill badge-success">{{ $user->status }}</span>
                                     @elseif ($user->status=='Perlu pembaharuan')
-                                        <span style="color: rgb(201, 201, 0);">{{ $user->status }}</span>
+                                        <span class="badge badge-pill badge-warning">{{ $user->status }}</span>
                                     @elseif ($user->status=='Memohon perubahan')
-                                        <span style="color: rgb(88, 219, 88);">{{ $user->status }}</span>
+                                        <span class="badge badge-pill badge-secondary">{{ $user->status }}</span>
                                     @elseif ($user->status=='Permohonan perubahan disetujui')
-                                        <span style="color: darkgreen;">{{ $user->status }}</span>
-                                    @else
-                                        {{ $user->status }}
+                                        <span class="badge badge-pill badge-primary">{{ $user->status }}</span>
                                     @endif
                                 </b>
                                 *</span>
@@ -88,13 +86,13 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <label for="email" class="form-label is">Email</label>
                                 <input type="text" class="form-control  @error('email') is-invalid @enderror" id="email" name= "email" value="{{ old('email') ?: $user->email}}">
                                 @error('email')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
-                            </div>
+                            </div> --}}
                             
                         </div>
 
@@ -144,13 +142,13 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <label class="control-label" for="tgl_exp_paspor">Tanggal expired paspor</label>
                                 <input class="form-control datepicker @error('tgl_exp_paspor') is-invalid @enderror" value="{{ old('tgl_exp_paspor') ?? ($user->tgl_exp_paspor ? \Carbon\Carbon::parse($user->tgl_exp_paspor)->format('d-m-Y') : '') }}" id="tgl_exp_paspor" name="tgl_exp_paspor" placeholder="dd-mm-yyyy" type="text"{{ $user->status == 'Diverifikasi' ? 'disabled' : '' }}/>
                                 @error('tgl_lahir')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
-                            </div>
+                            </div> --}}
                             
                             <div class="mb-3">
                                 <label for="nationality">Nationality:</label>

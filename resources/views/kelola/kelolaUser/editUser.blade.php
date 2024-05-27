@@ -111,13 +111,13 @@
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
             </div>
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label class="control-label" for="tgl_exp_paspor">Tanggal Expired Paspor</label>
                 <input class="form-control datepicker @error('tgl_exp_paspor') is-invalid @enderror" value="{{ old('tgl_exp_paspor') ?? ($user->tgl_exp_paspor ? \Carbon\Carbon::parse($user->tgl_exp_paspor)->format('d-m-Y') : '') }}" id="tgl_exp_paspor" name="tgl_exp_paspor" placeholder="dd-mm-yyyy" type="text"/>
                 @error('tgl_lahir')
                     <div class="invalid-feedback">{{ $message }}</div>
                 @enderror
-            </div>
+            </div> --}}
             
             <div class="mb-3">
                 <label for="nationality">Nationality</label>
@@ -189,7 +189,7 @@
                 <label for="status" class="form-label">Status</label>
                 <select name="status" id="status" class="form-select @error('status') is-invalid @enderror">
                     <option value="" selected disabled>Pilih status</option>
-                    <option value="Perlu dilengkapi" {{ old('status', $user->status) == 'Perlu dilengkapi' ? 'selected' : '' }}>Perlu dilengkapi</option>
+                    <option  value="Perlu dilengkapi" {{ old('status', $user->status) == 'Perlu dilengkapi' ? 'selected' : '' }}>Perlu dilengkapi</option>
                     <option value="Sedang diverifikasi" {{ old('status', $user->status) == 'Sedang diverifikasi' ? 'selected' : '' }}>Sedang diverifikasi</option>
                     <option value="Diverifikasi" {{ old('status', $user->status) == 'Diverifikasi' ? 'selected' : '' }}>Diverifikasi</option>
                     <option value="Perlu pembaharuan" {{ old('status', $user->status) == 'Perlu pembaharuan' ? 'selected' : '' }}>Perlu pembaharuan</option>

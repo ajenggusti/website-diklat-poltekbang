@@ -40,51 +40,48 @@
                                                 
                                             </div>
                                             <p>Harga Pendaftaran : Rp. 150.000</p>
-                                            <p>Harga Diklat : Rp. {{ number_format($data->diklat->harga, 0, ',', '.') }}</p>
-                                            <!-- Displaying Discount -->
-                                            @if($data->promo)
-                                                <p>Diskon: - Rp. {{ number_format($data->promo->potongan, 0, ',', '.') }}</p>
-                                            @else
-                                                <p>Diskon: - Rp. 0</p> 
-                                            @endif
-                                            <p>Total Biaya : Rp. {{ number_format($data->harga_diklat, 0, ',', '.') }}</p>
-                                    
-                                            {{-- STATUS PEMBAYARAN --}}
-                                            <p>Status Pembayaran Pendaftaran : <br>
-                                            @if ($data->status_pembayaran_daftar=="Lunas")
-                                                <span class="badge badge-pill badge-success">{{ $data->status_pembayaran_daftar }} Via {{ $data->jenis_pembayaran_daftar }}</span>
-                                            @else
-                                                <span class="badge badge-pill badge-danger">{{ $data->status_pembayaran_daftar }}</span>
-                                            @endif
+                                            <p>Status Pembayaran Pendaftaran :
+                                                @if ($data->status_pembayaran_daftar=="Lunas")
+                                                    <span class="badge badge-pill badge-success">{{ $data->status_pembayaran_daftar }} Via {{ $data->jenis_pembayaran_daftar }}</span>
+                                                @else
+                                                    <span class="badge badge-pill badge-danger">{{ $data->status_pembayaran_daftar }}</span>
+                                                @endif
+                                            </p> 
 
-                                            <p>Status Pembayaran Diklat : <br>
-                                            @if ($data->status_pembayaran_diklat=="Lunas")
-                                                <span class="badge badge-pill badge-success">{{ $data->status_pembayaran_diklat }} Via {{ $data->jenis_pembayaran_diklat }}</span>
-                                            @elseif($data->status_pembayaran_diklat=="Menunggu verifikasi")
-                                                <span class="badge badge-pill badge-warning">{{ $data->status_pembayaran_diklat }}</span>
-                                            @else
-                                                <span class="badge badge-pill badge-danger">{{ $data->status_pembayaran_diklat }}</span>
-                                            @endif
-                            
-                                        
-                                            
-                                            @if ($data->status_pembayaran_daftar != "Lunas" || $data->status_pembayaran_diklat != "Lunas")
-                                                <p>Lakukan pembayaran :</p> 
-                                            @endif
+                                            <p>Harga Diklat : Rp. {{ number_format($data->harga_asli_diklat, 0, ',', '.') }}</p>
+                                            <!-- Displaying Discount -->
+                                            {{-- @if($data->promo) --}}
+                                                <p>Diskon promo: - Rp. {{ number_format($data->potongan, 0, ',', '.') }}</p>
+                                                <p>Diskon admin: - Rp. {{ number_format($data->potongan_admin, 0, ',', '.') }}</p>
+                                            {{-- @else
+                                                <p>Diskon: - Rp. 0</p> 
+                                            @endif --}}
+                                            <p>Total Biaya Diklat : Rp. {{ number_format($data->harga_diklat, 0, ',', '.') }}</p>
+                                
+                                             <p>Status Pembayaran Diklat :
+                                                @if ($data->status_pembayaran_diklat=="Lunas")
+                                                    <span class="badge badge-pill badge-success">{{ $data->status_pembayaran_diklat }} Via {{ $data->jenis_pembayaran_diklat }}</span>
+                                                @elseif($data->status_pembayaran_diklat=="Menunggu verifikasi")
+                                                    <span class="badge badge-pill badge-warning">{{ $data->status_pembayaran_diklat }}</span>
+                                                @else
+                                                    <span class="badge badge-pill badge-danger">{{ $data->status_pembayaran_diklat }}</span>
+                                                @endif
+                                            </p> 
+
                                             <div class="col">
                                                 @if ($data->status_pembayaran_daftar != "Lunas")
                                                     <form id="hiddenFormPendaftaran" method="POST" action="{{ route('kelPembayaranPendaftaran.savePendaftaran') }}">
                                                         @csrf
                                                         <input type="hidden" name="id" value="{{ $data->id }}">
                                                     </form>
-                                                    <a href="#" onclick="submitFormPendaftaran()" class="btn btn-secondary">Bayar Daftar</a>
+                                                    <a href="#" onclick="submitFormPendaftaran()" class="btn btn-secondary"><i class="bi bi-currency-dollar"></i>Bayar Daftar</a>
                                                 @endif
                                                 @if ($data->status_pembayaran_diklat != "Lunas")
                                                     <form id="hiddenFormDiklat" method="POST" action="{{ route('kelPembayaranDiklat-form.createDiklat') }}">
                                                         @csrf
                                                         <input type="hidden" name="id" value="{{ $data->id }}">
                                                     </form>
-                                                    <a href="#" onclick="submitFormDiklat()" class="btn btn-secondary">Bayar Diklat</a>
+                                                    <a href="#" onclick="submitFormDiklat()" class="btn btn-secondary"><i class="bi bi-currency-dollar"></i>Bayar Diklat</a>
                                                 @endif
                                             </div>
                                             <br>
@@ -101,19 +98,15 @@
                                                 
                                                 <a href="#" style="background-color: rgb(248, 132, 0); color: #ffffff;" 
                                                    onclick="submitFormTransaksi({{ $data->id }})" 
-                                                   class="btn btn-secondary transaksi-btn">
+                                                   class="btn btn-secondary transaksi-btn"><i class="bi bi-clipboard-data"></i>
                                                     Transaksi Pembayaran
                                                 </a>
 
 
 
                                                 <br><br>
-                                                @if ($data->s_doc)
-                                                    <a href="{{ route('kelTestimoni.create', ['id' => $data->id]) }}"class="btn transaksi-btn" style="background-color: rgb(44, 138, 192); color: #ffffff;">Kirim Testimoni</a>
-                                                @elseif($data->s_gambar)
-                                                    <a href="{{ route('kelTestimoni.create', ['id' => $data->id]) }}"class="btn transaksi-btn" style="background-color: rgb(44, 138, 192); color: #ffffff;">Kirim Testimoni</a>
-                                                @elseif($data->s_link)
-                                                    <a href="{{ route('kelTestimoni.create', ['id' => $data->id]) }}"class="btn transaksi-btn" style="background-color: rgb(44, 138, 192); color: #ffffff;">Kirim Testimoni</a>
+                                                @if ($data->s_doc || $data->s_gambar||$data->s_link)
+                                                    <a href="{{ route('kelTestimoni.create', ['id' => $data->id]) }}"class="btn transaksi-btn" style="background-color: rgb(44, 138, 192); color: #ffffff;"><i class="bi bi-chat-left-quote"></i> Kirim Testimoni</a>
                                                 @endif
                                             </div>
                                         </div>

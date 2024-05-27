@@ -99,20 +99,25 @@
                
                 <div class="btn-regDiklat d-flex justify-content-center">
                     @guest
-                    @if ($dobelDiklat==null)
-                        <div class="d-grid gap-2 col-6 btn-container">
-                            <button class="btn btn-primary" type="button" onclick="window.location.href = '/login';" style="justify-content: center;">Login untuk mendaftar!</button>
-                        </div>
+                        @if ($dobelDiklat==null)
+                            <div class="d-grid gap-2 col-6 btn-container">
+                                <button class="btn btn-primary" type="button" onclick="window.location.href = '/login';" style="justify-content: center;">Login untuk mendaftar!</button>
+                            </div>
                         @endif
                     @endguest
+
                     @auth
-                        @if($dobelDiklat)
+                        @if($detailDiklat->status== "full")
+                            <div class="alert alert-danger" role="alert">
+                                Mohon maaf, diklat ini sudah penuh. <a href="/">Lihat diklat yang lain?</a>
+                            </div>
+                        @elseif($dobelDiklat)
                             <div class="alert alert-warning" role="alert">
-                                Ups, kamu sudah mendaftar diklat ini. <a href="/riwayat">Lihat riwayat...</a>
+                                Ups, kamu sudah mendaftar diklat ini. <a href="/riwayat">Lihat riwayat?</a>
                             </div>
                         @elseif($user->status!= "Diverifikasi")
                             <div class="alert alert-danger" role="alert">
-                                Ups, data pribadimu belum Diverifikasi. <a href="/editProfil">Lengkapi data disini....</a>
+                                Ups, data pribadimu belum Diverifikasi. <a href="/editProfil">Lengkapi data disini?</a>
                             </div>
                         @else
                             <div class="d-grid gap-2 col-6 button-daftar">
