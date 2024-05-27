@@ -98,8 +98,14 @@
                                 <br><br>
                                 
                                 Status Pembayaran Pendaftaran : <br>
-                                <span>{{ $data->status_pembayaran_daftar }}</span>
-                                <br><br>
+                                @if ($data->status_pembayaran_daftar=="Lunas")
+                                    <span class="badge badge-pill badge-success">{{ $data->status_pembayaran_daftar }} Via {{ $data->jenis_pembayaran_daftar }}</span>
+                                    <br><br>
+                                @else
+                                    <span class="badge badge-pill badge-danger">{{ $data->status_pembayaran_daftar }}</span>
+                                    <br><br>
+                                @endif
+                                
                                 
                                 Harga Diklat : <br>
                                 <span>Rp. {{ number_format($data->diklat->harga, 0, ',', '.') }}</span>
@@ -123,8 +129,17 @@
                                 <br><br>
                                 
                                 Status Pembayaran Biaya Diklat : <br>
-                                <span>{{ $data->status_pembayaran_diklat }} </span>
-                                <br><br>
+                                @if ($data->status_pembayaran_diklat=="Lunas")
+                                    <span class="badge badge-pill badge-success">{{ $data->status_pembayaran_diklat }} Via {{ $data->jenis_pembayaran_diklat }}</span>
+                                    <br><br>
+                                @elseif($data->status_pembayaran_diklat=="Menunggu verifikasi")
+                                    <span class="badge badge-pill badge-warning">{{ $data->status_pembayaran_diklat }}</span>
+                                    <br><br>
+                                @else
+                                    <span class="badge badge-pill badge-danger">{{ $data->status_pembayaran_diklat }}</span>
+                                    <br><br>
+                                @endif
+                               
 
                                 Join Grup whatsapp: <br>
                                 <span>

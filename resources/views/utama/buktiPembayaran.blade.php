@@ -66,9 +66,25 @@
                                 @foreach ($pembayarans as $pembayaran)
                                     <tr>
                                         <td>{{ $pembayaran->jenis_pembayaran }}</td>
-                                        <td>{{ $pembayaran->metode_pembayaran }}</td>
+                                        {{-- jenis pembayaran --}}
+                                        @if ($pembayaran->metode_pembayaran=="offline")
+                                            <td><span class="badge badge-pill badge-secondary">{{ $pembayaran->metode_pembayaran }}</span></td>
+                                        @elseif($pembayaran->metode_pembayaran=="online")
+                                            <td><span class="badge badge-pill badge-dark">{{ $pembayaran->metode_pembayaran }}</span></td>
+                                        @else
+                                            <td><span class="badge badge-pill badge-info">{{ $pembayaran->metode_pembayaran }}</span></td>
+                                        @endif
                                         <td>Rp {{ number_format($pembayaran->total_harga, 0, ',', '.') }}</td>
-                                        <td>{{ $pembayaran->status }}</td>
+                                        {{-- status pembayaran --}}
+                                        @if ($pembayaran->status=="Lunas")
+                                            <td><span class="badge badge-pill badge-success">{{ $pembayaran->status }}</span></td>
+                                        @elseif($pembayaran->status=="Menunggu verifikasi")
+                                            <td><span class="badge badge-pill badge-warning">{{ $pembayaran->status }}</span></td>
+                                        @elseif($pembayaran->status=="kadaluarsa")
+                                            <td><span class="badge badge-pill badge-dark">{{ $pembayaran->status }}</span></td>
+                                        @else
+                                            <td><span class="badge badge-pill badge-danger">{{ $pembayaran->status }}</span></td>
+                                        @endif
                                         <td>{{ $pembayaran->created_at->format('d F Y \j\a\m H:i:s') }}</td>
                                         <td>{{ $pembayaran->updated_at->format('d F Y \j\a\m H:i:s') }}</td>
                                     </tr>

@@ -106,11 +106,11 @@
                 <h1 style="text-align: center;">INVOICE PEMBAYARAN PENDAFTARAN</h1>
                 @if ($idPembayaranDaftar != null)
                   {{-- diambil dari tabel pembayaran --}}
-                    Order id : {{ $dataPendaftaran->order_id }}
                     {{-- ========================================================= --}}
                     
                     <div class="info-row">
                         <strong>Waktu daftar</strong><span>: {{ \Carbon\Carbon::parse($dataPendaftaran->pendaftaran->created_at)->format('H:i:s | d-m-Y') }}</span><br>
+                    </div>    
                     <div class="info-row">
                         <strong>Nama Lengkap</strong><span>: {{ $dataPendaftaran->pendaftaran->user->name }}</span><br>
                     </div>
@@ -174,15 +174,16 @@
                         </table>
                     </div>
                     {{-- data pembayarannya --}}
-                    <p>Order id : {{ $dataPendaftaran->order_id }}</p>
+                    <p>Pembayaran id : {{ $dataPendaftaran->order_id }}</p>
                     <p>Metode pembayaran : {{ $dataPendaftaran->metode_pembayaran }}</p>
-                    <p>Waktu pembayaran  : {{ \Carbon\Carbon::parse($dataDiklat->updated_at)->format('H:i:s | d-m-Y') }}</p>
+                    <p>Waktu pembayaran  : {{ \Carbon\Carbon::parse($dataPendaftaran->updated_at)->format('H:i:s | d-m-Y') }}</p>
                     {{-- ========================================================= --}}
                 @else
                 {{-- diambil dari tabel pendaftaran --}}
                     
                     <div class="info-row">
                         <strong>Waktu daftar</strong><span>: {{ \Carbon\Carbon::parse($dataPendaftaran->created_at)->format('H:i:s | d-m-Y') }}</span><br>
+                    </div>
                     <div class="info-row">
                         <strong>Nama Lengkap</strong><span>: {{ $dataPendaftaran->user->name }}</span><br>
                     </div>
@@ -245,9 +246,9 @@
                         </table>
                     </div>
                     {{-- data pembayarannya --}}
-                    <p>Order id : Order id belum tersedia.</p>
-                    <p>Metode pembayaran : Metode pembayaran belum tersedia.</p>
-                    <p>Waktu pembayaran  : waktu pembayaran belum tersedia.</p>
+                    <p>Pembayaran id: Belum tersedia.</p>
+                    <p>Metode pembayaran : Belum tersedia.</p>
+                    <p>Waktu pembayaran  : Belum tersedia.</p>
                 @endif
             </div>
         </div>

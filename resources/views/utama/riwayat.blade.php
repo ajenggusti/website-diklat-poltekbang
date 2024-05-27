@@ -50,44 +50,20 @@
                                             <p>Total Biaya : Rp. {{ number_format($data->harga_diklat, 0, ',', '.') }}</p>
                                     
                                             {{-- STATUS PEMBAYARAN --}}
-                                            @if ($data->status_pembayaran_daftar == "Menunggu pembayaran" || $data->status_pembayaran_daftar == "Belum dibayar")
-                                                <p>Status Pembayaran Pendaftaran : <br>
-                                                    <span class="btn btn-warning disable" style="background-color: rgba(213, 0, 0, 0.897); text-decoration: none;">
-                                                        {{ $data->status_pembayaran_daftar }}
-                                                    </span>
-                                                </p>  
-                                            @elseif ($data->status_pembayaran_daftar == "Menunggu verifikasi")
                                             <p>Status Pembayaran Pendaftaran : <br>
-                                                <span class="btn btn-warning disable" style="background-color: rgb(250, 244, 62); text-decoration: none; ">
-                                                    {{ $data->status_pembayaran_daftar }}
-                                                </span>
-                                            </p>
-                                            @elseif ($data->status_pembayaran_daftar == "Lunas")
-                                                <p>Status Pembayaran Pendaftaran : <br>
-                                                    <span class="btn btn-warning disable" style="background-color: rgb(91, 248, 52); text-decoration: none;">
-                                                        {{ $data->status_pembayaran_daftar }}
-                                                    </span>
-                                                </p>
+                                            @if ($data->status_pembayaran_daftar=="Lunas")
+                                                <span class="badge badge-pill badge-success">{{ $data->status_pembayaran_daftar }} Via {{ $data->jenis_pembayaran_daftar }}</span>
+                                            @else
+                                                <span class="badge badge-pill badge-danger">{{ $data->status_pembayaran_daftar }}</span>
                                             @endif
-                                        
-                                            @if ($data->status_pembayaran_diklat == "Menunggu pembayaran" || $data->status_pembayaran_diklat == "Belum dibayar" )
+
                                             <p>Status Pembayaran Diklat : <br>
-                                                <span class="btn btn-warning disable" style="background-color: rgba(213, 0, 0, 0.897); text-decoration: none;">
-                                                    {{ $data->status_pembayaran_diklat }}
-                                                </span>
-                                            </p> 
-                                            @elseif ($data->status_pembayaran_diklat == "Menunggu verifikasi")
-                                            <p>Status Pembayaran Diklat : <br>
-                                                <span class="btn btn-warning disable" style="background-color: rgb(250, 244, 62); text-decoration: none; ">
-                                                    {{ $data->status_pembayaran_diklat }}
-                                                </span>
-                                            </p>
-                                            @elseif ($data->status_pembayaran_diklat == "Lunas")
-                                           Status Pembayaran Diklat : <br>
-                                                <span class="btn btn-warning disable" style="background-color: rgb(91, 248, 52); text-decoration: none;">
-                                                    {{ $data->status_pembayaran_diklat }}
-                                                </span>
-                        
+                                            @if ($data->status_pembayaran_diklat=="Lunas")
+                                                <span class="badge badge-pill badge-success">{{ $data->status_pembayaran_diklat }} Via {{ $data->jenis_pembayaran_diklat }}</span>
+                                            @elseif($data->status_pembayaran_diklat=="Menunggu verifikasi")
+                                                <span class="badge badge-pill badge-warning">{{ $data->status_pembayaran_diklat }}</span>
+                                            @else
+                                                <span class="badge badge-pill badge-danger">{{ $data->status_pembayaran_diklat }}</span>
                                             @endif
                             
                                         

@@ -110,6 +110,7 @@
                     
                     <div class="info-row">
                         <strong>Waktu daftar</strong><span>: {{ \Carbon\Carbon::parse($dataDiklat->pendaftaran->created_at)->format('H:i:s | d-m-Y') }}</span><br>
+                    </div>
                     <div class="info-row">
                         <strong>Nama Lengkap</strong><span>: {{ $dataDiklat->pendaftaran->user->name }}</span><br>
                     </div>
@@ -173,7 +174,6 @@
                                         @else
                                             <td>Tidak ada promo yang diambil</td>
                                         @endif
-                                        <td>{{ $dataDiklat->pendaftaran->promo->kode }}</td>
                                         <td>{{ '-Rp ' . number_format($dataDiklat->pendaftaran->potongan, 0, ',', '.') }}</td>
                                         <td>{{ '-Rp ' . number_format($dataDiklat->pendaftaran->potongan_admin, 0, ',', '.') }}</td>
                                         <td>{{ 'Rp ' . number_format($dataDiklat->pendaftaran->harga_diklat, 0, ',', '.') }}</td>
@@ -184,7 +184,7 @@
                         </table>
                     </div>
                     {{-- data pembayarannya --}}
-                    <p>Order id : {{ $dataDiklat->order_id }}</p>
+                    <p>Pembayaran id : {{ $dataDiklat->order_id }}</p>
                     <p>Metode pembayaran : {{ $dataDiklat->metode_pembayaran }}</p>
                     <p>Waktu pembayaran  : {{ \Carbon\Carbon::parse($dataDiklat->updated_at)->format('H:i:s | d-m-Y') }}</p>
                     {{-- ========================================================= --}}
@@ -193,6 +193,7 @@
                     
                     <div class="info-row">
                         <strong>Waktu daftar</strong><span>: {{ \Carbon\Carbon::parse($dataDiklat->created_at)->format('H:i:s | d-m-Y') }}</span><br>
+                    </div>
                     <div class="info-row">
                         <strong>Nama Lengkap</strong><span>: {{ $dataDiklat->user->name }}</span><br>
                     </div>
@@ -265,9 +266,9 @@
                         </table>
                     </div>
                     {{-- data pembayarannya --}}
-                    <p>Order id : Order id belum tersedia.</p>
-                    <p>Metode pembayaran : Metode pembayaran belum tersedia.</p>
-                    <p>Waktu pembayaran  : waktu pembayaran belum tersedia.</p>
+                    <p>Pembayaran id : Belum tersedia.</p>
+                    <p>Metode pembayaran : Belum tersedia.</p>
+                    <p>Waktu pembayaran  : Belum tersedia.</p>
                 @endif
             </div>
         </div>
