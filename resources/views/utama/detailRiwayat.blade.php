@@ -26,29 +26,12 @@
                             <h2>Detail Pendaftaran</h2>
                             <hr>
                             <div class="detail-left">
-                                Nama diklat : <br>
-                                <span>{{ $data->diklat->nama_diklat }}</span>
+                                Nama Lengkap : <br>
+                                <span>{{ $data->user->name }}</span>
                                 <br><br>
 
-                                Nama Lengkap : <br>
-                                <span>{{ $data->nama_lengkap }}</span>
-                                <br><br>
-                                
-                                {{-- Tempat Lahir : <br>
-                                <span>{{ $data->tempat_lahir }}</span>
-                                <br><br> --}}
-                                
-                                {{-- jangan lupa kasih format --}}
-                                Tanggal Lahir : <br>
-                                <span>{{ \Carbon\Carbon::parse($data->tanggal_lahir)->format('d-m-Y') }}</span>
-                                <br><br>
-                                
-                                Alamat : <br>
-                                <span>{{ $data->alamat }}</span>
-                                <br><br>
-                                
                                 Email : <br>
-                                <span>{{ $data->email }}</span>
+                                <span>{{ $data->user->email }}</span>
                                 <br><br>
                                 
                                 No HP : <br>
@@ -62,10 +45,44 @@
                                 Waktu Pendaftaran : <br>
                                 <span>{{ \Carbon\Carbon::parse($data->waktu_pendaftaran)->format('H:i:s | d-m-Y') }} </span>
                                 <br> <br>
+
+                                Jenis kelengkapan berkas : <br>
+                                <span>{{ $data->user->jenis_berkas }}</span>
+                                <br><br>
+                                Jenis kelamin : <br>
+                                @if ($data->user->jenis_kelamin =="l")
+                                    <span>Laki laki</span>
+                                    <br><br>
+                                @else
+                                    <span>Perempuan</span>
+                                    <br><br>
+                                @endif
+                                
+
+
+
+                                {{-- data sesuai berkas user ktp ataw paspor ---------------------------------------}}
+                                @if ($data->user->jenis_berkas="ktp")
+                                    Tempat Tanggal Lahir : <br>
+                                    <span>{{ $data->user->tempat_lahir }} | {{ \Carbon\Carbon::parse($data->tanggal_lahir)->format('d-m-Y') }}</span>
+                                    <br><br>
+                                    Alamat : <br>
+                                    <span>Kelurahan {{ $data->user->kelurahan->name }}, Kecamatan {{ $data->user->kecamatan->name }}, Kabupaten{{ $data->user->kabupaten->name }}, Provinsi {{ $data->user->provinsi->name }}</span>
+                                    <br><br>
+                                
+                                @else
+                                    
+                                @endif
+                                
+                                
+                               
+                                <br> <br>
                             </div>
                             
                             <div class="detail-right">
-                                
+                                Nama diklat : <br>
+                                <span>{{ $data->diklat->nama_diklat }}</span>
+                                <br><br>
 
                                 @if($data->promo)
                                     Kode Promo : <br>
@@ -90,12 +107,16 @@
                                 
                                 <!-- Displaying Discount -->
                                 @if($data->promo)
-                                        Diskon: <br>
-                                            <span> - Rp. {{ number_format($data->promo->potongan, 0, ',', '.') }} </span>
-                                    @else
-                                        Diskon: <br>
-                                        <span> - Rp. 0</span> 
-                                    @endif
+                                    Diskon promo: <br>
+                                        <span> - Rp. {{ number_format($data->promo->potongan, 0, ',', '.') }} </span>
+                                        <br><br>
+                                @else
+                                    Diskon promo: <br>
+                                    <span> - Rp. 0</span> 
+                                    <br><br>
+                                @endif
+                                Diskon Admin: <br>
+                                <span> - Rp. {{ number_format($data->potongan_admin, 0, ',', '.') }} </span>
                                 <br><br>
                                 Total Biaya : <br>
                                 <span>Rp. {{ number_format($data->harga_diklat, 0, ',', '.') }}</span>

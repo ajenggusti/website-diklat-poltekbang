@@ -91,22 +91,22 @@ class PendaftaranController extends Controller
                 ]);
             }
         }
-        $tanggal_lahir_input = $request->input('tgl_awal');
-        $tanggal_lahir_carbon = Carbon::createFromFormat('d-m-Y', $tanggal_lahir_input);
-        $tanggal_lahir_formatted = $tanggal_lahir_carbon->format('Y-m-d');
+        // $tanggal_lahir_input = $request->input('tgl_awal');
+        // $tanggal_lahir_carbon = Carbon::createFromFormat('d-m-Y', $tanggal_lahir_input);
+        // $tanggal_lahir_formatted = $tanggal_lahir_carbon->format('Y-m-d');
 
         $pendaftaran = new Pendaftaran();
         $pendaftaran->id_diklat = $request->input('diklat');
         $pendaftaran->id_user = Auth::id();
         $pendaftaran->id_promo = $idPromo;
-        $pendaftaran->potongan = $promo->potongan;
+        $pendaftaran->potongan = $promo->potongan ?? null;
         $pendaftaran->harga_asli_diklat = $diklat->harga;
         $pendaftaran->harga_diklat = $harga;
-        $pendaftaran->email  = $request->input('email');
-        $pendaftaran->nama_lengkap  = $request->input('nama_lengkap');
-        $pendaftaran->tempat_lahir  = $request->input('tempat_lahir');
-        $pendaftaran->tanggal_lahir = $tanggal_lahir_formatted;
-        $pendaftaran->alamat  = $request->input('alamat');
+        // $pendaftaran->email  = $request->input('email');
+        // $pendaftaran->nama_lengkap  = $request->input('nama_lengkap');
+        // $pendaftaran->tempat_lahir  = $request->input('tempat_lahir');
+        // $pendaftaran->tanggal_lahir = $tanggal_lahir_formatted;
+        // $pendaftaran->alamat  = $request->input('alamat');
         $pendaftaran->pendidikan_terakhir  = $request->input('pendidikan_terakhir');
         $pendaftaran->no_hp  = $request->input('no_hp');
         $pendaftaran->status_pelaksanaan = "Belum terlaksana";
@@ -154,32 +154,32 @@ class PendaftaranController extends Controller
         // dd($kelPendaftaran -> email);
         // dd ($request);
         $request->validate([
-            'nama_lengkap' => 'required|string|max:255',
-            'tempat_lahir' => 'required|string|max:255',
-            'tgl_awal' => 'required|date_format:d-m-Y',
-            'alamat' => 'required|string|max:255',
+            // 'nama_lengkap' => 'required|string|max:255',
+            // 'tempat_lahir' => 'required|string|max:255',
+            // 'tgl_awal' => 'required|date_format:d-m-Y',
+            // 'alamat' => 'required|string|max:255',
             'pendidikan_terakhir' => 'required|string|max:255|in:SD,SMP,SMA/SMK,Diploma,Sarjana,Magister,Doktor',
             'no_hp' => 'required|string|max:20',
         ], [
-            'nama_lengkap.required' => 'Kolom nama depan wajib diisi.',
-            'tempat_lahir.required' => 'Kolom tempat lahir wajib diisi.',
-            'tgl_awal.required' => 'Kolom tanggal lahir wajib diisi.',
-            'tgl_awal.date_format' => 'Format tanggal lahir harus dd-mm-yyyy.',
-            'alamat.required' => 'Kolom alamat wajib diisi.',
+            // 'nama_lengkap.required' => 'Kolom nama depan wajib diisi.',
+            // 'tempat_lahir.required' => 'Kolom tempat lahir wajib diisi.',
+            // 'tgl_awal.required' => 'Kolom tanggal lahir wajib diisi.',
+            // 'tgl_awal.date_format' => 'Format tanggal lahir harus dd-mm-yyyy.',
+            // 'alamat.required' => 'Kolom alamat wajib diisi.',
             'pendidikan_terakhir.required' => 'Kamu belum memilih pendidikan terakhir.',
             'pendidikan_terakhir.in' => 'Pilih salah satu opsi dari daftar pendidikan terakhir yang tersedia.',
             'no_hp.required' => 'Kolom nomor HP wajib diisi.',
         ]);
 
-        $tanggal_lahir_input = $request->input('tgl_awal');
-        $tanggal_lahir_carbon = Carbon::createFromFormat('d-m-Y', $tanggal_lahir_input);
-        $tanggal_lahir_formatted = $tanggal_lahir_carbon->format('Y-m-d');
+        // $tanggal_lahir_input = $request->input('tgl_awal');
+        // $tanggal_lahir_carbon = Carbon::createFromFormat('d-m-Y', $tanggal_lahir_input);
+        // $tanggal_lahir_formatted = $tanggal_lahir_carbon->format('Y-m-d');
 
-        $kelPendaftaran->email = $request->input('email');
-        $kelPendaftaran->nama_lengkap = $request->input('nama_lengkap');
-        $kelPendaftaran->tempat_lahir = $request->input('tempat_lahir');
-        $kelPendaftaran->tanggal_lahir = $tanggal_lahir_formatted;
-        $kelPendaftaran->alamat = $request->input('alamat');
+        // $kelPendaftaran->email = $request->input('email');
+        // $kelPendaftaran->nama_lengkap = $request->input('nama_lengkap');
+        // $kelPendaftaran->tempat_lahir = $request->input('tempat_lahir');
+        // $kelPendaftaran->tanggal_lahir = $tanggal_lahir_formatted;
+        // $kelPendaftaran->alamat = $request->input('alamat');
         $kelPendaftaran->pendidikan_terakhir = $request->input('pendidikan_terakhir');
         $kelPendaftaran->no_hp = $request->input('no_hp');
         $kelPendaftaran->update($request->all());

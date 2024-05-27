@@ -176,7 +176,7 @@
                     {{-- data pembayarannya --}}
                     <p>Order id : {{ $dataPendaftaran->order_id }}</p>
                     <p>Metode pembayaran : {{ $dataPendaftaran->metode_pembayaran }}</p>
-                    <p>Waktu pembayaran  : {{ $dataPendaftaran->updated_at }}</p>
+                    <p>Waktu pembayaran  : {{ \Carbon\Carbon::parse($dataDiklat->updated_at)->format('H:i:s | d-m-Y') }}</p>
                     {{-- ========================================================= --}}
                 @else
                 {{-- diambil dari tabel pendaftaran --}}

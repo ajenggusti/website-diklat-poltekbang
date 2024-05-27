@@ -24,12 +24,12 @@ return new class extends Migration
             $table->bigInteger('potongan')->nullable(); 
             $table->bigInteger('potongan_admin')->nullable(); 
             $table->string('status_pembayaran_diklat')->default('Menunggu pembayaran')->nullable(); //nnti isi dropdon
-            $table->string('nama_lengkap')->nullable();
-            $table->string('tempat_lahir')->nullable();
-            $table->date('tanggal_lahir')->nullable();
-            $table->string('alamat')->nullable();
+            // $table->string('nama_lengkap')->nullable();
+            // $table->string('tempat_lahir')->nullable();
+            // $table->date('tanggal_lahir')->nullable();
+            // $table->string('alamat')->nullable();
+            // $table->string('email')->nullable();
             $table->string('pendidikan_terakhir')->nullable();
-            $table->string('email')->nullable();
             $table->string('no_hp')->nullable();
             $table->string('jenis_pembayaran_diklat')->nullable(); //bayar pake qris/shopepay dll
             $table->string('updated_at_pembayaran_diklat')->nullable(); 

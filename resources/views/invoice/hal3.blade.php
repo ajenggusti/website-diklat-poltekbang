@@ -168,6 +168,11 @@
                                     <tr>
                                         <td>{{ $dataDiklat->pendaftaran->diklat->nama_diklat }}</td>
                                         <td>{{ 'Rp ' . number_format($dataDiklat->pendaftaran->harga_asli_diklat, 0, ',', '.') }}</td>
+                                        @if($dataDiklat->pendaftaran->id_promo)
+                                            <td>{{ $dataDiklat->pendaftaran->promo->kode }}</td>
+                                        @else
+                                            <td>Tidak ada promo yang diambil</td>
+                                        @endif
                                         <td>{{ $dataDiklat->pendaftaran->promo->kode }}</td>
                                         <td>{{ '-Rp ' . number_format($dataDiklat->pendaftaran->potongan, 0, ',', '.') }}</td>
                                         <td>{{ '-Rp ' . number_format($dataDiklat->pendaftaran->potongan_admin, 0, ',', '.') }}</td>
@@ -245,7 +250,11 @@
                                     <tr>
                                         <td>{{ $dataDiklat->diklat->nama_diklat }}</td>
                                         <td>{{ 'Rp ' . number_format($dataDiklat->harga_asli_diklat, 0, ',', '.') }}</td>
-                                        <td>{{ $dataDiklat->promo->kode }}</td>
+                                        @if($dataDiklat->id_promo)
+                                            <td>{{ $dataDiklat->promo->kode }}</td>
+                                        @else
+                                            <td>Tidak ada promo yang diambil</td>
+                                        @endif
                                         <td>{{ '-Rp ' . number_format($dataDiklat->potongan, 0, ',', '.') }}</td>
                                         <td>{{ '-Rp ' . number_format($dataDiklat->potongan_admin, 0, ',', '.') }}</td>
                                         <td>{{ 'Rp ' . number_format($dataDiklat->harga_diklat, 0, ',', '.') }}</td>
