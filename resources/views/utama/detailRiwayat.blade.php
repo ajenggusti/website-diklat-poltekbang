@@ -62,7 +62,7 @@
 
 
                                 {{-- data sesuai berkas user ktp ataw paspor ---------------------------------------}}
-                                @if ($data->user->jenis_berkas="ktp")
+                                @if ($data->user->jenis_berkas=="ktp")
                                     Tempat Tanggal Lahir : <br>
                                     <span>{{ $data->user->tempat_lahir }} | {{ \Carbon\Carbon::parse($data->tanggal_lahir)->format('d-m-Y') }}</span>
                                     <br><br>
@@ -71,7 +71,15 @@
                                     <br><br>
                                 
                                 @else
-                                    
+                                    Nomor paspor : <br>
+                                    <span>{{ $data->user->no_paspor }}</span>
+                                    <br><br>
+                                    Nationality : <br>
+                                    <span> {{ $data->user->Nationality->name }}</span>
+                                    <br><br>
+                                    Tanggal lahir : <br>
+                                    <span> {{ \Carbon\Carbon::parse($data->user->tanggal_lahir)->format('d-m-Y') }}</span>
+                                    <br><br>
                                 @endif
                                 
                                 
