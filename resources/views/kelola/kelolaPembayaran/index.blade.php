@@ -127,9 +127,12 @@
                 </div>
             </div>
         </div>
+        @php
+            $totalHarga = $pembayarans->sum('total_harga');
+        @endphp
         <p>Total Pemasuakan sesuai tanggal : <strong><span id="totalSum">Rp 0</span></strong></p>
-        <p>Total pemasukan keseluruhan: <strong>{{ $formattedPemasukan }} <a class="btn btn-primary" href="/allLaporanExport"><i class="bi bi-filetype-xlsx"></i> All</a> </strong></p>
-
+        <p>Total pemasukan keseluruhan: <strong>Rp {{ number_format($totalHarga, 0, ',', '.') }}<a class="btn btn-primary" href="/allLaporanExport"><i class="bi bi-filetype-xlsx"></i> All</a> </strong></p>
+        
         {{-- <script>
             document.addEventListener("DOMContentLoaded", function() {
                 var rows = document.querySelectorAll("tbody tr");

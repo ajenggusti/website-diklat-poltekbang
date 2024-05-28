@@ -67,6 +67,10 @@
                         <i class="bi bi-arrow-down" onclick="sortTable(1, 'desc')"></i>
                     </th>
                     <th scope="col">Gambar</th>
+                    <th scope="col">Gambar default?
+                        <i class="bi bi-arrow-up" onclick="sortTable(2, 'asc')"></i>
+                        <i class="bi bi-arrow-down" onclick="sortTable(2, 'desc')"></i>
+                    </th>
                     <th scope="col">Action</th>
                 </tr>
                 </thead>
@@ -94,6 +98,13 @@
                                     @if (!$foundDefault)
                                         <img src="{{ asset('img/123.png') }}" alt="Default Image" style="width: 300px;">
                                     @endif
+                                @endif
+                            </td>
+                            <td>
+                                @if ($data->default=="ya")
+                                    <span class="badge rounded-pill text-bg-primary">ya</span>
+                                @else
+                                    <span class="badge rounded-pill text-bg-danger">tidak</span>
                                 @endif
                             </td>
                             <td>

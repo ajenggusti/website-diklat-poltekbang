@@ -55,7 +55,13 @@
                 </tr>
                 <tr>
                     <th>Status Tampil </th>
-                    <td>{{ $kelPromo->tampil }}</td>
+                    <td>
+                        @if ($kelPromo->tampil=="ya")
+                            <span class="badge rounded-pill text-bg-primary">{{ $kelPromo->tampil }}</span>
+                        @else
+                            <span class="badge rounded-pill text-bg-danger">{{ $kelPromo->tampil }}</span>
+                        @endif
+                    </td>
                 </tr>
                 <tr>
                     <th>Deskripsi</th>
@@ -72,7 +78,13 @@
                 @if ($kelPromo->pakai_kuota != null)  
                     <tr>
                         <th>Pakai Kuota </th>
-                        <td>{{ $kelPromo->pakai_kuota }}</td>
+                        <td>
+                            @if ($kelPromo->pakai_kuota=="iya")
+                                <span class="badge rounded-pill text-bg-primary">{{ $kelPromo->pakai_kuota }}</span>
+                            @else
+                                <span class="badge rounded-pill text-bg-danger">{{ $kelPromo->pakai_kuota }}</span>
+                            @endif
+                        </td>
                     </tr>
                     <tr>
                         <th>Kuota </th>

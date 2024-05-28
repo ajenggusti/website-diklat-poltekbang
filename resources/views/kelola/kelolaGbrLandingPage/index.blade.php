@@ -76,7 +76,14 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td><img src="{{ asset('storage/' . $data->gambar_navbar) }}" alt="" style="width: 300px;;"></td>
-                            <td>{{ $data->status }}</td>
+                            <td>
+                                @if ($data->status=="tampilkan")
+                                    <span class="badge rounded-pill text-bg-primary">{{ $data->status }}</span>
+                                @else
+                                    <span class="badge rounded-pill text-bg-danger">{{ $data->status }}</span>
+                                @endif
+                            </td>
+
                             <td>
                                 <div class="action-buttons">
                                     <a href="/gbrLandingPage/{{ $data->id }}/edit" class="btn btn-success"><i class="bi bi-pencil-square"></i> Edit</a>

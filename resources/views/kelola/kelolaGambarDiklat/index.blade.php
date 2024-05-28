@@ -75,8 +75,13 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td><img src="{{ asset('storage/' . $data->gambar_navbar) }}" alt="" style="width: 300px;"></td>
-                            <td>{{ $data->diklat->nama_diklat ?? "Semua diklat" }}</td>
-
+                            <td>
+                                @if ($data->id_diklat==null)
+                                    <span class="badge rounded-pill text-bg-danger">Semua diklat</span>
+                                @else
+                                    <span class="badge rounded-pill text-bg-primary">{{ $data->diklat->nama_diklat }}</span>
+                                @endif
+                            </td>
                             <td>
                                 <div class="action-buttons">
                                     <a href="/kelGambarDiklat/{{ $data->id }}/edit" class="btn btn-success"><i class="bi bi-pencil-square"></i> Edit</a>

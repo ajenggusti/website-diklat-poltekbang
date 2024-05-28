@@ -28,7 +28,7 @@ class PembayaranController extends Controller
         // dd($pembayarans);
         return view('kelola.kelolaPembayaran.index', [
             'pembayarans' => $pembayarans,
-            'formattedPemasukan'=>$formattedPemasukan
+            'pemasukanKeseluruhan'=>$pemasukanKeseluruhan
         ]);
     }
     

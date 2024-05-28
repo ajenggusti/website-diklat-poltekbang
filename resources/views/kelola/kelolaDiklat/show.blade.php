@@ -73,7 +73,13 @@
                 </tr>
                 <tr>
                     <th>Status</th>
-                    <td>{{ $diklatData->status }}</td>
+                    <td>
+                        @if ($diklatData->status=="full")
+                            <span class="badge rounded-pill text-bg-primary">{{ $diklatData->status }}</span>
+                        @else
+                            <span class="badge rounded-pill text-bg-danger">{{ $diklatData->status }}</span>
+                        @endif
+                    </td>
                 </tr>
                 <tr>
                     <th>Deskripsi</th>
