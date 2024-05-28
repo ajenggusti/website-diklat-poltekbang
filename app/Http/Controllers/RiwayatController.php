@@ -18,12 +18,13 @@ class RiwayatController extends Controller
 {
     public function index()
     {
-        $userId = Auth::id();
-        $datas = Pendaftaran::where('id_user', $userId)->get();
-        $dataDiklat = Pendaftaran::getDiklat();
+        $userId = Auth::user();
+        // dd($userId->id);
+        $datas = Pendaftaran::where('id_user', $userId->id)->get();
+        // dd($datas);
         return view('utama.riwayat', [
             'datas' => $datas,
-            'dataDiklat' => $dataDiklat,
+ 
         ]);
     }
     public function invoiceDetail($id)
@@ -74,8 +75,8 @@ class RiwayatController extends Controller
         foreach ($tabelPembayaran as $tb) {
             if ($tb->status == "Lunas" && $tb->jenis_pembayaran == "pendaftaran") {
                 $idPembayaranDaftar = $tb->id;
-                break; 
-            }elseif ( $tb->jenis_pembayaran == "pendaftaran") {
+                break;
+            } elseif ($tb->jenis_pembayaran == "pendaftaran") {
                 if ($latestUpdatedAtDaftar === null || $tb->updated_at > $latestUpdatedAtDaftar) {
                     $latestUpdatedAtDaftar = $tb->updated_at;
                     $idPembayaranDaftar = $tb->id;
@@ -83,13 +84,13 @@ class RiwayatController extends Controller
             }
         }
         // dd($idPembayaranDaftar);
-        $idPembayaranDiklat=null;
+        $idPembayaranDiklat = null;
         $latestUpdatedAtDiklat = null;
         foreach ($tabelPembayaran as $tb) {
             if ($tb->status == "Lunas" && $tb->jenis_pembayaran == "diklat") {
                 $idPembayaranDiklat = $tb->id;
-                break; 
-            }elseif ( $tb->jenis_pembayaran == "diklat") {
+                break;
+            } elseif ($tb->jenis_pembayaran == "diklat") {
                 if ($latestUpdatedAtDiklat === null || $tb->updated_at > $latestUpdatedAtDiklat) {
                     $latestUpdatedAtDiklat = $tb->updated_at;
                     $idPembayaranDiklat = $tb->id;
@@ -99,12 +100,12 @@ class RiwayatController extends Controller
         // dd($idPembayaranDiklat);
         if ($idPembayaranDiklat != null) {
             $dataDiklat = Pembayaran::findOrFail($idPembayaranDiklat);
-        } else{
+        } else {
             $dataDiklat = Pendaftaran::findOrFail($id);
         }
         if ($idPembayaranDaftar != null) {
             $dataPendaftaran = Pembayaran::findOrFail($idPembayaranDaftar);
-        } else{
+        } else {
             $dataPendaftaran = Pendaftaran::findOrFail($id);
         }
         // dd($dataDiklat);
@@ -115,23 +116,23 @@ class RiwayatController extends Controller
         if ($user->id != $data->id_user) {
             abort(403, 'Unauthorized action.');
         }
-        if(!$data) {
+        if (!$data) {
             abort(404);
         }
         // dd($data);
 
         // $halaman1 = view('invoice.hal1', ['data' => $data])->render();
         $halaman2 = view('invoice.hal2', [
-            'dataPendaftaran'=>$dataPendaftaran,
-            'idPembayaranDaftar'=>$idPembayaranDaftar
-            
-            ])->render();
+            'dataPendaftaran' => $dataPendaftaran,
+            'idPembayaranDaftar' => $idPembayaranDaftar
+
+        ])->render();
         $halaman3 = view('invoice.hal3', [
             'dataDiklat' => $dataDiklat,
-            'idPembayaranDiklat'=>$idPembayaranDiklat
-            ])->render();
+            'idPembayaranDiklat' => $idPembayaranDiklat
+        ])->render();
 
-        $pdf = PDF::loadHTML( $halaman2 . $halaman3);
+        $pdf = PDF::loadHTML($halaman2 . $halaman3);
         // $pdf = PDF::loadHTML( $halaman2);
 
         // Mengirim PDF ke browser
@@ -139,14 +140,14 @@ class RiwayatController extends Controller
     }
 
 
-   
+
 
     public function buktiPembayaran(Request $request)
     {
         // dd($request);
         $id = $request->id;
-        $pembayarans = Pembayaran::where('id_pendaftaran', $id)->get(); 
+        $pembayarans = Pembayaran::where('id_pendaftaran', $id)->get();
         // dd($pembayarans);
-        return view('utama.buktiPembayaran', ['pembayarans' => $pembayarans]); 
+        return view('utama.buktiPembayaran', ['pembayarans' => $pembayarans]);
     }
 }
