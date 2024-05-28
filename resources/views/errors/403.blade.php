@@ -12,7 +12,7 @@
             <img style="height: 300px; width: auto;" src="{{ asset('img/403error.png') }}">
 
         </div>
-        <a href="{{ url('/riwayat') }}">Kembali</a>
+        <a href="{{ url('/') }}">Kembali</a>
     </div>
 </body>
 </html>

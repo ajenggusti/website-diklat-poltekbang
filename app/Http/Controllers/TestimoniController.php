@@ -6,6 +6,7 @@ use App\Models\Diklat;
 use App\Models\Testimoni;
 use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class TestimoniController extends Controller
@@ -26,11 +27,28 @@ class TestimoniController extends Controller
     public function create(Request $request)
     {
         $id = $request->query('id');
-        // dd($id);
-        $pendaftaran=Pendaftaran::find($id);
+        $testimoni = Testimoni::where('id_pendaftaran', $id)->first();
+        $user = Auth::user();
+    
+        // Mencari data pendaftaran berdasarkan ID
+        $pendaftaran = Pendaftaran::find($id);
+    
+        // Jika data pendaftaran tidak ditemukan, kembalikan halaman 404
+        if (!$pendaftaran) {
+            abort(404, 'Data pendaftaran tidak ditemukan.');
+        }
+    
+        // Jika pengguna yang sedang login bukan pengguna yang terkait dengan pendaftaran, kembalikan halaman 403
+        if ($user->id != $pendaftaran->user->id || $pendaftaran->status_pelaksanaan=="Belum terlaksana") {
+            abort(403, 'Unauthorized action.');
+        }
+
         return view('kelola.kelolaTestimoni.form',[
-            'pendaftaran'=>$pendaftaran
+            'pendaftaran'=>$pendaftaran,
+            'testimoni'=>$testimoni
         ]);
+        
+
     }
 
     /**
@@ -40,14 +58,13 @@ class TestimoniController extends Controller
     public function store(Request $request)
     {
         // dd($request);
-        // Pesan error validasi dalam Bahasa Indonesia
+
         $messages = [
             'required' => 'Kolom :attribute harus diisi.',
             'string' => 'Kolom :attribute harus berupa teks.',
         
         ];
-    
-        // Validasi input
+
         $validator = Validator::make($request->all(), [
             'profesi' => 'required|string|max:255',
             'testimoni' => 'required|string',
@@ -56,14 +73,22 @@ class TestimoniController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
-        Testimoni::create([
-            'profesi' => $request->profesi,
-            'testimoni' => $request->testimoni,
-            'id_pendaftaran' => $request->id_pendaftaran,
-            
-        ]);
-    
-        // Redirect pengguna ke halaman yang sesuai atau berikan respons sukses
+        $testimoni = Testimoni::where('id_pendaftaran', $request->id_pendaftaran)->first();
+        // dd($testimoni);
+        if ($testimoni === null) {
+            // Jika tidak ada entri yang ditemukan, buat instance baru
+            $testimoni = new Testimoni();
+            $testimoni->id_pendaftaran = $request->id_pendaftaran;
+        }
+        // Mengisi atribut dari request
+        $testimoni->profesi = $request->profesi;
+        $testimoni->testimoni = $request->testimoni;
+        $testimoni->tampil = "tidak";
+
+        // Menyimpan entri baru atau memperbarui yang sudah ada
+        $testimoni->save();    
+
+
         return redirect('/riwayat')->with('success', 'Terimakasih, testimoni berhasil disimpan!.');
     }
 
