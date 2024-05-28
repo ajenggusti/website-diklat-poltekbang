@@ -38,7 +38,6 @@
           height: 100%
         }
         .container {
-          /* padding-top: 50px; */
           padding-bottom: 50px;
         }
         
@@ -68,10 +67,17 @@
           POLTEKBANG
       </a>
       
+        {{-- OLD --}}
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
+
+        {{-- NEW --}}
+        {{-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button> --}}
     </header>
+
 
     <div class="container-fluid">
       <div class="row">
@@ -181,44 +187,70 @@
                       <hr>
                   </ul>
               </div>
-            
           </nav>
+      </div>
+    </div>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom container-fluid">
         
+      </div>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      {{-- OLD --}}
+      <script>
+        $(document).ready(function() {
+          var path = window.location.pathname;
         
-          <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom container-fluid">
-              
-            </div>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-            <script>
-              $(document).ready(function() {
-                var path = window.location.pathname;
-              
-                $('#sidebarMenu .nav-link').each(function () {
+          $('#sidebarMenu .nav-link').each(function () {
+            var href = $(this).attr('href');
+            console.log("path:", path);
+            console.log("href:", href);
+            if (path === href) {
+              $(this).addClass('active');
+            }
+          });
+        });
+      </script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script>
+          $(document).ready(function() {
+              var path = window.location.pathname;
+              $('.nav-link').each(function () {
                   var href = $(this).attr('href');
                   console.log("path:", path);
                   console.log("href:", href);
-                  if (path === href) {
-                    $(this).addClass('active');
+                  if (path.includes(href)) {
+                      $(this).addClass('active');
                   }
-                });
               });
-            </script>
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-            <script>
-                $(document).ready(function() {
-                    var path = window.location.pathname;
-                    $('.nav-link').each(function () {
-                        var href = $(this).attr('href');
-                        console.log("path:", path);
-                        console.log("href:", href);
-                        if (path.includes(href)) {
-                            $(this).addClass('active');
-                        }
-                    });
-                });
-            </script>
-            <div class="container">
+          });
+      </script>
+      {{-- END OLD --}}
 
-            
+      {{-- NEW --}}
+      {{-- <script>
+        $(document).ready(function() {
+          var path = window.location.pathname;
+          $('.nav-link').each(function () {
+            var href = $(this).attr('href');
+            if (path.includes(href)) {
+              $(this).addClass('active');
+            }
+          });
+      
+          $('.navbar-toggler').click(function() {
+            $('#sidebarMenu').toggleClass('show');
+          });
+        });
+      </script> --}}
+      {{-- NEW AGAIN --}}
+      {{-- <script>
+        $(document).ready(function() {
+            $('.navbar-toggler').click(function() {
+                $('#navbarMenu').toggleClass('show');
+            });
+        });
+      </script> --}}
+      <div class="container">
+
+      
 

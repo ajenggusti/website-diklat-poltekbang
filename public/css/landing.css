@@ -245,53 +245,28 @@
 
 
 
-/* Style Banner */
-.column {
-    display: flex;
-    justify-content: center;
-    text-align: center;
-}
-.column h1 {
-    font-size: 30px;
-}
-
-.left {
-    padding-right: 15px;
-    text-align: center
-  }
-
-.right {
-    padding-left: 15px;
-    text-align: center
-}
-  
-.middle {
-    border: 2px solid rgb(0, 0, 0);
-}
-
+/* CSS Dibawah Slideshow */
 .land-width {
     margin-left: 10%;
     margin-right: 10%;
     max-width: 80%;
 }
 
-.content-land .column{
-    background-color: rgb(192, 192, 192);
-    font-size: 20px;
-    border-radius: 5px;
-}
 .content-land h3{
     color: #478DD7;
-    /* font-size: 20px; */
 }
 
 .content-land .land-width p {
-    /* font-size: 16px; */
     color: #FF6900;
 }
 
+/* PROMO */
+/* .carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.777); */
 
 
+    
 /* CSS Kategori Diklat */
 .bg-riwayat {
     padding-bottom: 50px;

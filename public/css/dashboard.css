@@ -13,6 +13,13 @@
  #sidebarMenu {
   background-color: #053666;
   position: fixed;
+
+  /* NEW */
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  top: 0;
+  transition: 0.3s;
 }
 
 .nav-link {
@@ -31,9 +38,11 @@
   position: relative;
   top: 0;
   padding-top: .5rem;
-  overflow-x: hidden;
+
+  /* OLD */
+  /* overflow-x: hidden;
   overflow-y: auto; 
-  height: 100vh;
+  height: 100vh; */
 }
 
 
@@ -50,19 +59,44 @@ header {
   display: none;
 }
 
-@media (max-width: 767.98px) {
+/* OLD */
+@media screen and (max-width: 767.98px) {
   .navbar-toggler {
+    display: block;
+  }
+  
+  #sidebarMenu {
+    display: none;
+  }
+
+  #sidebarMenu.show {
     display: block;
   }
 }
 
-
-
-@media (max-width: 400px) {
+/* NEW */
+/* @media screen and (max-width: 700px) {
+  #sidebarMenu {
+      display: none;
+  }
+  #navbarMenu.show {
+      display: block;
+  }
   .navbar-toggler {
-    display: block;
+      display: block;
+  }
+} */
+
+/* END NEW */
+
+@media screen and (max-width: 767.98px) {
+  .col-md-9, .col-lg-10 {
+    flex: 0 0 100%;
+    max-width: 100%;
   }
 }
+
+
 
 
 /* NEW */
