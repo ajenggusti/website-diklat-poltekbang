@@ -1,27 +1,8 @@
 @extends('layout.mainAdmin')
 @section('container')
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Kelola Promo</title>
     <link href="/css/actor.css" rel="stylesheet">
     <script src="/js/actor.js"></script>
-    {{-- <script src="/js/landing.js"></script> --}}
-    {{-- Boostrap Icons --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    {{-- Font Poppins --}}
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-    </style>
-</head>
-<body>
+
     <div class="content-staff">
         <h2>Tabel Promo</h2>
         <hr>
@@ -143,22 +124,5 @@
                 </div>
             </div>
         </div>
-    </div>
-    {{-- <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mengambil semua tombol edit
-            var editButtons = document.querySelectorAll('.edit-button');
-    
-            // Iterasi melalui setiap tombol edit
-            editButtons.forEach(function(button) {
-                // Mendapatkan URL dari atribut data-url pada tombol edit
-                var editUrl = button.getAttribute('data-url');
-                // Mengatur nilai data-bs-target dari tombol untuk menjadi URL yang diambil
-                button.setAttribute('data-bs-target', editUrl);
-            });
-        });
-    </script> --}}
-    
-</body>
-</html>    
+    </div>   
 @endsection

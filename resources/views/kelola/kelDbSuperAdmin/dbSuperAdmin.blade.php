@@ -1,17 +1,15 @@
 @extends('layout.mainAdmin')
 @section('container')
-<html>
-    <head>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-        <link href="/css/dashboard.css" rel="stylesheet">
-        <style>
-            body {
-                font-family: 'Poppins', sans-serif;
-            }
+    {{-- HEAD --}}
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="/css/dashboard.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
 
-        </style>
-    </head>
-    <body>
+    </style>
+    {{-- Body --}}
         <div class="container-admin">
             <div class="dashAdmin">
                 <a href="/allUser">
@@ -49,9 +47,6 @@
                 <a href="/byLevel/{{ $userCount->level->id }}"><p>Level {{ $userCount->level->level }}: {{ $userCount->total_user }} pengguna</p></a>
             </div> --}}
         @endforeach
-
-    </body>
-</html>
 @endsection
 
 

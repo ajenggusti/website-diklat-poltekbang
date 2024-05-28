@@ -1,27 +1,8 @@
 @extends('layout.mainAdmin')
 @section('container')
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Laporan</title>
     <link href="/css/actor.css" rel="stylesheet">
     <script src="/js/actor.js"></script>
-    {{-- <script src="/js/landing.js"></script> --}}
-    {{-- Boostrap Icons --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    {{-- Font Poppins --}}
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-    </style>
-</head>
-<body>
+
     <div class="content-staff">
         <h2>Tabel Pembayaran</h2>
         <hr>
@@ -148,38 +129,36 @@
         </script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
         {{-- datepicker --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-        $(document).ready(function(){
-            // Inisialisasi datepicker dengan format yyyy-mm-dd
-            $('.datepicker').datepicker({
-                format: 'yyyy-mm-dd',
-                autoclose: true,
-                orientation: "bottom right"
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script>
+            $(document).ready(function(){
+                // Inisialisasi datepicker dengan format yyyy-mm-dd
+                $('.datepicker').datepicker({
+                    format: 'yyyy-mm-dd',
+                    autoclose: true,
+                    orientation: "bottom right"
+                });
+
+                // Fungsi untuk menangani klik pada tautan "Export ke Excel"
+                $('#exportExcel').on('click', function(event) {
+                    event.preventDefault();
+
+                    const tanggal1 = $('#datepicker1').val();
+                    const tanggal2 = $('#datepicker2').val();
+
+                    // Validasi nilai tanggal
+                    if (!tanggal1 || !tanggal2) {
+                        alert('Silakan pilih kedua tanggal sebelum mengekspor.');
+                        return;
+                    }
+
+                    // Membuat URL dengan parameter query string
+                    const url = `/laporanExport/${encodeURIComponent(tanggal1)}.${encodeURIComponent(tanggal2)}`;
+                    // console.log(url);
+                    // Navigasi ke URL yang dibuat
+                    window.location.href = url;
+                });
             });
-
-            // Fungsi untuk menangani klik pada tautan "Export ke Excel"
-            $('#exportExcel').on('click', function(event) {
-                event.preventDefault();
-
-                const tanggal1 = $('#datepicker1').val();
-                const tanggal2 = $('#datepicker2').val();
-
-                // Validasi nilai tanggal
-                if (!tanggal1 || !tanggal2) {
-                    alert('Silakan pilih kedua tanggal sebelum mengekspor.');
-                    return;
-                }
-
-                // Membuat URL dengan parameter query string
-                const url = `/laporanExport/${encodeURIComponent(tanggal1)}.${encodeURIComponent(tanggal2)}`;
-                // console.log(url);
-                // Navigasi ke URL yang dibuat
-                window.location.href = url;
-            });
-        });
-    </script>
+        </script>
     </div>
-</body>
-</html>
 @endsection

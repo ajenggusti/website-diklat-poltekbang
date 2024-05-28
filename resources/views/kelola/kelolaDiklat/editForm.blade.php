@@ -1,25 +1,7 @@
 @extends('layout.mainAdmin')
 @section('container')
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Kelola Edit Diklat</title>
     <link href="/css/actor.css" rel="stylesheet">
-    {{-- Boostrap Icons --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    {{-- Font Poppins --}}
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-    </style>
-</head>
-<body>
+
     <div class="content-form2Column">
         <form action="/kelDiklat/{{ $kelDiklat->id }}" method="post" enctype="multipart/form-data" class="edit-2column">
             @method('put')
@@ -75,12 +57,8 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                    
-            {{-- </form> --}}
             </div>
             <div class="form-column-right">
-            {{-- <form action="/kelDiklat/{{ $kelDiklat->id }}" method="post" enctype="multipart/form-data" class="edit-user"> --}}
-                
                 <div class="mb-3">
                     <label for="whatsapp" class="form-label is">Link untuk Grup Whatsapp</label>
                     <input type="text" class="form-control  @error('whatsapp') is-invalid @enderror" id="whatsapp" name= "whatsapp" value="{{ old('whatsapp') ?? $kelDiklat->whatsapp }}">
@@ -112,11 +90,9 @@
                     <div class="submit-button">
                         <button type="submit" class="btn btn-primary">Kirim</button>
                     </div>
-            
-            </div>
-        </form>     
+                </div>
+            </form> 
+        </div>    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</body>
-</html>
 @endsection
 

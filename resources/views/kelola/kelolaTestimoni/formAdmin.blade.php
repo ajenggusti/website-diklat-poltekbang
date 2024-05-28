@@ -1,22 +1,9 @@
 @extends('layout.mainAdmin')
 @section('container')
-<html>
-    <head>
-        <!-- Custom styles for this template -->
         <link href="/css/actor.css" rel="stylesheet">
-        {{-- Boostrap Icons --}}
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        {{-- Font Poppins --}}
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-        <style>
-            body {
-                font-family: 'Poppins', sans-serif;
-            }
-        </style>
-    </head>
-    <body>
+
         <div class="content-form">
-            <form method="POST" action="{{ route('testimoniAdmin-store.store') }}" class="edit-user">
+            <form method="POST" action="{{ route('testimoniAdmin-store.store') }}" class="edit-staff">
                 @csrf
                 <h2>Form Dummy Testimoni</h2>
                 <hr>
@@ -60,7 +47,5 @@
                 </div>
             </form>  
         </div>
-    </body>
-</html>
 @endsection
 

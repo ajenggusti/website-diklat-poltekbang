@@ -1,23 +1,9 @@
 @extends('layout.mainAdmin')
 @section('container')
-<html>
-    <head>
-        <!-- Custom styles for this template -->
         <link href="/css/actor.css" rel="stylesheet">
-        {{-- Boostrap Icons --}}
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        {{-- Font Poppins --}}
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-        <style>
-            body {
-                font-family: 'Poppins', sans-serif;
-            }
 
-        </style>
-    </head>
-    <body>
         <div class="content-form">
-            <form method="POST" action="/kelTestimoni/{{ $kelTestimoni->id }}" class="edit-user">
+            <form method="POST" action="/kelTestimoni/{{ $kelTestimoni->id }}" class="edit-staff">
                 @method('put')
                 @csrf
                 <h2>Kelola Testimoni</h2>
@@ -35,7 +21,7 @@
                         <label for="profesi" class="form-label is">Profesi</label>
                         <input disabled type="text" class="form-control" id="profesi" name= "profesi" value="{{ $kelTestimoni->profesi }}">
                     </div>
-                    <div class="mb-3">
+                    <div class="mb-3 testiReal">
                         <label>Isi Testimoni</label>
                         <p>{{ $kelTestimoni->testimoni }}
                     </div>
@@ -92,7 +78,5 @@
                 </div>
             </form>
         </div>
-    </body>
-</html>
 @endsection
 

@@ -1,17 +1,7 @@
 @extends('layout.mainAdmin')
 @section('container')
-<html>
-    <head>
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
         <link href="/css/dashboard.css" rel="stylesheet">
-        <style>
-            body {
-                font-family: 'Poppins', sans-serif;
-            }
 
-        </style>
-    </head>
-    <body>
         <div class="container-admin">
             <div class="dashAdmin">
                 <div class="dashItem" style="background-color: #f1f3ff; border: 3px solid #BC4F00;">
@@ -45,8 +35,6 @@
                 </div>
             </div>
         </div>
-    </body>
-</html>
 @endsection
 
 

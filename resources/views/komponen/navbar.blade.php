@@ -9,17 +9,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     {{-- Font Poppins --}}
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="/css/navbar.css" rel="stylesheet">
+    
     <!-- @TODO: replace SET_YOUR_CLIENT_KEY_HERE with your client key -->
     {{-- <script type="text/javascript"
     src="https://app.stg.midtrans.com/snap/snap.js"
     data-client-key="{{ config('midtrans.client_key') }}"></script> --}}
     <!-- Note: replace with src="https://app.midtrans.com/snap/snap.js" for Production environment -->
-<!-- Bootstrap CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script type="text/javascript"
       src="https://app.sandbox.midtrans.com/snap/snap.js"
       data-client-key="{{ config('midtrans.client_key') }}"></script>
@@ -38,12 +37,153 @@
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
     <title>Diklat POLTEKBANG</title>
 
     <style>
-      body {
-          font-family: 'Poppins', sans-serif;
-      }
+        * {
+            box-sizing: border-box;
+        }
+        .body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content-wrapper {
+            flex: 1;
+            padding-top: 50px;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(224, 224, 224, 0.844)), url("/img/bg-pl.jpg");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            position: relative;
+            margin-bottom: -110px;
+        }
+
+        .content-nav {
+            background-color: #353332ee;
+            height: 50px;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+
+        .content-nav .topnav ul li a{
+            padding-right: 15px;
+            padding-top: 5px;
+            color: #FF6900; 
+            font-weight: 600;
+        }
+
+
+        .content-nav .topnav ul li a:hover {
+            color: #878889; 
+        }
+
+
+        .content-nav .navbar-brand img {
+            margin-left: 110px;
+            padding-bottom: 2px;
+        }
+
+        .content-nav .text-end {
+            margin-right: 50px;
+        }
+
+        .button {
+            background-color: #FF6900;
+            border: none;
+            color: white;
+            padding: 4px 8px;
+            text-align: center;
+            text-decoration: none;
+            margin: 4px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .button-log {
+            background-color: white; 
+            color: #FF6900; 
+            border: 2px solid #FF6900;
+        }
+
+        .button-log:hover {
+            background-color: #FFC784;
+            color: #ffffff;
+        }
+
+        .button-sign {
+            background-color: #FF6900; 
+            color: #ffffff; 
+            border: 2px solid #FF6900;
+        }
+
+        .button-sign:hover {
+            background-color: #FFC784;
+            color: #ffffff;
+        }
+
+        .content-nav .topnav .rightNav {
+            margin-right: auto;
+        }
+
+        @media (max-width: 991px) {
+            .content-nav .navbar-collapse {
+                background-color: #0e2d45e4;
+                position: fixed;
+                top: 50px;
+                left: 0;
+                width: 100%;
+                z-index: 1000;
+                display: none;
+            }
+            .content-nav .navbar-collapse.show {
+                display: block;
+            }
+            .content-nav .navbar-nav {
+                display: block !important;
+                width: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            .content-nav .navbar-nav .nav-item {
+                margin: 0;
+                text-align: center;
+            }
+            .content-nav .navbar-nav .nav-item .nav-link {
+                padding: 10px 15px;
+                color: #FF6900;
+            }
+
+            .content-nav .navbar-nav .nav-item .nav-link:hover {
+                color: #878889;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .content-nav .navbar-collapse {
+                background-color: transparent;
+            }
+            .content-nav .navbar-nav {
+                margin-left: auto;
+            }
+            .content-nav .navbar-nav .dropdown-menu {
+                margin-right: 0;
+                left: auto;
+            }
+        }
+        @media (max-width: 480px) {
+            .content-wrapper {
+                
+            }
+        }
   
     </style>
   </head>
@@ -75,13 +215,16 @@
                             <a class="nav-link" href="#faq">FAQ</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="#profile">Profile</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="eventsUser">Jadwal</a>
                         </li>
-                        <ul class="navbar-nav ms-auto">
+                        <ul class="navbar-nav ms-auto rightNav">
                             @auth
                                 <li class="nav-item dropdown">
                                     <a class="d-block link-body-emphasis text-decoration-non nav-link" href="#" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none;">
-                                        <i class="bi bi-person-circle" style="font-size: 25px; color: #FF6900">
+                                        <i class="bi bi-person-circle">
                                             <span style="pointer-events: none;">    {{ auth()->user()->name }}</span>
                                         </i>
                                     </a>
@@ -134,5 +277,5 @@
         </script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
-  </body>    
-</html>
+
+        <div class="content-wrapper">

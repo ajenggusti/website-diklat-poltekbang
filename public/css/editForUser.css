@@ -1,22 +1,4 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-size: 15px;
-}
-
-.content {
-  padding-top: 50px;
-}
-
-/* FORM EDIT DATA PROFIL */
 .bg-edit {
-    background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(224, 224, 224, 0.844)), url("/img/bg-pl.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-    margin-bottom: -120px;
     padding-bottom: 50px;
     padding-top: 50px;
 }
@@ -25,11 +7,14 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
-    
 }
 
 .content-editProfil h2 {
     text-align: center;
+}
+
+.content-editProfil .submit-button {
+    text-align: right;
 }
   
 .edit-profil {
@@ -40,7 +25,7 @@
     border: 1px solid #000000;
     border-radius: 10px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
-    
+    width: 80%;
 }
 
 .left-profil {
@@ -56,11 +41,9 @@
 .btn-editProfil {
     margin-top: 10px; 
     margin-bottom: 15px;
-    /* NEW */
     display: flex;
     justify-content: center;
     align-items: center;
-    /* height: 100%; */
 }
 
 .btn-editProfil button {
@@ -69,17 +52,18 @@
     padding-right: 20px;
 }
 
-.btn-mohon {
-    /* margin-top: 10px; */
-    text-align: center;
-    padding-top: 5px;
-}
+
 .btn-mohon-wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 5px; 
+    margin-bottom: 15px;
 }
+.btn-mohon-wrapper .btn-mohon {
+    text-align: center;
+}
+
 
 @media (max-width: 768px) {
     .content-editProfil {
@@ -90,6 +74,18 @@
     .right-profil {
         width: 100%;
         float: none;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .edit-profil {
+        background-color: rgba(255, 255, 255, 0.252);
+        border: 1px solid #000000;
+        box-shadow: 0px 4px 12px rgba(1, 1, 1, 0.375);
+        margin: 0 auto;
+        line-height: 1.8;
+        padding: 15px 35px 15px 35px;
+        width: 90%;
     }
 }
 
@@ -104,4 +100,22 @@
 .btn-editUser button {
     padding-left: 20px;
     padding-right: 20px;
+}
+
+/* EDIT FORM TESTIMONI */
+.edit-testi {
+    background-color: rgba(255, 255, 255, 0.69);
+    margin: 0 auto;
+    line-height: 1.8;
+    padding: 15px 35px 15px 35px;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+    width: 50%;
+}
+
+@media screen and (max-width: 480px) {
+    .edit-testi {
+        width: 90%;
+    }
 }

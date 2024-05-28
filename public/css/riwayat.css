@@ -1,0 +1,275 @@
+/* STYLE HAL RIWAYAT */
+.bg-riwayat {
+    padding-bottom: 50px;
+}
+
+.card-contentRiwayat {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.status-print-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.status-print-wrapper p {
+    margin-right: 10px;
+}
+
+.content-riwayat, .content-land {
+    margin-left: 10%;
+    margin-right: 10%;
+    padding-top: 50px;
+}
+
+.content-riwayat h1 {
+    text-align: center;
+    font-weight: bold;
+    padding-bottom: 20px;
+}
+
+.card-riwayat {
+    background-color: #ffffff;
+    transition: 0.3s;
+    padding: 10px 0 0 0;
+    width: 30%;
+    margin-bottom: 20px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-basis: calc(30% - 20px);
+}
+
+.card-riwayat:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.8);
+}
+
+.card-content h4 {
+    text-align: center;
+    height: 80px;
+    overflow: hidden;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+.card-content p span {
+    margin: 10px 0;
+}
+.card-content .col {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card-content .col a {
+    flex-grow: 1;
+    margin: 0 5px;
+}
+
+.card-content .row {
+    padding-top: 5px;
+    margin-bottom: 10px;
+}
+.col span {
+    padding-left: 10px;
+}
+
+.row a {
+    padding: 5px;
+}
+
+/* BUTTON Transaksi */
+.button-transaksi a{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.button-transaksi .transaksi-btn {
+    display: inline-block;
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 10px;
+    text-align: center; 
+    padding: 10px; 
+    background-color: rgb(248, 132, 0); 
+    color: #ffffff; 
+    border: none;
+    border-radius: 5px; 
+    text-decoration: none; 
+}
+
+.button-transaksi .btn-info {
+    background-color: rgb(44, 138, 192);
+}
+
+.button-transaksi .transaksi-btn:hover {
+    background-color: rgb(200, 100, 0);
+}
+
+
+.card-content p span,
+.card-content .button-link {
+    flex-grow: 1;
+}
+
+.card-jenis:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+.card-content {
+    padding: 5px 20px 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+}
+
+.card-content p span {
+    justify-content: center;
+    margin-bottom: 10px;
+    font-weight: bold;
+    
+}
+
+/* Kartu pada layar penuh */
+@media screen and (min-width: 992px) {
+    .card-contentRiwayat {
+        justify-content: left;
+        gap: 25px;
+    }
+    .card-riwayat {
+        flex-basis: calc(30% - 5px);
+    }
+}
+
+/* Kartu pada layar di antara 500px dan 992px */
+@media screen and (min-width: 500px) and (max-width: 991.98px) {
+    .card-riwayat {
+        flex-basis: calc(50% - 10px);
+    }
+}
+
+/* Kartu pada layar kurang dari 500px */
+@media screen and (max-width: 499.98px) {
+    .card-riwayat {
+        flex-basis: calc(100% - 10px);
+    }
+}
+
+
+
+/* STYLE HAL DETAIL RIWAYAT */
+.bg-detRiwayat {
+    padding-bottom: 50px;
+}
+
+.no-found h2{
+    font-weight: bold;
+    color: #FF6900;
+}
+.no-found img {
+    padding-top: 10px;
+    width: 45%;
+}
+
+.content-detail{
+    margin-left: 10%;
+    margin-right: 10%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.content-detail h2 {
+    padding-top: 20px;
+}
+
+.card-detail {
+    background-color: rgb(255, 255, 255);
+    margin: 0 auto;
+    line-height: 1.8;
+    padding: 25px 35px 25px 35px;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    width: 900px;
+    
+}
+
+.card-detail h2 {
+    text-align: center;
+}
+
+.card-detail span {
+    font-weight: bold;
+}
+
+.card-detail:hover {
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.detail-left {
+    width: 46%;
+    float: left;
+  }
+  
+.detail-right {
+    width: 46%;
+    float: right;
+}
+
+
+
+
+@media screen and (max-width: 782px) {
+    .card-detail .detail-right img {
+        width: 180px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .content-detail{
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    .card-detail {
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.718);
+    }
+    .detail-left {
+        width: 100%;
+        float: right;
+      }
+      
+    .detail-right {
+        width: 100%;
+        float: right;
+    }
+}
+
+/* CSS Permohonan mengganti berkas */
+.bg-permohonan {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.content-mohon {
+    margin-left: 30%;
+    margin-right: 30%;
+    background-color: #ffffffc2;
+    border: 1px solid #FF6900;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+  
+.btn-mohon {
+    text-align: right;
+}
+  
+  
+@media screen and (max-width: 480px) {
+    .content-mohon {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+}

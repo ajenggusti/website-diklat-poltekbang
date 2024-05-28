@@ -1,29 +1,14 @@
 @extends('layout.mainUser')
 @section('container')
-<html>
-    <head>
-        <!-- Custom styles for this template -->
         <link href="/css/actor.css" rel="stylesheet">
-        {{-- Boostrap Icons --}}
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        {{-- Font Poppins --}}
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-        <style>
-            body {
-                font-family: 'Poppins', sans-serif;
-            }
-            
 
-        </style>
-    </head>
-    <body>
-        <div class="content">
+        {{-- <div class="content"> --}}
             <div class="bg-nota">
                 <div class="content-nota">
                     
                         @csrf
                         <div class="edit-user">
-                            <h2>Pembayaran Pendaftaran</h2>
+                            <h4>Pembayaran Pendaftaran</h4>
                             <hr>
                             <small>Nama Diklat : {{ $pembayaran->pendaftaran->diklat->nama_diklat }}</small>
                             <br>
@@ -36,10 +21,9 @@
                                 <button type="submit" id="pay-button" class="btn btn-primary">Bayar</button>
                             </div>
                         </div>
-                        {{-- {{ $snapToken }} --}}
                 </div>
             </div>
-        </div>
+        {{-- </div> --}}
           
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -66,12 +50,6 @@
           });
       });
     </script>
-    </body>
-</html>
-
-
-
-
 @endsection
 
 

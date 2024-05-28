@@ -1,15 +1,8 @@
 @extends('layout.mainAdmin')
 @section('container')
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Kelola User</title>
+    {{-- Head --}}
     <link href="/css/actor.css" rel="stylesheet">
     <script src="/js/actor.js"></script>
-    {{-- <script src="/js/landing.js"></script> --}}
     {{-- Boostrap Icons --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     {{-- Font Poppins --}}
@@ -23,8 +16,7 @@
         }
         
     </style>
-</head>
-<body>
+    {{-- Body --}}
     <div class="content-staff">
         <h2>Tabel User</h2>
         <h3>{{ $judul }}</h3>
@@ -129,8 +121,5 @@
             </div>
         </div>
     </div>
-</body>
-</html>
-
 @endsection
 

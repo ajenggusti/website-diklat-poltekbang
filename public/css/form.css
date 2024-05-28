@@ -1,33 +1,10 @@
-* {
-    font-size: 15px;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-.body {
-    height: 100%;
-    max-width: 100%;
-}
-
 .content-bodyForm {
     padding-top: 50px;
-    margin-top: 10px;
+    padding-bottom: 50px;
     margin-left: 10%;
     margin-right: 10%;
-    font-size: 20px;   
 }
 
 .content-bodyForm h2 {
     color: #FF6900;
 }
-
-/* .edit-formUser {
-    background-color: rgb(255, 255, 255);
-    margin: 0 auto;
-    max-width: 600px;
-    line-height: 1.8;
-    padding: 15px 35px 15px 35px;
-    border: 1px solid #000000;
-    border-radius: 10px;
-    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
-  } */

@@ -1,45 +1,16 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-size: 15px;
-}
-body {
-    font-family: 'Poppins', sans-serif;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    /* max-width: 100%; */
-}
-.container-fluid {
-    margin-bottom: -120px;
-    padding-top: 50px;
-    background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(224, 224, 224, 0.844)), url("/img/bg-pl.jpg");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-}
-
-
 /* Style Macam Diklat*/
-
 .content-body {
     margin-left: 10%;
     margin-right: 10%;
-    font-size: 20px;
 }
 
 .content-body h2{
     color: #0a0a0a;
-    padding-top: 50px;
+    padding-top: 20px;
     padding-bottom: 10px;
-    font-weight: bold
 }
 
-.content-body2 h1 {
-    text-align: center;
-}
+
 
 
 /* Style Container */
@@ -47,6 +18,7 @@ body {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    padding-bottom: 30px;
 }
 
 .card-img {
@@ -89,7 +61,43 @@ body {
     text-align: left;
 }
 .card-content2 span {
+    color: #7d4015;
+    font-weight: 600;
+}
+
+/* IKON */
+.card-content2 .bi-person-fill-add{
+    font-size: 1.5rem; 
+    color: rgb(255, 123, 0);
+}
+
+.card-content2 .bi-person-check {
+    font-size: 1.5rem; 
+    color: green;
+}
+
+.card-content2 .bi-person-x {
+    font-size: 1.5rem; 
+    color: red;
+}
+
+.card-content2 .bi-currency-dollar {
+    font-size: 1.5rem; 
+    color: rgb(27, 222, 27);
+}
+
+.no-found {
+    padding-bottom: 50px;
+}
+
+.no-found h2{
+    padding-top: 5px;
     font-weight: bold;
+    color: #FF6900;
+}
+.no-found img {
+    padding-top: 10px;
+    width: 45%;
 }
 
 
@@ -128,12 +136,17 @@ body {
 /* Kartu pada layar di antara 500px dan 992px */
 @media screen and (min-width: 500px) and (max-width: 991.98px) {
     .card-img {
+        width: 30%;
         flex-basis: calc(50% - 10px);
     }
 }
 
 /* Kartu pada layar kurang dari 500px */
+
 @media screen and (max-width: 499.98px) {
+    .card-container2 {
+        font-size: 12px;
+    }
     .card-img {
         flex-basis: calc(100% - 10px);
     }
@@ -144,18 +157,19 @@ body {
 
 
 /* Style Detail Diklat */
+
 .content-body2 {
-    /* border: 1px solid #000000; */
-    /* background-color: rgba(255, 255, 255, 0.786); */
-    border-radius: 10px;
+    background-color: rgba(233, 229, 229, 0.488);
+}
+.headTitle {
+    text-align: center;
     margin-top: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 .card-container3 {
     display: flex;
     margin: 20px auto;
     max-width: 1200px;
-    font-size: 16px;
 }
 .content-body2 .carousel-inner img {
     position: relative;
@@ -185,7 +199,6 @@ body {
     font-weight: bold;
 }
 
-/* Style button */
 .btn-container {
     width: 100%;
     margin-bottom: 10px;
@@ -201,4 +214,10 @@ body {
 
 .content-body2 .btn-regDiklat {
     padding-bottom: 20px;
+}
+
+@media screen and (max-width: 499.98px) {
+    .content-body2 .carousel-inner img {
+        height: 300px;
+    }
 }

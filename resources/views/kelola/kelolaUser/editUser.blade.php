@@ -20,7 +20,7 @@
     <div class="content-form">
         
         
-        <form method="POST" action="/register/{{ $user->id }}" class="edit-user">
+        <form method="POST" action="/register/{{ $user->id }}" class="edit-staff">
             @method('put')
             @csrf
             <h2>Form Edit Level User</h2>

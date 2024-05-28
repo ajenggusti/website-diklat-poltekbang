@@ -1,0 +1,48 @@
+.card-testi {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #a5a09c;
+    padding: 20px;
+    border-radius: 10px;
+}
+.card-testi2 {
+    background-color: #ffc1a0;
+    border: 1px solid #FF6900;
+    transition: 0.3s;
+    padding: 10px 0 0 0;
+    width: 33%;
+    margin-bottom: 20px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    flex-basis: calc(33% - 20px);
+    border-radius: 10px;
+
+}
+
+.card-testi2:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.8);
+}
+
+.card-testi2 .card-testiContent b, 
+.card-testi2 .card-testiContent p, 
+.card-testi2 .card-testiContent q {
+    text-align: center;
+    height: 80px;
+    overflow: hidden;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+.card-testiContent {
+    padding: 10px;
+    
+}
+
+.carousel-inner2 {
+    pointer-events: all;
+}
+
+

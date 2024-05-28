@@ -1,14 +1,4 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-size: 15px;
-}
-
-.content {
-  padding-top: 50px;
-}
-/* Style Dashbord Super Admin */
+/* CSS Tampilan Tabel Staff */
 .content-staff {
     background-color: rgb(255, 255, 255);
     padding: 20px;
@@ -24,21 +14,9 @@
     font-size: 16px;
   }
 
-
-
-
-/* Kelola User */
-
-/* new */
 .table-responsive {
-  overflow-x: auto; 
-  /* background-color: #ffffff; */
-  /* NEW */
-  /* max-width: 90%;
-  margin: 0 auto; */
+  overflow-x: auto;
 }
-
-
 
 
 /* Search bar */
@@ -57,7 +35,6 @@
   border-collapse: collapse;
   width: 100%;
   border: 1px solid #ddd;
-  /* font-size: 18px; */
 }
 
 #myTable th, #myTable td {
@@ -75,7 +52,6 @@
   background-color: #f1f1f1;
 }
 
-/* end new */
 
 #myTable table {
   background-color: #ffffff;
@@ -97,7 +73,7 @@ td .action-buttons {
 
 h2 {
   color: #787878;
-  line-height: 2.5;
+  line-height: 1.5;
 }
 
 .filter {
@@ -129,21 +105,22 @@ h2 {
 
 
 
-/* EDIT FORM */
+/* CSS Edit form Staff*/
 .mb-3 label {
   font-weight: bold;
 }
-.mb-3 p {
+.content-form .testiReal p {
   background-color: #f3f1f1;
   border-radius: 5px;
   border: 1px solid #ddd;
   padding: 10px;
 }
 
-.edit-user {
+
+.edit-staff {
   background-color: rgb(255, 255, 255);
   margin: 0 auto;
-  max-width: 600px;
+  max-width: 900px;
   line-height: 1.8;
   padding: 15px 35px 15px 35px;
   border: 1px solid #000000;
@@ -151,9 +128,6 @@ h2 {
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
 }
 
-/* .content-staff h2 {
-  text-align: center;
-} */
 .content-form h2 {
   text-align: center;
 }
@@ -167,6 +141,7 @@ h2 {
   text-align: end;
 }
 
+
 /* Edit Form 2 Kolom */
 .content-form2Column {
   display: flex;
@@ -179,7 +154,6 @@ h2 {
 .edit-2column {
   background-color: rgb(255, 255, 255);
   margin: 0 auto;
-  /* max-width: 600px; */
   line-height: 1.8;
   padding: 15px 35px 15px 35px;
   border: 1px solid #000000;
@@ -223,8 +197,11 @@ h2 {
   box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
 }
 
+
+
+/* CSS STAFF DETAIL */
 .content-show {
-  max-width: 800px;
+  max-width: 980px;
   margin: 0 auto;
   background-color: #ffffff;
   padding: 20px;
@@ -240,10 +217,6 @@ h2 {
 }
 
 
-
-
-
-
 /* Pagination */
 .pagination-container {
   display: flex;
@@ -257,11 +230,11 @@ h2 {
 }
 
 .ul-pagination li {
-  margin-right: 5px; /* Atur jarak antara setiap item pagination */
+  margin-right: 5px;
 }
 
 .ul-pagination li:last-child {
-  margin-right: 0; /* Hapus margin kanan pada item terakhir */
+  margin-right: 0;
 }
 
 .page-link {
@@ -280,14 +253,37 @@ h2 {
 }
 
 
+/* USER SIDE */
+.edit-user {
+  background-color: rgb(255, 255, 255);
+  margin: 0 auto;
+  max-width: 600px;
+  line-height: 1.8;
+  padding: 15px 35px 15px 35px;
+  border: 1px solid #000000;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.5);
+}
 
-/* NOTA PEMBAYARAN */
+
+/* CSS KelPembayaran */
+/* Form2.blade.php */
+.bg-nota {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
 .content-nota {
     margin-left: 10%;
     margin-right: 10%;
 }
-.content .bg-nota,
-.content .bg-bukti {
+
+.bg-nota .content-nota .edit-user h4 {
+  text-align: center;
+}
+
+/* buktiPembayaran.blade.php */
+.bg-bukti {
   background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(224, 224, 224, 0.844)), url("/img/bg-pl.jpg");
   background-position: center;
   background-repeat: no-repeat;
@@ -296,11 +292,24 @@ h2 {
   margin-bottom: -120px;
   padding-bottom: 50px;
   padding-top: 50px;
-  
+}
+.bg-bukti .content-form {
+  margin-top: 20px;
+  padding: 0 50px 50px 50px;
+  background-color: #efededc4;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
+@media screen and (max-width: 480px) {
+
+}
+
+
 .content-nota h2,
-.bg-nota .edit-user h2 {
+.bg-nota .edit-user h4 {
   color: #000000;
   text-align: center;
 }
@@ -310,47 +319,36 @@ h2 {
 
 }
 
-.content .bg-nota .edit-user .metode-bayar {
+.bg-nota .edit-user .metode-bayar {
   padding: 20px;
   display: flex;
   flex-direction: row;
-  align-items: center; /* Menyusun item secara vertikal di tengah */
-  gap: 20px; /* Jarak antara tombol dan teks */
+  align-items: center;
+  gap: 20px;
 }
 
-
-/* Bukti Pembayaran Diklat */
-
-.content .bg-bukti .content-form {
-  margin-top: 20px;
-  padding: 0 50px 50px 50px;
-  background-color: #fff5f5c4;
-  border: 1px solid black;
-  border-radius: 10px;
-  margin-left: 10%;
-  margin-right: 10%;
+.bg-nota .edit-user .metode-bayar a,
+.bg-nota .edit-user .metode-bayar button {
+  width: 200px;
 }
 
+@media screen and (max-width: 480px) {
+  .bg-nota .edit-user {
+    background-color: rgba(255, 255, 255, 0.641);
+    max-width: 80%;
+    padding: 15px 35px 15px 35px;
+    border: 1px solid #00000075;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.433);
 
+  }
 
+  .bg-nota .edit-user .metode-bayar {
+    margin-left: -15px;
+    padding: 10px 0;
+  }
 
-/* PERMOHONAN */
-.content-mohon {
-  margin-left: 10%;
-  margin-right: 10%;
+  .bg-nota .edit-user .metode-bayar a,
+  .bg-nota .edit-user .metode-bayar button {
+    width: 100%;
+  }
 }
-
-
-.content .bg-nota .content-mohon {
-  background-color: #ffffffc2;
-  border: 1px solid #FF6900;
-  padding: 20px;
-  /* padding-right: 30px; */
-  border-radius: 10px;
-}
-
-.btn-mohon {
-  text-align: right;
-}
-
-

@@ -1,24 +1,9 @@
 @extends('layout/mainUser')
 @section('container')
-<html>
-    <head>
-            <!-- Custom styles for this template -->
-            <link href="/css/actor.css" rel="stylesheet">
-            <script src="/js/actor.js"></script>
-        {{-- Boostrap Icons --}}
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-        {{-- Font Poppins --}}
-        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-        
-        <style>
-            body {
-                font-family: 'Poppins', sans-serif;
-            }
+    <link href="/css/actor.css" rel="stylesheet">
+    <script src="/js/actor.js"></script>
 
-        </style>
-    </head>
-    <body>
-        <div class="content">
+        {{-- <div class="content"> --}}
             <div class="bg-bukti">
                 <div class="content-form">
                     <h2>Tabel Bukti Pembayaran</h2>
@@ -92,7 +77,5 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </body>
-</html>
+        {{-- </div> --}}
 @endsection
