@@ -3,12 +3,17 @@
 namespace App\Models;
 
 use Illuminate\Support\Facades\DB;
+use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class Pembayaran extends Model
 {
     use HasFactory;
+    use LogsActivity;
+
     protected $table = 'pembayaran';
     protected $guarded = [];
     public function pendaftaran()
@@ -56,5 +61,12 @@ class Pembayaran extends Model
     }
     public static function hapusOtomatis(){
         $data = Pembayaran::all();
+    }
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->useLogName('Tabel pembayaran')
+            ->logUnguarded();
+        // Chain fluent methods for configuration options
     }
 }

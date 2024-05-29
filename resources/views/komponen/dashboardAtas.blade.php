@@ -170,6 +170,12 @@
                           Laporan
                         </a>
                       </li>
+                      <li class="nav-item {{ Request::is('/logActivity*') ? 'active' : '' }}">
+                        <a class="nav-link" href="/logActivity">
+                          <i class="bi bi-gear"></i>
+                          Log activity
+                        </a>
+                      </li>
                       <hr>
                       <li class="nav-item">
                         {{-- <a class="nav-link" href="/events"> --}}

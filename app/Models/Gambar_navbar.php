@@ -15,11 +15,12 @@ class Gambar_navbar extends Model
     protected $guarded = [];
     public $timestamps = false;
     protected $table = 'gambar_navbar';
-    
+
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
-        ->logOnly(['name', 'text']);
+            ->useLogName('Tabel gambar landing page')
+            ->logUnguarded();
         // Chain fluent methods for configuration options
     }
 }

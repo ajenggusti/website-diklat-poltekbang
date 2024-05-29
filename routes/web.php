@@ -16,6 +16,7 @@ use App\Http\Controllers\EventUserController;
 use App\Http\Controllers\TestimoniController;
 use App\Http\Controllers\GbrLandingController;
 use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\LogActivityController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\GambarDiklatController;
 use App\Http\Controllers\KelKatDiklatController;
@@ -122,3 +123,5 @@ Route::get('events/list', [EventController::class, 'listEvent'])->name('events.l
 Route::resource('events', EventController::class);
 
 Route::resource('eventsUser', EventUserController::class);
+// log activity
+Route::get('/logActivity', [LogActivityController::class, 'index']);
