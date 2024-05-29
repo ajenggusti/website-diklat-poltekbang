@@ -12,67 +12,112 @@
                 <div class="table-responsive">
                     <table class="table table-sm">
                         <tr>
-                            <th>Diklat yang dipilih</th>
-                            <td>{{ $kelPendaftaran->diklat->nama_diklat }}</td>
+                            <th>Jenis berkas</th>
+                            <td>{{ $kelPendaftaran->user->jenis_berkas}}</td>
                         </tr>
                         <tr>
-                            <th>Harga Diklat</th>
-                            <td>Rp {{ isset($harga) ? number_format($harga) : number_format($kelPendaftaran->diklat->harga) }}</td>
-                        </tr>
-                        <tr>
-                            <th>Kode Promo</th>
-                            <td>
-                                @if ($kelPendaftaran->id_promo)
-                                    {{ $kelPendaftaran->promo->kode }}
-                                @else
-                                    Tidak ada kode promo yang diambil.
-                                @endif
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Potongan Harga Dari Voucher</th>
-                            <td>
-                                @if($kelPendaftaran->id_promo && $kelPendaftaran->promo)
-                                    -Rp {{ isset($harga) ? number_format($harga) : number_format($kelPendaftaran->promo->potongan) }}
-                                @elseif($kelPendaftaran->potongan)
-                                    -Rp {{ isset($harga) ? number_format($harga) : number_format($kelPendaftaran->potongan) }}
-                                @endif
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <th>Total Biaya</th>
-                            <td>Rp {{ isset($harga) ? number_format($harga) : number_format($kelPendaftaran->harga_diklat) }}</td>
-                        </tr>
-                        <tr>
-                            <th>Email</th>
-                            <td>{{ $kelPendaftaran->email }}</td>
-                        </tr>
-                    
-                        <tr>
-                            <th>Nama Lengkap</th>
-                            <td>{{ $kelPendaftaran->nama_lengkap }}</td>
-                        </tr>
-                        <tr>
-                            <th>Tempat Lahir</th>
-                            <td>{{ $kelPendaftaran->tempat_lahir }}</td>
-                        </tr>
-                        <tr>
-                            <th>Tanggal Lahir</th>
-                            <td>{{ \Carbon\Carbon::parse($kelPendaftaran->tanggal_lahir)->format('d-m-Y') }}</td>
-                        </tr>
-                        <tr>
-                            <th>Alamat</th>
-                            <td>{{ $kelPendaftaran->alamat }}</td>
+                            <th>Nama User</th>
+                            <td>{{ $kelPendaftaran->user->name }}</td>
                         </tr>
                         <tr>
                             <th>Pendidikan Terakhir</th>
-                            <td>{{ $kelPendaftaran->pendidikan_terakhir }}</td>
+                            <td>{{ $kelPendaftaran->pendidikan_terakhir}}</td>
                         </tr>
                         <tr>
-                            <th>Nomor HP</th>
+                            <th>Email</th>
+                            <td>{{ $kelPendaftaran->user->email }}</td>
+                        </tr>
+                        <tr>
+                            <th>Nomor telepon</th>
                             <td>{{ $kelPendaftaran->no_hp }}</td>
                         </tr>
+                        @if ($kelPendaftaran->user->jenis_berkas == "paspor")
+                            <tr>
+                                <th>Nomor paspor</th>
+                                <td>{{ $kelPendaftaran->user->no_paspor }}</td>
+                            </tr>
+                            <tr>
+                                <th>Nationality</th>
+                                <td>{{ $kelPendaftaran->user->Nationality->name }}</td>
+                            </tr>
+                            <tr>
+                                <th>Tanggal Lahir</th>
+                                <td>{{ \Carbon\Carbon::parse($kelPendaftaran->user->tanggal_lahir)->format('d-m-Y') }}</td>
+                            </tr>
+                        @else
+                            <tr>
+                                <th>NIK</th>
+                                <td>{{ $kelPendaftaran->user->nik }}</td>
+                            </tr>
+                            <tr>
+                                <th>Tempat | Tanggal Lahir</th>
+                                <td>{{ $kelPendaftaran->user->tempat_lahir }} | {{ \Carbon\Carbon::parse($kelPendaftaran->user->tanggal_lahir)->format('d-m-Y') }}</td>
+                            </tr>
+                            <tr>
+                                <th>Alamat</th>
+                                <td>Kelurahan {{ $kelPendaftaran->user->kelurahan->name }}, Kecamatan {{ $kelPendaftaran->user->kecamatan->name }}, Kabupaten {{ $kelPendaftaran->user->kabupaten->name }}, Provinsi {{ $kelPendaftaran->user->provinsi->name }}</td>
+                            </tr>
+                        @endif
+                        {{-- data diklat --}}
+                        <tr>
+                            <th>Nama diklat</th>
+                            <td>{{ $kelPendaftaran->diklat->nama_diklat }}</td>
+                        </tr>
+                        <tr>
+                            <th>Harga pendaftaran</th>
+                            <td>Rp 150.000</td>
+                        </tr>
+                        <tr>
+                            <th>Status Pembayaran Daftar</th>
+                            @if ($kelPendaftaran->status_pembayaran_daftar=="Lunas")
+                                <td><span class="badge badge-pill badge-success">{{ $kelPendaftaran->status_pembayaran_daftar }}</span></td>
+                            @elseif($kelPendaftaran->status_pembayaran_daftar=="Menunggu verifikasi")
+                                <td><span class="badge badge-pill badge-warning">{{ $kelPendaftaran->status_pembayaran_daftar }}</span></td>
+                            @elseif($kelPendaftaran->status_pembayaran_daftar=="kadaluarsa")
+                                <td><span class="badge badge-pill badge-dark">{{ $kelPendaftaran->status_pembayaran_daftar }}</span></td>
+                            @else
+                                <td><span class="badge badge-pill badge-danger">{{ $kelPendaftaran->status_pembayaran_daftar }}</span></td>
+                            @endif
+                        </tr>
+                        <tr>
+                            <th>Harga diklat : </th>
+                            <td>Rp {{ number_format($kelPendaftaran->harga_asli_diklat, 0, ',', '.') }}</td>
+                        </tr>
+                        <tr>
+                            <th>Kode Promo</th>
+                            @if ($kelPendaftaran->id_promo)
+                                <td>{{ $kelPendaftaran->promo->kode }}</td>
+                            @else
+                                <td>Tidak mengambil promo.</td>
+                            @endif
+                            
+                        </tr>
+                        <tr>
+                            <th>Diskon promo : </th>
+                            <td>-Rp {{ number_format($kelPendaftaran->potongan, 0, ',', '.') }}</td>
+                        </tr>
+                        <tr>
+                            <th>Diskon admin : </th>
+                            <td>-Rp {{ number_format($kelPendaftaran->potongan_admin, 0, ',', '.') }}</td>
+                        </tr>
+                        <tr>
+                            <th>Total harga diklat : </th>
+                            <td>Rp {{ number_format($kelPendaftaran->harga_diklat, 0, ',', '.') }}</td>
+                        </tr>
+                        <tr>
+                            <th>Status Pembayaran Diklat</th>
+                            @if ($kelPendaftaran->status_pembayaran_diklat=="Lunas")
+                                <td><span class="badge badge-pill badge-success">{{ $kelPendaftaran->status_pembayaran_diklat }}</span></td>
+                            @elseif($kelPendaftaran->status_pembayaran_diklat=="Menunggu verifikasi")
+                                <td><span class="badge badge-pill badge-warning">{{ $kelPendaftaran->status_pembayaran_diklat }}</span></td>
+                            @elseif($kelPendaftaran->status_pembayaran_diklat=="kadaluarsa")
+                                <td><span class="badge badge-pill badge-dark">{{ $kelPendaftaran->status_pembayaran_diklat }}</span></td>
+                            @else
+                                <td><span class="badge badge-pill badge-danger">{{ $kelPendaftaran->status_pembayaran_diklat }}</span></td>
+                            @endif
+                        </tr>
+                        
+                        {{-- ==================================================================== --}}
                         @if ($kelPendaftaran->bukti_pembayaran)
                             <tr>
                                 <th>Bukti pembayaran</th>

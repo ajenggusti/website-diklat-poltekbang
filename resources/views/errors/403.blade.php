@@ -9,10 +9,16 @@
 <body>
     <div class="container text-center">
         <div class="content">
-            <img style="height: 300px; width: auto;" src="{{ asset('img/404error.png') }}">
+            <img style="height: 300px; width: auto;" src="{{ asset('img/403error.png') }}">
 
         </div>
         <a href="{{ url('/') }}">Kembali</a>
     </div>
 </body>
 </html>
+{{-- @extends('layout.mainUser')
+@section('container')
+<div class="content">
+    <img style="height: 300px; width: auto;" src="{{ asset('img/403error.png') }}">
+</div>
+@endsection --}}

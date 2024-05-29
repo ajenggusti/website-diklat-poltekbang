@@ -90,10 +90,26 @@
                             <td>{{ $data->deskripsi }}</td>
                             <td>{{ $data->kode }}</td>
                             <td>{{ \Carbon\Carbon::parse($data->tgl_awal)->format('d-m-Y') }}</td>
-                            <td>{{ \Carbon\Carbon::parse($data->tgl_akhir)->format('d-m-Y') }}</td>
+                            <td>
+                                @if (\Carbon\Carbon::parse($data->tgl_akhir)->lessThan(now()->startOfDay()))
+                                    <span class="badge rounded-pill text-bg-danger">{{ \Carbon\Carbon::parse($data->tgl_akhir)->format('d-m-Y') }}</span>
+                                @else
+                                    <span class="badge rounded-pill text-bg-primary">{{ \Carbon\Carbon::parse($data->tgl_akhir)->format('d-m-Y') }}</span>
+                                @endif
+                            </td>
+                            
+                            
+
                             {{-- <td>{{ $data->pakai_kuota}}</td> --}}
                             {{-- <td>{{ $data->kuota }}</td> --}}
-                            <td>{{ $data->tampil }}</td>
+                            
+                            <td>
+                                @if ($data->tampil=="ya")
+                                    <span class="badge rounded-pill text-bg-primary">{{ $data->tampil }}</span>
+                                @else
+                                    <span class="badge rounded-pill text-bg-danger">{{ $data->tampil }}</span>
+                                @endif
+                            </td>
                             <td>
                                 <div class="action-buttons">
                                     <a href="/kelPromo/{{ $data->id }}" class="btn btn-info"><i class="bi bi-eye"></i> Detail</a>

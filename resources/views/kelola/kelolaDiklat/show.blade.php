@@ -1,11 +1,7 @@
 @extends('layout.mainAdmin')
 @section('container')
     <link href="/css/actor.css" rel="stylesheet">
-    {{-- <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-    </style> --}}
+    
     <div class="content-show">
         <h2>Detail Diklat</h2>
         <a href="/kelDiklat/{{ $diklatData->id}}/edit" class="btn btn-success">Edit</a>
@@ -58,7 +54,13 @@
                 </tr>
                 <tr>
                     <th>Status</th>
-                    <td>{{ $diklatData->status }}</td>
+                    <td>
+                        @if ($diklatData->status=="full")
+                            <span class="badge rounded-pill text-bg-primary">{{ $diklatData->status }}</span>
+                        @else
+                            <span class="badge rounded-pill text-bg-danger">{{ $diklatData->status }}</span>
+                        @endif
+                    </td>
                 </tr>
                 <tr>
                     <th>Deskripsi</th>

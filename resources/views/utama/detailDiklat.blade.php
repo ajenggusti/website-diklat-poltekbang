@@ -38,8 +38,8 @@
                     </p>
                     
                     <p>
-                        <span>detailDiklat Harga :</span><br>
-                        {{ $detailDiklat->harga }}</p>
+                        <span>Harga :</span><br>
+                        {{ 'Rp ' . number_format($detailDiklat->harga, 0, ',', '.') }}
                     
                     <p>
                         <span>Jumlah Pendaftar Saat Ini :</span><br>
@@ -67,13 +67,17 @@
                     @endif
                 @endguest
                 @auth
-                    @if($dobelDiklat)
+                    @if($detailDiklat->status== "full")
+                        <div class="alert alert-danger" role="alert">
+                            Mohon maaf, diklat ini sudah penuh.<a href="/"> Lihat diklat yang lain?</a>
+                        </div>
+                    @elseif($dobelDiklat)
                         <div class="alert alert-warning" role="alert" style="border: 1px solid #000000">
-                            Ups, kamu sudah mendaftar diklat ini.
+                            Ups, kamu sudah mendaftar diklat ini.<a href="/riwayat"> Lihat riwayat?</a>
                         </div>
                     @elseif($user->status!= "Diverifikasi")
                         <div class="alert alert-danger" role="alert">
-                            Ups, data pribadimu belum Diverifikasi...
+                            Ups, data pribadimu belum Diverifikasi.<a href="/editProfil"> Lengkapi data disini?</a>
                         </div>
                     @else
                         <div class="d-grid gap-2 col-6 button-daftar">

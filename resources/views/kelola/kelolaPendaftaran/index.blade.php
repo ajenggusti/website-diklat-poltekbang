@@ -53,45 +53,71 @@
                             <i class="bi bi-arrow-up" onclick="sortTable(3, 'asc')"></i>
                             <i class="bi bi-arrow-down" onclick="sortTable(3, 'desc')"></i>
                         </th> --}}
-                        <th>Harga Diklat 
+                        {{-- <th>Harga Diklat 
                             <i class="bi bi-arrow-up" onclick="sortTable(3, 'asc')"></i>
                             <i class="bi bi-arrow-down" onclick="sortTable(3, 'desc')"></i>
-                        </th>
+                        </th> --}}
                         <th>Status Pembayaran Diklat 
                             <i class="bi bi-arrow-up" onclick="sortTable(4, 'asc')"></i>
                             <i class="bi bi-arrow-down" onclick="sortTable(4, 'desc')"></i>
                         </th>
-                        <th>Harga Pendaftaran 
+                        {{-- <th>Harga Pendaftaran 
                             <i class="bi bi-arrow-up" onclick="sortTable(5, 'asc')"></i>
                             <i class="bi bi-arrow-down" onclick="sortTable(5, 'desc')"></i>
-                        </th>
+                        </th> --}}
                         <th>Status Pembayaran Pendaftaran 
                             <i class="bi bi-arrow-up" onclick="sortTable(6, 'asc')"></i>
                             <i class="bi bi-arrow-down" onclick="sortTable(6, 'desc')"></i>
+                        </th>
+                        <th>Status Pelaksanaan
+                            <i class="bi bi-arrow-up" onclick="sortTable(7, 'asc')"></i>
+                            <i class="bi bi-arrow-down" onclick="sortTable(7, 'desc')"></i>
                         </th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($datas as $data)
-                        <tr class="{{ $data->status_pembayaran_diklat == 'Lunas' && $data->status_pembayaran_daftar == 'Lunas' ? ($data->s_link || $data->s_gambar || $data->s_doc ? 'bg-primary' : 'bg-secondary') : '' }}">
-
+                        <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $data->user->name }}</td>
                             <td>{{ $data->diklat->nama_diklat }}</td>
                             {{-- <td>{{ $data->promo ? $data->promo->kode : '-' }}</td> --}}
-                            <td>Rp {{ number_format($data->harga_diklat, 0, ',', '.') }}</td>
-                            <td>{{ $data->status_pembayaran_diklat }}</td>
-                            <td>Rp 150.000</td>
-                            <td>{{ $data->status_pembayaran_daftar }}</td>
+                            {{-- <td>Rp {{ number_format($data->harga_diklat, 0, ',', '.') }}</td> --}}
+                            <td>
+                                @if ($data->status_pembayaran_diklat=="Lunas")
+                                    <span class="badge badge-pill badge-success">{{ $data->status_pembayaran_diklat }} Via {{ $data->jenis_pembayaran_diklat }}</span>
+                                @elseif($data->status_pembayaran_diklat=="Menunggu verifikasi")
+                                    <span class="badge badge-pill badge-warning">{{ $data->status_pembayaran_diklat }}</span>
+                                @else
+                                    <span class="badge badge-pill badge-danger">{{ $data->status_pembayaran_diklat }}</span>
+                                @endif
+                            </td>
+                            <td>
+                                @if ($data->status_pembayaran_daftar=="Lunas")
+                                    <span class="badge badge-pill badge-success">{{ $data->status_pembayaran_daftar }} Via {{ $data->jenis_pembayaran_daftar }}</span>
+                                @elseif($data->status_pembayaran_daftar=="Menunggu verifikasi")
+                                    <span class="badge badge-pill badge-warning">{{ $data->status_pembayaran_daftar }}</span>
+                                @else
+                                    <span class="badge badge-pill badge-danger">{{ $data->status_pembayaran_daftar }}</span>
+                                @endif
+                            </td>
+                            <td>
+                                @if ($data->status_pelaksanaan=="Belum terlaksana")
+                                    <span class="badge badge-pill badge-danger">{{ $data->status_pelaksanaan }}</span>
+                                @else
+                                    <span class="badge badge-pill badge-primary">{{ $data->status_pelaksanaan }}</span>
+                                    
+                                @endif
+                            </td>
                             <td>
                                 <div class="action-buttons">
-                                    <a href="/kelPendaftaran/{{ $data->id }}" class="btn btn-info"><i class="bi bi-eye"></i> Detail</a>
-                                    <a href="/kelPendaftaran/{{ $data->id }}/editAsAdmin" class="btn btn-success"><i class="bi bi-pencil-square"></i> Edit</a>
+                                    <a href="/kelPendaftaran/{{ $data->id }}" class="btn btn-info"><i class="bi bi-eye"></i></a>
+                                    <a href="/kelPendaftaran/{{ $data->id }}/editAsAdmin" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
                                     <form action="/kelPendaftaran/{{ $data->id }}" method="POST">
                                         @method('DELETE')
                                         @csrf
-                                        <button class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus?')"><i class="bi bi-trash"></i> Delete</button>
+                                        <button class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus?')"><i class="bi bi-trash"></i></button>
                                     </form>
                                 </div>
                             </td>

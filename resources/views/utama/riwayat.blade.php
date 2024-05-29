@@ -14,86 +14,60 @@
                     </div>
                 @endif
                 <div class="card-contentRiwayat">
-                    @foreach ($datas as $key => $data)
+                    @foreach ($datas as $index => $data)
+                    {{-- {{ $data->id }} --}}
                         <div class="card-riwayat">
                             <div class="card-content">
                                 <div class="wrapper-print">
-                                    <h4>{{ $dataDiklat[$key]->nama_diklat }}</h4>
+                                    <h4>{{ $data->diklat->nama_diklat }}</h4>
                                     <hr>
                                     <div class="status-print-wrapper">
-                                        <p>Status Diklat : {{ $dataDiklat[$key]->status }}</p>
+                                        <p>Status Diklat : {{ $data->diklat->status }}</p>
                                         <a href="/invoicePdf/{{ $data->id }}" class="btn"> <i class="bi bi-printer" style="font-size: 30px;"></i></a>
-                                        
                                     </div>
                                     <p>Harga Pendaftaran : Rp. 150.000</p>
-                                    <p>Harga Diklat : Rp. {{ number_format($data->diklat->harga, 0, ',', '.') }}</p>
-                                    <!-- Displaying Discount -->
-                                    @if($data->promo)
-                                        <p>Diskon: - Rp. {{ number_format($data->promo->potongan, 0, ',', '.') }}</p>
-                                    @else
-                                        <p>Diskon: - Rp. 0</p> 
-                                    @endif
-                                    <p>Total Biaya : Rp. {{ number_format($data->harga_diklat, 0, ',', '.') }}</p>
-                            
-                                    {{-- STATUS PEMBAYARAN --}}
-                                    @if ($data->status_pembayaran_daftar == "Menunggu pembayaran" || $data->status_pembayaran_daftar == "Belum dibayar")
-                                        <p>Status Pembayaran Pendaftaran : <br>
-                                            <span class="btn btn-warning disable" style="background-color: rgba(213, 0, 0, 0.897); text-decoration: none;">
-                                                {{ $data->status_pembayaran_daftar }}
-                                            </span>
-                                        </p>  
-                                    @elseif ($data->status_pembayaran_daftar == "Menunggu verifikasi")
-                                    <p>Status Pembayaran Pendaftaran : <br>
-                                        <span class="btn btn-warning disable" style="background-color: rgb(250, 244, 62); text-decoration: none; ">
-                                            {{ $data->status_pembayaran_daftar }}
-                                        </span>
-                                    </p>
-                                    @elseif ($data->status_pembayaran_daftar == "Lunas")
-                                        <p>Status Pembayaran Pendaftaran : <br>
-                                            <span class="btn btn-warning disable" style="background-color: rgb(91, 248, 52); text-decoration: none;">
-                                                {{ $data->status_pembayaran_daftar }}
-                                            </span>
-                                        </p>
-                                    @endif
-                                
-                                    @if ($data->status_pembayaran_diklat == "Menunggu pembayaran" || $data->status_pembayaran_diklat == "Belum dibayar" )
-                                    <p>Status Pembayaran Diklat : <br>
-                                        <span class="btn btn-warning disable" style="background-color: rgba(213, 0, 0, 0.897); text-decoration: none;">
-                                            {{ $data->status_pembayaran_diklat }}
-                                        </span>
+                                    <p>Status Pembayaran Pendaftaran :
+                                        @if ($data->status_pembayaran_daftar=="Lunas")
+                                            <span class="badge badge-pill badge-success">{{ $data->status_pembayaran_daftar }} Via {{ $data->jenis_pembayaran_daftar }}</span>
+                                        @else
+                                            <span class="badge badge-pill badge-danger">{{ $data->status_pembayaran_daftar }}</span>
+                                        @endif
                                     </p> 
-                                    @elseif ($data->status_pembayaran_diklat == "Menunggu verifikasi")
-                                    <p>Status Pembayaran Diklat : <br>
-                                        <span class="btn btn-warning disable" style="background-color: rgb(250, 244, 62); text-decoration: none; ">
-                                            {{ $data->status_pembayaran_diklat }}
-                                        </span>
-                                    </p>
-                                    @elseif ($data->status_pembayaran_diklat == "Lunas")
-                                    <p>Status Pembayaran Diklat : <br>
-                                        <span class="btn btn-warning disable" style="background-color: rgb(91, 248, 52); text-decoration: none;">
-                                            {{ $data->status_pembayaran_diklat }}
-                                        </span>
-                                    </p>
-                                    @endif
-                    
-                                
-                                    
 
-                                    <p>Lakukan pembayaran : </p>
+                                    <p>Harga Diklat : Rp. {{ number_format($data->harga_asli_diklat, 0, ',', '.') }}</p>
+                                    <!-- Displaying Discount -->
+                                    {{-- @if($data->promo) --}}
+                                        <p>Diskon promo: - Rp. {{ number_format($data->potongan, 0, ',', '.') }}</p>
+                                        <p>Diskon admin: - Rp. {{ number_format($data->potongan_admin, 0, ',', '.') }}</p>
+                                    {{-- @else
+                                        <p>Diskon: - Rp. 0</p> 
+                                    @endif --}}
+                                    <p>Total Biaya Diklat : Rp. {{ number_format($data->harga_diklat, 0, ',', '.') }}</p>
+                        
+                                     <p>Status Pembayaran Diklat :
+                                        @if ($data->status_pembayaran_diklat=="Lunas")
+                                            <span class="badge badge-pill badge-success">{{ $data->status_pembayaran_diklat }} Via {{ $data->jenis_pembayaran_diklat }}</span>
+                                        @elseif($data->status_pembayaran_diklat=="Menunggu verifikasi")
+                                            <span class="badge badge-pill badge-warning">{{ $data->status_pembayaran_diklat }}</span>
+                                        @else
+                                            <span class="badge badge-pill badge-danger">{{ $data->status_pembayaran_diklat }}</span>
+                                        @endif
+                                    </p> 
+
                                     <div class="col">
                                         @if ($data->status_pembayaran_daftar != "Lunas")
-                                            <form id="hiddenFormPendaftaran" method="POST" action="{{ route('kelPembayaranPendaftaran.savePendaftaran') }}">
+                                            <form id="hiddenFormPendaftaran{{ $index }}" method="POST" action="{{ route('kelPembayaranPendaftaran.savePendaftaran') }}">
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{ $data->id }}">
                                             </form>
-                                            <a href="#" onclick="submitFormPendaftaran()" class="btn btn-secondary">Bayar Daftar</a>
+                                            <a href="#" onclick="submitFormPendaftaran('hiddenFormPendaftaran{{ $index }}')" class="btn btn-secondary"><i class="bi bi-currency-dollar"></i>Bayar Daftar</a>
                                         @endif
                                         @if ($data->status_pembayaran_diklat != "Lunas")
-                                            <form id="hiddenFormDiklat" method="POST" action="{{ route('kelPembayaranDiklat-form.createDiklat') }}">
+                                            <form id="hiddenFormDiklat{{ $index }}" method="POST" action="{{ route('kelPembayaranDiklat-form.createDiklat') }}">
                                                 @csrf
                                                 <input type="hidden" name="id" value="{{ $data->id }}">
                                             </form>
-                                            <a href="#" onclick="submitFormDiklat()" class="btn btn-secondary">Bayar Diklat</a>
+                                            <a href="#" onclick="submitFormDiklat('hiddenFormDiklat{{ $index }}')" class="btn btn-secondary"><i class="bi bi-currency-dollar"></i>Bayar Diklat</a>
                                         @endif
                                     </div>
                                     <br>
@@ -103,19 +77,20 @@
                                     <br>
                                     
                                     <div class="button-transaksi">
-                                        <p>Bukti Pembayaran :</p>
-                                        <form id="transaksiPembayaran" method="POST" action="{{ route('bukti-pembayaran.buktiPembayaran') }}">
+                                        <form id="transaksiPembayaran{{ $index }}" method="POST" action="{{ route('bukti-pembayaran.buktiPembayaran') }}">
                                             @csrf
-                                            <input type="hidden" name="id" value="{{ $data->id }}">
+                                            <input type="hidden" name="id" id="hiddenId{{ $index }}" value="{{ $data->id }}">
                                         </form>
-                                        <a href="#"  style="background-color: rgb(248, 132, 0); color: #ffffff;" onclick="submitFormTransaksi()" class="btn btn-secondary transaksi-btn">Transaksi Pembayaran</a>
+                                        
+                                        <a href="#" style="background-color: rgb(248, 132, 0); color: #ffffff;" 
+                                           onclick="submitFormTransaksi('transaksiPembayaran{{ $index }}', '{{ $index }}')" 
+                                           class="btn btn-secondary transaksi-btn"><i class="bi bi-clipboard-data"></i>
+                                            Transaksi Pembayaran
+                                        </a>
+
                                         <br><br>
-                                        @if ($data->s_doc)
-                                            <a href="{{ route('kelTestimoni.create', ['id' => $data->id]) }}"class="btn transaksi-btn" style="background-color: rgb(44, 138, 192); color: #ffffff;">Kirim Testimoni</a>
-                                        @elseif($data->s_gambar)
-                                            <a href="{{ route('kelTestimoni.create', ['id' => $data->id]) }}"class="btn transaksi-btn" style="background-color: rgb(44, 138, 192); color: #ffffff;">Kirim Testimoni</a>
-                                        @elseif($data->s_link)
-                                            <a href="{{ route('kelTestimoni.create', ['id' => $data->id]) }}"class="btn transaksi-btn" style="background-color: rgb(44, 138, 192); color: #ffffff;">Kirim Testimoni</a>
+                                        @if ($data->s_doc || $data->s_gambar || $data->s_link)
+                                            <a href="{{ route('kelTestimoni.create', ['id' => $data->id]) }}"class="btn transaksi-btn" style="background-color: rgb(44, 138, 192); color: #ffffff;"><i class="bi bi-chat-left-quote"></i> Kirim Testimoni</a>
                                         @endif
                                     </div>
                                 </div>
@@ -153,14 +128,14 @@
             @endif
 
                 <script>
-                    function submitFormPendaftaran() {
-                        document.getElementById('hiddenFormPendaftaran').submit();  
+                    function submitFormPendaftaran(formId) {
+                        document.getElementById(formId).submit(); 
                     }
-                    function submitFormDiklat() {
-                        document.getElementById('hiddenFormDiklat').submit();
+                    function submitFormDiklat(formId) {
+                        document.getElementById(formId).submit();
                     }
-                    function submitFormTransaksi() {
-                        document.getElementById('transaksiPembayaran').submit(); 
+                    function submitFormTransaksi(formId, index) {
+                        document.getElementById(formId).submit();
                     }
                 </script>
         </div>

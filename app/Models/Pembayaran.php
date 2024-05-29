@@ -22,11 +22,6 @@ class Pembayaran extends Model
         return self::where('jenis_pembayaran', 'pendaftaran')->count();
     }
 
-
-
-
-
-
     public static function hitungPembayaranDiklatDicek()
     {
         return DB::table('pembayaran')
@@ -58,5 +53,8 @@ class Pembayaran extends Model
             ->where('pembayaran.jenis_pembayaran', 'pendaftaran')
             ->where('pendaftaran.status_pembayaran_daftar', 'Lunas')
             ->count();
+    }
+    public static function hapusOtomatis(){
+        $data = Pembayaran::all();
     }
 }

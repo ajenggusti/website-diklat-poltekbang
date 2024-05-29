@@ -63,6 +63,10 @@
                             <i class="bi bi-arrow-up" onclick="sortTable(5, 'asc')"></i>
                             <i class="bi bi-arrow-down" onclick="sortTable(5, 'desc')"></i>
                         </th>
+                        <th scope="col">Penulis? 
+                            <i class="bi bi-arrow-up" onclick="sortTable(6, 'asc')"></i>
+                            <i class="bi bi-arrow-down" onclick="sortTable(6, 'desc')"></i>
+                        </th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -70,19 +74,36 @@
                     @foreach ($datas as $data)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            @if ($data->id_pendaftaran)
-                                <td>{{ $data->pendaftaran->diklat->nama_diklat}}</td>
-                            @else
-                                <td>{{ $data->diklat->nama_diklat}}</td>
-                            @endif
-                            @if ($data->id_pendaftaran)
-                                <td>{{ $data->pendaftaran->nama_lengkap}}</td>
-                            @else
-                                <td>{{ $data->nama_dummy}}</td>
-                            @endif
+                            <td>
+                                @if ($data->id_pendaftaran)
+                                    {{ $data->pendaftaran->diklat->nama_diklat}}
+                                @else
+                                    {{ $data->diklat->nama_diklat}}
+                                @endif
+                            </td>
+                            <td>
+                                @if ($data->id_pendaftaran)
+                                    {{ $data->pendaftaran->nama_lengkap}}
+                                @else
+                                    {{ $data->nama_dummy}}
+                                @endif
+                            </td>
                             <td>{{ $data->profesi }}</td>
                             <td>{{ $data->testimoni }}</td>
-                            <td>{{ $data->tampil }}</td>
+                            <td>
+                                @if ($data->tampil=="iya")
+                                    <span class="badge rounded-pill text-bg-primary">{{ $data->tampil }}</span>
+                                @else
+                                    <span class="badge rounded-pill text-bg-danger">{{ $data->tampil }}</span>
+                                @endif
+                            </td>
+                            <td>
+                                @if ($data->id_pendaftaran==null)
+                                    <span class="badge rounded-pill text-bg-primary"> Admin</span>
+                                @else
+                                    <span class="badge rounded-pill text-bg-warning"> User</span>
+                                @endif
+                            </td>
 
                             <td>
                                 <div class="action-buttons">

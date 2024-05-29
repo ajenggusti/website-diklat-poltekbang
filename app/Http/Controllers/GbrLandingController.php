@@ -14,7 +14,7 @@ class GbrLandingController extends Controller
     public function index()
     {
         $datas = Gambar_navbar::all();
-        // dd($datas);
+        // dd($datas[6]->gambar_navbar);
         return view('kelola.kelolaGbrLandingPage.index', ['datas' => $datas]);
     }
 
@@ -38,25 +38,28 @@ class GbrLandingController extends Controller
             'img.max' => 'Ukuran file tidak boleh melebihi 1 MB.',
             'status.required' => 'Status tampilan harus dipilih.'
         ];
-    
+
         $request->validate([
             'img' => 'required|image|file|max:1024',
             'status' => 'required|in:tampilkan,sembunyikan'
         ], $messages);
 
         if ($request->hasFile('img')) {
-            $image = $request->file('img')->store('LanPage');
+
+            $image = "LanPage/" . time() . '-' . uniqid() . '.' . $request->img->getClientOriginalExtension();
+            $request->img->move('storage/LanPage', $image);
+            // $image = $request->file('img')->store('public/LanPage');
             Gambar_navbar::create([
                 'gambar_navbar' => $image,
                 'status' => $request->status
             ]);
-    
+
             return redirect('/gbrLandingPage')->with('success', 'Data berhasil ditambahkan!');
         } else {
             return back()->withErrors(['msg' => 'Tidak ada file yang diunggah.'])->withInput();
         }
     }
-    
+
 
     /**
      * Display the specified resource.
@@ -86,15 +89,22 @@ class GbrLandingController extends Controller
             'img.max' => 'Ukuran file tidak boleh melebihi 1 MB.',
             'status.required' => 'Status tampilan harus dipilih.'
         ];
-    
+
         $request->validate([
             'img' => 'nullable|image|file|max:1024',
             'status' => 'required|in:tampilkan,sembunyikan'
         ], $messages);
-    
+
         if ($request->hasFile('img')) {
-            $image = $request->file('img')->store('LanPage');
-            Storage::delete($gbrLandingPage->gambar_navbar);
+            
+            $filePath = public_path('storage/' . $gbrLandingPage->gambar_navbar);
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+
+            $image = "LanPage/" . time() . '-' . uniqid() . '.' . $request->img->getClientOriginalExtension();
+            $request->img->move('storage/LanPage', $image);
+
             $gbrLandingPage->update([
                 'gambar_navbar' => $image,
                 'status' => $request->status
@@ -104,21 +114,25 @@ class GbrLandingController extends Controller
                 'status' => $request->status
             ]);
         }
-    
+
         return redirect('/gbrLandingPage')->with('success', 'Data berhasil diperbarui!');
     }
-    
-    
+
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Gambar_navbar $gbrLandingPage)
     {
-        Storage::delete($gbrLandingPage->gambar_navbar);
+        // Storage::delete($gbrLandingPage->gambar_navbar);
+        // $gbrLandingPage->delete();
+        $filePath = public_path('storage/' . $gbrLandingPage->gambar_navbar);
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
         $gbrLandingPage->delete();
-    
+
         return redirect('/gbrLandingPage')->with('success', 'Data berhasil dihapus!');
     }
-    
 }

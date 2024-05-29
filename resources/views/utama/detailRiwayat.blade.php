@@ -11,29 +11,16 @@
                     <h2>Detail Pendaftaran</h2>
                     <hr>
                     <div class="detail-left">
-                        Nama diklat : <br>
+                        {{-- Nama diklat : <br>
                         <span>{{ $data->diklat->nama_diklat }}</span>
-                        <br><br>
+                        <br><br> --}}
 
                         Nama Lengkap : <br>
-                        <span>{{ $data->nama_lengkap }}</span>
+                        <span>{{ $data->user->name }}</span>
                         <br><br>
-                        
-                        {{-- Tempat Lahir : <br>
-                        <span>{{ $data->tempat_lahir }}</span>
-                        <br><br> --}}
-                        
-                        {{-- jangan lupa kasih format --}}
-                        Tanggal Lahir : <br>
-                        <span>{{ \Carbon\Carbon::parse($data->tanggal_lahir)->format('d-m-Y') }}</span>
-                        <br><br>
-                        
-                        Alamat : <br>
-                        <span>{{ $data->alamat }}</span>
-                        <br><br>
-                        
+
                         Email : <br>
-                        <span>{{ $data->email }}</span>
+                        <span>{{ $data->user->email }}</span>
                         <br><br>
                         
                         No HP : <br>
@@ -47,26 +34,54 @@
                         Waktu Pendaftaran : <br>
                         <span>{{ \Carbon\Carbon::parse($data->waktu_pendaftaran)->format('H:i:s | d-m-Y') }} </span>
                         <br> <br>
+
+                        Jenis kelengkapan berkas : <br>
+                        <span>{{ $data->user->jenis_berkas }}</span>
+                        <br><br>
+
+                        Jenis kelamin : <br>
+                        @if ($data->user->jenis_kelamin =="l")
+                            <span>Laki laki</span>
+                            <br><br>
+                        @else
+                            <span>Perempuan</span>
+                            <br><br>
+                        @endif
+
+                        {{-- data sesuai berkas user ktp ataw paspor ---------------------------------------}}
+                        @if ($data->user->jenis_berkas="ktp")
+                            Tempat Tanggal Lahir : <br>
+                            <span>{{ $data->user->tempat_lahir }} | {{ \Carbon\Carbon::parse($data->tanggal_lahir)->format('d-m-Y') }}</span>
+                            <br><br>
+
+                            Alamat : <br>
+                            <span>Kelurahan {{ $data->user->kelurahan->name }}, Kecamatan {{ $data->user->kecamatan->name }}, Kabupaten{{ $data->user->kabupaten->name }}, Provinsi {{ $data->user->provinsi->name }}</span>
+                            <br><br>
+                    
+                        @else
+                        
+                        @endif
+                        
+                        <br> <br>
                     </div>
                     
                     <div class="detail-right">
-                        
-
-                        @if($data->promo)
-                            Kode Promo : <br>
-                                <span> {{ $data->promo->kode }}</span>
-                        @else
-                            Kode Promo :  <br>
-                                <span> Tidak ada promo yang diambil</span>
-                        @endif
-
+                        Nama diklat : <br>
+                        <span>{{ $data->diklat->nama_diklat }}</span>
                         <br><br>
+                        
                         Biaya Pendaftaran : <br>
                         <span>Rp 150.000</span>
                         <br><br>
                         
                         Status Pembayaran Pendaftaran : <br>
-                        <span>{{ $data->status_pembayaran_daftar }}</span>
+                        @if ($data->status_pembayaran_daftar=="Lunas")
+                            <span class="badge badge-pill badge-success">{{ $data->status_pembayaran_daftar }} Via {{ $data->jenis_pembayaran_daftar }}</span>
+                            <br><br>
+                        @else
+                            <span class="badge badge-pill badge-danger">{{ $data->status_pembayaran_daftar }}</span>
+                            <br><br>
+                        @endif
                         <br><br>
                         
                         Harga Diklat : <br>
@@ -75,20 +90,34 @@
                         
                         <!-- Displaying Discount -->
                         @if($data->promo)
-                                Diskon: <br>
-                                    <span> - Rp. {{ number_format($data->promo->potongan, 0, ',', '.') }} </span>
-                            @else
-                                Diskon: <br>
-                                <span> - Rp. 0</span> 
-                            @endif
-                        <br><br>
+                            Diskon promo: <br>
+                            <span> - Rp. {{ number_format($data->promo->potongan, 0, ',', '.') }} </span>
+                            <br><br>
+                        @else
+                            Diskon promo: <br>
+                            <span> - Rp. 0</span> 
+                            <br><br>
+                        @endif
+                            Diskon Admin: <br>
+                            <span> - Rp. {{ number_format($data->potongan_admin, 0, ',', '.') }} </span>
+                            <br><br>
+
                         Total Biaya : <br>
                         <span>Rp. {{ number_format($data->harga_diklat, 0, ',', '.') }}</span>
                         <br><br>
                         
                         Status Pembayaran Biaya Diklat : <br>
-                        <span>{{ $data->status_pembayaran_diklat }} </span>
-                        <br><br>
+                        @if ($data->status_pembayaran_diklat=="Lunas")
+                            <span class="badge badge-pill badge-success">{{ $data->status_pembayaran_diklat }} Via {{ $data->jenis_pembayaran_diklat }}</span>
+                            <br><br>
+                        @elseif($data->status_pembayaran_diklat=="Menunggu verifikasi")
+                            <span class="badge badge-pill badge-warning">{{ $data->status_pembayaran_diklat }}</span>
+                            <br><br>
+                        @else
+                            <span class="badge badge-pill badge-danger">{{ $data->status_pembayaran_diklat }}</span>
+                            <br><br>
+                        @endif
+                        <br> <br>
 
                         Join Grup whatsapp: <br>
                         <span>

@@ -1,27 +1,7 @@
 @extends('layout.mainAdmin')
 @section('container')
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Kelola User</title>
     <link href="/css/actor.css" rel="stylesheet">
-    {{-- <script src="/js/actor.js"></script> --}}
-    {{-- <script src="/js/landing.js"></script> --}}
-    {{-- Boostrap Icons --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    {{-- Font Poppins --}}
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-    </style>
-</head>
-<body>
     <div class="content-show">
         <h2>Detail User</h2>
         <a href="/register/{{ $user->id }}/edit" class="btn btn-warning">Edit</a>
@@ -31,7 +11,17 @@
                 @if ($user->jenis_berkas =="paspor")
                     <tr>
                         <th>Role level</th>
-                        <td>{{ $user->level->level }}</td>
+                        <td>
+                            @if ($user->level->level=="Member")
+                                <span class="badge rounded-pill text-bg-secondary">{{ $user->level->level }}</span>
+                            @elseif($user->level->level=="DPUK")
+                                <span class="badge rounded-pill text-bg-info">{{ $user->level->level }}</span>
+                            @elseif($user->level->level=="Keuangan")
+                                <span class="badge rounded-pill text-bg-warning">{{ $user->level->level }}</span>
+                            @elseif($user->level->level=="Super Admin")
+                                <span class="badge rounded-pill text-bg-success">{{ $user->level->level }}</span>
+                            @endif
+                        </td>
                     </tr>
                     <tr>
                         <th>Kewarganegaraan</th>
@@ -72,13 +62,37 @@
                     
                     <tr>
                         <th>status</th>
-                        <td>{{ $user->status }}</td>
+                        <td>
+                            @if ($user->status=='Perlu dilengkapi')
+                                <span class="badge rounded-pill text-bg-danger">{{ $user->status }}</span>
+                            @elseif ($user->status=='Sedang diverifikasi')
+                                <span class="badge rounded-pill text-bg-info">{{ $user->status }}</span>
+                            @elseif ($user->status=='Diverifikasi')
+                                <span class="badge rounded-pill text-bg-success">{{ $user->status }}</span>
+                            @elseif ($user->status=='Perlu pembaharuan')
+                                <span class="badge rounded-pill text-bg-warning">{{ $user->status }}</span>
+                            @elseif ($user->status=='Memohon perubahan')
+                                <span class="badge rounded-pill text-bg-secondary">{{ $user->status }}</span>
+                            @elseif ($user->status=='Permohonan perubahan disetujui')
+                                <span class="badge rounded-pill text-bg-primary">{{ $user->status }}</span>
+                            @endif
+                        </td>
                     </tr>
                 @else
                 
                     <tr>
                         <th>Role level</th>
-                        <td>{{ $user->level->level }}</td>
+                        <td>
+                            @if ($user->level->level=="Member")
+                                <span class="badge rounded-pill text-bg-secondary">{{ $user->level->level }}</span>
+                            @elseif($user->level->level=="DPUK")
+                                <span class="badge rounded-pill text-bg-info">{{ $user->level->level }}</span>
+                            @elseif($user->level->level=="Keuangan")
+                                <span class="badge rounded-pill text-bg-warning">{{ $user->level->level }}</span>
+                            @elseif($user->level->level=="Super Admin")
+                                <span class="badge rounded-pill text-bg-success">{{ $user->level->level }}</span>
+                            @endif
+                        </td>
                     </tr>
                     <tr>
                         <th>NIK</th>
@@ -122,13 +136,26 @@
                     </tr>
                     <tr>
                         <th>status</th>
-                        <td>{{ $user->status }}</td>
+                        <td>
+                            @if ($user->status=='Perlu dilengkapi')
+                                <span class="badge rounded-pill text-bg-danger">{{ $user->status }}</span>
+                            @elseif ($user->status=='Sedang diverifikasi')
+                                <span class="badge rounded-pill text-bg-info">{{ $user->status }}</span>
+                            @elseif ($user->status=='Diverifikasi')
+                                <span class="badge rounded-pill text-bg-success">{{ $user->status }}</span>
+                            @elseif ($user->status=='Perlu pembaharuan')
+                                <span class="badge rounded-pill text-bg-warning">{{ $user->status }}</span>
+                            @elseif ($user->status=='Memohon perubahan')
+                                <span class="badge rounded-pill text-bg-secondary">{{ $user->status }}</span>
+                            @elseif ($user->status=='Permohonan perubahan disetujui')
+                                <span class="badge rounded-pill text-bg-primary">{{ $user->status }}</span>
+                            @endif
+                        </td>
                     </tr>
                 @endif
             </table>
         </div>
         
     </div>
-</body>
-</html>
+
 @endsection

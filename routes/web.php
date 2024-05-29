@@ -110,7 +110,10 @@ Route::post('/kelPembayaranPendaftaran', [PembayaranController::class, 'savePend
 Route::post('/kelPembayaranDiklat', [PembayaranController::class, 'saveDiklat'])->name('kelPembayaranDiklat.saveDiklat');
 // export laporan
 Route::get('/laporanExport/{tgl_awal}', [PembayaranController::class, 'export']);
+Route::get('/allLaporanExport', [PembayaranController::class, 'exportAll']);
 Route::resource('/kelPembayaran', PembayaranController::class)->except('update');
+Route::get('/filterPembayaran', [PembayaranController::class, 'filterPembayaran']);
+
 // route pembayaran export A.K.A. Laporan
 //route CRUD gambar diklat
 Route::resource('/kelGambarDiklat', GambarDiklatController::class);

@@ -203,16 +203,16 @@
                             <a class="nav-link active" aria-current="page" href="/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#promo">Promo</a>
+                            <a class="nav-link" href="/#promo">Promo</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#katDiklat">Diklat</a>
+                            <a class="nav-link" href="/#katDiklat">Diklat</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#testimoni">Testimoni</a>
+                            <a class="nav-link" href="/#testimoni">Testimoni</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#faq">FAQ</a>
+                            <a class="nav-link" href="/#faq">FAQ</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#profile">Profile</a>

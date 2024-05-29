@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Exports\PembayaranExport;
+use App\Exports\PembayaranExportAll;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Storage;
 
@@ -27,9 +28,10 @@ class PembayaranController extends Controller
         // dd($pembayarans);
         return view('kelola.kelolaPembayaran.index', [
             'pembayarans' => $pembayarans,
-            'formattedPemasukan'=>$formattedPemasukan
+            'pemasukanKeseluruhan'=>$pemasukanKeseluruhan
         ]);
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -148,14 +150,15 @@ class PembayaranController extends Controller
             $paymentType = $request->payment_type;
 
             if ($paymentType == "qris") {
-                $type = $request->acquirer;
+                $type = $request->issuer;
             } elseif ($paymentType == "bank_transfer") {
                 $bank = $request->va_numbers[0]['bank'];
                 $type = $request->payment_type . " " . $bank;
             } else {
                 $type = $request->payment_type . " " . $request->bank;
             }
-            // dd($type);
+
+            // dd($paymentType);
             $pembayaran->update([
                 'status' => "Menunggu pembayaran",
                 'metode_pembayaran' => $type
@@ -184,6 +187,29 @@ class PembayaranController extends Controller
                         $pembayaran->update([
                             'status' => "Lunas",
                             'metode_pembayaran' => $type
+                        ]);
+                    }
+                    elseif($pembayaran->jenis_pembayaran == "diklat" && $request->transaction_status == "pending"){
+                        $pendaftaran = Pendaftaran::find($pembayaran->id_pendaftaran);
+                        $pendaftaran->update([
+                            // 'status_pembayaran_diklat' => "Lunas",
+                            'updated_at_pembayaran_diklat' => $currentTime,
+                            'jenis_pembayaran_diklat' => $paymentType,
+                        ]);
+                        $pembayaran->update([
+                            // 'status' => "Menunggu pembayaran",
+                            'metode_pembayaran' => $paymentType
+                        ]);
+                    }elseif ($pembayaran->jenis_pembayaran == "pendaftaran" && $request->transaction_status == "pending") {
+                        $pendaftaran = Pendaftaran::find($pembayaran->id_pendaftaran);
+                        $pendaftaran->update([
+                            // 'status_pembayaran_daftar' => "Lunas",
+                            'updated_at_pembayaran_daftar' => $currentTime,
+                            'jenis_pembayaran_daftar' => $paymentType,
+                        ]);
+                        $pembayaran->update([
+                            // 'status' => "Lunas",
+                            'metode_pembayaran' => $paymentType
                         ]);
                     }
                 } else {
@@ -240,9 +266,9 @@ class PembayaranController extends Controller
                 'gross_amount' => $pembayaran->total_harga,
             ),
             'customer_details' => array(
-                'first_name' => $pembayaran->pendaftaran->nama_lengkap,
+                'first_name' => $pembayaran->pendaftaran->user->name,
                 'last_name' => '',
-                'email' => $pembayaran->pendaftaran->email,
+                'email' => $pembayaran->pendaftaran->user->email,
                 'phone' => $pembayaran->pendaftaran->no_hp,
             ),
         );
@@ -295,9 +321,9 @@ class PembayaranController extends Controller
                 'gross_amount' => $pembayaran->total_harga,
             ),
             'customer_details' => array(
-                'first_name' => $pembayaran->pendaftaran->nama_lengkap,
+                'first_name' => $pembayaran->pendaftaran->user->name,
                 'last_name' => '',
-                'email' => $pembayaran->pendaftaran->email,
+                'email' => $pembayaran->pendaftaran->user->email,
                 'phone' => $pembayaran->pendaftaran->no_hp,
             ),
         );
@@ -317,8 +343,6 @@ class PembayaranController extends Controller
             'image' => 'Data yang dimasukkan harus berupa gambar.',
             'max' => 'Ukuran gambar tidak boleh melebihi :max kilobytes.',
         ]);
-
-        // Simpan data
         $pendaftaran = Pendaftaran::find($id);
         $pembayaran = new Pembayaran();
 
@@ -330,8 +354,16 @@ class PembayaranController extends Controller
 
         if ($pendaftaran->bukti_pembayaran) {
             if ($request->hasFile('bukti_pembayaran')) {
-                $image = $request->file('bukti_pembayaran')->store('LanPage');
-                Storage::delete($pendaftaran->bukti_pembayaran);
+                // hapusfoto
+                $filePath = public_path('storage/' . $pendaftaran->bukti_pembayaran);
+                if (file_exists($filePath)) {
+                    unlink($filePath);
+                }
+                // savefoto
+                $image = "LanPage/" . time() . '-' . uniqid() . '.' . $request->bukti_pembayaran->getClientOriginalExtension();
+                $request->bukti_pembayaran->move('storage/LanPage', $image);
+
+                
                 $pendaftaran->update([
                     'bukti_pembayaran' => $image,
                     'status_pembayaran_diklat' => "Menunggu verifikasi"
@@ -342,7 +374,8 @@ class PembayaranController extends Controller
             }
         } else {
             if ($request->hasFile('bukti_pembayaran')) {
-                $image = $request->file('bukti_pembayaran')->store('LanPage');
+                $image = "LanPage/" . time() . '-' . uniqid() . '.' . $request->bukti_pembayaran->getClientOriginalExtension();
+                $request->bukti_pembayaran->move('storage/LanPage', $image);
                 $pendaftaran->update([
                     'bukti_pembayaran' => $image,
                     'status_pembayaran_diklat' => "Menunggu verifikasi"
@@ -361,6 +394,7 @@ class PembayaranController extends Controller
 
         return redirect('/riwayat')->with('success', 'Terimakasih! Pembayaranmu akan segera diperiksa oleh admin:)');
     }
+    // excel
     public function export(Request $request){
         $requestUri = $request->server->get('REQUEST_URI');
         $uriParts = explode('/', $requestUri);
@@ -368,11 +402,40 @@ class PembayaranController extends Controller
         $dates = explode('.', $dateRange);
         $startDate = $dates[0];
         $endDate = $dates[1]; 
-        // dd($startDate);
+        // ubah format
+        $startDatef = Carbon::parse($dates[0])->format('d-m-Y');
+        $endDatef = Carbon::parse($dates[1])->format('d-m-Y');
+        // dd($startDatef);
         // dd($endDate);
         $timestamp = Carbon::now()->format('H-i-s_d-m-Y');
-        $filename = 'Laporan_' . $timestamp . '.xlsx';
+        $filename = 'Laporan_byTgl_'.$startDatef.'_sampai_'.$endDatef .'_webDiklat_'. $timestamp . '.xlsx';
         return Excel::download(new PembayaranExport($startDate, $endDate), $filename);
     }
+    public function exportAll(){
+        $timestamp = Carbon::now()->format('H-i-s_d-m-Y');
+        $filename = 'Laporan_webDiklat_allData_' . $timestamp . '.xlsx';
+        return Excel::download(new PembayaranExportAll, $filename);
+    }
+    // total by tanggal 
+    public function filterPembayaran(Request $request)
+    {
+        // dd($request);
+        $date1 = $request->input('date1');
+        $date2 = $request->input('date2');
+
+        $filteredPembayarans = Pembayaran::where('status', 'Lunas')
+            ->whereBetween('created_at', [$date1, $date2])
+            ->get();
+
+        $totalSum = $filteredPembayarans->sum('total_harga');
+
+        $tableRows = view('kelola.kelolaPembayaran.index', ['pembayarans' => $filteredPembayarans])->render();
+
+        return response()->json([
+            'tableRows' => $tableRows,
+            'totalSum' => 'Rp ' . number_format($totalSum, 0, ',', '.')
+        ]);
+    }
+    
 
 }

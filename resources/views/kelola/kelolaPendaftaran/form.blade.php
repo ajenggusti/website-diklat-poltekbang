@@ -32,13 +32,13 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>      
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') ?: Auth::user()->email }}">
                                 @error('email')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
-                            </div>
+                            </div> --}}
                             
                             <br>
                             <div class="mb-3">
@@ -53,19 +53,19 @@
                                 <small class="text-muted">Jika tidak ada pesan error pada kode promo, berarti promo yang dimasukkan valid.</small>
                             </div>
                             <br>
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <label for="nama_lengkap" class="form-label is">Nama Lengkap</label>
                                 <input type="text" class="form-control  @error('nama_lengkap') is-invalid @enderror" id="nama_lengkap" name= "nama_lengkap" value="{{ old('nama_lengkap') }}">
                                 <small class="text-muted ">Tidak perlu mencantumkan gelar.</small>
                                 @error('nama_lengkap')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
-                            </div>
+                            </div> --}}
                         </div>
 
 
                         <div class="form-column-right">
-                            <div class="mb-3">
+                            {{-- <div class="mb-3">
                                 <label for="tempat_lahir" class="form-label">Tempat lahir</label>
                                 <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" id="tempat_lahir" name="tempat_lahir" value="{{ old('tempat_lahir') }}">
                                 @error('tempat_lahir')
@@ -86,7 +86,7 @@
                                 @error('alamat')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
-                            </div>
+                            </div> --}}
                             
                             
                             <div class="mb-3">

@@ -61,16 +61,20 @@
                                 <i class="bi bi-arrow-up" onclick="sortTable(4, 'asc')" style="font-size: 15px;"></i>
                                 <i class="bi bi-arrow-down" onclick="sortTable(4, 'desc')" style="font-size: 15px;"></i>  
                             </th> --}}
-                            <th>Status
+                            <th>Gambar default?
                                 <i class="bi bi-arrow-up" onclick="sortTable(3, 'asc')" style="font-size: 15px;"></i>
                                 <i class="bi bi-arrow-down" onclick="sortTable(3, 'desc')" style="font-size: 15px;"></i>  
+                            </th>
+                            <th>Status
+                                <i class="bi bi-arrow-up" onclick="sortTable(4, 'asc')" style="font-size: 15px;"></i>
+                                <i class="bi bi-arrow-down" onclick="sortTable(4, 'desc')" style="font-size: 15px;"></i>  
                             </th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($datas as $data)
-                            <tr @if ($data->default == 'ya') style="background-color: #89CFF0;" @endif>
+                            <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $data->nama_diklat }}</td>
                                 <td>
@@ -91,9 +95,20 @@
                                     @endif
                                 </td>
                                 <td>{{ $data->kategori_diklat }}</td>
-                                {{-- <td>{{ $data->kuota_minimal}}</td>
-                                <td>{{ $data->jumlah_pendaftar}}</td> --}}
-                                <td>{{ $data->status }}</td>
+                                <td>
+                                    @if ($data->default=="ya")
+                                        <span class="badge rounded-pill text-bg-primary">ya</span>
+                                    @else
+                                        <span class="badge rounded-pill text-bg-danger">tidak</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if ($data->status=="full")
+                                        <span class="badge rounded-pill text-bg-primary">{{ $data->status }}</span>
+                                    @else
+                                        <span class="badge rounded-pill text-bg-danger">{{ $data->status }}</span>
+                                    @endif
+                                </td>
                                 <td>
                                     <div class="action-buttons">
                                         <a href="/kelDiklat/{{ $data->id }}" class="btn btn-info"><i class="bi bi-eye"></i> Detail</a>

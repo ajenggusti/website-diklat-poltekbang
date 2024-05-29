@@ -9,25 +9,14 @@
                         <form action="/kelPendaftaran/{{ $kelPendaftaran->id }}" method="post" enctype="multipart/form-data" id="formPendaftaran" class="edit-profil">
                             @method('put')
                             @csrf
-                            <h2>Form Edit Pendaftaran</h2>
+                            <h2>Form Edit Pendaftaran </h2>
+                            <h5 style="text-align: center;">{{ $kelPendaftaran->diklat->nama_diklat }}</h5>
+                            
                             <hr>
                             <div class="left-profil">
                                 <div class="mb-3">
-                                    <label for="diklat" class="form-label is">Diklat yang dipilih</label>
-                                    <select name="diklat" class="form-select" aria-label="Default select example" disabled>
-                                        <option selected disabled>Pilih Diklat</option>
-                                        @foreach ($dtDiklats as $diklats)
-                                            <option value="{{ $diklats->id }}" {{ old('diklat', $kelPendaftaran->diklat->id) == $diklats->id ? 'selected' : '' }}>
-                                                {{ $diklats->nama_diklat }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                    <input type="hidden" name="diklat" value="{{ old('diklat', $kelPendaftaran->diklat->id) }}">
-                                </div>
-                                
-                                <div class="mb-3">
-                                    <label for="harga" class="form-label is">Harga</label>
-                                    <input disabled type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="Rp {{ isset($harga) ? number_format($harga) : number_format($kelPendaftaran->diklat->harga) }}">
+                                    <label for="harga" class="form-label is">Harga Diklat</label>
+                                    <input disabled type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="Rp {{ number_format($kelPendaftaran->diklat->harga , 0,',', '.') }}">
                                     <input type="hidden" name="harga" value="{{ isset($harga) ? $harga : $kelPendaftaran->diklat->harga }}">
                                     @error('harga')
                                         <div class="invalid-feedback">{{ $message }}</div>
@@ -35,32 +24,33 @@
                                 </div>    
 
                                 <div class="mb-3">
-                                    <label for="harga" class="form-label is">Potongan harga</label>
+                                    <label for="harga" class="form-label is">Diskon promo : </label>
                                     @if($kelPendaftaran->id_promo && $kelPendaftaran->promo)
-                                        <input disabled type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="Potongan" value="-Rp {{ $kelPendaftaran->promo->potongan }}">
+                                        <input disabled type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="Potongan" value="-Rp {{ number_format($kelPendaftaran->promo->potongan, 0, ',', '.') }}">
                                     @else
-                                        <input disabled type="text" class="form-control" id="harga" name="Potongan" value="Tidak ada potongan harga">
+                                        <input disabled type="text" class="form-control" id="harga" name="Potongan" value="-Rp {{ number_format($kelPendaftaran->potongan , 0, ',', '.') }}">
                                     @endif
+                                    
+                                </div>
+                                <div class="mb-3">
+                                    <label for="harga" class="form-label is">Diskon admin : </label>
+                                        <input disabled type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="Potongan" value="-Rp {{ number_format($kelPendaftaran->potongan_admin, 0, ',', '.') }}">
                                 </div>
                                 
 
                                 <div class="mb-3">
                                     <label for="harga" class="form-label is">Total Biaya</label>
-                                    <input disabled type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="Rp {{ isset($harga) ? number_format($harga) : number_format($kelPendaftaran->harga_diklat ) }}">
-                                    <input type="hidden" name="harga" value="{{ isset($harga) ? $harga : $kelPendaftaran->harga_diklat  }}">
-                                    @error('harga')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                    <input disabled type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="Rp {{ number_format($kelPendaftaran->harga_diklat, 0, ',', '.' ) }}">
                                 </div>   
                                 {{-- {{ $kelPendaftaran->email }} --}}
-                                <div class="mb-3">
+                                {{-- <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
                                     <input disabled type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') ?: $kelPendaftaran->email }}">
                                     @error('email')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                <input type="hidden" name="email" value="{{ $kelPendaftaran->email }}">
+                                <input type="hidden" name="email" value="{{ $kelPendaftaran->email }}"> --}}
                                 
                                 
                                 <div class="mb-3">
@@ -73,7 +63,7 @@
                             </div>
                             
                             <div class="right-profil">
-                                <div class="mb-3">
+                                {{-- <div class="mb-3">
                                     <label for="nama_lengkap" class="form-label is">Nama Lengkap</label>
                                     <input type="text" class="form-control  @error('nama_lengkap') is-invalid @enderror" id="nama_lengkap" name= "nama_lengkap" value="{{ old('nama_lengkap') ?: $kelPendaftaran->nama_lengkap}}">
                                     @error('nama_lengkap')
@@ -105,7 +95,7 @@
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
                                 </div>
-                                
+                                 --}}
                                 
                                 <div class="mb-3">
                                     <label for="pendidikan_terakhir" class="form-label">Pendidikan Terakhir</label>

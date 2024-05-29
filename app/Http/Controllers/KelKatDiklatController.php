@@ -46,7 +46,8 @@ class KelKatDiklatController extends Controller
             'katDiklat' => 'required|unique:kategori_diklat,kategori_diklat',
         ], $messages);
         if ($request->hasFile('img')) {
-            $image = $request->file('img')->store('LanPage');
+            $image = "LanPage/" . time() . '-' . uniqid() . '.' . $request->img->getClientOriginalExtension();
+            $request->img->move('storage/LanPage', $image);
         } else {
             $image = null;
         }
@@ -101,22 +102,25 @@ class KelKatDiklatController extends Controller
         if ($request->hasFile('img')) {
             // Hapus gambar sebelumnya jika ada
             if ($kelKatDiklat->gambar) {
-                Storage::delete($kelKatDiklat->gambar);
+                $filePath = public_path('storage/' . $kelKatDiklat->gambar);
+                if (file_exists($filePath)) {
+                    unlink($filePath);
+                }
             }
-            // Simpan gambar yang baru diunggah
-            $image = $request->file('img')->store('LanPage');
+            $image = "LanPage/" . time() . '-' . uniqid() . '.' . $request->img->getClientOriginalExtension();
+            $request->img->move('storage/LanPage', $image);
         } else {
-            // Jika tidak ada gambar yang diunggah, gunakan gambar yang sudah ada
+            
             if ($kelKatDiklat->gambar) {
                 $image = $kelKatDiklat->gambar;
             } else {
-                // Jika nilai sebelumnya null, maka gunakan null kembali
+        
                 $image = null;
             }
         }        
         if ($request->default == 'ya') {
             KatDiklat::where('default', 'ya')
-            ->where('id', '!=', $kelKatDiklat->id) // tambahkan kondisi untuk tidak mengubah entri yang sedang diedit
+            ->where('id', '!=', $kelKatDiklat->id)
             ->update(['default' => 'tidak']);
         }
         $kelKatDiklat->update([
@@ -133,7 +137,10 @@ class KelKatDiklatController extends Controller
      */
     public function destroy(KatDiklat $kelKatDiklat)
     {
-        Storage::delete($kelKatDiklat->gambar);
+        $filePath = public_path('storage/' . $kelKatDiklat->gambar);
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
         KatDiklat::destroy($kelKatDiklat->id);
         return redirect('/kelKatDiklat')->with('success', 'Data berhasil dihapus!');
     }
