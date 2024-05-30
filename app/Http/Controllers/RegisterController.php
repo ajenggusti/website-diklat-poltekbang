@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Spatie\Activitylog\Models\Activity;
 
 class RegisterController extends Controller
 {
@@ -37,6 +38,8 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
+        
+        // dd($request);
         $message = [
             'namaPengguna.required' => 'Nama pengguna tidak boleh kosong.',
             'email.required' => 'Email tidak boleh kosong.',
@@ -59,6 +62,13 @@ class RegisterController extends Controller
             'password' => $request->password,
             'status' => 'Perlu dilengkapi'
         ]);
+        // $user=User::latest()->first();
+        // // dd($user->id+1);
+        // $activity=new Activity();
+        // $activity->causer_id = $user->id;
+        // $activity->save();
+        // dd($activity);
+        
 
 
         return redirect('/login')->with('success', 'Registrasi berhasil silahkan login!');
@@ -73,7 +83,7 @@ class RegisterController extends Controller
         $user = User::findOrFail($id);
         // dd($user->provinsi->name);
         return view('kelola.kelolaUser.show', [
-            'user'=>$user
+            'user' => $user
         ]);
     }
 
@@ -172,16 +182,16 @@ class RegisterController extends Controller
             $user->id_kabupaten = $request->input('id_kabupaten');
             $user->id_kecamatan = $request->input('id_kecamatan');
             $user->id_kelurahan = $request->input('id_kelurahan');
-            $user->id_level=$request->id_level;
+            $user->id_level = $request->id_level;
             $user->id_nationality = null;
             // $user->tgl_exp_paspor = null;
             $user->no_paspor = null;
             $user->status = $request->status;
 
-            if ($request->status == 'Permohonan perubahan disetujui' || $request->status=='Diverifikasi') {
+            if ($request->status == 'Permohonan perubahan disetujui' || $request->status == 'Diverifikasi') {
                 $user->permohonan_ubah = null;
             }
-        
+
             $user->save();
         } else {
             // ini paspor
@@ -194,7 +204,7 @@ class RegisterController extends Controller
             $user->no_paspor = $request->input('no_paspor');
             $user->tgl_lahir = Carbon::createFromFormat('d-m-Y', $request->input('tgl_lahir'))->format('Y-m-d');
             // $user->tgl_exp_paspor = Carbon::createFromFormat('d-m-Y', $request->input('tgl_exp_paspor'))->format('Y-m-d');
-            $user->id_level=$request->id_level;
+            $user->id_level = $request->id_level;
             $user->id_provinsi = null;
             $user->id_kabupaten = null;
             $user->id_kecamatan = null;
@@ -202,10 +212,10 @@ class RegisterController extends Controller
             $user->nik = null;
             $user->tempat_lahir = null;
             $user->status = $request->status;
-            if ($request->status == 'Permohonan perubahan disetujui' || $request->status=='Diverifikasi') {
+            if ($request->status == 'Permohonan perubahan disetujui' || $request->status == 'Diverifikasi') {
                 $user->permohonan_ubah = null;
             }
-        
+
             $user->save();
         }
         if ($request->hasFile('img')) {

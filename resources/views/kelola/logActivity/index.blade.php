@@ -23,17 +23,8 @@
 </head>
 <body>
     <div class="content-staff">
-        <h2>Tabel Kategori Diklat</h2>
+        <h2>Log Activity</h2>
         <hr>
-        @if (session('success') )
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-
-        @endif
-        <a href="/kelKatDiklat/create" class="btn btn-primary"> <i class="bi bi-plus-lg"></i> Tambah Data</a>
-        <br> <br>
         <div class=" justify-content-between align-items-center filter">
             {{-- Entries --}}
             <div class="entries-bar ">
@@ -74,10 +65,10 @@
                             <i class="bi bi-arrow-up" onclick="sortTable(3, 'asc')"></i>
                             <i class="bi bi-arrow-down" onclick="sortTable(3, 'desc')"></i>
                         </th>
-                        <th scope="col">Sesudah
+                        {{-- <th scope="col">Sesudah
                             <i class="bi bi-arrow-up" onclick="sortTable(4, 'asc')"></i>
                             <i class="bi bi-arrow-down" onclick="sortTable(4, 'desc')"></i>
-                        </th>
+                        </th> --}}
                         <th scope="col">Waktu
                             <i class="bi bi-arrow-up" onclick="sortTable(5, 'asc')"></i>
                             <i class="bi bi-arrow-down" onclick="sortTable(5, 'desc')"></i>
@@ -87,24 +78,61 @@
                 <tbody>
                     @foreach ($datas as $data)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $data->user->name }}</td>
-                            <td>{{ $data->description }}</td>
+                            <td>{{ $data->id }}</td>
+                            <td>
+                                @if ($data->causer_id != null)
+                                    {{ $data->user->level->level }} - {{ $data->user->name }}
+                                @elseif ($data->log_name == "Tabel user" && $data->description == "created")
+                                    @if (isset($data->changes['attributes']['id']))
+                                        <?php
+                                            $user = App\Models\User::findOrFail($data->changes['attributes']['id']);
+                                        ?>
+                                        {{ $user->level->level }} - {{ $user->name }}
+                                    @endif
+                                @elseif($data->log_name == "Tabel pembayaran")
+                                    @if (isset($data->changes['attributes']['id_pendaftaran']))
+                                        <?php
+                                            $pendaftaran = App\Models\Pendaftaran::findOrFail($data->changes['attributes']['id_pendaftaran']);
+                                        ?>
+                                       {{ $pendaftaran->user->level->level }} - {{ $pendaftaran->user->name }}
+                                    @endif
+                                @elseif($data->log_name == "Tabel pendaftaran")
+                                    @if (isset($data->changes['attributes']['id_user']))
+                                        <?php
+                                            $pendaftaran = App\Models\User::findOrFail($data->changes['attributes']['id_user']);
+                                        ?>
+                                        {{ $user->level->level }} - {{ $user->name }}
+                                    @endif
+                                @endif
+                            </td>
+                            <td>
+                                @if ($data->description=="created")
+                                <span class="badge rounded-pill bg-primary">{{ $data->description }}</span> - {{ $data->log_name }}
+                                @elseif($data->description=="updated")
+                                <span class="badge rounded-pill bg-warning">{{ $data->description }}</span> - {{ $data->log_name }}
+                                @elseif($data->description=="deleted")
+                                <span class="badge rounded-pill bg-danger">{{ $data->description }}</span> - {{ $data->log_name }}
+                                @endif
+                            </td>
                             <td>
                                 @if (@is_array($data->changes['old']))
                                     @foreach ($data->changes['old'] as $key => $itemChange)
-                                        {{ $key }} : {{ $itemChange }} <br>
+                                        @if ($key !== 'created_at' && $key !== 'updated_at' && $itemChange!==null && $key !=="password" )
+                                            {{ $key }} : {{ $itemChange }} <br>
+                                        @endif
                                     @endforeach
                                 @endif
                             </td>
                             <td>
                                 @if (@is_array($data->changes['attributes']))
                                     @foreach ($data->changes['attributes'] as $key => $itemChange)
-                                        {{ $key }} : {{ $itemChange }} <br>
+                                        @if ($key !== 'created_at' && $key !== 'updated_at' && $itemChange!==null && $key !=="password")
+                                            {{ $key }} : {{ $itemChange }} <br>
+                                        @endif
                                     @endforeach
                                 @endif
                             </td>
-                            <td>{{ $data->updated_at }}</td>
+                            <td>{{ $data->updated_at->format('d-m-y | h:i:s') }}</td>
 
                             
                         </tr>

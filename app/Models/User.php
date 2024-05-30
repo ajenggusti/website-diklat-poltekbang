@@ -57,6 +57,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Activity::class, 'causer_id');
     }
+    // public function activity1()
+    // {
+    //     return $this->hasMany(Activity::class, 'subject_id');
+    // }
     public function kelurahan()
     {
         return $this->belongsTo(Kelurahan::class, 'id_kelurahan');
