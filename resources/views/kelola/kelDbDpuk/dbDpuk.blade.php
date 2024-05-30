@@ -12,6 +12,14 @@
         </style>
     </head>
     <body>
+        <div class="container px-4 mx-auto">
+
+            <div class="p-6 m-20 bg-white rounded shadow">
+                {!! $DpukPendaftarChart->container() !!}
+            </div>
+        
+        </div>
+        {{-- ========================================= --}}
         <div class="container-admin">
             <div class="dashAdmin">
                 <a href="/kelPendaftaran">
@@ -73,6 +81,9 @@
                 @endforeach
             </div>
         </div>
+        <script src="{{ $DpukPendaftarChart->cdn() }}"></script>
+
+        {{ $DpukPendaftarChart->script() }}
     </body>
 </html>
 @endsection

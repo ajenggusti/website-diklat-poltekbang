@@ -107,11 +107,13 @@
                             </td>
                             <td>
                                 @if ($data->description=="created")
-                                <span class="badge rounded-pill bg-primary">{{ $data->description }}</span> - {{ $data->log_name }}
+                                    <span class="badge rounded-pill bg-primary">{{ $data->description }}</span> - {{ $data->log_name }}
                                 @elseif($data->description=="updated")
-                                <span class="badge rounded-pill bg-warning">{{ $data->description }}</span> - {{ $data->log_name }}
+                                    <span class="badge rounded-pill bg-warning">{{ $data->description }}</span> - {{ $data->log_name }}
                                 @elseif($data->description=="deleted")
-                                <span class="badge rounded-pill bg-danger">{{ $data->description }}</span> - {{ $data->log_name }}
+                                    <span class="badge rounded-pill bg-danger">{{ $data->description }}</span> - {{ $data->log_name }}
+                                @else
+                                    <span class="badge rounded-pill bg-secondary">{{ $data->log_name }}</span> - {{ $data->description }}
                                 @endif
                             </td>
                             <td>

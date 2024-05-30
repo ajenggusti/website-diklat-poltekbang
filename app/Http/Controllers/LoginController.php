@@ -24,7 +24,7 @@ class LoginController extends Controller
             activity()->causedBy(
                 Auth::user())
                 ->useLog('login')
-                ->log(Auth::user()->level->level.'-'.Auth::user()->name.' melakukan login'
+                ->log(Auth::user()->level->level.'-'.Auth::user()->name
                 
             );
             $request->session()->regenerate();

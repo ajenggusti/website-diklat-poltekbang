@@ -1,5 +1,6 @@
 <?php
 
+use App\Charts\DpukPendaftarChart;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ImageController;
@@ -125,3 +126,5 @@ Route::resource('events', EventController::class);
 Route::resource('eventsUser', EventUserController::class);
 // log activity
 Route::get('/logActivity', [LogActivityController::class, 'index']);
+// select kalender chart
+// Route::get('/chart', [DpukPendaftarChart::class, 'showChart'])->name('showChart');

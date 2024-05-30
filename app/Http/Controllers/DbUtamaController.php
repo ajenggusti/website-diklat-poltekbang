@@ -7,6 +7,7 @@ use App\Models\Level;
 use App\Models\Pembayaran;
 use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
+use App\Charts\DpukPendaftarChart;
 use Illuminate\Support\Facades\DB;
 
 class DbUtamaController extends Controller
@@ -46,7 +47,7 @@ class DbUtamaController extends Controller
         ]);
     }
     // kelola dpuk
-    public function dbDpuk()
+    public function dbDpuk(DpukPendaftarChart $DpukPendaftarChart)
     {
         $this->authorize('dpuk');
         $alumni = Pendaftaran::where('status_pelaksanaan', 'Terlaksana')->count();
@@ -64,7 +65,8 @@ class DbUtamaController extends Controller
             'jumlahBelumTerlaksana'=>$jumlahBelumTerlaksana,
             'totalSemua'=>$totalSemua,
             'pendaftarans' => $pendaftarans,
-            'sertifikat'=>$sertifikat
+            'sertifikat'=>$sertifikat,
+            'DpukPendaftarChart'=>$DpukPendaftarChart->build()
         ]);
     }
     public function PendaftaranByDiklat($id)
