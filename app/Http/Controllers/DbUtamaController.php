@@ -115,7 +115,7 @@ class DbUtamaController extends Controller
         $hitungPembayaranDiklatLunas = Pembayaran::hitungPembayaranDiklatLunas();
         $hitungPembayaranPendaftaranDicek = Pembayaran::hitungPembayaranPendaftaranDicek();
         $hitungPembayaranPendaftaranLunas = Pembayaran::hitungPembayaranPendaftaranLunas();
-        return view('kelola.dbKeuangan', [
+        return view('kelola.kelDbKeuangan.dbKeuangan', [
             'getBayarDiklat' => $getBayarDiklat,
             'getBayarPendaftaran' => $getBayarPendaftaran,
             'hitungPembayaranDiklatDicek' => $hitungPembayaranDiklatDicek,

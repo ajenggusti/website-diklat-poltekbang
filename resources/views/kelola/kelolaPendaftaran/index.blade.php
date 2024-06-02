@@ -98,7 +98,7 @@
                 <tbody>
                     @foreach ($datas as $data)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $data->id }}</td>
                             <td>{{ $data->user->name }}</td>
                             <td>{{ $data->diklat->nama_diklat }}</td>
                             {{-- <td>{{ $data->promo ? $data->promo->kode : '-' }}</td> --}}

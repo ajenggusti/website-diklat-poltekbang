@@ -83,7 +83,7 @@ Route::put('/updateProfil/{id}', [RegisterController::class, 'updateProfil'])->n
 Route::get('/permohonan/{id}', [RegisterController::class, 'editPermohonan']);
 Route::put('/updatePermohonan/{id}', [RegisterController::class, 'updatePermohonan'])->name('updatePermohonan.update');
 // alamat
-Route::get('provinsi-dropdown', [ProvinsiController::class, 'showAll'])->name('kabupaten.dropdown');
+Route::get('provinsi-dropdown', [ProvinsiController::class, 'showAll'])->name('provinsi.dropdown');
 Route::get('kabupaten-dropdown/{id}', KabupatenDropdownController::class)->name('kabupaten.dropdown');
 Route::get('kecamatan-dropdown/{id}', KecamatanDropdownController::class)->name('kecamatan.dropdown');
 Route::get('kelurahan-dropdown/{id}', KelurahanDropdownController::class)->name('kelurahan.dropdown');
