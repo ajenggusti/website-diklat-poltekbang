@@ -50,6 +50,10 @@ Route::get('/allUser', [DbUtamaController::class, 'allUser']);
 Route::get('/byLevel/{id}', [DbUtamaController::class, 'byLevel']);
 // db keuangan
 Route::get('/dbKeuangan', [DbUtamaController::class, 'dbKeuangan']);
+Route::get('/dbDetailPembayaranDiklat', [DbUtamaController::class, 'detailpembayaranPembayaranDiklat']);
+Route::get('/dbDetailPembayaranDaftar', [DbUtamaController::class, 'detailpembayaranPembayaranDaftar']);
+Route::get('/pembayaranBelumVerifikasi', [DbUtamaController::class, 'pembayaranBelumVerifikasi']);
+Route::get('/pembayaranSudahVerifikasi', [DbUtamaController::class, 'pembayaranSudahVerifikasi']);
 // db DPUK
 Route::get('/dbDpuk', [DbUtamaController::class, 'dbDpuk']);
 Route::get('/PendaftaranTerlaksana', [DbUtamaController::class, 'PendaftaranTerlaksana']);

@@ -14,35 +14,30 @@
     <body>
         <div class="container-admin">
             <div class="dashAdmin">
-                <div class="dashItem" style="background-color: #f1f3ff; border: 3px solid #BC4F00;">
-                    <div class="dashItemContent">Total Pembayar Biaya Diklat </div>
-                    <div class="dashItemNumber">{{ $getBayarDiklat }}</div>
-                </div>
-
-                <div class="dashItem" style="background-color: #f1f3ff; border: 3px solid #B90000;">
-                    <div class="dashItemContent">Total Pembayar Biaya Daftar</div>
-                    <div class="dashItemNumber">{{ $getBayarPendaftaran }}</div>
-                </div>
-
-                <div class="dashItem" style="background-color: #f1f3ff; border: 3px solid #D6C211;">
-                    <div class="dashItemContent">Total Pembayaran Diklat Belum Terkonfirmasi</div>
-                    <div class="dashItemNumber">{{ $hitungPembayaranDiklatDicek }}</div>
-                </div>
-
-                <div class="dashItem" style="background-color: #f1f3ff; border: 3px solid #307C1E;">
-                    <div class="dashItemContent">Total Pembayaran Diklat Sudah Terkonfirmasi</div>
-                    <div class="dashItemNumber"> {{ $hitungPembayaranDiklatLunas }}</div>
-                </div>
-
-                <div class="dashItem" style="background-color: #f1f3ff; border: 3px solid #84A6FF;">
-                    <div class="dashItemContent">Total Pembayaran Pendaftaran Belum Terkonfirmasi</div>
-                    <div class="dashItemNumber">{{ $hitungPembayaranPendaftaranDicek }}</div>
-                </div>
-
-                <div class="dashItem" style="background-color: #f1f3ff; border: 3px solid #bf68d5;">
-                    <div class="dashItemContent">Total Pembayaran Pendaftaran Sudah Terkonfirmasi</div>
-                    <div class="dashItemNumber"> {{ $hitungPembayaranPendaftaranLunas }}</div>
-                </div>
+                <a href="/dbDetailPembayaranDiklat">
+                    <div class="dashItem" style="background-color: #f1f3ff; border: 3px solid #BC4F00;">
+                        <div class="dashItemContent">Pelunasan diklat</div>
+                        <div class="dashItemNumber">{{ $getBayarDiklat }}</div>
+                    </div>
+                </a>
+                <a href="/dbDetailPembayaranDaftar">
+                    <div class="dashItem" style="background-color: #f1f3ff; border: 3px solid #B90000;">
+                        <div class="dashItemContent">Pelunasan pendaftaran</div>
+                        <div class="dashItemNumber">{{ $getBayarPendaftaran }}</div>
+                    </div>
+                </a>
+                <a href="/pembayaranBelumVerifikasi">
+                    <div class="dashItem" style="background-color: #f1f3ff; border: 3px solid #D6C211;">
+                        <div class="dashItemContent">Pembayaran Diklat Belum Terkonfirmasi</div>
+                        <div class="dashItemNumber">{{ $hitungPembayaranDiklatDicek }}</div>
+                    </div>
+                </a>
+                <a href="/pembayaranSudahVerifikasi">
+                    <div class="dashItem" style="background-color: #f1f3ff; border: 3px solid #307C1E;">
+                        <div class="dashItemContent">Pembayaran Diklat Sudah Terkonfirmasi</div>
+                        <div class="dashItemNumber"> {{ $hitungPembayaranDiklatLunas }}</div>
+                    </div>
+                </a>
             </div>
         </div>
     </body>
