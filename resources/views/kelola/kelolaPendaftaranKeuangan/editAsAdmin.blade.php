@@ -22,7 +22,7 @@
 <body>
     <div class="content-form">
         <div class="form-column-left">
-            <form action="{{ route('pendaftaranAsAdmin.update', ['id' => $kelPendaftaran->id]) }}" method="POST" enctype="multipart/form-data" id="formPendaftaran">
+            <form action="/kelPendaftaranKeuangan/{{ $kelPendaftaran->id }}" method="POST" enctype="multipart/form-data" id="formPendaftaran">
             {{-- <form action="{{ route('pendaftaranAsAdmin.update', ['id' => $kelPendaftaran->id]) }}" method="POST" enctype="multipart/form-data" id="formPendaftaran" > --}}
                 @method('PUT')
                 @csrf
@@ -152,15 +152,7 @@
                     <div class="edit-user">
                         <h2>Form Edit Pendaftaran Admin</h2>
                         <hr>
-                        {{-- <div class="mb-3">
-                            <label for="status_pembayaran_diklat" class="form-label">Status Pembayaran Diklat</label>
-                            <select class="form-select" id="status_pembayaran_diklat" name="status_pembayaran_diklat">
-                                <option value="Lunas" {{ old('status_pembayaran_diklat', $kelPendaftaran->status_pembayaran_diklat) == 'Lunas' ? 'selected' : '' }}>Lunas</option>
-                                <option value="Menunggu pembayaran" {{ old('status_pembayaran_diklat', $kelPendaftaran->status_pembayaran_diklat) == 'Menunggu pembayaran' ? 'selected' : '' }}>Menunggu pembayaran</option>
-                                <option value="Menunggu verifikasi" {{ old('status_pembayaran_diklat', $kelPendaftaran->status_pembayaran_diklat) == 'Menunggu verifikasi' ? 'selected' : '' }}>Menunggu verifikasi</option>
-                                <option value="Ditolak" {{ old('status_pembayaran_diklat', $kelPendaftaran->status_pembayaran_diklat) == 'Ditolak' ? 'selected' : '' }}>Ditolak</option>
-                            </select>
-                        </div>
+
                         <div class="mb-3">
                             <label for="potongan" class="form-label is">Potongan untuk Diklat dari Admin</label>
                             <input type="text" class="form-control @error('potongan') is-invalid @enderror" id="potongan" name="potongan" value="{{ old('potongan') }}">
@@ -174,49 +166,19 @@
                             @error('total_harga')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                        </div> --}}
-
-
-                        {{-- ========================================================================== --}}
+                        </div>
                         <div class="mb-3">
-                            <label for="metode_sertif" class="form-label">Metode Pengiriman Sertifikat</label>
-                            <select class="form-select" id="metode_sertif" name="metode_sertif">
-                                <option value="gambar" {{ old('metode_sertif', $kelPendaftaran->metode_sertif) == 'gambar' ? 'selected' : '' }}>Gambar</option>
-                                <option value="link" {{ old('metode_sertif', $kelPendaftaran->metode_sertif) == 'link' ? 'selected' : '' }}>Link</option>
-                                <option value="dokumen" {{ old('metode_sertif', $kelPendaftaran->metode_sertif) == 'dokumen' ? 'selected' : '' }}>Dokumen</option>
+                            <label for="status_pembayaran_diklat" class="form-label">Status Pembayaran Diklat</label>
+                            <select class="form-select" id="status_pembayaran_diklat" name="status_pembayaran_diklat">
+                                <option value="Lunas" {{ old('status_pembayaran_diklat', $kelPendaftaran->status_pembayaran_diklat) == 'Lunas' ? 'selected' : '' }}>Lunas</option>
+                                <option value="Menunggu pembayaran" {{ old('status_pembayaran_diklat', $kelPendaftaran->status_pembayaran_diklat) == 'Menunggu pembayaran' ? 'selected' : '' }}>Menunggu pembayaran</option>
+                                <option value="Menunggu verifikasi" {{ old('status_pembayaran_diklat', $kelPendaftaran->status_pembayaran_diklat) == 'Menunggu verifikasi' ? 'selected' : '' }}>Menunggu verifikasi</option>
+                                <option value="Ditolak" {{ old('status_pembayaran_diklat', $kelPendaftaran->status_pembayaran_diklat) == 'Ditolak' ? 'selected' : '' }}>Ditolak</option>
                             </select>
                         </div>
-                        
-                        
-                        <div class="mb-3">
-                            <label for="s_link" class="form-label">Upload Sertifikat Peserta menggunakan Link</label>
-                            <input type="text" class="form-control @error('s_link') is-invalid @enderror" id="s_link" name="s_link" value="{{ old('s_link', $kelPendaftaran->s_link) }}">
-                            @error('s_link')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        
-                        <div class="mb-3">
-                            <img src="{{ asset('storage/' . $kelPendaftaran->s_gambar) }}" class="img-preview img-fluid" style="width: 550px;">
-                            <label for="s_gambar" class="form-label">Upload Sertifikat Peserta menggunakan Gambar</label>
-                            <input name="s_gambar" onchange="previewImage()" class="form-control @error('s_gambar') is-invalid @enderror" type="file" id="s_gambar">
-                            <small style="color: rgb(16, 126, 190)">Ukuran maksimal gambar 5 MB</small>
-                            @error('s_gambar')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        
-                        <!-- Input untuk s_doc -->
-                        <div class="mb-3">
-                            <label for="s_doc" class="form-label">Upload Sertifikat Peserta menggunakan Dokumen</label>
-                            <input name="s_doc" onchange="previewImage()" class="form-control @error('s_doc') is-invalid @enderror" type="file" id="s_doc">
-                            @error('s_doc')
-                            <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                            <div id="file-sebelumnya">
-                                <p>File sebelumnya: <a href="{{ asset('storage/' . $kelPendaftaran->s_doc) }}">Klik untuk Melihat File!</a></p>
-                            </div>
-                        </div>
+
+
+                       
                         <div class="submit-button">
                             <button type="submit" class="btn btn-primary">Kirim</button>
                         </div>
@@ -239,50 +201,7 @@
                     return 'Rp ' + formattedAmount;
                 }
             </script>
-            
-            
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    var metodeSelect = document.getElementById('metode_sertif');
-                    var linkInput = document.getElementById('s_link');
-                    var gambarInput = document.getElementById('s_gambar');
-                    var dokumenInput = document.getElementById('s_doc');
-                    var linkLabel = document.querySelector('label[for="s_link"]');
-                    var gambarLabel = document.querySelector('label[for="s_gambar"]');
-                    var dokumenLabel = document.querySelector('label[for="s_doc"]');
-                    var imgPreview = document.querySelector('.img-preview');
-                    var tampilFile = document.getElementById('file-sebelumnya');
-        
-                    metodeSelect.addEventListener('change', function() {
-                        linkInput.style.display = 'none';
-                        gambarInput.style.display = 'none';
-                        dokumenInput.style.display = 'none';
-                        linkLabel.style.display = 'none';
-                        gambarLabel.style.display = 'none';
-                        dokumenLabel.style.display = 'none';
-                        imgPreview.style.display = 'none';
-                        tampilFile.style.display = 'none';
-            
-                        var selectedValue = this.value;
-                        if (selectedValue === 'link') {
-                            linkInput.style.display = 'block';
-                            linkLabel.style.display = 'block';
-                        } else if (selectedValue === 'gambar') {
-                            gambarInput.style.display = 'block';
-                            gambarLabel.style.display = 'block';
-                            imgPreview.style.display = 'block';
-                        } else if (selectedValue === 'dokumen') {
-                            dokumenInput.style.display = 'block';
-                            dokumenLabel.style.display = 'block';
-                            tampilFile.style.display = 'block';
-                        }
-                    });
-            
-                    // Memanggil event change pada saat halaman dimuat untuk memastikan bahwa input field ditampilkan sesuai dengan pilihan default
-                    metodeSelect.dispatchEvent(new Event('change'));
-                });
-            </script>
-            
+                    
             
             
             

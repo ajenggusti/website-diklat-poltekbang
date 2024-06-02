@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Pendaftaran;
 use App\Charts\DpukPendaftarChart;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
@@ -24,6 +25,7 @@ use App\Http\Controllers\KelKatDiklatController;
 use App\Http\Controllers\KabupatenDropdownController;
 use App\Http\Controllers\KecamatanDropdownController;
 use App\Http\Controllers\KelurahanDropdownController;
+use App\Http\Controllers\PendaftaranKeuanganController;
 
 /*
 |--------------------------------------------------------------------------
@@ -104,9 +106,13 @@ Route::resource('/kelTestimoni', TestimoniController::class);
 // route CRUD Diklat
 Route::resource('/kelDiklat', DiklatController::class);
 // route CRUD pendaftaran
+// Route::get('/pendaftaranKeuanganIndex', [PendaftaranController::class, 'indexKeuangan']);
+// Route::get('/pendaftaranKeuanganShow/{id}', [PendaftaranController::class, 'showKeuangan']);
 Route::get('/kelPendaftaran/{id}/editAsAdmin', [PendaftaranController::class, 'editAsAdmin'])->name('pendaftaranAsAdmin.edit');
 Route::put('/kelPendaftaranAdmin/{id}', [PendaftaranController::class, 'updateAsAdmin'])->name('pendaftaranAsAdmin.update');
 Route::resource('/kelPendaftaran', PendaftaranController::class);
+// route CRUD pendaftaran keuangan
+Route::resource('/kelPendaftaranKeuangan', PendaftaranKeuanganController::class)->except('destroy','create', 'store' );
 
 //route CRUD pembayarn
 // Route::get('/kelPembayaran/getPaymentInfo/{type}/{id}', [PembayaranController::class, 'getPaymentInfo']);

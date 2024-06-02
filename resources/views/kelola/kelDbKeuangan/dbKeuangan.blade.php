@@ -32,12 +32,12 @@
                         <div class="dashItemNumber">{{ $hitungPembayaranDiklatDicek }}</div>
                     </div>
                 </a>
-                <a href="/pembayaranSudahVerifikasi">
+                {{-- <a href="/pembayaranSudahVerifikasi">
                     <div class="dashItem" style="background-color: #f1f3ff; border: 3px solid #307C1E;">
                         <div class="dashItemContent">Pembayaran Diklat Sudah Terkonfirmasi</div>
                         <div class="dashItemNumber"> {{ $hitungPembayaranDiklatLunas }}</div>
                     </div>
-                </a>
+                </a> --}}
             </div>
         </div>
     </body>
