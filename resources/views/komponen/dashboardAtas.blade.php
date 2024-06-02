@@ -155,7 +155,13 @@
                       <li class="nav-item">
                         <a class="nav-link {{ Request::is('kelPendaftaran*') ? 'active' : '' }}" href="/kelPendaftaran">
                           <i class="bi bi-basket" style="font-size: 17px;">   </i>
-                          Kelola Pendaftaran
+                          Kelola Pendaftaran(dpuk)
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link {{ Request::is('kelPendaftaranKeuangan*') ? 'active' : '' }}" href="/kelPendaftaranKeuangan">
+                          <i class="bi bi-basket" style="font-size: 17px;">   </i>
+                          Kelola Pendaftaran(keuangan)
                         </a>
                       </li>
                       <li class="nav-item">
