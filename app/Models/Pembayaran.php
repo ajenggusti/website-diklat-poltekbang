@@ -43,6 +43,7 @@ class Pembayaran extends Model
         return LogOptions::defaults()
             ->useLogName('Tabel pembayaran')
             ->logUnguarded();
-        // Chain fluent methods for configuration options
     }
+
+
 }

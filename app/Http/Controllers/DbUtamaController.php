@@ -7,6 +7,7 @@ use App\Models\Level;
 use App\Models\Pembayaran;
 use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
+use App\Charts\KeuanganChart;
 use App\Charts\DpukPendaftarChart;
 use Illuminate\Support\Facades\DB;
 
@@ -109,21 +110,26 @@ class DbUtamaController extends Controller
         ]);
     }
     // kelola keuangan
-    public function dbKeuangan()
+    public function dbKeuangan(Request $request, KeuanganChart $KeuanganChart)
     {
         $this->authorize('keuangan');
+        
+        $year = $request->input('year', date('Y')); 
+        
         $getBayarDiklat = Pembayaran::getCountBayarDiklat();
         $getBayarPendaftaran = Pembayaran::getCountBayarPendaftaran();
         $hitungPembayaranDiklatDicek = Pembayaran::hitungPembayaranDiklatDicek();
         $hitungPembayaranDiklatLunas = Pembayaran::hitungPembayaranDiklatLunas();
+        
         return view('kelola.kelDbKeuangan.dbKeuangan', [
             'getBayarDiklat' => $getBayarDiklat,
             'getBayarPendaftaran' => $getBayarPendaftaran,
             'hitungPembayaranDiklatDicek' => $hitungPembayaranDiklatDicek,
             'hitungPembayaranDiklatLunas' => $hitungPembayaranDiklatLunas,
-
+            'KeuanganChart' => $KeuanganChart->build($year)
         ]);
     }
+    
     public function detailpembayaranPembayaranDiklat()
     {
         $pembayarans=Pembayaran::where('jenis_pembayaran', 'diklat')->where('status', 'Lunas')->get();
