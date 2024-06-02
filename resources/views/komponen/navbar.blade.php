@@ -31,9 +31,17 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
+    {{-- Script Js --}}
     <script src="/js/landing.js"></script>
     <!-- Bootstrap CSS -->
 
+    {{-- Landing BOOTSTRAP --}}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    {{--  --}}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -73,8 +81,17 @@
             z-index: 1000;
         }
 
+        /* NEW */
+        .content-nav .topnav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        /* END NEW */
 
-        .content-nav .topnav ul li a{
+        /* OLD, New dibawah */
+        /* .content-nav .topnav ul li a{
             padding-right: 15px;
             padding-top: 5px;
             color: #FF6900; 
@@ -84,7 +101,7 @@
 
         .content-nav .topnav ul li a:hover {
             color: #878889; 
-        }
+        } */
 
 
         .content-nav .navbar-brand img {
@@ -95,6 +112,38 @@
         .content-nav .text-end {
             margin-right: 50px;
         }
+
+        /* NEW */
+        .content-nav .navbar-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex: 1;
+        }
+
+        .content-nav .navbar-nav .nav-item {
+            margin: 0 10px;
+        }
+
+        .content-nav .navbar-nav .nav-item .nav-link {
+            padding-right: 15px;
+            padding-top: 5px;
+            color: #FF6900;
+            font-weight: 600;
+        }
+
+        .content-nav .navbar-nav .nav-item .nav-link:hover {
+            color: #878889;
+        }
+
+        .content-nav .navbar-nav.ms-auto.rightNav {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-right: 100px;
+        }
+
+        /* END NEW */
 
         .button {
             background-color: #FF6900;
@@ -130,9 +179,7 @@
             color: #ffffff;
         }
 
-        .content-nav .topnav .rightNav {
-            margin-right: auto;
-        }
+
 
         @media (max-width: 991px) {
             .content-nav .navbar-collapse {
@@ -190,7 +237,6 @@
   <body>
         <div class="content-nav">
             <nav class="navbar navbar-expand-lg topnav" >
-                {{-- <a class="navbar-brand d-inline-flex link-body-emphasis text-decoration-none" href="/"> --}}
                 <a href="/" class="navbar-brand">
                     <img src="{{ asset('img/poltek.png') }}" alt="politeknik" style="width: 50px;">
                 </a>

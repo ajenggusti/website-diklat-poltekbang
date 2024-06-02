@@ -9,12 +9,13 @@
                 <hr>
                 <div class="mb-3">
                     <label for="img" class="form-label">Masukkan Gambar</label><br>
-                    <img class="img-preview img-fluid" style="width: 550px">
-                    <br> <br>
+                    <div class="image-container" >
+                        <img class="img-preview img-fluid">
+                    </div>
                     <input name="img" onchange="previewImage()" class="form-control @error('img') is-invalid @enderror" type="file" id="img" >
-                    <small style="color: rgb(16, 126, 190)">Ukuran maksimal gambar 5 MB</small>
+                    <small style="color: rgb(16, 126, 190)">Ukuran maksimal gambar 2 MB</small>
                     @error('img')
-                    <div class="invalid-feedback">{{ $message }}</div>
+                        <div class="invalid-feedback">{{ $message }}</div>
                     @enderror
                 </div>
                 <div class="mb-3">

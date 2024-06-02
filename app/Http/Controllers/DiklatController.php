@@ -41,7 +41,7 @@ class DiklatController extends Controller
         $messages = [
             'img.image' => 'File harus berupa gambar.',
             'img.file' => 'File harus berupa berkas.',
-            'img.max' => 'Ukuran file tidak boleh melebihi 1 MB.',
+            'img.max' => 'Ukuran file tidak boleh melebihi 2 MB.',
             'status.required' => 'Status tampilan harus dipilih.',
             'deskripsi.required' => 'Deskripsi tidak boleh kosong.',
             'nama_diklat.required' => 'Nama Diklat tidak boleh kosong.',
@@ -54,7 +54,7 @@ class DiklatController extends Controller
         ];
         
         $request->validate([
-            'img' => 'nullable|image|file|max:1024',
+            'img' => 'nullable|image|file|max:2024',
             'kategoriDiklat' => 'required',
             'deskripsi' => 'required',
             'nama_diklat' => 'required',
@@ -127,7 +127,7 @@ class DiklatController extends Controller
         $messages = [
             'img.image' => 'File harus berupa gambar.',
             'img.file' => 'File harus berupa berkas.',
-            'img.max' => 'Ukuran file tidak boleh melebihi 1 MB.',
+            'img.max' => 'Ukuran file tidak boleh melebihi 2 MB.',
             'status.required' => 'Status tampilan harus dipilih.',
             'deskripsi.required' => 'Deskripsi tidak boleh kosong.',
             'nama_diklat.required' => 'Nama Diklat tidak boleh kosong.',
@@ -139,7 +139,7 @@ class DiklatController extends Controller
             'whatsapp.url' => 'WhatsApp harus berupa tautan yang valid.'
         ];
         $request->validate([
-            'img' => 'nullable|image|file|max:1024',
+            'img' => 'nullable|image|file|max:2024',
             'kategoriDiklat' => 'required',
             'deskripsi' => 'required',
             'nama_diklat' => 'required',

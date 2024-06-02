@@ -56,7 +56,9 @@
                     @foreach ($datas as $data)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td><img src="{{ asset('storage/' . $data->gambar_navbar) }}" alt="" style="width: 300px;"></td>
+                            <td class="image-container">
+                                <img src="{{ asset('storage/' . $data->gambar_navbar) }}" alt="">
+                            </td>
                             <td>
                                 @if ($data->id_diklat==null)
                                     <span class="badge rounded-pill text-bg-danger">Semua diklat</span>

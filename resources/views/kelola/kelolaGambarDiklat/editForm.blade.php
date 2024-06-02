@@ -10,11 +10,14 @@
             <hr>
             <div class="mb-3">
                 <label for="img" class="form-label">Gambar Sebelumnya</label> <br>
-                <img class="img-preview img-fluid" style="width: 500px;" src="{{ asset('storage/'.$kelGambarDiklat->gambar_navbar) }}" alt="Preview Gambar">
+                    <img class="img-before img-fluid"  src="{{ asset('storage/'.$kelGambarDiklat->gambar_navbar) }}" alt="Preview Gambar" style="width: 500px; height: 250px;">
                 <br> <br>
                 <label for="img" class="form-label">Masukkan Gambar</label> <br>
+                <div class="image-container">
+                    <img class="img-preview img-fluid" id="img-preview">
+                </div>
                 <input name="img" onchange="previewImage()" class="form-control @error('img') is-invalid @enderror" type="file" id="img">
-                <small style="color: rgb(16, 126, 190)">Ukuran maksimal gambar 5 MB</small>
+                <small style="color: rgb(16, 126, 190)">Ukuran maksimal gambar 2 MB</small>
                 @error('img')
                 <div class="invalid-feedback">{{ $message }}</div>
                 @enderror

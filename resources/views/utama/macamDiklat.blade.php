@@ -55,7 +55,7 @@
                                     <span>Status :  {{ $perdiklat->status }}</span><br>
 
                                     <i class="bi bi-currency-dollar"></i>
-                                    <span>Biaya : {{ $perdiklat->harga }}</span>
+                                    <span>Biaya : {{ 'Rp ' . number_format($perdiklat->harga, 0, ',', '.') }}</span>
                                 </p>
                                 <button class="button-link" onclick="window.location.href='/utama/detailDiklat/{{ $perdiklat -> id}}'">
                                     Lihat Detail

@@ -83,7 +83,8 @@
                             </td>
                             <td>
                                 @if ($data->id_pendaftaran)
-                                    {{ $data->pendaftaran->nama_lengkap}}
+                                    {{-- {{ $data->pendaftaran->nama_dummy}} --}}
+                                    {{ $data->nama_dummy}}
                                 @else
                                     {{ $data->nama_dummy}}
                                 @endif

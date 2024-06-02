@@ -1,11 +1,6 @@
 @extends('layout.mainAdmin')
 @section('container')
         <link href="/css/actor.css" rel="stylesheet">
-        <style>
-            body {
-                font-family: 'Poppins', sans-serif;
-            }
-        </style>
 
         <div class="content-form">
             
@@ -16,10 +11,12 @@
                 {{-- <div class="mb-3"> --}}
                     <div class="mb-3">
                         <label for="img" class="form-label">Masukkan Gambar</label>
-                        <img class="img-preview img-fluid" style="width: 550px">
+                        {{-- <div class="image-container" > --}}
+                            <img class="img-preview img-fluid" src="">
+                        {{-- </div> --}}
                         <br> <br>
                         <input name="img" onchange="previewImage()" class="form-control @error('img') is-invalid @enderror" type="file" id="img" >
-                        <small style="color: rgb(16, 126, 190);">Ukuran maksimal gambar 5 MB</small>
+                        <small style="color: rgb(16, 126, 190);">Ukuran maksimal gambar 2 MB</small>
                         @error('img')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -91,6 +88,31 @@
                     </div>
             </form>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+            {{-- <script>
+                function previewImage() {
+                    const imgInput = document.querySelector('#img');
+                    const imgPreview = document.querySelector('.img-preview');
+                    // const imgContainer = document.querySelector('.image-container');
+
+                    const fileReader = new FileReader();
+                    fileReader.readAsDataURL(imgInput.files[0]);
+
+                    fileReader.onload = function(e) {
+                        // imgContainer.src = e.target.result;
+                        // imgContainer.style.display = 'block';
+                        // imgContainer.style.display = imgInput.files[0] ? 'block' : 'none';
+
+                        
+                        // imgPreview.style.display = 'block';
+                        imgPreview.src = e.target.result;
+                        imgPreview.style.width = '100%';
+                        imgPreview.style.height = '100%';
+                        imgPreview.style.objectFit = 'cover';
+                        // imgContainer.style.box-shadow = '5px 5px';
+                    }
+                }
+            </script> --}}
         </div>
 @endsection
 

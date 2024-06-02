@@ -77,20 +77,20 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $data->nama_diklat }}</td>
-                                <td>
+                                <td class="image-container">
                                     @if ($data->gambar)
-                                        <img src="{{ asset('storage/' . $data->gambar) }}" alt="" style="width:300px;">
+                                        <img src="{{ asset('storage/' . $data->gambar) }}" alt="" class="image-preview">
                                     @else
                                         @php $foundDefault = false; @endphp
                                         @foreach ($diklats as $diklat)
                                             @if ($diklat->default == 'ya')
-                                                <img src="{{ asset('storage/' . $diklat->gambar) }}" alt="Default Image" style="width:300px;">
+                                                <img src="{{ asset('storage/' . $diklat->gambar) }}" alt="Default Image">
                                                 @php $foundDefault = true; @endphp
                                                 @break
                                             @endif
                                         @endforeach
                                         @if (!$foundDefault)
-                                            <img src="{{ asset('img/123.png') }}" alt="Default Image" style="width:300px;">
+                                            <img src="{{ asset('img/123.png') }}" alt="Default Image">
                                         @endif
                                     @endif
                                 </td>

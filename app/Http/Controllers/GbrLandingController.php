@@ -35,12 +35,12 @@ class GbrLandingController extends Controller
             'img.required' => 'Data tidak boleh kosong.',
             'img.image' => 'File harus berupa gambar.',
             'img.file' => 'File harus berupa berkas.',
-            'img.max' => 'Ukuran file tidak boleh melebihi 1 MB.',
+            'img.max' => 'Ukuran file tidak boleh melebihi 2 MB.',
             'status.required' => 'Status tampilan harus dipilih.'
         ];
 
         $request->validate([
-            'img' => 'required|image|file|max:1024',
+            'img' => 'required|image|file|max:2024',
             'status' => 'required|in:tampilkan,sembunyikan'
         ], $messages);
 
@@ -86,12 +86,12 @@ class GbrLandingController extends Controller
         $messages = [
             'img.image' => 'File harus berupa gambar.',
             'img.file' => 'File harus berupa berkas.',
-            'img.max' => 'Ukuran file tidak boleh melebihi 1 MB.',
+            'img.max' => 'Ukuran file tidak boleh melebihi 2 MB.',
             'status.required' => 'Status tampilan harus dipilih.'
         ];
 
         $request->validate([
-            'img' => 'nullable|image|file|max:1024',
+            'img' => 'nullable|image|file|max:2024',
             'status' => 'required|in:tampilkan,sembunyikan'
         ], $messages);
 

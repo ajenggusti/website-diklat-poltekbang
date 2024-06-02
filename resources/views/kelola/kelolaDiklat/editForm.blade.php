@@ -9,25 +9,29 @@
             <h2>Form Edit Diklat</h2>
             <hr>
             <div class="form-column-left">
-                <div class="mb-3">
+                <div class="mb-3 ">
                     <label for="img" class="form-label">Gambar Sebelumnya</label><br>
                     @if($kelDiklat->gambar)
-                        <img src="{{ asset('storage/' . $kelDiklat->gambar) }}" class="img-preview img-fluid" style="width: 550px;">
+                        <img src="{{ asset('storage/' . $kelDiklat->gambar) }}" class="img-before img-fluid" style="width: 500px; height: 250px;">
                     @else
                         <p>Tidak ada gambar</p>
                     @endif
                 </div>
                 
-                {{-- <div class="mb-3"> --}}
+                
+                    {{-- NEW --}}
                     <div class="mb-3">
-                        <label for="img" class="form-label">Masukkan gambar untuk ditampilkan di detail diklat</label>
-                        <img class="img-preview img-fluid" style="width: 550px;">
-                        <input name="img" onchange="previewImage()" class="form-control @error('img') is-invalid @enderror" type="file" id="img" >
-                        <small style="color: rgb(16, 126, 190);">Ukuran maksimal gambar 5 MB</small>
+                        <label for="img" class="form-label">Masukkan gambar</label>
+                        <div class="image-container">
+                            <img class="img-preview img-fluid" id="img-preview" src="">
+                        </div>
+                        <input name="img" onchange="previewImage()" class="form-control @error('img') is-invalid @enderror" type="file" id="img">
+                        <small style="color: rgb(16, 126, 190);">Ukuran maksimal gambar 2 MB</small>
                         @error('img')
-                        <div class="invalid-feedback">{{ $message }}</div>
+                            <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+                    
                     <div class="mb-3">
                         <label for="default">Menjadi Gambar Default</label>
                         <select name="default" class="form-select" aria-label="Default select example">
@@ -94,5 +98,22 @@
             </form> 
         </div>    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    {{-- <script>
+        function previewImage() {
+            const imgInput = document.querySelector('#img');
+            const imgPreview = document.querySelector('.img-preview');
+
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(imgInput.files[0]);
+
+            fileReader.onload = function(e) {
+                imgPreview.src = e.target.result;
+                imgPreview.style.width = '500px';
+                imgPreview.style.height = '250px';
+                imgPreview.style.objectFit = 'cover';
+            }
+        }
+    </script> --}}
 @endsection
 

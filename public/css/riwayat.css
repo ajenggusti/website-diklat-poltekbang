@@ -216,7 +216,9 @@
     float: right;
 }
 
-
+.detail-right img {
+    width: 300px;
+}
 
 
 @media screen and (max-width: 782px) {

@@ -1,26 +1,42 @@
 .card-testi {
     display: flex;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
     justify-content: space-between;
-    background-color: #a5a09c;
-    padding: 20px;
+    background-color: #a5a09c1f;
     border-radius: 10px;
+    padding: 5px 30px;
+    /* NEW */
+    position: relative;
 }
 .card-testi2 {
     background-color: #ffc1a0;
     border: 1px solid #FF6900;
     transition: 0.3s;
-    padding: 10px 0 0 0;
-    width: 33%;
-    margin-bottom: 20px;
-    overflow: hidden;
-    position: relative;
+    /* padding: 10px 0 0 0; */
+    /* width: 33%; */
+    /* margin-bottom: 20px; */
+    /* overflow: hidden; */
+    /* position: relative; */
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* flex-basis: calc(33% - 20px); */
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    flex: 1 1 calc(33.33% - 20px);
+    box-sizing: border-box;
+    /* NEW */
     display: flex;
     flex-direction: column;
-    flex-basis: calc(33% - 20px);
-    border-radius: 10px;
-
+    /* height: 300px; */
 }
+
+/* NEW */
+.card-testi2.placeholder {
+    background: transparent;
+    border: none;
+}
+/* END NEW */
 
 .card-testi2:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.8);
@@ -30,7 +46,7 @@
 .card-testi2 .card-testiContent p, 
 .card-testi2 .card-testiContent q {
     text-align: center;
-    height: 80px;
+    /* height: 80px; */
     overflow: hidden;
     margin-bottom: 5px;
     margin-top: 10px;
@@ -38,11 +54,34 @@
 
 .card-testiContent {
     padding: 10px;
-    
+    box-sizing: border-box;
+    /* NEW */
+    flex-grow: 1;
 }
 
-.carousel-inner2 {
-    pointer-events: all;
+/* SLIDER */
+.carousel-control-prev,
+.carousel-control-next {
+    width: 1%;
+    /* background: rgba(174, 54, 54, 0.5); */
+    position: absolute;
+    /* top: 50%; */
+    /* transform: translateY(-50%); */
 }
 
+.carousel-control-prev {
+    left: 0; /* Position on the left */
+    margin-left: -70px;
+}
 
+.carousel-control-next {
+    right: 0; /* Position on the right */
+    margin-right: -70px;
+}
+
+/* .carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: black; 
+    padding: 10px;
+    border-radius: 50%;
+} */

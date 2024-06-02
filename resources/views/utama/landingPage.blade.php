@@ -2,6 +2,7 @@
 @section('container')
     <link href="/css/landing.css" rel="stylesheet">
     <link href="/css/landTestimoni.css" rel="stylesheet">
+    <link href="/css/landKatDiklat.css" rel="stylesheet">
     <script src="/js/landing.js"></script>
 
     <div class="container-land">
@@ -21,7 +22,6 @@
         <br>
         
         <div class="content-land">
-            
             <div class="land-width">
                 <div class="bg-land">
                     <div class="card-group">
@@ -99,7 +99,6 @@
                                         <img src="{{ asset('img/123.png') }}" alt="Default Image" >
                                     @endif
                                 @endif
-                                {{-- <br> --}}
                                 <div class="card-content">
                                     <p>
                                         <span class="tittleKat">{{ $kategori->kategori_diklat }}</span><br>
@@ -114,57 +113,54 @@
                         @endforeach
                     </div>
 
-                    
-
-                    {{-- <hr>
-                    @if ($countTestimoni!=0)
-                        <h3 id="testimoni">Testimoni</h3>
-                        <p>Simak apa kata mereka...</p>
-                        <div class="slide-testimoni">
-                            @foreach ($testimonis as $testimoni)
-                                <div class="card-slides">
-                                    @if ($testimoni->id_pendaftaran)
-                                        <b class="author">{{ $testimoni->pendaftaran->nama_lengkap }}</b><br><br>
-                                        <b class="author">{{ $testimoni->profesi }}</b><br><br>
-                                        <p class="author">Alumni diklat {{ $testimoni->pendaftaran->diklat->nama_diklat }}</p>
-                                        <q>{{ $testimoni->testimoni }}</q>
-                                    @else
-                                        <b class="author">{{ $testimoni->nama_dummy }}</b><br><br>
-                                        <b class="author">{{ $testimoni->profesi }}</b><br><br>
-                                        <p class="author">Alumni diklat {{ $testimoni->diklat->nama_diklat }}</p>
-                                        <q>{{ $testimoni->testimoni }}</q>
-                                    @endif
-                                </div>
-                            @endforeach
-                            <div class="dots-container"></div>
-                                <a class="sblm" onclick="plusSlides(-1)">&#10094;</a>
-                                <a class="ssdh" onclick="plusSlides(1)">&#10095;</a>
-                            </div>
-                        </div>
-                    @endif --}}
-                    
+                
                     <hr>
                     @if ($countTestimoni!=0)
                         <h3 id="testimoni">Testimoni</h3>
                         <p>Simak apa kata mereka...</p>
-                        <div class="card-testi">
-                            @foreach ($testimonis as $testimoni)
-                                <div class="card-testi2">
-                                    <div class="card-testiContent">
-                                        @if ($testimoni->id_pendaftaran)
-                                            <b class="author">{{ $testimoni->pendaftaran->nama_lengkap }}</b><br><br>
-                                            <b class="author">{{ $testimoni->profesi }}</b><br><br>
-                                            <p class="author">Alumni diklat {{ $testimoni->pendaftaran->diklat->nama_diklat }}</p>
-                                            <q>{{ $testimoni->testimoni }}</q>
-                                        @else
-                                            <b class="author">{{ $testimoni->nama_dummy }}</b><br><br>
-                                            <b class="author">{{ $testimoni->profesi }}</b><br><br>
-                                            <p class="author">Alumni diklat {{ $testimoni->diklat->nama_diklat }}</p>
-                                            <q>{{ $testimoni->testimoni }}</q>
-                                        @endif
-                                    </div>
+                        <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
+                            <div class="card-testi">
+                                
+                                <div class="carousel-inner">
+                                    @foreach ($testimonis->chunk(3) as $index => $testimoniChunk)
+                                        <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                                            <div class="d-flex justify-content-center flex-wrap">
+                                                @foreach ($testimoniChunk as $testimoni)
+                                                    {{-- <div class="col-md-4"> --}}
+                                                        <div class="card-testi2">
+                                                            <div class="card-testiContent">
+                                                                @if ($testimoni->id_pendaftaran)
+                                                                    <b class="author">{{ $testimoni->nama_dummy }}</b><br><br>
+                                                                    <b class="author">{{ $testimoni->profesi }}</b><br><br>
+                                                                    <p class="author">Alumni diklat {{ $testimoni->pendaftaran->diklat->nama_diklat }}</p>
+                                                                    <q>{{ $testimoni->testimoni }}</q>
+                                                                @else
+                                                                    <b class="author">{{ $testimoni->nama_dummy }}</b><br><br>
+                                                                    <b class="author">{{ $testimoni->profesi }}</b><br><br>
+                                                                    <p class="author">Alumni diklat {{ $testimoni->diklat->nama_diklat }}</p>
+                                                                    <q>{{ $testimoni->testimoni }}</q>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    {{-- </div> --}}
+                                                @endforeach
+                                                @for ($i = $testimoniChunk->count(); $i < 3; $i++)
+                                                    <div class="card-testi2 placeholder"></div>
+                                                @endfor
+                                            </div>
+                                        </div>
+                                    @endforeach
                                 </div>
-                            @endforeach
+                            </div>
+                            
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true" style="color: black;"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true" style="color: black;"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
                         </div>
                     @endif
                     

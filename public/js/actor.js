@@ -1,16 +1,31 @@
 // Function untuk Entries Bar
+// function changeEntries() {
+//     var table = document.getElementById("myTable");
+//     var select = document.getElementById("entries");
+//     var selectedValue = parseInt(select.value);
+//     for (var i = 1; i < table.rows.length; i++) {
+//         if (i <= selectedValue) {
+//         table.rows[i].style.display = "";
+//         } else {
+//         table.rows[i].style.display = "none";
+//         }
+//     }
+//     }
+
 function changeEntries() {
     var table = document.getElementById("myTable");
     var select = document.getElementById("entries");
-    var selectedValue = parseInt(select.value);
+    var selectedValue = select.value;
     for (var i = 1; i < table.rows.length; i++) {
-        if (i <= selectedValue) {
-        table.rows[i].style.display = "";
+        if (selectedValue === 'all') {
+            table.rows[i].style.display = "";
+        } else if (i <= parseInt(selectedValue)) {
+            table.rows[i].style.display = "";
         } else {
-        table.rows[i].style.display = "none";
+            table.rows[i].style.display = "none";
         }
     }
-    }
+}
 
 
 // Script untuk search bar
@@ -219,3 +234,24 @@ document.addEventListener('DOMContentLoaded', function() {
       }
   }
 });
+
+
+
+// Image px
+// function previewImage() {
+//     const imgInput = document.querySelector('#img');
+//     const imgPreview = document.querySelector('.img-preview');
+//     const imgContainer = document.querySelector('.image-container');
+
+//     const fileReader = new FileReader();
+//     fileReader.readAsDataURL(imgInput.files[0]);
+
+//     fileReader.onload = function(e) {
+//         imgContainer.src = e.target.result;
+//         imgContainer.style.display = 'block';
+//         imgPreview.src = e.target.result;
+//         imgPreview.style.width = '500px';
+//         imgPreview.style.height = '250px';
+//         imgPreview.style.objectFit = 'cover';
+//     }
+// }

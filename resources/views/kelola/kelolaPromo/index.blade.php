@@ -21,19 +21,29 @@
             <div class="entries-bar ">
                 <label for="entries">Show entries:</label>
                 <select id="entries" onchange="changeEntries()">
-                    <option value="10">10</option>
-                    <option value="15">15</option>
+                    <option value="" disabled></option>
+                    <option value="3">3</option>
+                    <option value="5">5</option>
+                    {{-- <option value="15">15</option>
                     <option value="25">25</option>
                     <option value="50">50</option>
-                    <option value="100">100</option>
+                    <option value="100">100</option> --}}
+                    <option value="all">All</option>
                 </select>
             </div>
+
+            
+            {{-- <div class="status-button"> --}}
+                <div class="kadaluarsa"></div><span class="status">Kadaluarsa</span>
+                <div class="berlaku"></div><span class="status">Berlaku</span>
 
             {{-- Search --}}
             <div class="search-bar">
                 <label for="myInput">Search : </label>
                 <input class="form-control " type="text" aria-label="Search" id="myInput" onkeyup="myFunction()">
             </div>
+
+            
         </div>
         <div class="table-responsive">
             <table class="table table-sm" id="myTable">

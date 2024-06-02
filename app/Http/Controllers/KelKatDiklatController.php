@@ -37,12 +37,12 @@ class KelKatDiklatController extends Controller
         $messages = [
             'img.image' => 'File harus berupa gambar.',
             'img.file' => 'File harus berupa berkas.',
-            'img.max' => 'Ukuran file tidak boleh melebihi 1 MB.',
+            'img.max' => 'Ukuran file tidak boleh melebihi 2MB.',
             'katDiklat.required' => 'Kategori Diklat wajib diisi.',
             'katDiklat.unique' => 'Kategori Diklat sudah ada.'
         ];
         $request->validate([
-            'img' => 'nullable|image|file|max:1024',
+            'img' => 'nullable|image|file|max:2024',
             'katDiklat' => 'required|unique:kategori_diklat,kategori_diklat',
         ], $messages);
         if ($request->hasFile('img')) {
@@ -89,13 +89,13 @@ class KelKatDiklatController extends Controller
         $messages = [
             'img.image' => 'File harus berupa gambar.',
             'img.file' => 'File harus berupa berkas.',
-            'img.max' => 'Ukuran file tidak boleh melebihi 1 MB.',
+            'img.max' => 'Ukuran file tidak boleh melebihi 2 MB.',
             'katDiklat.required' => 'Kategori Diklat wajib diisi.',
             'katDiklat.unique' => 'Kategori Diklat sudah ada.'
         ];
 
         $request->validate([
-            'img' => 'nullable|image|file|max:1024',
+            'img' => 'nullable|image|file|max:2024',
             'katDiklat' => 'required|unique:kategori_diklat,kategori_diklat,' . $kelKatDiklat->id,
         ], $messages);
 

@@ -39,7 +39,7 @@ class PromoController extends Controller
             'tgl_akhir' => 'required|after:tgl_awal',
             'diklat' => 'required',
             'deskripsi' => 'required',
-            'img' => 'required|image|max:5024',
+            'img' => 'required|image|max:2024',
         ];
 
         $messages = [
@@ -53,7 +53,7 @@ class PromoController extends Controller
             'diklat.required' => 'Pilih diklat untuk promo.',
             'img.required' => 'Gambar wajib diunggah.',
             'img.image' => 'File harus berupa gambar.',
-            'img.max' => 'Ukuran file tidak boleh melebihi 1 MB.',
+            'img.max' => 'Ukuran file tidak boleh melebihi 2 MB.',
         ];
 
         if ($request->input('kuota') === "iya") {
@@ -131,7 +131,7 @@ class PromoController extends Controller
             'tgl_akhir.required' => 'Tanggal Promo Berakhir wajib diisi.',
             'tgl_akhir.after' => 'Tanggal Promo Berakhir harus setelah Tanggal Mulai Promo.',
             'img.image' => 'File harus berupa gambar.',
-            'img.max' => 'Ukuran file tidak boleh melebihi 1 MB.',
+            'img.max' => 'Ukuran file tidak boleh melebihi 2 MB.',
             'diklat.required' => 'Pilih diklat untuk promo.',
             'kuota.required' => 'Pilih terlebih dahulu, apakah anda ingin menggunakan kuota?',
             'kuota_angka.integer' => 'Kuota harus berupa angka.',
@@ -144,7 +144,7 @@ class PromoController extends Controller
             'tgl_awal' => 'required',
             'tgl_akhir' => 'required|after:tgl_awal',
             'diklat' => 'required',
-            'img' => 'nullable|image|max:1024',
+            'img' => 'nullable|image|max:2024',
             'kuota' => 'required',
             'deskripsi' => 'required',
             'kuota_angka' => 'required_if:kuota,iya'
