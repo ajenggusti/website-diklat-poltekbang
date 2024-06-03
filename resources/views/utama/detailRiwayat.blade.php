@@ -59,7 +59,15 @@
                             <br><br>
                     
                         @else
-                        
+                            Nomor paspor : <br>
+                            <span>{{ $data->user->no_paspor }}</span>
+                            <br><br>
+                            Nationality : <br>
+                            <span> {{ $data->user->Nationality->name }}</span>
+                            <br><br>
+                            Tanggal lahir : <br>
+                            <span> {{ \Carbon\Carbon::parse($data->user->tanggal_lahir)->format('d-m-Y') }}</span>
+                            <br><br>
                         @endif
                         
                         <br> <br>
@@ -69,6 +77,15 @@
                         Nama diklat : <br>
                         <span>{{ $data->diklat->nama_diklat }}</span>
                         <br><br>
+
+                        @if($data->promo)
+                            Kode Promo : <br>
+                                <span> {{ $data->promo->kode }}</span>
+                        @else
+                            Kode Promo :  <br>
+                                <span> Tidak ada promo yang diambil</span>
+                        @endif
+                        <br> <br>
                         
                         Biaya Pendaftaran : <br>
                         <span>Rp 150.000</span>
@@ -98,9 +115,10 @@
                             <span> - Rp. 0</span> 
                             <br><br>
                         @endif
-                            Diskon Admin: <br>
-                            <span> - Rp. {{ number_format($data->potongan_admin, 0, ',', '.') }} </span>
-                            <br><br>
+                        
+                        Diskon Admin: <br>
+                        <span> - Rp. {{ number_format($data->potongan_admin, 0, ',', '.') }} </span>
+                        <br><br>
 
                         Total Biaya : <br>
                         <span>Rp. {{ number_format($data->harga_diklat, 0, ',', '.') }}</span>

@@ -230,6 +230,20 @@ class PendaftaranController extends Controller
 
 
         $oldData = Pendaftaran::find($id);
+        // dd($oldData);
+        $diklatUpdate = Diklat::findOrFail($oldData->diklat->id);
+        if ($request->s_link || $request->s_gambar || $request->s_doc) {
+            $sebelumnyaKosong = $oldData->s_link == null && $oldData->s_gambar == null && $oldData->s_doc == null;
+            // dd($sebelumnyaKosong);
+            $diklatUpdate->update([
+                "status" => "belum full",
+                "jumlah_pendaftar" => $sebelumnyaKosong ? $diklatUpdate->jumlah_pendaftar - 1 : $diklatUpdate->jumlah_pendaftar
+            ]);
+
+            $oldData->update([
+                'status_pelaksanaan' => "Terlaksana"
+            ]);
+        }
         if ($request->input('metode_sertif') == 'link') {
             if ($oldData->s_gambar) {
                 // Storage::delete($oldData->s_gambar);
@@ -325,7 +339,7 @@ class PendaftaranController extends Controller
             $request->s_doc->move('storage/LanPage', $doc);
         }
         // update jumlah kuota diklat yagn tersedia
-        $diklatUpdate = Diklat::findOrFail($oldData->diklat->id);
+
         // dd($diklatUpdate);
         // if ($request->s_link||$request->s_gambar||$request->doc) {
         //     $diklatUpdate->update([
@@ -336,45 +350,54 @@ class PendaftaranController extends Controller
         //         'status_pelaksanaan'=>"Terlaksana"
         //     ]);
         // }
-        if ($request->s_link || $request->s_gambar || $request->doc) {
-            $sebelumnyaKosong = !$diklatUpdate->s_link && !$diklatUpdate->s_gambar && !$diklatUpdate->doc;
-            $diklatUpdate->update([
-                "status" => "belum full",
-                "jumlah_pendaftar" => $sebelumnyaKosong ? $diklatUpdate->jumlah_pendaftar - 1 : $diklatUpdate->jumlah_pendaftar
-            ]);
 
-            $oldData->update([
-                'status_pelaksanaan' => "Terlaksana"
-            ]);
-        }
-        
-        // update pembayaran dari admin ============================================================================
-        $oldPotongan = $oldData->potongan_admin ? (int)preg_replace("/[^0-9]/", "", $oldData->potongan_admin) : 0;
-        $newPotongan = $request->potongan ? (int)preg_replace("/[^0-9]/", "", $request->potongan) : 0;
-        $totalPotongan = $oldPotongan + $newPotongan;
-        $pembayaran_update = Pembayaran::where('id_pendaftaran', $id)
-            ->where('jenis_pembayaran', 'diklat')
-            ->where('metode_pembayaran', 'offline')
-            ->first();
-        if ($pembayaran_update !== null) {
-            if ($request->status_pembayaran_diklat !== $pembayaran_update->status) {
-                $pembayaran_update->update([
-                    'updated_at' => now(),
-                    'status' => $request->status_pembayaran_diklat
-                ]);
-            }
-        } else {
+
+
+        // // update pembayaran dari admin ============================================================================
+        // $oldPotongan = $oldData->potongan_admin ? (int)preg_replace("/[^0-9]/", "", $oldData->potongan_admin) : 0;
+        // $newPotongan = $request->potongan ? (int)preg_replace("/[^0-9]/", "", $request->potongan) : 0;
+        // $totalPotongan = $oldPotongan + $newPotongan;
+        // $pembayaran_update = Pembayaran::where('id_pendaftaran', $id)
+        //     ->where('jenis_pembayaran', 'diklat')
+        //     ->where('metode_pembayaran', 'offline')
+        //     ->first();
+        // // dd($pembayaran_update);
+        // if ($pembayaran_update !== null) {
+        //     if ($request->status_pembayaran_diklat !== $pembayaran_update->status) {
+        //         $pembayaran_update->update([
+        //             'updated_at' => now(),
+        //             'status' => $request->status_pembayaran_diklat
+        //         ]);
+        //         $oldData->update([
+        //             'status_pembayaran_diklat' => $request->status_pembayaran_diklat
+        //         ]);
+        //     }
+        // } else {
             $oldData->update([
                 's_gambar' => $gambar ?: $oldData->s_gambar,
                 's_link' => $request->input('metode_sertif') == 'link' ? $request->s_link : null,
                 's_doc' => $doc ?: $oldData->s_doc,
                 'metode_sertif' => $request->metode_sertif,
-                'potongan_admin' => $totalPotongan ?: null,
-                'harga_diklat' => preg_replace("/[^0-9]/", "", $request->total_harga),
-                'status_pembayaran_diklat' => $request->status_pembayaran_diklat
+                // 'potongan_admin' => $totalPotongan ?: null,
+                // 'harga_diklat' => preg_replace("/[^0-9]/", "", $request->total_harga),
+                // 'status_pembayaran_diklat' => $request->status_pembayaran_diklat
             ]);
-        }
+        // }
+        // dd($request->status_pembayaran_diklat);
 
         return redirect('/kelPendaftaran')->with('success', 'Data berhasil diperbarui!');
+    }
+
+    // public function indexKeuangan(){
+    //     $datas = Pendaftaran::get();
+    //     return view('kelola.kelolaPendaftaranKeuangan.index', [
+    //         'datas'=>$datas
+    //     ]);
+    // }
+    public function showKeuangan($id){
+        $datas = Pendaftaran::findOrFail($id);
+        return view('kelola.kelolaPendaftaranKeuangan.index', [
+            'datas'=>$datas
+        ]);
     }
 }

@@ -8,13 +8,17 @@ use App\Models\Kelurahan;
 use App\Models\Pendaftaran;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\DB;
+use Spatie\Activitylog\LogOptions;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Spatie\Activitylog\Contracts\Activity;
 
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    use LogsActivity;
 
     /**
      * The attributes that are mass assignable.
@@ -49,6 +53,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Pendaftaran::class, 'id_user');
     }
+    public function activity()
+    {
+        return $this->hasMany(Activity::class, 'causer_id');
+    }
+    // public function activity1()
+    // {
+    //     return $this->hasMany(Activity::class, 'subject_id');
+    // }
     public function kelurahan()
     {
         return $this->belongsTo(Kelurahan::class, 'id_kelurahan');
@@ -83,6 +95,13 @@ class User extends Authenticatable
         return User::join('level', 'users.id_level', '=', 'level.id')
                 ->select('users.*', 'level.level as userLevel')
                 ->get();
+    }
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->useLogName('Tabel user')
+            ->logUnguarded();
+        // Chain fluent methods for configuration options
     }
 
 

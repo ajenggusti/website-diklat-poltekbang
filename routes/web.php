@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Pendaftaran;
+use App\Charts\DpukPendaftarChart;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ImageController;
@@ -16,12 +18,14 @@ use App\Http\Controllers\EventUserController;
 use App\Http\Controllers\TestimoniController;
 use App\Http\Controllers\GbrLandingController;
 use App\Http\Controllers\PembayaranController;
+use App\Http\Controllers\LogActivityController;
 use App\Http\Controllers\PendaftaranController;
 use App\Http\Controllers\GambarDiklatController;
 use App\Http\Controllers\KelKatDiklatController;
 use App\Http\Controllers\KabupatenDropdownController;
 use App\Http\Controllers\KecamatanDropdownController;
 use App\Http\Controllers\KelurahanDropdownController;
+use App\Http\Controllers\PendaftaranKeuanganController;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +52,10 @@ Route::get('/allUser', [DbUtamaController::class, 'allUser']);
 Route::get('/byLevel/{id}', [DbUtamaController::class, 'byLevel']);
 // db keuangan
 Route::get('/dbKeuangan', [DbUtamaController::class, 'dbKeuangan']);
+Route::get('/dbDetailPembayaranDiklat', [DbUtamaController::class, 'detailpembayaranPembayaranDiklat']);
+Route::get('/dbDetailPembayaranDaftar', [DbUtamaController::class, 'detailpembayaranPembayaranDaftar']);
+Route::get('/pembayaranBelumVerifikasi', [DbUtamaController::class, 'pembayaranBelumVerifikasi']);
+Route::get('/pembayaranSudahVerifikasi', [DbUtamaController::class, 'pembayaranSudahVerifikasi']);
 // db DPUK
 Route::get('/dbDpuk', [DbUtamaController::class, 'dbDpuk']);
 Route::get('/PendaftaranTerlaksana', [DbUtamaController::class, 'PendaftaranTerlaksana']);
@@ -81,7 +89,7 @@ Route::put('/updateProfil/{id}', [RegisterController::class, 'updateProfil'])->n
 Route::get('/permohonan/{id}', [RegisterController::class, 'editPermohonan']);
 Route::put('/updatePermohonan/{id}', [RegisterController::class, 'updatePermohonan'])->name('updatePermohonan.update');
 // alamat
-Route::get('provinsi-dropdown', [ProvinsiController::class, 'showAll'])->name('kabupaten.dropdown');
+Route::get('provinsi-dropdown', [ProvinsiController::class, 'showAll'])->name('provinsi.dropdown');
 Route::get('kabupaten-dropdown/{id}', KabupatenDropdownController::class)->name('kabupaten.dropdown');
 Route::get('kecamatan-dropdown/{id}', KecamatanDropdownController::class)->name('kecamatan.dropdown');
 Route::get('kelurahan-dropdown/{id}', KelurahanDropdownController::class)->name('kelurahan.dropdown');
@@ -98,9 +106,13 @@ Route::resource('/kelTestimoni', TestimoniController::class);
 // route CRUD Diklat
 Route::resource('/kelDiklat', DiklatController::class);
 // route CRUD pendaftaran
+// Route::get('/pendaftaranKeuanganIndex', [PendaftaranController::class, 'indexKeuangan']);
+// Route::get('/pendaftaranKeuanganShow/{id}', [PendaftaranController::class, 'showKeuangan']);
 Route::get('/kelPendaftaran/{id}/editAsAdmin', [PendaftaranController::class, 'editAsAdmin'])->name('pendaftaranAsAdmin.edit');
 Route::put('/kelPendaftaranAdmin/{id}', [PendaftaranController::class, 'updateAsAdmin'])->name('pendaftaranAsAdmin.update');
 Route::resource('/kelPendaftaran', PendaftaranController::class);
+// route CRUD pendaftaran keuangan
+Route::resource('/kelPendaftaranKeuangan', PendaftaranKeuanganController::class)->except('destroy','create', 'store' );
 
 //route CRUD pembayarn
 // Route::get('/kelPembayaran/getPaymentInfo/{type}/{id}', [PembayaranController::class, 'getPaymentInfo']);
@@ -122,3 +134,7 @@ Route::get('events/list', [EventController::class, 'listEvent'])->name('events.l
 Route::resource('events', EventController::class);
 
 Route::resource('eventsUser', EventUserController::class);
+// log activity
+Route::get('/logActivity', [LogActivityController::class, 'index']);
+// select kalender chart
+// Route::get('/chart', [DpukPendaftarChart::class, 'showChart'])->name('showChart');

@@ -2,7 +2,7 @@
 @section('container')
     <link href="/css/actor.css" rel="stylesheet">
     <script src="/js/actor.js"></script>
-
+    
     <div class="content-staff">
         <h2>Tabel Pendaftaran</h2>
         <hr>
@@ -112,13 +112,8 @@
                             </td>
                             <td>
                                 <div class="action-buttons">
-                                    <a href="/kelPendaftaran/{{ $data->id }}" class="btn btn-info"><i class="bi bi-eye"></i></a>
-                                    <a href="/kelPendaftaran/{{ $data->id }}/editAsAdmin" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
-                                    <form action="/kelPendaftaran/{{ $data->id }}" method="POST">
-                                        @method('DELETE')
-                                        @csrf
-                                        <button class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus?')"><i class="bi bi-trash"></i></button>
-                                    </form>
+                                    <a href="/kelPendaftaranKeuangan/{{ $data->id }}" class="btn btn-info"><i class="bi bi-eye"></i></a>
+                                    <a href="/kelPendaftaranKeuangan/{{ $data->id }}/edit" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
                                 </div>
                             </td>
                         </tr>

@@ -21,6 +21,12 @@ class LoginController extends Controller
             'password' => 'required'
         ], $messages);
         if (Auth::attempt($credentials)) {
+            activity()->causedBy(
+                Auth::user())
+                ->useLog('login')
+                ->log(Auth::user()->level->level.'-'.Auth::user()->name
+                
+            );
             $request->session()->regenerate();
 
             return redirect()->intended('/');

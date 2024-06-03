@@ -3,13 +3,18 @@
 namespace App\Models;
 
 use Illuminate\Support\Facades\DB;
+use Spatie\Activitylog\LogOptions;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class Pendaftaran extends Model
 {
     use HasFactory;
+    use LogsActivity;
+
 
     protected $table = 'pendaftaran';
     public $timestamps = true;
@@ -54,5 +59,12 @@ class Pendaftaran extends Model
             ->where('pendaftaran.id_user', $userId)
             ->select('diklat.*')
             ->get();
+    }
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->useLogName('Tabel pendaftaran')
+            ->logUnguarded();
+        // Chain fluent methods for configuration options
     }
 }

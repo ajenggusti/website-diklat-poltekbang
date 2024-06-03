@@ -1,15 +1,18 @@
 @extends('layout.mainAdmin')
 @section('container')
     {{-- Head --}}
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="/css/dashboard.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
 
-    </style>
+    
     {{-- Body --}}
+    <div class="container px-4 mx-auto">
+
+        <div class="p-6 m-20 bg-white rounded shadow">
+            {!! $DpukPendaftarChart->container() !!}
+        </div>
+    
+    </div>
+    {{-- ========================================= --}}
     <div class="container-admin">
         <div class="dashAdmin">
             <a href="/kelPendaftaran">
@@ -71,4 +74,7 @@
             @endforeach
         </div>
     </div>
+    <script src="{{ $DpukPendaftarChart->cdn() }}"></script>
+
+    {{ $DpukPendaftarChart->script() }}
 @endsection

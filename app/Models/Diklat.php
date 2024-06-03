@@ -8,12 +8,16 @@ use App\Models\Testimoni;
 use App\Models\Pendaftaran;
 use App\Models\GambarDiklat;
 use Illuminate\Support\Facades\DB;
+use Spatie\Activitylog\LogOptions;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Activitylog\Traits\LogsActivity;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class Diklat extends Model
 {
     use HasFactory;
+    use LogsActivity;
 
     protected $table = 'diklat';
     protected $guarded = [];
@@ -84,5 +88,12 @@ class Diklat extends Model
         ->where('diklat.id', $diklatId)
         ->first();
     }
-    
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->useLogName('Tabel diklat')
+            ->logUnguarded();
+        // Chain fluent methods for configuration options
+    }
+
 }

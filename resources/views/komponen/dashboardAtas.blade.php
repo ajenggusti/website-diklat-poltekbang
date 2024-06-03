@@ -158,7 +158,13 @@
                       <li class="nav-item">
                         <a class="nav-link {{ Request::is('kelPendaftaran*') ? 'active' : '' }}" href="/kelPendaftaran">
                           <i class="bi bi-basket" style="font-size: 17px;">   </i>
-                          Kelola Pendaftaran
+                          Kelola Pendaftaran(dpuk)
+                        </a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link {{ Request::is('kelPendaftaranKeuangan*') ? 'active' : '' }}" href="/kelPendaftaranKeuangan">
+                          <i class="bi bi-basket" style="font-size: 17px;">   </i>
+                          Kelola Pendaftaran(keuangan)
                         </a>
                       </li>
                       <li class="nav-item">
@@ -171,6 +177,12 @@
                         <a class="nav-link" href="/kelPembayaran">
                           <i class="bi bi-cash-stack" style="font-size: 17px;">   </i>
                           Laporan
+                        </a>
+                      </li>
+                      <li class="nav-item {{ Request::is('/logActivity*') ? 'active' : '' }}">
+                        <a class="nav-link" href="/logActivity">
+                          <i class="bi bi-gear"></i>
+                          Log activity
                         </a>
                       </li>
                       <hr>
@@ -202,8 +214,8 @@
         
           $('#sidebarMenu .nav-link').each(function () {
             var href = $(this).attr('href');
-            console.log("path:", path);
-            console.log("href:", href);
+            // console.log("path:", path);
+            // console.log("href:", href);
             if (path === href) {
               $(this).addClass('active');
             }
@@ -216,8 +228,8 @@
               var path = window.location.pathname;
               $('.nav-link').each(function () {
                   var href = $(this).attr('href');
-                  console.log("path:", path);
-                  console.log("href:", href);
+                  // console.log("path:", path);
+                  // console.log("href:", href);
                   if (path.includes(href)) {
                       $(this).addClass('active');
                   }
