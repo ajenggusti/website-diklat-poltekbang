@@ -99,7 +99,6 @@
                             <span class="badge badge-pill badge-danger">{{ $data->status_pembayaran_daftar }}</span>
                             <br><br>
                         @endif
-                        <br><br>
                         
                         Harga Diklat : <br>
                         <span>Rp. {{ number_format($data->diklat->harga, 0, ',', '.') }}</span>

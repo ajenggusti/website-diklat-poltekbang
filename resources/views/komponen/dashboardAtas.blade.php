@@ -8,15 +8,18 @@
     <meta name="generator" content="Hugo 0.84.0">
     <meta name="csrf_token" content="{{ csrf_token() }}">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <title>Dashboard Template · Bootstrap v5.0</title>
-
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}" >
+    <title>
+      Dashboard Staff
+    </title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-      {{-- select2 --}}
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+    {{-- select2 --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
 
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     {{-- fulcalendar --}}
@@ -32,13 +35,43 @@
     {{-- Font Poppins --}}
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    {{-- DASHBOARD STAFF WITH ADMINLTE --}}
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
 
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+   
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
+
+    {{-- Navbar --}}
+    <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         html, body {
           height: 100%
         }
         .container {
           padding-bottom: 50px;
+          padding-top: 50px;
         }
         
         * {
@@ -51,7 +84,8 @@
           font-family: 'Poppins', sans-serif;
         }
         .navbar-toogler  {
-          margin-left: -100px;
+          left: 0;
+          margin-right: -300px;
         }
 
     </style>
@@ -61,30 +95,23 @@
     <link href="/css/dashboard.css" rel="stylesheet">
   </head>
   <body>
+  {{-- <body class="hold-transition sidebar-mini layout-navbar-fixed sidebarMenu"> --}}
     
-    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/" style="font-size: 16px;">
+    <header class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+      <a class="navbar-brand col-md-3 col-lg-2" href="/" style="font-size: 16px;">
+        <img src="{{ asset('img/poltekbang.png') }}" alt="Logo poltekbang" style="width: 45px; height: 30px; opacity: .8">
           POLTEKBANG
       </a>
-      
-        {{-- OLD --}}
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        {{-- NEW --}}
-        {{-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button> --}}
+      <button class="navbar-toggler" type="button" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon" style="color: white; font-size: 15px;"></span>
+      </button>
     </header>
-
 
     <div class="container-fluid">
       <div class="row">
           <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block">
               <div class="position-sticky pt-3" id="sidebar-sticky">
                   <ul class="nav flex-column">
-                    {{-- sidebar --}}
                       @can('superAdmin')
                       <hr>    
                       <li class="nav-item">
@@ -103,6 +130,7 @@
                           Dashboard DPUK
                         </a>
                       </li>
+                      <hr>
                       @endcan
 
                       @can('keuangan')
@@ -112,6 +140,7 @@
                           Dashboard Keuangan
                         </a>
                       </li>
+                      <hr>
                       @endcan
                       <li class="nav-item">
                         <a class="nav-link {{ Request::is('indexKelolaUser*') ? 'active' : '' }}" href="/indexKelolaUser">
@@ -158,13 +187,7 @@
                       <li class="nav-item">
                         <a class="nav-link {{ Request::is('kelPendaftaran*') ? 'active' : '' }}" href="/kelPendaftaran">
                           <i class="bi bi-basket" style="font-size: 17px;">   </i>
-                          Kelola Pendaftaran(dpuk)
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link {{ Request::is('kelPendaftaranKeuangan*') ? 'active' : '' }}" href="/kelPendaftaranKeuangan">
-                          <i class="bi bi-basket" style="font-size: 17px;">   </i>
-                          Kelola Pendaftaran(keuangan)
+                          Kelola Pendaftaran
                         </a>
                       </li>
                       <li class="nav-item">
@@ -177,12 +200,6 @@
                         <a class="nav-link" href="/kelPembayaran">
                           <i class="bi bi-cash-stack" style="font-size: 17px;">   </i>
                           Laporan
-                        </a>
-                      </li>
-                      <li class="nav-item {{ Request::is('/logActivity*') ? 'active' : '' }}">
-                        <a class="nav-link" href="/logActivity">
-                          <i class="bi bi-gear"></i>
-                          Log activity
                         </a>
                       </li>
                       <hr>
@@ -214,8 +231,8 @@
         
           $('#sidebarMenu .nav-link').each(function () {
             var href = $(this).attr('href');
-            // console.log("path:", path);
-            // console.log("href:", href);
+            console.log("path:", path);
+            console.log("href:", href);
             if (path === href) {
               $(this).addClass('active');
             }
@@ -228,8 +245,8 @@
               var path = window.location.pathname;
               $('.nav-link').each(function () {
                   var href = $(this).attr('href');
-                  // console.log("path:", path);
-                  // console.log("href:", href);
+                  console.log("path:", path);
+                  console.log("href:", href);
                   if (path.includes(href)) {
                       $(this).addClass('active');
                   }
@@ -263,6 +280,3 @@
         });
       </script> --}}
       <div class="container">
-
-      
-

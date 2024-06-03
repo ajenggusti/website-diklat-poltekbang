@@ -17,7 +17,7 @@ class PendaftaranSeeder extends Seeder
             [
                 'id_diklat' => 1,
                 'id_user' => 1,
-                'id_promo' => 1,
+                // 'id_promo' => 1,
                 'harga_diklat' => '90000',
                 'status_pembayaran_diklat' => 'Menunggu pembayaran',
                 'pendidikan_terakhir' => 'SMA',
@@ -28,7 +28,7 @@ class PendaftaranSeeder extends Seeder
             [
                 'id_diklat' => 1,
                 'id_user' => 2,
-                'id_promo' => 1,
+                // 'id_promo' => 1,
                 'harga_diklat' => '90000',
                 'status_pembayaran_diklat' => 'Menunggu pembayaran',
                 'pendidikan_terakhir' => 'SMk',

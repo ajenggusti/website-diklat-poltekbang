@@ -47,7 +47,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-    <title>Diklat POLTEKBANG</title>
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}" >
+    <title>
+      PENDAFTARAN DIKLAT POLTEKBANG
+    </title>
 
     <style>
         * {
@@ -80,46 +83,38 @@
             top: 0;
             z-index: 1000;
         }
-
-        /* NEW */
         .content-nav .topnav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             width: 100%;
         }
-        /* END NEW */
-
-        /* OLD, New dibawah */
-        /* .content-nav .topnav ul li a{
-            padding-right: 15px;
-            padding-top: 5px;
-            color: #FF6900; 
-            font-weight: 600;
-        }
-
-
-        .content-nav .topnav ul li a:hover {
-            color: #878889; 
-        } */
-
+        
 
         .content-nav .navbar-brand img {
             margin-left: 110px;
             padding-bottom: 2px;
         }
 
+        /* NEW */
+        .content-nav .navbar-nav.centerNav {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        /* END NEW */
+
         .content-nav .text-end {
             margin-right: 50px;
         }
 
-        /* NEW */
-        .content-nav .navbar-nav {
+        /* .content-nav .navbar-nav {
             display: flex;
             justify-content: center;
             align-items: center;
             flex: 1;
-        }
+        } */
 
         .content-nav .navbar-nav .nav-item {
             margin: 0 10px;
@@ -143,13 +138,17 @@
             margin-right: 100px;
         }
 
-        /* END NEW */
+        .content-nav .rightNav .buttonRight {
+            /* margin-bottom: 20px; */
+            top: 0;
+            /* background-color: aqua */
+        }
 
         .button {
             background-color: #FF6900;
             border: none;
             color: white;
-            padding: 4px 8px;
+            padding: 2px 4px;
             text-align: center;
             text-decoration: none;
             margin: 4px 2px;
@@ -158,25 +157,25 @@
             border-radius: 5px;
         }
         .button-log {
-            background-color: white; 
-            color: #FF6900; 
-            border: 2px solid #FF6900;
+            background-color: #ff9100; 
+            color: #ff6a00; 
+            /* border: 2px solid #f7ab4e; */
         }
 
         .button-log:hover {
-            background-color: #FFC784;
+            background-color: #FF6900;
             color: #ffffff;
         }
 
         .button-sign {
             background-color: #FF6900; 
             color: #ffffff; 
-            border: 2px solid #FF6900;
+            /* border: 2px solid #FF6900; */
         }
 
         .button-sign:hover {
-            background-color: #FFC784;
-            color: #ffffff;
+            background-color: #9e5b2a;
+            color: #FF6900;
         }
 
 
@@ -225,10 +224,11 @@
                 margin-right: 0;
                 left: auto;
             }
+            
         }
         @media (max-width: 480px) {
-            .content-wrapper {
-                
+            .content-nav .navbar-brand img {
+                margin-left: 20px;
             }
         }
   
@@ -244,7 +244,7 @@
                     <i class="bi bi-list"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown" >
-                    <ul class="navbar-nav me-auto">
+                    <ul class="navbar-nav me-auto centerNav">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/">Home</a>
                         </li>
@@ -266,43 +266,44 @@
                         <li class="nav-item">
                             <a class="nav-link" href="eventsUser">Jadwal</a>
                         </li>
-                        <ul class="navbar-nav ms-auto rightNav">
-                            @auth
-                                <li class="nav-item dropdown">
-                                    <a class="d-block link-body-emphasis text-decoration-non nav-link" href="#" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none;">
-                                        <i class="bi bi-person-circle">
-                                            <span style="pointer-events: none;">    {{ auth()->user()->name }}</span>
-                                        </i>
-                                    </a>
-                                    <ul class="dropdown-menu text-small">
-                                        <li><a class="dropdown-item" href="/editProfil"><i class="bi bi-people"></i> Profil</a></li>
-                                        <li><a class="dropdown-item" href="/riwayat"><i class="bi bi-clock-history"></i> Riwayat</a></li>
-                                        <li>
-                                            @can('superAdmin')
-                                                <a href="/dbSuperAdmin" class="dropdown-item"><i class="bi bi-speedometer2"></i> Dashboard</a>
-                                            @endcan
-                                            @can('dpuk')
-                                                <a href="/dbDpuk" class="dropdown-item"><i class="bi bi-speedometer2"></i> Dashboard</a>
-                                            @endcan
-                                            @can('keuangan')
-                                                <a href="/dbKeuangan" class="dropdown-item"><i class="bi bi-speedometer2"></i> Dashboard</a>
-                                            @endcan
-                                        </li>
-                                        <li><hr class="dropdown-divider"></li>
-                                        <li>
-                                            <form action="/logout" method="POST">
-                                                @csrf
-                                                <a href="" class="dropdown-item"> <button type="submit" style="border: none; background-color:rgb(255, 255, 255);"><i class="bi bi-box-arrow-right"></i> Logout</button></a>
-                                            </form>
-                                            @else
-                                                <div class="topnav-right">
-                                                    <a href="/login"><button type="button" class="button button-log">Masuk</button></a>
-                                                    <a href="/register"><button type="button" class="button button-sign">Daftar</button></a>
-                                                </div>
-                                        </li>
-                                    </ul>
-                                </li>
-                            @endauth
+                    </ul>
+                    <ul class="navbar-nav ms-auto rightNav">
+                        @auth
+                            <li class="nav-item dropdown">
+                                <a class="d-block link-body-emphasis text-decoration-non nav-link" href="#" data-bs-toggle="dropdown" aria-expanded="false" style="text-decoration: none;">
+                                    <i class="bi bi-person-circle">
+                                        <span style="pointer-events: none;">    {{ auth()->user()->name }}</span>
+                                    </i>
+                                </a>
+                                <ul class="dropdown-menu text-small">
+                                    <li><a class="dropdown-item" href="/editProfil"><i class="bi bi-people"></i> Profil</a></li>
+                                    <li><a class="dropdown-item" href="/riwayat"><i class="bi bi-clock-history"></i> Riwayat</a></li>
+                                    <li>
+                                        @can('superAdmin')
+                                            <a href="/dbSuperAdmin" class="dropdown-item"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                                        @endcan
+                                        @can('dpuk')
+                                            <a href="/dbDpuk" class="dropdown-item"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                                        @endcan
+                                        @can('keuangan')
+                                            <a href="/dbKeuangan" class="dropdown-item"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                                        @endcan
+                                    </li>
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <form action="/logout" method="POST">
+                                            @csrf
+                                            <a href="" class="dropdown-item"> <button type="submit" style="border: none; background-color:rgb(255, 255, 255);"><i class="bi bi-box-arrow-right"></i> Logout</button></a>
+                                        </form>
+                                        @else
+                                            <div class="buttonRight">
+                                                <a href="/login"><button type="button" class="button button-log">Masuk</button></a>
+                                                <a href="/register"><button type="button" class="button button-sign">Daftar</button></a>
+                                            </div>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endauth
                     </ul>
                 </div>
             </nav>

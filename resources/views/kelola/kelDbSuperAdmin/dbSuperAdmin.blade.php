@@ -3,45 +3,53 @@
     {{-- HEAD --}}
     <link href="/css/dashboard.css" rel="stylesheet">
     {{-- Body --}}
-        <div class="container-admin">
-            <div class="dashAdmin">
-                <a href="/allUser">
-                    <div class="dashItem" style="background-color: #f1f3ff; border: 3px solid #BC4F00;">
-                        <div class="dashItemContent">
-                            Total Seluruh Pengguna
-                        </div>
-                        <div class="dashItemNumber">{{ $count }}</div>
-                    </div>
-                </a>
-        
-                @foreach($userCounts as $userCount)
-                    {{-- @php
-                        $levelColors = [
-                            'DPUK' => '#B90000', 
-                            'Keuangan' => '#D6C211',
-                            'Member' => '#307C1E', 
-                            'Super Admin' => '#84A6FF'
-                        ];
+    <div class="row">
+        <div class="col-lg-3 col-6">
+          <!-- small box -->
+          <div class="small-box bg-info">
+            <div class="inner">
+              <h3>{{ $count }}</h3>
 
-                        $bgColor = $levelColors[$userCount->level] ?? '#FFFFFF';
-                    @endphp --}}
-                    <a href="/byLevel/{{ $userCount->level->id }}">
-                        <div class="dashItem" style="background-color: #f1f3ff; border: 3px solid ;">
-                            <div class="dashItemContent">
-                                <p>Level {{ $userCount->level->level }}</p> 
-                            </div>
-                            <div class="dashItemNumber">
-                                {{ $userCount->total_user }} 
-                            </div>
-                            <span>pengguna</span>
-                        </div>
-                    </a>
-                    {{-- <div>
-                        <a href="/byLevel/{{ $userCount->level->id }}"><p>Level {{ $userCount->level->level }}: {{ $userCount->total_user }} pengguna</p></a>
-                    </div> --}}
-                @endforeach
+              <p>Total Seluruh Pengguna</p>
             </div>
+            <div class="icon">
+              <i class="bi bi-person"></i>
+            </div>
+            <a href="/allUser" class="small-box-footer">More info <i class="bi bi-arrow-right-circle-fill"></i></a>
+          </div>
         </div>
+
+        @foreach($userCounts as $userCount)
+            @php
+                $levelConfig = [
+                    'DPUK' => ['class' => 'bg-secondary', 'icon' => 'bi-person-workspace'],
+                    'Keuangan' => ['class' => 'bg-success', 'icon' => 'bi-currency-dollar'],
+                    'Member' => ['class' => 'bg-warning', 'icon' => 'bi-person-square'],
+                    'Super Admin' => ['class' => 'bg-danger', 'icon' => 'bi-person-fill']
+                ];
+
+                $defaultConfig = ['class' => 'bg-primary', 'icon' => 'bi-person'];
+
+                $config = $levelConfig[$userCount->level->level] ?? $defaultConfig;
+            @endphp
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box {{ $config['class'] }}">
+                <div class="inner">
+                    <h3>{{ $userCount->total_user }}</h3>
+    
+                    <p>Level {{ $userCount->level->level }}</p>
+                </div>
+                <div class="icon">
+                    <i class="bi {{ $config['icon'] }}"></i>
+                </div>
+                <a href="/byLevel/{{ $userCount->level->id }}" class="small-box-footer">
+                    More info <i class="bi bi-arrow-right-circle-fill"></i>
+                </a>
+                </div>
+            </div>
+        @endforeach
+    </div>
 @endsection
 
 

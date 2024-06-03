@@ -99,8 +99,8 @@ function sortTable(n, dir) {
   }
   var arrows = table.querySelectorAll('th i');
   arrows.forEach(arrow => arrow.style.color = 'black');
-  var arrowUp = table.querySelectorAll('th i.bi-arrow-up');
-  var arrowDown = table.querySelectorAll('th i.bi-arrow-down');
+  var arrowUp = table.querySelectorAll('th i.fa-arrow-up-a-z');
+  var arrowDown = table.querySelectorAll('th i.fa-arrow-down-z-a');
   arrowUp.forEach(arrow => arrow.style.color = 'black');
   arrowDown.forEach(arrow => arrow.style.color = 'black');
   if (dir == 'asc') {

@@ -22,7 +22,6 @@ class UserSeeder extends Seeder
             'email' => 'Adam@gmail.com',
             'password' => Hash::make('123456'),
             'status'=>'Perlu dilengkapi',
-            // aku menambah ini cerr
             'jenis_berkas' => 'ktp',
             'id_provinsi'=> 3,
             'id_kabupaten'=>260,

@@ -8,17 +8,19 @@
 /*
  * Sidebar
  */
-
+.navbar {
+  height: 50px;
+}
 
  #sidebarMenu {
-  background-color: #053666;
+  background-color: #3e3c3c;
   position: fixed;
 
   /* NEW */
   height: 100vh;
   overflow-x: hidden;
   overflow-y: auto;
-  top: 0;
+  top: 50px;
   transition: 0.3s;
 }
 
@@ -39,10 +41,6 @@
   top: 0;
   padding-top: .5rem;
 
-  /* OLD */
-  /* overflow-x: hidden;
-  overflow-y: auto; 
-  height: 100vh; */
 }
 
 
@@ -55,11 +53,10 @@ header {
   overflow-y: auto; 
 }
 
-.navbar-toggler {
+/* .navbar-toggler {
   display: none;
-}
+} */
 
-/* OLD */
 @media screen and (max-width: 767.98px) {
   .navbar-toggler {
     display: block;
@@ -73,21 +70,6 @@ header {
     display: block;
   }
 }
-
-/* NEW */
-/* @media screen and (max-width: 700px) {
-  #sidebarMenu {
-      display: none;
-  }
-  #navbarMenu.show {
-      display: block;
-  }
-  .navbar-toggler {
-      display: block;
-  }
-} */
-
-/* END NEW */
 
 @media screen and (max-width: 767.98px) {
   .col-md-9, .col-lg-10 {
@@ -201,41 +183,45 @@ body {
   justify-content: center;
 }
 
-.dashAdmin {
+
+.inner p {
+  padding-right: 50px;
+  font-size: 16px;
+}
+
+.icon i {
+  margin-top: -20px;
+}
+
+.row {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
-}
-
-.dashItem {
-  flex: 1 1 calc(33.33% - 40px);
-  margin: 10px;
-  padding: 20px;
-  border-radius: 10px;
-  height: 150px;
-  display: flex;
-  align-items: center;
   justify-content: space-between;
-  box-sizing: border-box;
-  position: relative;
-  background-color: #f1f3ff;
-  border: 3px solid #BC4F00;
 }
 
-.dashItemContent {
-  font-size: 15px;
-  flex: 1;
-  padding-right: 10px;
+.col-lg-3,
+.col-6 {
+  flex: 1 1 calc(33.333% - 20px);
+  max-width: calc(33.333% - 20px);
+  margin: 10px;
 }
 
-.dashItemNumber {
-  font-size: 40px;
-  font-weight: bold;
-  white-space: nowrap;
+.small-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 180px;
 }
 
-@media screen and (max-width: 1024px) {
+.small-box .inner {
+  flex-grow: 1;
+}
+
+.small-box-footer {
+  text-align: center;
+}
+
+/* @media screen and (max-width: 1024px) {
   .dashItem {
     flex: 1 1 calc(50% - 40px);
   }
@@ -245,4 +231,4 @@ body {
   .dashItem {
     flex: 1 1 calc(100% - 40px);
   }
-}
+} */

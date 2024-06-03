@@ -20,11 +20,13 @@
                 <div class="entries-bar ">
                     <label for="entries">Show entries:</label>
                     <select id="entries" onchange="changeEntries()">
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                    <option value="25">25</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
+                        <option value="" disabled></option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="all">All</option>
                     </select>
                 </div>
                 
@@ -41,8 +43,8 @@
                     <thead>
                         <tr class="header">
                             <th style="width: 90px;">No 
-                                <i class="bi bi-arrow-up" onclick="sortTable(0, 'asc')"></i>
-                                <i class="bi bi-arrow-down" onclick="sortTable(0, 'desc')"></i>
+                                <i class="fa-solid fa-arrow-up-a-z" onclick="sortTable(0, 'asc')"></i>
+                                <i class="fa-solid fa-arrow-down-z-a" onclick="sortTable(0, 'desc')"></i>
                             </th>
                             <th style="width: 160px;">Nama Diklat
                                 <i class="bi bi-arrow-up" onclick="sortTable(1, 'asc')" style="font-size: 15px;"></i>

@@ -16,7 +16,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="nama_dummy" class="form-label is">Nama Penulis</label>
-                        <input disabled type="text" class="form-control" id="nama_dummy" value="{{ $kelTestimoni->nama_dummy }}">                    </div>
+                        <input disabled type="text" class="form-control" id="nama_dummy" value="{{ $kelTestimoni->nama_dummy }}">                    </div>
                     <div class="mb-3">
                         <label for="profesi" class="form-label is">Profesi</label>
                         <input disabled type="text" class="form-control" id="profesi" name= "profesi" value="{{ $kelTestimoni->profesi }}">
