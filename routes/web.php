@@ -47,7 +47,7 @@ Route::get('/', [UtamaController::class, 'index']);
 Route::get('/utama/macamDiklat/{kategori}', [UtamaController::class, 'allDiklat']);
 Route::get('/utama/detailDiklat/{detail}', [UtamaController::class, 'detailDiklat']);
 // db superAdmin
-Route::get('/dbSuperAdmin', [DbUtamaController::class, 'index']);
+Route::get('/dbSuperAdmin', [DbUtamaController::class, 'index'])->middleware('checklevel:Super Admin');
 Route::get('/allUser', [DbUtamaController::class, 'allUser']);
 Route::get('/byLevel/{id}', [DbUtamaController::class, 'byLevel']);
 // db keuangan

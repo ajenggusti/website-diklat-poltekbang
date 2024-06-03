@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Charts;
 
 use App\Models\Pendaftaran;
@@ -15,28 +14,23 @@ class DpukPendaftarChart
         $this->chart = $chart;
     }
 
-    public function build(): \ArielMejiaDev\LarapexCharts\PieChart
+    public function build($year): \ArielMejiaDev\LarapexCharts\LineChart
     {
-        $all = Pendaftaran::count();
-        $lulusan = Pendaftaran::where('status_pelaksanaan', 'Terlaksana')->count();
-        $pendaftarans = Pendaftaran::groupBy('id_diklat')
-            ->select('id_diklat', DB::raw('count(*) as total_pendaftar'))
+        $pendaftarans = Pendaftaran::whereYear('updated_at', $year)
+            ->selectRaw('MONTH(updated_at) as month, COUNT(*) as total_pendaftar')
+            ->groupBy('month')
+            ->orderBy('month')
             ->get();
 
-        // Initialize the data and labels arrays
-        $data = [$all, $lulusan];
-        $labels = ['Semua Pendaftar', 'Lulusan'];
-
-        // Append pendaftarans data and labels
+        $months = array_fill(0, 12, 0);
         foreach ($pendaftarans as $pendaftaran) {
-            $data[] = $pendaftaran->total_pendaftar;
-            $labels[] = $pendaftaran->diklat->nama_diklat; // Assuming diklat relationship is defined and diklat has a nama_diklat attribute
+            $months[$pendaftaran->month - 1] = $pendaftaran->total_pendaftar;
         }
 
-        return $this->chart->pieChart()
-            ->setTitle('Jumlah Pendaftaran dan Lulusan')
-            ->setSubtitle('Data Pendaftaran tiap diklat dan Lulusan')
-            ->addData($data)
-            ->setLabels($labels);
+        return $this->chart->lineChart()
+            ->setTitle("Jumlah Pendaftaran tahun $year")
+            ->setSubtitle('Total pendaftar per bulan')
+            ->addData('Pendaftar', $months)
+            ->setXAxis(['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']);
     }
 }

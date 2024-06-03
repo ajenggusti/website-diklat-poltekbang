@@ -9,14 +9,15 @@ use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
 use App\Charts\KeuanganChart;
 use App\Charts\DpukPendaftarChart;
+use App\Charts\SuperAdminChart;
 use Illuminate\Support\Facades\DB;
 
 class DbUtamaController extends Controller
 {
     // kelola db super admin
-    public function index()
+    public function index(SuperAdminChart $SuperAdminChart)
     {
-        $this->authorize('superAdmin');
+        // $this->authorize('superAdmin');
         $userCounts = User::groupBy('id_level')
             ->select('id_level', DB::raw('count(*) as total_user'))
             ->get();
@@ -24,7 +25,8 @@ class DbUtamaController extends Controller
         $count = User::count();
         return view('kelola.kelDbSuperAdmin.dbSuperAdmin', [
             'userCounts' => $userCounts,
-            'count' => $count
+            'count' => $count,
+            'SuperAdminChart'=>$SuperAdminChart->build()
         ]);
     }
 
@@ -50,28 +52,36 @@ class DbUtamaController extends Controller
         ]);
     }
     // kelola dpuk
-    public function dbDpuk(DpukPendaftarChart $DpukPendaftarChart)
+
+    public function dbDpuk(Request $request, DpukPendaftarChart $DpukPendaftarChart)
     {
-        $this->authorize('dpuk');
-        $alumni = Pendaftaran::where('status_pelaksanaan', 'Terlaksana')->count();
-        $jumlahBelumTerlaksana = Pendaftaran::where('status_pelaksanaan', 'Belum terlaksana')->count();
-        $totalSemua = Pendaftaran::count();
+        $year = $request->input('year', date('Y')); 
+    
+        $alumni = Pendaftaran::where('status_pelaksanaan', 'Terlaksana')->whereYear('updated_at', $year)->count();
+        $jumlahBelumTerlaksana = Pendaftaran::where('status_pelaksanaan', 'Belum terlaksana')->whereYear('updated_at', $year)->count();
+        $totalSemua = Pendaftaran::whereYear('updated_at', $year)->count();
         $sertifikat = Pendaftaran::where('status_pembayaran_diklat', 'Lunas')
             ->where('status_pembayaran_daftar', 'Lunas')
             ->where('status_pelaksanaan', 'Belum terlaksana')
+            ->whereYear('updated_at', $year)
             ->count();
-        $pendaftarans = Pendaftaran::groupBy('id_diklat')
+        $pendaftarans = Pendaftaran::whereYear('updated_at', $year)
+            ->groupBy('id_diklat')
             ->select('id_diklat', DB::raw('count(*) as total_pendaftar'))
             ->get();
+    
         return view('kelola.kelDbDpuk.dbDpuk', [
             'alumni' => $alumni,
             'jumlahBelumTerlaksana' => $jumlahBelumTerlaksana,
             'totalSemua' => $totalSemua,
             'pendaftarans' => $pendaftarans,
             'sertifikat' => $sertifikat,
-            'DpukPendaftarChart' => $DpukPendaftarChart->build()
+            'DpukPendaftarChart' => $DpukPendaftarChart->build($year),
+            'selectedYear' => $year 
         ]);
     }
+    
+
     public function PendaftaranByDiklat($id)
     {
         $datas = Pendaftaran::where('id_diklat', $id)
@@ -112,21 +122,19 @@ class DbUtamaController extends Controller
     // kelola keuangan
     public function dbKeuangan(Request $request, KeuanganChart $KeuanganChart)
     {
-        $this->authorize('keuangan');
-        
         $year = $request->input('year', date('Y')); 
-        
         $getBayarDiklat = Pembayaran::getCountBayarDiklat();
         $getBayarPendaftaran = Pembayaran::getCountBayarPendaftaran();
         $hitungPembayaranDiklatDicek = Pembayaran::hitungPembayaranDiklatDicek();
         $hitungPembayaranDiklatLunas = Pembayaran::hitungPembayaranDiklatLunas();
-        
+
         return view('kelola.kelDbKeuangan.dbKeuangan', [
             'getBayarDiklat' => $getBayarDiklat,
             'getBayarPendaftaran' => $getBayarPendaftaran,
             'hitungPembayaranDiklatDicek' => $hitungPembayaranDiklatDicek,
             'hitungPembayaranDiklatLunas' => $hitungPembayaranDiklatLunas,
-            'KeuanganChart' => $KeuanganChart->build($year)
+            'KeuanganChart' => $KeuanganChart->build($year),
+            'selectedYear' => $year 
         ]);
     }
     

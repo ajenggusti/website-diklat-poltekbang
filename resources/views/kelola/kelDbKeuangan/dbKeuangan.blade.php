@@ -15,8 +15,8 @@
         <div class="p-6 m-20 bg-white rounded shadow">
             <label for="yearSelect">Select Year:</label>
             <select id="yearSelect" onchange="updateChart()">
-                @for ($year = 2020; $year <= date('Y'); $year++)
-                    <option value="{{ $year }}">{{ $year }}</option>
+                @for($y = date('Y'); $y >= 2000; $y--)
+                    <option value="{{ $y }}" {{ $selectedYear == $y ? 'selected' : '' }}>{{ $y }}</option>
                 @endfor
             </select>
             <div id="chart-container">

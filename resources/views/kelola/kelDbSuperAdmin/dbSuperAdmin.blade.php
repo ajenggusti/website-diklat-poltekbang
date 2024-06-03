@@ -12,6 +12,15 @@
         </style>
     </head>
     <body>
+        
+        <div class="container px-4 mx-auto">
+
+            <div class="p-6 m-20 bg-white rounded shadow">
+                {!! $SuperAdminChart->container() !!}
+            </div>
+
+        </div>
+
         <div class="container-admin">
             <div class="dashAdmin">
                 <a href="/allUser">
@@ -49,7 +58,9 @@
                 <a href="/byLevel/{{ $userCount->level->id }}"><p>Level {{ $userCount->level->level }}: {{ $userCount->total_user }} pengguna</p></a>
             </div> --}}
         @endforeach
+        <script src="{{ $SuperAdminChart->cdn() }}"></script>
 
+        {{ $SuperAdminChart->script() }}
     </body>
 </html>
 @endsection

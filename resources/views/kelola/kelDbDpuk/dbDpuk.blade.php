@@ -8,11 +8,19 @@
             body {
                 font-family: 'Poppins', sans-serif;
             }
-
         </style>
     </head>
     <body>
         <div class="container px-4 mx-auto">
+
+            <form method="GET" action="{{ url('/dbDpuk') }}">
+                <label for="year">Select Year:</label>
+                <select name="year" id="year" onchange="this.form.submit()">
+                    @for($y = date('Y'); $y >= 2000; $y--)
+                        <option value="{{ $y }}" {{ $selectedYear == $y ? 'selected' : '' }}>{{ $y }}</option>
+                    @endfor
+                </select>
+            </form>
 
             <div class="p-6 m-20 bg-white rounded shadow">
                 {!! $DpukPendaftarChart->container() !!}
@@ -32,7 +40,6 @@
                 </a>
                 <a href="/perluSertifikat">
                     <div class="dashItem" style="background-color: #f1f3ff; border: 3px solid #BC4F00;">
-                    
                         <div class="dashItemContent">
                             Jumlah peserta yang memerlukan sertifikat
                         </div>
@@ -76,13 +83,10 @@
                             </div>
                         </div>
                     </a>
-
-
                 @endforeach
             </div>
         </div>
         <script src="{{ $DpukPendaftarChart->cdn() }}"></script>
-
         {{ $DpukPendaftarChart->script() }}
     </body>
 </html>
