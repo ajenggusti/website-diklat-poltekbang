@@ -124,6 +124,7 @@
     margin-bottom: 10px;
     font-size: 35px;
     color: rgb(38, 38, 107);
+    padding-left: 80px;
 }
 
 .card-text {
@@ -234,6 +235,10 @@
 .carousel-inner {
     opacity: 1;
     pointer-events: none;
+}
+
+.card-body .animated-text {
+    font-style: italic;
 }
 
 

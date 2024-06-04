@@ -5,7 +5,7 @@
     <div class="content-show">
         <h2>Detail Pendaftaran</h2>
         <a href="/kelPendaftaranKeuangan/{{ $pendaftaran->id }}/edit" class="btn btn-success">Edit</a>
-        <a href="{{ route('kelPendaftaran.index') }}" class="btn btn-primary">Kembali</a>
+        <a href="{{ route('kelPendaftaranKeuangan.index') }}" class="btn btn-primary">Kembali</a>
         <br> <br>
         <div class="table-responsive">
             <table class="table table-sm show-user">

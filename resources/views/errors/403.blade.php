@@ -26,9 +26,10 @@
         .content img {
             height: 500px; 
             width: 85%;
+            text-align: center;
         }
 
-        .content a {
+        .content-container a {
             margin-top: 20px;
             text-align: center;
         }

@@ -217,14 +217,14 @@ class PendaftaranController extends Controller
         $messages = [
             's_link.url' => 'Kolom link harus berupa URL yang valid.',
             's_gambar.image' => 'Kolom gambar harus berupa file gambar.',
-            's_gambar.max' => 'Kolom gambar tidak boleh lebih dari 5MB.',
+            's_gambar.max' => 'Kolom gambar tidak boleh lebih dari 2MB.',
             's_doc.mimes' => 'Kolom dokumen harus berupa file PDF, DOC, atau file dokumen lainnya.',
             's_doc.not_in' => 'Kolom dokumen tidak boleh berupa file gambar.',
         ];
 
         $request->validate([
             's_link' => $request->input('metode_sertif') == 'link' ? 'nullable|url' : '',
-            's_gambar' => $request->input('metode_sertif') == 'gambar' ? 'nullable|image|max:5120' : '',
+            's_gambar' => $request->input('metode_sertif') == 'gambar' ? 'nullable|image|max:2120' : '',
             's_doc' => $request->input('metode_sertif') == 'dokumen' ? 'nullable|mimes:pdf,doc,docx' : '',
         ], $messages);
 

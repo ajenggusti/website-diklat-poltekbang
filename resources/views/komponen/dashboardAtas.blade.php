@@ -41,29 +41,13 @@
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="plugins/fontawesome-free/css/all.min.css">
+
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
    
-    <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
-    <!-- iCheck -->
-    <link rel="stylesheet" href="plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-    <!-- JQVMap -->
-    <link rel="stylesheet" href="plugins/jqvmap/jqvmap.min.css">
-    <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
-    <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-    <!-- Daterange picker -->
-    <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
-    <!-- summernote -->
-    <link rel="stylesheet" href="plugins/summernote/summernote-bs4.min.css">
-
     {{-- Navbar --}}
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
-    <link rel="stylesheet" href="../../plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <style>
         html, body {
@@ -98,7 +82,7 @@
   {{-- <body class="hold-transition sidebar-mini layout-navbar-fixed sidebarMenu"> --}}
     
     <header class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-      <a class="navbar-brand col-md-3 col-lg-2" href="/" style="font-size: 16px;">
+      <a class="navbar-brand col-md-3 col-lg-2" href="/" style="padding-left: 20px; font-size: 16px;">
         <img src="{{ asset('img/poltekbang.png') }}" alt="Logo poltekbang" style="width: 45px; height: 30px; opacity: .8">
           POLTEKBANG
       </a>
@@ -162,7 +146,7 @@
                       </li>
                       <li class="nav-item">
                         <a class="nav-link {{ Request::is('gbrLandingPage*') ? 'active' : '' }}" href="/gbrLandingPage">
-                          <i class="bi bi-tablet-landscape" style="font-size: 17px;">   </i>
+                          <i class="fa-regular fa-images" style="font-size: 17px;">   </i>
                           Kelola Gambar Landing Page
                         </a>
                       </li>
@@ -172,44 +156,44 @@
                             Kelola Kategori Diklat
                         </a>
                       </li>
-                      <li class="nav-item {{ Request::is('kelDiklat*') ? 'active' : '' }}">
-                        <a class="nav-link" href="/kelDiklat">
+                      <li class="nav-item">
+                        <a class="nav-link {{ Request::is('kelDiklat*') ? 'active' : '' }}" href="/kelDiklat">
                           <i class="bi bi-file-earmark-richtext" style="font-size: 17px;">   </i>
                           Kelola Diklat
                         </a>
                       </li>
-                      <li class="nav-item {{ Request::is('kelGambarDiklat*') ? 'active' : '' }}">
-                        <a class="nav-link" href="/kelGambarDiklat">
+                      <li class="nav-item">
+                        <a class="nav-link {{ Request::is('kelGambarDiklat*') ? 'active' : '' }}" href="/kelGambarDiklat">
                           <i class="bi bi-image" style="font-size: 17px;">   </i>
                           Kelola Gambar Diklat
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link {{ Request::is('kelPendaftaran*') ? 'active' : '' }}" href="/kelPendaftaran">
-                          <i class="bi bi-basket" style="font-size: 17px;">   </i>
+                        <a class="nav-link {{ Request::segment(1) == 'kelPendaftaran' ? 'active' : '' }}" href="/kelPendaftaran">
+                          <i class="bi bi-basket" style="font-size: 17px;"></i>
                           Kelola Pendaftaran(dpuk)
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link {{ Request::is('kelPendaftaranKeuangan*') ? 'active' : '' }}" href="/kelPendaftaranKeuangan">
-                          <i class="bi bi-basket" style="font-size: 17px;">   </i>
+                        <a class="nav-link {{ Request::segment(1) == 'kelPendaftaranKeuangan' ? 'active' : '' }}" href="/kelPendaftaranKeuangan">
+                          <i class="fa-solid fa-sack-dollar" ></i>
                           Kelola Pendaftaran(keuangan)
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="/events">
+                        <a class="nav-link {{ Request::is('events*') ? 'active' : '' }}" href="/events">
                           <i class="bi bi-calendar-event"></i>
                           Kalender
                         </a>
                       </li>
-                      <li class="nav-item {{ Request::is('kelPembayaran*') ? 'active' : '' }}">
-                        <a class="nav-link" href="/kelPembayaran">
+                      <li class="nav-item">
+                        <a class="nav-link {{ Request::is('kelPembayaran*') ? 'active' : '' }}" href="/kelPembayaran">
                           <i class="bi bi-cash-stack" style="font-size: 17px;">   </i>
                           Laporan
                         </a>
                       </li>
-                      <li class="nav-item {{ Request::is('/logActivity*') ? 'active' : '' }}">
-                        <a class="nav-link" href="/logActivity">
+                      <li class="nav-item">
+                        <a class="nav-link {{ Request::is('/logActivity*') ? 'active' : '' }}" href="/logActivity">
                           <i class="bi bi-gear"></i>
                           Log activity
                         </a>

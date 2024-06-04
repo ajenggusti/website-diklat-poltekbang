@@ -42,16 +42,16 @@
             <table class="table table-sm" id="myTable">
                 <thead>
                     <tr class="header">
-                        <th style="width: 90px;">No 
-                            <i class="bi bi-arrow-up" onclick="sortTable(0, 'asc')"></i>
-                            <i class="bi bi-arrow-down" onclick="sortTable(0, 'desc')"></i>
+                        <th>No 
+                            <i class="fa-solid fa-arrow-up" onclick="sortTable(0, 'asc')" style="font-size: 13px;"></i>
+                            <i class="fa-solid fa-arrow-down" onclick="sortTable(0, 'desc')" style="font-size: 13px;"></i>
                         </th>
                         <th>Gambar</th>
-                        <th style="width: 400px;">Gambar tampil di 
-                            <i class="bi bi-arrow-up" onclick="sortTable(1, 'asc')" style="font-size: 15px;"></i>
-                            <i class="bi bi-arrow-down" onclick="sortTable(1, 'desc')" style="font-size: 15px;"></i>    
+                        <th>Gambar tampil di 
+                            <i class="fa-solid fa-arrow-up" onclick="sortTable(1, 'asc')" style="font-size: 13px;"></i>
+                            <i class="fa-solid fa-arrow-down" onclick="sortTable(1, 'desc')" style="font-size: 13px;"></i>
                         </th>
-                        <th style="width: 200px;">Action</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,7 +59,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td class="image-container">
-                                <img src="{{ asset('storage/' . $data->gambar_navbar) }}" alt="">
+                                <img src="{{ asset('storage/' . $data->gambar_navbar) }}" alt="" style="width: 350px; height: 200px;">
                             </td>
                             <td>
                                 @if ($data->id_diklat==null)

@@ -126,23 +126,21 @@
                                         <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
                                             <div class="d-flex justify-content-center flex-wrap">
                                                 @foreach ($testimoniChunk as $testimoni)
-                                                    {{-- <div class="col-md-4"> --}}
-                                                        <div class="card-testi2">
-                                                            <div class="card-testiContent">
-                                                                @if ($testimoni->id_pendaftaran)
-                                                                    <b class="author">{{ $testimoni->nama_dummy }}</b><br><br>
-                                                                    <b class="author">{{ $testimoni->profesi }}</b><br><br>
-                                                                    <p class="author">Alumni diklat {{ $testimoni->pendaftaran->diklat->nama_diklat }}</p>
-                                                                    <q>{{ $testimoni->testimoni }}</q>
-                                                                @else
-                                                                    <b class="author">{{ $testimoni->nama_dummy }}</b><br><br>
-                                                                    <b class="author">{{ $testimoni->profesi }}</b><br><br>
-                                                                    <p class="author">Alumni diklat {{ $testimoni->diklat->nama_diklat }}</p>
-                                                                    <q>{{ $testimoni->testimoni }}</q>
-                                                                @endif
-                                                            </div>
+                                                    <div class="card-testi2">
+                                                        <div class="card-testiContent">
+                                                            @if ($testimoni->id_pendaftaran)
+                                                                <b class="author">{{ $testimoni->nama_dummy }}</b>
+                                                                <b class="author">{{ $testimoni->profesi }}</b>
+                                                                <p class="author">Alumni diklat {{ $testimoni->pendaftaran->diklat->nama_diklat }}</p>
+                                                                <q>{{ $testimoni->testimoni }}</q>
+                                                            @else
+                                                                <b class="author">{{ $testimoni->nama_dummy }}</b>
+                                                                <b class="author">{{ $testimoni->profesi }}</b>
+                                                                <p class="author">Alumni diklat {{ $testimoni->diklat->nama_diklat }}</p>
+                                                                <q>{{ $testimoni->testimoni }}</q>
+                                                            @endif
                                                         </div>
-                                                    {{-- </div> --}}
+                                                    </div>
                                                 @endforeach
                                                 @for ($i = $testimoniChunk->count(); $i < 3; $i++)
                                                     <div class="card-testi2 placeholder"></div>
@@ -209,68 +207,101 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
                         
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="flush-headingThree">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-                                    Apa yang harus dipersiapkan untuk mengikuti diklat?
-                                </button>
-                            </h2>
-                            <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">
-                                    Lorem ipsum dolor sit amet, 
-                                    consectetur adipisicing elit, 
-                                    sed do eiusmod tempor incididunt 
-                                    ut labore et dolore magna aliqua.
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                        Apa yang harus dipersiapkan untuk mengikuti diklat?
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        <ul>Persyaratan Administratif
+                                            <li>Pendaftaran: Pastikan Anda memahami proses pendaftaran dan mengumpulkan semua dokumen yang diperlukan seperti formulir pendaftaran, fotokopi ijazah, dan pas foto.</li>
+                                            <li>Dokumen Identitas: Siapkan KTP, kartu pelajar, atau identitas lainnya yang mungkin diperlukan.</li>
+                                            <li>Biaya: Pastikan Anda mengetahui biaya pendaftaran dan biaya diklat serta mempersiapkan dana yang diperlukan.</li>
+                                        </ul>
+                                        <ul>Persyaratan Akademis
+                                            <li>Latar Belakang Pendidikan: Biasanya, diklat penerbangan membutuhkan latar belakang pendidikan tertentu. Pastikan Anda memenuhi persyaratan ini.</li>
+                                            <li>Tes Masuk: Beberapa program mungkin memiliki tes masuk yang menguji kemampuan akademis, bahasa Inggris, dan pengetahuan teknis dasar. Persiapkan diri Anda dengan belajar materi terkait.</li>
+                                        </ul>
+                                        <ul>Persyaratan Kesehatan
+                                            <li>Tes Kesehatan: Diklat penerbangan sering kali mengharuskan peserta menjalani tes kesehatan. Pastikan Anda dalam kondisi kesehatan yang baik dan mempersiapkan diri untuk pemeriksaan medis.</li>
+                                            <li>Sertifikat Kesehatan: Beberapa program mungkin memerlukan sertifikat kesehatan dari dokter.</li>
+                                        </ul>
+                                        <ul>Persyaratan Fisik
+                                            <li>Kebugaran Fisik: Diklat penerbangan mungkin melibatkan aktivitas fisik. Mulailah program kebugaran untuk memastikan Anda dalam kondisi fisik yang prima.</li>
+                                            <li>Pelatihan Kebugaran: Beberapa program mungkin menyediakan panduan kebugaran yang harus diikuti sebelum memulai diklat.</li>
+                                        </ul>
+                                        <ul>Persiapan Mental dan Psikologis
+                                            <li>Kesiapan Mental: Diklat penerbangan bisa sangat menuntut. Persiapkan diri Anda secara mental untuk menghadapi tekanan dan tantangan yang mungkin muncul.</li>
+                                            <li>Tes Psikologis: Beberapa program mungkin termasuk tes psikologis untuk memastikan kesiapan mental peserta.</li>
+                                        </ul>
+                                        <ul>Materi dan Peralatan Belajar
+                                            <li>Buku dan Materi Pelajaran: Dapatkan informasi tentang buku dan materi pelajaran yang akan digunakan dan pastikan Anda mempersiapkan semuanya sebelum diklat dimulai.</li>
+                                            <li>Peralatan: Siapkan peralatan yang diperlukan seperti seragam, alat tulis, laptop, atau alat khusus lainnya sesuai dengan kebutuhan program.</li>
+                                        </ul>
+                                        <ul>Informasi Tentang Program
+                                            <li>Jadwal dan Kurikulum: Pahami jadwal dan kurikulum diklat untuk mengetahui apa yang akan diajarkan dan kapan.</li>
+                                            <li>Instruktur: Kenali siapa instruktur atau pengajar di program diklat tersebut dan cari informasi mengenai pengalaman dan latar belakang mereka.</li>
+                                        </ul>
+                                        <ul>Persiapan Keuangan
+                                            <li>Anggaran: Selain biaya diklat, perhitungkan biaya tambahan seperti transportasi, akomodasi, makan, dan kebutuhan sehari-hari lainnya.</li>
+                                            <li>Beasiswa: Cari informasi mengenai beasiswa atau bantuan keuangan yang mungkin tersedia untuk membantu meringankan biaya.</li>
+                                        </ul>
+                                        <ul>Persiapan Teknis
+                                            <li>Keterampilan Teknis: Jika diklat tersebut memerlukan keterampilan teknis tertentu (misalnya, pemahaman dasar tentang penerbangan atau teknik tertentu), pastikan Anda sudah memiliki dasar pengetahuan tersebut.</li>
+                                            <li>Simulasi dan Latihan: Jika ada kesempatan untuk mengikuti simulasi atau latihan sebelumnya, manfaatkan kesempatan tersebut untuk lebih siap.</li>
+                                        </ul>
+                                        <ul>Persiapan Logistik
+                                            <li>Transportasi: Rencanakan transportasi ke lokasi diklat, apakah menggunakan kendaraan pribadi, transportasi umum, atau yang lainnya.</li>
+                                            <li>Akomodasi: Jika diperlukan, cari tempat tinggal yang dekat dengan lokasi diklat atau tempat tinggal sementara.</li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="flush-headingFour">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-                                    Apakah tersedia beasiswa atau bantuan keuangan?
-                                </button>
-                            </h2>
-                            <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">
-                                    Lorem ipsum dolor sit amet, 
-                                    consectetur adipisicing elit, 
-                                    sed do eiusmod tempor incididunt 
-                                    ut labore et dolore magna aliqua.
+                            {{-- <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingFour">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                                        Apakah tersedia beasiswa atau bantuan keuangan?
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        Lorem ipsum dolor sit amet, 
+                                        consectetur adipisicing elit, 
+                                        sed do eiusmod tempor incididunt 
+                                        ut labore et dolore magna aliqua.
+                                    </div>
+                                </div>
+                            </div> --}}
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingFive">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                                        Bagaimana kebijakan pembatalan atau pengembalian dana?
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        Pendaftar yang ingin membatalkan pendaftaran diklatnya dan
+                                        sudah membayar, bisa menghubungi admin.
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="flush-headingFive">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
-                                    Bagaimana kebijakan pembatalan atau pengembalian dana?
-                                </button>
-                            </h2>
-                            <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">
-                                    Lorem ipsum dolor sit amet, 
-                                    consectetur adipisicing elit, 
-                                    sed do eiusmod tempor incididunt 
-                                    ut labore et dolore magna aliqua.
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="flush-headingSix">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
-                                    Sertifikat setelah pelaksanaan diklat bisa diambil dimana?
-                                </button>
-                            </h2>
-                            <div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-headingSix" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">
-                                    Lorem ipsum dolor sit amet, 
-                                    consectetur adipisicing elit, 
-                                    sed do eiusmod tempor incididunt 
-                                    ut labore et dolore magna aliqua.
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="flush-headingSix">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
+                                        Sertifikat setelah pelaksanaan diklat bisa diambil dimana?
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-headingSix" data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                        Sertifikat untuk diklat akan diserahkan secara offline dan ada di Website
+                                        jika pendaftar telah melaksanakan diklat dan tuntas.
+                                    </div>
                                 </div>
                             </div>
                         </div>

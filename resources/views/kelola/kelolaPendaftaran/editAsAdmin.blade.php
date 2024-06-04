@@ -121,7 +121,7 @@
                         @if ($kelPendaftaran->bukti_pembayaran)
                             <tr>
                                 <th>Bukti pembayaran</th>
-                                <td><img style="width: 300px" src="{{ asset('storage/' . $kelPendaftaran->bukti_pembayaran) }}" alt=""></td>
+                                <td><img class="img-preview img-fluid" src="{{ asset('storage/' . $kelPendaftaran->bukti_pembayaran) }}" alt=""></td>
                             </tr>
                         @endif
                     
@@ -179,10 +179,10 @@
                         </div>
                         
                         <div class="mb-3">
-                            <img src="{{ asset('storage/' . $kelPendaftaran->s_gambar) }}" class="img-preview img-fluid" style="width: 550px;">
                             <label for="s_gambar" class="form-label">Upload Sertifikat Peserta menggunakan Gambar</label>
+                            <img src="{{ asset('storage/' . $kelPendaftaran->s_gambar) }}" class="img-preview img-fluid">
                             <input name="s_gambar" onchange="previewImage()" class="form-control @error('s_gambar') is-invalid @enderror" type="file" id="s_gambar">
-                            <small style="color: rgb(16, 126, 190)">Ukuran maksimal gambar 5 MB</small>
+                            <small style="color: rgb(16, 126, 190)">Ukuran maksimal gambar 2 MB</small>
                             @error('s_gambar')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -192,12 +192,13 @@
                         <div class="mb-3">
                             <label for="s_doc" class="form-label">Upload Sertifikat Peserta menggunakan Dokumen</label>
                             <input name="s_doc" onchange="previewImage()" class="form-control @error('s_doc') is-invalid @enderror" type="file" id="s_doc">
+                            <small style="color: rgb(16, 126, 190)">Dokumen berupa file PDF, DOC, DOCX</small>
                             @error('s_doc')
-                            <div class="invalid-feedback">{{ $message }}</div>
+                                <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                            <div id="file-sebelumnya">
-                                <p>File sebelumnya: <a href="{{ asset('storage/' . $kelPendaftaran->s_doc) }}">Klik untuk Melihat File!</a></p>
-                            </div>
+                                <div id="file-sebelumnya">
+                                    <p>File sebelumnya: <a href="{{ asset('storage/' . $kelPendaftaran->s_doc) }}">Klik untuk Melihat File!</a></p>
+                                </div>
                         </div>
                         <div class="submit-button">
                             <button type="submit" class="btn btn-primary">Kirim</button>

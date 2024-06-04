@@ -43,13 +43,13 @@
                 <thead>
                     <tr class="header">
                         <th>No 
-                            <i class="bi bi-arrow-up" onclick="sortTable(0, 'asc')"></i>
-                            <i class="bi bi-arrow-down" onclick="sortTable(0, 'desc')"></i>
+                            <i class="fa-solid fa-arrow-up" onclick="sortTable(0, 'asc')" style="font-size: 13px;"></i>
+                            <i class="fa-solid fa-arrow-down" onclick="sortTable(0, 'desc')" style="font-size: 13px;"></i>
                         </th>
                         <th>Gambar</th>
                         <th>Status 
-                            <i class="bi bi-arrow-up" onclick="sortTable(1, 'asc')"></i>
-                            <i class="bi bi-arrow-down" onclick="sortTable(1, 'desc')"></i>
+                            <i class="fa-solid fa-arrow-up" onclick="sortTable(1, 'asc')" style="font-size: 13px;"></i>
+                            <i class="fa-solid fa-arrow-down" onclick="sortTable(1, 'desc')" style="font-size: 13px;"></i>
                         </th>
                         <th>Action</th>
                     </tr>
@@ -58,7 +58,7 @@
                     @foreach ($datas as $data)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td><img src="{{ asset('storage/' . $data->gambar_navbar) }}" alt="" style="width: 300px;;"></td>
+                            <td><img src="{{ asset('storage/' . $data->gambar_navbar) }}" alt="" style="width: 350px; height: 200px;"></td>
                             <td>
                                 @if ($data->status=="tampilkan")
                                     <span class="badge rounded-pill text-bg-primary">{{ $data->status }}</span>

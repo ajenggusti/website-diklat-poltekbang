@@ -25,7 +25,7 @@
             overflow: hidden;
             padding: 10px;
         }
-        .row {
+        .row-baris {
             background-color: rgb(242, 242, 239);
             box-shadow: 0 4px 8px 0 rgba(0,0,0,1.2);
             transition: 0.3s;
@@ -38,7 +38,7 @@
             <br>
             <h2>Kalender Diklat</h2>
             <br>
-            <div class="row">
+            <div class="row-baris">
                 <div class="col-12 mt-3">
                     <div id='calendar'></div>
                 </div>

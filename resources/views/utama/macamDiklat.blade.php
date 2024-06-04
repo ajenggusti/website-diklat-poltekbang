@@ -17,6 +17,7 @@
                     </li>
                 </ol>
             </nav> --}}
+            
             @if (count($diklat) != 0 )
                 <a href="/" class="btn btn-info" style="margin-top: 40px;">Kembali</a>
                 {{-- <br> --}}

@@ -2,7 +2,7 @@
     @if ($data->id)
         @method('put')
     @endif
-    <div class="row">
+    <div class="row-baris">
         <div class="col-6">
             <div class="mb-3">
                 <p>Tanggal mulai :</p>

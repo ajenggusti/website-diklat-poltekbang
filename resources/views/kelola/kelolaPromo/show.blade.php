@@ -24,7 +24,7 @@
                 @endif
                 <tr>
                     <th>Gambar</th>
-                    <td><img src="{{ asset('storage/' . $kelPromo->gambar) }}" alt="Nama Gambar" width="300px;"></td>
+                    <td><img src="{{ asset('storage/' . $kelPromo->gambar) }}" alt="Nama Gambar" style="width: 350px; height: 200px;"></td>
                 </tr>
                 <tr>
                     <th>Potongan </th>

@@ -3,7 +3,8 @@
     {{-- HEAD --}}
     <link href="/css/dashboard.css" rel="stylesheet">
     {{-- Body --}}
-    <div class="row">
+    
+    <div class="rows">
         <div class="col-lg-3 col-6">
           <!-- small box -->
           <div class="small-box bg-info">
@@ -50,6 +51,16 @@
             </div>
         @endforeach
     </div>
+    <hr>
+    <div class="container px-4 mx-auto">
+        <div class="p-6 m-20 bg-white rounded shadow">
+            {!! $SuperAdminChart->container() !!}
+        </div>
+    </div>
+    
+    <script src="{{ $SuperAdminChart->cdn() }}"></script>
+
+    {{ $SuperAdminChart->script() }}
 @endsection
 
 

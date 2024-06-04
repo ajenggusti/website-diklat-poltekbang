@@ -1,12 +1,8 @@
 @extends('layout.mainAdmin')
 @section('container')
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    {{-- Font Poppins --}}
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+    {{-- <link href="/css/actor.css" rel="stylesheet"> --}}
     <style>
-        .content-staff {
+        .content-kalender {
             background-color: rgb(255, 255, 255);
             border: 1px solid black;
             border-radius: 20px;
@@ -15,13 +11,13 @@
         #calendar {
             max-height: 600px;
             overflow: hidden;
-            padding: 10px;
+            padding: 0 10px 10px 10px;
         }
        
     </style>
-    <div class="content-staff">
+    <div class="content-kalender">
         <div class="container">
-            <div class="row">
+            <div class="row-baris">
                 <div class="col-12 mt-3">
                     <div id='calendar'></div>
                 </div>

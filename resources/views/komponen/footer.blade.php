@@ -87,7 +87,7 @@
 
                 .kanan-bawah {
                     width: 340px;
-                    margin-right: 30px;
+                    margin-right: 60px;
                     float: right;
                     padding: 10px;
                     box-sizing: border-box;

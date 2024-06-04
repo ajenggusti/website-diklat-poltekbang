@@ -34,7 +34,7 @@
 #myTable {
   border-collapse: collapse;
   width: 100%;
-  border: 1px solid #ddd;
+  border: 2px solid #ddd;
 }
 
 #myTable th, #myTable td {
@@ -42,10 +42,11 @@
 }
 #myTable td {
   text-align: left;
+  /* min-width: 100px; */
 }
 
 #myTable tr {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 2px solid #ddd;
 }
 
 #myTable tr:hover {
@@ -58,7 +59,7 @@
 }
 
 #myTable table, th, td {
-  border: 1px solid #c3c3c3;
+  border: 2px solid #c3c3c3;
 }
 
 #myTable th {
@@ -106,28 +107,11 @@ h2 {
 
 
 /* CSS Edit form Staff*/
-.image-container {
+.img-preview {
   width: 500px;
-  height: 250px;
-  overflow: hidden;
-  padding-bottom: 15px;
+  max-height: 250px;
+  padding-bottom: 10px;
 }
-
-.image-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* .content-form img {
-  width: 500px;
-  height: 250px;
-}
-
-.content-form .img-style {
-  padding-top: 10px;
-  padding-bottom: 20px;
-} */
 
 .mb-3 label {
   font-weight: bold;
@@ -172,7 +156,7 @@ h2 {
 
 .content-staff .kadaluarsa,
 .content-staff .berlaku{
-  margin-left: -100px;
+  margin-left: -150px;
 }
 
 .content-staff .status {

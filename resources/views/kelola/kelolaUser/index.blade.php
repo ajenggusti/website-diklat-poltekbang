@@ -40,30 +40,30 @@
             <table class="table table-sm" id="myTable">
                 <thead>
                     <tr class="header">
-                        <th scope="col" style="">
+                        <th scope="col">
                             No 
-                            <i class="bi bi-arrow-up" onclick="sortTable(0, 'asc')" style="font-size: 15px;"></i>
-                            <i class="bi bi-arrow-down" onclick="sortTable(0, 'desc')" style="font-size: 15px;"></i>
+                            <i class="fa-solid fa-arrow-up" onclick="sortTable(0, 'asc')" style="font-size: 13px;"></i>
+                            <i class="fa-solid fa-arrow-down" onclick="sortTable(0, 'desc')" style="font-size: 13px;"></i>
                         </th>
                         <th scope="col" style="word-spacing: 5px;">
                             Nama Lengkap
-                            <i class="bi bi-arrow-up" onclick="sortTable(1, 'asc')" style="font-size: 15px;"></i>
-                            <i class="bi bi-arrow-down" onclick="sortTable(1, 'desc')" style="font-size: 15px;"></i>    
+                            <i class="fa-solid fa-arrow-up" onclick="sortTable(1, 'asc')" style="font-size: 13px;"></i>
+                            <i class="fa-solid fa-arrow-down" onclick="sortTable(1, 'desc')" style="font-size: 13px;"></i>    
                         </th>
                         <th scope="col" style="word-spacing: 5px;">
                             Level 
-                            <i class="bi bi-arrow-up" onclick="sortTable(2, 'asc')" style="font-size: 15px;"></i>
-                            <i class="bi bi-arrow-down" onclick="sortTable(2, 'desc')" style="font-size: 15px;"></i>    
+                            <i class="fa-solid fa-arrow-up" onclick="sortTable(2, 'asc')" style="font-size: 13px;"></i>
+                            <i class="fa-solid fa-arrow-down" onclick="sortTable(2, 'desc')" style="font-size: 13px;"></i>    
                         </th>
                         <th scope="col" style="word-spacing: 5px;">
                             Email  
-                            <i class="bi bi-arrow-up" onclick="sortTable(3, 'asc')" style="font-size: 15px;"></i>
-                            <i class="bi bi-arrow-down" onclick="sortTable(3, 'desc')" style="font-size: 15px;"></i>    
+                            <i class="fa-solid fa-arrow-up" onclick="sortTable(3, 'asc')" style="font-size: 13px;"></i>
+                            <i class="fa-solid fa-arrow-down" onclick="sortTable(3, 'desc')" style="font-size: 13px;"></i>    
                         </th>
                         <th scope="col" style="word-spacing: 5px;">
                             Status 
-                            <i class="bi bi-arrow-up" onclick="sortTable(4, 'asc')" style="font-size: 15px;"></i>
-                            <i class="bi bi-arrow-down" onclick="sortTable(4, 'desc')" style="font-size: 15px;"></i>    
+                            <i class="fa-solid fa-arrow-up" onclick="sortTable(4, 'asc')" style="font-size: 13px;"></i>
+                            <i class="fa-solid fa-arrow-down" onclick="sortTable(4, 'desc')" style="font-size: 13px;"></i>    
                         </th>
                         <th scope="col">Action</th>
                     </tr>

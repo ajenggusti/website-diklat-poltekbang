@@ -39,41 +39,29 @@
             <table class="table table-sm" id="myTable">
                 <thead>
                     <tr class="header">
-                        <th style="width: 90px">No 
-                            <i class="bi bi-arrow-up" onclick="sortTable(0, 'asc')"></i>
-                            <i class="bi bi-arrow-down" onclick="sortTable(0, 'desc')"></i>
+                        <th style="min-width: 80px">No 
+                            <i class="fa-solid fa-arrow-up" onclick="sortTable(0, 'asc')" style="font-size: 13px;"></i>
+                            <i class="fa-solid fa-arrow-down" onclick="sortTable(0, 'desc')" style="font-size: 13px;"></i>
                         </th>
                         <th>Nama User 
-                            <i class="bi bi-arrow-up" onclick="sortTable(1, 'asc')"></i>
-                            <i class="bi bi-arrow-down" onclick="sortTable(1, 'desc')"></i>
+                            <i class="fa-solid fa-arrow-up" onclick="sortTable(1, 'asc')" style="font-size: 13px;"></i>
+                            <i class="fa-solid fa-arrow-down" onclick="sortTable(1, 'desc')" style="font-size: 13px;"></i>
                         </th>
                         <th>Nama Diklat 
-                            <i class="bi bi-arrow-up" onclick="sortTable(2, 'asc')"></i>
-                            <i class="bi bi-arrow-down" onclick="sortTable(2, 'desc')"></i>
+                            <i class="fa-solid fa-arrow-up" onclick="sortTable(2, 'asc')" style="font-size: 13px;"></i>
+                            <i class="fa-solid fa-arrow-down" onclick="sortTable(2, 'desc')" style="font-size: 13px;"></i>
                         </th>
-                        {{-- <th>Kode Promo 
-                            <i class="bi bi-arrow-up" onclick="sortTable(3, 'asc')"></i>
-                            <i class="bi bi-arrow-down" onclick="sortTable(3, 'desc')"></i>
-                        </th> --}}
-                        {{-- <th>Harga Diklat 
-                            <i class="bi bi-arrow-up" onclick="sortTable(3, 'asc')"></i>
-                            <i class="bi bi-arrow-down" onclick="sortTable(3, 'desc')"></i>
-                        </th> --}}
                         <th>Status Pembayaran Diklat 
-                            <i class="bi bi-arrow-up" onclick="sortTable(4, 'asc')"></i>
-                            <i class="bi bi-arrow-down" onclick="sortTable(4, 'desc')"></i>
+                            <i class="fa-solid fa-arrow-up" onclick="sortTable(3, 'asc')" style="font-size: 13px;"></i>
+                            <i class="fa-solid fa-arrow-down" onclick="sortTable(3, 'desc')" style="font-size: 13px;"></i>
                         </th>
-                        {{-- <th>Harga Pendaftaran 
-                            <i class="bi bi-arrow-up" onclick="sortTable(5, 'asc')"></i>
-                            <i class="bi bi-arrow-down" onclick="sortTable(5, 'desc')"></i>
-                        </th> --}}
                         <th>Status Pembayaran Pendaftaran 
-                            <i class="bi bi-arrow-up" onclick="sortTable(6, 'asc')"></i>
-                            <i class="bi bi-arrow-down" onclick="sortTable(6, 'desc')"></i>
+                            <i class="fa-solid fa-arrow-up" onclick="sortTable(4, 'asc')" style="font-size: 13px;"></i>
+                            <i class="fa-solid fa-arrow-down" onclick="sortTable(4, 'desc')" style="font-size: 13px;"></i>
                         </th>
-                        <th>Status Pelaksanaan
-                            <i class="bi bi-arrow-up" onclick="sortTable(7, 'asc')"></i>
-                            <i class="bi bi-arrow-down" onclick="sortTable(7, 'desc')"></i>
+                        <th style="min-width: 100px;">Status Pelaksanaan Diklat<br>
+                            <i class="fa-solid fa-arrow-up" onclick="sortTable(5, 'asc')" style="font-size: 13px;"></i>
+                            <i class="fa-solid fa-arrow-down" onclick="sortTable(5, 'desc')" style="font-size: 13px;"></i>
                         </th>
                         <th>Action</th>
                     </tr>
@@ -84,8 +72,6 @@
                             <td>{{ $data->id }}</td>
                             <td>{{ $data->user->name }}</td>
                             <td>{{ $data->diklat->nama_diklat }}</td>
-                            {{-- <td>{{ $data->promo ? $data->promo->kode : '-' }}</td> --}}
-                            {{-- <td>Rp {{ number_format($data->harga_diklat, 0, ',', '.') }}</td> --}}
                             <td>
                                 @if ($data->status_pembayaran_diklat=="Lunas")
                                     <span class="badge badge-pill badge-success">{{ $data->status_pembayaran_diklat }} Via {{ $data->jenis_pembayaran_diklat }}</span>
@@ -114,8 +100,8 @@
                             </td>
                             <td>
                                 <div class="action-buttons">
-                                    <a href="/kelPendaftaranKeuangan/{{ $data->id }}" class="btn btn-info"><i class="bi bi-eye"></i></a>
-                                    <a href="/kelPendaftaranKeuangan/{{ $data->id }}/edit" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
+                                    <a href="/kelPendaftaranKeuangan/{{ $data->id }}" class="btn btn-info"><i class="bi bi-eye"></i> Detail</a>
+                                    <a href="/kelPendaftaranKeuangan/{{ $data->id }}/edit" class="btn btn-success"><i class="bi bi-pencil-square"></i> Edit</a>
                                 </div>
                             </td>
                         </tr>

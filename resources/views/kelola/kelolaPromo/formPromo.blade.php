@@ -18,9 +18,8 @@
                 <h2>Form Tambah Promo</h2>  
                 <hr>
                 <div class="mb-3">
-                    <label for="img" class="form-label">Masukkan gambar untuk ditampilkan di Banner Promo</label>
-                    <img class="img-preview img-fluid" style="width: 550px">
-                    <br><br>
+                    <label for="img" class="form-label">Masukkan Gambar</label><br>
+                    <img class="img-preview img-fluid">
                     <input name="img" onchange="previewImage()" class="form-control @error('img') is-invalid @enderror" type="file" id="img">
                     <small style="color: rgb(16, 126, 190)">Ukuran maksimal gambar 2 MB</small>
                     @error('img')

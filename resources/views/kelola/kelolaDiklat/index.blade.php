@@ -42,34 +42,26 @@
                 <table class="table table-sm" id="myTable">
                     <thead>
                         <tr class="header">
-                            <th style="width: 90px;">No 
-                                <i class="fa-solid fa-arrow-up-a-z" onclick="sortTable(0, 'asc')"></i>
-                                <i class="fa-solid fa-arrow-down-z-a" onclick="sortTable(0, 'desc')"></i>
+                            <th style="min-width: 80px;">No
+                                <i class="fa-solid fa-arrow-up" onclick="sortTable(0, 'asc')" style="font-size: 13px;"></i>
+                                <i class="fa-solid fa-arrow-down" onclick="sortTable(0, 'desc')" style="font-size: 13px;"></i>
                             </th>
-                            <th style="width: 160px;">Nama Diklat
-                                <i class="bi bi-arrow-up" onclick="sortTable(1, 'asc')" style="font-size: 15px;"></i>
-                                <i class="bi bi-arrow-down" onclick="sortTable(1, 'desc')" style="font-size: 15px;"></i>    
+                            <th style="min-width: 160px;">Nama Diklat 
+                                <i class="fa-solid fa-arrow-up" onclick="sortTable(1, 'asc')" style="font-size: 13px;"></i>
+                                <i class="fa-solid fa-arrow-down" onclick="sortTable(1, 'desc')" style="font-size: 13px;"></i>   
                             </th>
                             <th>Gambar sampul</th>
-                            <th style="width: 180px;">Kategori Diklat 
-                                <i class="bi bi-arrow-up" onclick="sortTable(2, 'asc')" style="font-size: 15px;"></i>
-                                <i class="bi bi-arrow-down" onclick="sortTable(2, 'desc')" style="font-size: 15px;"></i>  
+                            <th style="min-width: 170px;">Kategori Diklat
+                                <i class="fa-solid fa-arrow-up" onclick="sortTable(2, 'asc')" style="font-size: 13px;"></i>
+                                <i class="fa-solid fa-arrow-down" onclick="sortTable(2, 'desc')" style="font-size: 13px;"></i> 
                             </th>
-                            {{-- <th>Kuota Minimal 
-                                <i class="bi bi-arrow-up" onclick="sortTable(3, 'asc')" style="font-size: 15px;"></i>
-                                <i class="bi bi-arrow-down" onclick="sortTable(3, 'desc')" style="font-size: 15px;"></i>  
+                            <th>Gambar Default? <br>
+                                <i class="fa-solid fa-arrow-up" onclick="sortTable(3, 'asc')" style="font-size: 13px;"></i>
+                                <i class="fa-solid fa-arrow-down" onclick="sortTable(3, 'desc')" style="font-size: 13px;"></i>
                             </th>
-                            <th>Jumlah Pendaftar 
-                                <i class="bi bi-arrow-up" onclick="sortTable(4, 'asc')" style="font-size: 15px;"></i>
-                                <i class="bi bi-arrow-down" onclick="sortTable(4, 'desc')" style="font-size: 15px;"></i>  
-                            </th> --}}
-                            <th>Gambar default?
-                                <i class="bi bi-arrow-up" onclick="sortTable(3, 'asc')" style="font-size: 15px;"></i>
-                                <i class="bi bi-arrow-down" onclick="sortTable(3, 'desc')" style="font-size: 15px;"></i>  
-                            </th>
-                            <th>Status
-                                <i class="bi bi-arrow-up" onclick="sortTable(4, 'asc')" style="font-size: 15px;"></i>
-                                <i class="bi bi-arrow-down" onclick="sortTable(4, 'desc')" style="font-size: 15px;"></i>  
+                            <th>Status <br>
+                                <i class="fa-solid fa-arrow-up" onclick="sortTable(4, 'asc')" style="font-size: 13px;"></i>
+                                <i class="fa-solid fa-arrow-down" onclick="sortTable(4, 'desc')" style="font-size: 13px;"></i>
                             </th>
                             <th>Action</th>
                         </tr>
@@ -81,18 +73,18 @@
                                 <td>{{ $data->nama_diklat }}</td>
                                 <td class="image-container">
                                     @if ($data->gambar)
-                                        <img src="{{ asset('storage/' . $data->gambar) }}" alt="" class="image-preview">
+                                        <img src="{{ asset('storage/' . $data->gambar) }}" alt="" style="width: 350px; height: 200px;">
                                     @else
                                         @php $foundDefault = false; @endphp
                                         @foreach ($diklats as $diklat)
                                             @if ($diklat->default == 'ya')
-                                                <img src="{{ asset('storage/' . $diklat->gambar) }}" alt="Default Image">
+                                                <img src="{{ asset('storage/' . $diklat->gambar) }}" alt="Default Image" style="width: 350px; height: 200px;">
                                                 @php $foundDefault = true; @endphp
                                                 @break
                                             @endif
                                         @endforeach
                                         @if (!$foundDefault)
-                                            <img src="{{ asset('img/123.png') }}" alt="Default Image">
+                                            <img src="{{ asset('img/123.png') }}" alt="Default Image" style="width: 350px; height: 200px;">
                                         @endif
                                     @endif
                                 </td>

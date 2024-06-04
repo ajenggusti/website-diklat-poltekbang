@@ -3,7 +3,7 @@
     <link href="/css/dashboard.css" rel="stylesheet">
 
     <div class="container-admin">
-        <div class="row">
+        <div class="rows">
             <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-info">

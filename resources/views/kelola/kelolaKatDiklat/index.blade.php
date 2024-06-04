@@ -42,17 +42,17 @@
                 <thead>
                 <tr class="header">
                     <th scope="col">No 
-                        <i class="bi bi-arrow-up" onclick="sortTable(0, 'asc')"></i>
-                        <i class="bi bi-arrow-down" onclick="sortTable(0, 'desc')"></i>
+                        <i class="fa-solid fa-arrow-up" onclick="sortTable(0, 'asc')" style="font-size: 13px;"></i>
+                        <i class="fa-solid fa-arrow-down" onclick="sortTable(0, 'desc')" style="font-size: 13px;"></i>
                     </th>
                     <th scope="col">Kategori Diklat 
-                        <i class="bi bi-arrow-up" onclick="sortTable(1, 'asc')"></i>
-                        <i class="bi bi-arrow-down" onclick="sortTable(1, 'desc')"></i>
+                        <i class="fa-solid fa-arrow-up" onclick="sortTable(1, 'asc')" style="font-size: 13px;"></i>
+                        <i class="fa-solid fa-arrow-down" onclick="sortTable(1, 'desc')" style="font-size: 13px;"></i>
                     </th>
                     <th scope="col">Gambar</th>
                     <th scope="col">Gambar default?
-                        <i class="bi bi-arrow-up" onclick="sortTable(2, 'asc')"></i>
-                        <i class="bi bi-arrow-down" onclick="sortTable(2, 'desc')"></i>
+                        <i class="fa-solid fa-arrow-up" onclick="sortTable(2, 'asc')" style="font-size: 13px;"></i>
+                        <i class="fa-solid fa-arrow-down" onclick="sortTable(2, 'desc')" style="font-size: 13px;"></i>
                     </th>
                     <th scope="col">Action</th>
                 </tr>
@@ -68,18 +68,18 @@
                             <td>{{ $data->kategori_diklat }}</td>
                             <td>
                                 @if ($data->gambar)
-                                    <img src="{{ asset('storage/' . $data->gambar) }}" alt="" style="width: 300px;">
+                                    <img src="{{ asset('storage/' . $data->gambar) }}" alt="" style="width: 350px; height: 200px;">
                                 @else
                                     @php $foundDefault = false; @endphp
                                     @foreach ($datas2 as $datas)
                                         @if ($datas->default == 'ya')
-                                            <img src="{{ asset('storage/' . $datas->gambar) }}" alt="Default Image" style="width: 300px;">
+                                            <img src="{{ asset('storage/' . $datas->gambar) }}" alt="Default Image" style="width: 350px; height: 200px;">
                                             @php $foundDefault = true; @endphp
                                             @break
                                         @endif
                                     @endforeach
                                     @if (!$foundDefault)
-                                        <img src="{{ asset('img/123.png') }}" alt="Default Image" style="width: 300px;">
+                                        <img src="{{ asset('img/123.png') }}" alt="Default Image" style="width: 350px; height: 200px;">
                                     @endif
                                 @endif
                             </td>

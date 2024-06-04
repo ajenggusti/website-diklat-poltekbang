@@ -11,7 +11,7 @@
                 <div class="mb-3">
                     <label for="img" class="form-label">Gambar sebelumnya</label><br>
                     @if($data->gambar)
-                        <img src="{{ asset('storage/' . $data->gambar) }}" class="img-preview img-fluid" style="width: 550px;">
+                        <img src="{{ asset('storage/' . $data->gambar) }}" class="img-preview img-fluid">
                     @else
                         <p>Tidak ada gambar</p>
                     @endif
@@ -19,9 +19,9 @@
                 
                 <div class="mb-3">
                     <label for="img" class="form-label">Masukkan Gambar untuk ditampilkan di Kategori Diklat</label>
-                    <img class="img-preview img-fluid" style="width: 550px;">
+                    <img class="img-preview img-fluid">
                     <input name="img" onchange="previewImage()" class="form-control @error('img') is-invalid @enderror" type="file" id="img" >
-                    <small style="color: rgb(16, 126, 190)">Ukuran maksimal gambar 5 MB</small>
+                    <small style="color: rgb(16, 126, 190)">Ukuran maksimal gambar 2 MB</small>
                     @error('img')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

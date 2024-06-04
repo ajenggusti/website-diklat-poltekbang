@@ -12,7 +12,7 @@
                 <div class="mb-3 ">
                     <label for="img" class="form-label">Gambar Sebelumnya</label><br>
                     @if($kelDiklat->gambar)
-                        <img src="{{ asset('storage/' . $kelDiklat->gambar) }}" class="img-before img-fluid" style="width: 500px; height: 250px;">
+                        <img src="{{ asset('storage/' . $kelDiklat->gambar) }}" class="img-preview img-fluid">
                     @else
                         <p>Tidak ada gambar</p>
                     @endif
@@ -22,9 +22,9 @@
                     {{-- NEW --}}
                     <div class="mb-3">
                         <label for="img" class="form-label">Masukkan gambar</label>
-                        <div class="image-container">
-                            <img class="img-preview img-fluid" id="img-preview" src="">
-                        </div>
+                        {{-- <div class="image-container"> --}}
+                            <img class="img-preview img-fluid">
+                        {{-- </div> --}}
                         <input name="img" onchange="previewImage()" class="form-control @error('img') is-invalid @enderror" type="file" id="img">
                         <small style="color: rgb(16, 126, 190);">Ukuran maksimal gambar 2 MB</small>
                         @error('img')
@@ -98,22 +98,5 @@
             </form> 
         </div>    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    {{-- <script>
-        function previewImage() {
-            const imgInput = document.querySelector('#img');
-            const imgPreview = document.querySelector('.img-preview');
-
-            const fileReader = new FileReader();
-            fileReader.readAsDataURL(imgInput.files[0]);
-
-            fileReader.onload = function(e) {
-                imgPreview.src = e.target.result;
-                imgPreview.style.width = '500px';
-                imgPreview.style.height = '250px';
-                imgPreview.style.objectFit = 'cover';
-            }
-        }
-    </script> --}}
 @endsection
 

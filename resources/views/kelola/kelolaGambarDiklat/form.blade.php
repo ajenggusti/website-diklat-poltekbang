@@ -10,10 +10,10 @@
                 <hr>
                 <div class="mb-3">
                     <label for="img" class="form-label">Masukkan Gambar</label><br>
-                    <div class="image-container">
+                    {{-- <div class="image-container"> --}}
                         <img class="img-preview img-fluid">
-                    </div>
-                    <br>
+                    {{-- </div> --}}
+                    {{-- <br> --}}
                     <input name="img" onchange="previewImage()" class="form-control @error('img') is-invalid @enderror" type="file" id="img">
                     <small style="color: rgb(16, 126, 190)">Ukuran maksimal gambar 2 MB</small>
                     @error('img')

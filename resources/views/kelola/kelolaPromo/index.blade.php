@@ -33,8 +33,8 @@
 
             
             {{-- <div class="status-button"> --}}
-                <div class="kadaluarsa"></div><span class="status">Kadaluarsa</span>
-                <div class="berlaku"></div><span class="status">Berlaku</span>
+                <div class="kadaluarsa"></div><span class="status"> = Kadaluarsa</span>
+                <div class="berlaku"></div><span class="status"> = Berlaku</span>
 
             {{-- Search --}}
             <div class="search-bar">
@@ -48,53 +48,39 @@
             <table class="table table-sm" id="myTable">
                 <thead>
                     <tr class="header">
-                        <th scope="col" style="width: 90px;">No 
-                            <i class="bi bi-arrow-up" onclick="sortTable(0, 'asc')"></i>
-                            <i class="bi bi-arrow-down" onclick="sortTable(0, 'desc')"></i>
+                        <th scope="col" style="min-width: 70px;">No <br>
+                            <i class="fa-solid fa-arrow-up" onclick="sortTable(0, 'asc')" style="font-size: 13px;"></i>
+                            <i class="fa-solid fa-arrow-down" onclick="sortTable(0, 'desc')" style="font-size: 13px;"></i>
                         </th>
-                        {{-- <th scope="col" style="width: 100px;">Promo untuk 
-                            <i class="bi bi-arrow-up" onclick="sortTable(1, 'asc')"></i>
-                            <i class="bi bi-arrow-down" onclick="sortTable(1, 'desc')"></i>
-                        </th> --}}
-                        <th scope="col" style="width: 300px;">Banner</th>
+                        <th scope="col">Banner</th>
                         <th scope="col">Potongan 
-                            <i class="bi bi-arrow-up" onclick="sortTable(2, 'asc')"></i>
-                            <i class="bi bi-arrow-down" onclick="sortTable(2, 'desc')"></i>
+                            <i class="fa-solid fa-arrow-up" onclick="sortTable(1, 'asc')" style="font-size: 13px;"></i>
+                            <i class="fa-solid fa-arrow-down" onclick="sortTable(1, 'desc')" style="font-size: 13px;"></i>
                         </th>
-                        <th scope="col">Deskripsi</th>
-                        <th scope="col">Kode Promo 
-                            <i class="bi bi-arrow-up" onclick="sortTable(3, 'asc')"></i>
-                            <i class="bi bi-arrow-down" onclick="sortTable(3, 'desc')"></i>
+                        <th scope="col">Deskripsi
+                            <i class="fa-solid fa-arrow-up" onclick="sortTable(2, 'asc')" style="font-size: 13px;"></i>
+                            <i class="fa-solid fa-arrow-down" onclick="sortTable(2, 'desc')" style="font-size: 13px;"></i>
+                        </th>
+                        <th scope="col">Kode Promo <br>
+                            <i class="fa-solid fa-arrow-up" onclick="sortTable(3, 'asc')" style="font-size: 13px;"></i>
+                            <i class="fa-solid fa-arrow-down" onclick="sortTable(3, 'desc')" style="font-size: 13px;"></i>
                         </th>
                         <th scope="col">Tanggal Mulai 
-                            <i class="bi bi-arrow-up" onclick="sortTable(4, 'asc')"></i>
-                            <i class="bi bi-arrow-down" onclick="sortTable(4, 'desc')"></i>
                         </th>
                         <th scope="col">Tanggal Berakhir 
-                            <i class="bi bi-arrow-up" onclick="sortTable(5, 'asc')"></i>
-                            <i class="bi bi-arrow-down" onclick="sortTable(5, 'desc')"></i>
                         </th>
-                        {{-- <th scope="col">Pakai Kuota? 
-                            <i class="bi bi-arrow-up" onclick="sortTable(6, 'asc')"></i>
-                            <i class="bi bi-arrow-down" onclick="sortTable(6, 'desc')"></i>
-                        </th> --}}
-                        {{-- <th scope="col">Kuota Promo 
-                            <i class="bi bi-arrow-up" onclick="sortTable(7, 'asc')"></i>
-                            <i class="bi bi-arrow-down" onclick="sortTable(7, 'desc')"></i>
-                        </th> --}}
                         <th scope="col">Tampil?? 
-                            <i class="bi bi-arrow-up" onclick="sortTable(8, 'asc')"></i>
-                            <i class="bi bi-arrow-down" onclick="sortTable(8, 'desc')"></i>
+                            <i class="fa-solid fa-arrow-up" onclick="sortTable(4, 'asc')" style="font-size: 13px;"></i>
+                            <i class="fa-solid fa-arrow-down" onclick="sortTable(4, 'desc')" style="font-size: 13px;"></i>
                         </th>
-                        <th scope="col" style="width: 100px;">Action</th>
+                        <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($datas as $data)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            {{-- <td>{{ $data->diklat ? $data->diklat->nama_diklat : 'Semua Diklat' }}</td> --}}
-                            <td><img src="{{ asset('storage/' . $data->gambar) }}" alt="banner-promo" style="width: 300px;"></td>
+                            <td><img src="{{ asset('storage/' . $data->gambar) }}" alt="banner-promo" style="width: 350px; height: 200px;"></td>
                             <td>Rp {{ number_format($data->potongan, 0, ',', '.') }}</td>
                             <td>{{ $data->deskripsi }}</td>
                             <td>{{ $data->kode }}</td>
@@ -106,11 +92,6 @@
                                     <span class="badge rounded-pill text-bg-primary">{{ \Carbon\Carbon::parse($data->tgl_akhir)->format('d-m-Y') }}</span>
                                 @endif
                             </td>
-                            
-                            
-
-                            {{-- <td>{{ $data->pakai_kuota}}</td> --}}
-                            {{-- <td>{{ $data->kuota }}</td> --}}
                             
                             <td>
                                 @if ($data->tampil=="ya")
