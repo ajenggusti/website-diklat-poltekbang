@@ -2,7 +2,6 @@
 namespace App\Charts;
 
 use App\Models\Pendaftaran;
-use Illuminate\Support\Facades\DB;
 use ArielMejiaDev\LarapexCharts\LarapexChart;
 
 class DpukPendaftarChart
@@ -14,23 +13,27 @@ class DpukPendaftarChart
         $this->chart = $chart;
     }
 
-    public function build($year): \ArielMejiaDev\LarapexCharts\LineChart
+    public function build($year): \ArielMejiaDev\LarapexCharts\BarChart
     {
-        $pendaftarans = Pendaftaran::whereYear('updated_at', $year)
-            ->selectRaw('MONTH(updated_at) as month, COUNT(*) as total_pendaftar')
-            ->groupBy('month')
-            ->orderBy('month')
+        $pendaftarans = Pendaftaran::whereYear('pendaftaran.updated_at', $year)
+            ->join('diklat', 'pendaftaran.id_diklat', '=', 'diklat.id')
+            ->selectRaw('diklat.nama_diklat as diklat_name, COUNT(*) as total_pendaftar')
+            ->groupBy('diklat_name')
+            ->orderBy('diklat_name')
             ->get();
 
-        $months = array_fill(0, 12, 0);
+        $diklatNames = [];
+        $totalPendaftar = [];
+
         foreach ($pendaftarans as $pendaftaran) {
-            $months[$pendaftaran->month - 1] = $pendaftaran->total_pendaftar;
+            $diklatNames[] = $pendaftaran->diklat_name;
+            $totalPendaftar[] = $pendaftaran->total_pendaftar;
         }
 
-        return $this->chart->lineChart()
+        return $this->chart->barChart()
             ->setTitle("Jumlah Pendaftaran tahun $year")
-            ->setSubtitle('Total pendaftar per bulan')
-            ->addData('Pendaftar', $months)
-            ->setXAxis(['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember']);
+            ->setSubtitle('Total pendaftar per diklat')
+            ->addData('Pendaftar', $totalPendaftar)
+            ->setXAxis($diklatNames);
     }
 }
