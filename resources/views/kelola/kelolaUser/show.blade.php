@@ -37,7 +37,7 @@
                     </tr>
                     <tr>
                         <th>Berkas Pendukung</th>
-                        <td><img width="300px;" src="{{ asset('storage/' . $user->berkas_pendukung) }}" alt="Nama Gambar"></td>
+                        <td><img style="width: 300px; height: 250px;" src="{{ asset('storage/' . $user->berkas_pendukung) }}" alt="Nama Gambar"></td>
                     </tr>
                     <tr>
                         <th>Jenis Kelamin </th>
