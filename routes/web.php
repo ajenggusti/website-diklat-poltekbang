@@ -26,6 +26,7 @@ use App\Http\Controllers\KabupatenDropdownController;
 use App\Http\Controllers\KecamatanDropdownController;
 use App\Http\Controllers\KelurahanDropdownController;
 use App\Http\Controllers\PendaftaranKeuanganController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,7 +84,7 @@ Route::resource('/kelKatDiklat', kelKatDiklatController::class)->except('show')-
 // route crud user  (register)
 Route::get('/indexKelolaUser', [RegisterController::class, 'tampil']);
 // biodata user
-Route::get('/editProfil', [RegisterController::class, 'editProfil']);
+Route::get('/editProfil', [RegisterController::class, 'editProfil'])->middleware(['auth', 'verified']);;
 Route::put('/updateProfil/{id}', [RegisterController::class, 'updateProfil'])->name('updateProfil.update');
 // permohonan ubah biodata
 Route::get('/permohonan/{id}', [RegisterController::class, 'editPermohonan']);
@@ -95,6 +96,17 @@ Route::get('kecamatan-dropdown/{id}', KecamatanDropdownController::class)->name(
 Route::get('kelurahan-dropdown/{id}', KelurahanDropdownController::class)->name('kelurahan.dropdown');
 // // route crud user  (register)
 Route::resource('/register', RegisterController::class)->except('create');
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect('/editProfil');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+
 // route crud promo
 Route::resource('/kelPromo', PromoController::class);
 // route CRUD gbr LandingPage

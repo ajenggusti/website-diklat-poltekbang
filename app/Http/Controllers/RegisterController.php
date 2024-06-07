@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Level;
-use App\Models\Provinsi;
+use \Log;
 use App\Models\Kabupaten;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
+use App\Models\Level;
 use App\Models\Nationality;
+use App\Models\Provinsi;
+use App\Models\User;
+use Illuminate\Auth\Events\Registered; 
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Activitylog\Models\Activity;
 
@@ -38,9 +41,7 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-        
-        // dd($request);
-        $message = [
+        $messages = [
             'namaPengguna.required' => 'Nama pengguna tidak boleh kosong.',
             'email.required' => 'Email tidak boleh kosong.',
             'email.email' => 'Format email tidak valid.',
@@ -48,31 +49,33 @@ class RegisterController extends Controller
             'password.required' => 'Password tidak boleh kosong.',
             'password.unique' => 'Password sudah digunakan.'
         ];
-
-        $request->validate([
+    
+        $validatedData = $request->validate([
             'namaPengguna' => 'required',
             'email' => 'required|email:dns|unique:users,email',
             'password' => 'required|unique:users,password',
-        ], $message);
-
-        User::create([
-            'id_level' => 1,
-            'name' => $request->namaPengguna,
-            'email' => $request->email,
-            'password' => $request->password,
-            'status' => 'Perlu dilengkapi'
+        ], $messages);
+    
+        $user = User::create([
+            'id_level' => 1, 
+            'name' => $validatedData['namaPengguna'],
+            'email' => $validatedData['email'],
+            'password' => Hash::make($validatedData['password']),
+            'status' => 'Perlu dilengkapi',
         ]);
-        // $user=User::latest()->first();
-        // // dd($user->id+1);
-        // $activity=new Activity();
-        // $activity->causer_id = $user->id;
-        // $activity->save();
-        // dd($activity);
-        
 
+        \Illuminate\Support\Facades\Log::info('User created', ['user' => $user]);
+    
 
-        return redirect('/login')->with('success', 'Registrasi berhasil silahkan login!');
+        event(new Registered($user));
+    
+        \Illuminate\Support\Facades\Log::info('Registered event fired', ['user' => $user]);
+    
+        Auth::login($user);
+    
+        return redirect('/email/verify');
     }
+    
 
     /**
      * Display the specified resource.
