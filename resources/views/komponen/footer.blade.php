@@ -5,13 +5,15 @@
                         /* margin-top: auto; */
                         /* padding: 25px 0 400px; */
                         padding: 25px 0;
-                        background-color: rgb(248, 100, 20);
+                        background-color: #fa9d6c;
                         color: white;
                         /* overflow: hidden; */
                         /* bottom: 0; */
                         /* left: 0; */
                         width: 100%;
                         font-weight: bold;
+                        padding-left: 10px;
+                        padding-right: 10px;
                         /* z-index: 1000; */
                     }
                     .footer h5 {
@@ -29,11 +31,12 @@
 
 
                     .footer-left {
-                        width: 25%;
-                        margin-left: 30px;
+                        width: 22%;
+                        margin-left: 130px;
+                        /* margin-right: 10px; */
                         float: left;
                         box-sizing: border-box;
-
+                        /* border: 1px solid black; */
 
                     }
                     .footer-left p {
@@ -42,14 +45,16 @@
                     }
 
                     .footer-middle {
-                        width: 38%;
-                        margin-left: 90px;
+                        width: 26%;
+                        margin-left: 70px;
                         float: left;
+                        /* border: 1px solid black; */
                     }
                     .footer-right {
-                        width: 27%;
-                        margin-left: 30px;
+                        width: 30%;
+                        margin-left: 20px;
                         float: left;
+                        /* border: 1px solid black; */
 
                     }
                     .footer-right p{
@@ -62,9 +67,14 @@
                     /* Style untuk QUICK LINKS */
                     .ul-kiri {
                         margin-top: 15px;
-                        margin-left: -33px;
+                        margin-left: -10px;
+                        padding-left: 10px;
                         list-style: none;
                         float: left;
+                        
+                        /* padding-left: 10px; */
+                        width: 200px;
+                        /* border: 1px solid rgb(180, 30, 30); */
                     }
                     .nav-footer a {
                         color: rgb(255, 255, 255);
@@ -72,24 +82,28 @@
 
                     .ul-kanan {
                         margin-top: 15px;
-                        margin-right: 180px;
+                        margin-right: 10px;
+                        padding-left: 0;
                         list-style: none;
                         float: right;
+
+                        width: 160px;
+                        /* border: 1px solid rgb(22, 88, 243); */
                     }
 
                     /* Footer Bawah */
                     .kiri-bawah {
-                        width: 650px;
+                        width: 680px;
                         float: left;
                         padding: 10px;
                         box-sizing: border-box;
-                        margin-left: 30px;
+                        margin-left: 120px;
                     
                     }
 
                     .kanan-bawah {
-                        width: 340px;
-                        margin-right: 60px;
+                        width: 320px;
+                        margin-right: 110px;
                         float: right;
                         padding: 10px;
                         box-sizing: border-box;

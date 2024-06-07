@@ -182,7 +182,7 @@ span.text-animasi {
 /* LAND Six - FAQ */
 .landSix {
     width: 100%;
-    height: 610px;
+    /* height: 610px; */
     background-color: #ffffff;
 }
 
@@ -191,7 +191,7 @@ span.text-animasi {
     margin-right: 10%;
     max-width: 80%;
     padding-top: 50px;
-    padding-bottom: 20px;
+    /* padding-bottom: 20px; */
 }
 
 .bg-acc {

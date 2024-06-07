@@ -8,7 +8,7 @@
     <meta name="generator" content="Hugo 0.84.0">
     <meta name="csrf_token" content="{{ csrf_token() }}">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}" >
+    {{-- <link rel="icon" type="image/png" href="{{ asset('img/poltek.png') }}"> --}}
     <title>
       Dashboard Staff
     </title>

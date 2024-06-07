@@ -133,9 +133,11 @@
                 </div>
             </div>
 
-            <div class="landFive">
+            <div class="testi-header">
                 <h2 id="testimoni">Testimoni</h2>
                 <p class="p-testi">Simak apa kata mereka...</p>
+            </div>
+            <div class="landFive">
                 <div class="testi-land">
                     @if ($countTestimoni != 0)
                         <div class="owl-carousel owl-theme testimonials-container">
@@ -147,8 +149,6 @@
                                                 <i class="fa fa-quote-left"></i>
                                                 <h4>{{ $testimoni->nama_dummy ?? 'Testimoni' }} <small> - {{ $testimoni->profesi }}</small></h4>
                                             </div>
-                                            {{-- <p>{{ $testimoni->pendaftaran->nama_lengkap ?? $testimoni->nama_dummy }}</p> --}}
-                                            {{-- <p style="profesi-testi"></p> --}}
                                             <p>{{ $testimoni->testimoni }}</p>
                                             <b>Alumni diklat {{ $testimoni->pendaftaran->diklat->nama_diklat }}</b>
                                         @else
@@ -156,8 +156,6 @@
                                                 <i class="fa fa-quote-left"></i>
                                                 <h4>{{ $testimoni->nama_dummy ?? 'Testimoni' }} <small> - {{ $testimoni->profesi }}</small></h4>
                                             </div>
-                                            {{-- <p>{{ $testimoni->pendaftaran->nama_lengkap ?? $testimoni->nama_dummy }}</p> --}}
-                                            {{-- <p>{{ $testimoni->profesi }}</p> --}}
                                             <p>{{ $testimoni->testimoni }}</p>
                                             <b>Alumni diklat {{ $testimoni->diklat->nama_diklat }}</b>
                                         @endif
@@ -301,14 +299,12 @@
                     </div>
                 </div>
             </div>
-
-            
         </div>
     </div>
         
-        <button onclick="topFunction()" id="myBtn" title="Go to top">
-            <i class="bi bi-chevron-double-up"></i>
-        </button>
+    <button onclick="topFunction()" id="myBtn" title="Go to top">
+        <i class="bi bi-chevron-double-up"></i>
+    </button>
 
 
         {{-- SCRIPT --}}
@@ -486,12 +482,12 @@
         <script>
             $('.testimonials-container').owlCarousel({
                 loop:true,
-                autoplay:false,
+                autoplay:true,
                 autoplayTimeout:6000,
                 margin:10,
                 nav:true,
-                navText:["<i class='fa-solid fa-arrow-left'></i>",
-                        "<i class='fa-solid fa-arrow-right'></i>"],
+                // navText:["<i class='fa-solid fa-arrow-left'></i>",
+                //         "<i class='fa-solid fa-arrow-right'></i>"],
                 responsive:{
                     0:{
                         items:1,
@@ -505,6 +501,28 @@
                         items:2
                     },
                 }
-            })
-        </script>
+            });
+
+        //     $('.testimonials-container').owlCarousel({
+        //         loop: false,
+        //         autoplay: false,
+        //         margin: 10,
+        //         nav: true,
+        //         navText: ["<i class='fa-solid fa-arrow-left'></i>", "<i class='fa-solid fa-arrow-right'></i>"],
+        //         responsive: {
+        //             0: {
+        //                 items: 1,
+        //                 nav: false
+        //             },
+        //             600: {
+        //                 items: 1,
+        //                 nav: true
+        //             },
+        //             768: {
+        //                 items: 2,
+        //                 nav: true
+        //             }
+        //         }
+        //     });
+        // </script>
 @endsection

@@ -53,7 +53,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-    <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}" >
+    {{-- <link rel="icon" type="image/png" href="{{ asset('img/poltek.png') }}"> --}}
     <title>
       PENDAFTARAN DIKLAT POLTEKBANG
     </title>
@@ -149,7 +149,7 @@
         }
 
         .content-nav .navbar-nav .nav-item .nav-link:hover {
-            color: #878889;
+            color: rgb(0,27,180);
         }
 
         .content-nav .navbar-nav.ms-auto.rightNav {
@@ -206,7 +206,8 @@
         }
 
         .sticky .navbar-nav .nav-link:hover {
-            color: rgb(136, 134, 134) !important;
+            /* color: rgb(136, 134, 134) !important; */
+            color: rgb(0,27,180) !important;
         }
 
 
@@ -239,7 +240,8 @@
             }
 
             .content-nav .navbar-nav .nav-item .nav-link:hover {
-                color: #878889;
+                /* color: #878889; */
+                color: rgb(0,27,180);
             }
         }
 

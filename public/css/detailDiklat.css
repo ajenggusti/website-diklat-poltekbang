@@ -14,12 +14,12 @@
 .outlined-text {
     font-family: Georgia, serif;
     font-size: 3em; /* Ukuran font */
-    color: white; /* Warna teks utama */
-    text-shadow:
+    color: #ff5900; /* Warna teks utama */
+    /* text-shadow:
         -1px -1px 0 #ff5900,  
          1px -1px 0 #ff5900,
         -1px  1px 0 #ff5900,
-         3px  1px 0 #ff5900;
+         3px  1px 0 #ff5900; */
 }
 
 .img-container {

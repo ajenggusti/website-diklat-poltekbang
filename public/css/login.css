@@ -8,11 +8,9 @@
   html,
   body {
     height: 100%;
-    /* background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("/img/123.png"); */
     background-image: url("/img/login3.png");
     background-position: center;
     background-repeat: no-repeat;
-    /* background-size: 50%; */
     background-size: 1000px 570px;
     position: relative;
     font-family: 'Poppins', sans-serif;
@@ -27,7 +25,6 @@
   }
   
   .topCenter{
-    /* max-height: 100px; */
     padding-bottom: 90px;
   }
   
@@ -53,7 +50,6 @@
     max-width: 450px;
     padding: 15px;
     margin: auto;
-    /* max-height: 800px; */
   }
   
   .form-content {
@@ -75,12 +71,10 @@
   }
   
   
-  /* REVISI */
   .loginForm label {
     text-align: justify;
     font-weight: 600;
   }
-  /* END REVISI */
   
   
   
@@ -99,7 +93,6 @@
       right: 0;
       top: 5px;
       bottom: 0;
-      /* z-index: 1; */
   }
   
   input[type=text], input[type=email], input[type=password] {
@@ -139,3 +132,58 @@
     color: #488575;
     border: none;
   }
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+  .form-content {
+    max-width: 300px;
+    padding: 16px 20px;
+  }
+
+  .topCenter img {
+    width: 40px;
+    height: 30px;
+  }
+
+  .form-floating button {
+    right: 5px;
+  }
+
+  .bottomCenter {
+    padding-top: 20px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    background-size: 400px 350px;
+  }
+
+  .topCenter{
+    padding-top: 10px;
+    padding-bottom: 40px;
+  }
+
+
+  .form-content {
+    
+    max-width: 90%;
+    padding: 16px 20px;
+  }
+
+  .topCenter img {
+    width: 35px;
+    height: 28px;
+    padding-bottom: 5px;
+  }
+
+  .form-floating button {
+    right: 5px;
+  }
+
+  .bottomCenter {
+    padding-top: 10px;
+    font-size: 12px;
+  }
+}
