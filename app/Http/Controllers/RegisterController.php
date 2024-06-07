@@ -40,41 +40,39 @@ class RegisterController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $messages = [
-            'namaPengguna.required' => 'Nama pengguna tidak boleh kosong.',
-            'email.required' => 'Email tidak boleh kosong.',
-            'email.email' => 'Format email tidak valid.',
-            'email.unique' => 'Email sudah digunakan.',
-            'password.required' => 'Password tidak boleh kosong.',
-            'password.unique' => 'Password sudah digunakan.'
-        ];
-    
-        $validatedData = $request->validate([
-            'namaPengguna' => 'required',
-            'email' => 'required|email:dns|unique:users,email',
-            'password' => 'required|unique:users,password',
-        ], $messages);
-    
-        $user = User::create([
-            'id_level' => 1, 
-            'name' => $validatedData['namaPengguna'],
-            'email' => $validatedData['email'],
-            'password' => Hash::make($validatedData['password']),
-            'status' => 'Perlu dilengkapi',
-        ]);
+{
+    $messages = [
+        'email.required' => 'Email tidak boleh kosong.',
+        'email.email' => 'Format email tidak valid.',
+        'email.unique' => 'Email sudah digunakan.',
+        'password.required' => 'Password tidak boleh kosong.',
+        'password.confirmed' => 'Password yang dimasukkan berbeda.'
+    ];
 
-        \Illuminate\Support\Facades\Log::info('User created', ['user' => $user]);
-    
+    $validatedData = $request->validate([
+        'email' => 'required|email:dns|unique:users,email',
+        'password' => 'required|confirmed'
+    ], $messages);
 
-        event(new Registered($user));
-    
-        \Illuminate\Support\Facades\Log::info('Registered event fired', ['user' => $user]);
-    
-        Auth::login($user);
-    
-        return redirect('/email/verify');
-    }
+    $user = User::create([
+        'id_level' => 1,
+        'name' => $validatedData['email'], // Menggunakan email sebagai nama untuk kesederhanaan
+        'email' => $validatedData['email'],
+        'password' => Hash::make($validatedData['password']),
+        'status' => 'Perlu dilengkapi',
+    ]);
+
+    \Illuminate\Support\Facades\Log::info('User created', ['user' => $user]);
+
+    event(new Registered($user));
+
+    \Illuminate\Support\Facades\Log::info('Registered event fired', ['user' => $user]);
+
+    Auth::login($user);
+
+    return redirect('/email/verify');
+}
+
     
 
     /**
