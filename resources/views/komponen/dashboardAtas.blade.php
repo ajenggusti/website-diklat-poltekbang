@@ -49,172 +49,198 @@
     {{-- Navbar --}}
     <link rel="stylesheet" href="../../dist/css/adminlte.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!----===== Boxicons CSS ===== -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <style>
-        html, body {
-          height: 100%
-        }
-        .container {
-          padding-bottom: 50px;
-          padding-top: 50px;
-        }
-        
-        * {
-          box-sizing: border-box;
-          margin: 0;
-          padding: 0;
-          font-size: 15px;
-        }
-        body {
-          font-family: 'Poppins', sans-serif;
-        }
-        .navbar-toogler  {
-          left: 0;
-          margin-right: -300px;
-        }
-
+      .container {
+        padding-bottom: 50px;
+        padding-top: 50px;
+      }
     </style>
-
     
     <script src="/js/dashboard.js"></script>
     <link href="/css/dashboard.css" rel="stylesheet">
   </head>
   <body>
-  {{-- <body class="hold-transition sidebar-mini layout-navbar-fixed sidebarMenu"> --}}
-    
-    <header class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-      <a class="navbar-brand col-md-3 col-lg-2" href="/" style="padding-left: 20px; font-size: 16px;">
-        <img src="{{ asset('img/poltekbang.png') }}" alt="Logo poltekbang" style="width: 45px; height: 30px; opacity: .8">
-          POLTEKBANG
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon" style="color: white; font-size: 15px;"></span>
-      </button>
-    </header>
+    <nav class="sidebar close">
+      <header>
+        <div class="image-text">
+          <span class="image">
+            <a href="/">
+              <img src="{{ asset('img/poltekbang.png') }}" alt="Logo poltekbang">
+            </a>
+          </span>
 
-    <div class="container-fluid">
-      <div class="row">
-          <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block">
-              <div class="position-sticky pt-3" id="sidebar-sticky">
-                  <ul class="nav flex-column">
-                      @can('superAdmin')
-                      <hr>    
-                      <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="/dbSuperAdmin">
-                          <i class="bi bi-house-door"></i>
-                            Dashboard Super Admin
-                        </a>
-                      </li>
-                      <hr> 
-                      @endcan
+          <div class="text logo-text">
+            <span class="name">POLTEKBANG</span>
+          </div>
+        </div>
+        <i class="fas fa-greater-than toggle"></i>
+      </header>
 
-                      @can('dpuk')
-                      <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="/dbDpuk">
-                          <i class="bi bi-house-door"></i>
-                          Dashboard DPUK
-                        </a>
-                      </li>
-                      <hr>
-                      @endcan
+      <div class="menu-bar">
+        <div class="menu">
 
-                      @can('keuangan')
-                      <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="/dbKeuangan">
-                          <i class="bi bi-house-door"></i>
-                          Dashboard Keuangan
-                        </a>
-                      </li>
-                      <hr>
-                      @endcan
-                      <li class="nav-item">
-                        <a class="nav-link {{ Request::is('indexKelolaUser*') ? 'active' : '' }}" href="/indexKelolaUser">
-                          <i class="bi bi-people" style="font-size: 17px;">   </i>
-                          Kelola User
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link {{ Request::is('kelPromo*') ? 'active' : '' }}" href="/kelPromo">
-                          <i class="bi bi-ticket" style="font-size: 17px;">   </i>
-                          Kelola Promo
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link {{ Request::is('kelTestimoni*') ? 'active' : '' }}" href="/kelTestimoni">
-                          <i class="bi bi-file-earmark-post" style="font-size: 17px;">   </i>
-                          Kelola Testimoni
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link {{ Request::is('gbrLandingPage*') ? 'active' : '' }}" href="/gbrLandingPage">
-                          <i class="fa-regular fa-images" style="font-size: 17px;">   </i>
-                          Kelola Gambar Landing Page
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link {{ Request::is('kelKatDiklat*') ? 'active' : '' }}" href="/kelKatDiklat">
-                          <i class="bi bi-journal-richtext" style="font-size: 17px;">   </i>
-                            Kelola Kategori Diklat
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link {{ Request::is('kelDiklat*') ? 'active' : '' }}" href="/kelDiklat">
-                          <i class="bi bi-file-earmark-richtext" style="font-size: 17px;">   </i>
-                          Kelola Diklat
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link {{ Request::is('kelGambarDiklat*') ? 'active' : '' }}" href="/kelGambarDiklat">
-                          <i class="bi bi-image" style="font-size: 17px;">   </i>
-                          Kelola Gambar Diklat
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link {{ Request::segment(1) == 'kelPendaftaran' ? 'active' : '' }}" href="/kelPendaftaran">
-                          <i class="bi bi-basket" style="font-size: 17px;"></i>
-                          Kelola Pendaftaran(dpuk)
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link {{ Request::segment(1) == 'kelPendaftaranKeuangan' ? 'active' : '' }}" href="/kelPendaftaranKeuangan">
-                          <i class="fa-solid fa-sack-dollar" ></i>
-                          Kelola Pendaftaran(keuangan)
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link {{ Request::is('events*') ? 'active' : '' }}" href="/events">
-                          <i class="bi bi-calendar-event"></i>
-                          Kalender
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link {{ Request::is('kelPembayaran*') ? 'active' : '' }}" href="/kelPembayaran">
-                          <i class="bi bi-cash-stack" style="font-size: 17px;">   </i>
-                          Laporan
-                        </a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link {{ Request::is('/logActivity*') ? 'active' : '' }}" href="/logActivity">
-                          <i class="bi bi-gear"></i>
-                          Log activity
-                        </a>
-                      </li>
-                      <hr>
-                      <li class="nav-item">
-                            <form action="/logout" method="POST">
-                              @csrf
-                              <button type="submit" style="color: aliceblue" class="btn nav-link">
-                                <i class="bi bi-box-arrow-right"></i> Logout
-                              </button>
-                            </form>
-                          </span>
-                        </a>
-                      </li>
-                      <hr>
-                  </ul>
-              </div>
-          </nav>
+          <ul class="menu-links">
+            @can('superAdmin')
+            <li class="nav-link">
+                <a href="/dbSuperAdmin">
+                  <i class="fas fa-house-user icon"></i>
+                  <span class="text nav-text">Dashboard</span>
+                </a>
+            </li>
+            @endcan
+
+            @can('dpuk')
+            <li class="nav-link">
+              <a href="/dbDpuk">
+                <i class="fas fa-house-user icon"></i>
+                <span class="text nav-text">Dashboard</span>
+              </a>
+            </li>
+            @endcan
+                        
+            @can('keuangan')
+            <li class="nav-link">
+              <a href="/dbKeuangan">
+                <i class="fas fa-house-user icon"></i>
+                <span class="text nav-text">Dashboard</span>
+              </a>
+            </li>
+            @endcan
+                     
+            <li class="nav-link">
+              <a href="/indexKelolaUser">
+                <i class="fas fa-users icon"></i>
+                <span class="text nav-text">User</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="/kelPromo">
+                <i class="fas fa-tags icon"></i>
+                <span class="text nav-text">Promo</span>
+              </a>
+            </li>
+                        
+            <li class="nav-link">
+              <a href="/kelTestimoni">
+                <i class="fas fa-envelope-open-text icon"></i>
+                <span class="text nav-text">Testimoni</span>
+              </a>
+            </li>
+
+            <li class="nav-link">
+              <a href="/kelKatDiklat">
+                <i class="fas fa-envelope-open-text icon"></i>
+                <span class="text nav-text">Kategori Diklat</span>
+              </a>
+            </li>
+                       
+            <li class="nav-link">
+              <a href="/kelDiklat">
+                <i class="fas fa-envelope-open-text icon"></i>
+                <span class="text nav-text">Diklat</span>
+              </a>
+            </li>
+                    
+            <li class="nav-link">
+              <a href="/kelPendaftaran">
+                <i class="fas fa-envelope-open-text icon"></i>
+                <span class="text nav-text">Pendaftaran(dpuk)</span>
+              </a>
+            </li>
+                       
+            <li class="nav-link">
+              <a href="/kelPendaftaranKeuangan">
+                <i class="fas fa-envelope-open-text icon"></i>
+                <span class="text nav-text">Pendaftaran(keuangan)</span>
+              </a>
+            </li>
+                       
+            <li class="nav-link">
+              <a href="/events">
+                <i class="fas fa-calendar-week icon"></i>
+                <span class="text nav-text">Kalender</span>
+              </a>
+            </li>     
+            
+            <li class="nav-link">
+              <a href="/kelPembayaran">
+                <i class="fas fa-file-invoice icon"></i>
+                <span class="text nav-text">Laporan</span>
+              </a>
+            </li> 
+                        
+            <li class="nav-link">
+              <a href="/logActivity">
+                <i class="fas fa-clipboard-list icon"></i>
+                <span class="text nav-text">Log activity</span>
+              </a>
+            </li>      
+          </ul>
+        </div>
+      
+      
+        <div class="bottom-content">
+          <li class="nav-link">
+            <form action="/logout" method="POST">
+              @csrf
+              <button type="submit" style="color: rgb(255, 255, 255); border: none;">
+                <i class="bi bi-box-arrow-right icon"></i>
+                <span class="text nav-text">Logout</span>
+              </button>
+            </form>
+          </li>
+          <li class="mode">
+            <div class="sun-moon">
+                <i class='bx bx-moon icon moon'></i>
+                <i class='bx bx-sun icon sun'></i>
+            </div>
+            <span class="mode-text text">Dark mode</span>
+
+            <div class="toggle-switch">
+                <span class="switch"></span>
+            </div>
+          </li>
+        </div>
       </div>
-    </div>
+    </nav>
+    {{-- <section class="home">
+      <div class="text">Dashboard Sidebar</div>
+    </section> --}}
+
+    <script>
+      const body = document.querySelector('body'),
+            sidebar = body.querySelector('nav'),
+            toggle = body.querySelector(".toggle"),
+            searchBtn = body.querySelector(".search-box"),
+            modeSwitch = body.querySelector(".toggle-switch"),
+            modeText = body.querySelector(".mode-text");
+
+
+      toggle.addEventListener("click" , () =>{
+          sidebar.classList.toggle("close");
+      })
+
+      searchBtn.addEventListener("click" , () =>{
+          sidebar.classList.remove("close");
+      })
+
+      modeSwitch.addEventListener("click" , () =>{
+          body.classList.toggle("dark");
+          
+          if(body.classList.contains("dark")){
+              modeText.innerText = "Light mode";
+          }else{
+              modeText.innerText = "Dark mode";
+              
+          }
+      });
+    </script>
+
+
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom container-fluid">
         
@@ -249,30 +275,5 @@
               });
           });
       </script>
-      {{-- END OLD --}}
-
-      {{-- NEW --}}
-      {{-- <script>
-        $(document).ready(function() {
-          var path = window.location.pathname;
-          $('.nav-link').each(function () {
-            var href = $(this).attr('href');
-            if (path.includes(href)) {
-              $(this).addClass('active');
-            }
-          });
       
-          $('.navbar-toggler').click(function() {
-            $('#sidebarMenu').toggleClass('show');
-          });
-        });
-      </script> --}}
-      {{-- NEW AGAIN --}}
-      {{-- <script>
-        $(document).ready(function() {
-            $('.navbar-toggler').click(function() {
-                $('#navbarMenu').toggleClass('show');
-            });
-        });
-      </script> --}}
-      <div class="container">
+      <div class="container home">

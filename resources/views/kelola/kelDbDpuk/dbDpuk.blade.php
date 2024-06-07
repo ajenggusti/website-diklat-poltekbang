@@ -1,10 +1,10 @@
 @extends('layout.mainAdmin')
 @section('container')
     {{-- Head --}}
-    <link href="/css/dashboard.css" rel="stylesheet">
+    <link href="/css/staff.css" rel="stylesheet">
     
     {{-- Body --}}
-    <div class="rows">
+    <div class="rows text">
         <div class="col-lg-3 col-6">
           <!-- small box -->
           <div class="small-box bg-info">
@@ -86,14 +86,23 @@
           <!-- ./col -->
     </div>
 
-    {{-- ========================================= --}}
+    {{-- ================ini adalah chart dpuk========================= --}}
 
     <hr>
     <div class="container px-4 mx-auto">
-        <div class="p-6 m-20 bg-white rounded shadow">
-            {!! $DpukPendaftarChart->container() !!}
-        </div>
-    </div>
+
+      <form method="GET" action="{{ url('/dbDpuk') }}">
+          <label for="year">Select Year:</label>
+          <select name="year" id="year" onchange="this.form.submit()">
+              @for($y = date('Y'); $y >= 2000; $y--)
+                  <option value="{{ $y }}" {{ $selectedYear == $y ? 'selected' : '' }}>{{ $y }}</option>
+              @endfor
+          </select>
+      </form>
+
+      <div class="p-6 m-20 bg-white rounded shadow">
+          {!! $DpukPendaftarChart->container() !!}
+      </div>
 
 
 

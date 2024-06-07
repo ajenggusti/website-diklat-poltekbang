@@ -1,90 +1,69 @@
 @extends('layout/mainUser')
 @section('container')
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
         <link href="/css/detailDiklat.css" rel="stylesheet">
 
-        
-        <div class="headTitle">
-            <h1 style="">{{ $detailDiklat->nama_diklat }}</h1>
-        </div>
-        <div class="content-body2">
-            <div id="carouselExampleIndicators" class="carousel slide img-diklat" data-bs-ride="carousel">
-                <div class="carousel-indicators">
-                    @foreach ($gambars as $key => $gambar)
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : '' }}" aria-current="{{ $key == 0 ? 'true' : 'false' }}" aria-label="Slide {{ $key + 1 }}"></button>
-                    @endforeach
-                </div>
-                <div class="carousel-inner">
-                    @foreach ($gambars as $key => $gambar)
-                        <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                            <img src="{{ asset('storage/' . $gambar->gambar_navbar) }}" class="d-block w-100" alt="Gambar Diklat" >
-                        </div>
-                    @endforeach
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+        <div class="content-header">
+            <div class="headTitle">
+                <h1 class="outlined-text">{{ $detailDiklat->nama_diklat }}</h1>
             </div>
-
-            <div class="card-container3">
-                <div class="card-content3">
-                    <p>
-                        <span>Nama Diklat : </span><br>
-                        {{ $detailDiklat->nama_diklat }}
-                    </p>
-                    
-                    <p>
-                        <span>Harga :</span><br>
-                        {{ 'Rp ' . number_format($detailDiklat->harga, 0, ',', '.') }}
-                    
-                    <p>
-                        <span>Jumlah Pendaftar Saat Ini :</span><br>
-                        {{ $detailDiklat->jumlah_pendaftar }}
-                    </p>
-                    
-                    <p>
-                        <span>Status Penerimaan PendaftaraN :</span><br>
-                        {{ $detailDiklat->status }}
-                    </p>
-                    
-                    <p>
-                        <span>Deskripsi :</span><br>
-                        {!! $detailDiklat->deskripsi !!}
-                    </p>
+            
+            <div class="img-container">
+                <img src="{{ asset('img/detail.png') }}" alt="">
+            </div>
+        </div>
+        <hr>
+        <div class="content-body2">
+            <div class="card-content3 row">
+                <p class="harga-detail">
+                    <img src="{{ asset('img/money-detail.png') }}" alt="money">
+                    <span>Harga : {{ 'Rp ' . number_format($detailDiklat->harga, 0, ',', '.') }}</span>
+                </p>
+                
+                <p class="harga-detail">
+                    <img src="{{ asset('img/add-detail.png') }}" alt="jumlah pendaftar">
+                    <span>Jumlah Pendaftar Saat Ini :
+                    {{ $detailDiklat->jumlah_pendaftar }}</span>
+                </p>
+                
+                <p class="harga-detail">
+                    <img src="{{ asset('img/status-detail.png') }}" alt="status pendaftar">
+                    <span>Status Penerimaan Pendaftaran :
+                    {{ $detailDiklat->status }}</span>
+                </p>
+                
+            </div>
+            <br>
+            <div class="des-detail">
+                {!! $detailDiklat->deskripsi !!}
+                <div class="btn-regDiklat d-flex justify-content-center">
+                    @guest
+                    @if ($dobelDiklat==null)
+                        <div class="d-grid gap-2 col-6 btn-container">
+                            <button class="btn btn-primary" type="button" onclick="window.location.href = '/login';" style="justify-content: center;">Login untuk mendaftar!</button>
+                        </div>
+                        @endif
+                    @endguest
+                    @auth
+                        @if($detailDiklat->status== "full")
+                            <div class="alert alert-danger" role="alert">
+                                Mohon maaf, diklat ini sudah penuh.<a href="/"> Lihat diklat yang lain?</a>
+                            </div>
+                        @elseif($dobelDiklat)
+                            <div class="alert alert-warning" role="alert" style="border: 1px solid #000000">
+                                Ups, kamu sudah mendaftar diklat ini.<a href="/riwayat"> Lihat riwayat?</a>
+                            </div>
+                        @elseif($user->status!= "Diverifikasi")
+                            <div class="alert alert-danger" role="alert">
+                                Ups, data pribadimu belum Diverifikasi.<a href="/editProfil"> Lengkapi data disini?</a>
+                            </div>
+                        @else
+                            <div class="d-grid gap-2 col-6 button-daftar">
+                                <a href="{{ route('kelPendaftaran.create', ['id' => $detailDiklat->id]) }}" class="btn btn-primary">Daftarkan dirimu sekarang!</a>
+                            </div>
+                        @endif
+                    @endauth
                 </div>
-            </div> 
-
-            <div class="btn-regDiklat d-flex justify-content-center">
-                @guest
-                @if ($dobelDiklat==null)
-                    <div class="d-grid gap-2 col-6 btn-container">
-                        <button class="btn btn-primary" type="button" onclick="window.location.href = '/login';" style="justify-content: center;">Login untuk mendaftar!</button>
-                    </div>
-                    @endif
-                @endguest
-                @auth
-                    @if($detailDiklat->status== "full")
-                        <div class="alert alert-danger" role="alert">
-                            Mohon maaf, diklat ini sudah penuh.<a href="/"> Lihat diklat yang lain?</a>
-                        </div>
-                    @elseif($dobelDiklat)
-                        <div class="alert alert-warning" role="alert" style="border: 1px solid #000000">
-                            Ups, kamu sudah mendaftar diklat ini.<a href="/riwayat"> Lihat riwayat?</a>
-                        </div>
-                    @elseif($user->status!= "Diverifikasi")
-                        <div class="alert alert-danger" role="alert">
-                            Ups, data pribadimu belum Diverifikasi.<a href="/editProfil"> Lengkapi data disini?</a>
-                        </div>
-                    @else
-                        <div class="d-grid gap-2 col-6 button-daftar">
-                            <a href="{{ route('kelPendaftaran.create', ['id' => $detailDiklat->id]) }}" class="btn btn-primary">Daftarkan dirimu sekarang!</a>
-                        </div>
-                    @endif
-                @endauth
             </div>
         </div>
 @endsection

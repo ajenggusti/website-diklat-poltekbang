@@ -1,0 +1,228 @@
+.landing {
+    padding-bottom: 50px;
+    
+}
+
+.landOne {
+    background: rgb(242, 141, 34);
+    background: linear-gradient(0deg, rgba(255, 150, 59, 0.101) 0%, rgba(255, 150, 59, 0) 0%, rgba(255, 151, 59, 0.796) 60%, rgb(248, 100, 20) 100%, rgb(248, 100, 20) 100%, rgb(248, 100, 20) 100%);
+    height: 610px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-left: 100px;
+    padding-right: 100px;
+    flex: 0 0 auto;
+}
+
+.landOne h1 {
+    padding-top: 0;
+    width: 50%;
+    font-style: oblique;
+    text-align: center;
+    color: #fff;
+
+}
+
+.landOne img {
+    padding-top: 0;
+    width: 55%;
+    height: auto;
+    
+}
+
+.landOne a {
+    padding: 6px 12px;
+    font-size: 18px;
+    font-style: normal;
+    background-color: rgb(0,27,180);
+    color: rgb(255, 255, 255);
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+}
+
+.landOne a:hover {
+    color: #fff;
+    box-shadow: 0 0 10px rgb(162, 163, 163);
+}
+
+
+
+/* LAND FOR CONTENT */
+/* .landBlank { */
+    /* height: 400px;
+    background: rgb(255,255,255);
+    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(249,233,224,1) 100%);
+} */
+
+/* LAND TWO */
+.landTwo {
+    background: rgb(255,255,255);
+    /* background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(249,233,224,1) 100%); */
+    height: 400px;
+    display: flex;
+    box-sizing: border-box;
+    justify-content: space-around;
+    gap: 5px;
+    padding-top: 50px;
+    padding-left: 150px;
+    padding-right: 150px;
+}
+
+.card-animasi {
+    width: 28vmin;
+    height: 28vmin;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 1em 0;
+    position: relative;
+    font-size: 18px;
+    border-radius: 0.5em;
+    background-color: #21242b;
+    border-bottom: 15px solid rgb(248, 100, 20);
+}
+
+.card-animasi i{
+    color: rgb(248, 100, 20);
+    font-size: 2.5em;
+    text-align: center;
+  
+}
+
+span.num-animasi {
+    color: #fff;
+    display: grid;
+    place-items: center;
+    font-weight: 600;
+    font-size: 3em;
+}
+
+span.text-animasi {
+    color: #e0e0e0;
+    font-size: 1em;
+    text-align: center;
+    pad: 0.7em 0;
+    font-weight: 400;
+    line-height: 0;
+}
+
+@media screen and (max-width:1024px) {
+    .landTwo {
+      width: 85vw;
+    }
+    .card-animasi {
+      height: 26vmin;
+      width: 26vmin;
+      font-size: 12px;
+    }
+}
+  
+@media screen and (max-width: 768px) {
+    .landTwo{
+      /* width: 90vw; */
+      width: 100%;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+  
+    .card-animasi {
+      width: calc(50% -40px);
+      height: 30vmin;
+      font-size: 13px;
+    }
+}
+@media screen and (max-width: 480px) {
+    .landTwo{
+      gap: 15px;
+    }
+  
+    .card-animasi {
+      width: 100%;
+      height: 25vmin;
+      font-size: 8px;
+    }
+}
+
+
+/* LAND THREE - PROMO */
+.landThree {
+    /* background-color: #007ff2; */
+    /* background-image: linear-gradient(to right top, #6eacff, #478bf1, #2369e1, #0045cc, #001bb4); */
+    background-color: #ffffff;
+    /* background: linear-gradient(180deg, rgba(0,27,180,1) 0%, rgba(110,172,255,0.7960434173669468) 100%); */
+    color: rgb(0, 0, 0);
+    width: 100%;
+    height: 650px;
+    
+    /* border: 1px solid #000000; */
+}
+.promo-land {
+    margin-left: 10%;
+    margin-right: 10%;
+    max-width: 80%;
+    /* padding-top: 50px; */
+    padding-bottom: 20px;
+    border: 1px solid #000000;
+}
+
+.img-promo img {
+    height: 400px;
+    padding-top: 30px;
+}
+
+
+/* LAND FOUR - KATEGORI DIKLAT */
+
+
+
+/* LAND Five - TESTIMONI */
+
+/* LAND Six - FAQ */
+.landSix {
+    width: 100%;
+    height: 610px;
+    background-color: #ffffff;
+}
+
+.faq-land {
+    margin-left: 10%;
+    margin-right: 10%;
+    max-width: 80%;
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.bg-acc {
+    padding: 15px;
+    background-color: #ffffffb2;
+    border-radius: 10px;
+    border: 2px solid #b3b3b3;
+}
+
+
+/* BUTTON UNTUK BACK TO TOP */
+#myBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    font-size: 18px;
+    border: none;
+    outline: none;
+    background-color: rgb(0,27,180);
+    color: white;
+    cursor: pointer;
+    padding: 10px 15px 10px 15px;
+    border-radius: 50%;
+}
+
+#myBtn:hover {
+    background-color: #FFC784;
+}
+
+#myBtn .bi {
+    font-size: 20px;
+}

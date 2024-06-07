@@ -31,6 +31,12 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+
     {{-- Script Js --}}
     <script src="/js/landing.js"></script>
     <!-- Bootstrap CSS -->
@@ -56,65 +62,79 @@
         * {
             box-sizing: border-box;
         }
-        .body {
-            font-family: 'Poppins', sans-serif;
+        html, body {
+            height: 100%;
             margin: 0;
             padding: 0;
+        }
+
+        .body {
+            font-family: 'Poppins', sans-serif;
+            /* margin: 0;
+            padding: 0; */
             display: flex;
             flex-direction: column;
         }
 
+        /* .page-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        } */
+
+        /* .page-container > .content {
+            flex: 1;
+        } */
+
         .content-wrapper {
             flex: 1;
-            padding-top: 50px;
-            background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(224, 224, 224, 0.844)), url("/img/bg-pl.jpg");
+            padding-top: 100px;
+            /* padding-bottom: 200px !important; */
+            /* margin-bottom: 400px; */
+            /* background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(224, 224, 224, 0.844)), url("/img/bg-pl.jpg");
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
-            position: relative;
-            margin-bottom: -110px;
+            position: relative; */
+            /* margin-bottom: -110px; */
         }
 
         .content-nav {
-            background-color: #353332ee;
-            height: 50px;
+            background-color: rgb(248, 100, 20);
+            height: 100px;
             width: 100%;
             position: fixed;
             top: 0;
             z-index: 1000;
+
+            /* NEW */
+            transition: background-color 0.3s, color 0.3s;
         }
         .content-nav .topnav {
             display: flex;
             justify-content: space-between;
             align-items: center;
             width: 100%;
+            padding-top: 20px;
         }
         
 
         .content-nav .navbar-brand img {
             margin-left: 110px;
             padding-bottom: 2px;
+            transition: filter 0.3s;
         }
 
-        /* NEW */
         .content-nav .navbar-nav.centerNav {
             flex: 1;
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        /* END NEW */
 
         .content-nav .text-end {
             margin-right: 50px;
         }
-
-        /* .content-nav .navbar-nav {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex: 1;
-        } */
 
         .content-nav .navbar-nav .nav-item {
             margin: 0 10px;
@@ -123,8 +143,9 @@
         .content-nav .navbar-nav .nav-item .nav-link {
             padding-right: 15px;
             padding-top: 5px;
-            color: #FF6900;
-            font-weight: 600;
+            color: #ffffff;
+            font-weight: bolder;
+            transition: color 0.3s;
         }
 
         .content-nav .navbar-nav .nav-item .nav-link:hover {
@@ -139,50 +160,59 @@
         }
 
         .content-nav .rightNav .buttonRight {
-            /* margin-bottom: 20px; */
             top: 0;
-            /* background-color: aqua */
         }
 
-        .button {
-            background-color: #FF6900;
+        .button-nav {
             border: none;
-            color: white;
-            padding: 2px 4px;
+            text-decoration: none;
+            cursor: pointer;
+            background-color: #dfdddd00;
+        }
+
+        .button-nav:hover {
+            border: none;
+            text-decoration: none;
+            background-color:rgb(0,27,180);
+        }
+
+        .button-log {
+            background-color: rgb(0,27,180); 
+            color: #ffffff; 
+            padding: 6px 16px;
             text-align: center;
             text-decoration: none;
             margin: 4px 2px;
             transition-duration: 0.4s;
             cursor: pointer;
+            border: none;
             border-radius: 5px;
-        }
-        .button-log {
-            background-color: #ff9100; 
-            color: #ff6a00; 
-            /* border: 2px solid #f7ab4e; */
+            font-weight: bold;
         }
 
         .button-log:hover {
-            background-color: #FF6900;
-            color: #ffffff;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.6);
+            color: rgb(255, 255, 255);
+        }
+        
+        .sticky {
+            background-color: rgba(255, 255, 255, 0.901) !important;
+            color: rgb(0,27,180) !important;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
-        .button-sign {
-            background-color: #FF6900; 
-            color: #ffffff; 
-            /* border: 2px solid #FF6900; */
+        .sticky .navbar-nav .nav-link {
+            color: rgb(0,27,180) !important;
         }
 
-        .button-sign:hover {
-            background-color: #9e5b2a;
-            color: #FF6900;
+        .sticky .navbar-nav .nav-link:hover {
+            color: rgb(136, 134, 134) !important;
         }
-
 
 
         @media (max-width: 991px) {
             .content-nav .navbar-collapse {
-                background-color: #0e2d45e4;
+                background-color: #5a67f5;
                 position: fixed;
                 top: 50px;
                 left: 0;
@@ -235,10 +265,11 @@
     </style>
   </head>
   <body>
-        <div class="content-nav">
+    
+        <div class="content-nav" id="navbar">
             <nav class="navbar navbar-expand-lg topnav" >
                 <a href="/" class="navbar-brand">
-                    <img src="{{ asset('img/poltek.png') }}" alt="politeknik" style="width: 50px;">
+                    <img src="{{ asset('img/poltek.png') }}" alt="politeknik" style="width: 85px;">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" style="font-size: 24px; color: rgb(237, 140, 29);">
                     <i class="bi bi-list"></i>
@@ -249,19 +280,16 @@
                             <a class="nav-link active" aria-current="page" href="/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/#promo">Promo</a>
+                            <a class="nav-link" href="#promo">Promo</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/#katDiklat">Diklat</a>
+                            <a class="nav-link" href="#katDiklat">Diklat</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/#testimoni">Testimoni</a>
+                            <a class="nav-link" href="#testimoni">Testimoni</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/#faq">FAQ</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#profile">Profile</a>
+                            <a class="nav-link" href="#faq">FAQ</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="eventsUser">Jadwal</a>
@@ -293,12 +321,11 @@
                                     <li>
                                         <form action="/logout" method="POST">
                                             @csrf
-                                            <a href="" class="dropdown-item"> <button type="submit" style="border: none; background-color:rgb(255, 255, 255);"><i class="bi bi-box-arrow-right"></i> Logout</button></a>
+                                            <a href="" class="dropdown-item"> <button class="button-nav" type="submit"><i class="bi bi-box-arrow-right"></i> Logout</button></a>
                                         </form>
                                         @else
                                             <div class="buttonRight">
-                                                <a href="/login"><button type="button" class="button button-log">Masuk</button></a>
-                                                <a href="/register"><button type="button" class="button button-sign">Daftar</button></a>
+                                                <a href="/login"><button type="button" class="button-log">Masuk</button></a>
                                             </div>
                                     </li>
                                 </ul>
@@ -307,16 +334,16 @@
                     </ul>
                 </div>
             </nav>
-        </div>  
+        </div> 
         <script>
-            window.onscroll = function() {myFunction()};
-        
-            var navbar = document.getElementById("navbar");
-            var sticky = navbar.offsetTop;
-        
+            window.onscroll = function() {
+                myFunction();
+            };
+
             function myFunction() {
-                if (window.pageYOffset >= sticky) {
-                    navbar.classList.add("sticky")
+                var navbar = document.getElementById("navbar");
+                if (window.pageYOffset > 50) {
+                    navbar.classList.add("sticky");
                 } else {
                     navbar.classList.remove("sticky");
                 }
@@ -324,5 +351,5 @@
         </script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
-
-        <div class="content-wrapper">
+        {{-- <div class="page-container"> --}}
+            <div class="content-wrapper">

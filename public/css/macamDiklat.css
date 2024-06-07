@@ -1,23 +1,14 @@
-.landFour {
-    height: 600px;
+.diklat-content {
     display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    background-color: #ffffff;
-    padding-left: 10%;
-    padding-right: 10%;
 }
 
-.kat-land {
-    max-width: 1220px;
+.diklat-land {
+    max-width: 1120px;
     width: 100%;
     padding: 40px 0;
-    border: 1px solid #000000;
-}
-
-.katDiklat {
-    /* padding-left: 10%; */
 }
 
 .slide-content{
@@ -36,39 +27,29 @@
     position: relative;
     row-gap: 5px;
     padding: 0;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-
-.card-content{
-    padding-top: 30px;
-    height: 180px;
-    
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
 }
 
 .card-image{
     position: relative;
     height: 200px;
-    width: 358px;
+    width: 328px;
+    border-radius: none;
+}
+
+.card-content{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: 300px;
+}
+
+.judul-detail {
+    height: 55px;
 }
 
 .card-image .card-img{
     height: 100%;
     width: 100%;
     object-fit: cover;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    /* border-radius: 10px; */
-}
-
-.name{
-    text-align: center;
-    font-size: 18px;
-    font-weight: 500;
-    color: #333;
-    flex-grow: 1;
 }
 
 .button{
@@ -83,15 +64,15 @@
     transition: all 0.3s ease;
 }
 .button:hover{
-    background: #265DF2;
+    background: rgb(0,27,180);
 }
 
 .swiper-navBtn{
-    color: #6E93f7;
+    color: rgb(0,27,180);
     transition: color 0.3s ease;
 }
 .swiper-navBtn:hover{
-    color: #4070F4;
+    color: rgb(0,27,180);
 }
 .swiper-navBtn::before,
 .swiper-navBtn::after{
@@ -118,4 +99,40 @@
     .swiper-navBtn{
         display: none;
     }
+}
+
+
+/* Ikon */
+.bi-person-fill-add{
+    font-size: 1.5rem; 
+    color: rgb(255, 123, 0);
+}
+
+.bi-person-check {
+    font-size: 1.5rem; 
+    color: green;
+}
+
+.bi-person-x {
+    font-size: 1.5rem; 
+    color: red;
+}
+
+.bi-currency-dollar {
+    font-size: 1.5rem; 
+    color: rgb(27, 222, 27);
+}
+
+.no-found {
+    padding-bottom: 50px;
+}
+
+.no-found h2{
+    padding-top: 5px;
+    font-weight: bold;
+    color: #FF6900;
+}
+.no-found img {
+    padding-top: 10px;
+    width: 45%;
 }

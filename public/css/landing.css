@@ -3,221 +3,6 @@
     padding-bottom: 50px;
 }
 
-/* Style Slideshow */
-.land-satu {
-    position: relative;
-}
-
-.land-satu .mySlides {
-    display: none;
-    transition: transform 0.5s ease;
-}
-
-.land-satu .slideshow-container .mySlides img {
-    width: 100%;
-    object-fit: cover;
-    max-height: 85vh;
-}
-
-.land-satu .slideshow-container {
-    width: 100%;
-    max-height: 75vh;
-    position: relative;
-    margin: auto;
-    overflow: hidden;
-    background-position: 0 -100px;
-    white-space: nowrap;
-}
-
-
-.fade {
-    animation-name: fade;
-    animation-duration: 1.5s;
-}
-  
-@keyframes fade {
-    from {opacity: .4} 
-    to {opacity: 1}
-}
-
-
-/* Text di slideshow */
-.land-satu .hero-text {
-    position: absolute;
-    top: 80%;
-    left: 50%;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5); 
-    width: 100%;
-    padding: 20px;
-    transform: translate(-50%, -50%);
-}
-.land-satu .hero-text h2{
-    font-size: 40px;
-    color: #f1f1f1;
-    
-}
-
-
-
-/* MEDIA UNTUK SLIDESHOW */
-@media screen and (max-width: 768px) {
-    .land-satu .slideshow-container .mySlides img {
-        min-height: 40vh;
-        max-height: 40vh;
-    }
-    .land-satu .slideshow-container {
-        width: 100%;
-        position: relative;
-        margin: auto;
-        overflow: hidden;
-        background-position: 0 -100px;
-        white-space: nowrap;
-    }
-    .land-satu .hero-text {
-        left: 80%;
-        top: 60%;
-        padding: 10px;
-    }
-
-    .land-satu .hero-text h2 {
-        font-size: 30px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .land-satu .slideshow-container .mySlides img {
-        min-width: 50vh;
-        min-height: 30vh;
-        max-height: 30vh;
-    }
-
-    .land-satu .hero-text {
-        position: absolute;
-        top: 70%;
-        bottom: 8%;
-        left: 50%;
-        max-width: 480px;
-        max-height: 50px;
-    }
-
-    .land-satu .hero-text h2 {
-        font-size: 20px;
-    }
-}
-
-
-/* Style animation */
-
-.card-group {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-  
-.card-title.animate {
-    animation: count-up 4s ease-out forwards;
-}
-
-.card-title {
-    margin-bottom: 10px;
-    font-size: 35px;
-    color: rgb(38, 38, 107);
-    padding-left: 80px;
-}
-
-.card-text {
-    font-size: 25px;
-    margin-bottom: 20px;
-}
-
-/* Animasi untuk background */
-.animated-card {
-    
-    flex: 1 1 30%;
-    margin: 10px;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    background-color: #a5a09c;
-    background-size: cover;
-    background-position: center;
-    transition: transform 0.5s ease, box-shadow 0.5s ease, background-color 0.5s ease;
-    background-image: url('https://clipground.com/images/peta-indonesia-png-2.png');
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.animated-card:hover {
-    color: #115fcd;
-    background-color: #048d92;
-    background-size: cover;
-    background-position: center;
-    transition: transform 0.5s ease, box-shadow 0.5s ease, background-color 0.5s ease;
-    transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
-    filter: brightness(90%)
-}
-.animated-text {
-    animation: text-bounce 0.5s ease alternate;
-    font-weight: bold;
-}
-
-@keyframes text-bounce {
-    from { transform: scale(1); }
-    to { transform: scale(1.1); }
-}
-
-/* MEDIA UNTUK ANIMASI CARD */
-@media screen and (max-width: 768px) {
-    .animated-card {
-        flex: 1 1 100%;
-        margin: 5px;
-        padding: 10px;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        border-radius: 5px;
-        background-size: contain;
-
-    }
-    .card-title {
-        font-size: 25px;
-    }
-
-    .card-text {
-        font-size: 18px;
-        margin-bottom: 10px;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .animated-card {
-        max-width: 300px;
-        flex: 1 1 100%;
-        margin: 5px;
-        padding: 5px;
-        box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
-        border-radius: 3px;
-    }
-
-    .card-title {
-        font-size: 15px;
-    }
-
-    .card-text {
-        font-size: 10px;
-        margin-bottom: 5px;
-    }
-    .card-body img {
-        max-width: 80px;
-        
-    }
-    .img-promo img {
-        max-height: 200px;
-    }
-}
-
 
 .card-body {
     display: flex;
@@ -244,7 +29,7 @@
 
 
 /* CSS Dibawah Slideshow */
-.land-width {
+/* .land-width {
     margin-left: 10%;
     margin-right: 10%;
     max-width: 80%;
@@ -256,7 +41,7 @@
 
 .content-land .land-width p {
     color: #FF6900;
-}
+} */
 
 
 /* Style untuk icon kembali ke atas */
@@ -287,15 +72,15 @@
 
 
   /* Style untuk FAQ */
-.bg-acc {
+/* .bg-acc {
     padding: 15px;
     background-color: #ffffffb2;
     border-radius: 10px;
-}
+} */
 
 
 /* Style Video */
-.card-contact {
+/* .card-contact {
   position: relative;
   width: 100%;
   overflow: hidden;
@@ -310,7 +95,7 @@
     width: 100%;
     height: 100%;
     border: none;
-  }
+  } */
 
 
 

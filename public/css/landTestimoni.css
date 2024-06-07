@@ -1,73 +1,179 @@
-.card-testi {
-    display: flex;
-    justify-content: space-between;
-    background-color: #a5a09c1f;
-    border-radius: 10px;
-    padding: 5px 30px;
-    position: relative;
-}
-.card-testi2 {
-    background-color: #ffc1a090;
-    border: 1px solid #FF6900;
-    transition: 0.3s;
-    border-radius: 10px;
-    padding: 10px;
-    margin: 10px;
-    flex: 1 1 calc(33.33% - 20px);
+.landFive {
+    /* background-image: linear-gradient(to right top, #3ba4f5, #2f93f1, #3181eb, #3e6fe2, #4e5ad6); */
+    /* color: aliceblue; */
+    margin: 0;
+	padding: 0;
+    width: 100%;
+    height: 610px;
+    margin-top: 150px;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    /* Variables for storing colors */
+    --card-clr: #fc9862;
+    --body-clr: #ffffff;;
+    --primary-clr: #ff770f;
+    --heading-clr: #dadada;
+    --text-clr: #ffffff;
+    /* border: 1px solid #000; */
+}
+
+.testi-land {
+    /* margin-left: 10%;
+    margin-right: 10%;
+    max-width: 80%;
+    padding-top: 40px;
+    padding-bottom: 20px; */
+
+    /* NEW */
+    /* padding: 0; */
+    width: 100%;
+    height: 100vh;
+    /* height: 300px; */
     display: flex;
-    flex-direction: column;
-}
-
-.card-testi2.placeholder {
-    background: transparent;
-    border: none;
-}
-
-.card-testi2:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    transition: 0.8s;
-}
-
-.card-testi2 .card-testiContent b, 
-.card-testi2 .card-testiContent p, 
-.card-testi2 .card-testiContent q {
-    text-align: center;
-    overflow: hidden;
-    margin-bottom: 5px;
-    margin-top: 10px;
-}
-
-
-.card-testiContent {
-    padding: 10px;
-    box-sizing: border-box;
-    flex-grow: 1;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    background-color: var(--body-clr);
+
+    margin-top: -200px;
 }
 
-.card-testiContent b {
+#testimoni {
+    padding-left: 10%;
+}
+
+.p-testi {
+    padding-left: 10%;
+}
+
+.testi-land h4, p {
+    font-weight: 600;
+}
+
+.testi-land h4 {
+    height: 50px;
+}
+
+.testi-land small {
+    color: #ffffff;
+    font-weight: 500;
     font-style: italic;
 }
 
+.testi-land p {
+    font-size: 17px;
+    height: 100px;
+}
 
-/* SLIDER */
-.carousel-control-prev,
-.carousel-control-next {
-    width: 1%;
+.testi-land b {
+    font-style: italic;
+    font-size: 15px;
+    padding-bottom: 10px;
+}
+
+.testimonials-section {
+    width: 100%;
+    padding: 0px 8%;
+}
+
+.testimonials-section .section-header {
+    max-width: 700px;
+    text-align: center;
+    margin: 30px auto 40px;
+}
+
+.section-header h1 {
+    position: relative;
+    font-size: 36px;
+    color: var(--primary-clr);
+}
+
+.testimonials-container {
+    position: relative;
+    padding-left: 50px;
+    padding-right: 50px;
+    /* border: 1px solid #000; */
+    /* gap: 5px; */
+}
+
+.testimonials-container .testimonial-card {
+    padding-left: 40px;
+    padding-right: 40px;
+    /* border: 1px solid #000; */
+}
+
+.testimonial-card .test-card-body {
+    background-color: var(--card-clr);
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.12);
+    padding: 20px;
+    height: 250px;
+
+
+    margin-left: 40px;
+    margin-right: 50px;
+    /* margin-right: 50px; */
+    width: 550px;
+    gap: 50px;
+}
+
+.test-card-body .quote {
+    display: flex;
+    align-items: center;
+}
+
+.test-card-body .quote i {
+    font-size: 45px;
+    color: var(--heading-clr);
+    margin-right: 20px;
+}
+
+.test-card-body .quote h3 {
+    color: var(--heading-clr);
+}
+
+.test-card-body p {
+    margin: 10px 0px 15px;
+    font-size: 14px;
+    line-height: 1.5;
+    font-weight: bold;
+    color: var(--text-clr);
+}
+
+.owl-nav {
     position: absolute;
+    right: 100px;
+    bottom: -10px;
 }
 
-.carousel-control-prev {
-    left: 0;
-    margin-left: -70px;
+.owl-nav button {
+    border-radius: 50% !important;
 }
 
-.carousel-control-next {
-    right: 0;
-    margin-right: -70px;
+.owl-nav .owl-prev i,
+.owl-nav .owl-next i {
+    padding: 10px !important;
+    border-radius: 50%;
+    font-size: 18px !important;
+    background-color: var(--card-clr) !important;
+    color: var(--primary-clr);
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+.owl-nav .owl-prev i:hover,
+.owl-nav .owl-next i:hover {
+    background-color: var(--primary-clr) !important;
+    color: #e9e9e9;
+}
+
+.owl-dots {
+    margin-top: 15px;
+}
+
+.owl-dots .owl-dot span {
+    background-color: #434753 !important;
+    padding: 6px !important;
+}
+
+.owl-dot.active span {
+    background-color: var(--primary-clr) !important;
 }

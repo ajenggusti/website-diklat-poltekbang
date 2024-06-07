@@ -1,6 +1,6 @@
 @extends('layout.mainAdmin')
 @section('container')
-    <link href="/css/dashboard.css" rel="stylesheet">
+    <link href="/css/staff.css" rel="stylesheet">
 
     <div class="container-admin">
         <div class="rows">

@@ -1,55 +1,68 @@
 @extends('layout/mainUser')
 @section('container')
-    <link href="/css/landing.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/swiper-bundle.min.css">
+    <!-- *******  Font Awesome Icons Link  ******* -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+    <!-- *******  Owl Carousel Links  ******* -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"/>
+
+    <!-- Fontawesome icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+    {{-- <link href="/css/landing.css" rel="stylesheet"> --}}
     <link href="/css/landTestimoni.css" rel="stylesheet">
     <link href="/css/landKatDiklat.css" rel="stylesheet">
+
+    <link href="/css/landingPage.css" rel="stylesheet">
     <script src="/js/landing.js"></script>
 
-    <div class="container-land">
-        <div class="land-satu">
-            <div class="slideshow-container">
-                @foreach ($gbrSlide as $slide)
-                    <div class="mySlides">
-                        <img src="{{ asset('storage/' . $slide->gambar_navbar) }}" alt="Gambar Slide">
-                    </div>
-                @endforeach
-            </div>
-            <br> <br>
-            <div class="hero-text">
-                <h2>Website Pendaftaran Diklat</h2>
-            </div>
+    <div class="landing">
+        <div class="landOne">
+            <h1>
+                Selamat Datang Di Website 
+                Pendaftaran Diklat Politeknik Penerbangan Surabaya <br>
+                <a href="/login" class="btn">Daftarkan Dirimu !!</a>
+            </h1>
+            <img src="{{ asset('img/Artboard.png') }}" alt="">
         </div>
-        <br>
-        
-        <div class="content-land">
-            <div class="land-width">
-                <div class="bg-land">
-                    <div class="card-group">
-                        <div class="animated-card">
-                                <div class="card-body" >
-                                    <img src="{{ asset('img/poltek.png') }}" alt="">
-                                </div>
-                                <div class="card-body" >
-                                    <span class="card-title animated-text" id="totalPendaftar">{{ $totalPendaftar }}</span><br>
-                                    <span class="card-text animated-text">Total Seluruh Pendaftar</span>
-                                    <br>
-                                    <span class="card-title animated-text" id="jmlPendaftarBelumTerlaksana">{{ $jmlPendaftarBelumTerlaksana }}</span><br>
-                                    <span class="card-text animated-text">Pendaftar Periode Ini</span>
-                                    <br>
-                                </div>
-                                <div class="card-body" >
-                                    <span class="card-title animated-text" id="alumni">{{ $alumni }}</span><br>
-                                    <span class="card-text animated-text">Total Lulusan Diklat </span>
-                                    <br>
-                                    <span class="card-title animated-text" id="jmlDiklat">{{ $jmlDiklat }}</span><br>
-                                    <span class="card-text animated-text">Total diklat saat ini</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+
+
+        <div class="land">
+            <div class="landBlank"></div>
+            <div class="landTwo">
+                {{-- lnadTwo -> wrapper --}}
+                <div class="card-animasi" >
+                    {{-- card-animasi => container --}}
+                    <i class="fas fa-users"></i>
+                    <span class="num-animasi" data-val="{{ $totalPendaftar }}">0</span>
+                    <span class="text-animasi">Total Seluruh Pendaftar</span>
                 </div>
-                <div class="land-width">
-                    <hr>
+                <div class="card-animasi" >
+                    <i class="fas fa-user-plus"></i>
+                    <span class="num-animasi" data-val="{{ $jmlPendaftarBelumTerlaksana }}">0</span>
+                    <span class="text-animasi">Pendaftar Periode Ini</span>
+                </div>
+                <div class="card-animasi" >
+                    <i class="fas fa-user-graduate"></i>
+                    <span class="num-animasi" data-val="{{ $alumni }}">0</span>
+                    <span class="text-animasi">Total Lulusan Diklat </span>
+                </div>
+                <div class="card-animasi" >
+                    <i class="fas fa-book"></i>
+                    <span class="num-animasi" data-val="{{ $jmlDiklat }}">0</span>
+                    <span class="text-animasi">Total diklat saat ini</span>
+                </div>
+            </div>
+
+            {{-- <div class="landBlank"></div> --}}
+
+            <div class="landThree">
+                <div class="promo-land">
                     @if ($countPromo!=0)
                         <h3 id="promo">Promo</h3>
                         <p>Temukan promo yang bisa kamu dapatkan disini.. </p>
@@ -76,94 +89,90 @@
                             </button>
                         </div>
                     @endif
-                    
-                    
-                    <hr>
-                    <h3 id="katDiklat">Kategori Diklat</h3>
-                    <p>Klik button untuk melihat lebih banyak diklat </p>
-                    <div class="cards-container" >
-                        @foreach ($katDiklat as $kategori)
-                            <div class="card-jenis" style="background-color: rgb(255, 255, 255)">
-                                @if ($kategori->gambar)
-                                    <img src="{{ asset('storage/' . $kategori->gambar) }}" alt="" >
-                                @else
-                                    @php $foundDefault = false; @endphp
-                                    @foreach ($katDiklat as $data)
-                                        @if ($data->default == 'ya')
-                                            <img src="{{ asset('storage/' . $data->gambar) }}" alt="Default Image" >
-                                            @php $foundDefault = true; @endphp
-                                            @break
-                                        @endif
-                                    @endforeach
-                                    @if (!$foundDefault)
-                                        <img src="{{ asset('img/123.png') }}" alt="Default Image" >
-                                    @endif
-                                @endif
-                                <div class="card-content">
-                                    <p>
-                                        <span class="tittleKat">{{ $kategori->kategori_diklat }}</span><br>
-                                    
-                                        <br>
-                                        <button class="button-link" onclick="window.location.href='/utama/macamDiklat/{{ $kategori->id }}'">
-                                            Selengkapnya
-                                        </button>
-                                    </p>
-                                </div>
-                            </div>    
-                        @endforeach
-                    </div>
+                </div>
+            </div>
 
-                
-                    <hr>
-                    @if ($countTestimoni!=0)
-                        <h3 id="testimoni">Testimoni</h3>
-                        <p>Simak apa kata mereka...</p>
-                        <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false" data-bs-interval="false">
-                            <div class="card-testi">
-                                
-                                <div class="carousel-inner">
-                                    @foreach ($testimonis->chunk(3) as $index => $testimoniChunk)
-                                        <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-                                            <div class="d-flex justify-content-center flex-wrap">
-                                                @foreach ($testimoniChunk as $testimoni)
-                                                    <div class="card-testi2">
-                                                        <div class="card-testiContent">
-                                                            @if ($testimoni->id_pendaftaran)
-                                                                <b class="author">{{ $testimoni->nama_dummy }}</b>
-                                                                <b class="author">{{ $testimoni->profesi }}</b>
-                                                                <p class="author">Alumni diklat {{ $testimoni->pendaftaran->diklat->nama_diklat }}</p>
-                                                                <q>{{ $testimoni->testimoni }}</q>
-                                                            @else
-                                                                <b class="author">{{ $testimoni->nama_dummy }}</b>
-                                                                <b class="author">{{ $testimoni->profesi }}</b>
-                                                                <p class="author">Alumni diklat {{ $testimoni->diklat->nama_diklat }}</p>
-                                                                <q>{{ $testimoni->testimoni }}</q>
-                                                            @endif
-                                                        </div>
-                                                    </div>
+            <div class="landFour">
+                <div class="kat-land swiper">
+                    <h3 id="katDiklat">Kategori Diklat</h3>
+                    <p class="p-kat">Klik button untuk melihat lebih banyak diklat </p>
+                    <div class="slide-content">
+                        <div class="card-wrapper swiper-wrapper">
+                            @foreach ($katDiklat as $kategori)
+                                <div class="card swiper-slide">
+                                    <div class="image-content">
+                                        <div class="card-image">
+                                            @if ($kategori->gambar)
+                                                <img src="{{ asset('storage/' . $kategori->gambar) }}" alt="" class="card-img">
+                                            @else
+                                                @php $foundDefault = false; @endphp
+                                                @foreach ($katDiklat as $data)
+                                                    @if ($data->default == 'ya')
+                                                        <img src="{{ asset('storage/' . $data->gambar) }}" alt="Default Image" class="card-img">
+                                                        @php $foundDefault = true; @endphp
+                                                        @break
+                                                    @endif
                                                 @endforeach
-                                                @for ($i = $testimoniChunk->count(); $i < 3; $i++)
-                                                    <div class="card-testi2 placeholder"></div>
-                                                @endfor
-                                            </div>
+                                                @if (!$foundDefault)
+                                                    <img src="{{ asset('img/123.png') }}" alt="Default Image" class="card-img">
+                                                @endif
+                                            @endif
                                         </div>
-                                    @endforeach
+                                    </div>
+                                    <div class="card-content">
+                                        <h2 class="name">{{ $kategori->kategori_diklat }}</h2>
+                                        <button class="button" onclick="window.location.href='/utama/macamDiklat/{{ $kategori->id }}'">Selengkapnya</button>
+                                    </div>
+                                </div>   
+                            @endforeach
+                        </div>
+                    </div>
+                    <div class="swiper-button-next swiper-navBtn"></div>
+                    <div class="swiper-button-prev swiper-navBtn"></div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+
+            <div class="landFive">
+                <h2 id="testimoni">Testimoni</h2>
+                <p class="p-testi">Simak apa kata mereka...</p>
+                <div class="testi-land">
+                    @if ($countTestimoni != 0)
+                        <div class="owl-carousel owl-theme testimonials-container">
+                            @foreach ($testimonis as $testimoni)
+                                <div class="item testimonial-card">
+                                    <main class="test-card-body">
+                                        @if ($testimoni->id_pendaftaran)
+                                            <div class="quote">
+                                                <i class="fa fa-quote-left"></i>
+                                                <h4>{{ $testimoni->nama_dummy ?? 'Testimoni' }} <small> - {{ $testimoni->profesi }}</small></h4>
+                                            </div>
+                                            {{-- <p>{{ $testimoni->pendaftaran->nama_lengkap ?? $testimoni->nama_dummy }}</p> --}}
+                                            {{-- <p style="profesi-testi"></p> --}}
+                                            <p>{{ $testimoni->testimoni }}</p>
+                                            <b>Alumni diklat {{ $testimoni->pendaftaran->diklat->nama_diklat }}</b>
+                                        @else
+                                            <div class="quote">
+                                                <i class="fa fa-quote-left"></i>
+                                                <h4>{{ $testimoni->nama_dummy ?? 'Testimoni' }} <small> - {{ $testimoni->profesi }}</small></h4>
+                                            </div>
+                                            {{-- <p>{{ $testimoni->pendaftaran->nama_lengkap ?? $testimoni->nama_dummy }}</p> --}}
+                                            {{-- <p>{{ $testimoni->profesi }}</p> --}}
+                                            <p>{{ $testimoni->testimoni }}</p>
+                                            <b>Alumni diklat {{ $testimoni->diklat->nama_diklat }}</b>
+                                        @endif
+                                    </main>
+                                
                                 </div>
-                            </div>
-                            
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true" style="color: black;"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true" style="color: black;"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
+                            @endforeach
                         </div>
                     @endif
-                    
-
-                    <hr>
+                </div>
+            </div>
+                
+            <div class="landSix">
+                <div class="faq-land">
+                {{-- <hr> --}}
                     <h3 id="faq">FAQ</h3>
                     <p>Pertanyaan yang banyak ditanyakan...</p>
                     <div class="bg-acc">
@@ -261,22 +270,6 @@
                                 </div>
                             </div>
 
-                            {{-- <div class="accordion-item">
-                                <h2 class="accordion-header" id="flush-headingFour">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
-                                        Apakah tersedia beasiswa atau bantuan keuangan?
-                                    </button>
-                                </h2>
-                                <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
-                                    <div class="accordion-body">
-                                        Lorem ipsum dolor sit amet, 
-                                        consectetur adipisicing elit, 
-                                        sed do eiusmod tempor incididunt 
-                                        ut labore et dolore magna aliqua.
-                                    </div>
-                                </div>
-                            </div> --}}
-
                             <div class="accordion-item">
                                 <h2 class="accordion-header" id="flush-headingFive">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
@@ -306,128 +299,212 @@
                             </div>
                         </div>
                     </div>
-
-
-
-                    <hr>
-                    <h3 id="profile">Profile</h3>
-                    <p>Kepoin kita disini yukk...</p>
-                    <div class="card-contact">
-                        <iframe src="https://www.youtube.com/embed/SbMdkBNQoO8" class="responsive-iframe"></iframe>
-                    </div>
                 </div>
             </div>
+
+            
         </div>
     </div>
-    <button onclick="topFunction()" id="myBtn" title="Go to top">
-        <i class="bi bi-chevron-double-up"></i>
-    </button>
-
-
-    {{-- SCRIPT --}}
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    {{-- Script sementara untuk FAQ --}}
-    <script>
-        var acc = document.getElementsByClassName("accordion");
-        var i;
         
-        for (i = 0; i < acc.length; i++) {
-            acc[i].addEventListener("click", function() {
-            this.classList.toggle("active");
-            var panel = this.nextElementSibling;
-            if (panel.style.maxHeight) {
-                panel.style.maxHeight = null;
-            } else {
-                panel.style.maxHeight = panel.scrollHeight + "px";
-            } 
-            });
-        }
-    </script>
+        <button onclick="topFunction()" id="myBtn" title="Go to top">
+            <i class="bi bi-chevron-double-up"></i>
+        </button>
 
-    {{-- Animasi jumlah pendaftar --}}
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            var totalPendaftarElement = document.getElementById("totalPendaftar");
-            var jmlPendaftarBelumTerlaksanaElement = document.getElementById("jmlPendaftarBelumTerlaksana");
-            var alumniElement = document.getElementById("alumni");
-            var jmlDiklatElement = document.getElementById("jmlDiklat");
-    
-        // Fungsi untuk menghasilkan angka acak antara min dan max
-        function getRandomNumber(min, max) {
-            return Math.floor(Math.random() * (max - min + 1)) + min;
-        }
-    
-        // Fungsi untuk menampilkan animasi angka acak selama beberapa detik
-        function animateRandomNumber(element, initialValue, finalValue) {
-            var currentValue = initialValue;
-            var interval = setInterval(function () {
-                var nextValue = getRandomNumber(currentValue, finalValue);
-                    element.textContent = nextValue;
-                    currentValue = nextValue;
-                    if (currentValue === finalValue) {
-                        clearInterval(interval);
+
+        {{-- SCRIPT --}}
+        <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+        {{-- Script sementara untuk FAQ --}}
+        <script>
+            var acc = document.getElementsByClassName("accordion");
+            var i;
+            
+            for (i = 0; i < acc.length; i++) {
+                acc[i].addEventListener("click", function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                } 
+                });
+            }
+        </script>
+
+        {{-- Animasi jumlah pendaftar --}}
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var totalPendaftarElement = document.getElementById("totalPendaftar");
+                var jmlPendaftarBelumTerlaksanaElement = document.getElementById("jmlPendaftarBelumTerlaksana");
+                var alumniElement = document.getElementById("alumni");
+                var jmlDiklatElement = document.getElementById("jmlDiklat");
+        
+            // Fungsi untuk menghasilkan angka acak antara min dan max
+            function getRandomNumber(min, max) {
+                return Math.floor(Math.random() * (max - min + 1)) + min;
+            }
+        
+            // Fungsi untuk menampilkan animasi angka acak selama beberapa detik
+            function animateRandomNumber(element, initialValue, finalValue) {
+                var currentValue = initialValue;
+                var interval = setInterval(function () {
+                    var nextValue = getRandomNumber(currentValue, finalValue);
+                        element.textContent = nextValue;
+                        currentValue = nextValue;
+                        if (currentValue === finalValue) {
+                            clearInterval(interval);
+                        }
+
+                }, 100); // Perbarui angka setiap 100ms
+            }
+        
+            // Jalankan animasi untuk pendaftar dan diklat
+            animateRandomNumber(totalPendaftarElement, 0, {{ $totalPendaftar }});
+            animateRandomNumber(jmlPendaftarBelumTerlaksanaElement, 0, {{ $jmlPendaftarBelumTerlaksana }});
+            animateRandomNumber(alumniElement, 0, {{ $alumni }});
+            animateRandomNumber(jmlDiklatElement, 0, {{ $jmlDiklat }});
+        });
+        </script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                let slideIndex = 0;
+
+                function showSlides() {
+                    let slides = document.getElementsByClassName("card-slides");
+
+                    // Sembunyikan semua slide
+                    for (let i = 0; i < slides.length; i++) {
+                        slides[i].classList.remove("active");
                     }
 
-            }, 100); // Perbarui angka setiap 100ms
-        }
-    
-        // Jalankan animasi untuk pendaftar dan diklat
-        animateRandomNumber(totalPendaftarElement, 0, {{ $totalPendaftar }});
-        animateRandomNumber(jmlPendaftarBelumTerlaksanaElement, 0, {{ $jmlPendaftarBelumTerlaksana }});
-        animateRandomNumber(alumniElement, 0, {{ $alumni }});
-        animateRandomNumber(jmlDiklatElement, 0, {{ $jmlDiklat }});
-    });
-    </script>
+                    slideIndex++;
+                    if (slideIndex > slides.length) {slideIndex = 1}
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            let slideIndex = 0;
+                    // Tampilkan slide aktif
+                    slides[slideIndex - 1].classList.add("active");
 
-            function showSlides() {
-                let slides = document.getElementsByClassName("card-slides");
-
-                // Sembunyikan semua slide
-                for (let i = 0; i < slides.length; i++) {
-                    slides[i].classList.remove("active");
+                    setTimeout(showSlides, 3000);
                 }
 
-                slideIndex++;
-                if (slideIndex > slides.length) {slideIndex = 1}
+                function plusSlides(n) {
+                    slideIndex += n;
+                    let slides = document.getElementsByClassName("card-slides");
+                    if (slideIndex > slides.length) {slideIndex = 1}
+                    else if (slideIndex < 1) {slideIndex = slides.length}
 
-                // Tampilkan slide aktif
-                slides[slideIndex - 1].classList.add("active");
-
-                setTimeout(showSlides, 3000);
-            }
-
-            function plusSlides(n) {
-                slideIndex += n;
-                let slides = document.getElementsByClassName("card-slides");
-                if (slideIndex > slides.length) {slideIndex = 1}
-                else if (slideIndex < 1) {slideIndex = slides.length}
-
-                // Tampilkan slide yang sesuai
-                for (let i = 0; i < slides.length; i++) {
-                    slides[i].classList.remove("active");
+                    // Tampilkan slide yang sesuai
+                    for (let i = 0; i < slides.length; i++) {
+                        slides[i].classList.remove("active");
+                    }
+                    slides[slideIndex - 1].classList.add("active");
                 }
-                slides[slideIndex - 1].classList.add("active");
-            }
 
-            // Tambahkan event listener untuk tombol "Sebelumnya" dan "Selanjutnya"
-            let prevButton = document.querySelector(".sblm");
-            let nextButton = document.querySelector(".ssdh");
-            prevButton.addEventListener("click", function() {
-                plusSlides(-1);
-            });
-            nextButton.addEventListener("click", function() {
-                plusSlides(1);
-            });
+                // Tambahkan event listener untuk tombol "Sebelumnya" dan "Selanjutnya"
+                let prevButton = document.querySelector(".sblm");
+                let nextButton = document.querySelector(".ssdh");
+                prevButton.addEventListener("click", function() {
+                    plusSlides(-1);
+                });
+                nextButton.addEventListener("click", function() {
+                    plusSlides(1);
+                });
 
-            showSlides();
-        });
-    </script>
+                showSlides();
+            });
+        </script>
+
+
+        {{-- Script Animasi --}}
+        <script>
+            let valueDisplays = document.querySelectorAll(".num-animasi");
+            let interval = 4000;
+        
+            valueDisplays.forEach((valueDisplay) => {
+                let startValue = 0;
+                let endValue = parseInt(valueDisplay.getAttribute("data-val"));
+                
+                // Jika data-val adalah 0, set teks menjadi "0" dan return
+                if (endValue === 0) {
+                    valueDisplay.textContent = "0";
+                    return;
+                }
+        
+                let duration = Math.floor(interval / endValue);
+                let counter = setInterval(function () {
+                    startValue += 1;
+                    valueDisplay.textContent = startValue;
+                    if (startValue === endValue) {
+                        clearInterval(counter);
+                    }
+                }, duration);
+            });
+        </script>
+
+        {{-- Script Slider Kategori Diklat --}}
+        <!-- Swiper JS -->
+        <script src="js/swiper-bundle.min.js"></script>
+        <script>
+            var swiper = new Swiper(".slide-content", {
+                slidesPerView: 3,
+                spaceBetween: 25,
+                loop: true,
+                centerSlide: 'true',
+                fade: 'true',
+                grabCursor: 'true',
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                    dynamicBullets: true,
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+
+                breakpoints:{
+                    0: {
+                        slidesPerView: 1,
+                    },
+                    520: {
+                        slidesPerView: 2,
+                    },
+                    950: {
+                        slidesPerView: 3,
+                    },
+                },
+            });
+        </script>
+
+        {{-- Script Testimoni --}}
+        <script>
+            $('.testimonials-container').owlCarousel({
+                loop:true,
+                autoplay:false,
+                autoplayTimeout:6000,
+                margin:10,
+                nav:true,
+                navText:["<i class='fa-solid fa-arrow-left'></i>",
+                        "<i class='fa-solid fa-arrow-right'></i>"],
+                responsive:{
+                    0:{
+                        items:1,
+                        nav:false
+                    },
+                    600:{
+                        items:1,
+                        nav:true
+                    },
+                    768:{
+                        items:2
+                    },
+                }
+            })
+        </script>
 @endsection

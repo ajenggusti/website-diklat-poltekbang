@@ -73,6 +73,8 @@
         .content-right {
             display: flex;
             flex-direction: column;
+            margin-left: 400px;
+            font-size: 15px;
         }
 
         .leftInvoice, .rightInvoice {
@@ -147,7 +149,7 @@
                             <p>Metode pembayaran : {{ $dataPendaftaran->metode_pembayaran }}</p>
                             <p>Waktu pembayaran  : {{ \Carbon\Carbon::parse($dataPendaftaran->updated_at)->format('H:i:s | d-m-Y') }}</p>
                         </div>
-                        {{-- <br><br> --}}
+                        <br><br>
                         <div class="info-container">
                             <div class="leftInvoice">
                                 <div class="info-row">

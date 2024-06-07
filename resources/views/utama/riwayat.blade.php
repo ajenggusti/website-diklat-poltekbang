@@ -19,7 +19,7 @@
                         <div class="card-riwayat">
                             <div class="card-content">
                                 <div class="wrapper-print">
-                                    <h4>{{ $data->diklat->nama_diklat }}</h4>
+                                    <h5>{{ $data->diklat->nama_diklat }}</h5>
                                     <hr>
                                     <div class="status-print-wrapper">
                                         <p>Status Diklat : {{ $data->diklat->status }}</p>

@@ -1,26 +1,4 @@
-// Script Slideshow gambar
-document.addEventListener("DOMContentLoaded", function() {
-    let slideIndex = 0;
-    showSlides();
-
-    function showSlides() {
-        let slides = document.getElementsByClassName("mySlides");
-        for (let i = 0; i < slides.length; i++) {
-            slides[i].style.display = "none";
-        }
-        slideIndex++;
-        if (slideIndex > slides.length) {slideIndex = 1}
-        slides[slideIndex - 1].style.display = "block";
-        moveSlidesLeft();
-
-        setTimeout(showSlides, 2000);
-    }
-
-    function moveSlidesLeft() {
-        let slideshowContainer = document.querySelector('.slideshow-container');
-        slideshowContainer.scrollLeft += slideshowContainer.offsetWidth;
-    }
-});
+// Landing Page Animasi
 
 
 
@@ -83,20 +61,6 @@ document.addEventListener("DOMContentLoaded", function() {
 function currentSlide(n) {
     showSlides(slideIndex = n);
 }
-
-
-
-
-
-
-// NEW
-
-
-
-
-
-
-
 
 
 

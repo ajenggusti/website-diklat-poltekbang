@@ -1,223 +1,97 @@
-/* Style Macam Diklat*/
-.content-body {
-    margin-left: 10%;
-    margin-right: 10%;
+.content-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #ffac809b;
 }
 
-.content-body h2{
-    color: #0a0a0a;
-    padding-top: 20px;
+.headTitle {
+    flex: 1;
+    margin-left: 100px;
+}
+
+.outlined-text {
+    font-family: Georgia, serif;
+    font-size: 3em; /* Ukuran font */
+    color: white; /* Warna teks utama */
+    text-shadow:
+        -1px -1px 0 #ff5900,  
+         1px -1px 0 #ff5900,
+        -1px  1px 0 #ff5900,
+         3px  1px 0 #ff5900;
+}
+
+.img-container {
+    flex: 0 0 auto; 
+}
+
+.img-container img {
+    width: 100%;
+    max-width: 600px;
+    margin-right: 100px;
+}
+
+.content-body2 {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.card-content3 {
+    /* padding-left: 20px;
+    padding-right: 20px; */
+    flex: 1 1 auto;
+    margin-left: 40px;
+    width: 30%;
+}
+
+.card-content3 .harga-detail {
+    width: 360px;
+    height: 100px;
+    border-radius: 20px;
+    background-color: #f28c55;
+    padding: 20px;
+    margin-right: 35px;
+    margin-top: 20px;
+}
+
+/* .card-content3 p .des-detail {
+    font-size: 16px;
+    font-weight: 600;
+    color: #001cb9;
+} */
+
+
+.harga-detail {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.harga-detail span {
+    font-weight: bold;
+    font-size: 17px;
+    padding-left: 5px;
+    padding-right: 40px;
+    padding-top: 5px;
     padding-bottom: 10px;
 }
 
-
-
-
-/* Style Container */
-.card-container2 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    padding-bottom: 30px;
-}
-
-.card-img {
-    background-color: #ffffff;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,1.2);
-    transition: 0.3s;
-    width: 30%;
-    margin-bottom: 20px;
-    border-radius: 30px;
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    padding: 0 0 50px 0;
-    flex-basis: calc(30% - 20px);
-}
-
-.card-img img{
-    width: 100%;  
-    height: 200px;
-    object-fit: cover;
-    padding-top: 0;
-}
-.card-img:hover {
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-}
-.card-content2 {
-    padding: 5px 20px 0 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100%;
-}
-.card-content2 h6,
-.card-content2 p,
-.card-content2 .button-link {
-    flex-grow: 1;
-}
-.card-content2 p {
-    text-align: left;
-}
-.card-content2 span {
-    color: #7d4015;
-    font-weight: 600;
-}
-
-/* IKON */
-.card-content2 .bi-person-fill-add{
-    font-size: 1.5rem; 
-    color: rgb(255, 123, 0);
-}
-
-.card-content2 .bi-person-check {
-    font-size: 1.5rem; 
-    color: green;
-}
-
-.card-content2 .bi-person-x {
-    font-size: 1.5rem; 
-    color: red;
-}
-
-.card-content2 .bi-currency-dollar {
-    font-size: 1.5rem; 
-    color: rgb(27, 222, 27);
-}
-
-.no-found {
-    padding-bottom: 50px;
-}
-
-.no-found h2{
-    padding-top: 5px;
-    font-weight: bold;
-    color: #FF6900;
-}
-.no-found img {
-    padding-top: 10px;
-    width: 45%;
-}
-
-
-
-
-/* Button di jenis diklat card */
-.button-link {
-    background-color: #ffffff;
-    border-color: #FF6900;
-    color: #FF6900;
-    border-radius: 5px;
-    padding: 4px 8px;
-    display: block;
-    width: auto;
-    text-align: center;
-    margin-top: auto;
-}
-
-.button-link:hover {
-    background-color: #FFC784;
-    border-color: #FF6900;
-}
-
-
-/* Kartu pada layar penuh */
-@media screen and (min-width: 992px) {
-    .card-container2 {
-        justify-content: left;
-        gap: 25px;
-    }
-
-    .card-img {
-        flex-basis: calc(30% - 5px);
-    }
-}
-/* Kartu pada layar di antara 500px dan 992px */
-@media screen and (min-width: 500px) and (max-width: 991.98px) {
-    .card-img {
-        width: 30%;
-        flex-basis: calc(50% - 10px);
-    }
-}
-
-/* Kartu pada layar kurang dari 500px */
-
-@media screen and (max-width: 499.98px) {
-    .card-container2 {
-        font-size: 12px;
-    }
-    .card-img {
-        flex-basis: calc(100% - 10px);
-    }
-}
-
-
-
-
-
-/* Style Detail Diklat */
-
-.content-body2 {
-    background-color: rgba(233, 229, 229, 0.488);
-}
-.headTitle {
-    text-align: center;
-    margin-top: 30px;
-    margin-bottom: 10px;
-}
-.card-container3 {
-    display: flex;
-    margin: 20px auto;
-    max-width: 1200px;
-}
-.content-body2 .carousel-inner img {
-    position: relative;
-    width: 100%;
-    height: 600px;
-    object-fit: cover;
-}
-.content-body2 h2 {
-    text-align: center;
-    padding-top: 5px;
-}
-
-.center-text {
-    font-weight: bold;
-    font-size: 40px;
-    position: absolute;
-    color: white;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-.card-content3 {
-    padding-left: 20px;
-    padding-right: 20px;
-}
-.card-content3 span{
-    font-weight: bold;
-}
-
-.btn-container {
-    width: 100%;
-    margin-bottom: 10px;
-}
-
-.img-diklat img {
-    height: 400px;
-}
-.carousel-inner {
-    opacity: 1;
-    pointer-events: none;
-}
-
-.content-body2 .btn-regDiklat {
+.harga-detail img {
+    /* align-items: flex-start; */
+    width: 80px;
     padding-bottom: 20px;
 }
 
-@media screen and (max-width: 499.98px) {
-    .content-body2 .carousel-inner img {
-        height: 300px;
-    }
+.des-detail {
+    width: 70%;
+    height: auto;
+    margin-top: 25px;
+    margin-right: 40px;
+    padding: 10px 10px 10px 20px;
+    font-weight: bold;
+    border: 1px solid #dddddd;
 }

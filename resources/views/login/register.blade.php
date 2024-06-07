@@ -18,16 +18,15 @@
     <link href="/css/signin.css" rel="stylesheet">
     <script src="/js/signin.js"></script>
   </head>
-  <body class="text-center">
-    <main class="form-signin">
+  <body>
+    <main class="form-signin text-center">
+      <div class="topCenter">
+        <img src="{{ asset('img/poltek.png') }}" alt="" >
+        <h5>POLTEKBANG SURABAYA</h5>
+      </div>
         <form method="POST" action="/register" class="form-content">
           @csrf
-          <h1 class="h3 fw-normal">Registrasi</h1>
-          <p>
-            Selamat datang di website diklat Politeknik
-            Penerbangan. Daftarkan diri untuk pengalaman
-            yang lebih baik.
-          </p>
+          <h3>Daftar Akun</h3>
           <div class="form-floating">
               <input name="namaPengguna" type="text" class="form-control @error('namaPengguna') is-invalid @enderror" id="namaPengguna" placeholder="Enter Username" value="">
               <label for="namaPengguna">Username</label>
@@ -52,10 +51,15 @@
                 <div class="invalid-feedback">{{ $message }}</div>
               @enderror
           </div>
-          <button class="w-100 btn btn-lg btn-primary" type="submit">Register</button>
+          <button class="w-100 btn btn-lg btn-secondary" type="submit">Register</button>
           <br> <br>
-          <small>Sudah punya akun? <a href="/login">Login disini.</a></small>
-      </form>
+          <div class="p-login">
+            <p>Sudah punya akun? <a href="/login" class="btn">Login disini</a></p>
+          </div>
+        </form>
+      {{-- </div> --}}
+      <div class="bottomCenter">
+        <p>@poltekbang sby</p>
       </div>
     </main>
   </body>

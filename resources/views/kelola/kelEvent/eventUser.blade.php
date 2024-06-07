@@ -12,9 +12,7 @@
             background-repeat: no-repeat;
             background-size: cover;
             position: relative;
-            /* margin-bottom: -120px;
-            padding-bottom: 50px;
-            margin-top: 30px; */
+            padding-bottom: 50px
         }
 
         .content-staff h2 {
