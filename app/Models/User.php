@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Level;
 use App\Models\Kelurahan;
 use App\Models\Pendaftaran;
+use Illuminate\Auth\Passwords\CanResetPassword;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\DB;
 use Spatie\Activitylog\LogOptions;
@@ -17,7 +18,7 @@ use Spatie\Activitylog\Contracts\Activity;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, CanResetPassword;
     use LogsActivity;
 
     /**

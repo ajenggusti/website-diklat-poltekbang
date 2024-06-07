@@ -317,6 +317,7 @@
                                             <a href="/dbKeuangan" class="dropdown-item"><i class="bi bi-speedometer2"></i> Dashboard</a>
                                         @endcan
                                     </li>
+                                    <li><a class="dropdown-item" href="/password/edit"><i class="bi bi-key"></i> Ubah Password</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li>
                                         <form action="/logout" method="POST">
@@ -328,6 +329,7 @@
                                                 <a href="/login"><button type="button" class="button-log">Masuk</button></a>
                                             </div>
                                     </li>
+                                    
                                 </ul>
                             </li>
                         @endauth
