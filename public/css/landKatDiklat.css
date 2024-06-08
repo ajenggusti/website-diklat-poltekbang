@@ -13,11 +13,7 @@
     max-width: 1220px;
     width: 100%;
     padding: 40px 0;
-    border: 1px solid #000000;
-}
-
-.katDiklat {
-    /* padding-left: 10%; */
+    /* border: 1px solid #000000; */
 }
 
 .slide-content{
@@ -30,7 +26,7 @@
     flex-direction: column;
     align-items: center;
     padding: 10px 14px;
-    border: 1px solid #636363;
+    /* border: 1px solid #636363; */
 }
 .image-content{
     position: relative;
@@ -46,12 +42,27 @@
     
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
+    
+    /* box-shadow: 0 0 10px #727171; */
 }
+
+.card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 20px;
+    margin-left: 2px;
+    margin-right: -5px;
+    /* transition: box-shadow 0.3s ease-in-out; */
+}
+
 
 .card-image{
     position: relative;
     height: 200px;
-    width: 358px;
+    /* width: 359px; */
+
+    width: 100%;
 }
 
 .card-image .card-img{
@@ -60,7 +71,6 @@
     object-fit: cover;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    /* border-radius: 10px; */
 }
 
 .name{
@@ -111,11 +121,40 @@
     background-color: #4070F4;
 }
 
-@media screen and (max-width: 768px) {
+
+/* Layar untuk 481px - 900px */
+@media screen and (min-width: 481px) and (max-width: 1056px) {
     .slide-content{
         margin: 0 10px;
     }
-    .swiper-navBtn{
-        display: none;
+    .card-image{
+        height: auto;
+        width: 100%;
+    }
+    
+    .card-image .card-img{
+        height: 200px;
+        width: 100%;
+        max-width: 500px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .slide-content{
+        margin: 0 10px;
+    }
+    .card-image{
+        height: auto;
+        width: 100%;
+    }
+    
+    .card-image .card-img{
+        height: 200px;
+        width: 100%;
+        max-width: 500px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
     }
 }

@@ -1,18 +1,13 @@
             </div>
                 <style>
                     .footer {
-                        /* margin-top: 110px; */
-                        /* margin-top: auto; */
-                        /* padding: 25px 0 400px; */
                         padding: 25px 0;
-                        background-color: rgb(248, 100, 20);
+                        background-color: #fa9d6c;
                         color: white;
-                        /* overflow: hidden; */
-                        /* bottom: 0; */
-                        /* left: 0; */
                         width: 100%;
                         font-weight: bold;
-                        /* z-index: 1000; */
+                        padding-left: 10px;
+                        padding-right: 10px;
                     }
                     .footer h5 {
                         font-weight: bolder;
@@ -29,11 +24,10 @@
 
 
                     .footer-left {
-                        width: 25%;
-                        margin-left: 30px;
+                        width: 22%;
+                        margin-left: 130px;
                         float: left;
                         box-sizing: border-box;
-
 
                     }
                     .footer-left p {
@@ -42,13 +36,14 @@
                     }
 
                     .footer-middle {
-                        width: 38%;
-                        margin-left: 90px;
+                        width: 26%;
+                        margin-left: 70px;
                         float: left;
                     }
+                    
                     .footer-right {
-                        width: 27%;
-                        margin-left: 30px;
+                        width: 30%;
+                        margin-left: 20px;
                         float: left;
 
                     }
@@ -59,12 +54,15 @@
                     .clear {
                         clear: both;
                     }
+
                     /* Style untuk QUICK LINKS */
                     .ul-kiri {
                         margin-top: 15px;
-                        margin-left: -33px;
+                        margin-left: -10px;
+                        padding-left: 10px;
                         list-style: none;
                         float: left;
+                        width: 200px;
                     }
                     .nav-footer a {
                         color: rgb(255, 255, 255);
@@ -72,24 +70,26 @@
 
                     .ul-kanan {
                         margin-top: 15px;
-                        margin-right: 180px;
+                        margin-right: 10px;
+                        padding-left: 0;
                         list-style: none;
                         float: right;
+                        width: 160px;
                     }
 
                     /* Footer Bawah */
                     .kiri-bawah {
-                        width: 650px;
+                        width: 680px;
                         float: left;
                         padding: 10px;
                         box-sizing: border-box;
-                        margin-left: 30px;
+                        margin-left: 120px;
                     
                     }
 
                     .kanan-bawah {
-                        width: 340px;
-                        margin-right: 60px;
+                        width: 320px;
+                        margin-right: 110px;
                         float: right;
                         padding: 10px;
                         box-sizing: border-box;
@@ -120,15 +120,11 @@
                     }
 
 
-                    @media (max-width: 480px) {
-                        .footer {
-                            /* font-size: 18px; */
-                        }
+                    /* Layar 0-480px */
+                   @media screen and (max-width: 480px) {
                         .footer h5 {
-                            font-weight: bolder;
-                            font-size: 20px;
+                            font-weight: bold;
                         }
-
 
                         .footer-left,
                         .footer-middle,
@@ -139,8 +135,9 @@
 
                         .footer-left {
                             width: 100%;
-                            margin-left: 30px;
-                            float: left;
+                            /* max-width: 90%; */
+                            margin-left: 20px;
+                            float: none;
                             box-sizing: border-box;
 
 
@@ -152,12 +149,23 @@
 
                         .footer-middle {
                             width: 100%;
-                            margin-left: 30px;
-                            float: left;
+                            /* max-width: 90%; */
+                            margin-left: 40px;
+                            margin-right: 0;
+                            float: none;
+                        }
+                        .footer-middle h5 {
+                            margin-left: -20px
+                        }
+                        .footer-middle .ul-kiri,
+                        .footer-middle .ul-kanan {
+                            width: 100%;
+                            max-width: 45%;
                         }
                         .footer-right {
                             width: 100%;
-                            margin-left: 30px;
+                            max-width: 90%;
+                            margin-left: 20px;
                             float: left;
 
                         }
@@ -179,17 +187,21 @@
                             float: right;
                         }
 
-                        /* Footer Bawah */
                         .kiri-bawah {
                             font-weight: 600;
-                            /* margin-left: 30px; */
-                            max-width: 340px;
+                            width: 100%;
+                            /* max-width: 95%; */
+                            margin-left: 10px;
                             text-align: center;
+                            float: none;
                         }
 
                         .kanan-bawah {
-                            /* margin-left: 40px; */
+                            width: 100%;
+                            /* max-width: 95%; */
                             text-align: center;
+                            /* margin-right: -120px; */
+                            float: none;
                         }
                         
                         .footer p  {
@@ -201,6 +213,102 @@
                             padding: 5px 7px 5px 7px;
                             font-size: 10px;
                             width: 20px;
+                            margin: 5px 2px;
+                            text-align: center;
+                        }
+                    }
+
+                    /* Layar untuk 481px - 900px */
+                    @media screen and (min-width: 481px) and (max-width: 900px) {
+                        .footer-left,
+                        .footer-middle,
+                        .footer-right {
+                            font-size: 15px;
+                        }
+
+                        .footer-left {
+                            width: 100%;
+                            max-width: 21%;
+                            margin-left: 20px;
+                            margin-right: 20px;
+                            margin-top: 10px;
+                            float: left;
+                            box-sizing: border-box;
+
+
+                        }
+                        .footer-left p {
+                            margin-top: 15px;
+                            font-weight:lighter;
+                        }
+
+                        .footer-middle {
+                            width: 100%;
+                            max-width: 35%;
+                            margin-left: 20px;
+                            margin-top: 10px;
+                            float: left;
+                        }
+
+                        .footer-right {
+                            width: 100%;
+                            max-width: 35%;
+                            margin-left: 0;
+                            margin-right: 10px;
+                            margin-top: 10px;
+                            float: right;
+
+                        }
+                        .footer-middle h5 {
+                            padding-bottom: 20px;
+                        }
+                        .footer-right h5 {
+                            padding-bottom: 20px
+                        }
+
+                        .ul-kiri {
+                            margin-top: 15px;
+                            max-width: 40%;
+                            list-style: none;
+                            float: left;
+                        }
+                        .nav-footer a {
+                            color: rgb(255, 255, 255);
+                        }
+
+                        .ul-kanan {
+                            margin-top: 15px;
+                            max-width: 40%;
+                            margin-left: -10px;
+                            list-style: none;
+                            float: right;
+                        }
+
+                        .kiri-bawah {
+                            font-weight: 600;
+                            width: 100%;
+                            max-width: 50%;
+                            margin-left: 10px;
+                            padding-top: 20px;
+                        }
+
+                        .kanan-bawah {
+                            width: 100%;
+                            max-width: 50%;
+                            text-align: center;
+                            margin-right: -60px;
+                        }
+                        
+                        .footer p  {
+                            font-size: 14px;
+                        }
+                        .ikon i {
+                            border-radius: 50%;
+                            text-decoration: none;
+                            padding: 5px 7px 5px 7px;
+                            font-size: 10px;
+                            width: 100%;
+                            max-width: 20px;
                             margin: 5px 2px;
                             text-align: center;
                         }
@@ -242,7 +350,6 @@
                         <p><span style="color:rgb(255, 255, 255); font-weight: bold;">Email : </span>mail@poltekbangsby.ac.id</p>
                     </div>
                     <div class="clear"></div>
-                <!-- </div> -->
                     <br> <br>
                     <hr>
                     <div class="kiri-bawah">
@@ -274,7 +381,6 @@
                         </a>
                     </div>
                     <div class="clear"></div>
-                {{-- </div> --}}
-        {{-- </div> --}}
+                </div>
     </body>
 </html>

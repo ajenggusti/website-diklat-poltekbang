@@ -252,6 +252,9 @@ h2 {
 .show-user th {
   width: 170px;
 }
+.blank-space {
+  text-indent: 1cm; 
+}
 
 
 /* Pagination */

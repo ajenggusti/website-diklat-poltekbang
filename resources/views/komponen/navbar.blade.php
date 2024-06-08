@@ -53,7 +53,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-    <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}" >
+    {{-- <link rel="icon" type="image/png" href="{{ asset('img/poltek.png') }}"> --}}
     <title>
       PENDAFTARAN DIKLAT POLTEKBANG
     </title>
@@ -70,33 +70,16 @@
 
         .body {
             font-family: 'Poppins', sans-serif;
-            /* margin: 0;
-            padding: 0; */
             display: flex;
             flex-direction: column;
+
+
+            overflow-x: hidden;
         }
-
-        /* .page-container {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        } */
-
-        /* .page-container > .content {
-            flex: 1;
-        } */
 
         .content-wrapper {
             flex: 1;
             padding-top: 100px;
-            /* padding-bottom: 200px !important; */
-            /* margin-bottom: 400px; */
-            /* background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(224, 224, 224, 0.844)), url("/img/bg-pl.jpg");
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            position: relative; */
-            /* margin-bottom: -110px; */
         }
 
         .content-nav {
@@ -106,8 +89,6 @@
             position: fixed;
             top: 0;
             z-index: 1000;
-
-            /* NEW */
             transition: background-color 0.3s, color 0.3s;
         }
         .content-nav .topnav {
@@ -149,7 +130,7 @@
         }
 
         .content-nav .navbar-nav .nav-item .nav-link:hover {
-            color: #878889;
+            color: rgb(0,27,180);
         }
 
         .content-nav .navbar-nav.ms-auto.rightNav {
@@ -173,7 +154,7 @@
         .button-nav:hover {
             border: none;
             text-decoration: none;
-            background-color:rgb(0,27,180);
+            background-color:rgba(255, 255, 255, 0);
         }
 
         .button-log {
@@ -206,7 +187,8 @@
         }
 
         .sticky .navbar-nav .nav-link:hover {
-            color: rgb(136, 134, 134) !important;
+            /* color: rgb(136, 134, 134) !important; */
+            color: rgb(0,27,180) !important;
         }
 
 
@@ -239,7 +221,8 @@
             }
 
             .content-nav .navbar-nav .nav-item .nav-link:hover {
-                color: #878889;
+                /* color: #878889; */
+                color: rgb(0,27,180);
             }
         }
 

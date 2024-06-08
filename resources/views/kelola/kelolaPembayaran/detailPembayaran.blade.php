@@ -52,6 +52,7 @@
                     </tr>
                 @endif
 
+                <div class="blank-space"></div>
                 {{-- data pesanan --}}
                 <tr>
                     <th>Nama diklat</th>

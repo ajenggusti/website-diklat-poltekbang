@@ -17,7 +17,7 @@
             <div class="card-content3 row">
                 <p class="harga-detail">
                     <img src="{{ asset('img/money-detail.png') }}" alt="money">
-                    <span>Harga : {{ 'Rp ' . number_format($detailDiklat->harga, 0, ',', '.') }}</span>
+                    <span>Harga Diklat : {{ 'Rp ' . number_format($detailDiklat->harga, 0, ',', '.') }}</span>
                 </p>
                 
                 <p class="harga-detail">
@@ -28,7 +28,7 @@
                 
                 <p class="harga-detail">
                     <img src="{{ asset('img/status-detail.png') }}" alt="status pendaftar">
-                    <span>Status Penerimaan Pendaftaran :
+                    <span>Kuota Pendaftaran :
                     {{ $detailDiklat->status }}</span>
                 </p>
                 
@@ -46,20 +46,20 @@
                     @endguest
                     @auth
                         @if($detailDiklat->status== "full")
-                            <div class="alert alert-danger" role="alert">
-                                Mohon maaf, diklat ini sudah penuh.<a href="/"> Lihat diklat yang lain?</a>
+                            <div class="alert alert-danger detail-one" role="alert">
+                                Mohon maaf, diklat ini sudah penuh.<a href="/" class="btn "> Lihat diklat yang lain?</a>
                             </div>
                         @elseif($dobelDiklat)
-                            <div class="alert alert-warning" role="alert" style="border: 1px solid #000000">
-                                Ups, kamu sudah mendaftar diklat ini.<a href="/riwayat"> Lihat riwayat?</a>
+                            <div class="alert alert-warning detail-two" role="alert" >
+                                Ups, kamu sudah mendaftar diklat ini.<a href="/riwayat" class="btn"> Lihat riwayat?</a>
                             </div>
                         @elseif($user->status!= "Diverifikasi")
-                            <div class="alert alert-danger" role="alert">
-                                Ups, data pribadimu belum Diverifikasi.<a href="/editProfil"> Lengkapi data disini?</a>
+                            <div class="alert alert-info detail-three" role="alert">
+                                Ups, data pribadimu belum Diverifikasi.<a href="/editProfil" class="btn"> Lengkapi data disini?</a>
                             </div>
                         @else
-                            <div class="d-grid gap-2 col-6 button-daftar">
-                                <a href="{{ route('kelPendaftaran.create', ['id' => $detailDiklat->id]) }}" class="btn btn-primary">Daftarkan dirimu sekarang!</a>
+                            <div class="button-detail">
+                                <a href="{{ route('kelPendaftaran.create', ['id' => $detailDiklat->id]) }}" class="btn btn-primary">Daftarkan dirimu</a>
                             </div>
                         @endif
                     @endauth
