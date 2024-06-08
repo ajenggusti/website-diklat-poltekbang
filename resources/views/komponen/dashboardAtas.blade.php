@@ -54,8 +54,8 @@
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <style>
       .container {
-        padding-bottom: 50px;
-        padding-top: 50px;
+        /* padding-bottom: 50px;
+        padding-top: 50px; */
       }
     </style>
     
@@ -68,11 +68,11 @@
         <div class="image-text">
           <span class="image">
             <a href="/">
-              <img src="{{ asset('img/poltekbang.png') }}" alt="Logo poltekbang">
+              <img src="{{ asset('img/poltek.png') }}" alt="Logo poltekbang">
             </a>
           </span>
 
-          <div class="text logo-text">
+          <div class="text header-text">
             <span class="name">POLTEKBANG</span>
           </div>
         </div>
@@ -184,33 +184,21 @@
       
       
         <div class="bottom-content">
-          <li class="nav-link">
+          <li class="nav-link2">
             <form action="/logout" method="POST">
               @csrf
-              <button type="submit" style="color: rgb(255, 255, 255); border: none;">
-                <i class="bi bi-box-arrow-right icon"></i>
+              <button type="submit" class="btn" style="border: none; text-decoration: none;">
+                <i class="bi bi-box-arrow-right icons"></i>
                 <span class="text nav-text">Logout</span>
               </button>
             </form>
           </li>
-          <li class="mode">
-            <div class="sun-moon">
-                <i class='bx bx-moon icon moon'></i>
-                <i class='bx bx-sun icon sun'></i>
-            </div>
-            <span class="mode-text text">Dark mode</span>
-
-            <div class="toggle-switch">
-                <span class="switch"></span>
-            </div>
-          </li>
+          
         </div>
       </div>
     </nav>
-    {{-- <section class="home">
-      <div class="text">Dashboard Sidebar</div>
-    </section> --}}
 
+   
     <script>
       const body = document.querySelector('body'),
             sidebar = body.querySelector('nav'),
@@ -241,10 +229,10 @@
     </script>
 
 
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom container-fluid">
+    {{-- <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4"> --}}
+      {{-- <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom container-fluid">
         
-      </div>
+      </div> --}}
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       {{-- OLD --}}
       <script>
@@ -276,4 +264,7 @@
           });
       </script>
       
-      <div class="container home">
+      {{-- <div class="container home"> --}}
+        
+    <section class="home">
+      <div class="container text">
