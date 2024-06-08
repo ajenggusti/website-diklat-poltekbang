@@ -85,6 +85,9 @@ Route::post('/bukti-pembayaran', [RiwayatController::class, 'buktiPembayaran'])-
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout']);
+Route::get('/google/redirect', [LoginController::class, 'redirect']);
+Route::get('/google/callback', [LoginController::class, 'callback'])->name('google.callback');
+
 
 // route crud kategori dikklat
 Route::resource('/kelKatDiklat', kelKatDiklatController::class)->except('show')->middleware('auth');

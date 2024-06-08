@@ -56,6 +56,8 @@
           @enderror
         </div>
         <button class="w-100 btn btn-lg btn-secondary" type="submit">Login</button>
+        <br><br>
+        <a class="w-100 btn btn-lg btn-secondary" href="/google/redirect"><i class="bi bi-google"></i> Login dengan google</a>
         <br> <br>
         <div class="p-login">
           <p style="text-align: center; margin-bottom: 0;">Belum punya akun?<a href="/register" class="btn"> Daftar sekarang</a></p>
