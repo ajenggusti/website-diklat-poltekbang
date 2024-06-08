@@ -133,38 +133,17 @@
     border: none;
   }
 
-/* Media Queries for responsiveness */
-@media (max-width: 768px) {
-  .form-content {
-    max-width: 300px;
-    padding: 16px 20px;
-  }
 
-  .topCenter img {
-    width: 40px;
-    height: 30px;
-  }
-
-  .form-floating button {
-    right: 5px;
-  }
-
-  .bottomCenter {
-    padding-top: 20px;
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 480px) {
+/* Layar 0-480px */
+@media screen and (max-width: 480px) {
   body {
     background-size: 400px 350px;
   }
 
   .topCenter{
     padding-top: 10px;
-    padding-bottom: 40px;
+    padding-bottom: 20px;
   }
-
 
   .form-content {
     
@@ -183,7 +162,40 @@
   }
 
   .bottomCenter {
-    padding-top: 10px;
+    padding-top: 20px;
     font-size: 12px;
+  }
+}
+
+
+/* Layar untuk 481px - 900px */
+@media screen and (min-width: 481px) and (max-width: 900px) {
+  body {
+    background-size: 600px 550px;
+  }
+
+  .topCenter{
+    padding-top: 10px;
+    padding-bottom: 40px;
+  }
+
+  .form-content {
+    
+    max-width: 90%;
+    padding: 16px 20px;
+  }
+
+  .topCenter img {
+    width: 55px;
+    height: 45px;
+  }
+  
+  .topCenter h6 {
+    font-weight: 600;
+  }
+  
+  .bottomCenter {
+    padding-top: 120px;
+    color: #858383;
   }
 }

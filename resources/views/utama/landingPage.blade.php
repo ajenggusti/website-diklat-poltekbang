@@ -150,14 +150,18 @@
                                                 <h4>{{ $testimoni->nama_dummy ?? 'Testimoni' }} <small> - {{ $testimoni->profesi }}</small></h4>
                                             </div>
                                             <p>{{ $testimoni->testimoni }}</p>
-                                            <b>Alumni diklat {{ $testimoni->pendaftaran->diklat->nama_diklat }}</b>
+                                            <div class="bottom-b">
+                                                <b>Alumni diklat {{ $testimoni->pendaftaran->diklat->nama_diklat }}</b>
+                                            </div>
                                         @else
                                             <div class="quote">
                                                 <i class="fa fa-quote-left"></i>
                                                 <h4>{{ $testimoni->nama_dummy ?? 'Testimoni' }} <small> - {{ $testimoni->profesi }}</small></h4>
                                             </div>
                                             <p>{{ $testimoni->testimoni }}</p>
-                                            <b>Alumni diklat {{ $testimoni->diklat->nama_diklat }}</b>
+                                            <div class="bottom-b">
+                                                <b>Alumni diklat {{ $testimoni->diklat->nama_diklat }}</b>
+                                            </div>
                                         @endif
                                     </main>
                                 
@@ -418,15 +422,14 @@
 
 
         {{-- Script Animasi --}}
-        <script>
+        {{-- <script>
+
             let valueDisplays = document.querySelectorAll(".num-animasi");
             let interval = 4000;
         
             valueDisplays.forEach((valueDisplay) => {
                 let startValue = 0;
                 let endValue = parseInt(valueDisplay.getAttribute("data-val"));
-                
-                // Jika data-val adalah 0, set teks menjadi "0" dan return
                 if (endValue === 0) {
                     valueDisplay.textContent = "0";
                     return;
@@ -441,7 +444,54 @@
                     }
                 }, duration);
             });
-        </script>
+        </script> --}}
+
+
+            <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                // Fungsi untuk menghasilkan angka acak antara min dan max
+                function getRandomNumber(min, max) {
+                    return Math.floor(Math.random() * (max - min + 1)) + min;
+                }
+
+                // Fungsi untuk menampilkan animasi angka acak selama beberapa detik
+                function animateRandomNumber(element, finalValue) {
+                    if (!element) {
+                        console.error("Element not found!");
+                        return; // Pastikan elemen tidak null
+                    }
+
+                    if (finalValue === 0) {
+                        console.log("Skipping element with final value 0");
+                        element.textContent = finalValue; // Set the element's textContent to 0 directly
+                        return; // Skip animasi jika nilai akhirnya 0
+                    }
+
+                    var currentValue = 0;
+
+                    var interval = setInterval(function () {
+                        var nextValue = getRandomNumber(currentValue, finalValue);
+                        element.textContent = nextValue;
+                        currentValue = nextValue;
+                        if (currentValue >= finalValue) {
+                            clearInterval(interval);
+                            element.textContent = finalValue; // Pastikan nilai akhir di set
+                        }
+                    }, 50); // Perbarui angka setiap 50ms untuk kecepatan animasi yang lebih cepat
+                }
+
+                // Ambil semua elemen dengan kelas num-animasi
+                var numAnimasiElements = document.querySelectorAll(".num-animasi");
+
+                // Jalankan animasi untuk setiap elemen num-animasi jika nilai lebih dari 0
+                numAnimasiElements.forEach(function(element) {
+                    var finalValue = parseInt(element.getAttribute("data-val"), 10);
+                    animateRandomNumber(element, finalValue);
+                });
+            });
+
+
+            </script>
 
         {{-- Script Slider Kategori Diklat --}}
         <!-- Swiper JS -->

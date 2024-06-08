@@ -17,9 +17,11 @@
                     </li>
                 </ol>
             </nav> --}}
+        <div class="button-macam">
+            <a href="/" class="btn btn-info" style="margin-top: 40px;">Kembali</a><br>
+        </div> 
         <div class="diklat-content">
             @if (count($diklat) != 0 )
-                <a href="/" class="btn btn-info" style="margin-top: 40px;">Kembali</a>
                 {{-- <br> --}}
                 <div class="diklat-land swiper">
                     <h2>PROGRAM {{ $diklatOne->kategori_diklat }}</h2>

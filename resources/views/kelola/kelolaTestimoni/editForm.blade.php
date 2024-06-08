@@ -44,6 +44,7 @@
                     <div class="mb-3">
                         <label for="testimoni" class="form-label is">Testimoni</label>
                         <textarea class="form-control  @error('testimoni') is-invalid @enderror" id="testimoni" name= "testimoni">{{ old('testimoni') ?: $kelTestimoni->testimoni}}</textarea>
+                        <small style="color: rgb(16, 126, 190)">Maksimal 40 kata</small>
                         @error('testimoni')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror

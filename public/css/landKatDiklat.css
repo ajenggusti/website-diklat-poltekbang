@@ -13,11 +13,7 @@
     max-width: 1220px;
     width: 100%;
     padding: 40px 0;
-    border: 1px solid #000000;
-}
-
-.katDiklat {
-    /* padding-left: 10%; */
+    /* border: 1px solid #000000; */
 }
 
 .slide-content{
@@ -60,16 +56,13 @@
     /* transition: box-shadow 0.3s ease-in-out; */
 }
 
-/* .card:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.379);
-    box-shadow: 0 8px 8px rgba(0, 0, 0, 0.2);
-} */
-
 
 .card-image{
     position: relative;
     height: 200px;
-    width: 359px;
+    /* width: 359px; */
+
+    width: 100%;
 }
 
 .card-image .card-img{
@@ -78,7 +71,6 @@
     object-fit: cover;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    /* border-radius: 10px; */
 }
 
 .name{
@@ -129,11 +121,40 @@
     background-color: #4070F4;
 }
 
-@media screen and (max-width: 768px) {
+
+/* Layar untuk 481px - 900px */
+@media screen and (min-width: 481px) and (max-width: 1056px) {
     .slide-content{
         margin: 0 10px;
     }
-    .swiper-navBtn{
-        display: none;
+    .card-image{
+        height: auto;
+        width: 100%;
+    }
+    
+    .card-image .card-img{
+        height: 200px;
+        width: 100%;
+        max-width: 500px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .slide-content{
+        margin: 0 10px;
+    }
+    .card-image{
+        height: auto;
+        width: 100%;
+    }
+    
+    .card-image .card-img{
+        height: 200px;
+        width: 100%;
+        max-width: 500px;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
     }
 }

@@ -14,12 +14,7 @@
 .outlined-text {
     font-family: Georgia, serif;
     font-size: 3em; /* Ukuran font */
-    color: #ff5900; /* Warna teks utama */
-    /* text-shadow:
-        -1px -1px 0 #ff5900,  
-         1px -1px 0 #ff5900,
-        -1px  1px 0 #ff5900,
-         3px  1px 0 #ff5900; */
+    color: #ff5900;
 }
 
 .img-container {
@@ -41,8 +36,6 @@
 }
 
 .card-content3 {
-    /* padding-left: 20px;
-    padding-right: 20px; */
     flex: 1 1 auto;
     margin-left: 40px;
     width: 30%;
@@ -56,14 +49,8 @@
     padding: 20px;
     margin-right: 35px;
     margin-top: 20px;
+    /* border: 1px solid #000; */
 }
-
-/* .card-content3 p .des-detail {
-    font-size: 16px;
-    font-weight: 600;
-    color: #001cb9;
-} */
-
 
 .harga-detail {
     display: flex;
@@ -83,15 +70,178 @@
 .harga-detail img {
     /* align-items: flex-start; */
     width: 80px;
-    padding-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .des-detail {
-    width: 70%;
+    width: 100%;
+    max-width: 70%;
     height: auto;
     margin-top: 25px;
     margin-right: 40px;
     padding: 10px 10px 10px 20px;
     font-weight: bold;
     border: 1px solid #dddddd;
+}
+
+.detail-one a,
+.detail-two a,
+.detail-three a {
+    font-weight: bold;
+    padding-left: 1.5px;
+    padding-bottom: 13px;
+    border: none;
+}
+
+.detail-one a {
+    color: #ff0000;
+}
+
+.detail-one a:hover {
+    color: #de1212;
+}
+
+.detail-two a {
+    color: #cf9f00;
+}
+.detail-two a:hover {
+    color: #977811;
+}
+.detail-three a {
+    color: #006eff;
+}
+.detail-three a:hover {
+    color: #0c56b7;
+}
+
+.button-detail {
+    margin-left: auto;
+}
+.button-detail a {
+    background-color: rgb(0,27,180);
+}
+
+
+/* Layar untuk 481px - 900px */
+@media screen and (min-width: 481px) and (max-width: 1056px) {
+    .content-header {
+        width: 100%;
+    }
+    
+    .headTitle {
+        margin-left: 20px;
+    }
+    
+    .outlined-text {
+        font-size: 2.5em;
+        padding-top: 20px;
+    }
+
+    .img-container img {
+        width: 100%;
+        max-width: 400px;
+        margin-right: 20px;
+    }
+    .card-content3 .harga-detail {
+        /* width: 360px;
+        height: 100px;
+        border-radius: 20px;
+        background-color: #f28c55; */
+        padding: 20px 5px 20px 20px;
+        width: 250px;
+
+        /* margin-right: 20px; */
+        /* margin-top: 20px; */
+        /* border: 1px solid #000; */
+    }
+    
+    .harga-detail span {
+        font-weight: bold;
+        font-size: 15px;
+    }
+    
+    .harga-detail img {
+        /* align-items: flex-start; */
+        width: 70px;
+        margin-bottom: 20px;
+    }
+    
+    .des-detail {
+        /* width: 100%; */
+        max-width: 55%;
+        height: auto;
+        /* margin-top: 25px;
+        margin-right: 40px;
+        padding: 10px 10px 10px 20px;
+        font-weight: bold;
+        border: 1px solid #dddddd; */
+    }
+   
+}
+
+@media screen and (max-width: 480px) {
+    .content-header {
+        width: 100%;
+    }
+    
+    .headTitle {
+        margin-left: 20px;
+    }
+    
+    .outlined-text {
+        font-size: 1em;
+        padding-top: 50px;
+    }
+
+    .img-container img {
+        width: 100%;
+        max-width: 200px;
+        margin-right: 20px;
+    }
+
+    .content-body2 {
+        padding: 5px 20px 20px 20px ;
+        display: block;
+    }
+    
+    .card-content3 {
+        width: 100%;
+        margin-left: 0;
+        flex: none;
+
+        margin-top: 20px;
+    }
+    
+    .card-content3 .harga-detail {
+        width: 100%;
+        padding: 5px 5px 10px 10px;
+        margin-right: 0;
+        margin-top: 5px;
+    }
+    
+    .harga-detail {
+        display: block;
+        flex-direction: column;
+        align-items: flex-start;
+        /* border: 1px solid #000; */
+        
+    }
+    
+    .harga-detail span {
+        font-weight: bold;
+        font-size: 15px;
+        padding: 0 5px 5px 5px;
+    }
+    
+    .harga-detail img {
+        margin-left: 5px;
+        width: 80px;
+        margin-bottom: 10px;
+    }
+    
+    .des-detail {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
 }

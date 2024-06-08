@@ -47,19 +47,67 @@
     box-shadow: 0 0 10px rgb(162, 163, 163);
 }
 
+/* Layar 0-480px */
+@media screen and (max-width: 480px) {
+    .landOne {
+        padding-left: 20px;
+        padding-right: 20px;
+        height: auto;
+    }
+    
+    .landOne h1 {
+        padding-top: 0;
+        width: 50%;
+        font-size: 17px;
+    
+    }
+    
+    .landOne img {
+        padding-top: 0;
+        width: 50%;
+        height: auto;
+        
+    }
+    .landOne a {
+        margin-top: 5px;
+        padding: 4px 8px;
+        font-size: 14px;
+    }
+}
 
+/* Layar untuk 481px - 900px */
+@media screen and (min-width: 481px) and (max-width: 900px) {
+    .landOne {
+        padding-left: 20px;
+        padding-right: 20px;
+        height: auto;
+    }
+    
+    .landOne h1 {
+        padding-top: 0;
+        width: 50%;
+        font-size: 33px;
+    
+    }
+    
+    .landOne img {
+        padding-top: 0;
+        width: 50%;
+        height: auto;
+        
+    }
+    .landOne a {
+        margin-top: 5px;
+        padding: 6px 12px;
+        font-size: 20px;
+    }
+}
 
 /* LAND FOR CONTENT */
-/* .landBlank { */
-    /* height: 400px;
-    background: rgb(255,255,255);
-    background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(249,233,224,1) 100%);
-} */
 
 /* LAND TWO */
 .landTwo {
     background: rgb(255,255,255);
-    /* background: linear-gradient(180deg, rgba(255,255,255,1) 0%, rgba(249,233,224,1) 100%); */
     height: 400px;
     display: flex;
     box-sizing: border-box;
@@ -119,52 +167,72 @@ span.text-animasi {
     }
 }
   
-@media screen and (max-width: 768px) {
+/* Layar untuk 481px - 900px */
+@media screen and (min-width: 481px) and (max-width: 900px) {
     .landTwo{
-      /* width: 90vw; */
-      width: 100%;
-      flex-wrap: wrap;
-      gap: 30px;
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 7px;
+        padding-left: 70px;
+        padding-right: 70px;
     }
   
     .card-animasi {
-      width: calc(50% -40px);
-      height: 30vmin;
-      font-size: 13px;
+      width: 20%;
+      height: 20vmin;
+      font-size: 16px;
+      /* padding-bottom: 10px; */
+      border-bottom: 10px solid rgb(248, 100, 20);
+      
+    }
+    span.text-animasi {
+        font-size: 0.8em;
     }
 }
 @media screen and (max-width: 480px) {
     .landTwo{
-      gap: 15px;
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 7px;
+        padding-left: 30px;
+        padding-right: 30px;
     }
   
     .card-animasi {
-      width: 100%;
-      height: 25vmin;
-      font-size: 8px;
+      width: 35%;
+      height: 35vmin;
+      font-size: 18px;
+      padding-bottom: 5px;
+      border-bottom: 10px solid rgb(248, 100, 20);
+      
+    }
+    .card-animasi i{
+        font-size: 1.5em;
+      
+    }
+    
+    span.num-animasi {
+        font-size: 1.4em;
+    }
+    span.text-animasi {
+        font-size: 0.7em;
     }
 }
 
 
 /* LAND THREE - PROMO */
 .landThree {
-    /* background-color: #007ff2; */
-    /* background-image: linear-gradient(to right top, #6eacff, #478bf1, #2369e1, #0045cc, #001bb4); */
     background-color: #ffffff;
-    /* background: linear-gradient(180deg, rgba(0,27,180,1) 0%, rgba(110,172,255,0.7960434173669468) 100%); */
     color: rgb(0, 0, 0);
     width: 100%;
     height: 650px;
-    
-    /* border: 1px solid #000000; */
 }
 .promo-land {
     margin-left: 10%;
     margin-right: 10%;
     max-width: 80%;
-    /* padding-top: 50px; */
     padding-bottom: 20px;
-    border: 1px solid #000000;
+    /* border: 1px solid #000000; */
 }
 
 .img-promo img {
@@ -182,7 +250,6 @@ span.text-animasi {
 /* LAND Six - FAQ */
 .landSix {
     width: 100%;
-    /* height: 610px; */
     background-color: #ffffff;
 }
 
@@ -191,7 +258,6 @@ span.text-animasi {
     margin-right: 10%;
     max-width: 80%;
     padding-top: 50px;
-    /* padding-bottom: 20px; */
 }
 
 .bg-acc {
