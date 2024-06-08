@@ -18,7 +18,7 @@ class UtamaController extends Controller
 {
     public function index()
     {
-        
+
         $totalPendaftar = Pendaftaran::count();
         $jmlPendaftarBelumTerlaksana = Pendaftaran::where('status_pelaksanaan', 'Belum terlaksana')->count();
         $jmlDiklat = Diklat::all()->count();
@@ -26,47 +26,47 @@ class UtamaController extends Controller
         $alumni = Pendaftaran::where('status_pelaksanaan', 'Terlaksana')->count();
         // dd($user);
         $testimonis = Testimoni::where('tampil', 'iya')->get();
-        $countTestimoni=Testimoni::where('tampil', 'iya')->get()->count();
+        $countTestimoni = Testimoni::where('tampil', 'iya')->get()->count();
         // dd($testimonis);
         $gbrSlide = Gambar_navbar::where('status', 'tampilkan')->get();
-        $promos = Promos::where(function($query) {
+        $promos = Promos::where(function ($query) {
             $query->whereDate('tgl_akhir', '>=', now())
-                  ->where('pakai_kuota', 'iya')
-                  ->where('tampil', 'ya')
-                  ->where('kuota', '>', 0);
-            })->orWhere(function($query) {
+                ->where('pakai_kuota', 'iya')
+                ->where('tampil', 'ya')
+                ->where('kuota', '>', 0);
+        })->orWhere(function ($query) {
+            $query->whereDate('tgl_akhir', '>=', now())
+                ->where('tampil', 'ya')
+                ->where('pakai_kuota', 'tidak');
+        })
+            ->get();
+        // $countPromo = count($promos);
+        $countPromo = Promos::where(function ($query) {
+            $query->whereDate('tgl_akhir', '>=', now())
+                ->where('pakai_kuota', 'iya')
+                ->where('tampil', 'ya')
+                ->where('kuota', '>', 0);
+        })
+            ->orWhere(function ($query) {
                 $query->whereDate('tgl_akhir', '>=', now())
-                        ->where('tampil', 'ya')
+                    ->where('tampil', 'ya')
                     ->where('pakai_kuota', 'tidak');
             })
-            ->get();
-            // $countPromo = count($promos);
-            $countPromo = Promos::where(function($query) {
-                $query->whereDate('tgl_akhir', '>=', now())
-                      ->where('pakai_kuota', 'iya')
-                      ->where('tampil', 'ya')
-                      ->where('kuota', '>', 0);
-                    })
-            ->orWhere(function($query) {
-                $query->whereDate('tgl_akhir', '>=', now())
-                        ->where('tampil', 'ya')
-                        ->where('pakai_kuota', 'tidak');
-                    })
-                    ->get()->count();
-                    // dd($countPromo);
-    
-    
+            ->get()->count();
+        // dd($countPromo);
+
+
         return view('utama/landingPage', [
             'jmlPendaftarBelumTerlaksana' => $jmlPendaftarBelumTerlaksana,
             'jmlDiklat' => $jmlDiklat,
             'katDiklat' => $katDiklat,
             'testimonis' => $testimonis,
             'gbrSlide' => $gbrSlide,
-            'promos'=>$promos,
-            'alumni'=>$alumni,
-            'totalPendaftar'=>$totalPendaftar,
-            'countTestimoni'=>$countTestimoni,
-            'countPromo' =>$countPromo,
+            'promos' => $promos,
+            'alumni' => $alumni,
+            'totalPendaftar' => $totalPendaftar,
+            'countTestimoni' => $countTestimoni,
+            'countPromo' => $countPromo,
 
 
         ]);
@@ -77,16 +77,16 @@ class UtamaController extends Controller
             ->where('id_kategori_diklat', $kategori)
             ->get();
         $diklatOne = KatDiklat::findOrFail($kategori);
-    //    dd($diklatOne->kategori_diklat);
-        $allDiklat=Diklat::get();
-        
+        //    dd($diklatOne->kategori_diklat);
+        $allDiklat = Diklat::get();
+
         return view('utama.macamDiklat', [
             'diklat' => $diklat,
-            'allDiklat'=>$allDiklat,
-            'diklatOne' =>$diklatOne,
+            'allDiklat' => $allDiklat,
+            'diklatOne' => $diklatOne,
         ]);
     }
-        // dd($kategori);
+    // dd($kategori);
     //     $diklat = Diklat::findOrFail($kategori);
     //     $allDiklat=Diklat::get();
     //     dd($diklat->kategori_diklat);
@@ -115,7 +115,7 @@ class UtamaController extends Controller
             ->get();
         $user = Auth::user();
         // dd($user);
-        if(Auth::check()) {
+        if (Auth::check()) {
             $dobelDiklat = Pendaftaran::where('id_user', $user->id)
                 ->where('id_diklat', $id)
                 ->exists();
@@ -132,8 +132,7 @@ class UtamaController extends Controller
             'gambars' => $gambars,
             'dobelDiklat' => $dobelDiklat,
             'diklatOne' => $diklatOne,  // NEW C
-            'user'=>$user
+            'user' => $user
         ]);
-    }    
+    }
 }
-
