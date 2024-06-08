@@ -187,10 +187,12 @@
           <li class="nav-link2">
             <form action="/logout" method="POST">
               @csrf
-              <button type="submit" class="btn" style="border: none; text-decoration: none;">
-                <i class="bi bi-box-arrow-right icons"></i>
-                <span class="text nav-text">Logout</span>
-              </button>
+                <button type="submit" class="btn" style="border: none; text-decoration: none;">
+                  <a>
+                    <i class="bi bi-box-arrow-right icons"></i>
+                    <span class="text nav-text">Logout</span>
+                  </a>
+                </button>
             </form>
           </li>
           
