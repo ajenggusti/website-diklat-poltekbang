@@ -27,13 +27,14 @@ class LoginController extends Controller
                 'name' => $googleUser->name,
                 'email' => $googleUser->email,
                 'id_level' => 1,
+                'status'=>'Perlu dilengkapi',
                 'password' => bcrypt(Str::random(16)) 
             ]);
             $user->sendEmailVerificationNotification();
         }
         
         Auth::login($user);
-        return redirect()->route('verification.notice');
+        return redirect()->route('home');
     }
 
     public function login(Request $request){

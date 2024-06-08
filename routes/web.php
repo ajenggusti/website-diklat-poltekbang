@@ -51,7 +51,7 @@ use Illuminate\Support\Str;
 // });
 
 // route halaman utama
-Route::get('/', [UtamaController::class, 'index']);
+Route::get('/', [UtamaController::class, 'index'])->name('home');
 Route::get('/utama/macamDiklat/{kategori}', [UtamaController::class, 'allDiklat']);
 Route::get('/utama/detailDiklat/{detail}', [UtamaController::class, 'detailDiklat']);
 // db superAdmin
@@ -94,7 +94,7 @@ Route::resource('/kelKatDiklat', kelKatDiklatController::class)->except('show')-
 // route crud user  (register)
 Route::get('/indexKelolaUser', [RegisterController::class, 'tampil']);
 // biodata user
-Route::get('/editProfil', [RegisterController::class, 'editProfil'])->middleware(['auth', 'verified']);;
+Route::get('/editProfil', [RegisterController::class, 'editProfil']);
 Route::put('/updateProfil/{id}', [RegisterController::class, 'updateProfil'])->name('updateProfil.update');
 // permohonan ubah biodata
 Route::get('/permohonan/{id}', [RegisterController::class, 'editPermohonan']);
@@ -157,7 +157,7 @@ Route::post('/reset-password', function (Request $request) {
     return $status === Password::PASSWORD_RESET
                 ? redirect()->route('login')->with('status', __($status))
                 : back()->withErrors(['email' => [__($status)]]);
-})->middleware('guest')->name('password.update');
+})->middleware('guest')->name('password.update.post');
 
 // route crud promo
 Route::resource('/kelPromo', PromoController::class);
