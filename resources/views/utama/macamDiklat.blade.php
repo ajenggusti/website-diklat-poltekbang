@@ -17,9 +17,11 @@
                     </li>
                 </ol>
             </nav> --}}
-        <div class="button-macam">
-            <a href="/" class="btn btn-info" style="margin-top: 40px;">Kembali</a><br>
-        </div> 
+        @if (count($diklat) != 0 )
+            <div class="button-macam">
+                <a href="/" class="btn btn-info" style="margin-top: 40px;">Kembali</a><br>
+            </div> 
+        @endif
         <div class="diklat-content">
             @if (count($diklat) != 0 )
                 {{-- <br> --}}

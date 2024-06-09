@@ -14,7 +14,7 @@
             justify-content: center;
             align-items: center;
             
-            background-color: bisque;
+            background-color: rgb(255, 255, 255);
         }
         .content-container {
             display: flex;

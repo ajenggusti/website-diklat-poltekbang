@@ -49,6 +49,8 @@
 
 .card-content h5 {
     text-align: center;
+    font-size: 1.2em;
+
     height: 80px;
     overflow: hidden;
     margin-bottom: 5px;
@@ -225,6 +227,10 @@
 @media screen and (max-width: 782px) {
     .card-detail .detail-right img {
         width: 180px;
+    }
+    .card-content h5 {
+        text-align: center;
+        /* font-size: 15px; */
     }
 }
 
