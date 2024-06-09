@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -23,7 +24,8 @@ class PendaftaranSeeder extends Seeder
                 'pendidikan_terakhir' => 'SMA',
                 'no_hp' => '089-898-098-999',
                 'status_pembayaran_daftar' => 'Menunggu pembayaran',
-                'status_pelaksanaan'=>'Belum terlaksana'
+                'status_pelaksanaan'=>'Belum terlaksana',
+                'waktu_pendaftaran' => Carbon::now()
             ],
             [
                 'id_diklat' => 1,
