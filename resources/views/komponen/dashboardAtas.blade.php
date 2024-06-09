@@ -187,10 +187,12 @@
           <li class="nav-link2">
             <form action="/logout" method="POST">
               @csrf
-              <button type="submit" class="btn" style="border: none; text-decoration: none;">
-                <i class="bi bi-box-arrow-right icons"></i>
-                <span class="text nav-text">Logout</span>
-              </button>
+                <button type="submit" class="btn" style="border: none; text-decoration: none;">
+                  <a>
+                    <i class="bi bi-box-arrow-right icons"></i>
+                    <span class="text nav-text">Logout</span>
+                  </a>
+                </button>
             </form>
           </li>
           
@@ -263,6 +265,31 @@
               });
           });
       </script>
+
+      <script>
+        document.addEventListener("DOMContentLoaded", function() {
+          if (window.matchMedia("(max-width: 480px)").matches) {
+            const iconLinks = document.querySelectorAll('.sidebar li a');
+        
+            // Iterasi setiap link ikon
+            iconLinks.forEach(function(link) {
+              const text = link.querySelector('.nav-text');
+        
+              // Tambahkan event listener untuk mouseenter
+              link.addEventListener('mouseenter', function() {
+                // Tambahkan kelas 'show-text' pada teks saat kursor mengarah ke ikon
+                text.classList.add('show-text');
+              });
+        
+              // Tambahkan event listener untuk mouseleave
+              link.addEventListener('mouseleave', function() {
+                // Hapus kelas 'show-text' dari teks saat kursor meninggalkan ikon
+                text.classList.remove('show-text');
+              });
+            });
+          }
+        });
+        </script>
       
       {{-- <div class="container home"> --}}
         

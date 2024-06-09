@@ -4,6 +4,24 @@
     <link href="/css/staff.css" rel="stylesheet">
     
     {{-- Body --}}
+    {{-- ================ini adalah chart dpuk========================= --}}
+    <div class="container px-4 mx-auto">
+
+      <form method="GET" action="{{ url('/dbDpuk') }}" class="form-container">
+          <label for="year">Select Year:</label>
+          <select name="year" id="year" onchange="this.form.submit()">
+              @for($y = date('Y'); $y >= 2000; $y--)
+                  <option value="{{ $y }}" {{ $selectedYear == $y ? 'selected' : '' }}>{{ $y }}</option>
+              @endfor
+          </select>
+      </form>
+  
+      <div class="p-6 m-20 bg-white rounded shadow">
+          {!! $DpukPendaftarChart->container() !!}
+      </div>
+    </div>
+
+    <hr>
     <div class="rows text">
         <div class="col-lg-3 col-6">
           <!-- small box -->
@@ -86,25 +104,7 @@
           <!-- ./col -->
     </div>
 
-    {{-- ================ini adalah chart dpuk========================= --}}
-
-    <hr>
-    <div class="container px-4 mx-auto">
-
-      <form method="GET" action="{{ url('/dbDpuk') }}">
-          <label for="year">Select Year:</label>
-          <select name="year" id="year" onchange="this.form.submit()">
-              @for($y = date('Y'); $y >= 2000; $y--)
-                  <option value="{{ $y }}" {{ $selectedYear == $y ? 'selected' : '' }}>{{ $y }}</option>
-              @endfor
-          </select>
-      </form>
-
-      <div class="p-6 m-20 bg-white rounded shadow">
-          {!! $DpukPendaftarChart->container() !!}
-      </div>
-
-
+    
 
     <script src="{{ $DpukPendaftarChart->cdn() }}"></script>
 
