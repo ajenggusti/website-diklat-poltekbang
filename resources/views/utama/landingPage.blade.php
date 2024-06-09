@@ -169,7 +169,6 @@
                                             </div>
                                         @endif
                                     </main>
-                                
                                 </div>
                             @endforeach
                         </div>

@@ -68,13 +68,11 @@
             padding: 0;
         }
 
-        .body {
+        body {
             font-family: 'Poppins', sans-serif;
             display: flex;
             flex-direction: column;
-
-
-            /* overflow-x: hidden; */
+            overflow-x: hidden;
         }
 
         .content-wrapper {
@@ -82,75 +80,15 @@
             padding-top: 100px;
         }
 
-        nav {
+        .content-nav {
             background-color: rgb(248, 100, 20);
             height: 100px;
             width: 100%;
             position: fixed;
             top: 0;
-            /* left: 0; */
             z-index: 1000;
             transition: background-color 0.3s, color 0.3s;
         }
-        /* nav .content-nav {
-            position: relative;
-            height: 100%;
-            max-width: 1000px;
-            width: 100%;
-            background-color: rgb(248, 100, 20);
-            margin: 0 auto;
-            padding: 0 30px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        } */
-        nav .content-nav .sidebarOpen {
-            color: #fff;
-            font-size: 25px;
-            padding: 5px;
-            cursor: pointer;
-            display: none;
-        }
-        nav .content-nav .navbar-brand img {
-            width: 40px;
-            /* font-weight: 500;
-            color: var(--text-color);
-            text-decoration: none; */
-        }
-        .navbar-collapse .logo-toggle{
-            display: none;
-        }
-        .content-nav .centerNav,
-        .content-nav .rightNav {
-            display: flex;
-            align-items: center;
-        }
-        /* .centerNav, .rightNav li a{
-            position: relative;
-            font-size: 17px;
-            font-weight: 400;
-            color: #fff;
-            text-decoration: none;
-            padding: 10px;
-        } */
-        /* .centerNav li a::before, 
-        .rightNav li a::before{
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            transform: translateX(-50%);
-            height: 6px;
-            width: 6px;
-            border-radius: 50%;
-            background-color: #ee5000;
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-        .centerNav li:hover a::before,
-        .rightNav li:hover a::before{
-            opacity: 1;
-        } */
         .content-nav .topnav {
             display: flex;
             justify-content: space-between;
@@ -159,8 +97,15 @@
             padding-top: 20px;
         }
         
+        .navbar-toggler {
+            font-size: 24px; 
+            font-weight: bold;
+            /* background-color: #ff964a; */
+            color: rgb(0, 18, 183);
+        }
 
         .content-nav .navbar-brand img {
+            width: 85px;
             margin-left: 110px;
             padding-bottom: 2px;
             transition: filter 0.3s;
@@ -250,62 +195,27 @@
             color: rgb(0,27,180) !important;
         }
 
-        .sidebarOpen {
-            color: #fff;
-            font-size: 25px;
-            padding: 5px;
-            cursor: pointer;
-            display: none;
-        }
 
-        
-
-
-        @media (max-width: 991px) {
-            .content-nav .sidebarOpen {
-                display: block;
+        @media (max-width: 480px) {
+            .content-nav .navbar-brand img {
+                width: 60px;
+                margin-left: 20px;
+                padding-bottom: 2px;
+                transition: filter 0.3s;
             }
-
             .content-nav .navbar-collapse {
-                background-color: #010718;
+                background-color: rgba(255, 221, 202, 0.812);
                 position: fixed;
-                height: 100%;
                 top: 0;
-                left: -100%;
-                width: 320px;
-                padding: 20px;
-                z-index: 1000;
-                transition: all 0.4s ease;
-            }
-            nav.active .menu{
-                left: -0%;
-            }
-            .content-nav .navLogo img {
-                opacity: 0;
-                transition: all 0.3s ease;
-            }
-            .navbar-collapse .logo-toggle {
-                display: block;
+                left: 0;
                 width: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
+                z-index: 1000;
+                display: none;
             }
-            .logo-toggle .siderbarClose{
-                color: #fff;
-                font-size: 24px;
-                cursor: pointer;
+            .navbar-toggler i{
+                font-size: 30px;
             }
-            .centerNav, .rightNav {
-                flex-direction: column;
-                padding-top: 30px;
-            }
-            .centerNav li a,
-            .rightNav li a {
-                display: block;
-                margin-top: 20px;
-            }
-            /* .content-nav .navbar-collapse.show {
+            .content-nav .navbar-collapse.show {
                 display: block;
             }
             .content-nav .navbar-nav {
@@ -317,7 +227,7 @@
             .content-nav .navbar-nav .nav-item {
                 margin: 0;
                 text-align: center;
-            } */
+            }
             .content-nav .navbar-nav .nav-item .nav-link {
                 padding: 10px 15px;
                 color: #FF6900;
@@ -326,52 +236,65 @@
             .content-nav .navbar-nav .nav-item .nav-link:hover {
                 color: rgb(0,27,180);
             }
-
-            /* .logo-toggle .siderbarClose{
-                color: #fff;
-                font-size: 24px;
-                cursor: pointer;
-            } */
         }
 
-        /* @media (min-width: 992px) {
+        /* Layar untuk 481px - 900px */
+        @media screen and (min-width: 481px) and (max-width: 900px) {
+            .content-nav .navbar-brand img {
+                width: 80px;
+                margin-left: 40px;
+                padding-bottom: 2px;
+                transition: filter 0.3s;
+            }
             .content-nav .navbar-collapse {
-                background-color: transparent;
+                background-color: rgba(255, 221, 202, 0.812);
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                z-index: 1000;
+                display: none;
+            }
+            .navbar-toggler i{
+                font-size: 40px;
+                margin-right: 40px;
+            }
+            .content-nav .navbar-collapse.show {
+                display: block;
             }
             .content-nav .navbar-nav {
-                margin-left: auto;
+                display: block !important;
+                width: 100%;
+                margin: 0;
+                padding: 0;
             }
-            .content-nav .navbar-nav .dropdown-menu {
-                margin-right: 0;
-                left: auto;
+            .content-nav .navbar-nav .nav-item {
+                margin: 0;
+                text-align: center;
             }
-            
+            .content-nav .navbar-nav .nav-item .nav-link {
+                padding: 10px 15px;
+                color: #FF6900;
+            }
+
+            .content-nav .navbar-nav .nav-item .nav-link:hover {
+                color: rgb(0,27,180);
+            }
         }
-        @media (max-width: 480px) {
-            .content-nav .navbar-brand img {
-                margin-left: 20px;
-            }
-        } */
   
     </style>
   </head>
   <body>
-    <nav>
+    
         <div class="content-nav" id="navbar">
-            <div class="navbar navbar-expand-lg topnav" >
-                <a href="/" class="navbar-brand navLogo">
-                    <img src="{{ asset('img/poltek.png') }}" alt="politeknik" style="width: 85px;">
+            <nav class="navbar navbar-expand-lg topnav" >
+                <a href="/" class="navbar-brand">
+                    <img src="{{ asset('img/poltek.png') }}" alt="politeknik">
                 </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation" style="font-size: 24px; color: rgb(237, 140, 29);">
-                    <i class="bi bi-list sidebarOpen"></i>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="bi bi-list"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavDropdown" >
-                    <div class="logo-toggle">
-                        <a href="/" class="navbar-brand">
-                            <img src="{{ asset('img/poltek.png') }}" alt="politeknik" style="width: 85px;">
-                        </a>
-                        <i class="bi bi-x-lg siderbarClose"></i>
-                    </div>
                     <ul class="navbar-nav me-auto centerNav">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/">Home</a>
@@ -432,9 +355,8 @@
                         @endauth
                     </ul>
                 </div>
-            </div>
-        </div>
-    </nav> 
+            </nav>
+        </div> 
         <script>
             window.onscroll = function() {
                 myFunction();

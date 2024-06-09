@@ -49,8 +49,8 @@
 
 .card-content h5 {
     text-align: center;
-    font-size: 1.2em;
-
+    font-size: 1.1em;
+    padding-top: 10px;
     height: 80px;
     overflow: hidden;
     margin-bottom: 5px;
@@ -153,6 +153,9 @@
 
 /* Kartu pada layar kurang dari 500px */
 @media screen and (max-width: 499.98px) {
+    .card-content h5 {
+        font-size: 1em;
+    }
     .card-riwayat {
         flex-basis: calc(100% - 10px);
     }
