@@ -13,7 +13,7 @@ class TestimoniPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return $user->level->level === 'DPUK' || $user->level->level === 'Super Admin';
     }
 
     /**
@@ -21,7 +21,9 @@ class TestimoniPolicy
      */
     public function view(User $user, Testimoni $testimoni): bool
     {
-        //
+        return $user->level->level === 'DPUK' ||
+            $user->level->level === 'Super Admin' ||
+            $user->id === $testimoni->user_id;
     }
 
     /**
@@ -29,7 +31,7 @@ class TestimoniPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->level->level === 'DPUK' || $user->level->level === 'Super Admin';
     }
 
     /**
@@ -37,7 +39,9 @@ class TestimoniPolicy
      */
     public function update(User $user, Testimoni $testimoni): bool
     {
-        //
+        return $user->level->level === 'DPUK' ||
+            $user->level->level === 'Super Admin' ||
+            $user->id === $testimoni->user_id;
     }
 
     /**
@@ -45,7 +49,9 @@ class TestimoniPolicy
      */
     public function delete(User $user, Testimoni $testimoni): bool
     {
-        //
+        return $user->level->level === 'DPUK' ||
+            $user->level->level === 'Super Admin' ||
+            $user->id === $testimoni->user_id;
     }
 
     /**
@@ -53,7 +59,9 @@ class TestimoniPolicy
      */
     public function restore(User $user, Testimoni $testimoni): bool
     {
-        //
+        return $user->level->level === 'DPUK' ||
+            $user->level->level === 'Super Admin' ||
+            $user->id === $testimoni->user_id;
     }
 
     /**
@@ -61,6 +69,8 @@ class TestimoniPolicy
      */
     public function forceDelete(User $user, Testimoni $testimoni): bool
     {
-        //
+        return $user->level->level === 'DPUK' ||
+            $user->level->level === 'Super Admin' ||
+            $user->id === $testimoni->user_id;
     }
 }

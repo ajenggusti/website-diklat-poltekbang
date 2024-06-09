@@ -36,10 +36,11 @@ class RiwayatController extends Controller
     public function detailRiwayat($id)
     {
         $data = Pendaftaran::find($id);
+        $this->authorize('view', $data);
         $user = Auth::user();
-        if ($user->id != $data->id_user) {
-            abort(403, 'Unauthorized action.');
-        }
+        // if ($user->id != $data->id_user) {
+        //     abort(403, 'Unauthorized action.');
+        // }
         $countData = $data ? 1 : 0;
         return view('utama.detailRiwayat', ['data' => $data]);
     }

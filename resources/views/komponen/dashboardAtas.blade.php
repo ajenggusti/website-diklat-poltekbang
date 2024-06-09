@@ -83,95 +83,149 @@
         <div class="menu">
 
           <ul class="menu-links">
+            {{-- akses superadmin --}}
             @can('superAdmin')
-            <li class="nav-link">
-                <a href="/dbSuperAdmin">
+              <li class="nav-link">
+                  <a href="/dbSuperAdmin">
+                    <i class="fas fa-house-user icon"></i>
+                    <span class="text nav-text">Dashboard</span>
+                  </a>
+              </li>
+              <li class="nav-link">
+                <a href="/indexKelolaUser">
+                  <i class="fas fa-users icon"></i>
+                  <span class="text nav-text">User</span>
+                </a>
+              </li>
+
+              <li class="nav-link">
+                <a href="/kelPromo">
+                  <i class="fas fa-tags icon"></i>
+                  <span class="text nav-text">Promo</span>
+                </a>
+              </li>
+                          
+              <li class="nav-link">
+                <a href="/kelTestimoni">
+                  <i class="fas fa-envelope-open-text icon"></i>
+                  <span class="text nav-text">Testimoni</span>
+                </a>
+              </li>
+
+              <li class="nav-link">
+                <a href="/kelKatDiklat">
+                  <i class="fas fa-envelope-open-text icon"></i>
+                  <span class="text nav-text">Kategori Diklat</span>
+                </a>
+              </li>
+                        
+              <li class="nav-link">
+                <a href="/kelDiklat">
+                  <i class="fas fa-envelope-open-text icon"></i>
+                  <span class="text nav-text">Diklat</span>
+                </a>
+              </li>
+                      
+              <li class="nav-link">
+                <a href="/kelPendaftaran">
+                  <i class="fas fa-envelope-open-text icon"></i>
+                  <span class="text nav-text">Pendaftaran(dpuk)</span>
+                </a>
+              </li>
+                        
+              <li class="nav-link">
+                <a href="/kelPendaftaranKeuangan">
+                  <i class="fas fa-envelope-open-text icon"></i>
+                  <span class="text nav-text">Pendaftaran(keuangan)</span>
+                </a>
+              </li>
+                        
+              <li class="nav-link">
+                <a href="/events">
+                  <i class="fas fa-calendar-week icon"></i>
+                  <span class="text nav-text">Kalender</span>
+                </a>
+              </li>     
+              
+              <li class="nav-link">
+                <a href="/kelPembayaran">
+                  <i class="fas fa-file-invoice icon"></i>
+                  <span class="text nav-text">Laporan</span>
+                </a>
+              </li> 
+            @endcan
+              {{-- akses dpuk --}}
+            @can('dpuk')
+              <li class="nav-link">
+                <a href="/dbDpuk">
                   <i class="fas fa-house-user icon"></i>
                   <span class="text nav-text">Dashboard</span>
                 </a>
-            </li>
-            @endcan
+              </li>
+              <li class="nav-link">
+                <a href="/kelPendaftaran">
+                  <i class="fas fa-envelope-open-text icon"></i>
+                  <span class="text nav-text">Pendaftaran(dpuk)</span>
+                </a>
+              </li> 
+              
+              <li class="nav-link">
+                <a href="/kelPromo">
+                  <i class="fas fa-tags icon"></i>
+                  <span class="text nav-text">Promo</span>
+                </a>
+              </li>
+                          
+              <li class="nav-link">
+                <a href="/kelTestimoni">
+                  <i class="fas fa-envelope-open-text icon"></i>
+                  <span class="text nav-text">Testimoni</span>
+                </a>
+              </li>
 
-            @can('dpuk')
-            <li class="nav-link">
-              <a href="/dbDpuk">
-                <i class="fas fa-house-user icon"></i>
-                <span class="text nav-text">Dashboard</span>
-              </a>
-            </li>
+              <li class="nav-link">
+                <a href="/kelKatDiklat">
+                  <i class="fas fa-envelope-open-text icon"></i>
+                  <span class="text nav-text">Kategori Diklat</span>
+                </a>
+              </li>    
+              <li class="nav-link">
+                <a href="/kelDiklat">
+                  <i class="fas fa-envelope-open-text icon"></i>
+                  <span class="text nav-text">Diklat</span>
+                </a>
+              </li>
+                      
+      
+              <li class="nav-link">
+                <a href="/events">
+                  <i class="fas fa-calendar-week icon"></i>
+                  <span class="text nav-text">Kalender</span>
+                </a>
+              </li>     
             @endcan
-                        
+            {{--akses keuangan  --}}
             @can('keuangan')
-            <li class="nav-link">
-              <a href="/dbKeuangan">
-                <i class="fas fa-house-user icon"></i>
-                <span class="text nav-text">Dashboard</span>
-              </a>
-            </li>
+              <li class="nav-link">
+                <a href="/dbKeuangan">
+                  <i class="fas fa-house-user icon"></i>
+                  <span class="text nav-text">Dashboard</span>
+                </a>
+              </li>
+
+              <li class="nav-link">
+                <a href="/kelPendaftaranKeuangan">
+                  <i class="fas fa-envelope-open-text icon"></i>
+                  <span class="text nav-text">Pendaftaran(keuangan)</span>
+                </a>
+              </li>
+              <li class="nav-link">
+                <a href="/kelPembayaran">
+                  <i class="fas fa-file-invoice icon"></i>
+                  <span class="text nav-text">Laporan</span>
+                </a>
+              </li> 
             @endcan
-                     
-            <li class="nav-link">
-              <a href="/indexKelolaUser">
-                <i class="fas fa-users icon"></i>
-                <span class="text nav-text">User</span>
-              </a>
-            </li>
-
-            <li class="nav-link">
-              <a href="/kelPromo">
-                <i class="fas fa-tags icon"></i>
-                <span class="text nav-text">Promo</span>
-              </a>
-            </li>
-                        
-            <li class="nav-link">
-              <a href="/kelTestimoni">
-                <i class="fas fa-envelope-open-text icon"></i>
-                <span class="text nav-text">Testimoni</span>
-              </a>
-            </li>
-
-            <li class="nav-link">
-              <a href="/kelKatDiklat">
-                <i class="fas fa-envelope-open-text icon"></i>
-                <span class="text nav-text">Kategori Diklat</span>
-              </a>
-            </li>
-                       
-            <li class="nav-link">
-              <a href="/kelDiklat">
-                <i class="fas fa-envelope-open-text icon"></i>
-                <span class="text nav-text">Diklat</span>
-              </a>
-            </li>
-                    
-            <li class="nav-link">
-              <a href="/kelPendaftaran">
-                <i class="fas fa-envelope-open-text icon"></i>
-                <span class="text nav-text">Pendaftaran(dpuk)</span>
-              </a>
-            </li>
-                       
-            <li class="nav-link">
-              <a href="/kelPendaftaranKeuangan">
-                <i class="fas fa-envelope-open-text icon"></i>
-                <span class="text nav-text">Pendaftaran(keuangan)</span>
-              </a>
-            </li>
-                       
-            <li class="nav-link">
-              <a href="/events">
-                <i class="fas fa-calendar-week icon"></i>
-                <span class="text nav-text">Kalender</span>
-              </a>
-            </li>     
-            
-            <li class="nav-link">
-              <a href="/kelPembayaran">
-                <i class="fas fa-file-invoice icon"></i>
-                <span class="text nav-text">Laporan</span>
-              </a>
-            </li> 
                         
             <li class="nav-link">
               <a href="/logActivity">

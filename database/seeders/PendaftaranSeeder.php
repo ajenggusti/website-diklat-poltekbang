@@ -36,7 +36,8 @@ class PendaftaranSeeder extends Seeder
                 'pendidikan_terakhir' => 'SMk',
                 'no_hp' => '089-898-888-999',
                 'status_pembayaran_daftar' => 'Menunggu pembayaran',
-                'status_pelaksanaan'=>'Belum terlaksana'
+                'status_pelaksanaan'=>'Belum terlaksana',
+                'waktu_pendaftaran' => Carbon::now()
             ],
                         
         ]);

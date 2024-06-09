@@ -78,7 +78,7 @@ class DbUtamaController extends Controller
             ->groupBy('id_diklat')
             ->select('id_diklat', DB::raw('count(*) as total_pendaftar'))
             ->get();
-
+        // dd($totalSemua);
         return view('kelola.kelDbDpuk.dbDpuk', [
             'alumni' => $alumni,
             'jumlahBelumTerlaksana' => $jumlahBelumTerlaksana,

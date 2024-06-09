@@ -39,7 +39,7 @@ class DiklatController extends Controller
     public function store(Request $request)
     {
         $this->authorize('create', Diklat::class);
-        
+
         $messages = [
             'img.image' => 'File harus berupa gambar.',
             'img.file' => 'File harus berupa berkas.',
@@ -54,7 +54,7 @@ class DiklatController extends Controller
             'whatsapp.required' => 'WhatsApp tidak boleh kosong.',
             'whatsapp.url' => 'WhatsApp harus berupa tautan yang valid.',
         ];
-        
+
         $request->validate([
             'img' => 'nullable|image|file|max:2024',
             'kategoriDiklat' => 'required',
@@ -207,4 +207,3 @@ class DiklatController extends Controller
         return redirect('/kelDiklat')->with('success', 'Data berhasil dihapus!');
     }
 }
-

@@ -4,16 +4,20 @@ namespace App\Policies;
 
 use App\Models\KatDiklat;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class KatDiklatPolicy
 {
+    /**
+     * Allowed roles for accessing models.
+     */
+    protected $allowedRoles = ['DPUK', 'Super Admin'];
+
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        //
+        return in_array($user->level->level, $this->allowedRoles);
     }
 
     /**
@@ -21,7 +25,7 @@ class KatDiklatPolicy
      */
     public function view(User $user, KatDiklat $katDiklat): bool
     {
-        //
+        return in_array($user->level->level, $this->allowedRoles);
     }
 
     /**
@@ -29,7 +33,7 @@ class KatDiklatPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return in_array($user->level->level, $this->allowedRoles);
     }
 
     /**
@@ -37,7 +41,7 @@ class KatDiklatPolicy
      */
     public function update(User $user, KatDiklat $katDiklat): bool
     {
-        //
+        return in_array($user->level->level, $this->allowedRoles);
     }
 
     /**
@@ -45,7 +49,7 @@ class KatDiklatPolicy
      */
     public function delete(User $user, KatDiklat $katDiklat): bool
     {
-        //
+        return in_array($user->level->level, $this->allowedRoles);
     }
 
     /**
@@ -53,7 +57,7 @@ class KatDiklatPolicy
      */
     public function restore(User $user, KatDiklat $katDiklat): bool
     {
-        //
+        return in_array($user->level->level, $this->allowedRoles);
     }
 
     /**
@@ -61,6 +65,6 @@ class KatDiklatPolicy
      */
     public function forceDelete(User $user, KatDiklat $katDiklat): bool
     {
-        //
+        return in_array($user->level->level, $this->allowedRoles);
     }
 }

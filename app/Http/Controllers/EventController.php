@@ -19,6 +19,7 @@ class EventController extends Controller
 
     public function listEvent(Request $request)
     {
+        $this->authorize('viewAny', Event::class);
         // dd($request->all());
         // $start = date('Y-m-d', strtotime($request->start));
         // $end = date('Y-m-d', strtotime($request->end));
