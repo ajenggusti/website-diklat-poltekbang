@@ -11,7 +11,7 @@ class PendaftaranPolicy
      */
     public function viewAny(User $user): bool
     {
-        return in_array($user->level->level, ['DPUK', 'Keuangan']);
+        return in_array($user->level->level, ['DPUK', 'Keuangan', 'Super Admin']);
     }
 
     /**
@@ -19,7 +19,7 @@ class PendaftaranPolicy
      */
     public function view(User $user, Pendaftaran $pendaftaran): bool
     {
-        return in_array($user->level->level, ['DPUK', 'Keuangan']) || $user->id === $pendaftaran->user_id;
+        return in_array($user->level->level, ['DPUK', 'Keuangan', 'Super Admin']) || $user->id === $pendaftaran->id_user;
     }
 
     /**
@@ -27,7 +27,8 @@ class PendaftaranPolicy
      */
     public function create(User $user): bool
     {
-        return in_array($user->level->level, ['DPUK', 'Keuangan']);
+        // return in_array($user->level->level, ['DPUK', 'Keuangan', 'Super Admin']);
+        return true;
     }
 
     /**
@@ -35,7 +36,7 @@ class PendaftaranPolicy
      */
     public function update(User $user, Pendaftaran $pendaftaran): bool
     {
-        return in_array($user->level->level, ['DPUK', 'Keuangan']) || $user->id === $pendaftaran->user_id;
+        return in_array($user->level->level, ['DPUK', 'Keuangan', 'Super Admin']) || $user->id === $pendaftaran->id_user;
     }
 
     /**
@@ -43,7 +44,7 @@ class PendaftaranPolicy
      */
     public function delete(User $user, Pendaftaran $pendaftaran): bool
     {
-        return in_array($user->level->level, ['DPUK', 'Keuangan']);
+        return in_array($user->level->level, ['DPUK', 'Keuangan', 'Super Admin']);
     }
 
     /**
@@ -51,7 +52,7 @@ class PendaftaranPolicy
      */
     public function restore(User $user, Pendaftaran $pendaftaran): bool
     {
-        return in_array($user->level->level, ['DPUK', 'Keuangan']);
+        return in_array($user->level->level, ['DPUK', 'Keuangan', 'Super Admin']);
     }
 
     /**
@@ -59,7 +60,7 @@ class PendaftaranPolicy
      */
     public function forceDelete(User $user, Pendaftaran $pendaftaran): bool
     {
-        return in_array($user->level->level, ['DPUK', 'Keuangan']);
+        return in_array($user->level->level, ['DPUK', 'Keuangan', 'Super Admin']);
     }
 }
 

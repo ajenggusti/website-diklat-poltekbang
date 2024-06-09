@@ -25,7 +25,6 @@ class RegisterController extends Controller
      */
     public function index()
     {
-        $this->authorize('viewAny', User::class);
         return view('login.register');
     }
 

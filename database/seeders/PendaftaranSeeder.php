@@ -38,7 +38,6 @@ class PendaftaranSeeder extends Seeder
                 'status_pembayaran_daftar' => 'Menunggu pembayaran',
                 'status_pelaksanaan'=>'Belum terlaksana',
                 'waktu_pendaftaran' => Carbon::now()
-
             ],
                         
         ]);

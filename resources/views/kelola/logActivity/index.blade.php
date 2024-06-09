@@ -48,9 +48,13 @@
                             <i class="fa-solid fa-arrow-up" onclick="sortTable(3, 'asc')" style="font-size: 13px;"></i>
                             <i class="fa-solid fa-arrow-down" onclick="sortTable(3, 'desc')" style="font-size: 13px;"></i>
                         </th>
-                        <th scope="col">Waktu
+                        <th scope="col">Sesudah
                             <i class="fa-solid fa-arrow-up" onclick="sortTable(4, 'asc')" style="font-size: 13px;"></i>
-                            <i class="fa-solid fa-arrow-down" onclick="sortTable(4, 'desc')" style="font-size: 13px;"></i> 
+                            <i class="fa-solid fa-arrow-down" onclick="sortTable(4, 'desc')" style="font-size: 13px;"></i>
+                        </th>
+                        <th scope="col">Waktu
+                            <i class="fa-solid fa-arrow-up" onclick="sortTable(5, 'asc')" style="font-size: 13px;"></i>
+                            <i class="fa-solid fa-arrow-down" onclick="sortTable(5, 'desc')" style="font-size: 13px;"></i> 
                         </th>
                     </tr>
                 </thead>
