@@ -202,4 +202,3 @@ Route::resource('eventsUser', EventUserController::class);
 // log activity
 Route::get('/logActivity', [LogActivityController::class, 'index']);
 // select kalender chart
-// Route::get('/chart', [DpukPendaftarChart::class, 'showChart'])->name('showChart');

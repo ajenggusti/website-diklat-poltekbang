@@ -54,7 +54,8 @@ class UtamaController extends Controller
             })
             ->get()->count();
         // dd($countPromo);
-
+        $currentUser = Auth::user();
+        // dd($currentUser);
 
         return view('utama/landingPage', [
             'jmlPendaftarBelumTerlaksana' => $jmlPendaftarBelumTerlaksana,
@@ -67,6 +68,7 @@ class UtamaController extends Controller
             'totalPendaftar' => $totalPendaftar,
             'countTestimoni' => $countTestimoni,
             'countPromo' => $countPromo,
+            'currentUser' => $currentUser,
 
 
         ]);
