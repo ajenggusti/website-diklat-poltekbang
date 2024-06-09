@@ -50,6 +50,40 @@
                 </div>
             </div>
         @endforeach
+        {{-- ini untuk menghitung user per status --}}
+    
+        @foreach ($statusCounts as $statusCount)
+            @php
+                $statusConfig = [
+                    'Perlu dilengkapi' => ['class' => 'bg-secondary', 'icon' => 'bi-person-workspace'],
+                    'sedang diverifikasi' => ['class' => 'bg-success', 'icon' => 'bi-currency-dollar'],
+                    'Diverifikasi' => ['class' => 'bg-warning', 'icon' => 'bi-person-square'],
+                    'Perlu pembaharuan' => ['class' => 'bg-danger', 'icon' => 'bi-person-fill'],
+                    'Memohon perubahan' => ['class' => 'bg-danger', 'icon' => 'bi-person-fill'],
+                    'Permohonan perubahan disetujui' => ['class' => 'bg-warning', 'icon' => 'bi-person-square'],
+                ];
+
+                $defaultConfig = ['class' => 'bg-primary', 'icon' => 'bi-person'];
+
+                $config = $statusConfig[$statusCount->status] ?? $defaultConfig;
+            @endphp
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box {{ $config['class'] }}">
+                <div class="inner">
+                    <h3>{{ $statusCount->total_byStatus }}</h3>
+
+                    <p>Status {{ $statusCount->status }}</p>
+                </div>
+                <div class="icon">
+                    <i class="bi {{ $config['icon'] }}"></i>
+                </div>
+                <a href="/byStatus/{{ $statusCount->status}}" class="small-box-footer">
+                    More info <i class="bi bi-arrow-right-circle-fill"></i>
+                </a>
+                </div>
+            </div>
+        @endforeach
     </div>
     <hr>
     <div class="container px-4 mx-auto">
@@ -62,6 +96,3 @@
 
     {{ $SuperAdminChart->script() }}
 @endsection
-
-
-

@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
-use App\Models\Level;
-use App\Models\Provinsi;
+use \Log;
 use App\Models\Kabupaten;
 use App\Models\Kecamatan;
 use App\Models\Kelurahan;
+use App\Models\Level;
 use App\Models\Nationality;
+use App\Models\Provinsi;
+use App\Models\User;
+use Illuminate\Auth\Events\Registered; 
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Activitylog\Models\Activity;
 
@@ -22,6 +25,7 @@ class RegisterController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', User::class);
         return view('login.register');
     }
 
@@ -38,41 +42,39 @@ class RegisterController extends Controller
      */
     public function store(Request $request)
     {
-        
-        // dd($request);
-        $message = [
-            'namaPengguna.required' => 'Nama pengguna tidak boleh kosong.',
+        $messages = [
             'email.required' => 'Email tidak boleh kosong.',
             'email.email' => 'Format email tidak valid.',
             'email.unique' => 'Email sudah digunakan.',
             'password.required' => 'Password tidak boleh kosong.',
-            'password.unique' => 'Password sudah digunakan.'
+            'password.confirmed' => 'Password yang dimasukkan berbeda.'
         ];
 
-        $request->validate([
-            'namaPengguna' => 'required',
+        $validatedData = $request->validate([
             'email' => 'required|email:dns|unique:users,email',
-            'password' => 'required|unique:users,password',
-        ], $message);
+            'password' => 'required|confirmed'
+        ], $messages);
 
-        User::create([
+        $user = User::create([
             'id_level' => 1,
-            'name' => $request->namaPengguna,
-            'email' => $request->email,
-            'password' => $request->password,
-            'status' => 'Perlu dilengkapi'
+            'name' => $validatedData['email'], // Menggunakan email sebagai nama untuk kesederhanaan
+            'email' => $validatedData['email'],
+            'password' => Hash::make($validatedData['password']),
+            'status' => 'Perlu dilengkapi',
         ]);
-        // $user=User::latest()->first();
-        // // dd($user->id+1);
-        // $activity=new Activity();
-        // $activity->causer_id = $user->id;
-        // $activity->save();
-        // dd($activity);
-        
 
+        \Illuminate\Support\Facades\Log::info('User created', ['user' => $user]);
 
-        return redirect('/login')->with('success', 'Registrasi berhasil silahkan login!');
+        event(new Registered($user));
+
+        \Illuminate\Support\Facades\Log::info('Registered event fired', ['user' => $user]);
+
+        Auth::login($user);
+
+        return redirect('/email/verify');
     }
+
+    
 
     /**
      * Display the specified resource.
@@ -81,6 +83,7 @@ class RegisterController extends Controller
     {
         // dd($id);
         $user = User::findOrFail($id);
+        $this->authorize('view', $user);
         // dd($user->provinsi->name);
         return view('kelola.kelolaUser.show', [
             'user' => $user
@@ -92,6 +95,7 @@ class RegisterController extends Controller
      */
     public function edit(User $register)
     {
+        $this->authorize('update', $register);
         $levels = Level::All();
         $kelurahans = Kelurahan::get();
         $kabupatens = Kabupaten::get();
@@ -116,6 +120,7 @@ class RegisterController extends Controller
     // ini edit buat admin
     public function update(Request $request, User $register)
     {
+        $this->authorize('update', $register);
         // dd($request);
         $messages = [
             'required' => ':attribute tidak boleh kosong.',
@@ -238,6 +243,7 @@ class RegisterController extends Controller
      */
     public function destroy(User $register)
     {
+        $this->authorize('delete', $register);
         $filePath = public_path('storage/' . $register->berkas_pendukung);
         if (file_exists($filePath)) {
             unlink($filePath);
@@ -389,6 +395,8 @@ class RegisterController extends Controller
     {
         // dd($request);
         // dd($id);
+        $user = User::findOrFail($id);
+        $this->authorize('update', $user);
         return view('utama.permohonan', [
             'id' => $id
         ]);

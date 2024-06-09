@@ -26,7 +26,12 @@
             <h1>
                 Selamat Datang Di Website 
                 Pendaftaran Diklat Politeknik Penerbangan Surabaya <br>
+                @if ($currentUser == null)
                 <a href="/login" class="btn">Daftarkan Dirimu !!</a>
+                @else
+                    <p><i style="color: white" class="bi bi-quote"></i>{{ $currentUser->name }}<i style="color: white; transform: scaleX(-1);" class="bi bi-quote"></i></p>
+                @endif
+                
             </h1>
             <img src="{{ asset('img/Artboard.png') }}" alt="">
         </div>

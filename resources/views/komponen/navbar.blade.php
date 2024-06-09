@@ -300,16 +300,16 @@
                             <a class="nav-link active" aria-current="page" href="/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#promo">Promo</a>
+                            <a class="nav-link" href="/#promo">Promo</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#katDiklat">Diklat</a>
+                            <a class="nav-link" href="/#katDiklat">Diklat</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#testimoni">Testimoni</a>
+                            <a class="nav-link" href="/#testimoni">Testimoni</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#faq">FAQ</a>
+                            <a class="nav-link" href="/#faq">FAQ</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="eventsUser">Jadwal</a>
@@ -337,6 +337,7 @@
                                             <a href="/dbKeuangan" class="dropdown-item"><i class="bi bi-speedometer2"></i> Dashboard</a>
                                         @endcan
                                     </li>
+                                    <li><a class="dropdown-item" href="/password/edit"><i class="bi bi-key"></i> Ubah Password</a></li>
                                     <li><hr class="dropdown-divider"></li>
                                     <li>
                                         <form action="/logout" method="POST">
@@ -348,6 +349,7 @@
                                                 <a href="/login"><button type="button" class="button-log">Masuk</button></a>
                                             </div>
                                     </li>
+                                    
                                 </ul>
                             </li>
                         @endauth

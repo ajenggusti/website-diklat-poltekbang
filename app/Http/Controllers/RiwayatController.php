@@ -43,24 +43,6 @@ class RiwayatController extends Controller
         $countData = $data ? 1 : 0;
         return view('utama.detailRiwayat', ['data' => $data]);
     }
-    // public function viewPdf($id)
-    // {
-    //     $data = Pendaftaran::find($id);
-    //     $user = Auth::user();
-    //     $data = Pendaftaran::findOrFail($id);
-    //     if ($user->id != $data->id_user) {
-    //         abort(403, 'Unauthorized action.');
-    //     }
-
-    //     if(!$data) {
-    //         abort(404);
-    //     }
-    //     $pdf = PDF::loadView('utama.invoice', ['data' => $data]);
-    //     // Unduh PDF
-    //     // return $pdf->download('invoice.pdf');
-    //     // kalo mau liat aja tapi bisa kok di download
-    //     return $pdf->stream('invoice.pdf');
-    // }
 
     public function viewPdf($id)
     {

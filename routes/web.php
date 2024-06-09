@@ -26,6 +26,14 @@ use App\Http\Controllers\KabupatenDropdownController;
 use App\Http\Controllers\KecamatanDropdownController;
 use App\Http\Controllers\KelurahanDropdownController;
 use App\Http\Controllers\PendaftaranKeuanganController;
+use App\Http\Controllers\UpdatePasswordController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use App\Models\User;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,13 +51,14 @@ use App\Http\Controllers\PendaftaranKeuanganController;
 // });
 
 // route halaman utama
-Route::get('/', [UtamaController::class, 'index']);
+Route::get('/', [UtamaController::class, 'index'])->name('home');
 Route::get('/utama/macamDiklat/{kategori}', [UtamaController::class, 'allDiklat']);
 Route::get('/utama/detailDiklat/{detail}', [UtamaController::class, 'detailDiklat']);
 // db superAdmin
 Route::get('/dbSuperAdmin', [DbUtamaController::class, 'index']);
 Route::get('/allUser', [DbUtamaController::class, 'allUser']);
 Route::get('/byLevel/{id}', [DbUtamaController::class, 'byLevel']);
+Route::get('/byStatus/{status}', [DbUtamaController::class, 'byStatus']);
 // db keuangan
 Route::get('/dbKeuangan', [DbUtamaController::class, 'dbKeuangan']);
 Route::get('/dbDetailPembayaranDiklat', [DbUtamaController::class, 'detailpembayaranPembayaranDiklat']);
@@ -77,6 +86,9 @@ Route::post('/bukti-pembayaran', [RiwayatController::class, 'buktiPembayaran'])-
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout']);
+Route::get('/google/redirect', [LoginController::class, 'redirect']);
+Route::get('/google/callback', [LoginController::class, 'callback'])->name('google.callback');
+
 
 // route crud kategori dikklat
 Route::resource('/kelKatDiklat', kelKatDiklatController::class)->except('show')->middleware('auth');
@@ -95,6 +107,59 @@ Route::get('kecamatan-dropdown/{id}', KecamatanDropdownController::class)->name(
 Route::get('kelurahan-dropdown/{id}', KelurahanDropdownController::class)->name('kelurahan.dropdown');
 // // route crud user  (register)
 Route::resource('/register', RegisterController::class)->except('create');
+// register verifikasi email
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect('/editProfil');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+// ubah password
+Route::get('/password/edit', [UpdatePasswordController::class, 'edit'])->name('password.edit');
+Route::put('/password/update', [UpdatePasswordController::class, 'update'])->name('password.update');
+// forget password
+Route::get('/forgot-password', function () {
+    return view('auth.forgot-password');
+})->middleware('guest')->name('password.request');
+
+Route::post('/forgot-password', function (Request $request) {
+    $request->validate(['email' => 'required|email']);
+    $status = Password::sendResetLink(
+        $request->only('email')
+    );
+    return $status === Password::RESET_LINK_SENT
+                ? back()->with(['status' => __($status)])
+                : back()->withErrors(['email' => __($status)]);
+})->middleware('guest')->name('password.email');
+
+Route::get('/reset-password/{token}', function (string $token) {
+    return view('auth.reset-password', ['token' => $token]);
+})->middleware('guest')->name('password.reset');
+
+Route::post('/reset-password', function (Request $request) {
+    $request->validate([
+        'token' => 'required',
+        'email' => 'required|email',
+        'password' => 'required|min:8|confirmed',
+    ]);
+    $status = Password::reset(
+        $request->only('email', 'password', 'password_confirmation', 'token'),
+        function (User $user, string $password) {
+            $user->forceFill([
+                'password' => Hash::make($password)
+            ])->setRememberToken(Str::random(60));
+            $user->save();
+            event(new PasswordReset($user));
+        }
+    );
+    return $status === Password::PASSWORD_RESET
+                ? redirect()->route('login')->with('status', __($status))
+                : back()->withErrors(['email' => [__($status)]]);
+})->middleware('guest')->name('password.update.post');
+
 // route crud promo
 Route::resource('/kelPromo', PromoController::class);
 // route CRUD gbr LandingPage
@@ -137,4 +202,3 @@ Route::resource('eventsUser', EventUserController::class);
 // log activity
 Route::get('/logActivity', [LogActivityController::class, 'index']);
 // select kalender chart
-// Route::get('/chart', [DpukPendaftarChart::class, 'showChart'])->name('showChart');

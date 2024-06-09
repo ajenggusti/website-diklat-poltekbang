@@ -23,13 +23,22 @@ class DbUtamaController extends Controller
             ->get();
         // dd($userCounts);
         $count = User::count();
+        $statusCounts = User::groupBy('status')->select('status',DB::raw('count(*) as total_byStatus'))->get();
+        // dd($statusCounts);
         return view('kelola.kelDbSuperAdmin.dbSuperAdmin', [
             'userCounts' => $userCounts,
             'count' => $count,
-            'SuperAdminChart'=>$SuperAdminChart->build()
+            'statusCounts'=>$statusCounts,
+            'SuperAdminChart' => $SuperAdminChart->build(),
         ]);
     }
-
+    public function byStatus($status)
+    {
+        $datas = User::where('status', $status)->get();
+        return view('kelola.kelDbSuperAdmin.detailStatus', [
+            'datas'=>$datas
+        ]);
+    }
     public function allUser()
     {
         $judul = "Semua User";
@@ -55,8 +64,8 @@ class DbUtamaController extends Controller
 
     public function dbDpuk(Request $request, DpukPendaftarChart $DpukPendaftarChart)
     {
-        $year = $request->input('year', date('Y')); 
-    
+        $year = $request->input('year', date('Y'));
+
         $alumni = Pendaftaran::where('status_pelaksanaan', 'Terlaksana')->whereYear('updated_at', $year)->count();
         $jumlahBelumTerlaksana = Pendaftaran::where('status_pelaksanaan', 'Belum terlaksana')->whereYear('updated_at', $year)->count();
         $totalSemua = Pendaftaran::whereYear('updated_at', $year)->count();
@@ -69,7 +78,7 @@ class DbUtamaController extends Controller
             ->groupBy('id_diklat')
             ->select('id_diklat', DB::raw('count(*) as total_pendaftar'))
             ->get();
-    
+
         return view('kelola.kelDbDpuk.dbDpuk', [
             'alumni' => $alumni,
             'jumlahBelumTerlaksana' => $jumlahBelumTerlaksana,
@@ -77,10 +86,10 @@ class DbUtamaController extends Controller
             'pendaftarans' => $pendaftarans,
             'sertifikat' => $sertifikat,
             'DpukPendaftarChart' => $DpukPendaftarChart->build($year),
-            'selectedYear' => $year 
+            'selectedYear' => $year
         ]);
     }
-    
+
 
     public function PendaftaranByDiklat($id)
     {
@@ -122,7 +131,7 @@ class DbUtamaController extends Controller
     // kelola keuangan
     public function dbKeuangan(Request $request, KeuanganChart $KeuanganChart)
     {
-        $year = $request->input('year', date('Y')); 
+        $year = $request->input('year', date('Y'));
         $getBayarDiklat = Pembayaran::getCountBayarDiklat();
         $getBayarPendaftaran = Pembayaran::getCountBayarPendaftaran();
         $hitungPembayaranDiklatDicek = Pembayaran::hitungPembayaranDiklatDicek();
@@ -134,29 +143,29 @@ class DbUtamaController extends Controller
             'hitungPembayaranDiklatDicek' => $hitungPembayaranDiklatDicek,
             'hitungPembayaranDiklatLunas' => $hitungPembayaranDiklatLunas,
             'KeuanganChart' => $KeuanganChart->build($year),
-            'selectedYear' => $year 
+            'selectedYear' => $year
         ]);
     }
-    
+
     public function detailpembayaranPembayaranDiklat()
     {
-        $pembayarans=Pembayaran::where('jenis_pembayaran', 'diklat')->where('status', 'Lunas')->get();
+        $pembayarans = Pembayaran::where('jenis_pembayaran', 'diklat')->where('status', 'Lunas')->get();
         return view('kelola.kelDbKeuangan.dbDetailPembayaran', [
-            'pembayarans'=>$pembayarans
+            'pembayarans' => $pembayarans
         ]);
     }
     public function detailpembayaranPembayaranDaftar()
     {
-        $pembayarans=Pembayaran::where('jenis_pembayaran', 'pendaftaran')->where('status', 'Lunas')->get();
+        $pembayarans = Pembayaran::where('jenis_pembayaran', 'pendaftaran')->where('status', 'Lunas')->get();
         return view('kelola.kelDbKeuangan.dbDetailPembayaran', [
-            'pembayarans'=>$pembayarans
+            'pembayarans' => $pembayarans
         ]);
     }
     public function pembayaranBelumVerifikasi()
     {
-        $datas=Pendaftaran::where('status_pembayaran_diklat', 'Menunggu verifikasi')->get();
+        $datas = Pendaftaran::where('status_pembayaran_diklat', 'Menunggu verifikasi')->get();
         return view('kelola.kelDbKeuangan.pendaftaranDetail', [
-            'datas'=>$datas
+            'datas' => $datas
         ]);
     }
 }
