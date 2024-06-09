@@ -78,9 +78,10 @@
 /* Layar untuk 481px - 900px */
 @media screen and (min-width: 481px) and (max-width: 900px) {
     .landOne {
-        padding-left: 20px;
-        padding-right: 20px;
+        padding-left: 30px;
+        padding-right: 30px;
         height: auto;
+        max-height: 350px;
     }
     
     .landOne h1 {
@@ -156,17 +157,6 @@ span.text-animasi {
     line-height: 0;
 }
 
-@media screen and (max-width:1024px) {
-    .landTwo {
-      width: 85vw;
-    }
-    .card-animasi {
-      height: 26vmin;
-      width: 26vmin;
-      font-size: 12px;
-    }
-}
-  
 /* Layar untuk 481px - 900px */
 @media screen and (min-width: 481px) and (max-width: 900px) {
     .landTwo{
@@ -175,6 +165,9 @@ span.text-animasi {
         gap: 7px;
         padding-left: 70px;
         padding-right: 70px;
+        padding-bottom: 70px;
+        height: auto;
+        /* max-height: 300px; */
     }
   
     .card-animasi {
@@ -201,14 +194,13 @@ span.text-animasi {
     .card-animasi {
       width: 35%;
       height: 35vmin;
-      font-size: 18px;
+      font-size: 15px;
       padding-bottom: 5px;
       border-bottom: 10px solid rgb(248, 100, 20);
       
     }
     .card-animasi i{
         font-size: 1.5em;
-      
     }
     
     span.num-animasi {
@@ -226,18 +218,64 @@ span.text-animasi {
     color: rgb(0, 0, 0);
     width: 100%;
     height: 650px;
+    /* height: auto; */
+
 }
 .promo-land {
     margin-left: 10%;
     margin-right: 10%;
     max-width: 80%;
     padding-bottom: 20px;
-    /* border: 1px solid #000000; */
 }
 
 .img-promo img {
     height: 400px;
     padding-top: 30px;
+}
+
+/* Layar untuk 481px - 900px */
+@media screen and (min-width: 481px) and (max-width: 900px) {
+    .landThree {
+        height: auto;
+        padding-bottom: 50px;
+    }
+    .promo-land {
+        /* margin-left: 10%;
+        margin-right: 10%;
+        max-width: 80%; */
+        padding-bottom: 10px;
+        
+    }
+    /* .promo-land h3 {
+        padding-top: 30px;
+    } */
+    
+    .img-promo img {
+        height: 400px;
+        padding-top: 0;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .landThree {
+        height: auto;
+        padding-bottom: 30px;
+    }
+    .promo-land {
+        /* margin-left: 10%;
+        margin-right: 10%;
+        max-width: 80%; */
+        padding-bottom: 10px;
+        
+    }
+    /* .promo-land h3 {
+        padding-top: 30px;
+    } */
+    
+    .img-promo img {
+        height: 200px;
+        padding-top: 0;
+    }
 }
 
 
@@ -257,7 +295,8 @@ span.text-animasi {
     margin-left: 10%;
     margin-right: 10%;
     max-width: 80%;
-    padding-top: 50px;
+    padding-top: 70px;
+    /* border: 1px solid #000; */
 }
 
 .bg-acc {
@@ -267,6 +306,14 @@ span.text-animasi {
     border: 2px solid #b3b3b3;
 }
 
+@media screen and (max-width: 900px){
+    .landSix {
+        height: auto;
+    }
+    .faq-land {
+        padding-top: 0;
+    }
+}
 
 /* BUTTON UNTUK BACK TO TOP */
 #myBtn {

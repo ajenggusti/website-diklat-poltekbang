@@ -1,5 +1,6 @@
 .landFour {
-    height: 600px;
+    height: auto;
+    max-height: 600px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -12,7 +13,8 @@
 .kat-land {
     max-width: 1220px;
     width: 100%;
-    padding: 40px 0;
+    /* padding: 40px 0; */
+    padding-bottom: 10px;
     /* border: 1px solid #000000; */
 }
 
@@ -32,16 +34,16 @@
     position: relative;
     row-gap: 5px;
     padding: 0;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
 
 .card-content{
     padding-top: 30px;
     height: 180px;
     
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
     
     /* box-shadow: 0 0 10px #727171; */
 }
@@ -124,6 +126,10 @@
 
 /* Layar untuk 481px - 900px */
 @media screen and (min-width: 481px) and (max-width: 1056px) {
+    .landFour {
+        height: auto;
+        /* max-height: 500px; */
+    }
     .slide-content{
         margin: 0 10px;
     }
@@ -136,12 +142,15 @@
         height: 200px;
         width: 100%;
         max-width: 500px;
-        border-top-left-radius: 5px;
-        border-top-right-radius: 5px;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
     }
 }
 
 @media screen and (max-width: 480px) {
+    .landFour {
+        height: auto;
+    }
     .slide-content{
         margin: 0 10px;
     }

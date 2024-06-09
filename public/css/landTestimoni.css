@@ -14,7 +14,6 @@
 
 .testi-land {
     width: 80%;
-    
     margin-left: 10%;
     margin-right: 10%;
     padding-bottom: 20px;
@@ -33,7 +32,7 @@
 }
 
 .testi-header h2 {
-    padding-top: 30px;
+    padding-top: 120px;
 }
 
 .testi-header .p-testi {
@@ -123,6 +122,11 @@
     line-height: 1.5;
     font-weight: bold;
     color: var(--text-clr);
+}
+
+.owl-nav {
+    display: none;
+    /* padding-top: 20px; */
 }
 
 /* Layar untuk 481px - 900px */
