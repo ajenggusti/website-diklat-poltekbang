@@ -133,7 +133,7 @@
                     <h1>Politeknik Penerbangan Surabaya</h1>
                     <span>Jalan Jemur Andayani No 73 Surabaya 60236</span><br>
                     <span>Tel/Fax. 62 31 8410871/62 31 8490005 | Email. mail@poltekbangsby.ac.id</span><br>
-                    <span>Laman: https://web.poltekbangsby.ac.id/course-list/</span>
+                    <span>Laman: https://shortcourses.poltekbangsby.ac.id</span>
                 </div>
                 <hr>
                 

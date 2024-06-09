@@ -284,8 +284,8 @@
                                 </h2>
                                 <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
                                     <div class="accordion-body">
-                                        Pendaftar yang ingin membatalkan pendaftaran diklatnya dan
-                                        sudah membayar, bisa menghubungi admin.
+                                        Pendaftar yang ingin membatalkan pendaftaran diklatnya, bisa menghubungi admin. Pembayaran diklat yang sudah
+                                        dilakukan tidak bisa dibatalkan, dengan kata lain tidak ada pengembalian dana.
                                     </div>
                                 </div>
                             </div>
@@ -453,46 +453,46 @@
 
             <script>
                 document.addEventListener("DOMContentLoaded", function() {
-                // Fungsi untuk menghasilkan angka acak antara min dan max
-                function getRandomNumber(min, max) {
-                    return Math.floor(Math.random() * (max - min + 1)) + min;
-                }
-
-                // Fungsi untuk menampilkan animasi angka acak selama beberapa detik
-                function animateRandomNumber(element, finalValue) {
-                    if (!element) {
-                        console.error("Element not found!");
-                        return; // Pastikan elemen tidak null
+                    // Fungsi untuk menghasilkan angka acak antara min dan max
+                    function getRandomNumber(min, max) {
+                        return Math.floor(Math.random() * (max - min + 1)) + min;
                     }
 
-                    if (finalValue === 0) {
-                        console.log("Skipping element with final value 0");
-                        element.textContent = finalValue; // Set the element's textContent to 0 directly
-                        return; // Skip animasi jika nilai akhirnya 0
-                    }
-
-                    var currentValue = 0;
-
-                    var interval = setInterval(function () {
-                        var nextValue = getRandomNumber(currentValue, finalValue);
-                        element.textContent = nextValue;
-                        currentValue = nextValue;
-                        if (currentValue >= finalValue) {
-                            clearInterval(interval);
-                            element.textContent = finalValue; // Pastikan nilai akhir di set
+                    // Fungsi untuk menampilkan animasi angka acak selama beberapa detik
+                    function animateRandomNumber(element, finalValue) {
+                        if (!element) {
+                            console.error("Element not found!");
+                            return; // Pastikan elemen tidak null
                         }
-                    }, 50); // Perbarui angka setiap 50ms untuk kecepatan animasi yang lebih cepat
-                }
 
-                // Ambil semua elemen dengan kelas num-animasi
-                var numAnimasiElements = document.querySelectorAll(".num-animasi");
+                        if (finalValue === 0) {
+                            console.log("Skipping element with final value 0");
+                            element.textContent = "-"; // Set the element's textContent to "-" instead of 0
+                            return; // Skip animasi jika nilai akhirnya 0
+                        }
 
-                // Jalankan animasi untuk setiap elemen num-animasi jika nilai lebih dari 0
-                numAnimasiElements.forEach(function(element) {
-                    var finalValue = parseInt(element.getAttribute("data-val"), 10);
-                    animateRandomNumber(element, finalValue);
+                        var currentValue = 0;
+
+                        var interval = setInterval(function () {
+                            var nextValue = getRandomNumber(currentValue, finalValue);
+                            element.textContent = nextValue;
+                            currentValue = nextValue;
+                            if (currentValue >= finalValue) {
+                                clearInterval(interval);
+                                element.textContent = finalValue; // Pastikan nilai akhir di set
+                            }
+                        }, 50); // Perbarui angka setiap 50ms untuk kecepatan animasi yang lebih cepat
+                    }
+
+                    // Ambil semua elemen dengan kelas num-animasi
+                    var numAnimasiElements = document.querySelectorAll(".num-animasi");
+
+                    // Jalankan animasi untuk setiap elemen num-animasi jika nilai lebih dari 0
+                    numAnimasiElements.forEach(function(element) {
+                        var finalValue = parseInt(element.getAttribute("data-val"), 10);
+                        animateRandomNumber(element, finalValue);
+                    });
                 });
-            });
 
 
             </script>

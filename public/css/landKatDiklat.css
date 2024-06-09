@@ -150,6 +150,7 @@
 @media screen and (max-width: 480px) {
     .landFour {
         height: auto;
+        max-height: 500px;
     }
     .slide-content{
         margin: 0 10px;
