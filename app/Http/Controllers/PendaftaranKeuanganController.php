@@ -14,6 +14,7 @@ class PendaftaranKeuanganController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Pendaftaran::class);
         $datas = Pendaftaran::get();
         return view('kelola.kelolaPendaftaranKeuangan.index', [
             'datas'=>$datas
@@ -43,6 +44,7 @@ class PendaftaranKeuanganController extends Controller
     {
         // dd($kelPendaftaranKeuangan);
         $pendaftaran = Pendaftaran::findOrFail($kelPendaftaranKeuangan->id);
+        $this->authorize('view', $kelPendaftaranKeuangan);
         return view('kelola.kelolaPendaftaranKeuangan.show', [
             'pendaftaran'=>$pendaftaran
         ]);

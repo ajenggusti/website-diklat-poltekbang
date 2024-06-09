@@ -105,6 +105,7 @@ class UtamaController extends Controller
         // dd($detailDiklat);
         // NEW C
         $detailDiklat = Diklat::findOrFail($id);
+        
         // dd($detailDiklat);
 
         // if (!$detailDiklat) {

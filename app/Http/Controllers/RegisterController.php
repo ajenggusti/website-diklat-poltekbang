@@ -25,6 +25,7 @@ class RegisterController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', User::class);
         return view('login.register');
     }
 
@@ -40,38 +41,38 @@ class RegisterController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-{
-    $messages = [
-        'email.required' => 'Email tidak boleh kosong.',
-        'email.email' => 'Format email tidak valid.',
-        'email.unique' => 'Email sudah digunakan.',
-        'password.required' => 'Password tidak boleh kosong.',
-        'password.confirmed' => 'Password yang dimasukkan berbeda.'
-    ];
+    {
+        $messages = [
+            'email.required' => 'Email tidak boleh kosong.',
+            'email.email' => 'Format email tidak valid.',
+            'email.unique' => 'Email sudah digunakan.',
+            'password.required' => 'Password tidak boleh kosong.',
+            'password.confirmed' => 'Password yang dimasukkan berbeda.'
+        ];
 
-    $validatedData = $request->validate([
-        'email' => 'required|email:dns|unique:users,email',
-        'password' => 'required|confirmed'
-    ], $messages);
+        $validatedData = $request->validate([
+            'email' => 'required|email:dns|unique:users,email',
+            'password' => 'required|confirmed'
+        ], $messages);
 
-    $user = User::create([
-        'id_level' => 1,
-        'name' => $validatedData['email'], // Menggunakan email sebagai nama untuk kesederhanaan
-        'email' => $validatedData['email'],
-        'password' => Hash::make($validatedData['password']),
-        'status' => 'Perlu dilengkapi',
-    ]);
+        $user = User::create([
+            'id_level' => 1,
+            'name' => $validatedData['email'], // Menggunakan email sebagai nama untuk kesederhanaan
+            'email' => $validatedData['email'],
+            'password' => Hash::make($validatedData['password']),
+            'status' => 'Perlu dilengkapi',
+        ]);
 
-    \Illuminate\Support\Facades\Log::info('User created', ['user' => $user]);
+        \Illuminate\Support\Facades\Log::info('User created', ['user' => $user]);
 
-    event(new Registered($user));
+        event(new Registered($user));
 
-    \Illuminate\Support\Facades\Log::info('Registered event fired', ['user' => $user]);
+        \Illuminate\Support\Facades\Log::info('Registered event fired', ['user' => $user]);
 
-    Auth::login($user);
+        Auth::login($user);
 
-    return redirect('/email/verify');
-}
+        return redirect('/email/verify');
+    }
 
     
 
@@ -82,6 +83,7 @@ class RegisterController extends Controller
     {
         // dd($id);
         $user = User::findOrFail($id);
+        $this->authorize('view', $user);
         // dd($user->provinsi->name);
         return view('kelola.kelolaUser.show', [
             'user' => $user
@@ -93,6 +95,7 @@ class RegisterController extends Controller
      */
     public function edit(User $register)
     {
+        $this->authorize('update', $register);
         $levels = Level::All();
         $kelurahans = Kelurahan::get();
         $kabupatens = Kabupaten::get();
@@ -117,6 +120,7 @@ class RegisterController extends Controller
     // ini edit buat admin
     public function update(Request $request, User $register)
     {
+        $this->authorize('update', $register);
         // dd($request);
         $messages = [
             'required' => ':attribute tidak boleh kosong.',
@@ -239,6 +243,7 @@ class RegisterController extends Controller
      */
     public function destroy(User $register)
     {
+        $this->authorize('delete', $register);
         $filePath = public_path('storage/' . $register->berkas_pendukung);
         if (file_exists($filePath)) {
             unlink($filePath);
@@ -390,6 +395,8 @@ class RegisterController extends Controller
     {
         // dd($request);
         // dd($id);
+        $user = User::findOrFail($id);
+        $this->authorize('update', $user);
         return view('utama.permohonan', [
             'id' => $id
         ]);

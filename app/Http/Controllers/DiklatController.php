@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Diklat;
 use App\Models\KatDiklat;
-use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
 
 class DiklatController extends Controller
@@ -16,11 +14,12 @@ class DiklatController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Diklat::class);
         $datas = Diklat::getKategori();
-        $diklats=Diklat::get();
+        $diklats = Diklat::get();
         return view('kelola.kelolaDiklat.index', [
             'datas' => $datas,
-            'diklats'=>$diklats
+            'diklats' => $diklats
         ]);
     }
 
@@ -29,6 +28,7 @@ class DiklatController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Diklat::class);
         $getKategori = KatDiklat::selectAll();
         return view('kelola.kelolaDiklat.form', ['getKategori' => $getKategori]);
     }
@@ -38,6 +38,8 @@ class DiklatController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Diklat::class);
+        
         $messages = [
             'img.image' => 'File harus berupa gambar.',
             'img.file' => 'File harus berupa berkas.',
@@ -69,7 +71,9 @@ class DiklatController extends Controller
         } else {
             $image = null;
         }
+
         $harga = preg_replace("/[^0-9]/", "", $request->input('harga'));
+
         if ($request->default == 'ya') {
             Diklat::where('default', 'ya')->update(['default' => 'tidak']);
         }
@@ -89,20 +93,18 @@ class DiklatController extends Controller
         return redirect('/kelDiklat')->with('success', 'Data berhasil ditambahkan!');
     }
 
-    
-
     /**
      * Display the specified resource.
      */
     public function show(Diklat $kelDiklat)
     {
-
+        $this->authorize('view', $kelDiklat);
         $diklatData = Diklat::getDiklatWithKategori($kelDiklat->id);
         $allDiklatData = Diklat::get();
 
         return view('kelola.kelolaDiklat.show', [
             'diklatData' => $diklatData,
-            'allDiklatData'=>$allDiklatData
+            'allDiklatData' => $allDiklatData
         ]);
     }
 
@@ -111,8 +113,9 @@ class DiklatController extends Controller
      */
     public function edit(Diklat $kelDiklat)
     {
+        $this->authorize('update', $kelDiklat);
         $getKategori = KatDiklat::selectAll();
-        return view('kelola.kelolaDiklat.editForm',  [
+        return view('kelola.kelolaDiklat.editForm', [
             'kelDiklat' => $kelDiklat,
             'getKategori' => $getKategori
         ]);
@@ -123,7 +126,8 @@ class DiklatController extends Controller
      */
     public function update(Request $request, Diklat $kelDiklat)
     {
-        // dd($kelDiklat);
+        $this->authorize('update', $kelDiklat);
+
         $messages = [
             'img.image' => 'File harus berupa gambar.',
             'img.file' => 'File harus berupa berkas.',
@@ -138,6 +142,7 @@ class DiklatController extends Controller
             'whatsapp.required' => 'WhatsApp tidak boleh kosong.',
             'whatsapp.url' => 'WhatsApp harus berupa tautan yang valid.'
         ];
+
         $request->validate([
             'img' => 'nullable|image|file|max:2024',
             'kategoriDiklat' => 'required',
@@ -147,6 +152,7 @@ class DiklatController extends Controller
             'kuota' => 'required|numeric',
             'whatsapp' => 'required|url',
         ], $messages);
+
         if ($request->hasFile('img')) {
             if ($kelDiklat->gambar) {
                 $filePath = public_path('storage/' . $kelDiklat->gambar);
@@ -157,21 +163,17 @@ class DiklatController extends Controller
             $image = "LanPage/" . time() . '-' . uniqid() . '.' . $request->img->getClientOriginalExtension();
             $request->img->move('storage/LanPage', $image);
         } else {
-            if ($kelDiklat->gambar) {
-                $image = $kelDiklat->gambar;
-            } else {
-                $image = null;
-            }
-        }        
-        
+            $image = $kelDiklat->gambar ?? null;
+        }
+
         $harga = preg_replace("/[^0-9]/", "", $request->input('harga'));
 
         if ($request->default == 'ya') {
             Diklat::where('default', 'ya')
-            ->where('id', '!=', $kelDiklat->id)
-            ->update(['default' => 'tidak']);
+                ->where('id', '!=', $kelDiklat->id)
+                ->update(['default' => 'tidak']);
         }
-        // dd($request);
+
         $kelDiklat->update([
             'gambar' => $image,
             'id_kategori_diklat' => $request->kategoriDiklat,
@@ -180,25 +182,29 @@ class DiklatController extends Controller
             'harga' => $harga,
             'whatsapp' => $request->whatsapp,
             'kuota_minimal' => $request->kuota,
-            'default'=>$request->default
+            'default' => $request->default
         ]);
+
         return redirect('/kelDiklat')->with('success', 'Data berhasil diperbarui!');
     }
+
     /**
      * Remove the specified resource from storage.
      */
+    public function destroy(Diklat $kelDiklat)
+    {
+        $this->authorize('delete', $kelDiklat);
 
-     public function destroy(Diklat $kelDiklat)
-     {
-        //  if ($kelDiklat->gambar) {
-        //      Storage::delete($kelDiklat->gambar);
-        //  }
-        $filePath = public_path('storage/' . $kelDiklat->gambar);
-                if (file_exists($filePath)) {
-                    unlink($filePath);
-                }
-         $kelDiklat->delete();
-         return redirect('/kelDiklat')->with('success', 'Data berhasil dihapus!');
-     }
-     
+        if ($kelDiklat->gambar) {
+            $filePath = public_path('storage/' . $kelDiklat->gambar);
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+        }
+
+        $kelDiklat->delete();
+
+        return redirect('/kelDiklat')->with('success', 'Data berhasil dihapus!');
+    }
 }
+
