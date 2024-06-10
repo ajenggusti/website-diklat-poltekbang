@@ -10,6 +10,13 @@
     padding-right: 10%;
 }
 
+h3, p {
+    animation-delay: 2.5s;
+}
+.swiper-slide {
+    animation-delay: 2.5s;
+}
+
 .kat-land {
     max-width: 1220px;
     width: 100%;

@@ -13,6 +13,9 @@
     --text-clr: #ffffff;
 }
 
+.testimonial-card {
+    animation-delay: 3s;
+}
 .testi-land {
     width: 80%;
     margin-left: 10%;
@@ -30,6 +33,7 @@
 .testi-header h2,
 .testi-header .p-testi {
     padding-left: 10%;
+    animation-delay: 3s;
 }
 
 .testi-header h2 {
