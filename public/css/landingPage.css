@@ -40,6 +40,7 @@
     font-weight: 600;
     border: none;
     border-radius: 10px;
+    animation-delay: 0.5s;
 }
 
 .landOne a:hover {
@@ -131,6 +132,7 @@
     border-radius: 0.5em;
     background-color: #21242b;
     border-bottom: 15px solid rgb(248, 100, 20);
+    animation-delay: 1.5s;
 }
 
 .card-animasi i{
@@ -138,6 +140,14 @@
     font-size: 2.5em;
     text-align: center;
   
+}
+.fa-users,
+.fa-user-plus,
+.num-animasi,
+.text-animasi,
+.fa-user-graduate,
+.fa-book {
+    animation-delay: 1.5s;
 }
 
 span.num-animasi {
@@ -213,6 +223,12 @@ span.text-animasi {
 
 
 /* LAND THREE - PROMO */
+h3, p {
+    animation-delay: 2s;
+}
+.img-promo {
+    animation-delay: 2s;
+}
 .landThree {
     background-color: #ffffff;
     color: rgb(0, 0, 0);
@@ -286,6 +302,14 @@ span.text-animasi {
 /* LAND Five - TESTIMONI */
 
 /* LAND Six - FAQ */
+h3, p {
+    animation-delay: 4s;
+}
+
+.accordion-item {
+    animation-delay: 4s;
+}
+
 .landSix {
     width: 100%;
     background-color: #ffffff;

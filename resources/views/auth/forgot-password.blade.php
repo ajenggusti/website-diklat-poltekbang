@@ -1,10 +1,17 @@
 <!-- resources/views/auth/forgot-password.blade.php -->
 @extends('layout/mainUser')
 @section('container')
+<link href="/css/actor.css" rel="stylesheet">
+<style>
+    .forgot {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+</style>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card edit-staff forgot">
                 <div class="card-header">{{ __('Forgot Password') }}</div>
 
                 <div class="card-body">

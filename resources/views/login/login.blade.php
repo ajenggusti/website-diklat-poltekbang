@@ -27,7 +27,7 @@
       </div>
       <form method="POST" action="{{ route('login') }}" class="form-content">
         @csrf
-        <h3>Masuk</h3>
+        <h3>Login</h3>
         @if (session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
           {{ session('success') }}
@@ -49,21 +49,24 @@
         </div>
         <div class="form-floating">
           <input name="password" type="password" class="form-control @error('password') is-invalid @enderror" id="floatingPassword" placeholder="Password" value="">
-          <button class="btn" type="button" id="togglePassword2">
+          <button class="btn eye" type="button" id="togglePassword2">
             <i class="bi bi-eye-slash" id="eye-icon"></i>
           </button>
           <label for="floatingPassword">Password</label>
+          <span class="forget-pw">Lupa password?<a href="/forgot-password" class="btn lupa-pw2">Klik disini</a></span>
           @error('password')
             <div class="invalid-feedback">{{ $message }}</div>
           @enderror
         </div>
-        <button class="w-100 btn btn-lg btn-secondary" type="submit">Login</button>
-        <br><br>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+        <div class="divider">
+          <span>atau</span>
+        </div>
         <a class="w-100 btn btn-lg btn-secondary" href="/google/redirect"><i class="bi bi-google"></i> Login dengan google</a>
         <br> <br>
         <div class="p-login">
           <p style="text-align: center; margin-bottom: 0;">Belum punya akun?<a href="/register" class="btn"> Daftar sekarang</a></p>
-          <span style="font-size: small; text-align: center; margin-top: 0;">Lupa password?<a href="/forgot-password" class="btn" style="font-size: small; color: red;">Klik disini</a></span>
+          
         </div>
         
         

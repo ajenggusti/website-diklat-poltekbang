@@ -17,23 +17,41 @@
     {{-- <link href="/css/landing.css" rel="stylesheet"> --}}
     <link href="/css/landTestimoni.css" rel="stylesheet">
     <link href="/css/landKatDiklat.css" rel="stylesheet">
-
+    <link href="/css/animasi.css" rel="stylesheet">
     <link href="/css/landingPage.css" rel="stylesheet">
     <script src="/js/landing.js"></script>
 
     <div class="landing">
         <div class="landOne">
-            <h1>
+            <h1 class="animasi1">
                 Selamat Datang Di Website 
                 Pendaftaran Diklat Politeknik Penerbangan Surabaya <br>
                 @if ($currentUser == null)
-                <a href="/login" class="btn">Daftarkan Dirimu !!</a>
+                <a href="/login" class="btn animasi1">Daftarkan Dirimu !!</a>
                 @else
-                    <p><i style="color: white" class="bi bi-quote"></i>{{ $currentUser->name }}<i style="color: white; transform: scaleX(-1);" class="bi bi-quote"></i></p>
+                    <p class="animasi1"><i style="color: white" class="bi bi-quote"></i>{{ $currentUser->name }}<i style="color: white; transform: scaleX(-1);" class="bi bi-quote"></i></p>
                 @endif
                 
             </h1>
-            <img src="{{ asset('img/Artboard.png') }}" alt="">
+            <img class="animasi1" src="{{ asset('img/Artboard.png') }}" alt="">
+        </div>
+        <div class="square">
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>
+        <div class="circle">
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
         </div>
 
 
@@ -41,26 +59,26 @@
             <div class="landBlank"></div>
             <div class="landTwo">
                 {{-- lnadTwo -> wrapper --}}
-                <div class="card-animasi" >
+                <div class="card-animasi animasi1" >
                     {{-- card-animasi => container --}}
-                    <i class="fas fa-users"></i>
-                    <span class="num-animasi" data-val="{{ $totalPendaftar }}">0</span>
-                    <span class="text-animasi">Total Seluruh Pendaftar</span>
+                    <i class="fas fa-users animasi1"></i>
+                    <span class="num-animasi animasi1" data-val="{{ $totalPendaftar }}">0</span>
+                    <span class="text-animasi animasi1">Total Seluruh Pendaftar</span>
                 </div>
-                <div class="card-animasi" >
-                    <i class="fas fa-user-plus"></i>
-                    <span class="num-animasi" data-val="{{ $jmlPendaftarBelumTerlaksana }}">0</span>
-                    <span class="text-animasi">Pendaftar Periode Ini</span>
+                <div class="card-animasi animasi1" >
+                    <i class="fas fa-user-plus animasi1"></i>
+                    <span class="num-animasi animasi1" data-val="{{ $jmlPendaftarBelumTerlaksana }}">0</span>
+                    <span class="text-animasi animasi1">Pendaftar Periode Ini</span>
                 </div>
-                <div class="card-animasi" >
-                    <i class="fas fa-user-graduate"></i>
-                    <span class="num-animasi" data-val="{{ $alumni }}">0</span>
+                <div class="card-animasi animasi1" >
+                    <i class="fas fa-user-graduate animasi1"></i>
+                    <span class="num-animasi animasi1" data-val="{{ $alumni }}">0</span>
                     <span class="text-animasi">Total Lulusan Diklat </span>
                 </div>
-                <div class="card-animasi" >
-                    <i class="fas fa-book"></i>
-                    <span class="num-animasi" data-val="{{ $jmlDiklat }}">0</span>
-                    <span class="text-animasi">Total diklat saat ini</span>
+                <div class="card-animasi animasi1" >
+                    <i class="fas fa-book animasi1"></i>
+                    <span class="num-animasi animasi1" data-val="{{ $jmlDiklat }}">0</span>
+                    <span class="text-animasi animasi1">Total diklat saat ini</span>
                 </div>
             </div>
 
@@ -69,10 +87,10 @@
             <div class="landThree">
                 <div class="promo-land">
                     @if ($countPromo!=0)
-                        <h3 id="promo">Promo</h3>
-                        <p>Temukan promo yang bisa kamu dapatkan disini.. </p>
-                        <div id="carouselExampleIndicators" class="carousel slide img-promo" data-bs-ride="carousel">
-                            <div class="carousel-indicators">
+                        <h3 id="promo" class="animasi1">Promo</h3>
+                        <p class="animasi1">Temukan promo yang bisa kamu dapatkan disini.. </p>
+                        <div id="carouselExampleIndicators" class="carousel slide img-promo animasi1" data-bs-ride="carousel">
+                            <div class="carousel-indicators animasi1">
                                 @foreach ($promos as $key => $promo)
                                     <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $key }}" class="{{ $key == 0 ? 'active' : '' }}" aria-current="{{ $key == 0 ? 'true' : 'false' }}" aria-label="Slide {{ $key + 1 }}"></button>
                                 @endforeach
@@ -99,12 +117,12 @@
 
             <div class="landFour">
                 <div class="kat-land swiper">
-                    <h3 id="katDiklat">Kategori Diklat</h3>
-                    <p class="p-kat">Klik button untuk melihat lebih banyak diklat </p>
+                    <h3 id="katDiklat" class="animasi1">Kategori Diklat</h3>
+                    <p class="p-kat animasi1">Klik button untuk melihat lebih banyak diklat </p>
                     <div class="slide-content">
                         <div class="card-wrapper swiper-wrapper">
                             @foreach ($katDiklat as $kategori)
-                                <div class="card swiper-slide">
+                                <div class="card swiper-slide animasi1">
                                     <div class="image-content">
                                         <div class="card-image">
                                             @if ($kategori->gambar)
@@ -138,16 +156,16 @@
                 </div>
             </div>
 
-            <div class="testi-header">
-                <h2 id="testimoni">Testimoni</h2>
-                <p class="p-testi">Simak apa kata mereka...</p>
+            <div class="testi-header animasi1">
+                <h2 id="testimoni" class="animasi1">Testimoni</h2>
+                <p class="p-testi animasi1">Simak apa kata mereka...</p>
             </div>
             <div class="landFive">
                 <div class="testi-land">
                     @if ($countTestimoni != 0)
                         <div class="owl-carousel owl-theme testimonials-container">
                             @foreach ($testimonis as $testimoni)
-                                <div class="item testimonial-card">
+                                <div class="item testimonial-card animasi1">
                                     <main class="test-card-body">
                                         @if ($testimoni->id_pendaftaran)
                                             <div class="quote">
@@ -179,11 +197,11 @@
             <div class="landSix">
                 <div class="faq-land">
                 {{-- <hr> --}}
-                    <h3 id="faq">FAQ</h3>
-                    <p>Pertanyaan yang banyak ditanyakan...</p>
+                    <h3 id="faq" class="animasi1">FAQ</h3>
+                    <p class="animasi1">Pertanyaan yang banyak ditanyakan...</p>
                     <div class="bg-acc">
                         <div class="accordion accordion-flush" id="accordionFlushExample">
-                            <div class="accordion-item">
+                            <div class="accordion-item animasi1">
                                 <h2 class="accordion-header" id="flush-headingOne">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                                         Apa syarat-syarat yang diperlukan untuk mendaftar?
