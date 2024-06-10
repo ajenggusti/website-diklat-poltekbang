@@ -156,7 +156,7 @@
                         </td>
                         
                         <div class="col" style="margin-top: 20px;">
-                            <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a>
+                            <a href="/riwayat" class="btn btn-primary">Kembali</a>
                             <a href="/kelPendaftaran/{{ $data->id }}/edit" class="btn btn-warning">Edit</a>
                         </div>
                     </div>

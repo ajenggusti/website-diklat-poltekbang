@@ -109,6 +109,7 @@ class PendaftaranController extends Controller
         // $pendaftaran->tempat_lahir  = $request->input('tempat_lahir');
         // $pendaftaran->tanggal_lahir = $tanggal_lahir_formatted;
         // $pendaftaran->alamat  = $request->input('alamat');
+        $pendaftaran->waktu_pendaftaran = now();
         $pendaftaran->pendidikan_terakhir  = $request->input('pendidikan_terakhir');
         $pendaftaran->no_hp  = $request->input('no_hp');
         $pendaftaran->status_pelaksanaan = "Belum terlaksana";

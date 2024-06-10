@@ -206,30 +206,30 @@
 
 /* Layar 0-480px */
 @media screen and (max-width: 480px) {
-  body {
-    background-size: 400px 350px;
-  }
+body {
+  background-size: 400px 350px;
+}
 
   .topCenter{
     padding-top: 0;
     padding-bottom: 0;
   }
 
-  .form-content {
-    
-    max-width: 90%;
-    padding: 16px 20px;
-  }
+.form-content {
+  
+  max-width: 90%;
+  padding: 16px 20px;
+}
 
-  .topCenter img {
-    width: 35px;
-    height: 28px;
-    padding-bottom: 5px;
-  }
+.topCenter img {
+  width: 35px;
+  height: 28px;
+  padding-bottom: 5px;
+}
 
-  .form-floating button {
-    right: 5px;
-  }
+.form-floating button {
+  right: 5px;
+}
 
   .bottomCenter {
     padding-top: 0;
@@ -250,16 +250,8 @@
     padding-bottom: 20px;
   }
 
-  .form-content {
-    
-    max-width: 90%;
-    padding: 16px 20px;
-  }
-
-  .topCenter img {
-    width: 55px;
-    height: 45px;
-  }
+  /* .form-content {
+  } */
   
   .topCenter h6 {
     font-weight: 600;

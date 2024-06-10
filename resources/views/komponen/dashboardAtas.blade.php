@@ -88,8 +88,20 @@
               <li class="nav-link">
                   <a href="/dbSuperAdmin">
                     <i class="fas fa-house-user icon"></i>
-                    <span class="text nav-text">Dashboard</span>
+                    <span class="text nav-text">Dashboard Super Admin</span>
                   </a>
+              </li>
+              <li class="nav-link">
+                <a href="/dbDpuk">
+                  <i class="fas fa-house-user icon"></i>
+                  <span class="text nav-text">Dashboard DPUK</span>
+                </a>
+              </li>
+              <li class="nav-link">
+                <a href="/dbKeuangan">
+                  <i class="fas fa-house-user icon"></i>
+                  <span class="text nav-text">Dashboard Keuangan</span>
+                </a>
               </li>
               <li class="nav-link">
                 <a href="/indexKelolaUser">
@@ -107,21 +119,24 @@
                           
               <li class="nav-link">
                 <a href="/kelTestimoni">
-                  <i class="fas fa-envelope-open-text icon"></i>
+                  {{-- <i class="fas fa-envelope-open-text icon"></i> --}}
+                  <i class="fa-solid fa-quote-right icon"></i>
                   <span class="text nav-text">Testimoni</span>
                 </a>
               </li>
 
               <li class="nav-link">
                 <a href="/kelKatDiklat">
-                  <i class="fas fa-envelope-open-text icon"></i>
+                  {{-- <i class="fas fa-envelope-open-text icon"></i> --}}
+                  <i class="fa-solid fa-table-columns icon"></i>
                   <span class="text nav-text">Kategori Diklat</span>
                 </a>
               </li>
                         
               <li class="nav-link">
                 <a href="/kelDiklat">
-                  <i class="fas fa-envelope-open-text icon"></i>
+                  {{-- <i class="fas fa-envelope-open-text icon"></i> --}}
+                  <i class="fa-solid fa-graduation-cap icon"></i>
                   <span class="text nav-text">Diklat</span>
                 </a>
               </li>
@@ -159,7 +174,7 @@
               <li class="nav-link">
                 <a href="/dbDpuk">
                   <i class="fas fa-house-user icon"></i>
-                  <span class="text nav-text">Dashboard</span>
+                  <span class="text nav-text">Dashboard DPUK</span>
                 </a>
               </li>
               <li class="nav-link">
@@ -168,7 +183,12 @@
                   <span class="text nav-text">Pendaftaran(dpuk)</span>
                 </a>
               </li> 
-              
+              <li class="nav-link">
+                <a href="/kelPendaftaranKeuangan">
+                  <i class="fas fa-envelope-open-text icon"></i>
+                  <span class="text nav-text">Pendaftaran(keuangan)</span>
+                </a>
+              </li>
               <li class="nav-link">
                 <a href="/kelPromo">
                   <i class="fas fa-tags icon"></i>
@@ -178,7 +198,8 @@
                           
               <li class="nav-link">
                 <a href="/kelTestimoni">
-                  <i class="fas fa-envelope-open-text icon"></i>
+                  {{-- <i class="fas fa-envelope-open-text icon"></i> --}}
+                  <i class="fa-solid fa-quote-right"></i>
                   <span class="text nav-text">Testimoni</span>
                 </a>
               </li>
@@ -202,14 +223,20 @@
                   <i class="fas fa-calendar-week icon"></i>
                   <span class="text nav-text">Kalender</span>
                 </a>
-              </li>     
+              </li>  
+              <li class="nav-link">
+                <a href="/kelPembayaran">
+                  <i class="fas fa-file-invoice icon"></i>
+                  <span class="text nav-text">Laporan</span>
+                </a>
+              </li>    
             @endcan
             {{--akses keuangan  --}}
             @can('keuangan')
               <li class="nav-link">
                 <a href="/dbKeuangan">
                   <i class="fas fa-house-user icon"></i>
-                  <span class="text nav-text">Dashboard</span>
+                  <span class="text nav-text">Dashboard Keuangan</span>
                 </a>
               </li>
 
