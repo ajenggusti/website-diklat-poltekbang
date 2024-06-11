@@ -62,4 +62,3 @@ class UserPolicy
         return $user->level->level === 'Super Admin';
     }
 }
-

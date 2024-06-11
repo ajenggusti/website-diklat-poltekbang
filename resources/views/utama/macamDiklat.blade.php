@@ -1,4 +1,5 @@
 @extends('layout/mainUser')
+@section('title', 'DIKLAT ' . $diklatOne->kategori_diklat)
 @section('container')
     <link href="/css/macamDiklat.css" rel="stylesheet">
 
@@ -17,16 +18,18 @@
                     </li>
                 </ol>
             </nav> --}}
-        @if (count($diklat) != 0 )
+        {{-- @if (count($diklat) != 0 )
             <div class="button-macam">
-                <a href="/" class="btn btn-info" style="margin-top: 40px;">Kembali</a><br>
+                <a href="/" class="btn " style="margin-top: 40px; margin-left: -30px;">
+                    <i class="fa-regular fa-circle-left" style="font-size: 30px; color: orange;"></i>
+                </a><br>
             </div> 
-        @endif
+        @endif --}}
         <div class="diklat-content">
             @if (count($diklat) != 0 )
                 {{-- <br> --}}
                 <div class="diklat-land swiper">
-                    <h2>PROGRAM {{ $diklatOne->kategori_diklat }}</h2>
+                    <h2>PROGRAM {{ $diklatOne->kategori_diklat }}</h2><br>
                     <div class="slide-content">
                         <div class="card-wrapper swiper-wrapper">
                             @foreach ($diklat as $perdiklat)

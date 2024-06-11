@@ -2,16 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('img/apple-touch-icon.png') }}">
+    <link rel="icon" sizes="32x32" href="{{ asset('img/favicon-32x32.png') }}">
+    <link rel="icon" sizes="16x16" href="{{ asset('img/favicon-16x16.png') }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
     <meta name="csrf_token" content="{{ csrf_token() }}">
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-    <link rel="icon" type="image/png" href="{{ asset('img/poltek.png') }}">
-    <title>
-      Dashboard Staff
-    </title>
+    <title>@yield('title', 'Staff Menu')</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/5.0.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
 
@@ -193,6 +193,12 @@
                 <a href="/kelPendaftaranKeuangan">
                   <i class="fas fa-envelope-open-text icon"></i>
                   <span class="text nav-text">Pendaftaran(keuangan)</span>
+                </a>
+              </li>
+              <li class="nav-link">
+                <a href="/indexKelolaUser">
+                  <i class="fas fa-users icon"></i>
+                  <span class="text nav-text">User</span>
                 </a>
               </li>
               <li class="nav-link">

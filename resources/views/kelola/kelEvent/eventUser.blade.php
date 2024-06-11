@@ -1,4 +1,5 @@
 @extends('layout.mainUser')
+@section('title', 'Kalender Diklat')
 @section('container')
     <style>
         /* .containerCalender {

@@ -1,17 +1,12 @@
-<!-- resources/views/auth/reset-password.blade.php -->
 @extends('layout/mainUser')
+@section('title', 'Form Reset Password')
 @section('container')
-<link href="/css/actor.css" rel="stylesheet">
-<style>
-    .reset {
-        margin-top: 30px;
-        margin-bottom: 30px;
-    }
-</style>
+<link href="/css/password.css" rel="stylesheet">
+<script src="/js/password.js"></script>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card ">
+            <div class="card">
                 <div class="card-header">{{ __('Reset Password') }}</div>
 
                 <div class="card-body">
@@ -21,7 +16,7 @@
                         </div>
                     @endif
 
-                    <form method="POST" action="{{ route('password.update.post') }}" class="edit-staff reset">
+                    <form method="POST" action="{{ route('password.update.post') }}" class="edit-pass reset">
                         @csrf
 
                         <input type="hidden" name="token" value="{{ $token }}">
@@ -39,18 +34,27 @@
 
                         <div class="form-group">
                             <label for="password">{{ __('New Password') }}</label>
-                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                            @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                            <div class="input-group">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="toggleResetPassword"><i id="eye-icon-reset" class="bi bi-eye-slash"></i></span>
+                                </div>
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                         </div>
 
                         <div class="form-group">
                             <label for="password-confirm">{{ __('Confirm New Password') }}</label>
-                            <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            <div class="input-group">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="toggleResetPasswordConfirm"><i id="eye-icon-reset-confirm" class="bi bi-eye-slash"></i></span>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="form-group mb-0">

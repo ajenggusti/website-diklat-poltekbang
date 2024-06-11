@@ -1,4 +1,5 @@
 @extends('layout.mainAdmin')
+@section('title', 'DPUK | Edit Kategori Diklat')
 @section('container')
     <link href="/css/actor.css" rel="stylesheet">
 
@@ -32,7 +33,7 @@
                         <option value="ya" {{ old('default', $data->default) == 'ya' ? 'selected' : '' }}>Ya</option>
                         <option value="tidak" {{ old('default', $data->default) == 'tidak' || is_null($data->default) ? 'selected' : '' }}>Tidak</option>
                     </select>
-                    <small class="text-muted">Pilih "ya" jika ingin gambar menjadi gambar default.</small>
+                    <small class="text-muted">Pilih "ya" jika ingin gambar menjadi gambar default semua kategori diklat.</small>
                     @error('default')
                         <div class="invalid-feedback">{{ $message }}</div>
                     @enderror

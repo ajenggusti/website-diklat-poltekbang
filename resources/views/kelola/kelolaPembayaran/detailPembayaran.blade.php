@@ -1,4 +1,5 @@
 @extends('layout.mainAdmin')
+@section('title', 'Detail Pembayaran')
 @section('container')
     <link href="/css/actor.css" rel="stylesheet">
 

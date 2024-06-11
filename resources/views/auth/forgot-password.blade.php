@@ -1,19 +1,14 @@
 <!-- resources/views/auth/forgot-password.blade.php -->
 @extends('layout/mainUser')
+@section('title', 'Form Forget Password')
 @section('container')
-<link href="/css/actor.css" rel="stylesheet">
-<style>
-    .forgot {
-        margin-top: 30px;
-        margin-bottom: 30px;
-    }
-</style>
+<link href="/css/password.css" rel="stylesheet">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card edit-staff forgot">
-                <div class="card-header">{{ __('Forgot Password') }}</div>
-
+            <div class="card edit-pass reset">
+                {{-- <div class="card-header">{{ __('Forgot Password') }}</div> --}}
+                <h2 style="font-size: 20px;"> Forgot Password</h2>
                 <div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">

@@ -1,4 +1,5 @@
 @extends('layout.mainAdmin')
+@section('title', 'DPUK | Edit Testimoni')
 @section('container')
         <link href="/css/actor.css" rel="stylesheet">
 

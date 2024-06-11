@@ -1,4 +1,5 @@
 @extends('layout.mainAdmin')
+@section('title', 'Super Admin | Detail Informasi User')
 @section('container')
     <link href="/css/actor.css" rel="stylesheet">
     

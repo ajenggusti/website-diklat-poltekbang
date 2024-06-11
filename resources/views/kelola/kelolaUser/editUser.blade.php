@@ -1,4 +1,5 @@
 @extends('layout.mainAdmin')
+@section('title', 'Super Admin | Edit Level User')
 @section('container')
     <link href="/css/actor.css" rel="stylesheet">
    
@@ -171,7 +172,7 @@
             </div>
 
             <div class="mb-3">
-                <label for="status" class="form-label">Status</label>
+                <label for="status" class="form-label"><small style="color: rgb(255, 0, 0); font-weight: bold;">*</small>Status<small style="color: rgb(255, 0, 0); font-weight: bold;">*</small></label>
                 <select name="status" id="status" class="form-select @error('status') is-invalid @enderror">
                     <option value="" selected disabled>Pilih status</option>
                     <option  value="Perlu dilengkapi" {{ old('status', $user->status) == 'Perlu dilengkapi' ? 'selected' : '' }}>Perlu dilengkapi</option>

@@ -1,6 +1,8 @@
 @extends('layout.mainAdmin')
+@section('title', 'Super Admin | Status Profil User')
 @section('container')
     {{-- Head --}}
+    
     <link href="/css/actor.css" rel="stylesheet">
     <script src="/js/actor.js"></script>
     

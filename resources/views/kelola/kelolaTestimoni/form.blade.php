@@ -1,4 +1,5 @@
 @extends('layout.mainUser')
+@section('title', 'Form Testimoni')
 @section('container')
         <link href="/css/editForUser.css" rel="stylesheet">
 

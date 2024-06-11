@@ -1,4 +1,5 @@
 @extends('layout.mainUser')
+@section('title', 'Profil')
 @section('container')
     <link href="/css/editForUser.css" rel="stylesheet">
 
@@ -40,7 +41,7 @@
                     <hr>
                     <div class="left-profil">
                         <div class="mb-3">
-                            <label for="jenis_berkas" class="form-label">Pilih jenis berkas:</label>
+                            <label for="jenis_berkas" class="form-label">Pilih jenis berkas: <small style="color: rgb(255, 0, 0); font-weight: bold;">*</small></label>
                             <select name="jenis_berkas" id="jenis_berkas" class="form-select">
                                 <option value="ktp" {{ old('jenis_berkas', $user->jenis_berkas) == 'ktp' ? 'selected' : '' }}>KTP</option>
                                 <option value="paspor" {{ old('jenis_berkas', $user->jenis_berkas) == 'paspor' ? 'selected' : '' }}>Paspor</option>
@@ -56,7 +57,7 @@
                         </div>
                         
                         <div class="mb-3">
-                            <label for="img" class="form-label">Masukkan foto ktp/paspor</label>
+                            <label for="img" class="form-label">Masukkan foto ktp/paspor <small style="color: rgb(255, 0, 0); font-weight: bold;">*</small></label>
                             <img class="img-preview img-fluid" style="width: 550px;">
                             <input name="img" onchange="previewImage()" class="form-control @error('img') is-invalid @enderror" type="file" id="img">
                             <small style="color: rgb(91, 91, 255)">Foto berukuran maksimal 2 MB</small>
@@ -66,7 +67,7 @@
                         </div>
                         
                         <div class="mb-3">
-                            <label for="name" class="form-label is">Nama Lengkap</label>
+                            <label for="name" class="form-label is">Nama Lengkap <small style="color: rgb(255, 0, 0); font-weight: bold;">*</small></label>
                             <input type="text" class="form-control  @error('name') is-invalid @enderror" id="name" name= "name" value="{{ old('name') ?: $user->name}}">
                             @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -88,7 +89,7 @@
                         </div> --}}
                           
                         <div class="mb-3">
-                            <label for="nik" class="form-label is">NIK</label>
+                            <label for="nik" class="form-label is">NIK <small style="color: rgb(255, 0, 0); font-weight: bold;">*</small></label>
                             <input type="text" class="form-control  @error('nik') is-invalid @enderror" id="nik" name= "nik" value="{{ old('nik') ?: $user->nik}}">
                             @error('nik')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -96,7 +97,7 @@
                         </div>
                         
                         <div class="mb-3">
-                            <label for="no_paspor" class="form-label is">Nomor Paspor</label>
+                            <label for="no_paspor" class="form-label is">Nomor Paspor <small style="color: rgb(255, 0, 0); font-weight: bold;">*</small></label>
                             <input type="text" class="form-control  @error('no_paspor') is-invalid @enderror" id="no_paspor" name= "no_paspor" value="{{ old('no_paspor') ?: $user->no_paspor}}">
                             @error('no_paspor')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -104,7 +105,7 @@
                         </div>
 
                         <div class="mb-3">
-                            <label for="jenis_kelamin" class="form-label">Pilih jenis kelamin:</label>
+                            <label for="jenis_kelamin" class="form-label">Pilih jenis kelamin: <small style="color: rgb(255, 0, 0); font-weight: bold;">*</small></label>
                             <select name="jenis_kelamin" id="jenis_kelamin" class="form-select @error('jenis_kelamin') is-invalid @enderror">
                                 <option value="" selected disabled>Pilih jenis kelamin</option>
                                 <option value="p" {{ old('jenis_kelamin', $user->jenis_kelamin) == 'p' ? 'selected' : '' }}>Perempuan</option>
@@ -117,7 +118,7 @@
                     
                             
                         <div class="mb-3">
-                            <label for="tempat_lahir" class="form-label is">Tempat lahir</label>
+                            <label for="tempat_lahir" class="form-label is">Tempat lahir <small style="color: rgb(255, 0, 0); font-weight: bold;">*</small></label>
                             <input type="text" class="form-control  @error('tempat_lahir') is-invalid @enderror" id="tempat_lahir" name= "tempat_lahir" value="{{ old('tempat_lahir') ?: $user->tempat_lahir}}">
                             @error('tempat_lahir')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -125,7 +126,7 @@
                         </div>
                                     
                         <div class="mb-3">
-                            <label class="control-label" for="tgl_lahir">Tanggal Lahir</label>
+                            <label class="control-label" for="tgl_lahir">Tanggal Lahir <small style="color: rgb(255, 0, 0); font-weight: bold;">*</small></label>
                             <input class="form-control datepicker @error('tgl_lahir') is-invalid @enderror" value="{{ old('tgl_lahir') ?? ($user->tgl_lahir ? \Carbon\Carbon::parse($user->tgl_lahir)->format('d-m-Y') : '') }}" id="tgl_lahir" name="tgl_lahir" placeholder="dd-mm-yyyy" type="text"/>
                             @error('tgl_lahir')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -140,7 +141,7 @@
                         </div> --}}
                         
                         <div class="mb-3">
-                            <label for="nationality">Nationality:</label>
+                            <label for="nationality">Nationality: <small style="color: rgb(255, 0, 0); font-weight: bold;">*</small></label>
                             <select class="form-select single-select-field" name="id_nationality" id="nationality" data-placeholder="Pilih nationality">
                                 <option></option>
                                 @foreach ($nationalities as $nationality)
@@ -154,7 +155,7 @@
                         
                         {{-- alamat --}}
                         <div class="mb-3">
-                            <label for="provinsi">Provinsi:</label>
+                            <label for="provinsi">Provinsi: <small style="color: rgb(255, 0, 0); font-weight: bold;">*</small></label>
                             <select class="form-select single-select-field @error('id_provinsi') is-invalid @enderror" name="id_provinsi" id="provinsi" data-placeholder="Pilih provinsi">
                                 <option></option>
                                 @foreach ($provinsis as $provinsi)
@@ -167,7 +168,7 @@
                         </div>
                         
                         <div class="mb-3">
-                            <label for="kabupaten">Kabupaten:</label>
+                            <label for="kabupaten">Kabupaten: <small style="color: rgb(255, 0, 0); font-weight: bold;">*</small></label>
                             <select class="form-select single-select-field @error('id_kabupaten') is-invalid @enderror" name="id_kabupaten" id="kabupaten" data-placeholder="Pilih Kabupaten">
                                 <option></option>
                             </select>
@@ -177,7 +178,7 @@
                         </div>
                         
                         <div class="mb-3">
-                            <label for="kecamatan">Kecamatan:</label>
+                            <label for="kecamatan">Kecamatan: <small style="color: rgb(255, 0, 0); font-weight: bold;">*</small></label>
                             <select class="form-select single-select-field @error('id_kecamatan') is-invalid @enderror" name="id_kecamatan" id="kecamatan" data-placeholder="Pilih kecamatan">
                                 <option></option>
                             </select>
@@ -187,7 +188,7 @@
                         </div>
                         
                         <div class="mb-3">
-                            <label for="kelurahan">Kelurahan:</label>
+                            <label for="kelurahan">Kelurahan: <small style="color: rgb(255, 0, 0); font-weight: bold;">*</small></label>
                             <select class="form-select single-select-field @error('id_kelurahan') is-invalid @enderror" name="id_kelurahan" id="kelurahan" data-placeholder="Pilih kelurahan">
                                 <option></option>
                             </select>

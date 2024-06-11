@@ -1,4 +1,5 @@
 @extends('layout/mainUser')
+@section('title', $detailDiklat->nama_diklat)
 @section('container')
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
         <link href="/css/detailDiklat.css" rel="stylesheet">
@@ -39,8 +40,8 @@
                 <div class="btn-regDiklat d-flex justify-content-center">
                     @guest
                     @if ($dobelDiklat==null)
-                        <div class="d-grid gap-2 col-6 btn-container">
-                            <button class="btn btn-primary" type="button" onclick="window.location.href = '/login';" style="justify-content: center;">Login untuk mendaftar!</button>
+                        <div class=" btn-container">
+                            <button class="btn btn-primary" type="button" onclick="window.location.href = '/login';">Login untuk mendaftar!</button>
                         </div>
                         @endif
                     @endguest

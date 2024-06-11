@@ -1,4 +1,5 @@
 @extends('layout.mainAdmin')
+@section('title', 'Dashboard Keuangan')
 @section('container')
     <link href="/css/staff.css" rel="stylesheet">
 

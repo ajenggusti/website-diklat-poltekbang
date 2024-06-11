@@ -1,4 +1,5 @@
 @extends('layout/mainUser')
+@section('title', 'Tabel Transaksi Pembayaran')
 @section('container')
     <link href="/css/actor.css" rel="stylesheet">
     <script src="/js/actor.js"></script>

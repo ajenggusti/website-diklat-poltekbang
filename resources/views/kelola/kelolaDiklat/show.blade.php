@@ -1,4 +1,5 @@
 @extends('layout.mainAdmin')
+@section('title', 'DPUK | Detail Diklat')
 @section('container')
     <link href="/css/actor.css" rel="stylesheet">
     
@@ -45,7 +46,7 @@
                     <td>Rp {{ number_format($diklatData->harga, 0, ',', '.') }}</td>
                 </tr>        
                 <tr>
-                    <th>Kuota Minimal</th>
+                    <th>Kuota Maksimal</th>
                     <td>{{ $diklatData->kuota_minimal }}</td>
                 </tr>
                 <tr>

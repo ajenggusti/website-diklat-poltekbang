@@ -1,4 +1,5 @@
 @extends('layout/mainUser')
+@section('title', 'Courses List Poltekbang Surabaya | Landing Page')
 @section('container')
     <link rel="stylesheet" href="css/swiper-bundle.min.css">
     <!-- *******  Font Awesome Icons Link  ******* -->
@@ -29,7 +30,11 @@
                 @if ($currentUser == null)
                 <a href="/login" class="btn animasi1">Daftarkan Dirimu !!</a>
                 @else
-                    <p class="animasi1"><i style="color: white" class="bi bi-quote"></i>{{ $currentUser->name }}<i style="color: white; transform: scaleX(-1);" class="bi bi-quote"></i></p>
+                    <p class="animasi1">
+                        <i class="fa-solid fa-quote-left"></i>
+                        {{ $currentUser->name }}
+                        <i class="fa-solid fa-quote-right"></i>
+                    </p>
                 @endif
                 
             </h1>

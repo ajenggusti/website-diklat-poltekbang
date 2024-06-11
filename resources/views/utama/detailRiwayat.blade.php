@@ -1,4 +1,5 @@
 @extends('layout.mainUser')
+@section('title', 'Riwayat ' . $data->diklat->nama_diklat)
 @section('container')
     <link href="/css/riwayat.css" rel="stylesheet">
     <script src="/js/landing.js"></script>
@@ -156,7 +157,7 @@
                         </td>
                         
                         <div class="col" style="margin-top: 20px;">
-                            <a href="/riwayat" class="btn btn-primary">Kembali</a>
+                            {{-- <a href="/riwayat" class="btn btn-primary">Kembali</a> --}}
                             <a href="/kelPendaftaran/{{ $data->id }}/edit" class="btn btn-warning">Edit</a>
                         </div>
                     </div>

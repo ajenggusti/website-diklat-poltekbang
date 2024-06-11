@@ -1,6 +1,9 @@
 @extends('layout/mainUser')
 
 @section('container')
+<title>
+    Notification
+  </title>
 <style>
     /* CSS Code */
     .card {

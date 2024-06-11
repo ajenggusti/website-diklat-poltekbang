@@ -1,4 +1,5 @@
 @extends('layout.mainAdmin')
+@section('title', 'Staff | Log Activity User')
 @section('container')
     <link href="/css/actor.css" rel="stylesheet">
     <script src="/js/actor.js"></script>

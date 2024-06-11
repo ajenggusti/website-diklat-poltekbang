@@ -6,23 +6,21 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
-    {{-- <link rel="icon" type="image/png" href="{{ asset('img/poltek.png') }}"> --}}
-    <title>Login</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('img/apple-touch-icon.png') }}">
+    <link rel="icon" sizes="32x32" href="{{ asset('img/favicon-32x32.png') }}">
+    <link rel="icon" sizes="16x16" href="{{ asset('img/favicon-16x16.png') }}">
+    <title>Login | Courses List Poltekbang Surabaya</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-    {{-- Boostrap Icons --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    {{-- Font Poppins --}}
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Custom styles for this template -->
     <link href="/css/login.css" rel="stylesheet">
     <script src="/js/signin.js"></script>
   </head>
   <body>
     <br><br>
-    {{-- <img src="{{ asset('img/poltek.png') }}" style="width: 30px; height: 20px;"> --}}
     <main class="form-signin text-center">
       <div class="topCenter">
-        <img src="{{ asset('img/poltek.png') }}" alt="" >
+        <img src="{{ asset('img/poltek.png') }}" alt="">
         <h6>POLTEKBANG SURABAYA</h6>
       </div>
       <form method="POST" action="{{ route('login') }}" class="form-content">
@@ -49,8 +47,8 @@
         </div>
         <div class="form-floating">
           <input name="password" type="password" class="form-control @error('password') is-invalid @enderror" id="floatingPassword" placeholder="Password" value="">
-          <button class="btn eye" type="button" id="togglePassword2">
-            <i class="bi bi-eye-slash" id="eye-icon"></i>
+          <button class="btn eye" type="button" id="togglePassword">
+            <i class="bi bi-eye-slash eye-icon"></i>
           </button>
           <label for="floatingPassword">Password</label>
           <span class="forget-pw">Lupa password?<a href="/forgot-password" class="btn lupa-pw2">Klik disini</a></span>
@@ -66,11 +64,7 @@
         <br> <br>
         <div class="p-login">
           <p style="text-align: center; margin-bottom: 0;">Belum punya akun?<a href="/register" class="btn"> Daftar sekarang</a></p>
-          
         </div>
-        
-        
-        
       </form>
       <div class="bottomCenter">
         <p>@poltekbang sby</p>
