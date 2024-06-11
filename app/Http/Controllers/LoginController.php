@@ -30,7 +30,7 @@ class LoginController extends Controller
                 'status'=>'Perlu dilengkapi',
                 'password' => bcrypt(Str::random(16)) 
             ]);
-            $user->sendEmailVerificationNotification();
+            // $user->sendEmailVerificationNotification();
         }
         
         Auth::login($user);
