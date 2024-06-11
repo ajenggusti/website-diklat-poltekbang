@@ -89,7 +89,7 @@
 .detail-three a {
     font-weight: bold;
     padding-left: 1.5px;
-    padding-bottom: 13px;
+    padding-bottom: 9px;
     border: none;
 }
 
@@ -114,6 +114,7 @@
     color: #0c56b7;
 }
 
+.btn-container,
 .button-detail {
     margin-left: auto;
 }

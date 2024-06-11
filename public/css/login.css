@@ -188,12 +188,15 @@
   text-align: center;
   margin: 20px 0;
 }
+.divider span {
+  color: #a7a7a7b9;
+}
 
 .divider::before,
 .divider::after {
     content: "";
     flex: 1;
-    border-bottom: 1px solid #000;
+    border-bottom: 0.2em solid #a7a7a734;
 }
 
 .divider:not(:empty)::before {

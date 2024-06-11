@@ -1,4 +1,5 @@
 @extends('layout.mainAdmin')
+@section('title', 'Keuangan | Edit Pendaftaran')
 @section('container')
     <link href="/css/actor.css" rel="stylesheet">
     
@@ -150,7 +151,11 @@
                             @enderror
                         </div>
                         <div class="mb-3">
-                            <label for="status_pembayaran_diklat" class="form-label">Status Pembayaran Diklat</label>
+                            <label for="status_pembayaran_diklat" class="form-label">
+                                <small style="color: rgb(255, 0, 0); font-weight: bold;">*</small>
+                                Status Pembayaran Diklat
+                                <small style="color: rgb(255, 0, 0); font-weight: bold;">*</small>
+                            </label>
                             <select class="form-select" id="status_pembayaran_diklat" name="status_pembayaran_diklat">
                                 <option value="Lunas" {{ old('status_pembayaran_diklat', $kelPendaftaran->status_pembayaran_diklat) == 'Lunas' ? 'selected' : '' }}>Lunas</option>
                                 <option value="Menunggu pembayaran" {{ old('status_pembayaran_diklat', $kelPendaftaran->status_pembayaran_diklat) == 'Menunggu pembayaran' ? 'selected' : '' }}>Menunggu pembayaran</option>

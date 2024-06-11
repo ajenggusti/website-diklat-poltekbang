@@ -1,6 +1,10 @@
 @extends('layout.mainAdmin')
+@section('title', 'DPUK | Kalender')
 @section('container')
     {{-- <link href="/css/actor.css" rel="stylesheet"> --}}
+    <title>
+        Calender
+    </title>
     <style>
         .content-kalender {
             background-color: rgb(255, 255, 255);

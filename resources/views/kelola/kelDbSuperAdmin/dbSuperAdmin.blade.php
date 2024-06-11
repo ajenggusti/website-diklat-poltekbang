@@ -1,4 +1,5 @@
 @extends('layout.mainAdmin')
+@section('title', 'Dashboard Super Admin')
 @section('container')
     {{-- HEAD --}}
     <link href="/css/staff.css" rel="stylesheet">

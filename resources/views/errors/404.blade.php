@@ -41,7 +41,7 @@
             <img  src="{{ asset('img/404error.png') }}">
 
         </div>
-        <a href="{{ url('/') }}">Kembali</a>
+        <a href="{{ url('/') }}">Back to Previous</a>
     </div>
 </body>
 </html>

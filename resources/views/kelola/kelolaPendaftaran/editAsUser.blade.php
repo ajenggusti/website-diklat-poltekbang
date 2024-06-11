@@ -1,4 +1,5 @@
 @extends('layout.mainUser')
+@section('title', 'Edit Form Pendaftaran')
 @section('container')
         <link href="/css/editForUser.css" rel="stylesheet">
 
@@ -41,17 +42,7 @@
                                 <div class="mb-3">
                                     <label for="harga" class="form-label is">Total Biaya</label>
                                     <input disabled type="text" class="form-control @error('harga') is-invalid @enderror" id="harga" name="harga" value="Rp {{ number_format($kelPendaftaran->harga_diklat, 0, ',', '.' ) }}">
-                                </div>   
-                                {{-- {{ $kelPendaftaran->email }} --}}
-                                {{-- <div class="mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input disabled type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') ?: $kelPendaftaran->email }}">
-                                    @error('email')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
                                 </div>
-                                <input type="hidden" name="email" value="{{ $kelPendaftaran->email }}"> --}}
-                                
                                 
                                 <div class="mb-3">
                                     <label for="kode" class="form-label">Kode Promo (Opsional)</label>
@@ -63,42 +54,10 @@
                             </div>
                             
                             <div class="right-profil">
-                                {{-- <div class="mb-3">
-                                    <label for="nama_lengkap" class="form-label is">Nama Lengkap</label>
-                                    <input type="text" class="form-control  @error('nama_lengkap') is-invalid @enderror" id="nama_lengkap" name= "nama_lengkap" value="{{ old('nama_lengkap') ?: $kelPendaftaran->nama_lengkap}}">
-                                    @error('nama_lengkap')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="tempat_lahir" class="form-label">Tempat lahir</label>
-                                    <input type="text" class="form-control @error('tempat_lahir') is-invalid @enderror" id="tempat_lahir" name="tempat_lahir" value="{{ old('tempat_lahir') ?: $kelPendaftaran->tempat_lahir}}">
-                                    @error('tempat_lahir')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                        
-                        
-                                <div class="form-group mb-3">
-                                    <label class="control-label" for="tgl_awal">Tanggal Lahir</label>
-                                    <input class="form-control datepicker @error('tgl_awal') is-invalid @enderror" value="{{ old('tgl_awal') ?? ($kelPendaftaran->tanggal_lahir ? \Carbon\Carbon::parse($kelPendaftaran->tanggal_lahir)->format('d-m-Y') : '') }}" id="tgl_awal" name="tgl_awal" placeholder="dd-mm-yyyy" type="text"/>
-                                    @error('tgl_awal')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
+                                
                                 
                                 <div class="mb-3">
-                                    <label for="alamat" class="form-label">Alamat</label>
-                                    <textarea class="form-control @error('alamat') is-invalid @enderror" id="alamat" name="alamat" rows="4">{{ old('alamat')?: $kelPendaftaran->alamat }}</textarea>
-                                    @error('alamat')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-                                 --}}
-                                
-                                <div class="mb-3">
-                                    <label for="pendidikan_terakhir" class="form-label">Pendidikan Terakhir</label>
+                                    <label for="pendidikan_terakhir" class="form-label">Pendidikan Terakhir <small style="color: rgb(255, 0, 0); font-weight: bold;">*</small></label>
                                     <select name="pendidikan_terakhir" id="pendidikan_terakhir" class="form-select @error('pendidikan_terakhir') is-invalid @enderror">
                                         <option value="" disabled {{ old('pendidikan_terakhir') == '' ? 'selected' : '' }}>Pilih Pendidikan Terakhir</option>
                                         <option value="SD" {{ old('pendidikan_terakhir', $kelPendaftaran->pendidikan_terakhir) == 'SD' ? 'selected' : '' }}>SD</option>
@@ -115,7 +74,7 @@
                                 </div>        
                                 
                                 <div class="mb-3">
-                                    <label for="no_hp" class="form-label">No HP</label>
+                                    <label for="no_hp" class="form-label">No HP <small style="color: rgb(255, 0, 0); font-weight: bold;">*</small></label>
                                     <input type="text" class="form-control @error('no_hp') is-invalid @enderror" id="no_hp" name="no_hp" value="{{ old('no_hp') ?: $kelPendaftaran->no_hp}}">
                                     @error('no_hp')
                                         <div class="invalid-feedback">{{ $message }}</div>

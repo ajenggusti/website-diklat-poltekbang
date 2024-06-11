@@ -1,4 +1,5 @@
 @extends('layout.mainUser')
+@section('title', 'Form Pembayaran Diklat')
 @section('container')
         <link href="/css/actor.css" rel="stylesheet">
 

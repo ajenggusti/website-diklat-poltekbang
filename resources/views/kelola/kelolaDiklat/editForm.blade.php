@@ -1,4 +1,5 @@
 @extends('layout.mainAdmin')
+@section('title', 'DPUK | Edit Diklat')
 @section('container')
     <link href="/css/actor.css" rel="stylesheet">
 
@@ -38,7 +39,7 @@
                             <option value="ya" {{ old('default', $kelDiklat->default) == 'ya' ? 'selected' : '' }}>Ya</option>
                             <option value="tidak" {{ old('default', $kelDiklat->default) == 'tidak' || is_null($kelDiklat->default) ? 'selected' : '' }}>Tidak</option>
                         </select>
-                        <small class="text-muted">Pilih "ya" jika ingin gambar menjadi gambar default.</small>
+                        <small class="text-muted">Pilih "ya" jika ingin gambar menjadi gambar default semua kategori diklat.</small>
                         @error('default')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
@@ -79,7 +80,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="kuota" class="form-label is">Kuota Minimal</label>
+                        <label for="kuota" class="form-label is">Kuota Maksimal</label>
                         <input type="number" class="form-control  @error('kuota') is-invalid @enderror" id="kuota" name= "kuota" value="{{ old('kuota')?? $kelDiklat->kuota_minimal }}">
                         @error('kuota')
                             <div class="invalid-feedback">{{ $message }}</div>

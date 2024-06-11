@@ -1,4 +1,5 @@
 @extends('layout.mainUser')
+@section('title', 'Form Permohonan Mengubah Data')
 @section('container')
     <link href="/css/riwayat.css" rel="stylesheet">
 

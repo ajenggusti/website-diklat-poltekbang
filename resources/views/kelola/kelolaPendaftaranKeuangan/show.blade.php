@@ -1,4 +1,5 @@
 @extends('layout.mainAdmin')
+@section('title', 'Keuangan | Detail Pendaftaran User')
 @section('container')
     <link href="/css/actor.css" rel="stylesheet">
     

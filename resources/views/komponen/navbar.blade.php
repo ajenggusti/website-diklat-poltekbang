@@ -17,7 +17,7 @@
     <!-- Note: replace with src="https://app.midtrans.com/snap/snap.js" for Production environment -->
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script type="text/javascript"
       src="https://app.sandbox.midtrans.com/snap/snap.js"
@@ -53,10 +53,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-    {{-- <link rel="icon" type="image/png" href="{{ asset('img/poltek.png') }}"> --}}
-    <title>
-      PENDAFTARAN DIKLAT POLTEKBANG
-    </title>
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('img/apple-touch-icon.png') }}">
+    <link rel="icon" sizes="32x32" href="{{ asset('img/favicon-32x32.png') }}">
+    <link rel="icon" sizes="16x16" href="{{ asset('img/favicon-16x16.png') }}">
+    <title>@yield('title', 'Courses List Poltekbang Surabaya')</title>
 
     <style>
         * {

@@ -1,4 +1,5 @@
 @extends('layout.mainUser')
+@section('title', 'Riwayat Pendaftaran Diklat')
 @section('container')
     <link href="/css/riwayat.css" rel="stylesheet">
     <script src="/js/landing.js"></script>
@@ -117,7 +118,7 @@
                 </div>
 
                 <br> <br>
-                <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a>
+                {{-- <a href="{{ url()->previous() }}" class="btn btn-primary">Kembali</a> --}}
             @else
                 <div class="text-center no-found">
                     
