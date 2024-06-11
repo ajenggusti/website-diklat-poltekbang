@@ -27,6 +27,7 @@ use App\Http\Controllers\KecamatanDropdownController;
 use App\Http\Controllers\KelurahanDropdownController;
 use App\Http\Controllers\PendaftaranKeuanganController;
 use App\Http\Controllers\UpdatePasswordController;
+use App\Http\Middleware\DpukMiddleware;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
@@ -51,6 +52,7 @@ use Illuminate\Support\Str;
 // });
 
 // route halaman utama
+
 Route::get('/', [UtamaController::class, 'index'])->name('home');
 Route::get('/utama/macamDiklat/{kategori}', [UtamaController::class, 'allDiklat']);
 Route::get('/utama/detailDiklat/{detail}', [UtamaController::class, 'detailDiklat']);
@@ -80,8 +82,6 @@ Route::get('/invoicePdf/{id}', [RiwayatController::class, 'viewPdf']);
 // route bukti pembayaran
 Route::post('/bukti-pembayaran', [RiwayatController::class, 'buktiPembayaran'])->name('bukti-pembayaran.buktiPembayaran');
 
-
-
 // route login registrasi
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'login']);
@@ -95,7 +95,8 @@ Route::resource('/kelKatDiklat', kelKatDiklatController::class)->except('show')-
 // route crud user  (register)
 Route::get('/indexKelolaUser', [RegisterController::class, 'tampil']);
 // biodata user
-Route::get('/editProfil', [RegisterController::class, 'editProfil']);
+// Route::get('/editProfil', [RegisterController::class, 'editProfil'])->middleware([DpukMiddleware::class, 'auth']);
+Route::get('/editProfil', [RegisterController::class, 'editProfil'])->middleware('auth');
 Route::put('/updateProfil/{id}', [RegisterController::class, 'updateProfil'])->name('updateProfil.update');
 // permohonan ubah biodata
 Route::get('/permohonan/{id}', [RegisterController::class, 'editPermohonan']);
@@ -131,8 +132,8 @@ Route::post('/forgot-password', function (Request $request) {
         $request->only('email')
     );
     return $status === Password::RESET_LINK_SENT
-                ? back()->with(['status' => __($status)])
-                : back()->withErrors(['email' => __($status)]);
+        ? back()->with(['status' => __($status)])
+        : back()->withErrors(['email' => __($status)]);
 })->middleware('guest')->name('password.email');
 
 Route::get('/reset-password/{token}', function (string $token) {
@@ -156,8 +157,8 @@ Route::post('/reset-password', function (Request $request) {
         }
     );
     return $status === Password::PASSWORD_RESET
-                ? redirect()->route('login')->with('status', __($status))
-                : back()->withErrors(['email' => [__($status)]]);
+        ? redirect()->route('login')->with('status', __($status))
+        : back()->withErrors(['email' => [__($status)]]);
 })->middleware('guest')->name('password.update.post');
 
 // route crud promo
@@ -177,7 +178,7 @@ Route::get('/kelPendaftaran/{id}/editAsAdmin', [PendaftaranController::class, 'e
 Route::put('/kelPendaftaranAdmin/{id}', [PendaftaranController::class, 'updateAsAdmin'])->name('pendaftaranAsAdmin.update');
 Route::resource('/kelPendaftaran', PendaftaranController::class);
 // route CRUD pendaftaran keuangan
-Route::resource('/kelPendaftaranKeuangan', PendaftaranKeuanganController::class)->except('destroy','create', 'store' );
+Route::resource('/kelPendaftaranKeuangan', PendaftaranKeuanganController::class)->except('destroy', 'create', 'store');
 
 //route CRUD pembayarn
 // Route::get('/kelPembayaran/getPaymentInfo/{type}/{id}', [PembayaranController::class, 'getPaymentInfo']);

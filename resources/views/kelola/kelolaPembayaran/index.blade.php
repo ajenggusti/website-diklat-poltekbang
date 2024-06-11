@@ -68,6 +68,10 @@
                             <i class="fa-solid fa-arrow-up" onclick="sortTable(5, 'asc')" style="font-size: 13px;"></i>
                             <i class="fa-solid fa-arrow-down" onclick="sortTable(5, 'desc')" style="font-size: 13px;"></i> 
                         </th>
+                        <th scope="col">Tanggal Pembayaran
+                            <i class="fa-solid fa-arrow-up" onclick="sortTable(6, 'asc')" style="font-size: 13px;"></i>
+                            <i class="fa-solid fa-arrow-down" onclick="sortTable(6, 'desc')" style="font-size: 13px;"></i> 
+                        </th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -88,9 +92,12 @@
                             <td>
                                 <span class="badge badge-pill badge-primary">{{ $pembayaran->status }}</span>
                             </td>
+                            <td>{{ $pembayaran->updated_at->format('d-m-Y H:i') }}</td>
+
                             <td>
                                 <a href="/kelPembayaran/{{ $pembayaran->id }}" class="btn btn-info"><i class="bi bi-eye"></i> Detail</a>
                             </td>
+                            
                         </tr>
                     @endforeach
                 </tbody>

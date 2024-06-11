@@ -35,7 +35,7 @@ class UserPolicy
      */
     public function update(User $user, User $model): bool
     {
-        return $user->level->level === 'Super Admin' || $user->id === $model->id;
+        return $user->level->level === 'Super Admin' || $user->level->level==="DPUK" || $user->id === $model->id;
     }
 
     /**
@@ -43,7 +43,7 @@ class UserPolicy
      */
     public function delete(User $user, User $model): bool
     {
-        return $user->level->level === 'Super Admin';
+        return $user->level->level === 'Super Admin' || $user->level->level==="DPUK";
     }
 
     /**
@@ -51,7 +51,7 @@ class UserPolicy
      */
     public function restore(User $user, User $model): bool
     {
-        return $user->level->level === 'Super Admin';
+        return $user->level->level === 'Super Admin' || $user->level->level==="DPUK";
     }
 
     /**
@@ -59,6 +59,6 @@ class UserPolicy
      */
     public function forceDelete(User $user, User $model): bool
     {
-        return $user->level->level === 'Super Admin';
+        return $user->level->level === 'Super Admin' || $user->level->level==="DPUK";
     }
 }
