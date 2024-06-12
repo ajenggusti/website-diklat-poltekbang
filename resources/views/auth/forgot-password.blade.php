@@ -1,5 +1,5 @@
 <!-- resources/views/auth/forgot-password.blade.php -->
-@extends('layout/mainUser')
+{{-- @extends('layout/mainUser') --}}
 @section('title', 'Form Forget Password')
 @section('container')
 <link href="/css/password.css" rel="stylesheet">

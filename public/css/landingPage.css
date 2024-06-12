@@ -1,9 +1,17 @@
 .landing {
-    padding-bottom: 50px;
-    
+    box-sizing: border-box;
 }
 
-.landOne {
+.land h3 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 30px;
+}
+.land p {
+    text-align: center;
+}
+
+.landOne{
     background: rgb(242, 141, 34);
     background: linear-gradient(0deg, rgba(255, 150, 59, 0.101) 0%, rgba(255, 150, 59, 0) 0%, rgba(255, 151, 59, 0.796) 60%, rgb(248, 100, 20) 100%, rgb(248, 100, 20) 100%, rgb(248, 100, 20) 100%);
     height: 610px;
@@ -21,7 +29,6 @@
     font-style: oblique;
     text-align: center;
     color: #fff;
-
 }
 
 .landOne img {
@@ -177,14 +184,12 @@ span.text-animasi {
         padding-right: 70px;
         padding-bottom: 70px;
         height: auto;
-        /* max-height: 300px; */
     }
   
     .card-animasi {
       width: 20%;
       height: 20vmin;
       font-size: 16px;
-      /* padding-bottom: 10px; */
       border-bottom: 10px solid rgb(248, 100, 20);
       
     }
@@ -230,18 +235,29 @@ h3, p {
     animation-delay: 2s;
 }
 .landThree {
-    background-color: #ffffff;
+    /* background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), url("/img/bg-one.png"); */
+    /* background-position:bottom ;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative; */
     color: rgb(0, 0, 0);
     width: 100%;
-    height: 650px;
-    /* height: auto; */
-
+    /* height: 650px; */
+    padding-top: 30px;
 }
 .promo-land {
     margin-left: 10%;
     margin-right: 10%;
     max-width: 80%;
     padding-bottom: 20px;
+}
+
+.promo-land h3 {
+    color: rgb(0,27,180);
+}
+
+.promo-land p {
+    color: rgb(248, 100, 20);
 }
 
 .img-promo img {
@@ -256,9 +272,6 @@ h3, p {
         padding-bottom: 50px;
     }
     .promo-land {
-        /* margin-left: 10%;
-        margin-right: 10%;
-        max-width: 80%; */
         padding-bottom: 10px;
         
     }
@@ -302,6 +315,7 @@ h3, p {
 /* LAND Five - TESTIMONI */
 
 /* LAND Six - FAQ */
+
 h3, p {
     animation-delay: 4s;
 }
@@ -311,16 +325,26 @@ h3, p {
 }
 
 .landSix {
-    width: 100%;
-    background-color: #ffffff;
+    /* margin-top: 40px; */
+    padding-top: 30px;
 }
 
 .faq-land {
     margin-left: 10%;
     margin-right: 10%;
     max-width: 80%;
-    padding-top: 70px;
+    margin-top: 40px;
+    padding-bottom: 0;
+    
     /* border: 1px solid #000; */
+}
+
+.faq-land h3 {
+    color: rgb(0,27,180);
+}
+
+.faq-land p {
+    color: rgb(248, 100, 20);
 }
 
 .bg-acc {

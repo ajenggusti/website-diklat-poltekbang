@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -48,7 +48,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     {{--  --}}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    {{-- <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" integrity="sha512-mSYUmp1HYZDFaVKK//63EcZq4iFWFjxSL+Z3T/aCt4IO9Cejm03q3NKKYN6pFQzY0SBOr8h+eCIAZHPXcpZaNw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
@@ -61,6 +61,7 @@
     <style>
         * {
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
         html, body {
             height: 100%;
@@ -72,12 +73,14 @@
             font-family: 'Poppins', sans-serif;
             display: flex;
             flex-direction: column;
-            overflow-x: hidden;
+            /* overflow-x: hidden; */
         }
 
         .content-wrapper {
             flex: 1;
             padding-top: 100px;
+            /* overflow-y: scroll; */
+            /* scroll-snap-type: y mandatory; */
         }
 
         .content-nav {
@@ -192,7 +195,7 @@
         }
 
         .sticky .navbar-nav .nav-link:hover {
-            color: rgb(0,27,180) !important;
+            color: rgb(134, 135, 136) !important;
         }
 
 
@@ -300,16 +303,16 @@
                             <a class="nav-link active" aria-current="page" href="/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/#promo">Promo</a>
+                            <a class="nav-link" href="#promo">Promo</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/#katDiklat">Diklat</a>
+                            <a class="nav-link" href="#katDiklat">Diklat</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/#testimoni">Testimoni</a>
+                            <a class="nav-link" href="#testimoni">Testimoni</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/#faq">FAQ</a>
+                            <a class="nav-link" href="#faq">FAQ</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="eventsUser">Jadwal</a>
@@ -357,20 +360,7 @@
                 </div>
             </nav>
         </div> 
-        <script>
-            window.onscroll = function() {
-                myFunction();
-            };
 
-            function myFunction() {
-                var navbar = document.getElementById("navbar");
-                if (window.pageYOffset > 50) {
-                    navbar.classList.add("sticky");
-                } else {
-                    navbar.classList.remove("sticky");
-                }
-            }
-        </script>
         <script>
             const body = document.querySelector("body"),
                 nav = document.querySelector("nav"),

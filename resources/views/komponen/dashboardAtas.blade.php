@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -205,7 +205,7 @@
               <li class="nav-link">
                 <a href="/kelTestimoni">
                   {{-- <i class="fas fa-envelope-open-text icon"></i> --}}
-                  <i class="fa-solid fa-quote-right"></i>
+                  <i class="fa-solid fa-quote-right icon"></i>
                   <span class="text nav-text">Testimoni</span>
                 </a>
               </li>

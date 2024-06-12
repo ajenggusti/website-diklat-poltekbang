@@ -1,7 +1,7 @@
 @extends('layout/mainUser')
 @section('title', 'Courses List Poltekbang Surabaya | Landing Page')
 @section('container')
-    <link rel="stylesheet" href="css/swiper-bundle.min.css">
+    {{-- <link rel="stylesheet" href="css/swiper-bundle.min.css"> --}}
     <!-- *******  Font Awesome Icons Link  ******* -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
     <!-- *******  Owl Carousel Links  ******* -->
@@ -39,60 +39,46 @@
                 
             </h1>
             <img class="animasi1" src="{{ asset('img/Artboard.png') }}" alt="">
+            <div class="plane">
+                <img src="{{ asset('img/plane.png') }}" alt="">
+                <img src="{{ asset('img/plane.png') }}" alt="">
+                <img src="{{ asset('img/plane.png') }}" alt="">
+                <img src="{{ asset('img/plane.png') }}" alt="">
+                <img src="{{ asset('img/plane.png') }}" alt="">
+                <img src="{{ asset('img/plane.png') }}" alt="">
+                <img src="{{ asset('img/plane.png') }}" alt="">
+            </div>
         </div>
-        <div class="square">
-            <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-        </div>
-        <div class="circle">
-            <ul>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-        </div>
-
 
         <div class="land">
             <div class="landBlank"></div>
             <div class="landTwo">
-                {{-- lnadTwo -> wrapper --}}
                 <div class="card-animasi animasi1" >
-                    {{-- card-animasi => container --}}
                     <i class="fas fa-users animasi1"></i>
-                    <span class="num-animasi animasi1" data-val="{{ $totalPendaftar }}">0</span>
+                    <span class="num-animasi animasi1">{{ $totalPendaftar }}</span>
                     <span class="text-animasi animasi1">Total Seluruh Pendaftar</span>
                 </div>
                 <div class="card-animasi animasi1" >
                     <i class="fas fa-user-plus animasi1"></i>
-                    <span class="num-animasi animasi1" data-val="{{ $jmlPendaftarBelumTerlaksana }}">0</span>
+                    <span class="num-animasi animasi1">{{ $jmlPendaftarBelumTerlaksana }}</span>
                     <span class="text-animasi animasi1">Pendaftar Periode Ini</span>
                 </div>
                 <div class="card-animasi animasi1" >
                     <i class="fas fa-user-graduate animasi1"></i>
-                    <span class="num-animasi animasi1" data-val="{{ $alumni }}">0</span>
+                    <span class="num-animasi animasi1">{{ $alumni }}</span>
                     <span class="text-animasi">Total Lulusan Diklat </span>
                 </div>
                 <div class="card-animasi animasi1" >
                     <i class="fas fa-book animasi1"></i>
-                    <span class="num-animasi animasi1" data-val="{{ $jmlDiklat }}">0</span>
+                    <span class="num-animasi animasi1">{{ $jmlDiklat }}</span>
                     <span class="text-animasi animasi1">Total diklat saat ini</span>
                 </div>
             </div>
 
-            {{-- <div class="landBlank"></div> --}}
-
-            <div class="landThree">
+            <div class="landThree parallax" id="promo">
                 <div class="promo-land">
                     @if ($countPromo!=0)
-                        <h3 id="promo" class="animasi1">Promo</h3>
+                        <h3 class="animasi1">Promo</h3>
                         <p class="animasi1">Temukan promo yang bisa kamu dapatkan disini.. </p>
                         <div id="carouselExampleIndicators" class="carousel slide img-promo animasi1" data-bs-ride="carousel">
                             <div class="carousel-indicators animasi1">
@@ -119,10 +105,10 @@
                     @endif
                 </div>
             </div>
-
-            <div class="landFour">
+            
+            <div class="landFour parallax" id="katDiklat">
                 <div class="kat-land swiper">
-                    <h3 id="katDiklat" class="animasi1">Kategori Diklat</h3>
+                    <h3 class="animasi1">Kategori Diklat</h3>
                     <p class="p-kat animasi1">Klik button untuk melihat lebih banyak diklat </p>
                     <div class="slide-content">
                         <div class="card-wrapper swiper-wrapper">
@@ -160,53 +146,54 @@
                     <div class="swiper-pagination"></div>
                 </div>
             </div>
-
-            <div class="testi-header animasi1">
-                <h2 id="testimoni" class="animasi1">Testimoni</h2>
-                <p class="p-testi animasi1">Simak apa kata mereka...</p>
-            </div>
-            <div class="landFive">
-                <div class="testi-land">
-                    @if ($countTestimoni != 0)
-                        <div class="owl-carousel owl-theme testimonials-container">
-                            @foreach ($testimonis as $testimoni)
-                                <div class="item testimonial-card animasi1">
-                                    <main class="test-card-body">
-                                        @if ($testimoni->id_pendaftaran)
-                                            <div class="quote">
-                                                <i class="fa fa-quote-left"></i>
-                                                <h4>{{ $testimoni->nama_dummy ?? 'Testimoni' }} <small> - {{ $testimoni->profesi }}</small></h4>
-                                            </div>
-                                            <p>{{ $testimoni->testimoni }}</p>
-                                            <div class="bottom-b">
-                                                <b>Alumni diklat {{ $testimoni->pendaftaran->diklat->nama_diklat }}</b>
-                                            </div>
-                                        @else
-                                            <div class="quote">
-                                                <i class="fa fa-quote-left"></i>
-                                                <h4>{{ $testimoni->nama_dummy ?? 'Testimoni' }} <small> - {{ $testimoni->profesi }}</small></h4>
-                                            </div>
-                                            <p>{{ $testimoni->testimoni }}</p>
-                                            <div class="bottom-b">
-                                                <b>Alumni diklat {{ $testimoni->diklat->nama_diklat }}</b>
-                                            </div>
-                                        @endif
-                                    </main>
-                                </div>
-                            @endforeach
-                        </div>
-                    @endif
+            
+            <div class="bg-testi parallax" id="testimoni">
+                <div class="testi-header animasi1">
+                    <h3 id="testimoni" class="animasi1">Testimoni</h3>
+                    <p class="p-testi animasi1">Simak apa kata mereka...</p>
+                </div>
+                <div class="landFive">
+                    <div class="testi-land">
+                        @if ($countTestimoni != 0)
+                            <div class="owl-carousel owl-theme testimonials-container">
+                                @foreach ($testimonis as $testimoni)
+                                    <div class="item testimonial-card animasi1">
+                                        <main class="test-card-body">
+                                            @if ($testimoni->id_pendaftaran)
+                                                <div class="quote">
+                                                    <i class="fa fa-quote-left"></i>
+                                                    <h4>{{ $testimoni->nama_dummy ?? 'Testimoni' }} <small> - {{ $testimoni->profesi }}</small></h4>
+                                                </div>
+                                                <p>{{ $testimoni->testimoni }}</p>
+                                                <div class="bottom-b">
+                                                    <b>Alumni diklat {{ $testimoni->pendaftaran->diklat->nama_diklat }}</b>
+                                                </div>
+                                            @else
+                                                <div class="quote">
+                                                    <i class="fa fa-quote-left"></i>
+                                                    <h4>{{ $testimoni->nama_dummy ?? 'Testimoni' }} <small> - {{ $testimoni->profesi }}</small></h4>
+                                                </div>
+                                                <p>{{ $testimoni->testimoni }}</p>
+                                                <div class="bottom-b">
+                                                    <b>Alumni diklat {{ $testimoni->diklat->nama_diklat }}</b>
+                                                </div>
+                                            @endif
+                                        </main>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endif
+                    </div>
                 </div>
             </div>
-                
-            <div class="landSix">
+           
+            <div class="landSix parallax" id="faq">
                 <div class="faq-land">
-                {{-- <hr> --}}
                     <h3 id="faq" class="animasi1">FAQ</h3>
                     <p class="animasi1">Pertanyaan yang banyak ditanyakan...</p>
                     <div class="bg-acc">
                         <div class="accordion accordion-flush" id="accordionFlushExample">
-                            <div class="accordion-item animasi1">
+                            <div class="accordion-item">
                                 <h2 class="accordion-header" id="flush-headingOne">
                                     <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                                         Apa syarat-syarat yang diperlukan untuk mendaftar?
@@ -364,165 +351,10 @@
             }
         </script>
 
-        {{-- Animasi jumlah pendaftar --}}
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                var totalPendaftarElement = document.getElementById("totalPendaftar");
-                var jmlPendaftarBelumTerlaksanaElement = document.getElementById("jmlPendaftarBelumTerlaksana");
-                var alumniElement = document.getElementById("alumni");
-                var jmlDiklatElement = document.getElementById("jmlDiklat");
-        
-            // Fungsi untuk menghasilkan angka acak antara min dan max
-            function getRandomNumber(min, max) {
-                return Math.floor(Math.random() * (max - min + 1)) + min;
-            }
-        
-            // Fungsi untuk menampilkan animasi angka acak selama beberapa detik
-            function animateRandomNumber(element, initialValue, finalValue) {
-                var currentValue = initialValue;
-                var interval = setInterval(function () {
-                    var nextValue = getRandomNumber(currentValue, finalValue);
-                        element.textContent = nextValue;
-                        currentValue = nextValue;
-                        if (currentValue === finalValue) {
-                            clearInterval(interval);
-                        }
-
-                }, 100); // Perbarui angka setiap 100ms
-            }
-        
-            // Jalankan animasi untuk pendaftar dan diklat
-            animateRandomNumber(totalPendaftarElement, 0, {{ $totalPendaftar }});
-            animateRandomNumber(jmlPendaftarBelumTerlaksanaElement, 0, {{ $jmlPendaftarBelumTerlaksana }});
-            animateRandomNumber(alumniElement, 0, {{ $alumni }});
-            animateRandomNumber(jmlDiklatElement, 0, {{ $jmlDiklat }});
-        });
-        </script>
-
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                let slideIndex = 0;
-
-                function showSlides() {
-                    let slides = document.getElementsByClassName("card-slides");
-
-                    // Sembunyikan semua slide
-                    for (let i = 0; i < slides.length; i++) {
-                        slides[i].classList.remove("active");
-                    }
-
-                    slideIndex++;
-                    if (slideIndex > slides.length) {slideIndex = 1}
-
-                    // Tampilkan slide aktif
-                    slides[slideIndex - 1].classList.add("active");
-
-                    setTimeout(showSlides, 3000);
-                }
-
-                function plusSlides(n) {
-                    slideIndex += n;
-                    let slides = document.getElementsByClassName("card-slides");
-                    if (slideIndex > slides.length) {slideIndex = 1}
-                    else if (slideIndex < 1) {slideIndex = slides.length}
-
-                    // Tampilkan slide yang sesuai
-                    for (let i = 0; i < slides.length; i++) {
-                        slides[i].classList.remove("active");
-                    }
-                    slides[slideIndex - 1].classList.add("active");
-                }
-
-                // Tambahkan event listener untuk tombol "Sebelumnya" dan "Selanjutnya"
-                let prevButton = document.querySelector(".sblm");
-                let nextButton = document.querySelector(".ssdh");
-                prevButton.addEventListener("click", function() {
-                    plusSlides(-1);
-                });
-                nextButton.addEventListener("click", function() {
-                    plusSlides(1);
-                });
-
-                showSlides();
-            });
-        </script>
-
-
-        {{-- Script Animasi --}}
-        {{-- <script>
-
-            let valueDisplays = document.querySelectorAll(".num-animasi");
-            let interval = 4000;
-        
-            valueDisplays.forEach((valueDisplay) => {
-                let startValue = 0;
-                let endValue = parseInt(valueDisplay.getAttribute("data-val"));
-                if (endValue === 0) {
-                    valueDisplay.textContent = "0";
-                    return;
-                }
-        
-                let duration = Math.floor(interval / endValue);
-                let counter = setInterval(function () {
-                    startValue += 1;
-                    valueDisplay.textContent = startValue;
-                    if (startValue === endValue) {
-                        clearInterval(counter);
-                    }
-                }, duration);
-            });
-        </script> --}}
-
-
-            <script>
-                document.addEventListener("DOMContentLoaded", function() {
-                    // Fungsi untuk menghasilkan angka acak antara min dan max
-                    function getRandomNumber(min, max) {
-                        return Math.floor(Math.random() * (max - min + 1)) + min;
-                    }
-
-                    // Fungsi untuk menampilkan animasi angka acak selama beberapa detik
-                    function animateRandomNumber(element, finalValue) {
-                        if (!element) {
-                            console.error("Element not found!");
-                            return; // Pastikan elemen tidak null
-                        }
-
-                        if (finalValue === 0) {
-                            console.log("Skipping element with final value 0");
-                            element.textContent = "-"; // Set the element's textContent to "-" instead of 0
-                            return; // Skip animasi jika nilai akhirnya 0
-                        }
-
-                        var currentValue = 0;
-
-                        var interval = setInterval(function () {
-                            var nextValue = getRandomNumber(currentValue, finalValue);
-                            element.textContent = nextValue;
-                            currentValue = nextValue;
-                            if (currentValue >= finalValue) {
-                                clearInterval(interval);
-                                element.textContent = finalValue; // Pastikan nilai akhir di set
-                            }
-                        }, 50); // Perbarui angka setiap 50ms untuk kecepatan animasi yang lebih cepat
-                    }
-
-                    // Ambil semua elemen dengan kelas num-animasi
-                    var numAnimasiElements = document.querySelectorAll(".num-animasi");
-
-                    // Jalankan animasi untuk setiap elemen num-animasi jika nilai lebih dari 0
-                    numAnimasiElements.forEach(function(element) {
-                        var finalValue = parseInt(element.getAttribute("data-val"), 10);
-                        animateRandomNumber(element, finalValue);
-                    });
-                });
-
-
-            </script>
 
         {{-- Script Slider Kategori Diklat --}}
         <!-- Swiper JS -->
-        <script src="js/swiper-bundle.min.js"></script>
+        {{-- <script src="js/swiper-bundle.min.js"></script> --}}
         <script>
             var swiper = new Swiper(".slide-content", {
                 slidesPerView: 3,
@@ -563,8 +395,6 @@
                 autoplayTimeout:6000,
                 margin:10,
                 nav:true,
-                // navText:["<i class='fa-solid fa-arrow-left'></i>",
-                //         "<i class='fa-solid fa-arrow-right'></i>"],
                 responsive:{
                     0:{
                         items:1,
@@ -580,26 +410,5 @@
                 }
             });
 
-        //     $('.testimonials-container').owlCarousel({
-        //         loop: false,
-        //         autoplay: false,
-        //         margin: 10,
-        //         nav: true,
-        //         navText: ["<i class='fa-solid fa-arrow-left'></i>", "<i class='fa-solid fa-arrow-right'></i>"],
-        //         responsive: {
-        //             0: {
-        //                 items: 1,
-        //                 nav: false
-        //             },
-        //             600: {
-        //                 items: 1,
-        //                 nav: true
-        //             },
-        //             768: {
-        //                 items: 2,
-        //                 nav: true
-        //             }
-        //         }
-        //     });
-        // </script>
+        </script>
 @endsection
