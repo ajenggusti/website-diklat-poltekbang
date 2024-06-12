@@ -16,6 +16,7 @@ class TestimoniController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Testimoni::class);
         $datas = Testimoni::get();
         // dd($datas);
         return view('kelola.kelolaTestimoni.index', ['datas' => $datas]);
@@ -29,9 +30,9 @@ class TestimoniController extends Controller
         $id = $request->query('id');
         $testimoni = Testimoni::where('id_pendaftaran', $id)->first();
         $user = Auth::user();
-
         // Mencari data pendaftaran berdasarkan ID
         $pendaftaran = Pendaftaran::find($id);
+        $this->authorize('create', $pendaftaran);
 
         // Jika data pendaftaran tidak ditemukan, kembalikan halaman 404
         if (!$pendaftaran) {
@@ -55,12 +56,16 @@ class TestimoniController extends Controller
 
     public function store(Request $request)
     {
-        // dd($request);
+        // Find the pendaftaran
+        $pendaftaran = Pendaftaran::find($request->id_pendaftaran);
 
+        // Authorize the creation based on the pendaftaran
+        $this->authorize('create', $pendaftaran);
+
+        // Validation
         $messages = [
             'required' => 'Kolom :attribute harus diisi.',
             'string' => 'Kolom :attribute harus berupa teks.',
-
         ];
 
         $validator = Validator::make($request->all(), [
@@ -71,18 +76,20 @@ class TestimoniController extends Controller
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+
+        // Check for existing testimoni
         $testimoni = Testimoni::where('id_pendaftaran', $request->id_pendaftaran)->first();
-        // dd($testimoni);
+
         if ($testimoni === null) {
             $testimoni = new Testimoni();
             $testimoni->id_pendaftaran = $request->id_pendaftaran;
         }
+
         $testimoni->profesi = $request->profesi;
         $testimoni->testimoni = $request->testimoni;
         $testimoni->tampil = "tidak";
 
         $testimoni->save();
-
 
         return redirect('/riwayat')->with('success', 'Terimakasih, testimoni berhasil disimpan!.');
     }
@@ -93,6 +100,7 @@ class TestimoniController extends Controller
      */
     public function edit(Testimoni $kelTestimoni)
     {
+        $this->authorize('update', $kelTestimoni);
         $pendaftaran = Pendaftaran::find($kelTestimoni->id_pendaftaran);
         $diklats = Diklat::get();
         return view('kelola.kelolaTestimoni.editForm', [
@@ -108,6 +116,7 @@ class TestimoniController extends Controller
      */
     public function update(Request $request, Testimoni $kelTestimoni)
     {
+        $this->authorize('update', $kelTestimoni);
         // dd($kelTestimoni);
         // dd($request);
         if ($kelTestimoni->id_pendaftaran == null) {
@@ -141,11 +150,13 @@ class TestimoniController extends Controller
      */
     public function destroy(Testimoni $kelTestimoni)
     {
+        $this->authorize('delete', $kelTestimoni);
         $kelTestimoni->delete();
         return redirect('/kelTestimoni')->with('success', 'Data berhasil dihapus!');
     }
     public function testimoniAdminCreate()
     {
+        $this->authorize('create', Testimoni::class);
         $diklats = Diklat::get();
         return view('kelola.kelolaTestimoni.formAdmin', [
             'diklats' => $diklats,
@@ -153,6 +164,7 @@ class TestimoniController extends Controller
     }
     public function testimoniAdminStore(Request $request)
     {
+        $this->authorize('create', Testimoni::class);
         // dd($request);
         $request->validate([
             'nama_dummy' => 'required',

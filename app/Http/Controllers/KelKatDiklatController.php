@@ -13,11 +13,12 @@ class KelKatDiklatController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', KatDiklat::class);
         $datas = KatDiklat::get();
         $datas2 = KatDiklat::get();
         return view('kelola.kelolaKatDiklat.index', [
             'datas' => $datas,
-            'datas2'=>$datas2
+            'datas2' => $datas2
         ]);
     }
 
@@ -26,6 +27,7 @@ class KelKatDiklatController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', KatDiklat::class);
         return view('kelola.kelolaKatDiklat.formKatDiklat');
     }
 
@@ -34,6 +36,7 @@ class KelKatDiklatController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', KatDiklat::class);
         $messages = [
             'img.image' => 'File harus berupa gambar.',
             'img.file' => 'File harus berupa berkas.',
@@ -76,6 +79,7 @@ class KelKatDiklatController extends Controller
      */
     public function edit(KatDiklat $kelKatDiklat)
     {
+        $this->authorize('update', $kelKatDiklat);
         // dd($kelKatDiklat);
         $data = ['data' => $kelKatDiklat];
         return view('kelola.kelolaKatDiklat.editFormKatDiklat', $data);
@@ -86,6 +90,7 @@ class KelKatDiklatController extends Controller
      */
     public function update(Request $request, KatDiklat  $kelKatDiklat)
     {
+        $this->authorize('update', $kelKatDiklat);
         $messages = [
             'img.image' => 'File harus berupa gambar.',
             'img.file' => 'File harus berupa berkas.',
@@ -110,23 +115,23 @@ class KelKatDiklatController extends Controller
             $image = "LanPage/" . time() . '-' . uniqid() . '.' . $request->img->getClientOriginalExtension();
             $request->img->move('storage/LanPage', $image);
         } else {
-            
+
             if ($kelKatDiklat->gambar) {
                 $image = $kelKatDiklat->gambar;
             } else {
-        
+
                 $image = null;
             }
-        }        
+        }
         if ($request->default == 'ya') {
             KatDiklat::where('default', 'ya')
-            ->where('id', '!=', $kelKatDiklat->id)
-            ->update(['default' => 'tidak']);
+                ->where('id', '!=', $kelKatDiklat->id)
+                ->update(['default' => 'tidak']);
         }
         $kelKatDiklat->update([
             'kategori_diklat' => $request->katDiklat,
             'gambar' => $image,
-            'default'=>$request->default
+            'default' => $request->default
         ]);
 
         return redirect('/kelKatDiklat')->with('success', 'Data berhasil diperbarui');
@@ -137,10 +142,11 @@ class KelKatDiklatController extends Controller
      */
     public function destroy(KatDiklat $kelKatDiklat)
     {
+        $this->authorize('delete', $kelKatDiklat);
         $filePath = public_path('storage/' . $kelKatDiklat->gambar);
-            if (file_exists($filePath)) {
-                unlink($filePath);
-            }
+        if (file_exists($filePath)) {
+            unlink($filePath);
+        }
         KatDiklat::destroy($kelKatDiklat->id);
         return redirect('/kelKatDiklat')->with('success', 'Data berhasil dihapus!');
     }

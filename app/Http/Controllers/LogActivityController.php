@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Spatie\Activitylog\Models\Activity;
 
 class LogActivityController extends Controller
 {
     public function index()
     {
+        $this->authorize('dpukSuperAdminKeuangan', Auth::user());
         $datas = Activity::get();
         // dd($datas);
         // $users = [];

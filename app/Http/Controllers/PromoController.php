@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Diklat;
 use App\Models\Promos;
 use Illuminate\Http\Request;
@@ -14,6 +15,7 @@ class PromoController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Promos::class);
         $datas = Promos::with('diklat')->get();
         return view('kelola.kelolaPromo.index', ['datas' => $datas]);
     }
@@ -23,6 +25,7 @@ class PromoController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Promos::class);
         $datas = Diklat::all();
         return view('kelola.kelolaPromo.formPromo', ['datas' => $datas]);
     }
@@ -32,6 +35,7 @@ class PromoController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', Promos::class);
         $rules = [
             'potongan' => 'required',
             'kode' => 'required|unique:promos,kode',
@@ -99,8 +103,9 @@ class PromoController extends Controller
      */
     public function show(Promos $kelPromo)
     {
+        $this->authorize('view', $kelPromo);
         return view('kelola.kelolaPromo.show', [
-            'kelPromo'=>$kelPromo
+            'kelPromo' => $kelPromo
         ]);
     }
 
@@ -109,6 +114,7 @@ class PromoController extends Controller
      */
     public function edit(Promos $kelPromo)
     {
+        $this->authorize('update', $kelPromo);
         $datas = Diklat::all();
         $data = ['kelPromo' => $kelPromo, 'datas' => $datas];
         return view('kelola.kelolaPromo.editFormPromo', $data);
@@ -120,6 +126,7 @@ class PromoController extends Controller
 
     public function update(Request $request, Promos $kelPromo)
     {
+        $this->authorize('update', $kelPromo);
         // dd($request);
         // dd($kelPromo);
         $messages = [
@@ -203,6 +210,8 @@ class PromoController extends Controller
      */
     public function destroy(Promos $kelPromo)
     {
+        $this->authorize('delete', $kelPromo);
+
 
         $filePath = public_path('storage/' . $kelPromo->gambar);
         if (file_exists($filePath)) {

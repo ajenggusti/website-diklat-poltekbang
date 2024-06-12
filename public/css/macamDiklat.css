@@ -1,5 +1,6 @@
 .diklat-content {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
@@ -140,7 +141,23 @@
     width: 45%;
 }
 
-/* Layar untuk 481px - 900px */
+.all-diklat-content {
+    width: 100%;
+    padding: 20px 0;
+}
+
+.all-diklat-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.all-diklat-wrapper .card {
+    margin: 10px;
+    width: calc(33.333% - 20px);
+    box-sizing: border-box;
+}
+
 @media screen and (min-width: 481px) and (max-width: 1056px) {
     .diklat-land {
         margin-left: 10%;
@@ -164,6 +181,9 @@
         max-width: 500px;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
+    }
+    .all-diklat-wrapper .card {
+        width: calc(50% - 20px);
     }
 }
 
@@ -189,5 +209,8 @@
         max-width: 500px;
         border-top-left-radius: 5px;
         border-top-right-radius: 5px;
+    }
+    .all-diklat-wrapper .card {
+        width: 100%;
     }
 }

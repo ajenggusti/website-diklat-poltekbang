@@ -172,6 +172,12 @@
               {{-- akses dpuk --}}
             @can('dpuk')
               <li class="nav-link">
+                <a href="/indexKelolaUser">
+                  <i class="fas fa-users icon"></i>
+                  <span class="text nav-text">User</span>
+                </a>
+              </li>
+              <li class="nav-link">
                 <a href="/dbDpuk">
                   <i class="fas fa-house-user icon"></i>
                   <span class="text nav-text">Dashboard DPUK</span>
