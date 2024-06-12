@@ -25,6 +25,7 @@ class RegisterController extends Controller
      */
     public function index()
     {
+        
         return view('login.register');
     }
 
@@ -252,6 +253,7 @@ class RegisterController extends Controller
     }
     public function tampil()
     {
+        $this->authorize('dpukAction', Auth::user());
         $datas = User::get();
         // $kelurahan=Kelurahan::get();
         // dd($datas);

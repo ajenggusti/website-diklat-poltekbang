@@ -21,6 +21,7 @@ class PembayaranController extends Controller
      */
     public function index()
     {
+        $this->authorize('viewAny', Pembayaran::class);
         $pembayarans = Pembayaran::where('status', 'Lunas')->get();
         $pemasukanKeseluruhan = Pembayaran::where('status', 'Lunas')->sum('total_harga');
         $formattedPemasukan = 'Rp ' . number_format($pemasukanKeseluruhan, 0, ',', '.');
@@ -40,6 +41,7 @@ class PembayaranController extends Controller
 
     public function create(Request $request)
     {
+        // $this->authorize('create', Pembayaran::class);
         // dd($request);
         $id = $request->query('id');
         $pendaftaran = Pendaftaran::findOrFail($id);

@@ -18,6 +18,7 @@ class LoginController extends Controller
         return Socialite::driver('google')->redirect();
     }
     public function callback(){
+        // dd(now());
         $googleUser = Socialite::driver('google')->stateless()->user();
         
         $user = User::where('email', $googleUser->email)->first();
@@ -28,6 +29,7 @@ class LoginController extends Controller
                 'email' => $googleUser->email,
                 'id_level' => 1,
                 'status'=>'Perlu dilengkapi',
+                'email_verified_at'=>now(),
                 'password' => bcrypt(Str::random(16)) 
             ]);
             // $user->sendEmailVerificationNotification();

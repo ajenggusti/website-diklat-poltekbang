@@ -53,60 +53,58 @@ use Illuminate\Support\Str;
 
 // route halaman utama
 
-Route::get('/', [UtamaController::class, 'index'])->name('home');
-Route::get('/utama/macamDiklat/{kategori}', [UtamaController::class, 'allDiklat']);
-Route::get('/utama/detailDiklat/{detail}', [UtamaController::class, 'detailDiklat']);
+    Route::get('/', [UtamaController::class, 'index'])->name('home');
+    Route::get('/utama/macamDiklat/{kategori}', [UtamaController::class, 'allDiklat']);
+    Route::get('/utama/detailDiklat/{detail}', [UtamaController::class, 'detailDiklat']);
+
 // db superAdmin
-Route::get('/dbSuperAdmin', [DbUtamaController::class, 'index']);
-Route::get('/allUser', [DbUtamaController::class, 'allUser']);
-Route::get('/byLevel/{id}', [DbUtamaController::class, 'byLevel']);
-Route::get('/byStatus/{status}', [DbUtamaController::class, 'byStatus']);
+Route::get('/dbSuperAdmin', [DbUtamaController::class, 'index'])->middleware(['auth', 'verified']); //Userpolicy
+Route::get('/allUser', [DbUtamaController::class, 'allUser'])->middleware(['auth', 'verified']); //userpolicy
+Route::get('/byLevel/{id}', [DbUtamaController::class, 'byLevel'])->middleware(['auth', 'verified']); //userpolicy
+Route::get('/byStatus/{status}', [DbUtamaController::class, 'byStatus'])->middleware(['auth', 'verified']); //userpolicy
 // db keuangan
-Route::get('/dbKeuangan', [DbUtamaController::class, 'dbKeuangan']);
-Route::get('/dbDetailPembayaranDiklat', [DbUtamaController::class, 'detailpembayaranPembayaranDiklat']);
-Route::get('/dbDetailPembayaranDaftar', [DbUtamaController::class, 'detailpembayaranPembayaranDaftar']);
-Route::get('/pembayaranBelumVerifikasi', [DbUtamaController::class, 'pembayaranBelumVerifikasi']);
-Route::get('/pembayaranSudahVerifikasi', [DbUtamaController::class, 'pembayaranSudahVerifikasi']);
+Route::get('/dbKeuangan', [DbUtamaController::class, 'dbKeuangan'])->middleware(['auth', 'verified']); //userpolicy
+Route::get('/dbDetailPembayaranDiklat', [DbUtamaController::class, 'detailpembayaranPembayaranDiklat'])->middleware(['auth', 'verified']); //userpolicy
+Route::get('/dbDetailPembayaranDaftar', [DbUtamaController::class, 'detailpembayaranPembayaranDaftar'])->middleware(['auth', 'verified']); //userpolicy
+Route::get('/pembayaranBelumVerifikasi', [DbUtamaController::class, 'pembayaranBelumVerifikasi'])->middleware(['auth', 'verified']); //userpolicy
 // db DPUK
-Route::get('/dbDpuk', [DbUtamaController::class, 'dbDpuk']);
-Route::get('/PendaftaranTerlaksana', [DbUtamaController::class, 'PendaftaranTerlaksana']);
-Route::get('/PendaftaranBelumTerlaksana', [DbUtamaController::class, 'PendaftaranBelumTerlaksana']);
-Route::get('/perluSertifikat', [DbUtamaController::class, 'perluSertifikat']);
-Route::get('/PendaftaranByDiklat/{id}', [DbUtamaController::class, 'PendaftaranByDiklat']);
-Route::get('/riwayat', [RiwayatController::class, 'index'])->middleware('auth');
+Route::get('/dbDpuk', [DbUtamaController::class, 'dbDpuk'])->middleware(['auth', 'verified']); //userpolicy
+Route::get('/PendaftaranTerlaksana', [DbUtamaController::class, 'PendaftaranTerlaksana'])->middleware(['auth', 'verified']); //userpolicy
+Route::get('/PendaftaranBelumTerlaksana', [DbUtamaController::class, 'PendaftaranBelumTerlaksana'])->middleware(['auth', 'verified']); //userpolicy
+Route::get('/perluSertifikat', [DbUtamaController::class, 'perluSertifikat'])->middleware(['auth', 'verified']); //userpolicy
+Route::get('/PendaftaranByDiklat/{id}', [DbUtamaController::class, 'PendaftaranByDiklat'])->middleware(['auth', 'verified']); //userpolicy
+Route::get('/riwayat', [RiwayatController::class, 'index'])->middleware(['auth', 'verified']); //policy
 // Show Invoice
-Route::get('/invoice/{detail}', [RiwayatController::class, 'invoiceDetail']);
-Route::get('/detailRiwayat/{detail}', [RiwayatController::class, 'detailRiwayat'])->name('riwayat.detail');
+Route::get('/invoice/{detail}', [RiwayatController::class, 'invoiceDetail'])->middleware(['auth', 'verified']); //policy
+Route::get('/detailRiwayat/{detail}', [RiwayatController::class, 'detailRiwayat'])->name('riwayat.detail')->middleware(['auth', 'verified']); //policy
 // download invoice
-Route::get('/invoicePdf/{id}', [RiwayatController::class, 'viewPdf']);
+Route::get('/invoicePdf/{id}', [RiwayatController::class, 'viewPdf'])->middleware(['auth', 'verified']); //policy
 // route bukti pembayaran
-Route::post('/bukti-pembayaran', [RiwayatController::class, 'buktiPembayaran'])->name('bukti-pembayaran.buktiPembayaran');
+Route::post('/bukti-pembayaran', [RiwayatController::class, 'buktiPembayaran'])->name('bukti-pembayaran.buktiPembayaran')->middleware(['auth', 'verified']);
 
 // route login registrasi
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 Route::post('/login', [LoginController::class, 'login']);
-Route::post('/logout', [LoginController::class, 'logout']);
+Route::post('/logout', [LoginController::class, 'logout'])->middleware('auth');
 Route::get('/google/redirect', [LoginController::class, 'redirect']);
-Route::get('/google/callback', [LoginController::class, 'callback'])->name('google.callback');
-
+Route::get('/google/callback', [LoginController::class, 'callback'])->name('google.callback')->middleware('guest');
 
 // route crud kategori dikklat
-Route::resource('/kelKatDiklat', kelKatDiklatController::class)->except('show')->middleware('auth');
+Route::resource('/kelKatDiklat', kelKatDiklatController::class)->except('show')->middleware(['auth', 'verified']); //KatDiklatPolicy
 // route crud user  (register)
-Route::get('/indexKelolaUser', [RegisterController::class, 'tampil']);
+Route::get('/indexKelolaUser', [RegisterController::class, 'tampil'])->middleware(['auth', 'verified']); //userPolicy
 // biodata user
-// Route::get('/editProfil', [RegisterController::class, 'editProfil'])->middleware([DpukMiddleware::class, 'auth']);
-Route::get('/editProfil', [RegisterController::class, 'editProfil'])->middleware('auth');
-Route::put('/updateProfil/{id}', [RegisterController::class, 'updateProfil'])->name('updateProfil.update');
+Route::get('/editProfil', [RegisterController::class, 'editProfil'])->middleware(['auth', 'verified']);
+Route::put('/updateProfil/{id}', [RegisterController::class, 'updateProfil'])->name('updateProfil.update')->middleware(['auth', 'verified']);
 // permohonan ubah biodata
-Route::get('/permohonan/{id}', [RegisterController::class, 'editPermohonan']);
-Route::put('/updatePermohonan/{id}', [RegisterController::class, 'updatePermohonan'])->name('updatePermohonan.update');
+Route::get('/permohonan/{id}', [RegisterController::class, 'editPermohonan'])->middleware(['auth', 'verified']);
+Route::put('/updatePermohonan/{id}', [RegisterController::class, 'updatePermohonan'])->name('updatePermohonan.update')->middleware(['auth', 'verified']);
 // alamat
-Route::get('provinsi-dropdown', [ProvinsiController::class, 'showAll'])->name('provinsi.dropdown');
-Route::get('kabupaten-dropdown/{id}', KabupatenDropdownController::class)->name('kabupaten.dropdown');
-Route::get('kecamatan-dropdown/{id}', KecamatanDropdownController::class)->name('kecamatan.dropdown');
-Route::get('kelurahan-dropdown/{id}', KelurahanDropdownController::class)->name('kelurahan.dropdown');
-// // route crud user  (register)
+Route::get('provinsi-dropdown', [ProvinsiController::class, 'showAll'])->name('provinsi.dropdown')->middleware(['auth', 'verified']);
+Route::get('kabupaten-dropdown/{id}', KabupatenDropdownController::class)->name('kabupaten.dropdown')->middleware(['auth', 'verified']);
+Route::get('kecamatan-dropdown/{id}', KecamatanDropdownController::class)->name('kecamatan.dropdown')->middleware(['auth', 'verified']);
+Route::get('kelurahan-dropdown/{id}', KelurahanDropdownController::class)->name('kelurahan.dropdown')->middleware(['auth', 'verified']);
+// route crud user  (register)
 Route::resource('/register', RegisterController::class)->except('create');
 // register verifikasi email
 Route::get('/email/verify', function () {
@@ -119,8 +117,8 @@ Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $requ
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
 // ubah password
-Route::get('/password/edit', [UpdatePasswordController::class, 'edit'])->name('password.edit');
-Route::put('/password/update', [UpdatePasswordController::class, 'update'])->name('password.update');
+Route::get('/password/edit', [UpdatePasswordController::class, 'edit'])->name('password.edit')->middleware(['auth', 'verified']);
+Route::put('/password/update', [UpdatePasswordController::class, 'update'])->name('password.update')->middleware(['auth', 'verified']);
 // forget password
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');
@@ -162,44 +160,43 @@ Route::post('/reset-password', function (Request $request) {
 })->middleware('guest')->name('password.update.post');
 
 // route crud promo
-Route::resource('/kelPromo', PromoController::class);
+Route::resource('/kelPromo', PromoController::class)->middleware(['auth', 'verified']); //promoPolicy
 // route CRUD gbr LandingPage
-Route::resource('/gbrLandingPage', GbrLandingController::class)->except('show');
+Route::resource('/gbrLandingPage', GbrLandingController::class)->except('show')->middleware(['auth', 'verified']);
 // route CRUD Testimoni
-Route::get('/testimoniAdmin', [TestimoniController::class, 'testimoniAdminCreate'])->name('testimoniAdmin.create');
-Route::post('/testimoniAdmin-store', [TestimoniController::class, 'testimoniAdminStore'])->name('testimoniAdmin-store.store');
-Route::resource('/kelTestimoni', TestimoniController::class);
+Route::get('/testimoniAdmin', [TestimoniController::class, 'testimoniAdminCreate'])->name('testimoniAdmin.create')->middleware(['auth', 'verified']);
+Route::post('/testimoniAdmin-store', [TestimoniController::class, 'testimoniAdminStore'])->name('testimoniAdmin-store.store')->middleware(['auth', 'verified']);
+Route::resource('/kelTestimoni', TestimoniController::class)->middleware(['auth', 'verified']);
 // route CRUD Diklat
-Route::resource('/kelDiklat', DiklatController::class);
+Route::resource('/kelDiklat', DiklatController::class)->middleware(['auth', 'verified']);
 // route CRUD pendaftaran
-// Route::get('/pendaftaranKeuanganIndex', [PendaftaranController::class, 'indexKeuangan']);
-// Route::get('/pendaftaranKeuanganShow/{id}', [PendaftaranController::class, 'showKeuangan']);
-Route::get('/kelPendaftaran/{id}/editAsAdmin', [PendaftaranController::class, 'editAsAdmin'])->name('pendaftaranAsAdmin.edit');
-Route::put('/kelPendaftaranAdmin/{id}', [PendaftaranController::class, 'updateAsAdmin'])->name('pendaftaranAsAdmin.update');
-Route::resource('/kelPendaftaran', PendaftaranController::class);
+Route::get('/kelPendaftaran/{id}/editAsAdmin', [PendaftaranController::class, 'editAsAdmin'])->name('pendaftaranAsAdmin.edit')->middleware(['auth', 'verified']);
+Route::put('/kelPendaftaranAdmin/{id}', [PendaftaranController::class, 'updateAsAdmin'])->name('pendaftaranAsAdmin.update')->middleware(['auth', 'verified']);
+Route::resource('/kelPendaftaran', PendaftaranController::class)->middleware(['auth', 'verified']);
 // route CRUD pendaftaran keuangan
-Route::resource('/kelPendaftaranKeuangan', PendaftaranKeuanganController::class)->except('destroy', 'create', 'store');
+Route::resource('/kelPendaftaranKeuangan', PendaftaranKeuanganController::class)->except('destroy', 'create', 'store')->middleware(['auth', 'verified']);
 
-//route CRUD pembayarn
-// Route::get('/kelPembayaran/getPaymentInfo/{type}/{id}', [PembayaranController::class, 'getPaymentInfo']);
-Route::post('/kelPembayaranDiklat-store/{id}', [PembayaranController::class, 'storeDiklat'])->name('kelPembayaranDiklat-store/{id}.storeDiklat');
-Route::post('/kelPembayaranDiklat-form', [PembayaranController::class, 'createDiklat'])->name('kelPembayaranDiklat-form.createDiklat');
-Route::post('/kelPembayaranPendaftaran', [PembayaranController::class, 'savePendaftaran'])->name('kelPembayaranPendaftaran.savePendaftaran');
-Route::post('/kelPembayaranDiklat', [PembayaranController::class, 'saveDiklat'])->name('kelPembayaranDiklat.saveDiklat');
+//route CRUD pembayaran
+Route::post('/kelPembayaranDiklat-store/{id}', [PembayaranController::class, 'storeDiklat'])->name('kelPembayaranDiklat-store/{id}.storeDiklat')->middleware(['auth', 'verified']);
+Route::post('/kelPembayaranDiklat-form', [PembayaranController::class, 'createDiklat'])->name('kelPembayaranDiklat-form.createDiklat')->middleware(['auth', 'verified']);
+Route::post('/kelPembayaranPendaftaran', [PembayaranController::class, 'savePendaftaran'])->name('kelPembayaranPendaftaran.savePendaftaran')->middleware(['auth', 'verified']);
+Route::post('/kelPembayaranDiklat', [PembayaranController::class, 'saveDiklat'])->name('kelPembayaranDiklat.saveDiklat')->middleware(['auth', 'verified']);
 // export laporan
-Route::get('/laporanExport/{tgl_awal}', [PembayaranController::class, 'export']);
-Route::get('/allLaporanExport', [PembayaranController::class, 'exportAll']);
-Route::resource('/kelPembayaran', PembayaranController::class)->except('update');
-Route::get('/filterPembayaran', [PembayaranController::class, 'filterPembayaran']);
+Route::get('/laporanExport/{tgl_awal}', [PembayaranController::class, 'export'])->middleware(['auth', 'verified']);
+Route::get('/allLaporanExport', [PembayaranController::class, 'exportAll'])->middleware(['auth', 'verified']);
+
+Route::resource('/kelPembayaran', PembayaranController::class)->except('update')->middleware(['auth', 'verified']);
+Route::get('/filterPembayaran', [PembayaranController::class, 'filterPembayaran'])->middleware(['auth', 'verified']);
 
 // route pembayaran export A.K.A. Laporan
 //route CRUD gambar diklat
-Route::resource('/kelGambarDiklat', GambarDiklatController::class);
+Route::resource('/kelGambarDiklat', GambarDiklatController::class)->middleware(['auth', 'verified']);
 // route CRUD Kalender
 Route::get('events/list', [EventController::class, 'listEvent'])->name('events.list');
-Route::resource('events', EventController::class);
-
-Route::resource('eventsUser', EventUserController::class);
+// view kalender admin crud
+Route::resource('events', EventController::class)->middleware(['auth', 'verified']);
+//view kalender user tidak pakai crud
+Route::resource('eventsUser', EventUserController::class)->only('index');
 // log activity
-Route::get('/logActivity', [LogActivityController::class, 'index']);
+Route::get('/logActivity', [LogActivityController::class, 'index'])->middleware(['auth', 'verified']);
 // select kalender chart

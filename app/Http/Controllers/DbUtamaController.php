@@ -8,9 +8,10 @@ use App\Models\Pembayaran;
 use App\Models\Pendaftaran;
 use Illuminate\Http\Request;
 use App\Charts\KeuanganChart;
-use App\Charts\DpukPendaftarChart;
 use App\Charts\SuperAdminChart;
+use App\Charts\DpukPendaftarChart;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 class DbUtamaController extends Controller
 {
@@ -18,29 +19,35 @@ class DbUtamaController extends Controller
     public function index(SuperAdminChart $SuperAdminChart)
     {
         // $this->authorize('superAdmin');
+        // $this->authorize('superAdminOnlyAction');
+        //policy
+        $this->authorize('superAdminOnlyAction', Auth::user());
+
         $userCounts = User::groupBy('id_level')
             ->select('id_level', DB::raw('count(*) as total_user'))
             ->get();
         // dd($userCounts);
         $count = User::count();
-        $statusCounts = User::groupBy('status')->select('status',DB::raw('count(*) as total_byStatus'))->get();
+        $statusCounts = User::groupBy('status')->select('status', DB::raw('count(*) as total_byStatus'))->get();
         // dd($statusCounts);
         return view('kelola.kelDbSuperAdmin.dbSuperAdmin', [
             'userCounts' => $userCounts,
             'count' => $count,
-            'statusCounts'=>$statusCounts,
+            'statusCounts' => $statusCounts,
             'SuperAdminChart' => $SuperAdminChart->build(),
         ]);
     }
     public function byStatus($status)
     {
+        
         $datas = User::where('status', $status)->get();
         return view('kelola.kelDbSuperAdmin.detailStatus', [
-            'datas'=>$datas
+            'datas' => $datas
         ]);
     }
     public function allUser()
     {
+        $this->authorize('superAdminOnlyAction', Auth::user());
         $judul = "Semua User";
         $datas = User::all();
         return view('kelola.kelDbSuperAdmin.detailLevel', [
@@ -50,6 +57,7 @@ class DbUtamaController extends Controller
     }
     public function byLevel($id)
     {
+        $this->authorize('superAdminOnlyAction', Auth::user());
         $datas = User::where('id_level', $id)->get();
         $judul1 = Level::findOrFail($id);
         $judul = $judul1->level;
@@ -64,8 +72,8 @@ class DbUtamaController extends Controller
 
     public function dbDpuk(Request $request, DpukPendaftarChart $DpukPendaftarChart)
     {
+        $this->authorize('dpukAction', Auth::user());
         $year = $request->input('year', date('Y'));
-
         $alumni = Pendaftaran::where('status_pelaksanaan', 'Terlaksana')->whereYear('updated_at', $year)->count();
         $jumlahBelumTerlaksana = Pendaftaran::where('status_pelaksanaan', 'Belum terlaksana')->whereYear('updated_at', $year)->count();
         $totalSemua = Pendaftaran::whereYear('updated_at', $year)->count();
@@ -93,6 +101,7 @@ class DbUtamaController extends Controller
 
     public function PendaftaranByDiklat($id)
     {
+        $this->authorize('dpukAction', Auth::user());
         $datas = Pendaftaran::where('id_diklat', $id)
             ->where('status_pelaksanaan', 'Belum terlaksana')
             ->get();
@@ -103,6 +112,7 @@ class DbUtamaController extends Controller
     }
     public function PendaftaranBelumTerlaksana()
     {
+        $this->authorize('dpukAction', Auth::user());
         $datas = Pendaftaran::where('status_pelaksanaan', 'Belum terlaksana')->get();
         // dd($datas);
         return view('kelola.kelDbDpuk.detailByIdDiklat', [
@@ -111,6 +121,7 @@ class DbUtamaController extends Controller
     }
     public function PendaftaranTerlaksana()
     {
+        $this->authorize('dpukAction', Auth::user());
         $datas = Pendaftaran::where('status_pelaksanaan', 'Terlaksana')->get();
         // dd($datas);
         return view('kelola.kelDbDpuk.detailByIdDiklat', [
@@ -119,6 +130,7 @@ class DbUtamaController extends Controller
     }
     public function perluSertifikat()
     {
+        $this->authorize('dpukAction', Auth::user());
         $datas = Pendaftaran::where('status_pembayaran_diklat', 'Lunas')
             ->where('status_pembayaran_daftar', 'Lunas')
             ->where('status_pelaksanaan', 'Belum terlaksana')
@@ -131,6 +143,8 @@ class DbUtamaController extends Controller
     // kelola keuangan
     public function dbKeuangan(Request $request, KeuanganChart $KeuanganChart)
     {
+        
+        $this->authorize('dpukSuperAdminKeuangan', Auth::user());
         $year = $request->input('year', date('Y'));
         $getBayarDiklat = Pembayaran::getCountBayarDiklat();
         $getBayarPendaftaran = Pembayaran::getCountBayarPendaftaran();
@@ -149,6 +163,7 @@ class DbUtamaController extends Controller
 
     public function detailpembayaranPembayaranDiklat()
     {
+        $this->authorize('dpukSuperAdminKeuangan', Auth::user());
         $pembayarans = Pembayaran::where('jenis_pembayaran', 'diklat')->where('status', 'Lunas')->get();
         return view('kelola.kelDbKeuangan.dbDetailPembayaran', [
             'pembayarans' => $pembayarans
@@ -156,6 +171,7 @@ class DbUtamaController extends Controller
     }
     public function detailpembayaranPembayaranDaftar()
     {
+        $this->authorize('dpukSuperAdminKeuangan', Auth::user());
         $pembayarans = Pembayaran::where('jenis_pembayaran', 'pendaftaran')->where('status', 'Lunas')->get();
         return view('kelola.kelDbKeuangan.dbDetailPembayaran', [
             'pembayarans' => $pembayarans
@@ -163,6 +179,7 @@ class DbUtamaController extends Controller
     }
     public function pembayaranBelumVerifikasi()
     {
+        $this->authorize('dpukSuperAdminKeuangan', Auth::user());
         $datas = Pendaftaran::where('status_pembayaran_diklat', 'Menunggu verifikasi')->get();
         return view('kelola.kelDbKeuangan.pendaftaranDetail', [
             'datas' => $datas

@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\Diklat;
 use Illuminate\Http\Request;
 use App\Http\Requests\EventRequest;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends Controller
 {
@@ -19,7 +20,7 @@ class EventController extends Controller
 
     public function listEvent(Request $request)
     {
-        $this->authorize('viewAny', Event::class);
+        // $this->authorize('viewAny', Event::class);
         // dd($request->all());
         // $start = date('Y-m-d', strtotime($request->start));
         // $end = date('Y-m-d', strtotime($request->end));
@@ -55,6 +56,7 @@ class EventController extends Controller
      */
     public function create(Event $event)
     {
+        $this->authorize('dpukAction', Auth::user());
         // dd($event->all());
         $diklats = Diklat::get();
         return view('kelola.kelEvent.event-form', [

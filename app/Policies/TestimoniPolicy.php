@@ -29,9 +29,11 @@ class TestimoniPolicy
     /**
      * Determine whether the user can create models.
      */
-    public function create(User $user): bool
+    public function create(User $user, Testimoni $testimoni = null): bool
     {
-        return $user->level->level === 'DPUK' || $user->level->level === 'Super Admin';
+        return $user->level->level === 'DPUK' ||
+            $user->level->level === 'Super Admin' ||
+            ($testimoni !== null && $user->id === $testimoni->user_id);
     }
 
     /**

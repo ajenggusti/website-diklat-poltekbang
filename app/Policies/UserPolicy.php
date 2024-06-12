@@ -61,4 +61,18 @@ class UserPolicy
     {
         return $user->level->level === 'Super Admin' || $user->level->level==="DPUK";
     }
+
+    public function superAdminOnlyAction(User $user): bool
+    {
+        return $user->level->level === 'Super Admin';
+    }
+
+    public function dpukSuperAdminKeuangan(User $user): bool
+    {
+        return $user->level->level === 'Super Admin' ||  $user->level->level === 'DPUK' ||  $user->level->level === 'Keuangan';
+    }
+    public function dpukAction(User $user)
+    {
+        return $user->level->level === 'DPUK' || $user->level->level==="Super Admin";
+    }
 }
