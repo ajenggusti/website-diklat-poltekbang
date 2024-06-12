@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -73,14 +73,11 @@
             font-family: 'Poppins', sans-serif;
             display: flex;
             flex-direction: column;
-            /* overflow-x: hidden; */
         }
 
         .content-wrapper {
             flex: 1;
             padding-top: 100px;
-            /* overflow-y: scroll; */
-            /* scroll-snap-type: y mandatory; */
         }
 
         .content-nav {
@@ -195,13 +192,23 @@
         }
 
         .sticky .navbar-nav .nav-link:hover {
-            color: rgb(134, 135, 136) !important;
+            color: rgb(128, 128, 128) !important;
         }
 
 
         @media (max-width: 480px) {
+            body {
+                width: 100%;
+                height: auto;
+            }
+            .content-nav {
+                /* max-width: 400px; */
+                /* height: auto; */
+            }
             .content-nav .navbar-brand img {
-                width: 60px;
+                width: 100%;
+                height: auto;
+                max-width: 60px;
                 margin-left: 20px;
                 padding-bottom: 2px;
                 transition: filter 0.3s;
@@ -360,7 +367,20 @@
                 </div>
             </nav>
         </div> 
+        <script>
+            window.onscroll = function() {
+                myFunction();
+            };
 
+            function myFunction() {
+                var navbar = document.getElementById("navbar");
+                if (window.pageYOffset > 50) {
+                    navbar.classList.add("sticky");
+                } else {
+                    navbar.classList.remove("sticky");
+                }
+            }
+        </script>
         <script>
             const body = document.querySelector("body"),
                 nav = document.querySelector("nav"),

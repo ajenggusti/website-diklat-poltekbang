@@ -1,15 +1,8 @@
 .landFour {
-    /* height: auto; */
-    /* max-height: 600px; */
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
     box-sizing: border-box;
-    /* background-color: #ffffff; */
     padding-left: 10%;
     padding-right: 10%;
     padding-top: 30px;
-    /* margin-top: 40px; */
 }
 
 h3, p {
@@ -48,8 +41,9 @@ h3, p {
     position: relative;
     row-gap: 5px;
     padding: 0;
-    border-top-left-radius: 20px;
-    border-top-right-radius: 20px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: #a2a2a2;
 }
 
 .card-content{
@@ -58,26 +52,20 @@ h3, p {
     
     border-bottom-left-radius: 20px;
     border-bottom-right-radius: 20px;
-    
-    /* box-shadow: 0 0 10px #727171; */
 }
 
 .card {
-    /* background: #fff; */
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-bottom: 20px;
     margin-left: 2px;
     margin-right: -5px;
-    /* transition: box-shadow 0.3s ease-in-out; */
 }
 
 
 .card-image{
     position: relative;
     height: 200px;
-    /* width: 359px; */
-
     width: 100%;
 }
 
@@ -142,7 +130,6 @@ h3, p {
 @media screen and (min-width: 481px) and (max-width: 1056px) {
     .landFour {
         height: auto;
-        /* max-height: 500px; */
     }
     .slide-content{
         margin: 0 10px;
@@ -164,7 +151,7 @@ h3, p {
 @media screen and (max-width: 480px) {
     .landFour {
         height: auto;
-        max-height: 500px;
+        /* max-height: 500px; */
     }
     .slide-content{
         margin: 0 10px;

@@ -6,7 +6,6 @@
     margin: 0;
 	padding: 0;
     width: 100%;
-    /* height: auto; */
     margin-top: 150px;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
@@ -18,7 +17,7 @@
 }
 
 .testimonial-card {
-    animation-delay: 3s;
+    animation-delay: 2.5s;
 }
 .testi-land {
     width: 80%;
@@ -28,17 +27,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /* background-color: var(--body-clr); */
-
-    /* margin-top: -200px; */
-    /* border: 1px solid #000; */
     margin-top: -160px;
 }
 
 .testi-header h3,
 .testi-header .p-testi {
-    padding-left: 10%;
-    animation-delay: 3s;
+    /* padding-left: 10%; */
+    animation-delay: 2.5s;
 }
 
 .testi-header h3 {
@@ -141,7 +136,6 @@
 
 .owl-nav {
     display: none;
-    /* padding-top: 20px; */
 }
 
 /* Layar untuk 481px - 900px */

@@ -71,12 +71,10 @@ body {
 }
 
 
-/* REVISI */
 .loginForm label {
   text-align: justify;
   font-weight: 600;
 }
-/* END REVISI */
 
 
 
@@ -95,7 +93,6 @@ body {
     right: 0;
     top: 5px;
     bottom: 0;
-    /* z-index: 1; */
 }
 
 input[type=text], input[type=email], input[type=password] {

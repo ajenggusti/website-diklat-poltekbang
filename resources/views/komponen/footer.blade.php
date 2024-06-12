@@ -83,7 +83,8 @@
                         float: left;
                         padding: 10px;
                         box-sizing: border-box;
-                        margin-left: 120px;
+                        margin-left: 1
+                        20px;
                     
                     }
 
@@ -122,6 +123,10 @@
 
                     /* Layar 0-480px */
                    @media screen and (max-width: 480px) {
+                        .footer {
+                            height: auto;
+                            width: 100%
+                        }
                         .footer h5 {
                             font-weight: bold;
                         }
@@ -356,19 +361,19 @@
                         <p class="text-body-secondary">Copyright &copy; 2024, All rights reserved. Designed by Unit IT Politeknik Surabaya</p>
                     </div>
                     <div class="kanan-bawah">
-                        <a href="#" style="font-size: 25px; margin-left: 10px; " class="ikon">
+                        <a href="https://www.instagram.com/poltekbangsby/?hl=en" style="font-size: 25px; margin-left: 10px; " class="ikon">
                             <i class="bi bi-instagram" style="background: #405DE6;"></i>
                         </a>
 
-                        <a href="#" style="font-size: 25px; margin-left: 10px;" class="ikon">
+                        <a href="https://www.facebook.com/poltekbangsby/" style="font-size: 25px; margin-left: 10px;" class="ikon">
                             <i class="bi bi-facebook" style="background: #55ACEE;"></i>
                         </a>
 
-                        <a href="#" style="font-size: 25px; margin-left: 10px;" class="ikon">
+                        <a href="https://x.com/poltekbangsby?lang=en" style="font-size: 25px; margin-left: 10px;" class="ikon">
                             <i class="bi bi-twitter-x" style="background: #000000;"></i>
                         </a>
 
-                        <a href="#" style="font-size: 25px; margin-left: 10px;" class="ikon">
+                        <a href="https://www.youtube.com/c/PoliteknikPenerbanganSurabaya" style="font-size: 25px; margin-left: 10px;" class="ikon">
                             <i class="bi bi-youtube" style="background: #bb0000;"></i>
                         </a>
 
@@ -376,7 +381,7 @@
                             <i class="bi bi-whatsapp" style="background: #a4c639;"></i>
                         </a>
 
-                        <a href="#"style="font-size: 25px; margin-left: 10px;" class="ikon">
+                        <a href="https://www.tiktok.com/@poltekbangsurabaya?lang=id-ID"style="font-size: 25px; margin-left: 10px;" class="ikon">
                             <i class="bi bi-tiktok" style="background: #000000;"></i>
                         </a>
                     </div>

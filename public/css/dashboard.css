@@ -289,7 +289,6 @@ header .image-text .name {
   .sidebar li a:hover .icon {
     background-color: var(--primary-color);
     padding: 0 5px 0 0;
-    /* border-radius: 15px; */
   }
   
   .sidebar li .nav-text.show-text {
@@ -297,13 +296,10 @@ header .image-text .name {
   }
 
   .bottom-content li a {
-    /* padding-left: 4px; */
     margin-left: -10px;
   }
 
   .home {
-    /* left: 80px;
-    width: calc(100% - 80px); */
     left: 0;
     width: 100%;
   }

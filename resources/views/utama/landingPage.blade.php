@@ -78,7 +78,7 @@
             <div class="landThree parallax" id="promo">
                 <div class="promo-land">
                     @if ($countPromo!=0)
-                        <h3 class="animasi1">Promo</h3>
+                        <h3 class="animasi1">PROMO</h3>
                         <p class="animasi1">Temukan promo yang bisa kamu dapatkan disini.. </p>
                         <div id="carouselExampleIndicators" class="carousel slide img-promo animasi1" data-bs-ride="carousel">
                             <div class="carousel-indicators animasi1">
@@ -108,7 +108,7 @@
             
             <div class="landFour parallax" id="katDiklat">
                 <div class="kat-land swiper">
-                    <h3 class="animasi1">Kategori Diklat</h3>
+                    <h3 class="animasi1">KATEGORI DIKLAT</h3>
                     <p class="p-kat animasi1">Klik button untuk melihat lebih banyak diklat </p>
                     <div class="slide-content">
                         <div class="card-wrapper swiper-wrapper">
@@ -149,7 +149,7 @@
             
             <div class="bg-testi parallax" id="testimoni">
                 <div class="testi-header animasi1">
-                    <h3 id="testimoni" class="animasi1">Testimoni</h3>
+                    <h3 id="testimoni" class="animasi1">TESTIMONI</h3>
                     <p class="p-testi animasi1">Simak apa kata mereka...</p>
                 </div>
                 <div class="landFive">

@@ -7,6 +7,7 @@
         @if (count($diklat) != 0 )
             <div class="diklat-land swiper">
                 <h2>PROGRAM {{ $diklatOne->kategori_diklat }}</h2><br>
+                <button class="button see-all" onclick="toggleAllDiklat()">See All</button><br>
                 <div class="slide-content">
                     <div class="card-wrapper swiper-wrapper">
                         @foreach ($diklat as $perdiklat)
@@ -59,9 +60,7 @@
                 <div class="swiper-pagination"></div>
             </div>  
 
-            <button class="button see-all" onclick="toggleAllDiklat()">See All</button>
-
-            <div class="all-diklat-content" id="all-diklat-content" style="display: none;">
+            <div class="all-diklat-content diklat-land" id="all-diklat-content" style="display: none;">
                 <h2>All Programs</h2>
                 <div class="all-diklat-wrapper">
                     @foreach ($diklat as $perdiklat)

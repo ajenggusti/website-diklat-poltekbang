@@ -64,6 +64,10 @@
                             <i class="fa-solid fa-arrow-up" onclick="sortTable(5, 'asc')" style="font-size: 13px;"></i>
                             <i class="fa-solid fa-arrow-down" onclick="sortTable(5, 'desc')" style="font-size: 13px;"></i>
                         </th>
+                        {{-- <th>Tanggal<br>
+                            <i class="fa-solid fa-arrow-up" onclick="sortTable(6, 'asc')" style="font-size: 13px;"></i>
+                            <i class="fa-solid fa-arrow-down" onclick="sortTable(6, 'desc')" style="font-size: 13px;"></i>
+                        </th> --}}
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -99,6 +103,7 @@
                                     
                                 @endif
                             </td>
+                            {{-- <td>jkjkjkj</td> --}}
                             <td>
                                 <div class="action-buttons">
                                     <a href="/kelPendaftaran/{{ $data->id }}" class="btn btn-info"><i class="bi bi-eye"></i> Detail</a>

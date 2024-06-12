@@ -1,8 +1,4 @@
 /* Dashboard Super Admin */
-/* body {
-    background-color: #ebe9e9;
-  } */
-  
   .container-admin {
     width: 100%;
     display: flex;
@@ -105,60 +101,3 @@
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-/* Media Queries untuk layar dengan lebar di bawah 481px */
-/* @media (max-width: 480px) {
-  .container-admin {
-    padding: 10px;
-  }
-
-  .inner p {
-    padding-right: 10px;
-    font-size: 16px; 
-  }
-
-  .icon i {
-    margin-top: -10px;
-  }
-
-  .col-lg-3,
-  .col-6 {
-    flex: 1 1 100%;
-    max-width: 100%;
-    margin: 5px 0;
-  }
-
-  .small-box {
-    min-height: 250px; 
-    padding: 20px; 
-    box-sizing: border-box;
-    overflow: hidden; 
-  }
-
-  .small-box .inner {
-    padding-top: 10px;
-    padding-left: 15px;
-    padding-right: 15px; 
-  }
-
-  .small-box-footer {
-    font-size: 16px; 
-  }
-} */
-
-/* Diagram */
-/* @media (max-width: 480px) {
-  .form-container label,
-  .form-container select {
-    font-size: 14px;
-  }
-
-  .chart-container {
-    padding: 10px;
-    margin: 10px auto;
-  }
-
-  .chart-container canvas {
-    width: 100% !important;
-    height: auto !important;
-  }
-} */

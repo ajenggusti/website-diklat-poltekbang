@@ -10,6 +10,12 @@
     max-width: 1120px;
     width: 100%;
     padding: 40px 0;
+
+.see-all {
+    float: right;
+    margin-top: -40px;
+}
+
 }
 .button-macam {
     padding-left: 15%;
@@ -95,16 +101,6 @@
 .swiper-pagination-bullet-active{
     background-color: #4070F4;
 }
-
-/* @media screen and (max-width: 768px) {
-    .slide-content{
-        margin: 0 10px;
-    }
-    .swiper-navBtn{
-        display: none;
-    }
-} */
-
 
 /* Ikon */
 .bi-person-fill-add{

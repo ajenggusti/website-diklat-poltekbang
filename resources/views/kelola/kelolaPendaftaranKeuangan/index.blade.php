@@ -60,9 +60,13 @@
                             <i class="fa-solid fa-arrow-up" onclick="sortTable(4, 'asc')" style="font-size: 13px;"></i>
                             <i class="fa-solid fa-arrow-down" onclick="sortTable(4, 'desc')" style="font-size: 13px;"></i>
                         </th>
-                        <th style="min-width: 100px;">Status Pelaksanaan Diklat<br>
+                        <th>Tanggal Pembayaran Diklat <br>
                             <i class="fa-solid fa-arrow-up" onclick="sortTable(5, 'asc')" style="font-size: 13px;"></i>
                             <i class="fa-solid fa-arrow-down" onclick="sortTable(5, 'desc')" style="font-size: 13px;"></i>
+                        </th>
+                        <th style="min-width: 100px;">Status Pelaksanaan Diklat<br>
+                            <i class="fa-solid fa-arrow-up" onclick="sortTable(6, 'asc')" style="font-size: 13px;"></i>
+                            <i class="fa-solid fa-arrow-down" onclick="sortTable(6, 'desc')" style="font-size: 13px;"></i>
                         </th>
                         <th>Action</th>
                     </tr>
@@ -99,6 +103,8 @@
                                     
                                 @endif
                             </td>
+                            
+                            <td>{{ $data->updated_at->format('d-m-Y H:i') }}</td>
                             <td>
                                 <div class="action-buttons">
                                     <a href="/kelPendaftaranKeuangan/{{ $data->id }}" class="btn btn-info"><i class="bi bi-eye"></i> Detail</a>
